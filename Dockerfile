@@ -1,8 +1,9 @@
-FROM node:10-alpine
-WORKDIR /opt/app
-ENV NODE_ENV production
+FROM node:10
+WORKDIR /usr/src/app
+
 COPY package*.json ./
-RUN npm ci
-COPY . /opt/app
-RUN npm install --dev && npm run build
+RUN npm install
+COPY . .
+RUN npm run build
 CMD [ "npm", "start" ]
+EXPOSE 3000
