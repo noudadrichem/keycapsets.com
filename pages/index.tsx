@@ -11,7 +11,7 @@ function Home(props: HomeProps) {
 
     useEffect(() => {
 
-    });
+    }, []);
 
     return (
         <div id="home">
