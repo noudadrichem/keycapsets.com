@@ -33,11 +33,18 @@
 
     &.primary {
         background-color: var(--blue);
+        border: 1px solid var(--blue);
         color: white;;
         font-weight: 600;
 
+        &:active {
+            background-color: var(--blue-darker);
+            border: 1px solid var(--blue-darker);
+        }
+
         &:hover {
             background-color: var(--blue-darker);
+            border: 1px solid var(--blue-darker);
 
             &:disabled {
                 opacity: .5;
@@ -52,6 +59,7 @@
 
          &:hover {
              background-color: var(--blue);
+             border: 1px solid var(--blue);
              color: white;
 
              &:disabled {

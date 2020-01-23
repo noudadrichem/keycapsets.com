@@ -1,5 +1,6 @@
 import React from 'react';
-import Tabs from './Tabs'
+import Tabs from './Tabs';
+import Context from '../context';
 
 interface HeadingProps {
 
