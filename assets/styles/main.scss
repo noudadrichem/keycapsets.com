@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Rubik:400,400i,500&display=swap');
+@import 'variables';
+@import 'typography';
 
 * {
     box-sizing: border-box;
@@ -8,4 +10,38 @@
 
 body {
     font-family: 'Rubik', sans-serif;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+
+.fadeInUp {
+    animation-name: fadeInUp;
+    animation-direction: forwards;
+}
+
+@keyframes fadeInUp {
+    0% {
+        -webkit-transform: translate3d(0, 100%, 0);
+        opacity: 0;
+        transform: translate3d(0, 100%, 0);
+    }
+
+    100% {
+        -webkit-transform: translateZ(0);
+        opacity: 1;
+        transform: translateZ(0);
+    }
 }

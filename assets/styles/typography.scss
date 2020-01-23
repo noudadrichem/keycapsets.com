@@ -1,0 +1,132 @@
+// @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap');
+
+h1 {
+    font-size: 44px;
+    font-weight: 700;
+    line-height: 140%;
+    font-weight: 500;
+    color: var(--text-color);
+    margin-bottom: 0;
+
+    @media screen and (max-width: $bp-tablet-md) {
+        font-size: 32px;
+    }
+
+    @media screen and (max-width: $bp-mobile-lg) {
+        font-size: 24px;
+    }
+}
+
+h2 {
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 140%;
+    color: var(--text-color);
+
+    @media screen and (max-width: $bp-tablet-md) {
+        font-size: 36px;
+    }
+
+    @media screen and (max-width: $bp-mobile-lg) {
+        font-size: 32px;
+    }
+}
+
+h3 {
+    font-size: 32px;
+    line-height: 140%;
+    color: var(--text-color);
+    font-weight: 500;
+
+    @media screen and (max-width: $bp-tablet-md) {
+        font-size: 28px;
+    }
+
+    @media screen and (max-width: $bp-mobile-lg) {
+        font-size: 24px;
+    }
+}
+
+h4 {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 140%;
+    color: var(--text-color);
+    margin: 8px 0;
+}
+
+h5 {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 140%;
+    color: var(--text-color);
+    margin-bottom: 8px;
+}
+
+p {
+    font-size: 18px;
+    line-height: 140%;
+    color: var(--text-color);
+
+    &.small {
+        font-size: 14px;
+    }
+
+    &.large {
+        font-size: 24px;
+    }
+}
+
+.no-margin {
+    margin: 0;
+}
+
+a {
+    &.text-link {
+        text-decoration: none;
+        font-size: 16px;
+        color: var(--blue-500);
+        letter-spacing: -.2px;
+        line-height: 24px;
+        position: relative;
+        font-weight: 500;
+
+        &::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            background-color: var(--blue-200);
+            left: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+
+        &.small {
+            font-size: 14px;
+        }
+    }
+}
+
+
+span {
+    &.extra-bold {
+        font-weight: 900;
+    }
+
+    &.bold {
+        font-weight: 700;
+    }
+
+    &.medium {
+        font-weight: 500;
+    }
+
+    &.light {
+        font-weight: 300;
+    }
+}
+
+.center {
+    text-align: center;
+}
