@@ -1,11 +1,11 @@
 import React from 'react';
-import Tab from './tab'
+import Tab from './Tab'
 
 interface TabsProps {
 
 }
 
-const tabs = ['all', 'gmk', 'e-bpt', 'xda']
+const tabs = ['all', 'gmk', 'e-bpt', 'xda', 'sa']
 
 function Tabs(props: TabsProps): JSX.Element {
     const { } = props;

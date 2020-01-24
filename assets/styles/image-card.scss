@@ -1,20 +1,21 @@
 .image-card {
-    // display: inline-flex;
-    // flex-direction: column;
-    // flex: 1;
-
-    height: 300px;
-    // margin-right: 24px;
-
-
     .image {
+        position: relative;
         background: #fff;
         box-shadow: 0 0 48px 0 rgba(0, 0, 0, 0.12);
         border-radius: 4px;
         overflow: hidden;
         line-height: 0;
+        height: 300px;
+        cursor: pointer;
+        transition: 120ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+
+        &:hover {
+            transform: scale(1.02);
+        }
 
         img {
+            height: 100%;
             width: 100%;
             object-fit: cover;
         }

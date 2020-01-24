@@ -5,7 +5,7 @@ import ImageCard from './ImageCard'
 interface ImagesProps {
 }
 
-function Tab(props: ImagesProps): JSX.Element {
+function Images(props: ImagesProps): JSX.Element {
     const {} = props;
 
     return (
@@ -13,8 +13,13 @@ function Tab(props: ImagesProps): JSX.Element {
             {
                 (state) => (
                     <div className="images-container">
-                        {state.keycapsets.map((keycapset) => {
-                            const { coverImageUrl, name } = keycapset
+                        {state.keycapsets
+                            .filter((keycapset) => {
+                                if(state.activeTab === 'all') return true;
+                                return keycapset.type === state.activeTab;
+                            })
+                            .map((keycapset) => {
+                            const { coverImageUrl, name } = keycapset;
 
                             return (
                                 <ImageCard src={coverImageUrl} name={name} />
@@ -27,4 +32,4 @@ function Tab(props: ImagesProps): JSX.Element {
     )
 }
 
-export default Tab;
+export default Images;
