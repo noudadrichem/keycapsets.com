@@ -4,6 +4,8 @@
 @import 'button';
 @import 'heading';
 @import 'tabs';
+@import 'images';
+@import 'image-card';
 
 * {
     box-sizing: border-box;
@@ -13,6 +15,7 @@
 
 body {
     font-family: 'Rubik', sans-serif;
+    background: #f2f2f2;
 }
 
 ul {

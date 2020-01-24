@@ -13,6 +13,16 @@ module.exports = withCSS(withSass({
             }
         });
 
+        config.module.rules.push({
+            test: /\.json$/,
+            use: {
+                loader: 'json-loader',
+                options: {
+                    limit: 100000
+                }
+            }
+        })
+
         return config;
     }
 }));

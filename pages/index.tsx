@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import '../assets/styles/main.scss';
-
 import Context, { INITITAL_STATE, reduceState } from '../context';
 
 import Heading from '../components/Heading';
+import Images from '../components/Images';
 
-interface HomeProps {
+import '../assets/styles/main.scss';
 
-}
+interface HomeProps {}
 
 function Home(props: HomeProps) {
     const [state, setState] = useState(INITITAL_STATE);
@@ -20,9 +19,8 @@ function Home(props: HomeProps) {
 
     return (
         <Context.Provider value={{ ...state, setGlobalState }}>
-            <div id="home">
-                <Heading />
-            </div>
+            <Heading />
+            <Images />
         </Context.Provider>
     )
 }

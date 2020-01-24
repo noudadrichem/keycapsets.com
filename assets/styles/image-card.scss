@@ -1,0 +1,26 @@
+.image-card {
+    // display: inline-flex;
+    // flex-direction: column;
+    // flex: 1;
+
+    height: 300px;
+    // margin-right: 24px;
+
+
+    .image {
+        background: #fff;
+        box-shadow: 0 0 48px 0 rgba(0, 0, 0, 0.12);
+        border-radius: 4px;
+        overflow: hidden;
+        line-height: 0;
+
+        img {
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &:nth-child(3n) {
+        margin-right: 0;
+    }
+}

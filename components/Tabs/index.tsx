@@ -14,7 +14,7 @@ function Tabs(props: TabsProps): JSX.Element {
         <div className="tabs">
             <h5>Choose your keycap type</h5>
             <ul>
-                { tabs.map((tab: String) => <Tab id={tab} />) }
+                { tabs.map((tab: String, idx: number) => <Tab id={tab} key={idx} />) }
             </ul>
         </div>
     )

@@ -1,0 +1,10 @@
+.images-container {
+    width: 100%;
+    max-width: 1416px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 24px;
+    padding-bottom: 64px;
+}
