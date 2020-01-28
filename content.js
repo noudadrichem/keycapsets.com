@@ -10,7 +10,8 @@ const content = {
                 "",
                 "",
                 ""
-            ]
+            ],
+            "websiteUrl": ""
         },
         {
             "name": "Perestroika",
@@ -19,10 +20,11 @@ const content = {
             "active": false,
             "coverImageUrl": "https://gmk-perestroika.com/img/base-kit.png",
             "imageUrls": [
-                "",
-                "",
-                ""
-            ]
+                "https://gmk-perestroika.com/img/usual-kit.png",
+                "https://gmk-perestroika.com/img/unusual-kit.png",
+                "https://gmk-perestroika.com/img/modern-kit.png"
+            ],
+            "websiteUrl": "https://gmk-perestroika.com/"
         },
         {
             "name": "Olive",
@@ -34,7 +36,8 @@ const content = {
                 "",
                 "",
                 ""
-            ]
+            ],
+            "websiteUrl": ""
         },
         {
             "name": "Oblique",
@@ -46,7 +49,8 @@ const content = {
                 "",
                 "",
                 ""
-            ]
+            ],
+            "websiteUrl": ""
         },
         {
             "name": "ICE",
@@ -58,7 +62,8 @@ const content = {
                 "",
                 "",
                 ""
-            ]
+            ],
+            "websiteUrl": ""
         },
         {
             "name": "9009",
@@ -70,7 +75,8 @@ const content = {
                 "",
                 "",
                 ""
-            ]
+            ],
+            "websiteUrl": ""
         },
     ]
 }

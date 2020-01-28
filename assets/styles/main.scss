@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Rubik:400,400i,500&display=swap');
 @import 'variables';
 @import 'typography';
+@import 'set';
 @import 'button';
 @import 'heading';
 @import 'tabs';
@@ -50,4 +51,11 @@ img {
         opacity: 1;
         transform: translateZ(0);
     }
+}
+
+.container {
+    width: 100%;
+    max-width: 1416px;
+    margin: 0 auto;
+    padding-bottom: 64px;
 }

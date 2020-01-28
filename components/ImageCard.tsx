@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link'
 
 interface ImageCardProps {
     src: string;
@@ -12,9 +13,11 @@ function ImageCard(props: ImageCardProps): JSX.Element {
         <div className="image-card">
             <h4 className="center">{name}</h4>
 
-            <div className="image">
-                <img src={src} />
-            </div>
+            <Link href="/[set]" as={`/${name.toLowerCase().replace(/ /g, '-')}`}>
+                <div className="image">
+                    <img src={src} />
+                </div>
+            </Link>
         </div>
     )
 }

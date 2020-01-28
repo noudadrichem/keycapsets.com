@@ -12,7 +12,7 @@ function Images(props: ImagesProps): JSX.Element {
         <Context.Consumer>
             {
                 (state) => (
-                    <div className="images-container">
+                    <div className="container images-container">
                         {state.keycapsets
                             .filter((keycapset) => {
                                 if(state.activeTab === 'all') return true;

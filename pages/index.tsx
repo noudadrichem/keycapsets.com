@@ -19,7 +19,8 @@ function Home(props: HomeProps) {
 
     return (
         <Context.Provider value={{ ...state, setGlobalState }}>
-            <Heading />
+            <Heading mainTitle="keycapsets.com" subTitle="Make your keycap wishes come true" isHome />
+
             <Images />
         </Context.Provider>
     )
