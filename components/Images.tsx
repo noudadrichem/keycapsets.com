@@ -8,8 +8,9 @@ const FETCH_KEYCAPSET_QUERY = gql`query {
   keycapsetMany {
     _id
     name
-		type
+    type
     coverImageUrl
+    slug
   }
 }`;
 
@@ -35,11 +36,9 @@ function Images(props: ImagesProps): JSX.Element {
                                 return keycapset.type === state.activeTab;
                             })
                             .map((keycapset) => {
-                            const { coverImageUrl, name } = keycapset;
+                            const { coverImageUrl, name, type, slug } = keycapset;
 
-                            return (
-                                <ImageCard src={coverImageUrl} name={name} />
-                            )
+                            return <ImageCard slug={slug} type={type} src={coverImageUrl} name={name} key={slug} />
                         })}
                     </div>
                 )
