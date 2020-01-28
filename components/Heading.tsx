@@ -12,7 +12,7 @@ function Heading(props: HeadingProps): JSX.Element {
     const { mainTitle, subTitle, isHome } = props;
 
     return (
-        <header className="heading">
+        <header className={`heading ${isHome ? 'home' : ''}`}>
             <h1 className="center no-bold">{ mainTitle  }</h1>
             <h4 className="center italic">{ subTitle }</h4>
 

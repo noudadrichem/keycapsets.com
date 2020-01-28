@@ -1,33 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import Context, { INITITAL_STATE, reduceState } from '../context';
+import React from 'react';
+import { useMutation } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
 
 import Heading from '../components/Heading';
+import useInput from '../hooks/useInput';
+import withData from '../hooks/withData';
 
 import '../assets/styles/main.scss';
+import Button from '../components/Button';
 
-interface UploadProps {}
-
-function Upload(props: UploadProps): JSX.Element {
-    useEffect(() => { }, []);
-
-    return (
-        <div className="upload-page">
-            <Heading mainTitle="Upload your set" subTitle="Share your set and make it famous!" />
-            upload
-        </div>
-    )
-}
-
-export default Upload;
-
-
-const createKeycapsetMutation = `
+const CREATE_KEYSET_MUTATION = gql`
 mutation keycapsetCreateOne {
     keycapsetCreateOne(record: {
-      name: "Perestroika",
-      type: "GMK",
-      active: false,
-      coverImageUrl: "https://gmk-perestroika.com/"
+      name: $name
+      type: $type
+      active: $active
+      coverImageUrl: $coverImageUrl
     }) {
       record {
         name
@@ -36,5 +24,55 @@ mutation keycapsetCreateOne {
         coverImageUrl
       }
     }
+}`
+
+interface UploadProps {}
+
+function Upload(props: UploadProps): JSX.Element {
+    const [nameValue, nameInput] = useInput({ label: 'Name:', defaultValue: 'Test entry' });
+    const [typeValue, typeInput] = useInput({ label: 'Type:', placeholder: 'gmk, xda, e-pbt, sa, etc...', defaultValue: 'xda'});
+    const [coverImageUrlValue, coverImageUrlInput] = useInput({ label: 'Cover image (url):', defaultValue: 'Test entry'});
+    const [websiteUrlValue, websiteUrlInput] = useInput({ label: 'Website:', defaultValue: 'Test entry'});
+    const [startDateValue, startDateInput] = useInput({ label: 'Start groupbuy:', type: 'date' });
+    const [endDateValue, endDateInput] = useInput({ label: 'End groupbuy:', type: 'date' });
+
+    const [addKeyset, { data }] = useMutation(CREATE_KEYSET_MUTATION);
+
+    function upload(e) {
+        const variables = {
+            name: nameValue,
+            type: typeValue,
+            active: false,
+            coverImageUrl: coverImageUrlValue
+        };
+
+        console.log('mutation...', data, variables);
+        addKeyset({variables });
+    }
+
+    return (
+        <>
+            <Heading mainTitle="keycapsets.com" subTitle="Make your keycap wishes come true" />
+
+            <div className="container">
+                { nameInput }
+                { typeInput }
+                { coverImageUrlInput }
+                { websiteUrlInput }
+                { startDateInput }
+                { endDateInput }
+            </div>
+
+            <Button
+                onClick={upload}
+                variant="primary"
+                size="sm"
+                className='primary'
+            >
+                Request
+            </Button>
+        </>
+    )
 }
-`
+
+export default withData(Upload);

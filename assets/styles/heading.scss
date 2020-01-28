@@ -1,4 +1,8 @@
 .heading {
-    padding: 128px 0;
     background-image: linear-gradient(180deg, #FAFCFE 0%, rgba(250, 252, 254, 0.00) 97%);
+    padding: 64px 0 32px;
+
+    .home {
+        padding: 128px 0;
+    }
 }
