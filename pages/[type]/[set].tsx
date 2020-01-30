@@ -9,9 +9,9 @@ import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
 
 const GET_SINGLE_SET_QUERY = gql`
-query getSingleQuery($slug: String!, $type: String!) {
-    keycapsetOne(filter: { slug: $slug, type: $type}) {
-        _id
+query GET_SINGLE_SET_QUERY($type: String!, $slug:String!){
+  keycapsetBySlug(type:$type, slug:$slug) {
+      _id
         name
         type
         coverImageUrl
@@ -21,9 +21,12 @@ query getSingleQuery($slug: String!, $type: String!) {
         coverImageUrl
         imageUrls
         websiteUrl
-        vendors
+        vendors {
+            name
+            url
+        }
         slug
-    }
+  }
 }
 `
 
@@ -43,21 +46,25 @@ function SetPage(props: SetProps) {
         slidesToScroll: 1,
     };
 
-    if (loading) return null
+    console.log({ loading, error })
+    if (loading) return 'loading...'
     if (error) return `${error}`
 
-    const set = data.keycapsetOne;
+    const set = data.keycapsetBySlug;
+    console.log({ set })
     return set !== undefined && (
         <div className="set">
-            <h1>{ set.name }</h1>
-            <p>type: { set.type }</p>
-            <p>Start date of groupbuy: {new Date(set.groupbuydate).getDate}</p>
+            <pre>{JSON.stringify(set, null, 4)}</pre>
 
-            <Slider {...slickSettings}>
-                {
-                    set.imageUrls.map((url: string) => <img src={url} key={url} />)
-                }
-            </Slider>
+            {
+                set.imageUrls.length > 0 && (
+                    <Slider {...slickSettings}>
+                        {
+                            set.imageUrls.map((url: string) => <img src={url} key={url} />)
+                        }
+                    </Slider>
+                )
+            }
         </div>
     )
 }
