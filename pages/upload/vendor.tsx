@@ -8,6 +8,7 @@ import MultipleInputs from '../../components/MultipleInputs'
 import { gql } from 'apollo-boost';
 import Button from '../../components/Button';
 import { useMutation } from '@apollo/react-hooks';
+import Heading from '../../components/Heading';
 
 const CREATE_VENDOR_MUTATION = gql`
 mutation CREATE_VENDOR_MUTATION(
@@ -53,14 +54,15 @@ function UploadVendor(props: UploadVendorProps) {
     }
 
     return (
-        <div>
-            <h1>Create Vendor</h1>
+        <div className="container">
+
+            <Heading mainTitle="Are you a vendor" subTitle="Make yourself famous!" left />
+
             {nameInput}
             {countryInput}
             {logoUrlInput}
             {urlInput}
             <MultipleInputs onChange={(socials: string[]) => setSocials(socials)} />
-
 
             <Button
                 onClick={uploadVendor}

@@ -20,18 +20,16 @@ function useInput(props: InputProps): any[] {
     const [value, setValue] = useState(defaultValue)
 
     const inputField: JSX.Element = (
-        <div className="input">
-            <div className="input-wrapper">
-                <label className="label">{ label }</label>
-                <input
-                    value={value}
-                    name={id}
-                    id={id}
-                    type={type}
-                    placeholder={placeholder}
-                    onChange={(e) => setValue(e.target.value)}
-                />
-            </div>
+        <div className="input-wrapper">
+            <label className="label">{ label }</label>
+            <input
+                value={value}
+                name={id}
+                id={id}
+                type={type}
+                placeholder={placeholder}
+                onChange={(e) => setValue(e.target.value)}
+            />
         </div>
     )
 

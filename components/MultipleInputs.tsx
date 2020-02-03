@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import '../assets/styles/input.scss';
 import useInput from '../hooks/useInput';
+import Button from './Button';
 
 interface InputProps {
     label?: string;
@@ -8,12 +9,14 @@ interface InputProps {
 
 }
 
+const GET_INPUT_TEMPLATE = (id: Number) => ({ type: 'text', placeholder: 'https://....', id });
+
 function multipleInputsHook(props: InputProps): JSX.Element {
     const { label, onChange } = props;
-    const [inputs, setInputs] = useState([{ type: 'text', id: 0 }, { type: 'text', id: 1 }])
+    const [inputs, setInputs] = useState([GET_INPUT_TEMPLATE(0)])
 
     function addInput() {
-        setInputs([...inputs, { type: 'text', id: inputs.length }]);
+        setInputs([...inputs, GET_INPUT_TEMPLATE(inputs.length)]);
     }
 
     function getAllInputValues(id, e) {
@@ -25,17 +28,21 @@ function multipleInputsHook(props: InputProps): JSX.Element {
     }
 
     return (
-        <div className="multiple-input-container">
-            <label>{label}</label>
-            { inputs.length < 11 && <button onClick={addInput}>+</button>}
+        <div className="input-wrapper-multiple">
+            <label className="label">{label}</label>
             {
-                inputs.map((inputProps: any) => (
-                    <>
-                        <input className="multiple-inputs-input" onChange={(e: any) => getAllInputValues(e.target.id, e)} {...inputProps} />
-                        <br/
-                    ></>
-                ))
+                inputs.map((inputProps: any) => <input className="input" onChange={(e: any) => getAllInputValues(e.target.id, e)} {...inputProps} /> )
             }
+            {inputs.length < 11 && (
+                <Button
+                    onClick={addInput}
+                    variant="primary"
+                    size="sm"
+                    className='primary'
+                >
+                    +
+                </Button>
+            )}
         </div>
     )
 }

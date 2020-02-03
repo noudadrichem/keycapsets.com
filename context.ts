@@ -1,6 +1,5 @@
 import { createContext } from 'react';
 import moment from 'moment';
-import content from './content.js';
 
 export function reduceState(state, obj) {
     const reducedState = {
@@ -12,7 +11,9 @@ export function reduceState(state, obj) {
 }
 
 export const INITITAL_STATE = {
-    activeTab: 'gmk'
+    activeTab: 'gmk',
+    tabs: [],
+    keycapsets: []
 }
 
 const Context = createContext(undefined);

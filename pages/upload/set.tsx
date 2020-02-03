@@ -90,17 +90,17 @@ function UploadSet(props: UploadSetProps): JSX.Element {
 
     return (
         <>
-            <Heading mainTitle="keycapsets.com" subTitle="Make your keycap wishes come true" />
-
             <div className="container">
+            <Heading mainTitle="Upload your set" subTitle="And make it famous!" left />
+
                 { nameInput }
                 { typeInput }
                 { coverImageUrlInput }
                 { websiteUrlInput }
                 { startDateInput }
                 { endDateInput }
-                <MultipleInputs onChange={(values) => setImageUrls(values)} />
-                <Select onSelectChange={(selectedVendors) => setVendors(selectedVendors) } values={vendorQueryResult.vendors} />
+                <Select label="Vendors" onSelectChange={(selectedVendors) => setVendors(selectedVendors) } values={vendorQueryResult.vendors} />
+                <MultipleInputs label="Images" onChange={(values) => setImageUrls(values)} />
             </div>
 
             <Button
