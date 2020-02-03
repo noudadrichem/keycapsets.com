@@ -6,7 +6,6 @@ import Button from './Button';
 interface InputProps {
     label?: string;
     onChange: Function;
-
 }
 
 const GET_INPUT_TEMPLATE = (id: Number) => ({ type: 'text', placeholder: 'https://....', id });

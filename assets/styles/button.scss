@@ -16,6 +16,15 @@
         width: 100%;
     }
 
+    .align {
+        &-right {
+            justify-self: flex-end;
+        }
+        &-center {
+            justify-self: center;
+        }
+    }
+
     &.sm {
         padding: 8px 16px;
         font-size: 14px;

@@ -1,34 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import { gql } from 'apollo-boost';
+import { useMutation } from '@apollo/react-hooks';
 
 import '../../assets/styles/main.scss';
+import { CREATE_VENDOR_MUTATION } from '../../queries';
+
 import useInput from '../../hooks/useInput';
 import withData from '../../hooks/withData';
 
 import MultipleInputs from '../../components/MultipleInputs'
-import { gql } from 'apollo-boost';
 import Button from '../../components/Button';
-import { useMutation } from '@apollo/react-hooks';
 import Heading from '../../components/Heading';
-
-const CREATE_VENDOR_MUTATION = gql`
-mutation CREATE_VENDOR_MUTATION(
-  $name: String,
-  $country: String,
-  $logoUrl: String,
-  $socials: [String],
-  $url: String
-) {
-    createVendor(
-      name: $name,
-      country: $country,
-      logoUrl: $logoUrl,
-      socials: $socials,
-      url: $url
-    ) {
-        name
-        _id
-    }
-}`
 
 interface UploadVendorProps { }
 
@@ -40,7 +22,7 @@ function UploadVendor(props: UploadVendorProps) {
     const [socials, setSocials] = useState([])
 
     const [addKeyset, mutationResponse] = useMutation(CREATE_VENDOR_MUTATION);
-    function uploadVendor() {
+    async function uploadVendor() {
         const variables = {
             name: nameValue,
             country: countryValue,
@@ -49,8 +31,8 @@ function UploadVendor(props: UploadVendorProps) {
             socials
         };
 
-        addKeyset({ variables });
-        console.log({mutationResponse})
+       const result = await addKeyset({ variables });
+       console.log('result')
     }
 
     return (
@@ -62,13 +44,13 @@ function UploadVendor(props: UploadVendorProps) {
             {countryInput}
             {logoUrlInput}
             {urlInput}
-            <MultipleInputs onChange={(socials: string[]) => setSocials(socials)} />
+            <MultipleInputs label="Social links..." onChange={(socials: string[]) => setSocials(socials)} />
 
             <Button
                 onClick={uploadVendor}
                 variant="primary"
                 size="sm"
-                className='primary'
+                className="align-right"
             >
                 Upload
             </Button>

@@ -1,4 +1,5 @@
 import React from 'react';
+import '../assets/styles/input.scss';
 
 interface HeadingProps {
     onSelectChange?: Function;
