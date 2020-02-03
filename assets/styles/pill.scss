@@ -1,0 +1,17 @@
+.pill {
+    border-radius: 8px;
+    font-size: 12px;
+    padding: 4px 6px;
+    display: block;
+    font-weight: 500;
+
+    &.green {
+        background: #D5E7DA;
+        color: #60AF73;
+    }
+
+    &.red {
+        background: #F2D3D8;
+        color: #D95468;
+    }
+}

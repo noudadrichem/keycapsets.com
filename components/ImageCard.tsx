@@ -1,5 +1,7 @@
 import React from 'react';
-import Link from 'next/link'
+import Link from 'next/link';
+import ButtonLink from '../components/ButtonLink';
+import Pill from '../components/Pill';
 
 interface ImageCardProps {
     src: string;
@@ -13,13 +15,31 @@ function ImageCard(props: ImageCardProps): JSX.Element {
 
     return (
         <div className="image-card">
-            <h4 className="center">{name}</h4>
+            <div className="image">
+                <img src={src} />
+                <Pill />
+            </div>
 
-            <Link href="/[type]/[set]" as={`/${type}/${slug}`}>
-                <div className="image">
-                    <img src={src} />
+            <div className="details">
+
+                <div className="horizontal">
+                    <div className="left">
+                        <h4 className="">{name}</h4>
+
+                        <div>
+                            <span className="bold">24</span> days left in groupbuy!
+                        </div>
+                    </div>
+
+                    <div className="right">
+                        <ButtonLink
+                            href="/[type]/[set]"
+                            as={`/${type}/${slug}`}
+                        >View this set</ButtonLink>
+                    </div>
                 </div>
-            </Link>
+
+            </div>
         </div>
     )
 }
