@@ -15,10 +15,10 @@ import Heading from '../../components/Heading';
 interface UploadVendorProps { }
 
 function UploadVendor(props: UploadVendorProps) {
-    const [nameValue, nameInput] = useInput({ label: 'Name:', defaultValue: 'Test entry' });
-    const [countryValue, countryInput] = useInput({ label: 'Country:', defaultValue: 'Test entry' });
-    const [logoUrlValue, logoUrlInput] = useInput({ label: 'Name:', defaultValue: 'Test entry' });
-    const [urlValue, urlInput] = useInput({ label: 'Name:', defaultValue: 'Test entry' });
+    const [nameValue, nameInput] = useInput({ label: 'Name:'});
+    const [countryValue, countryInput] = useInput({ label: 'Country:'});
+    const [logoUrlValue, logoUrlInput] = useInput({ label: 'Logo url:'});
+    const [urlValue, urlInput] = useInput({ label: 'Website address:'});
     const [socials, setSocials] = useState([])
 
     const [addKeyset, mutationResponse] = useMutation(CREATE_VENDOR_MUTATION);

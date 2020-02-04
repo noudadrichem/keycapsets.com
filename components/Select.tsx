@@ -21,7 +21,7 @@ function Heading(props: HeadingProps): JSX.Element {
                 <option value="">Select vendors</option>
                 { !!values &&
                     values.map((value: any) => (
-                        <option value={value._id}>{value.name}</option>
+                        <option key={value._id} value={value._id}>{value.name}</option>
                     ))
                 }
             </select>

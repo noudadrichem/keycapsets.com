@@ -13,6 +13,8 @@ import Select from '../../components/Select';
 import Button from '../../components/Button';
 
 import '../../assets/styles/main.scss';
+import { Keycapset } from 'typings';
+import { ExecutionResult } from 'graphql';
 
 interface UploadSetProps {}
 
@@ -33,7 +35,7 @@ function UploadSet(props: UploadSetProps): JSX.Element {
 
     async function uploadKeycapset(e) {
         setUploading(true);
-        const variables = {
+        const variables: Keycapset = {
             name: nameValue,
             type: typeValue,
             active: false,
@@ -45,7 +47,7 @@ function UploadSet(props: UploadSetProps): JSX.Element {
             vendors
         };
 
-        const result = await addKeyset({ variables });
+        const result: ExecutionResult<Keycapset> = await addKeyset({ variables });
         setUploading(false)
         console.log({ result })
     }
@@ -63,8 +65,8 @@ function UploadSet(props: UploadSetProps): JSX.Element {
             { websiteUrlInput }
             { startDateInput }
             { endDateInput }
-            <Select label="Vendors" onSelectChange={(selectedVendors) => setVendors(selectedVendors) } values={vendorQueryResult.vendors} />
-            <MultipleInputs label="Images" onChange={(values) => setImageUrls(values)} />
+            <Select label="Vendors" onSelectChange={(selectedVendors: string[]) => setVendors(selectedVendors) } values={vendorQueryResult.vendors} />
+            <MultipleInputs label="Images" onChange={(values: string[]) => setImageUrls(values)} />
 
             <Button
                 onClick={uploadKeycapset}

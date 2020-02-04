@@ -46,14 +46,11 @@ function ImageCard(props: ImageCardProps): JSX.Element {
                                     <span className="bold"> {getDayDifference(groupbuyStartDate)} </span>
                                     days
                                 </>
-                                : (
-                                    <>
+                                : <>
                                     Ending in
                                     <span className="bold"> {getDayDifference(groupbuyEndDate)} </span>
                                     days
-
-                                    </>
-                                )
+                                </>
                             }
                         </div>
                     </div>

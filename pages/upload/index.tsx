@@ -13,12 +13,12 @@ function Upload(props: UploadProps) {
     return (
         <div className="container upload">
 
-            <Heading mainTitle="Upload" subTitle="Make yourself known!" left />
+            <Heading mainTitle="Upload a set or apply as a vendor!" subTitle="Start shining out there!" left />
 
 
             <div className="cards">
                 <div className="card">
-                    <Link  href="/upload/set">Here to add a set?</Link>
+                    <Link  href="/upload/set">Add a set!</Link>
                 </div>
 
                 <div className="card">

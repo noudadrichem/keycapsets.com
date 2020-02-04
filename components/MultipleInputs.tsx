@@ -30,7 +30,7 @@ function multipleInputsHook(props: InputProps): JSX.Element {
         <div className="input-wrapper-multiple">
             <label className="label">{label}</label>
             {
-                inputs.map((inputProps: any) => <input className="input" onChange={(e: any) => getAllInputValues(e.target.id, e)} {...inputProps} /> )
+                inputs.map((inputProps: any) => <input key={inputProps.id} className="input" onChange={(e: any) => getAllInputValues(e.target.id, e)} {...inputProps} /> )
             }
             {inputs.length < 11 && (
                 <Button

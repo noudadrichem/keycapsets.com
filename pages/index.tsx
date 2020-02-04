@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 
 import Heading from '../components/Heading';
+import Footer from '../components/Footer';
 import Images from '../components/Images';
 import withData from '../hooks/withData';
 
@@ -50,6 +51,8 @@ function Home(props: HomeProps) {
                     isHome
                 />
                 <Images />
+
+                <Footer />
         </Context.Provider>
     )
 }

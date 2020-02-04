@@ -63,6 +63,7 @@ const GET_VENDORS_QUERY = gql`query GET_VENDORS_QUERY {
   vendors {
     name
     _id
+    logoUrl
   }
 }
 `
