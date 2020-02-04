@@ -3,16 +3,21 @@ import React, { ReactNode } from 'react'
 import '../assets/styles/pill.scss';
 
 interface PillProps {
-    className?: String;
     children?: ReactNode;
+    className?: string;
+    color: string;
 }
 
 function Pill(props: PillProps): JSX.Element {
-    const { children } = props;
+    const { children, color } = props;
 
     return (
-        <div className={`pill ${true ? 'green' : 'red'}`}>
-            Available for purchase
+        <div className={`pill ${color}`}>
+            {
+                color === 'green'
+                ? 'Available for purchase right now!'
+                : 'Not available for purchase'
+            }
         </div>
     )
 }

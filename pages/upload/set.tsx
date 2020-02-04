@@ -21,8 +21,8 @@ function UploadSet(props: UploadSetProps): JSX.Element {
     const [typeValue, typeInput] = useInput({ label: 'Type:', placeholder: 'gmk, xda, e-pbt, sa...', defaultValue: 'gmk'});
     const [coverImageUrlValue, coverImageUrlInput] = useInput({ label: 'Cover image (url):' });
     const [websiteUrlValue, websiteUrlInput] = useInput({ label: 'Website:' });
-    const [startDateValue, startDateInput] = useInput({ label: 'Start groupbuy:', type: 'date' });
-    const [endDateValue, endDateInput] = useInput({ label: 'End groupbuy:', type: 'date' });
+    const [startDateValue, startDateInput] = useInput({ label: 'Start groupbuy:', type: 'date', defaultValue: moment().format('YYYY-MM-DD') });
+    const [endDateValue, endDateInput] = useInput({ label: 'End groupbuy:', type: 'date', defaultValue: moment().add('1', 'months').format('YYYY-MM-DD') });
 
     const [imageUrls, setImageUrls] = useState([]);
     const [vendors, setVendors] = useState([]);

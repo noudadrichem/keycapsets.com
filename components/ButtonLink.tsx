@@ -28,7 +28,7 @@ function ButtonLink(props: LinkProps): JSX.Element {
                 )
                 : (
                     <Link href={href} as={as}>
-                        {children}
+                        <a>{children}</a>
                     </Link>
                 )
             }

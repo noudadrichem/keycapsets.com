@@ -20,7 +20,7 @@
         height: 12px;
         display: inline-flex;
         left: 8px;
-        position: absolute;
+    position: absolute;
         pointer-events: none;
 
         &+input {
@@ -43,6 +43,7 @@
         border-radius: 8px;
         outline: none;
         resize: none;
+        -webkit-appearance: none;
     }
 }
 

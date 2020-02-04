@@ -7,6 +7,8 @@ const FETCH_KEYCAPSET_QUERY = gql`query FETCH_KEYCAPSET_QUERY {
     type
     coverImageUrl
     slug
+    groupbuyStartDate
+    groupbuyEndDate
   }
 }`;
 

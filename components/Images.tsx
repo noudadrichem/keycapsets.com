@@ -19,10 +19,7 @@ function Images(props: ImagesProps): JSX.Element {
                                     if (state.activeTab === 'all') return true;
                                     return keycapset.type === state.activeTab;
                                 })
-                                .map((keycapset) => {
-                                    const { coverImageUrl, name, type, slug } = keycapset;
-                                    return <ImageCard slug={slug} type={type} src={coverImageUrl} name={name} key={slug} />
-                                })}
+                                .map((keycapset) => <ImageCard {...{keycapset}} key={keycapset._id} />)}
                         </div>
                     )
                 }
