@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useMutation, useQuery } from '@apollo/react-hooks';
 import moment from 'moment';
 
@@ -26,7 +26,7 @@ function UploadSet(props: UploadSetProps): JSX.Element {
     const [coverImageUrlValue, coverImageUrlInput] = useInput({ label: 'Cover image (url):' });
     const [websiteUrlValue, websiteUrlInput] = useInput({ label: 'Website:' });
     const [startDateValue, startDateInput] = useInput({ label: 'Start groupbuy:', type: 'date', defaultValue: moment().format('YYYY-MM-DD') });
-    const [endDateValue, endDateInput] = useInput({ label: 'End groupbuy:', type: 'date', defaultValue: moment().add('1', 'months').format('YYYY-MM-DD') });
+    const [endDateValue, endDateInput, setEndDateValue] = useInput({ label: 'End groupbuy:', type: 'date', defaultValue: moment().add('1', 'months').format('YYYY-MM-DD') });
 
     const [imageUrls, setImageUrls] = useState([]);
     const [vendors, setVendors] = useState([]);
@@ -34,6 +34,11 @@ function UploadSet(props: UploadSetProps): JSX.Element {
 
     const [addKeyset] = useMutation(CREATE_KEYSET_MUTATION);
     const { loading, error, data: vendorQueryResult } = useQuery(GET_VENDORS_QUERY);
+
+    useEffect(() => {
+        const oneMonthLater = moment(startDateValue).add(1, 'months').add(1, 'days').format('YYYY-MM-DD')
+        setEndDateValue(oneMonthLater)
+    }, [startDateValue])
 
     async function uploadKeycapset(e) {
         setUploading(true);
@@ -61,7 +66,7 @@ function UploadSet(props: UploadSetProps): JSX.Element {
     return (
         <>
             <Nav />
-            <div className="container">
+            <div className="container upload">
                 <Heading mainTitle="Upload your set" subTitle="And make it famous!" left />
                 { nameInput }
                 { typeInput }

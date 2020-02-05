@@ -40,7 +40,7 @@ function UploadVendor(props: UploadVendorProps) {
     return (
         <>
             <Nav />
-            <div className="container">
+            <div className="container upload">
 
                 <Heading mainTitle="Are you a vendor" subTitle="Make yourself famous!" left />
 

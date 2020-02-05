@@ -6,6 +6,7 @@
 @import 'heading';
 @import 'tabs';
 @import 'images';
+@import 'upload';
 @import 'image-card';
 
 * {
@@ -16,7 +17,8 @@
 
 body {
     font-family: 'Rubik', sans-serif;
-    background: #f2f2f2;
+    background: #F8F9FB;
+    // background: #f2f2f2;
     min-height: 100.1vh;
 }
 
@@ -58,4 +60,13 @@ img {
     width: 100%;
     max-width: 1416px;
     margin: 0 auto;
+}
+
+.label {
+    margin-bottom: 4px;
+    font-size: 12px;
+    letter-spacing: 0.2px;
+    font-weight: 400;
+    color: var(--text-color-light);
+    // text-transform: uppercase;
 }

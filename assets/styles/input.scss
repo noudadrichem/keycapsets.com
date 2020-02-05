@@ -5,16 +5,7 @@
     flex-direction: column;
     background-color: var(--white-second);
     position: relative;
-    // margin-bottom: 12px;
     -webkit-appearance: none;
-
-    .label {
-        margin-bottom: 4px;
-        font-size: 12px;
-        font-weight: 400;
-        color: var(--text-color-light)
-    }
-
 
     .icon {
         height: 12px;
@@ -44,6 +35,10 @@
         outline: none;
         resize: none;
         -webkit-appearance: none;
+
+        &:focus {
+            border: 1px solid var(--blue);
+        }
     }
 }
 
