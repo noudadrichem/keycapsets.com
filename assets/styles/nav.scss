@@ -1,0 +1,16 @@
+.nav {
+    padding: 16px 0;
+    // background-color: var(--white);
+
+    .container {
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            a {
+                color: var(--text-color-light);
+            }
+        }
+    }
+}

@@ -11,10 +11,12 @@ import Heading from '../../components/Heading';
 import MultipleInputs from '../../components/MultipleInputs';
 import Select from '../../components/Select';
 import Button from '../../components/Button';
+import Footer from '../../components/Footer';
 
 import '../../assets/styles/main.scss';
 import { Keycapset } from 'typings';
 import { ExecutionResult } from 'graphql';
+import Nav from '../../components/Nav';
 
 interface UploadSetProps {}
 
@@ -57,26 +59,31 @@ function UploadSet(props: UploadSetProps): JSX.Element {
     }
 
     return (
-        <div className="container">
-            <Heading mainTitle="Upload your set" subTitle="And make it famous!" left />
-            { nameInput }
-            { typeInput }
-            { coverImageUrlInput }
-            { websiteUrlInput }
-            { startDateInput }
-            { endDateInput }
-            <Select label="Vendors" onSelectChange={(selectedVendors: string[]) => setVendors(selectedVendors) } values={vendorQueryResult.vendors} />
-            <MultipleInputs label="Images" onChange={(values: string[]) => setImageUrls(values)} />
+        <>
+            <Nav />
+            <div className="container">
+                <Heading mainTitle="Upload your set" subTitle="And make it famous!" left />
+                { nameInput }
+                { typeInput }
+                { coverImageUrlInput }
+                { websiteUrlInput }
+                { startDateInput }
+                { endDateInput }
+                <Select label="Vendors" onSelectChange={(selectedVendors: string[]) => setVendors(selectedVendors) } values={vendorQueryResult.vendors} />
+                <MultipleInputs label="Images" onChange={(values: string[]) => setImageUrls(values)} />
 
-            <Button
-                onClick={uploadKeycapset}
-                variant="primary"
-                size="sm"
-                className="align-right"
-            >
-                { uploading ? 'Uploading...' : 'Start shining' }
-            </Button>
-        </div>
+                <Button
+                    onClick={uploadKeycapset}
+                    variant="primary"
+                    size="sm"
+                    className="align-right"
+                >
+                    { uploading ? 'Uploading...' : 'Start shining' }
+                </Button>
+
+                <Footer />
+            </div>
+        </>
     )
 }
 

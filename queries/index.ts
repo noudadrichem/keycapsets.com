@@ -68,9 +68,32 @@ const GET_VENDORS_QUERY = gql`query GET_VENDORS_QUERY {
 }
 `
 
+const GET_SINGLE_SET_QUERY = gql`
+query GET_SINGLE_SET_QUERY($type: String!, $slug:String!){
+  keycapsetBySlug(type:$type, slug:$slug) {
+      _id
+        name
+        type
+        coverImageUrl
+        groupbuyStartDate
+        groupbuyEndDate
+        active
+        coverImageUrl
+        imageUrls
+        websiteUrl
+        vendors {
+            name
+            url
+        }
+        slug
+  }
+}
+`
+
 export {
     FETCH_KEYCAPSET_QUERY,
     CREATE_KEYSET_MUTATION,
     CREATE_VENDOR_MUTATION,
-    GET_VENDORS_QUERY
+    GET_VENDORS_QUERY,
+    GET_SINGLE_SET_QUERY
 }

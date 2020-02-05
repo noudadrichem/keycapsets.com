@@ -10,10 +10,11 @@ export function reduceState(state, obj) {
     return reducedState;
 }
 
-export const INITITAL_STATE = {
-    activeTab: 'gmk',
+export const INITITAL_STATE: any = {
+    activeTab: 'all',
     tabs: [],
-    keycapsets: []
+    keycapsets: [],
+    searchQuery: ''
 }
 
 const Context = createContext(undefined);

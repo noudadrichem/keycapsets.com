@@ -7,6 +7,7 @@ interface InputProps {
     type?: string;
     id?: string;
     defaultValue?: string;
+    onChange?: Function;
 }
 
 function useInput(props: InputProps): any[] {
@@ -16,19 +17,23 @@ function useInput(props: InputProps): any[] {
         placeholder,
         id,
         defaultValue
-    } = props
-    const [value, setValue] = useState(defaultValue)
+    } = props;
+    const [value, setValue] = useState(defaultValue);
+
+    function onInputChange(e) {
+        setValue(e.target.value)
+    }
 
     const inputField: JSX.Element = (
         <div className="input-wrapper">
-            <label className="label">{ label }</label>
+            { label && <label className="label">{ label }</label>}
             <input
                 value={value}
                 name={id}
                 id={id}
                 type={type}
                 placeholder={placeholder}
-                onChange={(e) => setValue(e.target.value)}
+                onChange={onInputChange}
             />
         </div>
     )

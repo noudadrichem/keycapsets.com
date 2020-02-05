@@ -13,7 +13,6 @@ const getDayDifference = (date: any) => moment(date).diff(moment(), 'days');
 
 function ImageCard(props: ImageCardProps): JSX.Element {
     const { keycapset } = props;
-    console.log({ keycapset })
     const {
         name,
         coverImageUrl,

@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 
+import withData from '../hooks/withData';
+import Context, { INITITAL_STATE, reduceState } from '../context';
+import { FETCH_KEYCAPSET_QUERY } from '../queries'
+
 import Heading from '../components/Heading';
 import Footer from '../components/Footer';
 import Images from '../components/Images';
-import withData from '../hooks/withData';
+import Nav from '../components/Nav';
 
-import Context, { INITITAL_STATE, reduceState } from '../context';
-import { FETCH_KEYCAPSET_QUERY } from '../queries'
 
 import '../assets/styles/main.scss';
 
@@ -45,14 +47,16 @@ function Home(props: HomeProps) {
 
     return (
         <Context.Provider value={{ ...state, setGlobalState }}>
+            <Nav />
+            <div className="container">
                 <Heading
                     mainTitle="keycapsets.com"
                     subTitle="Make your keycap wishes come true"
                     isHome
-                />
+                    />
                 <Images />
-
                 <Footer />
+            </div>
         </Context.Provider>
     )
 }

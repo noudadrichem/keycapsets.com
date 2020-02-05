@@ -1,7 +1,8 @@
 const withSass = require('@zeit/next-sass');
 const withCSS = require("@zeit/next-css");
+const withImages = require('next-images');
 
-module.exports = withCSS(withSass({
+module.exports = withImages(withCSS(withSass({
     cssLoaderOptions: {
         url: false
     },
@@ -28,4 +29,4 @@ module.exports = withCSS(withSass({
 
         return config;
     }
-}));
+})));

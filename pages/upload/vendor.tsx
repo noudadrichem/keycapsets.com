@@ -11,6 +11,8 @@ import withData from '../../hooks/withData';
 import MultipleInputs from '../../components/MultipleInputs'
 import Button from '../../components/Button';
 import Heading from '../../components/Heading';
+import Footer from '../../components/Footer';
+import Nav from '../../components/Nav';
 
 interface UploadVendorProps { }
 
@@ -36,25 +38,30 @@ function UploadVendor(props: UploadVendorProps) {
     }
 
     return (
-        <div className="container">
+        <>
+            <Nav />
+            <div className="container">
 
-            <Heading mainTitle="Are you a vendor" subTitle="Make yourself famous!" left />
+                <Heading mainTitle="Are you a vendor" subTitle="Make yourself famous!" left />
 
-            {nameInput}
-            {countryInput}
-            {logoUrlInput}
-            {urlInput}
-            <MultipleInputs label="Social links..." onChange={(socials: string[]) => setSocials(socials)} />
+                {nameInput}
+                {countryInput}
+                {logoUrlInput}
+                {urlInput}
+                <MultipleInputs label="Social links..." onChange={(socials: string[]) => setSocials(socials)} />
 
-            <Button
-                onClick={uploadVendor}
-                variant="primary"
-                size="sm"
-                className="align-right"
-            >
-                Upload
-            </Button>
-        </div>
+                <Button
+                    onClick={uploadVendor}
+                    variant="primary"
+                    size="sm"
+                    className="align-right"
+                >
+                    Upload
+                </Button>
+
+                <Footer />
+            </div>
+        </>
     )
 }
 

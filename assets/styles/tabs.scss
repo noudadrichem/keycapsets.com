@@ -1,19 +1,41 @@
-.tabs {
+.filters {
     display: flex;
     align-items: center;
-    flex-direction: column;
     margin-top: 88px;
+    margin-bottom: 12px;
 
-    ul {
-        display: flex;
-    }
+    .tabs {
+        display: inline-flex;
+        flex-direction: column;
 
-    .tab {
-        margin: 0 8px;
+        ul {
+            display: flex;
+
+            li:first-child {
+                margin-left: 0;
+            }
+        }
+
+        .tab {
+            margin: 0 8px;
 
 
-        .btn {
-            width: 88px;
+            .btn {
+                width: 88px;
+            }
         }
     }
+
+    .search-input {
+        margin-left: 48px;
+        display: inline-flex;
+        flex-direction: column;
+        flex: 1;
+
+        .input-wrapper {
+            display: block;
+            height: 100%;
+        }
+    }
+
 }

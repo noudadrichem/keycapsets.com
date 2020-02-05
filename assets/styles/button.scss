@@ -1,10 +1,10 @@
 .btn {
     outline: none;
-    border-radius: 4px;
     text-align: center;
     border: none;
     transition: 120ms;
     cursor: pointer;
+    border-radius: 4px;
 
     &:disabled {
         opacity: .5;

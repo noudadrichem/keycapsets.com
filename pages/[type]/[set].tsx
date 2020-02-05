@@ -1,34 +1,15 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import Slider from "react-slick";
-import withData from '../../hooks/withData'
-
-import '../../assets/styles/main.scss';
-import 'slick-carousel/slick/slick.css';
 import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
 
-const GET_SINGLE_SET_QUERY = gql`
-query GET_SINGLE_SET_QUERY($type: String!, $slug:String!){
-  keycapsetBySlug(type:$type, slug:$slug) {
-      _id
-        name
-        type
-        coverImageUrl
-        groupbuyStartDate
-        groupbuyEndDate
-        active
-        coverImageUrl
-        imageUrls
-        websiteUrl
-        vendors {
-            name
-            url
-        }
-        slug
-  }
-}
-`
+import withData from '../../hooks/withData'
+import Footer from '../../components/Footer';
+
+import 'slick-carousel/slick/slick.css';
+import '../../assets/styles/main.scss';
+import { GET_SINGLE_SET_QUERY } from '../../queries';
 
 interface SetProps {
 }
@@ -46,12 +27,10 @@ function SetPage(props: SetProps) {
         slidesToScroll: 1,
     };
 
-    console.log({ loading, error })
-    if (loading) return 'loading...'
-    if (error) return `${error}`
+    if (loading) return 'loading...';
+    if (error) return `${error}`;
 
     const set = data.keycapsetBySlug;
-    console.log({ set })
     return set !== undefined && (
         <div className="set">
             <pre>{JSON.stringify(set, null, 4)}</pre>
@@ -65,6 +44,8 @@ function SetPage(props: SetProps) {
                     </Slider>
                 )
             }
+
+            <Footer />
         </div>
     )
 }
