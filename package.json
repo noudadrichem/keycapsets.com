@@ -24,6 +24,7 @@
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
     "apollo-boost": "^0.4.7",
+    "dotenv": "^8.2.0",
     "graphql": "^14.6.0",
     "moment": "^2.24.0",
     "next": "^9.2.0",
