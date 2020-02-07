@@ -53,7 +53,7 @@ function Home(props: HomeProps) {
                     mainTitle="keycapsets.com"
                     subTitle="Find your favorite set!"
                     isHome
-                    />
+                />
                 <Images />
                 <Footer />
             </div>
