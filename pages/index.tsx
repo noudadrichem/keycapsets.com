@@ -51,7 +51,7 @@ function Home(props: HomeProps) {
             <div className="container">
                 <Heading
                     mainTitle="keycapsets.com"
-                    subTitle="Make your keycap wishes come true"
+                    subTitle="Find your favorite set!"
                     isHome
                     />
                 <Images />

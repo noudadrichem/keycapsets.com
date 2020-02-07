@@ -27,6 +27,12 @@ module.exports = withImages(withCSS(withSass({
             }
         })
 
+        if(!options.isServer) {
+            config.node = {
+                fs: 'empty'
+            }
+        }
+
         return config;
     }
 })));

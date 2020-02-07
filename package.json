@@ -1,49 +1,49 @@
 {
-  "name": "keycapsets.com",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "dev": "next",
-    "build": "next build",
-    "start": "NODE_ENV=production next start"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/noudadrichem/keycapsets.com.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/noudadrichem/keycapsets.com/issues"
-  },
-  "homepage": "https://github.com/noudadrichem/keycapsets.com#readme",
-  "dependencies": {
-    "@apollo/react-hooks": "^3.1.3",
-    "@zeit/next-css": "^1.0.1",
-    "@zeit/next-sass": "^1.0.1",
-    "apollo-boost": "^0.4.7",
-    "dotenv": "^8.2.0",
-    "graphql": "^14.6.0",
-    "moment": "^2.24.0",
-    "next": "^9.2.0",
-    "next-apollo": "^3.1.10",
-    "next-images": "^1.3.0",
-    "node-fetch": "^2.6.0",
-    "node-sass": "^4.13.1",
-    "react": "^16.12.0",
-    "react-apollo": "^3.1.3",
-    "react-dom": "^16.12.0",
-    "react-slick": "^0.25.2",
-    "slick-carousel": "^1.8.1",
-    "url-loader": "^3.0.0"
-  },
-  "devDependencies": {
-    "@types/node": "^13.1.8",
-    "@types/react": "^16.9.17",
-    "json-loader": "^0.5.7",
-    "sass-loader": "^8.0.2",
-    "typescript": "^3.7.5"
-  }
+    "name": "keycapsets.com",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev": "next",
+        "build": "next build",
+        "start": "NODE_ENV=production npm install && npm run build && next start"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/noudadrichem/keycapsets.com.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/noudadrichem/keycapsets.com/issues"
+    },
+    "homepage": "https://keycapsets.com",
+    "dependencies": {
+        "@apollo/react-hooks": "^3.1.3",
+        "@zeit/next-css": "^1.0.1",
+        "@zeit/next-sass": "^1.0.1",
+        "apollo-boost": "^0.4.7",
+        "dotenv": "^8.2.0",
+        "graphql": "^14.6.0",
+        "moment": "^2.24.0",
+        "next": "^9.2.0",
+        "next-apollo": "^3.1.10",
+        "next-images": "^1.3.0",
+        "node-fetch": "^2.6.0",
+        "node-sass": "^4.13.1",
+        "react": "^16.12.0",
+        "react-apollo": "^3.1.3",
+        "react-dom": "^16.12.0",
+        "react-slick": "^0.25.2",
+        "slick-carousel": "^1.8.1",
+        "url-loader": "^3.0.0"
+    },
+    "devDependencies": {
+        "@types/node": "^13.1.8",
+        "@types/react": "^16.9.17",
+        "json-loader": "^0.5.7",
+        "sass-loader": "^8.0.2",
+        "typescript": "^3.7.5"
+    }
 }
