@@ -8,6 +8,7 @@ interface TabsProps {}
 
 function Tabs(props: TabsProps): JSX.Element {
     const { } = props;
+
     return (
         <Context.Consumer>
             {
