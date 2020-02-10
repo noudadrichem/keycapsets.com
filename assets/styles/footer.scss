@@ -13,12 +13,18 @@
 
     p {
         color: inherit;
+        font-size: inherit;
     }
 
     .socials-container {
+        display: inline-flex;
+        align-items: center;
+
         > a {
-            &:first-child {
-                margin-right: 16px;
+            margin-right: 16px;
+
+            &:last-child {
+                margin-right: 0;
             }
         }
     }

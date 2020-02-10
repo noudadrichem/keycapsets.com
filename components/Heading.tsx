@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import Button from './Button';
 import { useRouter } from 'next/router';
+import useInput from '../hooks/useInput';
+import Context from '../context';
 
 
 interface HeadingProps {
@@ -11,8 +13,21 @@ interface HeadingProps {
 }
 
 function Heading(props: HeadingProps): JSX.Element {
-    const { mainTitle, subTitle, isHome = false, left = false } = props;
+    const {
+        mainTitle,
+        subTitle,
+        isHome = false,
+        left = false
+    } = props;
     const router = useRouter();
+    const [searchValue, searchInput] = useInput({});
+    const { setGlobalState } = useContext(Context);
+
+    useEffect(() => {
+        setGlobalState({
+            searchQuery: searchValue
+        })
+    }, [searchValue])
 
     function ctaUpload() {
         router.push('/upload')
@@ -25,15 +40,18 @@ function Heading(props: HeadingProps): JSX.Element {
 
             {
                 isHome && (
-
-                    <Button
-                    onClick={ctaUpload}
-                    variant="primary"
-                    size="md"
-                    className='center'
-                    >
-                    Upload a set or apply as a vendor
-                </Button>
+                    <>
+                        <div className="search-input">
+                            {searchInput}
+                        </div>
+                        <Button
+                            onClick={ctaUpload}
+                            variant="primary"
+                            size="md"
+                            className='center'
+                        >Upload a set or apply as a vendor
+                        </Button>
+                    </>
                 )
             }
 

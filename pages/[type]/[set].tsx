@@ -22,6 +22,8 @@ function SetPage(props: SetProps) {
     const variables = { slug, type }
     const { loading, error, data } = useQuery(GET_SINGLE_SET_QUERY, { variables });
 
+
+    console.log({ loading, error, data })
     const slickSettings = {
         infinite: true,
         speed: 500,

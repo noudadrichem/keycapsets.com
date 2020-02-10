@@ -35,11 +35,13 @@ function Home(props: HomeProps) {
     }
 
     useEffect(() => {
-        setGlobalState({
-            keycapsets: data.keycapsets,
-            tabs: getTabs()
-        })
-    }, []);
+        if(!!data) {
+            setGlobalState({
+                keycapsets: data.keycapsets,
+                tabs: getTabs()
+            })
+        }
+    }, [data]);
 
     if(loading) {
         return 'loading...'

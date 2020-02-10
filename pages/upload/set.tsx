@@ -9,12 +9,12 @@ import withData from '../../hooks/withData';
 
 import Heading from '../../components/Heading';
 import MultipleInputs from '../../components/MultipleInputs';
-import Select from '../../components/Select';
 import Button from '../../components/Button';
 import Footer from '../../components/Footer';
+import Multiselect from '../../components/Multiselect';
 
 import '../../assets/styles/main.scss';
-import { Keycapset } from 'typings';
+import { Keycapset, Vendor } from 'typings';
 import { ExecutionResult } from 'graphql';
 import Nav from '../../components/Nav';
 
@@ -63,6 +63,10 @@ function UploadSet(props: UploadSetProps): JSX.Element {
         return <div>loading...</div>
     }
 
+    if(error) {
+        return <div>error...</div>
+    }
+
     return (
         <>
             <Nav />
@@ -76,7 +80,13 @@ function UploadSet(props: UploadSetProps): JSX.Element {
                         { websiteUrlInput }
                         { startDateInput }
                         { endDateInput }
-                        <Select label="Vendors" onSelectChange={(selectedVendors: string[]) => setVendors(selectedVendors) } values={vendorQueryResult.vendors} />
+                        <Multiselect
+                            value={vendors}
+                            onChange={(selectedVendors: any[]) => setVendors(selectedVendors)}
+                            options={vendorQueryResult.vendors.map((v: Vendor) => ({ value: v._id, label: v.name }))}
+                        />
+                        {/* <Select label="Vendors" onSelectChange={(selectedVendors: string[]) => setVendors(selectedVendors) } values={vendorQueryResult.vendors} /> */}
+
                         <MultipleInputs label="Images" onChange={(values: string[]) => setImageUrls(values)} />
                         <Button
                             onClick={uploadKeycapset}
