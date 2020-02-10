@@ -59,8 +59,8 @@ function UploadSet(props: UploadSetProps): JSX.Element {
         console.log({ result })
     }
 
-    if(loading || error ) {
-        return <div>loading or error</div>
+    if(loading ) {
+        return <div>loading...</div>
     }
 
     return (
@@ -68,23 +68,26 @@ function UploadSet(props: UploadSetProps): JSX.Element {
             <Nav />
             <div className="container upload">
                 <Heading mainTitle="Upload your set" subTitle="And make it famous!" left />
-                { nameInput }
-                { typeInput }
-                { coverImageUrlInput }
-                { websiteUrlInput }
-                { startDateInput }
-                { endDateInput }
-                <Select label="Vendors" onSelectChange={(selectedVendors: string[]) => setVendors(selectedVendors) } values={vendorQueryResult.vendors} />
-                <MultipleInputs label="Images" onChange={(values: string[]) => setImageUrls(values)} />
 
-                <Button
-                    onClick={uploadKeycapset}
-                    variant="primary"
-                    size="sm"
-                    className="align-right"
-                >
-                    { uploading ? 'Uploading...' : 'Start shining' }
-                </Button>
+                <div className="form-container">
+                        { nameInput }
+                        { typeInput }
+                        { coverImageUrlInput }
+                        { websiteUrlInput }
+                        { startDateInput }
+                        { endDateInput }
+                        <Select label="Vendors" onSelectChange={(selectedVendors: string[]) => setVendors(selectedVendors) } values={vendorQueryResult.vendors} />
+                        <MultipleInputs label="Images" onChange={(values: string[]) => setImageUrls(values)} />
+                        <Button
+                            onClick={uploadKeycapset}
+                            variant="primary"
+                            size="sm"
+                            className="align-right"
+                        >
+                        { uploading ? 'Uploading...' : 'Start shining' }
+                    </Button>
+                </div>
+
 
                 <Footer />
             </div>

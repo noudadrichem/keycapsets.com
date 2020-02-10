@@ -1,23 +1,42 @@
 import React from 'react';
-import Tabs from './Tabs';
-import Context from '../context';
+import Button from './Button';
+import { useRouter } from 'next/router';
+
 
 interface HeadingProps {
     mainTitle: string;
     subTitle: string;
-    isHome?: boolean;
     left?: boolean;
+    isHome?: boolean;
 }
 
 function Heading(props: HeadingProps): JSX.Element {
-    const { mainTitle, subTitle, isHome, left = false } = props;
+    const { mainTitle, subTitle, isHome = false, left = false } = props;
+    const router = useRouter();
+
+    function ctaUpload() {
+        router.push('/upload')
+    }
 
     return (
-        <header className={`heading ${isHome ? 'home' : 'not-home'}`}>
+        <header className={`heading ${left ? 'left' : 'center'}`}>
             <h1 className={`no-bold ${left ? 'left' : 'center'}`}>{ mainTitle  }</h1>
             <h4 className={`italic ${left ? 'left' : 'center'}`}>{ subTitle }</h4>
 
-            {isHome && <Tabs />}
+            {
+                isHome && (
+
+                    <Button
+                    onClick={ctaUpload}
+                    variant="primary"
+                    size="md"
+                    className='center'
+                    >
+                    Upload a set or apply as a vendor
+                </Button>
+                )
+            }
+
         </header>
     )
 }

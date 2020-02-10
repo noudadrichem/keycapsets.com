@@ -34,10 +34,6 @@ function Home(props: HomeProps) {
         return allTabs;
     }
 
-    if (loading || error) {
-        return <div>error or loading</div>
-    }
-
     useEffect(() => {
         setGlobalState({
             keycapsets: data.keycapsets,
@@ -45,13 +41,21 @@ function Home(props: HomeProps) {
         })
     }, []);
 
+    if(loading) {
+        return 'loading...'
+    }
+
+    if(error) {
+        return 'error...'
+    }
+
     return (
         <Context.Provider value={{ ...state, setGlobalState }}>
             <Nav />
             <div className="container">
                 <Heading
                     mainTitle="keycapsets.com"
-                    subTitle="Find your favorite set!"
+                    subTitle="Find your favorite sets!"
                     isHome
                 />
                 <Images />

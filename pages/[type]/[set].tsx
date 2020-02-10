@@ -12,6 +12,7 @@ import '../../assets/styles/main.scss';
 
 import Footer from '../../components/Footer';
 import Heading from '../../components/Heading';
+import Nav from '../../components/Nav';
 
 interface SetProps {}
 
@@ -34,11 +35,14 @@ function SetPage(props: SetProps) {
     const set = data.keycapsetBySlug;
     return set !== undefined && (
         <div className="set">
-            <Heading
-                mainTitle={`we are currently working hard on a page for ${set.name}`}
-                subTitle="Come back later or send an email to info@keycapsets.com"
-                isHome
-            />
+            <Nav />
+            <div className="container">
+
+                <Heading
+                    mainTitle={`we are currently working hard on a page for ${set.name}`}
+                    subTitle="Come back later or send an email to contact@keycapsets.com"
+                />
+            </div>
             {/* <pre>{JSON.stringify(set, null, 4)}</pre>
 
             {

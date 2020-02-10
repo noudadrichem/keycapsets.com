@@ -7,6 +7,14 @@
     color: var(--text-color-light);
     padding: 32px 0;
 
+    > .flex {
+        flex: 1;
+    }
+
+    p {
+        color: inherit;
+    }
+
     .socials-container {
         > a {
             &:first-child {
