@@ -21,13 +21,17 @@ function Heading(props: HeadingProps): JSX.Element {
     } = props;
     const router = useRouter();
     const [searchValue, searchInput] = useInput({});
-    const { setGlobalState } = useContext(Context);
 
-    useEffect(() => {
-        setGlobalState({
-            searchQuery: searchValue
-        })
-    }, [searchValue])
+    if(isHome) {
+        const { setGlobalState } = useContext(Context);
+
+        useEffect(() => {
+            setGlobalState({
+                searchQuery: searchValue
+            })
+        }, [searchValue])
+
+    }
 
     function ctaUpload() {
         router.push('/upload')

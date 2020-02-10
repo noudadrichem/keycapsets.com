@@ -28,7 +28,7 @@ function Images(props: ImagesProps): JSX.Element {
                                     .filter((keycapset: Keycapset) => {
                                         return keycapset.name.toLowerCase().includes(state.searchQuery.toLowerCase())
                                     })
-                                    .map((keycapset: Keycapset) => <ImageCard {...{keycapset}} key={keycapset._id} />)}
+                                    .map((keycapset: Keycapset) => <ImageCard {...{keycapset}} key={keycapset._id} /> )}
 
                             </div>
                         </>

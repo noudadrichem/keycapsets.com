@@ -17,6 +17,7 @@ import '../../assets/styles/main.scss';
 import { Keycapset, Vendor } from 'typings';
 import { ExecutionResult } from 'graphql';
 import Nav from '../../components/Nav';
+import ImageCard from '../../components/ImageCard';
 
 interface UploadSetProps {}
 
@@ -32,6 +33,18 @@ function UploadSet(props: UploadSetProps): JSX.Element {
     const [vendors, setVendors] = useState([]);
     const [uploading, setUploading] = useState(false);
 
+    const keycapset: Keycapset = {
+        name: nameValue,
+        type: typeValue,
+        active: false,
+        coverImageUrl: coverImageUrlValue,
+        websiteUrl: websiteUrlValue,
+        groupbuyStartDate: startDateValue,
+        groupbuyEndDate: endDateValue,
+        vendors: vendors.map((v) => v._id),
+        imageUrls
+    };
+
     const [addKeyset] = useMutation(CREATE_KEYSET_MUTATION);
     const { loading, error, data: vendorQueryResult } = useQuery(GET_VENDORS_QUERY);
 
@@ -42,19 +55,8 @@ function UploadSet(props: UploadSetProps): JSX.Element {
 
     async function uploadKeycapset(e) {
         setUploading(true);
-        const variables: Keycapset = {
-            name: nameValue,
-            type: typeValue,
-            active: false,
-            coverImageUrl: coverImageUrlValue,
-            websiteUrl: websiteUrlValue,
-            groupbuyStartDate: startDateValue,
-            groupbuyEndDate: endDateValue,
-            imageUrls,
-            vendors
-        };
 
-        const result: ExecutionResult<Keycapset> = await addKeyset({ variables });
+        const result: ExecutionResult<Keycapset> = await addKeyset({ variables: keycapset });
         setUploading(false)
         console.log({ result })
     }
@@ -73,7 +75,8 @@ function UploadSet(props: UploadSetProps): JSX.Element {
             <div className="container upload">
                 <Heading mainTitle="Upload your set" subTitle="And make it famous!" left />
 
-                <div className="form-container">
+                <div className="two-column-container">
+                    <div className="column-container">
                         { nameInput }
                         { typeInput }
                         { coverImageUrlInput }
@@ -85,9 +88,8 @@ function UploadSet(props: UploadSetProps): JSX.Element {
                             onChange={(selectedVendors: any[]) => setVendors(selectedVendors)}
                             options={vendorQueryResult.vendors.map((v: Vendor) => ({ value: v._id, label: v.name }))}
                         />
-                        {/* <Select label="Vendors" onSelectChange={(selectedVendors: string[]) => setVendors(selectedVendors) } values={vendorQueryResult.vendors} /> */}
-
                         <MultipleInputs label="Images" onChange={(values: string[]) => setImageUrls(values)} />
+
                         <Button
                             onClick={uploadKeycapset}
                             variant="primary"
@@ -95,7 +97,14 @@ function UploadSet(props: UploadSetProps): JSX.Element {
                             className="align-right"
                         >
                         { uploading ? 'Uploading...' : 'Start shining' }
-                    </Button>
+                        </Button>
+                    </div>
+
+                    <div className="column-container">
+                        <h4>Your card will look like this.</h4>
+                        <ImageCard {...{keycapset}} />
+                    </div>
+
                 </div>
 
 

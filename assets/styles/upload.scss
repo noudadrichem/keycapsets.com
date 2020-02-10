@@ -1,5 +1,12 @@
 .upload {
-    .form-container {
+
+    .two-column-container {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        grid-gap: 24px;
+    }
+
+    .column-container {
         margin-top: 40px;
     }
 
