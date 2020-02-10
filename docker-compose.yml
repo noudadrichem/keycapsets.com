@@ -1,0 +1,18 @@
+version: "3"
+services:
+   keycapsets:
+     build: .
+     networks:
+       - traefik
+     ports:
+       - "3000:3000"
+     labels:
+       - "traefik.enable=true"
+       - "traefik.backend=keycapsets"
+       - "traefik.frontend.rule=Host:dev.keycapsets.com"
+       - "traefik.port=3000"
+
+networks:
+  traefik:
+    external:
+      name: docker_default 
