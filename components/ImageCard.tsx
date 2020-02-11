@@ -24,10 +24,12 @@ function ImageCard(props: ImageCardProps): JSX.Element {
 
     const isInFuture: Boolean = moment().diff(groupbuyStartDate, 'days') < 0;
 
+    console.log('coverImageUrl...', coverImageUrl)
+
     return (
         <div className="image-card">
             <div className="image">
-                <img src={coverImageUrl} />
+                <img src={coverImageUrl === undefined || coverImageUrl === '' ? '/images/empty-base-kit-illu.svg' : coverImageUrl } />
                 {!isInFuture && <Pill color='green' />}
             </div>
 
@@ -35,7 +37,7 @@ function ImageCard(props: ImageCardProps): JSX.Element {
 
                 <div className="horizontal">
                     <div className="left">
-                        <h4 className="">{name}</h4>
+                        <h4 className="">{name || 'Title goes here'}</h4>
 
                         <div>
                             {

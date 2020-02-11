@@ -13,6 +13,7 @@ import Nav from '../components/Nav';
 
 import '../assets/styles/main.scss';
 import Head from 'next/head';
+import LoadingKeyboard from '../components/LoadingKeyboard';
 
 interface HomeProps {}
 
@@ -45,11 +46,11 @@ function Home(props: HomeProps) {
     }, [data]);
 
     if(loading) {
-        return 'loading...'
+        return <LoadingKeyboard />
     }
 
-    if(error) {
-        return 'error...'
+    if (error) {
+        return <p>'Error loading keycapsets.com... Please refresh this page'</p>;
     }
 
     const title = `Keycapsets. Find your favorite set!`;
