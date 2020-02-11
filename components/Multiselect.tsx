@@ -17,7 +17,8 @@ function MultiSelect(props: MultiSelectProps): JSX.Element {
     const selectStyles = {
         control: (base: any) => ({
             ...base,
-            fontSize: 12
+            fontSize: 12,
+            borderColor: '#e2e5eb'
         }),
         menu: (base: any) => ({
             ...base,

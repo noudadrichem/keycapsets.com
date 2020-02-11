@@ -7,6 +7,10 @@
     color: var(--text-color-light);
     padding: 32px 0;
 
+    @media screen and(max-width: 562px) {
+        flex-direction: column;
+    }
+
     > .flex {
         flex: 1;
     }

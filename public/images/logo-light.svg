@@ -1,60 +1,59 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="114px" height="50px" viewBox="0 0 114 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
-    <title>logo light</title>
-    <desc>Created with Sketch.</desc>
-    <defs>
-        <rect id="path-1" x="0" y="0" width="106" height="42" rx="2"></rect>
-        <filter x="-5.2%" y="-13.1%" width="112.3%" height="131.0%" filterUnits="objectBoundingBox" id="filter-2">
-            <feOffset dx="1" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-        </filter>
-        <text id="text-3" font-family="Rubik-Bold, Rubik" font-size="32" font-weight="bold" fill="#242424">
-            <tspan x="9" y="32">K</tspan>
-        </text>
-        <filter x="-2.3%" y="-1.3%" width="104.5%" height="105.3%" filterUnits="objectBoundingBox" id="filter-4">
-            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
-            <feColorMatrix values="0 0 0 0 0.561707428   0 0 0 0 0.561707428   0 0 0 0 0.561707428  0 0 0 0.493034309 0" type="matrix" in="shadowOffsetOuter1"></feColorMatrix>
-        </filter>
-        <text id="text-5" font-family="Rubik-Bold, Rubik" font-size="32" font-weight="bold" fill="#242424">
-            <tspan x="42" y="32">C</tspan>
-        </text>
-        <filter x="-2.2%" y="-1.3%" width="104.3%" height="105.3%" filterUnits="objectBoundingBox" id="filter-6">
-            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
-            <feColorMatrix values="0 0 0 0 0.561707428   0 0 0 0 0.561707428   0 0 0 0 0.561707428  0 0 0 0.493034309 0" type="matrix" in="shadowOffsetOuter1"></feColorMatrix>
-        </filter>
-        <text id="text-7" font-family="Rubik-Bold, Rubik" font-size="32" font-weight="bold" fill="#242424">
-            <tspan x="76" y="32">S</tspan>
-        </text>
-        <filter x="-2.3%" y="-1.3%" width="104.5%" height="105.3%" filterUnits="objectBoundingBox" id="filter-8">
-            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
-            <feColorMatrix values="0 0 0 0 0.561707428   0 0 0 0 0.561707428   0 0 0 0 0.561707428  0 0 0 0.493034309 0" type="matrix" in="shadowOffsetOuter1"></feColorMatrix>
-        </filter>
-    </defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Artboard" transform="translate(-348.000000, -242.000000)">
-            <g id="logo-light" transform="translate(351.000000, 245.000000)">
-                <g id="Rectangle-3" fill-rule="nonzero">
-                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
-                    <use fill="#E2E2E2" xlink:href="#path-1"></use>
-                </g>
-                <rect id="Rectangle" fill="#FFFFFF" fill-rule="nonzero" x="72" y="3" width="30" height="35" rx="2"></rect>
-                <rect id="Rectangle-Copy" fill="#FFFFFF" fill-rule="nonzero" x="38" y="3" width="30" height="35" rx="2"></rect>
-                <rect id="Rectangle-Copy-2" fill="#FFFFFF" fill-rule="nonzero" x="4" y="3" width="30" height="35" rx="2"></rect>
-                <g id="K-Copy" fill="#242424" fill-opacity="1">
-                    <use filter="url(#filter-4)" xlink:href="#text-3"></use>
-                    <use xlink:href="#text-3"></use>
-                </g>
-                <g id="C-Copy" fill="#242424" fill-opacity="1">
-                    <use filter="url(#filter-6)" xlink:href="#text-5"></use>
-                    <use xlink:href="#text-5"></use>
-                </g>
-                <g id="S-Copy" fill="#242424" fill-opacity="1">
-                    <use filter="url(#filter-8)" xlink:href="#text-7"></use>
-                    <use xlink:href="#text-7"></use>
-                </g>
-            </g>
-        </g>
-    </g>
+<svg width="1" height="1" viewBox="0 0 1 1" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="logo-light">
+<g clip-path="url(#clip0)">
+<g id="Rectangle 3" filter="url(#filter0_d)">
+<rect x="0.00292969" width="0.103516" height="0.0410156" rx="2" fill="#E2E2E2"/>
+</g>
+<rect id="Rectangle" x="0.0732422" y="0.00292969" width="0.0292969" height="0.0341797" rx="2" fill="white"/>
+<rect id="Rectangle Copy" x="0.0400391" y="0.00292969" width="0.0292969" height="0.0341797" rx="2" fill="white"/>
+<rect id="Rectangle Copy 2" x="0.00683594" y="0.00292969" width="0.0292969" height="0.0341797" rx="2" fill="white"/>
+<g id="K Copy" filter="url(#filter1_d)">
+<path d="M0.0146875 0.0312501C0.0144792 0.0312501 0.0142917 0.0311772 0.014125 0.0310313C0.0139792 0.0308647 0.0139062 0.0306772 0.0139062 0.0304688V0.0101563C0.0139062 0.00992718 0.0139792 0.00973968 0.014125 0.00959385C0.0142917 0.00944801 0.0144792 0.0093751 0.0146875 0.0093751H0.018625C0.0188542 0.0093751 0.0190417 0.00944801 0.0191875 0.00959385C0.0193333 0.00973968 0.0194062 0.00992718 0.0194062 0.0101563V0.0170938L0.0251875 0.00996885C0.0254375 0.00957301 0.0258437 0.0093751 0.0264062 0.0093751H0.0309062C0.0310937 0.0093751 0.03125 0.00944801 0.031375 0.00959385C0.0315 0.00971885 0.0315625 0.00986468 0.0315625 0.0100313C0.0315625 0.0101772 0.0315312 0.0103022 0.0314687 0.0104063L0.0239687 0.0198438L0.0320312 0.0302188C0.0321146 0.0303022 0.0321562 0.0304272 0.0321562 0.0305938C0.0321562 0.0307605 0.0320937 0.0309168 0.0319687 0.0310626C0.0318437 0.0311876 0.0316875 0.0312501 0.0315 0.0312501H0.0268437C0.0263437 0.0312501 0.0259271 0.0310418 0.0255937 0.0306251L0.0194062 0.0229063V0.0304688C0.0194062 0.030698 0.0193333 0.0308855 0.0191875 0.0310313C0.0190417 0.0311772 0.0188542 0.0312501 0.018625 0.0312501H0.0146875Z" fill="#242424"/>
+</g>
+<g id="C Copy" filter="url(#filter2_d)">
+<path d="M0.0551016 0.0315625C0.0521224 0.0315625 0.0497891 0.0308438 0.0481016 0.0294063C0.0464349 0.0279479 0.0455495 0.0258438 0.0454453 0.0230938C0.0454245 0.0225313 0.0454141 0.0216146 0.0454141 0.0203438C0.0454141 0.0190521 0.0454245 0.0181146 0.0454453 0.0175313C0.0455495 0.0148229 0.0464557 0.0127396 0.0481641 0.0112813C0.0498724 0.00980211 0.0521849 0.00906253 0.0551016 0.00906253C0.0569349 0.00906253 0.0585807 0.00937503 0.0600391 0.01C0.0614974 0.0106042 0.0626432 0.0114792 0.0634766 0.012625C0.0643307 0.01375 0.0647682 0.0150729 0.0647891 0.0165938V0.0166563C0.0647891 0.0168229 0.0647161 0.0169688 0.0645703 0.0170938C0.0644453 0.0171979 0.0642995 0.01725 0.0641328 0.01725H0.0599141C0.0596432 0.01725 0.0594349 0.0171979 0.0592891 0.0170938C0.0591432 0.0169688 0.0590182 0.01675 0.0589141 0.0164375C0.0586224 0.015375 0.0581641 0.0146354 0.0575391 0.0142188C0.0569141 0.0137813 0.0560911 0.0135625 0.0550703 0.0135625C0.052612 0.0135625 0.0513411 0.0149375 0.0512578 0.0176875C0.051237 0.01825 0.0512266 0.0191146 0.0512266 0.0202813C0.0512266 0.0214479 0.051237 0.0223334 0.0512578 0.0229375C0.0513411 0.0256875 0.052612 0.0270625 0.0550703 0.0270625C0.0560911 0.0270625 0.0569245 0.0268438 0.0575703 0.0264063C0.0582161 0.0259479 0.0586641 0.0252084 0.0589141 0.0241875C0.0589974 0.023875 0.059112 0.0236667 0.0592578 0.0235625C0.0594036 0.0234375 0.0596224 0.023375 0.0599141 0.023375H0.0641328C0.0643203 0.023375 0.0644766 0.0234375 0.0646016 0.0235625C0.0647474 0.0236875 0.0648099 0.0238438 0.0647891 0.0240313C0.0647682 0.0255521 0.0643307 0.0268854 0.0634766 0.0280313C0.0626432 0.0291563 0.0614974 0.0300313 0.0600391 0.0306563C0.0585807 0.0312604 0.0569349 0.0315625 0.0551016 0.0315625Z" fill="#242424"/>
+</g>
+<g id="S Copy" filter="url(#filter3_d)">
+<path d="M0.0874922 0.0315625C0.085513 0.0315625 0.0838151 0.0312709 0.0823984 0.0306875C0.0809818 0.0301042 0.0799089 0.0293438 0.0791797 0.0284063C0.0784714 0.0274479 0.0780964 0.0264063 0.0780547 0.0252813C0.0780547 0.0251146 0.0781172 0.0249688 0.0782422 0.0248438C0.078388 0.0246979 0.0785547 0.024625 0.0787422 0.024625H0.0826797C0.0829297 0.024625 0.0831276 0.0246771 0.0832734 0.0247813C0.0834401 0.0248646 0.0836068 0.025 0.0837734 0.0251875C0.0840443 0.0257292 0.0844818 0.0261771 0.0850859 0.0265313C0.0856901 0.0268854 0.0864922 0.0270625 0.0874922 0.0270625C0.0886797 0.0270625 0.0895859 0.026875 0.0902109 0.0265C0.0908359 0.026125 0.0911484 0.0256146 0.0911484 0.0249688C0.0911484 0.0245104 0.0909818 0.0241354 0.0906484 0.0238438C0.0903359 0.0235521 0.0898359 0.0232917 0.0891484 0.0230625C0.0884609 0.0228334 0.0874401 0.0225729 0.0860859 0.0222813C0.0835859 0.0217604 0.0817109 0.021 0.0804609 0.02C0.0792318 0.0189792 0.0786172 0.0175313 0.0786172 0.0156563C0.0786172 0.0143854 0.0789714 0.01325 0.0796797 0.01225C0.080388 0.01125 0.0813984 0.0104688 0.0827109 0.00990628C0.0840234 0.00934378 0.0855547 0.00906253 0.0873047 0.00906253C0.0891172 0.00906253 0.0906901 0.00937503 0.0920234 0.01C0.0933568 0.010625 0.0943672 0.0114167 0.0950547 0.012375C0.095763 0.0133125 0.096138 0.0142396 0.0961797 0.0151563C0.0961797 0.0153438 0.0961172 0.0155 0.0959922 0.015625C0.0958672 0.01575 0.0957109 0.0158125 0.0955234 0.0158125H0.0913984C0.0911484 0.0158125 0.0909401 0.0157709 0.0907734 0.0156875C0.0906276 0.0156042 0.0904922 0.0154688 0.0903672 0.0152813C0.0902422 0.0148021 0.0898984 0.0143959 0.0893359 0.0140625C0.0887943 0.0137292 0.0881172 0.0135625 0.0873047 0.0135625C0.0863672 0.0135625 0.0856484 0.0137292 0.0851484 0.0140625C0.0846484 0.0143959 0.0843984 0.0148854 0.0843984 0.0155313C0.0843984 0.0159688 0.0845339 0.0163334 0.0848047 0.016625C0.0850964 0.0169167 0.0855547 0.0171875 0.0861797 0.0174375C0.0868255 0.0176667 0.0877422 0.0179063 0.0889297 0.0181563C0.0908672 0.0185104 0.0924089 0.0189584 0.0935547 0.0195C0.0947214 0.0200209 0.0955755 0.0207084 0.0961172 0.0215625C0.0966589 0.0223959 0.0969297 0.0234479 0.0969297 0.0247188C0.0969297 0.0261146 0.0965234 0.0273334 0.0957109 0.028375C0.0949193 0.0293959 0.0938047 0.0301875 0.0923672 0.03075C0.0909505 0.0312917 0.0893255 0.0315625 0.0874922 0.0315625Z" fill="#242424"/>
+</g>
+</g>
+</g>
+<defs>
+<filter id="filter0_d" x="0" y="-0.00292969" width="0.111328" height="0.0488281" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+<feOffset dx="1" dy="1"/>
+<feGaussianBlur stdDeviation="2"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+</filter>
+<filter id="filter1_d" x="0.0139062" y="0.0093751" width="0.01825" height="0.0228516" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+<feOffset dy="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.561707 0 0 0 0 0.561707 0 0 0 0 0.561707 0 0 0 0.493034 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+</filter>
+<filter id="filter2_d" x="0.0454141" y="0.00906253" width="0.0193789" height="0.0234766" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+<feOffset dy="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.561707 0 0 0 0 0.561707 0 0 0 0 0.561707 0 0 0 0.493034 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+</filter>
+<filter id="filter3_d" x="0.0780547" y="0.00906253" width="0.018875" height="0.0234766" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+<feOffset dy="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.561707 0 0 0 0 0.561707 0 0 0 0 0.561707 0 0 0 0.493034 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+</filter>
+<clipPath id="clip0">
+<rect width="0.103516" height="0.0410156" fill="white"/>
+</clipPath>
+</defs>
 </svg>

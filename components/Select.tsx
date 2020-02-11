@@ -5,23 +5,20 @@ interface HeadingProps {
     onSelectChange?: Function;
     values: string[];
     label?: string;
+    name?: string;
 }
 
 function Heading(props: HeadingProps): JSX.Element {
-    const { onSelectChange, values, label } = props;
-
-    function selectedValues(value) {
-        onSelectChange([value])
-    }
+    const { onSelectChange, values, label, name } = props;
 
     return (
         <div className="input-wrapper-select">
-            <label className="label">{label}</label>
-            <select className="input" onChange={(e: any) => selectedValues(e.target.value)}>
-                <option value="">Select vendors</option>
+            { !!label && <label className="label">{label}</label>}
+            <select className="input" onChange={(e: any) => onSelectChange(e.target.value)}>
+                <option value="">{name}</option>
                 { !!values &&
                     values.map((value: any) => (
-                        <option key={value._id} value={value._id}>{value.name}</option>
+                        <option key={value.id} value={value.id}>{value.name}</option>
                     ))
                 }
             </select>

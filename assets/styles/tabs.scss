@@ -3,9 +3,25 @@
     align-items: center;
     margin: 64px 0 24px;
 
+    @media screen and (max-width: 556px) {
+        margin: 24px 12px;
+    }
+
+    .select {
+        display: none;
+        @media screen and (max-width: 556px) {
+            display: flex;
+            flex: 1;
+        }
+    }
+
     .tabs {
         display: inline-flex;
         flex-direction: column;
+
+        @media screen and (max-width: 556px) {
+            display: none;
+        }
 
         ul {
             display: flex;

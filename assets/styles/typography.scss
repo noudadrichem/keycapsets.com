@@ -13,7 +13,7 @@ h1 {
     }
 
     @media screen and (max-width: $bp-mobile-lg) {
-        font-size: 24px;
+        // font-size: 24px;
     }
 }
 
@@ -53,6 +53,14 @@ h4 {
     line-height: 140%;
     color: var(--text-color);
     margin: 8px 0;
+
+    @media screen and (max-width: $bp-tablet-md) {
+        font-size: 16px;
+    }
+
+    @media screen and (max-width: $bp-mobile-lg) {
+        // font-size: 24px;
+    }
 }
 
 h5 {
