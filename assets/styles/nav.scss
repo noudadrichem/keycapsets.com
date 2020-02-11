@@ -1,6 +1,9 @@
 .nav {
     padding: 24px 0;
     // background-color: var(--white);
+    @media screen and (max-width: 562px) {
+        margin: 0 12px;
+    }
 
     .container {
         .nav-container {

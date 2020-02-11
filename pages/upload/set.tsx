@@ -75,8 +75,8 @@ function UploadSet(props: UploadSetProps): JSX.Element {
             <div className="container upload">
                 <Heading mainTitle="Upload your set" subTitle="And make it famous!" left />
 
-                <div className="two-column-container">
-                    <div className="column-container">
+                <div className="grid two-column">
+                    <div className="column">
                         { nameInput }
                         { typeInput }
                         { coverImageUrlInput }
@@ -100,7 +100,7 @@ function UploadSet(props: UploadSetProps): JSX.Element {
                         </Button>
                     </div>
 
-                    <div className="column-container">
+                    <div className="column">
                         <h4>Your card will look like this.</h4>
                         <ImageCard {...{keycapset}} />
                     </div>

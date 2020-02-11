@@ -41,23 +41,27 @@ function UploadVendor(props: UploadVendorProps) {
         <>
             <Nav />
             <div className="container upload">
-
                 <Heading mainTitle="Are you a vendor" subTitle="Make yourself famous!" left />
 
-                {nameInput}
-                {countryInput}
-                {logoUrlInput}
-                {urlInput}
-                <MultipleInputs label="Social links..." onChange={(socials: string[]) => setSocials(socials)} />
+                <div className="grid-container">
+                    <div className="column">
+                        {nameInput}
+                        {countryInput}
+                        {logoUrlInput}
+                        {urlInput}
+                        <MultipleInputs label="Social links..." onChange={(socials: string[]) => setSocials(socials)} />
 
-                <Button
-                    onClick={uploadVendor}
-                    variant="primary"
-                    size="sm"
-                    className="align-right"
-                >
-                    Upload
-                </Button>
+                        <Button
+                            onClick={uploadVendor}
+                            variant="primary"
+                            size="sm"
+                            className="align-right"
+                            >
+                            Upload
+                        </Button>
+                    </div>
+                </div>
+
 
                 <Footer />
             </div>
