@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 import Slider from "react-slick";
-import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
 
 import withData from '../../hooks/withData'
@@ -37,6 +37,9 @@ function SetPage(props: SetProps) {
     const set = data.keycapsetBySlug;
     return set !== undefined && (
         <div className="set">
+            <Head>
+                <title>{set.type.toUpperCase()} Keycapset {set.name}</title>
+            </Head>
             <Nav />
             <div className="container">
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Keycapset } from 'typings';
 import Context from '../context';
 import ImageCard from './ImageCard';
@@ -9,35 +9,30 @@ interface ImagesProps {}
 
 function Images(props: ImagesProps): JSX.Element {
     const {} = props;
+    const {
+        keycapsets,
+        activeTab,
+        searchQuery
+    } = useContext(Context);
 
     return (
-        <Context.Consumer>
-            {
-                (state) => {
-                    return (
-                        <>
-                            <Tabs />
+        <>
+            <Tabs />
 
-                            <div className="images-container">
-
-                                {state.keycapsets
-                                    .filter((keycapset: Keycapset) => {
-                                        if (state.activeTab === 'all') return true;
-                                        return keycapset.type === state.activeTab;
-                                    })
-                                    .filter((keycapset: Keycapset) => {
-                                        return keycapset.name.toLowerCase().includes(state.searchQuery.toLowerCase())
-                                    })
-                                    .map((keycapset: Keycapset) => <ImageCard {...{keycapset}} key={keycapset._id} /> )}
-
-                            </div>
-                        </>
+            <div className="images-container">
+                {
+                    keycapsets
+                    .filter((keycapset: Keycapset) => {
+                        if (activeTab === 'all') return true;
+                        return keycapset.type === activeTab;
+                    })
+                    .filter((keycapset: Keycapset) => keycapset.name.toLowerCase().includes(searchQuery.toLowerCase()))
+                    .map((keycapset: Keycapset) =>
+                        <ImageCard {...{keycapset}} key={keycapset._id} />
                     )
-
                 }
-            }
-
-        </Context.Consumer>
+            </div>
+        </>
     )
 }
 
