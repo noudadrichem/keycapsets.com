@@ -7,10 +7,24 @@
     color: var(--text-color-light);
     padding: 32px 0;
 
+    > .flex {
+        flex: 1;
+    }
+
+    p {
+        color: inherit;
+        font-size: inherit;
+    }
+
     .socials-container {
+        display: inline-flex;
+        align-items: center;
+
         > a {
-            &:first-child {
-                margin-right: 16px;
+            margin-right: 16px;
+
+            &:last-child {
+                margin-right: 0;
             }
         }
     }

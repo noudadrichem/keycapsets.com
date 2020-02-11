@@ -22,6 +22,9 @@ function Nav(props: NavProps): JSX.Element {
                         <Link href="/upload" as="/upload">
                             <a>Upload</a>
                         </Link>
+                        <Link href="/about" as="/about">
+                            <a>About</a>
+                        </Link>
                     </div>
                 </div>
             </div>

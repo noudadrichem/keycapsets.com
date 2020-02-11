@@ -34,16 +34,22 @@ function Home(props: HomeProps) {
         return allTabs;
     }
 
-    if (loading || error) {
-        return <div>error or loading</div>
+    useEffect(() => {
+        if(!!data) {
+            setGlobalState({
+                keycapsets: data.keycapsets,
+                tabs: getTabs()
+            })
+        }
+    }, [data]);
+
+    if(loading) {
+        return 'loading...'
     }
 
-    useEffect(() => {
-        setGlobalState({
-            keycapsets: data.keycapsets,
-            tabs: getTabs()
-        })
-    }, []);
+    if(error) {
+        return 'error...'
+    }
 
     return (
         <Context.Provider value={{ ...state, setGlobalState }}>
@@ -51,9 +57,9 @@ function Home(props: HomeProps) {
             <div className="container">
                 <Heading
                     mainTitle="keycapsets.com"
-                    subTitle="Find your favorite set!"
+                    subTitle="Find your favorite sets!"
                     isHome
-                    />
+                />
                 <Images />
                 <Footer />
             </div>

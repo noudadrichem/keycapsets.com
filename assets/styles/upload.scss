@@ -1,7 +1,14 @@
 .upload {
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
+
+    .two-column-container {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        grid-gap: 24px;
+    }
+
+    .column-container {
+        margin-top: 40px;
+    }
 
     .input-wrapper {
         margin-bottom: 12px;
@@ -10,6 +17,7 @@
     .cards {
         display: flex;
         flex-basis: 80%;
+        margin-top: 64px;
 
         .card {
             height: 300px;

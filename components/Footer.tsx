@@ -23,10 +23,14 @@ function Footer(props: FooterProps): JSX.Element {
     return (
         <div className="container footer">
             <div>
-                Copyright &copy; <a href="https://noudadrichem.com">noudadrichem</a>
+                <p>
+                    &copy; Made with ☕ in Utrecht.
+                </p>
             </div>
 
             <div className="socials-container">
+                {/* <a href="https://bunq.me/noudadrichem/2/">Buy me a cup of coffee</a> */}
+                <a href="mailto:contact@keycapsets.com">contact@keycapsets.com</a>
                 <a href="https://twitter.com/noudadrichem">
                     <Twitter />
                 </a>

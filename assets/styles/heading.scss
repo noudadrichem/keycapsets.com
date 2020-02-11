@@ -1,7 +1,22 @@
 .heading {
-    padding: 24px 0 32px;
+    padding: 88px 42px 88px;
+    background-color: var(--blue-aaa);
+    border-radius: 8px;
+
+    &.center {
+        text-align: center;
+    }
+
+    .btn {
+        margin-top: 32px;
+    }
 
     .home {
         padding: 128px 0;
+    }
+
+    .search-input {
+        max-width: 333px;
+        margin: 0 auto;
     }
 }

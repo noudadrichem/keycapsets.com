@@ -5,14 +5,16 @@ import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
 
 import withData from '../../hooks/withData'
-import Footer from '../../components/Footer';
+import { GET_SINGLE_SET_QUERY } from '../../queries';
 
 import 'slick-carousel/slick/slick.css';
 import '../../assets/styles/main.scss';
-import { GET_SINGLE_SET_QUERY } from '../../queries';
 
-interface SetProps {
-}
+import Footer from '../../components/Footer';
+import Heading from '../../components/Heading';
+import Nav from '../../components/Nav';
+
+interface SetProps {}
 
 function SetPage(props: SetProps) {
     const router = useRouter();
@@ -20,6 +22,8 @@ function SetPage(props: SetProps) {
     const variables = { slug, type }
     const { loading, error, data } = useQuery(GET_SINGLE_SET_QUERY, { variables });
 
+
+    console.log({ loading, error, data })
     const slickSettings = {
         infinite: true,
         speed: 500,
@@ -33,7 +37,15 @@ function SetPage(props: SetProps) {
     const set = data.keycapsetBySlug;
     return set !== undefined && (
         <div className="set">
-            <pre>{JSON.stringify(set, null, 4)}</pre>
+            <Nav />
+            <div className="container">
+
+                <Heading
+                    mainTitle={`we are currently working hard on a page for ${set.name}`}
+                    subTitle="Come back later or send an email to contact@keycapsets.com"
+                />
+            </div>
+            {/* <pre>{JSON.stringify(set, null, 4)}</pre>
 
             {
                 set.imageUrls.length > 0 && (
@@ -43,7 +55,7 @@ function SetPage(props: SetProps) {
                         }
                     </Slider>
                 )
-            }
+            } */}
 
             <Footer />
         </div>

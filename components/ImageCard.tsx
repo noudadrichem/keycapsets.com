@@ -28,7 +28,7 @@ function ImageCard(props: ImageCardProps): JSX.Element {
         <div className="image-card">
             <div className="image">
                 <img src={coverImageUrl} />
-                <Pill color={isInFuture ? 'red' : 'green'} />
+                {!isInFuture && <Pill color='green' />}
             </div>
 
             <div className="details">

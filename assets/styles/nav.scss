@@ -1,5 +1,5 @@
 .nav {
-    padding: 16px 0;
+    padding: 24px 0;
     // background-color: var(--white);
 
     .container {
@@ -10,6 +10,16 @@
 
             a {
                 color: var(--text-color-light);
+                margin-right: 24px;
+                transition: 220ms;
+
+                &:hover {
+                    color: var(--text-color);
+                }
+
+                &:last-child {
+                    margin-right: 0;
+                }
             }
         }
     }
