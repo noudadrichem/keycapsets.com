@@ -13,6 +13,7 @@ import '../../assets/styles/main.scss';
 import Footer from '../../components/Footer';
 import Heading from '../../components/Heading';
 import Nav from '../../components/Nav';
+import LoadingKeyboard from '../../components/LoadingKeyboard';
 
 interface SetProps {}
 
@@ -22,7 +23,6 @@ function SetPage(props: SetProps) {
     const variables = { slug, type }
     const { loading, error, data } = useQuery(GET_SINGLE_SET_QUERY, { variables });
 
-
     console.log({ loading, error, data })
     const slickSettings = {
         infinite: true,
@@ -31,8 +31,13 @@ function SetPage(props: SetProps) {
         slidesToScroll: 1,
     };
 
-    if (loading) return 'loading...';
-    if (error) return `${error}`;
+    if (loading) {
+        return <LoadingKeyboard />;
+    }
+
+    if (error) {
+        return <p>'Error loading keycapsets.com... Please refresh this page'</p>;
+    }
 
     const set = data.keycapsetBySlug;
     return set !== undefined && (

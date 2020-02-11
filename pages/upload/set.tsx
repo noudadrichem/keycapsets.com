@@ -18,6 +18,7 @@ import { Keycapset, Vendor } from 'typings';
 import { ExecutionResult } from 'graphql';
 import Nav from '../../components/Nav';
 import ImageCard from '../../components/ImageCard';
+import LoadingKeyboard from '../../components/LoadingKeyboard';
 
 interface UploadSetProps {}
 
@@ -61,12 +62,12 @@ function UploadSet(props: UploadSetProps): JSX.Element {
         console.log({ result })
     }
 
-    if(loading ) {
-        return <div>loading...</div>
+    if (loading) {
+        return <LoadingKeyboard />;
     }
 
-    if(error) {
-        return <div>error...</div>
+    if (error) {
+        return <p>'Error loading keycapsets.com... Please refresh this page'</p>;
     }
 
     return (

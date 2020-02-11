@@ -23,7 +23,7 @@ function UploadVendor(props: UploadVendorProps) {
     const [urlValue, urlInput] = useInput({ label: 'Website address:'});
     const [socials, setSocials] = useState([])
 
-    const [addKeyset, mutationResponse] = useMutation(CREATE_VENDOR_MUTATION);
+    const [addVendor, mutationResponse] = useMutation(CREATE_VENDOR_MUTATION);
     async function uploadVendor() {
         const variables = {
             name: nameValue,
@@ -33,8 +33,8 @@ function UploadVendor(props: UploadVendorProps) {
             socials
         };
 
-       const result = await addKeyset({ variables });
-       console.log('result')
+       const result = await addVendor({ variables });
+       console.log('result', result)
     }
 
     return (
@@ -57,7 +57,7 @@ function UploadVendor(props: UploadVendorProps) {
                             size="sm"
                             className="align-right"
                             >
-                            Upload
+                            Add vendor
                         </Button>
                     </div>
                 </div>

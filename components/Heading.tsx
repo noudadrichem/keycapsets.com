@@ -4,12 +4,12 @@ import { useRouter } from 'next/router';
 import useInput from '../hooks/useInput';
 import Context from '../context';
 
-
 interface HeadingProps {
     mainTitle: string;
     subTitle: string;
     left?: boolean;
     isHome?: boolean;
+    backgroundColor?: string;
 }
 
 function Heading(props: HeadingProps): JSX.Element {
@@ -17,7 +17,8 @@ function Heading(props: HeadingProps): JSX.Element {
         mainTitle,
         subTitle,
         isHome = false,
-        left = false
+        left = false,
+        backgroundColor
     } = props;
     const router = useRouter();
     const [searchValue, searchInput] = useInput({});
@@ -38,7 +39,7 @@ function Heading(props: HeadingProps): JSX.Element {
     }
 
     return (
-        <header className={`heading ${left ? 'left' : 'center'}`}>
+        <header className={`heading ${left ? 'left' : 'center'}`} style={{ background: backgroundColor }}>
             <h1 className={`no-bold ${left ? 'left' : 'center'}`}>{ mainTitle  }</h1>
             <h4 className={`italic ${left ? 'left' : 'center'}`}>{ subTitle }</h4>
 

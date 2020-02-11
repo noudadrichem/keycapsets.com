@@ -1,0 +1,24 @@
+.loading-keyboard {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    max-width:calc(100% - 24px);
+
+    h5 {
+        margin-bottom: 32px;
+        font-style: italic;
+    }
+}
+
+#loading-keyboard-illu {
+    width: 100%;
+
+    .key {
+        transition: 400ms ease-out;
+    }
+
+    .fill {
+        fill: #5E6772;
+    }
+}
