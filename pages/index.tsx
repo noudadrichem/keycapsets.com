@@ -14,12 +14,14 @@ import Nav from '../components/Nav';
 import '../assets/styles/main.scss';
 import Head from 'next/head';
 import LoadingKeyboard from '../components/LoadingKeyboard';
+import useWindowScroll from '../hooks/useWindowScroll';
 
 interface HomeProps {}
 
 function Home(props: HomeProps) {
     const [state, setState] = useState(INITITAL_STATE);
     const { loading, error, data } = useQuery(FETCH_KEYCAPSET_QUERY);
+    const { x, y } = useWindowScroll();
 
     function setGlobalState(obj) {
         setState(reduceState(state, obj))
@@ -80,6 +82,7 @@ function Home(props: HomeProps) {
                     subTitle="Find your favorite sets!"
                     isHome
                 />
+                {y}
                 <Images />
                 <Footer />
             </div>
