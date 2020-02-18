@@ -14,6 +14,7 @@ import Nav from '../components/Nav';
 import '../assets/styles/main.scss';
 import Head from 'next/head';
 import LoadingKeyboard from '../components/LoadingKeyboard';
+import useWindowScroll from '../hooks/useWindowScroll';
 
 interface HomeProps {}
 
@@ -22,6 +23,7 @@ function Home(props: HomeProps) {
     const [limit, setLimit] = useState(3);
     const [offset, setOffset] = useState(0);
     const [windowHeight, setWindowHeight] = useState(0)
+    const { x, y } = useWindowScroll();
     const isBrowser = typeof window !== `undefined`
     const { loading, error, data } = useQuery(FETCH_KEYCAPSET_QUERY, {
         variables: {
@@ -104,6 +106,7 @@ function Home(props: HomeProps) {
                     subTitle="Find your favorite sets!"
                     isHome
                 /> */}
+                {y}
                 <Images />
                 <Footer />
             </div>
