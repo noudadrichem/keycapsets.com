@@ -8,7 +8,8 @@ console.log('REST_API_ENDPOINT...', process.env.REST_API_ENDPOINT);
 
 const config = {
     link: new HttpLink({
-        uri: 'https://api.keycapsets.com/graphql'
+        uri: 'http://localhost:4000/graphql'
+        // uri: 'https://api.keycapsets.com/graphql'
     })
 }
 

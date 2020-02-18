@@ -1,7 +1,14 @@
+
 import { gql } from "apollo-boost";
 
-const FETCH_KEYCAPSET_QUERY = gql`query FETCH_KEYCAPSET_QUERY {
-  keycapsets {
+const FETCH_KEYCAPSET_QUERY = gql`query FETCH_KEYCAPSET_QUERY(
+    $limit: Int,
+    $offset: Int
+) {
+  keycapsets(
+      limit: $limit,
+      offset: $offset,
+  ) {
      _id
     name
     type

@@ -19,7 +19,31 @@ interface HomeProps {}
 
 function Home(props: HomeProps) {
     const [state, setState] = useState(INITITAL_STATE);
-    const { loading, error, data } = useQuery(FETCH_KEYCAPSET_QUERY);
+    const [limit, setLimit] = useState(3);
+    const [offset, setOffset] = useState(0);
+    const [windowHeight, setWindowHeight] = useState(0)
+    const isBrowser = typeof window !== `undefined`
+    const { loading, error, data } = useQuery(FETCH_KEYCAPSET_QUERY, {
+        variables: {
+            limit,
+            offset
+        }
+    });
+
+    useEffect(() => {
+        if (isBrowser) {
+            console.log('window innheright', window.innerHeight)
+            setWindowHeight(window.innerHeight)
+            window.addEventListener('scroll', lazyFetchCards)
+            return () => window.removeEventListener('scroll', lazyFetchCards)
+        }
+    }, [])
+
+    function lazyFetchCards() {
+        const currentY = window.scrollY
+
+        console.log({ currentY, windowHeight })
+    }
 
     function setGlobalState(obj) {
         setState(reduceState(state, obj))
@@ -75,11 +99,11 @@ function Home(props: HomeProps) {
             </Head>
             <Nav />
             <div className="container">
-                <Heading
+                {/* <Heading
                     mainTitle="keycapsets.com"
                     subTitle="Find your favorite sets!"
                     isHome
-                />
+                /> */}
                 <Images />
                 <Footer />
             </div>
