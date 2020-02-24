@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>icon-search</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD" transform="translate(-469.000000, -253.000000)">
+            <g id="Group" transform="translate(460.000000, 248.000000)">
+                <g id="icon-search" transform="translate(8.000000, 4.000000)">
+                    <g id="icon-default-loop">
+                        <g>
+                            <rect id="bounding-box" fill="#E3E3E3" opacity="0" x="0" y="0" width="16" height="16"></rect>
+                            <path d="M7,1 C10.3137085,1 13,3.6862915 13,7 C13,8.30525177 12.583214,9.51315796 11.8754679,10.4978927 L14.7110701,13.3341121 C15.0638969,13.6869388 15.0946725,14.238486 14.7961682,14.622403 L14.7146779,14.7146779 C14.3344415,15.0949144 13.7217513,15.0987094 13.3341121,14.7110701 L10.4978927,11.8754679 C9.51315796,12.583214 8.30525177,13 7,13 C3.6862915,13 1,10.3137085 1,7 C1,3.6862915 3.6862915,1 7,1 Z M7,3 C4.790861,3 3,4.790861 3,7 C3,9.209139 4.790861,11 7,11 C9.209139,11 11,9.209139 11,7 C11,4.790861 9.209139,3 7,3 Z" id="Combined-Shape" fill="#93959B"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

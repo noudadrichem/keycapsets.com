@@ -61,6 +61,28 @@
         }
     }
 
+    &.secondary {
+        background-color: var(--blue-lightest);
+        border: 1px solid var(--blue-lightest);
+        color: var(--blue);;
+        font-weight: 600;
+
+        &:active {
+            background-color: var(--blue-darker);
+            border: 1px solid var(--blue-darker);
+        }
+
+        &:hover {
+            background-color: var(--blue-darker);
+            border: 1px solid var(--blue-darker);
+            color: white;
+
+            &:disabled {
+                opacity: .5;
+            }
+        }
+    }
+
     &.inverted {
          background-color: white;;
          color: var(--blue);

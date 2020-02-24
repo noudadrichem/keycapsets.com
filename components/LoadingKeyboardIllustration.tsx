@@ -4,7 +4,12 @@ import React, { useEffect, useRef } from "react";
 
 import '../assets/styles/loading-keyboard.scss';
 
-function LoadingKeyboardIllustration(): JSX.Element {
+interface LoadingKeyboardIllustrationProps {
+    scale?: number;
+}
+
+function LoadingKeyboardIllustration(props: LoadingKeyboardIllustrationProps): JSX.Element {
+    const { scale = 1 } = props;
     const IDS: string[] = ['L', 'O', 'A', 'D', 'I', 'N', 'G', 'ENTER']
     const L = useRef(null);
     const O = useRef(null);
@@ -47,6 +52,9 @@ function LoadingKeyboardIllustration(): JSX.Element {
             height="179"
             viewBox="0 0 432 179"
             id="loading-keyboard-illu"
+            style={{
+                transform: `scale(${scale})`
+            }}
         >
             <g
                 id="Page-1"

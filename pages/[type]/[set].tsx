@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Slider from "react-slick";
 import { useQuery } from '@apollo/react-hooks';
+import { Keycapset } from 'typings';
 
 import withData from '../../hooks/withData'
 import { GET_SINGLE_SET_QUERY } from '../../queries';
@@ -14,6 +15,7 @@ import Footer from '../../components/Footer';
 import Heading from '../../components/Heading';
 import Nav from '../../components/Nav';
 import LoadingKeyboard from '../../components/LoadingKeyboard';
+import ButtonLink from '../../components/ButtonLink';
 
 interface SetProps {}
 
@@ -39,7 +41,10 @@ function SetPage(props: SetProps) {
         return <p>'Error loading keycapsets.com... Please refresh this page'</p>;
     }
 
-    const set = data.keycapsetBySlug;
+    const set: Keycapset = data.keycapsetBySlug;
+
+    const urlIsGeekHack: boolean = set.websiteUrl.includes('geekhack');
+
     return set !== undefined && (
         <div className="set">
             <Head>
@@ -52,6 +57,13 @@ function SetPage(props: SetProps) {
                     mainTitle={`we are currently working hard on a page for ${set.name}`}
                     subTitle="Come back later or send an email to contact@keycapsets.com"
                 />
+
+                {
+                    urlIsGeekHack
+                    ? <ButtonLink isLarge href={set.websiteUrl}>Go to Geekhack thread</ButtonLink>
+                    : <ButtonLink isLarge href={set.websiteUrl}>Visit the website</ButtonLink>
+                }
+
             </div>
             {/* <pre>{JSON.stringify(set, null, 4)}</pre>
 

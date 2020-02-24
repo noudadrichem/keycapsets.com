@@ -1,16 +1,21 @@
-import { withData } from 'next-apollo'
-import { HttpLink } from 'apollo-boost'
-import dotenv from 'dotenv';
+import withApollo from 'next-with-apollo';
+import ApolloClient, { InMemoryCache } from 'apollo-boost';
+import { ApolloProvider } from '@apollo/react-hooks';
 
-dotenv.config();
-
-console.log('REST_API_ENDPOINT...', process.env.REST_API_ENDPOINT);
-
-const config = {
-    link: new HttpLink({
-        uri: 'http://localhost:4000/graphql'
-        // uri: 'https://api.keycapsets.com/graphql'
-    })
-}
-
-export default withData(config)
+export default withApollo(
+    ({ initialState }) => {
+        return new ApolloClient({
+            uri: 'http://localhost:4000/graphql',
+            cache: new InMemoryCache().restore(initialState || {})
+        });
+    },
+    {
+        render: ({ Page, props }) => {
+            return (
+                <ApolloProvider client={props.apollo}>
+                    <Page {...props} />
+                </ApolloProvider>
+            );
+        }
+    }
+);

@@ -1,11 +1,23 @@
 .heading {
     padding: 88px 42px 88px;
-    background: linear-gradient(54.97deg, #D4E4FA -12.28%, #ABCCF8 112.82%, #ABCCF8 112.82%);
+    // background: linear-gradient(54.97deg, #D4E4FA -12.28%, #ABCCF8 112.82%, #ABCCF8 112.82%);
     border-radius: 8px;
+
+    &.left {
+        padding: 64px 0;
+    }
 
     @media screen and (max-width: $bp-tablet-sm) {
         margin: 0 12px;
         padding: 88px 24px;
+    }
+
+    &-cta {
+        p {
+            display: inline-flex;
+            margin: 0 12px;
+            color: var(--text-color-lightest);
+        }
     }
 
     &.center {
@@ -21,7 +33,11 @@
     }
 
     .search-input {
-        max-width: 333px;
+        max-width: 533px;
         margin: 0 auto;
+    }
+
+    h1 {
+        margin-bottom: 24px;
     }
 }

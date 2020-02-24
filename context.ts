@@ -1,5 +1,6 @@
 import { createContext } from 'react';
 import moment from 'moment';
+import { InititalState } from 'typings';
 
 export function reduceState(state, obj) {
     const reducedState = {
@@ -10,11 +11,12 @@ export function reduceState(state, obj) {
     return reducedState;
 }
 
-export const INITITAL_STATE: any = {
+export const INITITAL_STATE: InititalState = {
     activeTab: 'all',
     tabs: [],
     keycapsets: [],
-    searchQuery: ''
+    searchQuery: '',
+    setGlobalState: () => {}
 }
 
 const Context = createContext(undefined);

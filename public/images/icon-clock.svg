@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>icon-clock</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD" transform="translate(-240.000000, -664.000000)">
+            <g id="Group-5-+-Perestroika-+-label-+-Bitmap-Mask" transform="translate(224.000000, 424.000000)">
+                <g id="label" transform="translate(8.000000, 232.000000)">
+                    <g id="icon-clock" transform="translate(8.000000, 8.000000)">
+                        <g id="icon-default-pending">
+                            <g>
+                                <rect id="bounding-box" fill="#E3E3E3" opacity="0" x="0" y="0" width="16" height="16"></rect>
+                                <path d="M8,0 C12.418278,0 16,3.581722 16,8 C16,12.418278 12.418278,16 8,16 C3.581722,16 0,12.418278 0,8 C0,3.581722 3.581722,0 8,0 Z M9.9906311,10 C10.5566468,10 11,9.55228475 11,9 L11,9 L10.9932092,8.88266744 C10.9349029,8.38272018 10.5082716,8 9.9906311,8 L9.9906311,8 L9,8 L9,4.99077797 C9,4.48953252 8.61395981,4.06487823 8.11662113,4.0067707 L8,4 L7.88266744,4.00666569 C7.38272018,4.06389808 7,4.48267152 7,4.99077797 L7,4.99077797 L7,9.00922203 C7,9.54902482 7.44771525,10 8,10 L8,10 Z" id="Combined-Shape" fill="#93959B"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

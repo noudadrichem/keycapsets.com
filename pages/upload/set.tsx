@@ -42,7 +42,7 @@ function UploadSet(props: UploadSetProps): JSX.Element {
         websiteUrl: websiteUrlValue,
         groupbuyStartDate: startDateValue,
         groupbuyEndDate: endDateValue,
-        vendors: vendors.map((v) => v._id),
+        vendors: !!vendors && vendors.map((v) => v.value),
         imageUrls
     };
 
@@ -56,10 +56,9 @@ function UploadSet(props: UploadSetProps): JSX.Element {
 
     async function uploadKeycapset(e) {
         setUploading(true);
-
         const result: ExecutionResult<Keycapset> = await addKeyset({ variables: keycapset });
-        setUploading(false)
-        console.log({ result })
+        setUploading(false);
+        console.log(result);
     }
 
     if (loading) {
@@ -74,7 +73,7 @@ function UploadSet(props: UploadSetProps): JSX.Element {
         <>
             <Nav />
             <div className="container upload">
-                <Heading mainTitle="Upload your set" subTitle="And make it famous!" left />
+                <Heading mainTitle="Upload it directly!" subTitle="Make your set famous" left />
 
                 <div className="grid two-column">
                     <div className="column">
@@ -102,7 +101,7 @@ function UploadSet(props: UploadSetProps): JSX.Element {
                     </div>
 
                     <div className="column">
-                        <h4>Your card will look like this.</h4>
+                        <h4>Your keyboard will look like this.</h4>
                         <ImageCard {...{keycapset}} />
                     </div>
 

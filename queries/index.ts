@@ -16,6 +16,8 @@ const FETCH_KEYCAPSET_QUERY = gql`query FETCH_KEYCAPSET_QUERY(
     slug
     groupbuyStartDate
     groupbuyEndDate
+    updatedAt
+    createdAt
   }
 }`;
 

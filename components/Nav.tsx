@@ -23,7 +23,7 @@ function Nav(props: NavProps): JSX.Element {
                             <a>Upload</a>
                         </Link>
                         <Link href="/about" as="/about">
-                            <a>About</a>
+                            <a>Get to know</a>
                         </Link>
                     </div>
                 </div>

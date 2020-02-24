@@ -9,16 +9,17 @@ interface LinkProps {
     children?: ReactNode;
     href: string;
     as?: string;
+    isLarge?: boolean;
 }
 /*
     className = {`btn ${className} ${variant} ${size} ${type} ${isFullWidth ? 'full-width' : ''}`}
     onClick = { onClick }
  */
 function ButtonLink(props: LinkProps): JSX.Element {
-    const {children, href, as } = props;
+    const {children, href, as, isLarge = false } = props;
 
     return (
-        <div className="button-link arrow-right">
+        <div className={`button-link arrow-right ${isLarge ? 'large' : ''}`}>
             {
                 href.startsWith('http')
                 ? (

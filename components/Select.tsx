@@ -3,7 +3,7 @@ import '../assets/styles/input.scss';
 
 interface HeadingProps {
     onSelectChange?: Function;
-    values: string[];
+    values: { id, name }[];
     label?: string;
     name?: string;
 }

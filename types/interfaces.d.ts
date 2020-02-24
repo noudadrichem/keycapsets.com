@@ -27,4 +27,12 @@ declare module 'typings' {
         slug?: string;
     }
 
+    interface InititalState {
+        activeTab: string;
+        tabs: string[],
+        keycapsets: any[],
+        searchQuery: string;
+        setGlobalState?: Function;
+    }
+
 }

@@ -34,14 +34,10 @@ function Heading(props: HeadingProps): JSX.Element {
 
     }
 
-    function ctaUpload() {
-        router.push('/upload')
-    }
-
     return (
         <header className={`heading ${left ? 'left' : 'center'}`} style={{ background: backgroundColor }}>
-            <h1 className={`no-bold ${left ? 'left' : 'center'}`}>{ mainTitle  }</h1>
             <h4 className={`italic ${left ? 'left' : 'center'}`}>{ subTitle }</h4>
+            <h1 className={`no-bold ${left ? 'left' : 'center'}`}>{ mainTitle  }</h1>
 
             {
                 isHome && (
@@ -49,13 +45,24 @@ function Heading(props: HeadingProps): JSX.Element {
                         <div className="search-input">
                             {searchInput}
                         </div>
-                        <Button
-                            onClick={ctaUpload}
-                            variant="primary"
-                            size="md"
-                            className='center'
-                        >Upload a set or apply as a vendor
-                        </Button>
+
+                        <div className="heading-cta">
+                            <Button
+                                onClick={() => router.push('/upload/set')}
+                                variant="primary"
+                                size="md"
+                                className='center'
+                            >Upload a set
+                            </Button>
+                            <p>or</p>
+                            <Button
+                                onClick={() => router.push('/upload/vendor')}
+                                variant="secondary"
+                                size="md"
+                                className='center'
+                            >Apply as vendor
+                            </Button>
+                        </div>
                     </>
                 )
             }

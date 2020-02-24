@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { InititalState } from 'typings';
 
 import Tab from './Tab';
 import Context from '../../context';
@@ -8,11 +9,7 @@ interface TabsProps {}
 
 function Tabs(props: TabsProps): JSX.Element {
     const { } = props;
-    const state = useContext(Context);
-
-    function setSelectState() {
-
-    }
+    const state = useContext<InititalState>(Context);
 
     return (
         <div className="filters">
