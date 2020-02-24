@@ -48,6 +48,11 @@ function Home(props: HomeProps) {
     }, [])
 
     useEffect(() => {
+        setLimit(LIMIT);
+        setOffset(LIMIT);
+    }, [state.activeTab])
+
+    useEffect(() => {
         if (isAtBottomOfPage) {
             fetchMoreWhenBottomOfPage()
         }
@@ -73,6 +78,7 @@ function Home(props: HomeProps) {
             variables: {
                 offset,
                 limit: LIMIT,
+                type: state.activeTab
             }
         });
         const { data: { keycapsets }, loading } = fetchSetQueryResult;
