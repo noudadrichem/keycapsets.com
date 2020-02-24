@@ -4,11 +4,10 @@
     border-radius: 8px;
 
     &.left {
-        padding: 64px 0;
+        padding: 48px 0;
     }
 
     @media screen and (max-width: $bp-tablet-sm) {
-        margin: 0 12px;
         padding: 88px 24px;
     }
 

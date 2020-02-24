@@ -51,11 +51,11 @@ h4 {
     font-size: 24px;
     font-weight: 500;
     line-height: 140%;
-    color: var(--text-color);
+    color: var(--text-color-light);
     margin: 8px 0;
 
     @media screen and (max-width: $bp-tablet-md) {
-        font-size: 16px;
+        // font-size: 16px;
     }
 
     @media screen and (max-width: $bp-mobile-lg) {
@@ -73,8 +73,16 @@ h5 {
 
 p {
     font-size: 18px;
-    line-height: 140%;
+    line-height: 1.8;
     color: var(--text-color);
+
+    &.light {
+        color: var(--text-color-light);
+    }
+
+    &.alinea {
+        margin-bottom: 24px;
+    }
 
     &.small {
         font-size: 14px;
@@ -137,6 +145,10 @@ span {
 
 .center {
     text-align: center;
+
+    @media screen and (max-width: $bp-tablet-md) {
+        text-align: left;
+    }
 }
 
 .italic {

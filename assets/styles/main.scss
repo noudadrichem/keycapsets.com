@@ -77,3 +77,15 @@ img {
     color: var(--text-color-light);
     // text-transform: uppercase;
 }
+
+.about {
+    width: calc(100% - 24px);
+
+    @media screen and (max-width: 900px) {
+        margin: 0 auto;
+    }
+}
+
+.text-container {
+    max-width: 900px;
+}

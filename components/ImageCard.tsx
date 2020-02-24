@@ -39,21 +39,19 @@ function ImageCard(props: ImageCardProps): JSX.Element {
                         <div className="left">
                             <h4 className="">{name || 'Title goes here'}</h4>
 
-                            <div>
+                            <p className="light">
                                 {
                                     isInFuture
-                                    ? <>
-                                        Starting in
-                                        <span className="bold"> {getDayDifference(groupbuyStartDate)} </span>
-                                        days
-                                    </>
-                                    : <>
-                                        Ending in
-                                        <span className="bold"> {getDayDifference(groupbuyEndDate)} </span>
-                                        days
-                                    </>
+                                    ? <> Starting in <span className="bold"> {getDayDifference(groupbuyStartDate)} </span> days </>
+                                    : <>{
+                                        getDayDifference(groupbuyEndDate) > 0
+                                        ? (<>
+                                            Ending in <span className="bold"> {getDayDifference(groupbuyEndDate)} </span> days
+                                        </>)
+                                        : 'Ended. Visit set for options'
+                                    }</>
                                 }
-                            </div>
+                            </p>
                         </div>
 
                         <div className="right">
