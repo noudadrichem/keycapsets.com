@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Error from 'next/error'
 import Head from 'next/head';
 import { useQuery } from '@apollo/react-hooks';
 import { ApolloClient } from 'apollo-boost';
@@ -12,10 +13,10 @@ import Heading from '../components/Heading';
 import Footer from '../components/Footer';
 import Images from '../components/Images';
 import Nav from '../components/Nav';
-
-import '../assets/styles/main.scss';
 import LoadingKeyboard from '../components/LoadingKeyboard';
 import LoadingKeyboardIllustration from '../components/LoadingKeyboardIllustration';
+
+import '../assets/styles/main.scss';
 
 interface HomeProps {
     url: any;
@@ -33,11 +34,9 @@ function Home(props: HomeProps) {
     const { loading, error, data } = useQuery(FETCH_KEYCAPSET_QUERY, {
         variables: {
             limit: LIMIT,
+            type: state.activeTab
         }
     });
-
-
-    // console.log('FETCH_KEYCAPSET_QUERY QUERY DATA', { loading, error, data })
 
     useEffect(() => {
         if (isBrowser) {
@@ -116,12 +115,13 @@ function Home(props: HomeProps) {
     }
 
     if (error) {
-        console.error(error)
-        return <p>Error loading keycapsets.com... Please refresh this page'</p>;
+        console.error(error);
+        return <Error title="Oops, small mistake here..." statusCode={502} />
     }
 
     const title = `Keycapsets. Find your favorite set!`;
     const description = `Searching for a beautifull keycapset for your keyboard but don't know where to start? This page shows you sets that excist and will point you in the right direction to buy!`;
+    const metaImgUrl = '/images/meta/meta-img.png';
 
     return (
         <Context.Provider value={{ ...state, setGlobalState }}>
@@ -139,6 +139,9 @@ function Home(props: HomeProps) {
                 <meta name="description" content={description} />
                 <meta property="og:description" content={description}/>
                 <meta name="twitter:description" content={description}/>
+                <meta property="og:image" content={metaImgUrl} />
+                <meta property="og:image:alt" content={metaImgUrl} />
+                <meta property="og:image:secure_url" content={metaImgUrl} />
             </Head>
             <Nav />
             <div className="container">
