@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
 
 import '../../assets/styles/main.scss';
@@ -17,11 +16,12 @@ import Nav from '../../components/Nav';
 interface UploadVendorProps { }
 
 function UploadVendor(props: UploadVendorProps) {
-    const [nameValue, nameInput] = useInput({ label: 'Name:'});
-    const [countryValue, countryInput] = useInput({ label: 'Country:'});
-    const [logoUrlValue, logoUrlInput] = useInput({ label: 'Logo url:'});
-    const [urlValue, urlInput] = useInput({ label: 'Website address:'});
-    const [socials, setSocials] = useState([])
+    const [nameValue, nameInput, setName] = useInput({ label: 'Name:'});
+    const [countryValue, countryInput, setCountry] = useInput({ label: 'Country:'});
+    const [logoUrlValue, logoUrlInput, setLogoInput] = useInput({ label: 'Logo url:'});
+    const [urlValue, urlInput, setUrl] = useInput({ label: 'Website address:'});
+    const [socials, setSocials] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     const [addVendor, mutationResponse] = useMutation(CREATE_VENDOR_MUTATION);
     async function uploadVendor() {
@@ -33,8 +33,17 @@ function UploadVendor(props: UploadVendorProps) {
             socials
         };
 
-       const result = await addVendor({ variables });
-       console.log('result', result)
+        const result = await addVendor({ variables });
+        console.log('result', result);
+        reset();
+    }
+
+    function reset() {
+        setName('');
+        setCountry('');
+        setLogoInput('');
+        setUrl('');
+        setSocials([]);
     }
 
     return (
@@ -57,7 +66,7 @@ function UploadVendor(props: UploadVendorProps) {
                             size="sm"
                             className="align-right"
                             >
-                            Add vendor
+                            {loading ? 'Adding...' : 'Add vendor'}
                         </Button>
                     </div>
                 </div>

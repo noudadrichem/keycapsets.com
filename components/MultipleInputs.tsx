@@ -19,18 +19,25 @@ function multipleInputsHook(props: InputProps): JSX.Element {
     }
 
     function getAllInputValues(id, e) {
-        const inputValues: string[] = []
+        const inputValues: string[] = [];
         document.querySelectorAll('.multiple-inputs-input').forEach((input: any) => {
             inputValues.push(input.value)
         })
+
         onChange(inputValues)
+    }
+
+    function resetInputs() {
+        setInputs([GET_INPUT_TEMPLATE(0)])
     }
 
     return (
         <div className="input-wrapper-multiple">
             <label className="label">{label}</label>
             {
-                inputs.map((inputProps: any) => <input key={inputProps.id} className="input" onChange={(e: any) => getAllInputValues(e.target.id, e)} {...inputProps} /> )
+                inputs.map((inputProps: any) =>
+                    <input key={inputProps.id} className="input" onChange={(e: any) => getAllInputValues(e.target.id, e)} {...inputProps} />
+                )
             }
             {inputs.length < 11 && (
                 <Button

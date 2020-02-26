@@ -23,11 +23,11 @@ import LoadingKeyboard from '../../components/LoadingKeyboard';
 interface UploadSetProps {}
 
 function UploadSet(props: UploadSetProps): JSX.Element {
-    const [nameValue, nameInput] = useInput({ label: 'Name:' });
-    const [typeValue, typeInput] = useInput({ label: 'Type:', placeholder: 'gmk, xda, e-pbt, sa...', defaultValue: 'gmk'});
-    const [coverImageUrlValue, coverImageUrlInput] = useInput({ label: 'Cover image (url):' });
-    const [websiteUrlValue, websiteUrlInput] = useInput({ label: 'Website:' });
-    const [startDateValue, startDateInput] = useInput({ label: 'Start groupbuy:', type: 'date', defaultValue: moment().format('YYYY-MM-DD') });
+    const [nameValue, nameInput, setName] = useInput({ label: 'Name:' });
+    const [typeValue, typeInput, setType] = useInput({ label: 'Type:', placeholder: 'gmk, xda, e-pbt, sa...', defaultValue: 'gmk'});
+    const [coverImageUrlValue, coverImageUrlInput, setCoverImg] = useInput({ label: 'Cover image (url):' });
+    const [websiteUrlValue, websiteUrlInput, setWebsiteUrlInput] = useInput({ label: 'Website:' });
+    const [startDateValue, startDateInput, setStartDate] = useInput({ label: 'Start groupbuy:', type: 'date', defaultValue: moment().format('YYYY-MM-DD') });
     const [endDateValue, endDateInput, setEndDateValue] = useInput({ label: 'End groupbuy:', type: 'date', defaultValue: moment().add('1', 'months').format('YYYY-MM-DD') });
 
     const [imageUrls, setImageUrls] = useState([]);
@@ -57,8 +57,20 @@ function UploadSet(props: UploadSetProps): JSX.Element {
     async function uploadKeycapset(e) {
         setUploading(true);
         const result: ExecutionResult<Keycapset> = await addKeyset({ variables: keycapset });
-        setUploading(false);
         console.log(result);
+        setUploading(false);
+        reset()
+    }
+
+    function reset() {
+        setName('');
+        setType('');
+        setCoverImg('');
+        setWebsiteUrlInput('');
+        setStartDate('');
+        setEndDateValue('');
+        setImageUrls([])
+        setVendors([])
     }
 
     if (loading) {

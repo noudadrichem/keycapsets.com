@@ -96,17 +96,6 @@ function Home(props: HomeProps) {
         setState(reduceState(state, obj))
     }
 
-    // function getTabs() {
-    //     const allTabs = data.keycapsets.reduce((result: string[], set: any) => {
-    //         if (!result.includes(set.type)) {
-    //             result.push(set.type)
-    //         }
-    //         return result;
-    //     }, ['all'])
-
-    //     return allTabs;
-    // }
-
     useEffect(() => {
         if(!!data) {
             setGlobalState({
@@ -127,7 +116,7 @@ function Home(props: HomeProps) {
 
     const title = `Keycapsets. Find your favorite set!`;
     const description = `Searching for a beautifull keycapset for your keyboard but don't know where to start? This page shows you sets that excist and will point you in the right direction to buy!`;
-    const metaImgUrl = '/images/meta/meta-img.png';
+    const metaImgUrl = '/images/meta/meta-image.png';
 
     return (
         <Context.Provider value={{ ...state, setGlobalState }}>
@@ -139,12 +128,13 @@ function Home(props: HomeProps) {
                     content="width=device-width, initial-scale=1.0, maximum-scale=1.00, minimum-scale=1.00"
                 />
                 <meta name="author" content="noudadrichem" />
-                <meta property="og:title" content={title}/>
-                <meta name="twitter:title" content={title}/>
+                <meta property="og:title" content={title} />
+                <meta name="twitter:title" content={title} />
 
                 <meta name="description" content={description} />
-                <meta property="og:description" content={description}/>
-                <meta name="twitter:description" content={description}/>
+                <meta property="og:description" content={description} />
+                <meta name="twitter:description" content={description} />
+
                 <meta property="og:image" content={metaImgUrl} />
                 <meta property="og:image:alt" content={metaImgUrl} />
                 <meta property="og:image:secure_url" content={metaImgUrl} />
