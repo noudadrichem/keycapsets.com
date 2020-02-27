@@ -135,9 +135,9 @@ function Home(props: HomeProps) {
                 <meta property="og:description" content={description} />
                 <meta name="twitter:description" content={description} />
 
-                <meta property="og:image" content={metaImgUrl} />
-                <meta property="og:image:alt" content={metaImgUrl} />
-                <meta property="og:image:secure_url" content={metaImgUrl} />
+                <meta property="og:image" name="meta image" content={metaImgUrl} />
+                <meta property="og:image:alt" name="meta image" content={metaImgUrl} />
+                <meta property="og:image:secure_url" name="meta image" content={metaImgUrl} />
             </Head>
             <Nav />
             <div className="container">
