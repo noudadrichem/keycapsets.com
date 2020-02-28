@@ -5,6 +5,17 @@ const description = `Searching for a beautifull keycapset for your keyboard but 
 const metaImgUrl = 'https://keycapsets.com/images/meta/meta-image.png';
 
 function Meta(props) {
+    function setGoogleTags() {
+        return {
+            __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'UA-115865530-2');`
+        };
+    }
+
+
     return (
         <Head>
             <title>{title}</title>
@@ -21,8 +32,13 @@ function Meta(props) {
             <meta property="og:description" content={description} />
             <meta name="twitter:description" content={description} />
 
-            <meta property="og:image" name="meta image" content={metaImgUrl} />
-            <meta name="twitter:image" name="meta image" content={metaImgUrl} />
+            <meta property="og:image" content={metaImgUrl} />
+            <meta name="twitter:image" content={metaImgUrl} />
+
+            {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
+            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115865530-2"></script>
+            <script dangerouslySetInnerHTML={setGoogleTags()} />
+
         </Head>
     )
 }
