@@ -18,6 +18,7 @@ import LoadingKeyboardIllustration from '../components/LoadingKeyboardIllustrati
 import CTACard from '../components/CTACard';
 
 import '../assets/styles/main.scss';
+import Meta from '../components/Meta';
 
 interface HomeProps {
     url: any;
@@ -115,31 +116,10 @@ function Home(props: HomeProps) {
         return <Error title="Oops, small mistake here..." statusCode={502} />
     }
 
-    const title = `Keycapsets. Find your favorite set!`;
-    const description = `Searching for a beautifull keycapset for your keyboard but don't know where to start? This page shows you sets that excist and will point you in the right direction to buy that set!`;
-    const metaImgUrl = '/images/meta/meta-image.png';
-
     return (
         <Context.Provider value={{ ...state, setGlobalState }}>
-            <Head>
-                <title>{title}</title>
-                <meta
-                    name="viewport"
-                    key="viewport"
-                    content="width=device-width, initial-scale=1.0, maximum-scale=1.00, minimum-scale=1.00"
-                />
-                <meta name="author" content="noudadrichem" />
-                <meta property="og:title" content={title} />
-                <meta name="twitter:title" content={title} />
+            <Meta />
 
-                <meta name="description" content={description} />
-                <meta property="og:description" content={description} />
-                <meta name="twitter:description" content={description} />
-
-                <meta property="og:image" name="meta image" content={metaImgUrl} />
-                <meta property="og:image:alt" name="meta image" content={metaImgUrl} />
-                <meta property="og:image:secure_url" name="meta image" content={metaImgUrl} />
-            </Head>
             <Nav />
             <div className="container">
                 <Heading
