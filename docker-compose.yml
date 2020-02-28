@@ -15,4 +15,4 @@ services:
 networks:
   traefik:
     external:
-      name: docker_default 
+      name: docker_default

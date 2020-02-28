@@ -33,6 +33,7 @@ function UploadSet(props: UploadSetProps): JSX.Element {
     const [imageUrls, setImageUrls] = useState([]);
     const [vendors, setVendors] = useState([]);
     const [uploading, setUploading] = useState(false);
+    const [shouldReset, setShouldReset] = useState(false);
 
     const keycapset: Keycapset = {
         name: nameValue,
@@ -57,7 +58,7 @@ function UploadSet(props: UploadSetProps): JSX.Element {
     async function uploadKeycapset(e) {
         setUploading(true);
         const result: ExecutionResult<Keycapset> = await addKeyset({ variables: keycapset });
-        console.log(result);
+        console.log(result.data);
         setUploading(false);
         reset()
     }
@@ -71,6 +72,10 @@ function UploadSet(props: UploadSetProps): JSX.Element {
         setEndDateValue('');
         setImageUrls([])
         setVendors([])
+        setShouldReset(true)
+        setTimeout(() => {
+            setShouldReset(false)
+        })
     }
 
     if (loading) {
@@ -85,7 +90,7 @@ function UploadSet(props: UploadSetProps): JSX.Element {
         <>
             <Nav />
             <div className="container upload">
-                <Heading mainTitle="Upload it directly!" subTitle="Make your set famous" left />
+                <Heading mainTitle="Upload a keycapset" subTitle="Make your set famous!" left />
 
                 <div className="grid two-column">
                     <div className="column">
@@ -100,7 +105,11 @@ function UploadSet(props: UploadSetProps): JSX.Element {
                             onChange={(selectedVendors: any[]) => setVendors(selectedVendors)}
                             options={vendorQueryResult.vendors.map((v: Vendor) => ({ value: v._id, label: v.name }))}
                         />
-                        <MultipleInputs label="Images" onChange={(values: string[]) => setImageUrls(values)} />
+                        <MultipleInputs
+                            label="Images"
+                            onChange={(values: string[]) => setImageUrls(values)}
+                            shouldReset={shouldReset}
+                        />
 
                         <Button
                             onClick={uploadKeycapset}
@@ -113,7 +122,7 @@ function UploadSet(props: UploadSetProps): JSX.Element {
                     </div>
 
                     <div className="column">
-                        <h4>Your keyboard will look like this.</h4>
+                        <h4>Your keyset will look like this.</h4>
                         <ImageCard {...{keycapset}} />
                     </div>
 

@@ -83,14 +83,7 @@ fetch('https://www.reddit.com/r/MechGroupBuys.json?limit=100')
         }
     })
 
-
-
-
-
-
-
 function getObjFromTitle(title) {
-    // const t = "[GB] GMK Zhuyin WoB/BoW Add-on kit // Feb 3 – Mar 1st, 2020";
     const t = title;
     const isGB = title.split(' ')[0] === '[GB]'
 

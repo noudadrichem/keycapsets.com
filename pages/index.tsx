@@ -15,6 +15,7 @@ import Images from '../components/Images';
 import Nav from '../components/Nav';
 import LoadingKeyboard from '../components/LoadingKeyboard';
 import LoadingKeyboardIllustration from '../components/LoadingKeyboardIllustration';
+import CTACard from '../components/CTACard';
 
 import '../assets/styles/main.scss';
 
@@ -115,7 +116,7 @@ function Home(props: HomeProps) {
     }
 
     const title = `Keycapsets. Find your favorite set!`;
-    const description = `Searching for a beautifull keycapset for your keyboard but don't know where to start? This page shows you sets that excist and will point you in the right direction to buy!`;
+    const description = `Searching for a beautifull keycapset for your keyboard but don't know where to start? This page shows you sets that excist and will point you in the right direction to buy that set!`;
     const metaImgUrl = '/images/meta/meta-image.png';
 
     return (
@@ -151,6 +152,8 @@ function Home(props: HomeProps) {
                 { loadingExtra && <LoadingKeyboardIllustration scale={0.3} />}
                 <Footer />
             </div>
+
+            <CTACard />
         </Context.Provider>
     )
 }

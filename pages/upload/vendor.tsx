@@ -22,6 +22,7 @@ function UploadVendor(props: UploadVendorProps) {
     const [urlValue, urlInput, setUrl] = useInput({ label: 'Website address:'});
     const [socials, setSocials] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [shouldReset, setShouldReset] = useState(false);
 
     const [addVendor, mutationResponse] = useMutation(CREATE_VENDOR_MUTATION);
     async function uploadVendor() {
@@ -33,8 +34,10 @@ function UploadVendor(props: UploadVendorProps) {
             socials
         };
 
-        const result = await addVendor({ variables });
-        console.log('result', result);
+        // const result = await addVendor({ variables });
+        // console.log('result', result);
+        console.log('variables', variables);
+
         reset();
     }
 
@@ -44,13 +47,18 @@ function UploadVendor(props: UploadVendorProps) {
         setLogoInput('');
         setUrl('');
         setSocials([]);
+
+        setShouldReset(true)
+        setTimeout(() =>  {
+            setShouldReset(false)
+        })
     }
 
     return (
         <>
             <Nav />
             <div className="container upload">
-                <Heading mainTitle="Are you a vendor" subTitle="Make yourself famous!" left />
+                <Heading mainTitle="By adding yourself as a vendor" subTitle="Make yourself famous!" left />
 
                 <div className="grid-container">
                     <div className="column">
@@ -58,7 +66,14 @@ function UploadVendor(props: UploadVendorProps) {
                         {countryInput}
                         {logoUrlInput}
                         {urlInput}
-                        <MultipleInputs label="Social links..." onChange={(socials: string[]) => setSocials(socials)} />
+                        <MultipleInputs
+                            label="Social links..."
+                            onChange={(socials: string[]) => {
+                                console.log('change socials...', socials)
+                                setSocials(socials)
+                            }}
+                            shouldReset={shouldReset}
+                        />
 
                         <Button
                             onClick={uploadVendor}
