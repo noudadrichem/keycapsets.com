@@ -3,7 +3,7 @@
 
 > https://keycapsets.com
 
-[<img src="https://dev.keycapsets.com/images/meta/meta-image.png">](https://keycapsets.com/)
+[<img src="https://keycapsets.com/images/meta/meta-image.png">](https://keycapsets.com/)
 
 ## Intro
 People came to me also enthusiastic about mechanical keyboards. I'm always in to help them find their best keeb. The second step is ofcource, a nice keyset!
