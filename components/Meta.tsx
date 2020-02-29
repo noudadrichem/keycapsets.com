@@ -1,7 +1,7 @@
 import Head from 'next/head'
 
-const title = `Keycapsets. Find your favorite set!`;
-const description = `Searching for a beautifull keycapset for your keyboard but don't know where to start? This page shows you sets that excist and will point you in the right direction to buy that set!`;
+const title = `Keycapsets. Find your favorite keycapset!`;
+const description = `Searching for a beautifull keycapset for your current or future keyboard but don't know where to start? This page shows you keycapsets that excist and will point you in the right direction to buy that keycapset!`;
 const metaImgUrl = 'https://keycapsets.com/images/meta/meta-image.png';
 
 function Meta(props) {

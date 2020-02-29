@@ -54,8 +54,8 @@ function SetPage(props: SetProps) {
             <div className="container">
 
                 <Heading
-                    mainTitle={`we are currently working hard on a page for ${set.name}`}
-                    subTitle="Come back later or send an email to contact@keycapsets.com"
+                    mainTitle="Come back later or send an email to contact@keycapsets.com"
+                    subTitle={`We are currently working hard on a page for ${set.name}`}
                 />
 
                 {

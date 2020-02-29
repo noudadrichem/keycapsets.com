@@ -51,13 +51,18 @@ function About(props: AboutProps) {
                     </p>
 
                     <p className="light alinea">
-                        We were always surfing and browsing trough several websites like Geekhack and vendor sites. There came the idea, just one website to rule them all. <br/>
-                        Just one website with an 'simple' overview of keysets that exist or soon to be existing. I don't want to be a vendor. Let this site be a proxy.
+                        We were surfing and browsing trough several websites like Geekhack and other vendor sites. There came the idea, just one website to rule them all.<br/>
+                        Just one website with a 'simple' overview of keysets that exist or soon to be existing. I don't want to be a vendor. Let this site be a proxy to your vendor.
+                    </p>
+
+                    <h4 className="alinea-title">For vendors</h4>
+                    <p className="light alinea">
+                        This site should be an advantage to your business. From overview to single I'll proxy the user to their vendor. There will be an overview page with vendors categorised by country and continent.
                     </p>
 
                     <h4 className="alinea-title">The Future for set designers</h4>
                     <p className="light alinea">
-                        I want set designers to be able to express themselves more easily. <br/>Dear set designer,Let this platform work for you!. I want to make it possible to easily be able to get you a single webpage with all the necessary info. Such as vendors, renders, previews etc.
+                        I want set designers to be able to express themselves more easily. <br/>Dear set designer, Let this platform work for you!. I want to make it possible to easily be able to get you a single webpage with all the necessary info. Such as vendors, renders, previews etc.
                     </p>
 
                     <h4 className="alinea-title">The Future for explorers</h4>

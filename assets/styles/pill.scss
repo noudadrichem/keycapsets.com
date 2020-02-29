@@ -4,6 +4,7 @@
     padding: 6px 8px;
     display: block;
     font-weight: 500;
+    display: inline-flex;
 
     &.green {
         background: #D5E7DA;
@@ -13,5 +14,10 @@
     &.red {
         background: #F2D3D8;
         color: #D95468;
+    }
+
+    &.gray {
+        background: #D2D4D8;
+        color: #3A4251;
     }
 }
