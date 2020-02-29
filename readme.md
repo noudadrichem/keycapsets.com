@@ -11,6 +11,9 @@ People came to me also enthusiastic about mechanical keyboards. I'm always in to
 We were always surfing and browsing trough several websites like Geekhack and vendor sites. There came the idea, just one website to rule them all.
 Just one website with an 'simple' overview of keysets that exist or soon to be existing. I don't want to be a vendor. Let this site be a proxy.
 
+## For vendors
+This site should be an advantage to your business. From overview to single I'll proxy the user to their vendor. There will be an overview page with vendors categorised by country and continent.
+
 ## The Future for set designers
 I want set designers to be able to express themselves more easily.
 Dear set designer,Let this platform work for you!. I want to make it possible to easily be able to get you a single webpage with all the necessary info. Such as vendors, renders, previews etc.
