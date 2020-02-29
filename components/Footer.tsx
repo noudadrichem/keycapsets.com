@@ -34,7 +34,7 @@ function Footer(props: FooterProps): JSX.Element {
                 <a href="https://twitter.com/noudadrichem">
                     <Twitter />
                 </a>
-                <a href="https://twitter.com/noudadrichem">
+                <a href="https://www.instagram.com/keycapsets/">
                     <Instagram />
                 </a>
             </div>
