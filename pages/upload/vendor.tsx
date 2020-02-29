@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
+import withGA from 'next-ga';
+import Router from 'next/router';
 
 import '../../assets/styles/main.scss';
 import { CREATE_VENDOR_MUTATION } from '../../queries';
@@ -93,4 +95,4 @@ function UploadVendor(props: UploadVendorProps) {
     )
 }
 
-export default withData(UploadVendor);
+export default withGA('UA-115865530-2', Router)(withData(UploadVendor));

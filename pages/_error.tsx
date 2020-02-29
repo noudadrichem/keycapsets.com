@@ -1,5 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
+import withGA from 'next-ga';
+import Router from 'next/router';
 
 import '../assets/styles/main.scss';
 
@@ -53,4 +55,4 @@ Error.getInitialProps = ({ res, err }) => {
     return { statusCode }
 }
 
-export default Error;
+export default withGA('UA-115865530-2', Router)(Error);

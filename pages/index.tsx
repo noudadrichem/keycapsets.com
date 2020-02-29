@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { useQuery } from '@apollo/react-hooks';
 import { ApolloClient } from 'apollo-boost';
 import { InititalState } from 'typings';
+import withGA from "next-ga";
 
 import withData from '../hooks/withData';
 import Context, { INITITAL_STATE, reduceState } from '../context';
@@ -19,10 +20,12 @@ import CTACard from '../components/CTACard';
 
 import '../assets/styles/main.scss';
 import Meta from '../components/Meta';
+import { Router } from 'next/router';
 
 interface HomeProps {
     url: any;
     apollo: ApolloClient<any>;
+    metaImg: string;
 }
 
 function Home(props: HomeProps) {
@@ -120,6 +123,10 @@ function Home(props: HomeProps) {
         <Context.Provider value={{ ...state, setGlobalState }}>
             <Meta />
 
+            <Head>
+                <meta property="og:image" content={props.metaImg} />
+            </Head>
+
             <Nav />
             <div className="container">
                 <Heading
@@ -138,4 +145,4 @@ function Home(props: HomeProps) {
     )
 }
 
-export default withData(Home);
+export default withGA('UA-115865530-2', Router)(withData(Home));

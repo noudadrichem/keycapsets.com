@@ -1,5 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
+import Router from 'next/router';
+import withGA from 'next-ga';
 
 import '../assets/styles/main.scss';
 
@@ -7,7 +9,6 @@ import withData from '../hooks/withData';
 import Heading from '../components/Heading';
 import Footer from '../components/Footer';
 import Nav from '../components/Nav';
-import LoadingKeyboard from '../components/LoadingKeyboard';
 import ButtonLink from '../components/ButtonLink';
 
 
@@ -15,7 +16,7 @@ interface AboutProps { }
 
 function About(props: AboutProps) {
     const title = `About Keycapsets`;
-    const description = `Made for love of mech keebs, and the trouble of finding a nice overview!`;
+    const description = `Made for love of mechanical keyboard, and the trouble of finding a nice overview of keycapsets!`;
 
     return (
         <>
@@ -38,7 +39,6 @@ function About(props: AboutProps) {
                     left
                 />
 
-
                 <div className="text-container">
 
                     <div style={{ margin: '0 0 64px 0' }}>
@@ -51,8 +51,7 @@ function About(props: AboutProps) {
                     </p>
 
                     <p className="light alinea">
-                        We were surfing and browsing trough several websites like Geekhack and other vendor sites. There came the idea, just one website to rule them all.<br/>
-                        Just one website with a 'simple' overview of keysets that exist or soon to be existing. I don't want to be a vendor. Let this site be a proxy to your vendor.
+                        We were surfing and browsing through several websites like Geekhack and other vendor sites. This is where the idea came to mind. One website to rule them all. Just one website with an overview of keysets that are available or will be available soon. I don't want to be a vendor. Let this site be a proxy to your vendor.
                     </p>
 
                     <h4 className="alinea-title">For vendors</h4>
@@ -62,12 +61,12 @@ function About(props: AboutProps) {
 
                     <h4 className="alinea-title">The Future for set designers</h4>
                     <p className="light alinea">
-                        I want set designers to be able to express themselves more easily. <br/>Dear set designer, Let this platform work for you!. I want to make it possible to easily be able to get you a single webpage with all the necessary info. Such as vendors, renders, previews etc.
+                        I want to make it easier for you as a designer to express yourself. <br/> My goal is to make it possible for you to have a single webpage with all the information you need. Such as vendors, renders, previews etc.
                     </p>
 
                     <h4 className="alinea-title">The Future for explorers</h4>
                     <p className="light alinea">
-                        This should be The website you will go to, to search for keycap sets. Either trough a name, type or color. Yes color. I want to create a color searchable system so you can easily decide what set should go with your next build.
+                        This should be your go-to website to look for keycap sets. I want you to be able to search based on name, type or even the color you like. I want to make it as easy as possible for you to decide what set you should go with on your next build.
                     </p>
 
                     <h4 className="alinea-title">The person behind</h4>
@@ -83,4 +82,4 @@ function About(props: AboutProps) {
     )
 }
 
-export default withData(About);
+export default withGA('UA-115865530-2', Router)(withData(About));

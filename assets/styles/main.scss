@@ -65,11 +65,13 @@ img {
 
     @media screen and (min-width: 1441px) {
         max-width: 1416px;
-        padding: 0 24px;
+        padding-left: 24px;
+        padding-right: 24px;
     }
 
     @media screen and (max-width: 1441px) {
-        padding: 0 24px;
+        padding-left: 24px;
+        padding-right: 24px;
     }
 
 }
@@ -80,7 +82,6 @@ img {
     letter-spacing: 0.2px;
     font-weight: 400;
     color: var(--text-color-light);
-    // text-transform: uppercase;
 }
 
 .about {

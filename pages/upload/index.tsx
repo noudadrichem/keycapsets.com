@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import withGA from 'next-ga';
+import Router from 'next/router';
 
 import '../../assets/styles/main.scss';
 import '../../assets/styles/upload.scss';
@@ -35,4 +37,4 @@ function Upload(props: UploadProps) {
     )
 }
 
-export default withData(Upload);
+export default withGA('UA-115865530-2', Router)(withData(Upload));

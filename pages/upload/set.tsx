@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useMutation, useQuery } from '@apollo/react-hooks';
 import moment from 'moment';
+import withGA from 'next-ga';
+import Router from 'next/router';
 
 import { CREATE_KEYSET_MUTATION, GET_VENDORS_QUERY } from '../../queries';
 
@@ -135,4 +137,4 @@ function UploadSet(props: UploadSetProps): JSX.Element {
     )
 }
 
-export default withData(UploadSet);
+export default withGA('UA-115865530-2', Router)(withData(UploadSet));

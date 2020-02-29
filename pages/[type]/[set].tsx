@@ -1,9 +1,10 @@
 import React from 'react';
-import { useRouter } from 'next/router';
+import { useRouter, Router } from 'next/router';
 import Head from 'next/head';
 import Slider from "react-slick";
 import { useQuery } from '@apollo/react-hooks';
 import { Keycapset } from 'typings';
+import withGA from 'next-ga';
 
 import withData from '../../hooks/withData'
 import { GET_SINGLE_SET_QUERY } from '../../queries';
@@ -48,6 +49,7 @@ function SetPage(props: SetProps) {
     return set !== undefined && (
         <div className="set">
             <Head>
+                import Router from 'next/router';
                 <title>{set.type.toUpperCase()} Keycapset {set.name}</title>
             </Head>
             <Nav />
@@ -82,4 +84,4 @@ function SetPage(props: SetProps) {
     )
 }
 
-export default withData(SetPage);
+export default withGA('UA-115865530-2', Router)(withData(SetPage));
