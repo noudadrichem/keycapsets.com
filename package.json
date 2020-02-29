@@ -6,7 +6,7 @@
     "scripts": {
         "dev": "next",
         "build": "next build",
-        "start": "NODE_ENV=production npm install && npm run build && next start"
+        "start": "NODE_ENV=production next start"
     },
     "repository": {
         "type": "git",
