@@ -33,9 +33,10 @@
     }
 
     .details {
-        padding: 12px 16px 24px 12px;
+        padding: 12px 16px 16px 12px;
         display: flex;
         flex-direction: column;
+        position: relative;
 
         .horizontal {
             display: flex;
@@ -46,11 +47,26 @@
             }
 
             .right {
+                min-width: 124px;
                 flex: 1;
                 display: flex;
                 align-items: flex-end;
                 justify-content: flex-end;
             }
+        }
+
+        @media screen and (max-width: $bp-tablet-sm) {
+            // padding: 12px 16px 48px 12px;
+
+            .horizontal {
+                .right {
+                    // display: block;
+                    // position: absolute;
+                    // bottom: 16px;
+                    // right: 0px;
+                }
+            }
+
         }
     }
 }

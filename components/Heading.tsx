@@ -62,7 +62,7 @@ function Heading(props: HeadingProps): JSX.Element {
                                 variant="secondary"
                                 size="md"
                                 className='center'
-                            >Apply as vendor
+                            >Add as vendor
                             </Button>
                         </div>
                     </>

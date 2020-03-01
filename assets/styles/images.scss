@@ -5,12 +5,12 @@
 
 
 
-    @media screen and(max-width: 868px) {
+    @media screen and(max-width: 1054px) {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    @media screen and(max-width: 562px) {
-        margin: 0 12px;
+    @media screen and(max-width: 662px) {
+        // margin: 0 12px;
         grid-template-columns: 1fr;
     }
 }

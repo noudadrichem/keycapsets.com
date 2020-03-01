@@ -16,6 +16,10 @@
             display: inline-flex;
             margin: 0 12px;
             color: var(--text-color-lightest);
+
+            @media screen and (max-width: $bp-tablet-sm) {
+                font-size: 12px;
+            }
         }
     }
 
