@@ -27,7 +27,9 @@ function Images(props: ImagesProps): JSX.Element {
                         return keycapset.type === activeTab;
                     })
                     .filter((keycapset: Keycapset) => keycapset.name.toLowerCase().includes(searchQuery.toLowerCase()))
-                    .map((keycapset: Keycapset) => <ImageCard {...{keycapset}} key={keycapset._id} /> )
+                    .map((keycapset: Keycapset) =>
+                        <ImageCard {...{keycapset}} key={keycapset._id} />
+                    )
                 }
             </div>
         </>

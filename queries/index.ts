@@ -6,21 +6,22 @@ const FETCH_KEYCAPSET_QUERY = gql`query FETCH_KEYCAPSET_QUERY(
     $offset: Int,
   	$type: String
 ) {
-  keycapsets(
-    limit: $limit,
-    offset: $offset,
-    type: $type
-  ) {
-     _id
-    name
-    type
-    coverImageUrl
-    slug
-    groupbuyStartDate
-    groupbuyEndDate
-    updatedAt
-    createdAt
-  }
+    keycapsetsCount
+    keycapsets(
+        limit: $limit,
+        offset: $offset,
+        type: $type
+    ) {
+        _id
+        name
+        type
+        coverImageUrl
+        slug
+        groupbuyStartDate
+        groupbuyEndDate
+        updatedAt
+        createdAt
+    }
 }`;
 
 const CREATE_KEYSET_MUTATION = gql`mutation keycapsetCreateOne(

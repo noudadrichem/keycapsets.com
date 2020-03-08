@@ -130,7 +130,7 @@ function Home(props: HomeProps) {
             <Nav />
             <div className="container">
                 <Heading
-                    mainTitle="Find your favorite sets!"
+                    mainTitle="Find your favorite keycapset!"
                     subTitle="keycapsets.com"
                     isHome
                 />

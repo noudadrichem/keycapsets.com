@@ -37,6 +37,9 @@ function UploadSet(props: UploadSetProps): JSX.Element {
     const [uploading, setUploading] = useState(false);
     const [shouldReset, setShouldReset] = useState(false);
 
+    const [isFormValid, setFormValid] = useState(false);
+    const [errors, setErrors] = useState([]);
+
     const keycapset: Keycapset = {
         name: nameValue,
         type: typeValue,
@@ -58,11 +61,47 @@ function UploadSet(props: UploadSetProps): JSX.Element {
     }, [startDateValue])
 
     async function uploadKeycapset(e) {
-        setUploading(true);
-        const result: ExecutionResult<Keycapset> = await addKeyset({ variables: keycapset });
-        console.log(result.data);
-        setUploading(false);
-        reset()
+        handleFormValidation();
+        if (isFormValid) {
+            setUploading(true);
+            const result: ExecutionResult<Keycapset> = await addKeyset({ variables: keycapset });
+            console.log(result.data);
+            setUploading(false);
+            setFormValid(true);
+            reset()
+        } else {
+            console.log('form is not valid...', {isFormValid})
+        }
+    }
+
+    function isEmptyValue(val) {
+        console.log('val..', val);
+        console.log('val === []', val === [])
+        const isEmpty = val === ''
+            || val === undefined
+            || val === null
+            || val === [];
+
+        return isEmpty
+    }
+
+    function handleFormValidation() {
+        console.log('isEmptyValue(vendors)...', isEmptyValue(vendors))
+        if (isEmptyValue(nameValue)) {
+            console.log('nameValue is empty')
+        } else if (isEmptyValue(coverImageUrlValue)) {
+            console.log('coverImageUrlValue is empty')
+        } else if (isEmptyValue(websiteUrlValue)) {
+            console.log('websiteUrlValue is empty')
+        } else if (isEmptyValue(vendors)) {
+            console.log('vendors is empty')
+        } else if (isEmptyValue(imageUrls)) {
+            console.log('imageUrls is empty')
+        } else if (isEmptyValue(startDateValue)) {
+            console.log('startDateValue is empty')
+        } else if (isEmptyValue(endDateValue)) {
+            console.log('endDateValue is empty')
+        }
     }
 
     function reset() {
@@ -74,6 +113,7 @@ function UploadSet(props: UploadSetProps): JSX.Element {
         setEndDateValue('');
         setImageUrls([])
         setVendors([])
+        setFormValid(false);
         setShouldReset(true)
         setTimeout(() => {
             setShouldReset(false)
@@ -85,6 +125,7 @@ function UploadSet(props: UploadSetProps): JSX.Element {
     }
 
     if (error) {
+        console.error('error', error)
         return <p>'Error loading keycapsets.com... Please refresh this page'</p>;
     }
 
@@ -118,6 +159,7 @@ function UploadSet(props: UploadSetProps): JSX.Element {
                             variant="primary"
                             size="sm"
                             className="align-right"
+                            // isDisabled={!isFormValid}
                         >
                         { uploading ? 'Uploading...' : 'Start shining' }
                         </Button>

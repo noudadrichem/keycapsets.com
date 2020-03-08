@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-const title = `Keycapsets. Find your favorite keycapset!`;
+const title = `Keycapsets.com. Find your favorite keycapset!`;
 const description = `Searching for a beautifull keycapset for your current or future keyboard but don't know where to start? This page shows you keycapsets that excist and will point you in the right direction to buy that keycapset!`;
 const metaImgUrl = 'https://keycapsets.com/images/meta/meta-image.png';
 
@@ -24,6 +24,9 @@ function Meta(props) {
                 key="viewport"
                 content="width=device-width, initial-scale=1.0, maximum-scale=1.00, minimum-scale=1.00"
             />
+
+            <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+            <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
             <meta name="author" content="noudadrichem" />
             <meta property="og:title" content={title} />
             <meta name="twitter:title" content={title} />
