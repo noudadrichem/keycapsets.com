@@ -45,7 +45,7 @@ function Home(props: HomeProps) {
 
     useEffect(() => {
         if (isBrowser) {
-            console.log('window innheright', window.innerHeight)
+            console.log('window innerheight', window.innerHeight)
             window.addEventListener('scroll', checkIsBottomPage)
             return () => window.removeEventListener('scroll', checkIsBottomPage)
         }

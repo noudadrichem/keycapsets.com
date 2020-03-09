@@ -6,7 +6,6 @@ const FETCH_KEYCAPSET_QUERY = gql`query FETCH_KEYCAPSET_QUERY(
     $offset: Int,
   	$type: String
 ) {
-    keycapsetsCount
     keycapsets(
         limit: $limit,
         offset: $offset,
@@ -76,6 +75,7 @@ const GET_VENDORS_QUERY = gql`query GET_VENDORS_QUERY {
     name
     _id
     logoUrl
+    url
   }
 }
 `

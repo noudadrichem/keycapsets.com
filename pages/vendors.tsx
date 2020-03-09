@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Error from 'next/error'
 import { useMutation, useQuery } from '@apollo/react-hooks';
-import moment from 'moment';
 import withGA from 'next-ga';
 import Router from 'next/router';
 
@@ -13,15 +12,17 @@ import Heading from '../components/Heading';
 import Footer from '../components/Footer';
 
 import '../assets/styles/main.scss';
-import { Vendor } from 'typings';
+import {Keycapset, Vendor} from 'typings';
 import Nav from '../components/Nav';
 import LoadingKeyboard from '../components/LoadingKeyboard';
+import ImageCard from "../components/ImageCard";
+import VendorCard from "../components/VendorCard";
 
 interface VendorProps {}
 
 function Vendors(props: VendorProps):JSX.Element {
     const { loading, error, data } = useQuery(GET_VENDORS_QUERY);
-    console.log("Data: ", data)
+    console.log("Data: ", data);
 
     if (loading) {
         return <LoadingKeyboard />
@@ -39,12 +40,15 @@ function Vendors(props: VendorProps):JSX.Element {
                 mainTitle="Vendors"
                 subTitle="All available vendors."
             />
-            {
-                data.vendors
-                    .map((vendor: Vendor) =>
-                        <h1>{vendor.name}</h1>
-                    )
-            }
+
+            <div className="images-container">
+                {
+                    data.vendors
+                        .map((vendor: Vendor) =>
+                            <VendorCard {...{vendor}} key={vendor._id} />
+                        )
+                }
+            </div>
 
             <Footer />
         </>
