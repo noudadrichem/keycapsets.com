@@ -40,3 +40,4 @@ dist/
 .dynamodb/
 tmp/
 temp/
+.idea/
