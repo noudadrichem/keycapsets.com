@@ -12,10 +12,10 @@ import Heading from '../components/Heading';
 import Footer from '../components/Footer';
 
 import '../assets/styles/main.scss';
-import {Keycapset, Vendor} from 'typings';
+import '../assets/styles/vendor-card.scss';
+import { Vendor } from 'typings';
 import Nav from '../components/Nav';
 import LoadingKeyboard from '../components/LoadingKeyboard';
-import ImageCard from "../components/ImageCard";
 import VendorCard from "../components/VendorCard";
 
 interface VendorProps {}
@@ -36,21 +36,23 @@ function Vendors(props: VendorProps):JSX.Element {
     return (
         <>
             <Nav />
-            <Heading
-                mainTitle="Vendors"
-                subTitle="All available vendors."
-            />
+            <div className="container">
+                <Heading
+                    mainTitle="Vendors"
+                    subTitle="All available vendors."
+                />
 
-            <div className="images-container">
-                {
-                    data.vendors
-                        .map((vendor: Vendor) =>
-                            <VendorCard {...{vendor}} key={vendor._id} />
-                        )
-                }
+                <div className="images-container">
+                    {
+                        data.vendors
+                            .map((vendor: Vendor) =>
+                                <VendorCard {...{vendor}} key={vendor._id} />
+                            )
+                    }
+                </div>
+
+                <Footer />
             </div>
-
-            <Footer />
         </>
     )
 }
