@@ -46,7 +46,7 @@ function Vendors(props: VendorProps):JSX.Element {
                     {
                         data.vendors
                             .map((vendor: Vendor) =>
-                                <VendorCard {...{vendor}} key={vendor._id} />
+                                <VendorCard {...vendor} key={vendor._id} />
                             )
                     }
                 </div>
