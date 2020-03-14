@@ -30,26 +30,20 @@ interface HomeProps {
 
 function Home(props: HomeProps) {
     const LIMIT = 9;
-    const [state, setState] = useState<InititalState>(INITITAL_STATE);
-    const [limit, setLimit] = useState<number>(LIMIT);
-    const [offset, setOffset] = useState<number>(0);
-    const [loadingExtra, setLoadingExtra] = useState<boolean>(true);
-    const [isAtBottomOfPage, setIsAtBottomOfPage] = useState(false);
     const isBrowser = typeof window !== `undefined`
-
     const client = useApolloClient();
 
-    // const { loading, error, data } = useQuery(FETCH_KEYCAPSET_QUERY, {
-    //     variables: {
-    //         limit: LIMIT,
-    //         type: state.activeTab,
-    //     }
-    // });
+    const [state, setState] = useState<InititalState>(INITITAL_STATE);
+    const [limit, setLimit] = useState<number>(LIMIT);
+    const [offset, setOffset] = useState<number>(LIMIT);
+    const [loadingExtra, setLoadingExtra] = useState<boolean>(true);
+    const [isAtBottomOfPage, setIsAtBottomOfPage] = useState(false);
 
     useEffect(function initializeView() {
         if (isBrowser) {
             window.addEventListener('scroll', checkIsBottomPage)
             initSets()
+
             return () => window.removeEventListener('scroll', checkIsBottomPage)
         }
     }, [])
@@ -72,6 +66,20 @@ function Home(props: HomeProps) {
         }
     }, [isAtBottomOfPage])
 
+
+    useEffect(function handleSearch() {
+        let timeout;
+        clearTimeout(timeout);
+
+        timeout = setTimeout(() => {
+            if(state.searchQuery.length > 1) {
+                fetchMoreWhenSearched();
+            }
+        }, 1000);
+
+        return () => clearTimeout(timeout);
+    }, [state.searchQuery])
+
     function checkIsBottomPage() {
         const DELIMITER = 5;
         const currentY = window.scrollY;
@@ -82,12 +90,18 @@ function Home(props: HomeProps) {
     }
 
     async function fetchMoreWhenSearched(): Promise<void> {
+        console.log('fetchMoreWhenSearched...');
+        // setLimit(limit + LIMIT);
+        // setOffset(0);
+
         const { data } = await fetchMoreSets(0);
         const { keycapsets } = data;
-        // setGlobalState({
-        //     keycapsets
-        // })
-        // console.log('fetch more when searched', keycapsets)
+
+        console.log('fetchMoreWhenBottomOfPage...', keycapsets);
+
+        setGlobalState({
+            keycapsets
+        })
     }
 
     async function fetchMoreWhenBottomOfPage(): Promise<void> {
@@ -97,11 +111,13 @@ function Home(props: HomeProps) {
         const { data } = await fetchMoreSets(offset);
         const { keycapsets } = data;
 
+        console.log('fetchMoreWhenBottomOfPage...', keycapsets)
+
         if (keycapsets.length > 0) {
             // setLoadingExtra(false) // maybe doesn't need to except when final count is reached..
             if (state.searchQuery === '') {
-                setGlobalState({ keycapsets:
-                    [
+                setGlobalState({
+                    keycapsets: [
                         ...state.keycapsets,
                         ...keycapsets
                     ]
@@ -134,7 +150,7 @@ function Home(props: HomeProps) {
 
     async function initSets() {
         console.log('init sets...')
-        const { data } = await fetchMoreSets(offset);
+        const { data } = await fetchMoreSets(0);
         const { keycapsets, keycapsetsCount } = data;
         setGlobalState({
             keycapsetsCount,
@@ -168,6 +184,7 @@ function Home(props: HomeProps) {
                 { loadingExtra && <LoadingKeyboardIllustration scale={0.3} />}
                 <Footer />
             </div>
+
             <CTACard />
         </Context.Provider>
     )

@@ -20,7 +20,7 @@ function Images(props: ImagesProps): JSX.Element {
             <Tabs />
 
             <div className="images-container">
-                { (keycapsets!== undefined || keycapsets.lengh > 0) &&
+                { (keycapsets !== undefined) &&
                     keycapsets
                     .filter((keycapset: Keycapset) => {
                         if (activeTab === 'all') return true;
