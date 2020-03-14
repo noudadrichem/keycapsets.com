@@ -37,7 +37,10 @@ function ImageCard(props: ImageCardProps): JSX.Element {
 
                     <div className="horizontal">
                         <div className="left">
-                            <h4 className="">{name || 'Title goes here'}</h4>
+                        <div className="title-container">
+                                <h4 className="">{name || 'Title goes here'}</h4>
+                                <p className="light">{ moment(groupbuyStartDate).format('YYYY') }</p>
+                            </div>
 
                             <p className="light">
                                 {

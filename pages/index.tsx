@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Error from 'next/error'
 import Head from 'next/head';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery, useApolloClient } from '@apollo/react-hooks';
 import { ApolloClient } from 'apollo-boost';
-import { InititalState } from 'typings';
+import { InititalState, Keycapset } from 'typings';
 import withGA from "next-ga";
 
 import withData from '../hooks/withData';
@@ -32,36 +32,44 @@ function Home(props: HomeProps) {
     const LIMIT = 9;
     const [state, setState] = useState<InititalState>(INITITAL_STATE);
     const [limit, setLimit] = useState<number>(LIMIT);
-    const [offset, setOffset] = useState<number>(LIMIT);
+    const [offset, setOffset] = useState<number>(0);
     const [loadingExtra, setLoadingExtra] = useState<boolean>(true);
     const [isAtBottomOfPage, setIsAtBottomOfPage] = useState(false);
     const isBrowser = typeof window !== `undefined`
-    const { loading, error, data } = useQuery(FETCH_KEYCAPSET_QUERY, {
-        variables: {
-            limit: LIMIT,
-            type: state.activeTab
-        }
-    });
 
-    useEffect(() => {
+    const client = useApolloClient();
+
+    // const { loading, error, data } = useQuery(FETCH_KEYCAPSET_QUERY, {
+    //     variables: {
+    //         limit: LIMIT,
+    //         type: state.activeTab,
+    //     }
+    // });
+
+    useEffect(function initializeView() {
         if (isBrowser) {
-            console.log('window innheright', window.innerHeight)
             window.addEventListener('scroll', checkIsBottomPage)
+            initSets()
             return () => window.removeEventListener('scroll', checkIsBottomPage)
         }
-
     }, [])
 
-    useEffect(() => {
+    useEffect(function handleTabChange() {
         setLimit(LIMIT);
         setOffset(LIMIT);
     }, [state.activeTab])
 
-    useEffect(() => {
+    useEffect(function handleRefetchingOnBottomOfPage() {
+        const isEndReached = state.keycapsets.length === state.keycapsetsCount;
         if (isAtBottomOfPage) {
-            fetchMoreWhenBottomOfPage()
+            setLoadingExtra(true);
+            fetchMoreWhenBottomOfPage();
+            setIsAtBottomOfPage(false);
         }
-        setIsAtBottomOfPage(false);
+        console.log('is end reache.d..', isEndReached)
+        if (isEndReached) {
+            setLoadingExtra(false);
+        }
     }, [isAtBottomOfPage])
 
     function checkIsBottomPage() {
@@ -70,53 +78,73 @@ function Home(props: HomeProps) {
         const docHeight = document.body.clientHeight;
         const alreadyScrolled = currentY + window.innerHeight;
         const atBottom = alreadyScrolled > (docHeight - DELIMITER);
-        setIsAtBottomOfPage(atBottom)
+        setIsAtBottomOfPage(atBottom);
     }
 
-    async function fetchMoreWhenBottomOfPage() {
+    async function fetchMoreWhenSearched(): Promise<void> {
+        const { data } = await fetchMoreSets(0);
+        const { keycapsets } = data;
+        // setGlobalState({
+        //     keycapsets
+        // })
+        // console.log('fetch more when searched', keycapsets)
+    }
+
+    async function fetchMoreWhenBottomOfPage(): Promise<void> {
         setLimit(limit + LIMIT);
-        setOffset(limit + LIMIT)
-        setLoadingExtra(true)
+        setOffset(limit + LIMIT);
 
-        const fetchSetQueryResult = await props.apollo.query({
-            query: FETCH_KEYCAPSET_QUERY,
-            variables: {
-                offset,
-                limit: LIMIT,
-                type: state.activeTab
+        const { data } = await fetchMoreSets(offset);
+        const { keycapsets } = data;
+
+        if (keycapsets.length > 0) {
+            // setLoadingExtra(false) // maybe doesn't need to except when final count is reached..
+            if (state.searchQuery === '') {
+                setGlobalState({ keycapsets:
+                    [
+                        ...state.keycapsets,
+                        ...keycapsets
+                    ]
+                })
+            } else {
+                setGlobalState({
+                    keycapsets
+                })
             }
-        });
-        const { data: { keycapsets }, loading } = fetchSetQueryResult;
-
-        if(keycapsets.length > 0) {
-            setLoadingExtra(loading)
-            setGlobalState({ keycapsets: [...state.keycapsets, ...keycapsets]})
         } else {
-            setLoadingExtra(false)
+            // setLoadingExtra(false)
             window.removeEventListener('scroll', checkIsBottomPage)
         }
     }
 
+    async function fetchMoreSets(offset: number): Promise<any> {
+        console.log('fetch more sets...')
+        const fetchSetQueryResult = await client.query({
+            query: FETCH_KEYCAPSET_QUERY,
+            variables: {
+                offset,
+                limit: LIMIT,
+                type: state.activeTab,
+                query: state.searchQuery
+            }
+        });
+
+        return fetchSetQueryResult;
+    }
+
+    async function initSets() {
+        console.log('init sets...')
+        const { data } = await fetchMoreSets(offset);
+        const { keycapsets, keycapsetsCount } = data;
+        setGlobalState({
+            keycapsetsCount,
+            keycapsets,
+            tabs: ['all', 'gmk', 'pbt', 'kat', 'jtk', 'kam']
+        })
+    }
+
     function setGlobalState(obj: any) {
         setState(reduceState(state, obj))
-    }
-
-    useEffect(() => {
-        if(!!data) {
-            setGlobalState({
-                keycapsets: data.keycapsets,
-                tabs: ['all', 'gmk', 'pbt', 'kat', 'jtk', 'kam']
-            })
-        }
-    }, [data]);
-
-    if(loading) {
-        return <LoadingKeyboard />
-    }
-
-    if (error) {
-        console.error(error);
-        return <Error title="Oops, small mistake here..." statusCode={502} />
     }
 
     return (
@@ -134,12 +162,12 @@ function Home(props: HomeProps) {
                     subTitle="keycapsets.com"
                     isHome
                 />
+
                 <Images />
 
                 { loadingExtra && <LoadingKeyboardIllustration scale={0.3} />}
                 <Footer />
             </div>
-
             <CTACard />
         </Context.Provider>
     )

@@ -39,11 +39,15 @@ function Vendors(props: VendorProps):JSX.Element {
                 mainTitle="Vendors"
                 subTitle="All available vendors."
             />
-            {
+            {data.vendors.length > 0
+            ?
                 data.vendors
                     .map((vendor: Vendor) =>
                         <h1>{vendor.name}</h1>
                     )
+            : <div className="container">
+                <p>No vendors here...</p>
+            </div>
             }
 
             <Footer />

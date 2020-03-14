@@ -44,6 +44,13 @@
 
             .left {
                 flex: 2;
+
+                .title-container {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                }
             }
 
             .right {

@@ -20,13 +20,13 @@ function Images(props: ImagesProps): JSX.Element {
             <Tabs />
 
             <div className="images-container">
-                {
+                { (keycapsets!== undefined || keycapsets.lengh > 0) &&
                     keycapsets
                     .filter((keycapset: Keycapset) => {
                         if (activeTab === 'all') return true;
                         return keycapset.type === activeTab;
                     })
-                    .filter((keycapset: Keycapset) => keycapset.name.toLowerCase().includes(searchQuery.toLowerCase()))
+                    // .filter((keycapset: Keycapset) => keycapset.name.toLowerCase().includes(searchQuery.toLowerCase()))
                     .map((keycapset: Keycapset) =>
                         <ImageCard {...{keycapset}} key={keycapset._id} />
                     )

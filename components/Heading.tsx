@@ -1,9 +1,8 @@
 import React, { useContext, useEffect } from 'react';
 import Button from './Button';
 import { useRouter } from 'next/router';
-import useInput from '../hooks/useInput';
-import Context from '../context';
 import Pill from './Pill';
+import SearchSets from './SearchSets';
 
 interface HeadingProps {
     mainTitle: string;
@@ -22,18 +21,6 @@ function Heading(props: HeadingProps): JSX.Element {
         backgroundColor
     } = props;
     const router = useRouter();
-    const [searchValue, searchInput] = useInput({});
-
-    if(isHome) {
-        const { setGlobalState } = useContext(Context);
-
-        useEffect(() => {
-            setGlobalState({
-                searchQuery: searchValue
-            })
-        }, [searchValue])
-
-    }
 
     return (
         <header className={`heading ${left ? 'left' : 'center'}`} style={{ background: backgroundColor }}>
@@ -44,9 +31,8 @@ function Heading(props: HeadingProps): JSX.Element {
             {
                 isHome && (
                     <>
-                        <div className="search-input">
-                            {searchInput}
-                        </div>
+
+                        <SearchSets />
 
                         <div className="heading-cta">
                             <Button
