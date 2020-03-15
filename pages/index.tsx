@@ -29,7 +29,7 @@ interface HomeProps {
 }
 
 function Home(props: HomeProps) {
-    const LIMIT = 18;
+    const LIMIT = 9;
     const isBrowser = typeof window !== `undefined`
     const client = useApolloClient();
 
@@ -55,15 +55,17 @@ function Home(props: HomeProps) {
     }, [state.activeTab])
 
     useEffect(function handleRefetchingOnBottomOfPage() {
-        const isEndReached = state.keycapsets.length === state.keycapsetsCount;
+        const isEndReached = state.keycapsets.length === state.allKeycapsetsCount;
+        console.log('isendreached..', isEndReached);
+
+        if (isEndReached) {
+            setLoadingExtra(false);
+            return;
+        }
         if (isAtBottomOfPage) {
             setLoadingExtra(true);
             fetchMoreWhenBottomOfPage();
             setIsAtBottomOfPage(false);
-        }
-
-        if (isEndReached) {
-            setLoadingExtra(false);
         }
     }, [isAtBottomOfPage])
 

@@ -32,7 +32,7 @@ declare module 'typings' {
         tabs: string[],
         keycapsets: any[],
         searchQuery: string;
-        keycapsetsCount: number;
+        allKeycapsetsCount: number;
         setGlobalState?: Function;
     }
 }

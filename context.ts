@@ -16,7 +16,7 @@ export const INITITAL_STATE: InititalState = {
     tabs: [],
     keycapsets: [],
     searchQuery: '',
-    keycapsetsCount: 0,
+    allKeycapsetsCount: 0,
     setGlobalState: () => {}
 }
 
