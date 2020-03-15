@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import LazyLoad from 'react-lazyload';
+import Link from 'next/link';
 
 import ButtonLink from '../components/ButtonLink';
 import Pill from '../components/Pill';
@@ -27,43 +28,38 @@ function ImageCard(props: ImageCardProps): JSX.Element {
 
     return (
         <LazyLoad offset={100}>
-            <div className="image-card">
-                <div className="image">
-                    <img src={coverImageUrl === undefined || coverImageUrl === '' ? '/images/empty-base-kit-illu.svg' : coverImageUrl} />
-                    {!isInFuture && <Pill color='green' />}
-                </div>
+            <Link href="/[type]/[set]" as={`/${type}/${slug}`}>
+                <div className="image-card">
+                    <div className="image">
+                        <img src={coverImageUrl === undefined || coverImageUrl === '' ? '/images/empty-base-kit-illu.svg' : coverImageUrl} />
+                        {!isInFuture && <Pill color='green' />}
+                    </div>
 
-                <div className="details">
+                    <div className="details">
+                        <div className="top">
+                            <h4 className="set-title"><span className="small">{type}</span> {name || 'Title goes here'}</h4>
+                            <p className="light">{moment(groupbuyStartDate).format('YYYY')}</p>
+                        </div>
 
-                    <div className="horizontal">
-                        <div className="left">
-                        <div className="title-container">
-                                <h4 className="">{name || 'Title goes here'}</h4>
-                                <p className="light">{ moment(groupbuyStartDate).format('YYYY') }</p>
-                            </div>
-
+                        <div className="bottom">
                             <p className="light">
                                 {
                                     isInFuture
-                                    ? <> Starting in <span className="bold"> {getDayDifference(groupbuyStartDate)} </span> days </>
-                                    : <>{
-                                        getDayDifference(groupbuyEndDate) > 0
-                                        ? (<>
-                                            Ending in <span className="bold"> {getDayDifference(groupbuyEndDate)} </span> days
-                                        </>)
-                                        : 'Ended.'
-                                    }</>
+                                        ? <> Starting in <span className="bold"> {getDayDifference(groupbuyStartDate)} </span> days </>
+                                        : <>{
+                                            getDayDifference(groupbuyEndDate) > 0
+                                                ? (<>
+                                                    Ending in <span className="bold"> {getDayDifference(groupbuyEndDate)} </span> days
+                                    </>)
+                                                : 'Ended.'
+                                        }</>
                                 }
                             </p>
-                        </div>
-
-                        <div className="right">
                             <ButtonLink href="/[type]/[set]" as={`/${type}/${slug}`}>View this set</ButtonLink>
                         </div>
                     </div>
-
                 </div>
-            </div>
+            </Link>
         </LazyLoad>
     )
 }

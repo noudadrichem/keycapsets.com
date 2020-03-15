@@ -29,7 +29,7 @@ interface HomeProps {
 }
 
 function Home(props: HomeProps) {
-    const LIMIT = 9;
+    const LIMIT = 18;
     const isBrowser = typeof window !== `undefined`
     const client = useApolloClient();
 
@@ -51,6 +51,7 @@ function Home(props: HomeProps) {
     useEffect(function handleTabChange() {
         setLimit(LIMIT);
         setOffset(LIMIT);
+        initSets();
     }, [state.activeTab])
 
     useEffect(function handleRefetchingOnBottomOfPage() {
@@ -60,7 +61,7 @@ function Home(props: HomeProps) {
             fetchMoreWhenBottomOfPage();
             setIsAtBottomOfPage(false);
         }
-        console.log('is end reache.d..', isEndReached)
+
         if (isEndReached) {
             setLoadingExtra(false);
         }
@@ -72,10 +73,13 @@ function Home(props: HomeProps) {
         clearTimeout(timeout);
 
         timeout = setTimeout(() => {
-            if(state.searchQuery.length > 1) {
+            if(state.searchQuery !== '') {
+                setOffset(0)
                 fetchMoreWhenSearched();
+            } else {
+                initSets();
             }
-        }, 1000);
+        }, 500);
 
         return () => clearTimeout(timeout);
     }, [state.searchQuery])
@@ -90,14 +94,8 @@ function Home(props: HomeProps) {
     }
 
     async function fetchMoreWhenSearched(): Promise<void> {
-        console.log('fetchMoreWhenSearched...');
-        // setLimit(limit + LIMIT);
-        // setOffset(0);
-
-        const { data } = await fetchMoreSets(0);
+        const { data } = await fetchMoreSets(0, 100);
         const { keycapsets } = data;
-
-        console.log('fetchMoreWhenBottomOfPage...', keycapsets);
 
         setGlobalState({
             keycapsets
@@ -105,46 +103,43 @@ function Home(props: HomeProps) {
     }
 
     async function fetchMoreWhenBottomOfPage(): Promise<void> {
-        setLimit(limit + LIMIT);
-        setOffset(limit + LIMIT);
+        if (state.searchQuery === '') {
+            setLimit(limit + LIMIT);
+            setOffset(limit + LIMIT);
 
-        const { data } = await fetchMoreSets(offset);
-        const { keycapsets } = data;
+            const { data } = await fetchMoreSets(offset);
+            const { keycapsets } = data;
 
-        console.log('fetchMoreWhenBottomOfPage...', keycapsets)
-
-        if (keycapsets.length > 0) {
-            // setLoadingExtra(false) // maybe doesn't need to except when final count is reached..
-            if (state.searchQuery === '') {
-                setGlobalState({
-                    keycapsets: [
-                        ...state.keycapsets,
-                        ...keycapsets
-                    ]
-                })
+            if (keycapsets.length > 0) {
+                if (state.searchQuery === '') {
+                    setGlobalState({
+                        keycapsets: [
+                            ...state.keycapsets,
+                            ...keycapsets
+                        ]
+                    })
+                } else {
+                    setGlobalState({
+                        keycapsets
+                    })
+                }
             } else {
-                setGlobalState({
-                    keycapsets
-                })
+                window.removeEventListener('scroll', checkIsBottomPage)
             }
-        } else {
-            // setLoadingExtra(false)
-            window.removeEventListener('scroll', checkIsBottomPage)
         }
     }
 
-    async function fetchMoreSets(offset: number): Promise<any> {
+    async function fetchMoreSets(offset: number, limit?: number): Promise<any> {
         console.log('fetch more sets...')
         const fetchSetQueryResult = await client.query({
             query: FETCH_KEYCAPSET_QUERY,
             variables: {
                 offset,
-                limit: LIMIT,
+                limit: limit ? limit : LIMIT,
                 type: state.activeTab,
                 query: state.searchQuery
             }
         });
-
         return fetchSetQueryResult;
     }
 
@@ -155,7 +150,7 @@ function Home(props: HomeProps) {
         setGlobalState({
             keycapsetsCount,
             keycapsets,
-            tabs: ['all', 'gmk', 'pbt', 'kat', 'jtk', 'kam']
+            tabs: ['all', 'gmk', 'pbt', 'sa', 'kat', 'jtk', 'kam']
         })
     }
 

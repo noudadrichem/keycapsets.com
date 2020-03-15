@@ -11,10 +11,7 @@ interface LinkProps {
     as?: string;
     isLarge?: boolean;
 }
-/*
-    className = {`btn ${className} ${variant} ${size} ${type} ${isFullWidth ? 'full-width' : ''}`}
-    onClick = { onClick }
- */
+
 function ButtonLink(props: LinkProps): JSX.Element {
     const {children, href, as, isLarge = false } = props;
 
