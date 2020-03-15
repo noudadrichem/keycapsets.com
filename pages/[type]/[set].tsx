@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { useRouter, Router } from 'next/router';
 import Head from 'next/head';
 import Slider from "react-slick";
@@ -26,14 +27,6 @@ function SetPage(props: SetProps) {
     const variables = { slug, type }
     const { loading, error, data } = useQuery(GET_SINGLE_SET_QUERY, { variables });
 
-    console.log({ loading, error, data })
-    const slickSettings = {
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-    };
-
     if (loading) {
         return <LoadingKeyboard />;
     }
@@ -43,8 +36,17 @@ function SetPage(props: SetProps) {
     }
 
     const set: Keycapset = data.keycapsetBySlug;
-
     const urlIsGeekHack: boolean = set.websiteUrl.includes('geekhack');
+
+    const slickSettings = {
+        infinite: set.coverImageUrl.length > 1,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        autoplay: set.coverImageUrl.length > 1,
+        autoPlaySpeed: 1600,
+    };
 
     return set !== undefined && (
         <div className="set">
@@ -56,25 +58,41 @@ function SetPage(props: SetProps) {
 
             <div className="container">
                 <Heading
-                    mainTitle="Come back later or send an email to contact@keycapsets.com"
-                    subTitle={`We are currently working hard on a page for ${set.name}`}
+                    left
+                    mainTitle={set.name}
+                    subTitle={``}
                 />
 
-                {
-                    urlIsGeekHack
-                    ? <ButtonLink isLarge href={set.websiteUrl}>Go to Geekhack thread</ButtonLink>
-                    : <ButtonLink isLarge href={set.websiteUrl}>Visit the website</ButtonLink>
-                }
+                <div className="info-section">
+                    <div>
+                        {
+                            set.imageUrls.length > 0 && (
+                                <Slider {...slickSettings}>
+                                    {
+                                        [
+                                            set.coverImageUrl,
+                                            ...set.imageUrls
+                                        ].map((url: string) => <img src={url} key={url} />)
+                                    }
+                                </Slider>
+                            )
+                        }
+                    </div>
 
-                {
-                    set.imageUrls.length > 0 && (
-                        <Slider {...slickSettings}>
-                            {
-                                set.imageUrls.map((url: string) => <img src={url} key={url} />)
-                            }
-                        </Slider>
-                    )
-                }
+                    <div>
+                        <h3>Info</h3>
+                        <p>type: { set.type }</p>
+                        <p>Start date: { moment(set.groupbuyStartDate).format('dddd YYYY-MM-DD') }</p>
+                        <p>End date: { moment(set.groupbuyEndDate).format('dddd YYYY-MM-DD') }</p>
+                        {set.vendors.length > 0 && <p>vendors: {set.vendors}</p>}
+                        {
+                            urlIsGeekHack
+                                ? <ButtonLink isLarge href={set.websiteUrl}>Go to Geekhack thread</ButtonLink>
+                                : <ButtonLink isLarge href={set.websiteUrl}>Visit the website</ButtonLink>
+                        }
+                    </div>
+
+                </div>
 
             </div>
 

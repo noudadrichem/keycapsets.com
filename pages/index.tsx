@@ -152,7 +152,7 @@ function Home(props: HomeProps) {
         setGlobalState({
             allKeycapsetsCount,
             keycapsets,
-            tabs: ['all', 'gmk', 'pbt', 'sa', 'kat', 'jtk', 'kam']
+            tabs: ['all', 'gmk', 'pbt', 'sa', 'dsa', 'kat', 'jtk', 'kam']
         })
     }
 

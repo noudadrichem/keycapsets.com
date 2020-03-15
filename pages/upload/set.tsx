@@ -37,7 +37,7 @@ function UploadSet(props: UploadSetProps): JSX.Element {
     const [uploading, setUploading] = useState(false);
     const [shouldReset, setShouldReset] = useState(false);
 
-    const [isFormValid, setFormValid] = useState(false);
+    const [isFormValid, setFormValid] = useState(true);
     const [errors, setErrors] = useState([]);
 
     const keycapset: Keycapset = {
@@ -61,7 +61,7 @@ function UploadSet(props: UploadSetProps): JSX.Element {
     }, [startDateValue])
 
     async function uploadKeycapset(e) {
-        handleFormValidation();
+        // handleFormValidation();
         if (isFormValid) {
             setUploading(true);
             const result: ExecutionResult<Keycapset> = await addKeyset({ variables: keycapset });
