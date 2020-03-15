@@ -59,7 +59,7 @@ function SetPage(props: SetProps) {
             <div className="container">
                 <Heading
                     left
-                    mainTitle={set.name}
+                    mainTitle={`${set.type.toUpperCase()} ${set.name}`}
                     subTitle={``}
                 />
 
@@ -84,6 +84,7 @@ function SetPage(props: SetProps) {
                         <p>type: { set.type }</p>
                         <p>Start date: { moment(set.groupbuyStartDate).format('dddd YYYY-MM-DD') }</p>
                         <p>End date: { moment(set.groupbuyEndDate).format('dddd YYYY-MM-DD') }</p>
+
                         {set.vendors.length > 0 && <p>vendors: {set.vendors}</p>}
                         {
                             urlIsGeekHack
