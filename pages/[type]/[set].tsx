@@ -49,12 +49,12 @@ function SetPage(props: SetProps) {
     return set !== undefined && (
         <div className="set">
             <Head>
-                import Router from 'next/router';
                 <title>{set.type.toUpperCase()} Keycapset {set.name}</title>
             </Head>
-            <Nav />
-            <div className="container">
 
+            <Nav />
+
+            <div className="container">
                 <Heading
                     mainTitle="Come back later or send an email to contact@keycapsets.com"
                     subTitle={`We are currently working hard on a page for ${set.name}`}
@@ -66,18 +66,17 @@ function SetPage(props: SetProps) {
                     : <ButtonLink isLarge href={set.websiteUrl}>Visit the website</ButtonLink>
                 }
 
-            </div>
-            {/* <pre>{JSON.stringify(set, null, 4)}</pre>
+                {
+                    set.imageUrls.length > 0 && (
+                        <Slider {...slickSettings}>
+                            {
+                                set.imageUrls.map((url: string) => <img src={url} key={url} />)
+                            }
+                        </Slider>
+                    )
+                }
 
-            {
-                set.imageUrls.length > 0 && (
-                    <Slider {...slickSettings}>
-                        {
-                            set.imageUrls.map((url: string) => <img src={url} key={url} />)
-                        }
-                    </Slider>
-                )
-            } */}
+            </div>
 
             <Footer />
         </div>
