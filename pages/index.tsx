@@ -146,9 +146,9 @@ function Home(props: HomeProps) {
     async function initSets() {
         console.log('init sets...')
         const { data } = await fetchMoreSets(0);
-        const { keycapsets, keycapsetsCount } = data;
+        const { keycapsets, allKeycapsetsCount } = data;
         setGlobalState({
-            keycapsetsCount,
+            allKeycapsetsCount,
             keycapsets,
             tabs: ['all', 'gmk', 'pbt', 'sa', 'kat', 'jtk', 'kam']
         })
@@ -166,8 +166,8 @@ function Home(props: HomeProps) {
                 <meta property="og:image" content={props.metaImg} />
             </Head>
 
-            <Nav />
-            <div className="container">
+            <Nav isLargeContainer />
+            <div className="container large">
                 <Heading
                     mainTitle="Find your favorite keycapset!"
                     subTitle="keycapsets.com"

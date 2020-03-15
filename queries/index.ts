@@ -7,7 +7,7 @@ query FETCH_KEYCAPSET_QUERY(
   	$type: String,
     $query: String
 ) {
-    keycapsetsCount
+    allKeycapsetsCount
     keycapsets(
         limit: $limit,
         offset: $offset,

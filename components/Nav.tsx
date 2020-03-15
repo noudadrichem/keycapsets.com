@@ -3,14 +3,16 @@ import Link from 'next/link';
 
 import '../assets/styles/nav.scss';
 
-interface NavProps {}
+interface NavProps {
+    isLargeContainer?: boolean;
+}
 
 function Nav(props: NavProps): JSX.Element {
-    const {} = props;
+    const { isLargeContainer } = props;
 
     return (
         <nav className="nav">
-            <div className="container">
+            <div className={`container ${isLargeContainer ? 'large' : ''}`}>
                 <div className="nav-container">
                     <div>
                         <Link href="/" as="/">
