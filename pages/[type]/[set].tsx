@@ -4,7 +4,7 @@ import { useRouter, Router } from 'next/router';
 import Head from 'next/head';
 import Slider from "react-slick";
 import { useQuery } from '@apollo/react-hooks';
-import { Keycapset } from 'typings';
+import { Keycapset, Vendor } from 'typings';
 import withGA from 'next-ga';
 
 import withData from '../../hooks/withData'
@@ -24,6 +24,8 @@ interface SetProps {}
 function SetPage(props: SetProps) {
     const router = useRouter();
     const { set: slug, type } = router.query;
+
+    console.log({ slug, type })
     const variables = { slug, type }
     const { loading, error, data } = useQuery(GET_SINGLE_SET_QUERY, { variables });
 
@@ -37,6 +39,10 @@ function SetPage(props: SetProps) {
 
     const set: Keycapset = data.keycapsetBySlug;
     const urlIsGeekHack: boolean = set.websiteUrl.includes('geekhack');
+    const sliderImages = [
+        set.coverImageUrl,
+        ...set.imageUrls
+    ]
 
     const slickSettings = {
         infinite: set.coverImageUrl.length > 1,
@@ -66,13 +72,10 @@ function SetPage(props: SetProps) {
                 <div className="info-section">
                     <div>
                         {
-                            set.imageUrls.length > 0 && (
+                            sliderImages.length > 0 && (
                                 <Slider {...slickSettings}>
                                     {
-                                        [
-                                            set.coverImageUrl,
-                                            ...set.imageUrls
-                                        ].map((url: string) => <img src={url} key={url} />)
+                                        sliderImages.map((url: string) => <img src={url} key={url} />)
                                     }
                                 </Slider>
                             )
@@ -85,7 +88,17 @@ function SetPage(props: SetProps) {
                         <p>Start date: { moment(set.groupbuyStartDate).format('dddd YYYY-MM-DD') }</p>
                         <p>End date: { moment(set.groupbuyEndDate).format('dddd YYYY-MM-DD') }</p>
 
-                        {set.vendors.length > 0 && <p>vendors: {set.vendors}</p>}
+                        {set.vendors.length > 0 && (
+                            <>
+                                <br/>
+                                <p>Vendors: </p>
+                                <ul>
+                                    {set.vendors.map((v: Vendor) => (
+                                        <p>- <a href={v.url}>{v.name}</a></p>
+                                    ))}
+                                </ul>
+                            </>
+                        )}
                         {
                             urlIsGeekHack
                                 ? <ButtonLink isLarge href={set.websiteUrl}>Go to Geekhack thread</ButtonLink>
