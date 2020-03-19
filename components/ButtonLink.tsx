@@ -19,16 +19,16 @@ function ButtonLink(props: LinkProps): JSX.Element {
         <div className={`button-link arrow-right ${isLarge ? 'large' : ''}`}>
             {
                 href.startsWith('http')
-                ? (
-                    <a href={href}>
-                        {children}
-                    </a>
-                )
-                : (
-                    <Link href={href} as={as}>
-                        <a>{children}</a>
-                    </Link>
-                )
+                    ? (
+                        <a href={href} target="_blank">
+                            {children}
+                        </a>
+                    )
+                    : (
+                        <Link href={href} as={as}>
+                            <a>{children}</a>
+                        </Link>
+                    )
             }
             <ArrowRight size={16} />
         </div>
