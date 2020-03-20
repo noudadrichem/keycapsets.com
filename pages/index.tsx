@@ -64,7 +64,7 @@ function Home(props: HomeProps) {
         }
         if (isAtBottomOfPage) {
             setLoadingExtra(true);
-            // fetchMoreWhenBottomOfPage();
+            fetchMoreWhenBottomOfPage();
             setIsAtBottomOfPage(false);
         }
     }, [isAtBottomOfPage])
