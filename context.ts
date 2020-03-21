@@ -13,7 +13,7 @@ export function reduceState(state, obj) {
 
 export const INITITAL_STATE: InititalState = {
     activeTab: 'all',
-    tabs: [],
+    tabs: ['all', 'gmk', 'pbt', 'sa', 'dsa', 'kat', 'jtk', 'kam'],
     keycapsets: [],
     searchQuery: '',
     allKeycapsetsCount: 0,
