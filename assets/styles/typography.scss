@@ -158,3 +158,8 @@ span {
 .no-bold {
     font-weight: normal;
 }
+
+span.small {
+    font-size: 12px;
+    color: var(--text-color-lightest);
+}

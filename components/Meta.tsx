@@ -1,7 +1,7 @@
 import Head from 'next/head'
 
 const title = `Keycapsets.com. Find your favorite keycapset!`;
-const description = `Searching for a beautifull keycapset for your current or future keyboard but don't know where to start? This page shows you keycapsets that excist and will point you in the right direction to buy that keycapset!`;
+const description = `Looking for a beautiful keycapset for your current or future keyboard but don't know where to start? This page shows you existing keycapsets and will point you in the right direction to buy that keycapset!`;
 const metaImgUrl = 'https://keycapsets.com/images/meta/meta-image.png';
 
 function Meta(props) {
@@ -14,7 +14,6 @@ function Meta(props) {
             gtag('config', 'UA-115865530-2');`
         };
     }
-
 
     return (
         <Head>

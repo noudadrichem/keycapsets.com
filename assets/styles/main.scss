@@ -74,6 +74,11 @@ img {
         padding-right: 24px;
     }
 
+    &.large {
+        @media screen and (min-width: 1888px) {
+            max-width: 1840px;
+        }
+    }
 }
 
 .label {

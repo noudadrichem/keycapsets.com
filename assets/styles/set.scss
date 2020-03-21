@@ -1,9 +1,43 @@
 .set {
-    text-align: center;
+    // text-align: center;
+
+    .info-section {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 1fr;
+        grid-gap: 32px;
+        margin-top: 32px;
+
+        @media screen and (max-width: 768px) {
+            grid-template-columns: 1fr;
+        }
+
+        .button-link {
+            margin-top: 24px;
+        }
+    }
 
     .slick-slider {
-        max-width: 50%;
-        margin: 0 auto;
+        // max-width: 50%;
+        // margin: 64px auto 0;
+        position: relative;
+
+        .slick-arrow {
+            position: absolute;
+            top: 50%;
+            outline: none;
+            text-align: center;
+            border: none;
+            transition: 120ms;
+            cursor: pointer;
+            border-radius: 4px;
+
+            &.slick-prev {
+                left: -80px;
+            }
+            &.slick-next {
+                right: -80px;
+            }
+        }
     }
 
 }

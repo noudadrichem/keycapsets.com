@@ -9,7 +9,7 @@ declare module 'typings' {
         coverImageUrl?: string;
         imageUrls?: string[];
         websiteUrl?: string;
-        vendors?: Vendor[] | string[];
+        vendors?: Array<Vendor>;
         slug?: string;
         createdAt?: Date;
         updatedAt?: Date;
@@ -32,7 +32,7 @@ declare module 'typings' {
         tabs: string[],
         keycapsets: any[],
         searchQuery: string;
+        allKeycapsetsCount: number;
         setGlobalState?: Function;
     }
-
 }

@@ -7,15 +7,16 @@ export function reduceState(state, obj) {
         ...state,
         ...obj
     }
-    console.log(moment().format('hh:mm:ss') + '_STATE...', reducedState)
+    // console.log(moment().format('hh:mm:ss') + '_STATE...', reducedState)
     return reducedState;
 }
 
 export const INITITAL_STATE: InititalState = {
     activeTab: 'all',
-    tabs: [],
+    tabs: ['all', 'gmk', 'pbt', 'sa', 'dsa', 'kat', 'jtk', 'kam'],
     keycapsets: [],
     searchQuery: '',
+    allKeycapsetsCount: 0,
     setGlobalState: () => {}
 }
 

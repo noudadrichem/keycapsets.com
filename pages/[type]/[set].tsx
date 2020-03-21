@@ -1,9 +1,10 @@
 import React from 'react';
+import moment from 'moment';
 import { useRouter, Router } from 'next/router';
 import Head from 'next/head';
 import Slider from "react-slick";
 import { useQuery } from '@apollo/react-hooks';
-import { Keycapset } from 'typings';
+import { Keycapset, Vendor } from 'typings';
 import withGA from 'next-ga';
 
 import withData from '../../hooks/withData'
@@ -23,16 +24,10 @@ interface SetProps {}
 function SetPage(props: SetProps) {
     const router = useRouter();
     const { set: slug, type } = router.query;
+
+    console.log({ slug, type })
     const variables = { slug, type }
     const { loading, error, data } = useQuery(GET_SINGLE_SET_QUERY, { variables });
-
-    console.log({ loading, error, data })
-    const slickSettings = {
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-    };
 
     if (loading) {
         return <LoadingKeyboard />;
@@ -43,41 +38,77 @@ function SetPage(props: SetProps) {
     }
 
     const set: Keycapset = data.keycapsetBySlug;
-
     const urlIsGeekHack: boolean = set.websiteUrl.includes('geekhack');
+    const sliderImages = [
+        set.coverImageUrl,
+        ...set.imageUrls
+    ]
+
+    const slickSettings = {
+        infinite: set.coverImageUrl.length > 1,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        autoplay: set.coverImageUrl.length > 1,
+        autoPlaySpeed: 1600,
+    };
 
     return set !== undefined && (
         <div className="set">
             <Head>
-                import Router from 'next/router';
                 <title>{set.type.toUpperCase()} Keycapset {set.name}</title>
             </Head>
-            <Nav />
-            <div className="container">
 
+            <Nav />
+
+            <div className="container">
                 <Heading
-                    mainTitle="Come back later or send an email to contact@keycapsets.com"
-                    subTitle={`We are currently working hard on a page for ${set.name}`}
+                    left
+                    mainTitle={`${set.type.toUpperCase()} ${set.name}`}
+                    subTitle={``}
                 />
 
-                {
-                    urlIsGeekHack
-                    ? <ButtonLink isLarge href={set.websiteUrl}>Go to Geekhack thread</ButtonLink>
-                    : <ButtonLink isLarge href={set.websiteUrl}>Visit the website</ButtonLink>
-                }
+                <div className="info-section">
+                    <div>
+                        {
+                            sliderImages.length > 0 && (
+                                <Slider {...slickSettings}>
+                                    {
+                                        sliderImages.map((url: string) => <img src={url} key={url} />)
+                                    }
+                                </Slider>
+                            )
+                        }
+                    </div>
+
+                    <div>
+                        <h3>Info</h3>
+                        <p>type: { set.type }</p>
+                        <p>Start date: { moment(set.groupbuyStartDate).format('dddd YYYY-MM-DD') }</p>
+                        <p>End date: { moment(set.groupbuyEndDate).format('dddd YYYY-MM-DD') }</p>
+
+                        {set.vendors.length > 0 && (
+                            <>
+                                <br/>
+                                <p>Vendors: </p>
+                                <ul>
+                                    {set.vendors.map((v: Vendor) => (
+                                        <p>- <a href={v.url}>{v.name}</a></p>
+                                    ))}
+                                </ul>
+                            </>
+                        )}
+                        {
+                            urlIsGeekHack
+                                ? <ButtonLink isLarge href={set.websiteUrl}>Go to Geekhack thread</ButtonLink>
+                                : <ButtonLink isLarge href={set.websiteUrl}>Visit the website</ButtonLink>
+                        }
+                    </div>
+
+                </div>
 
             </div>
-            {/* <pre>{JSON.stringify(set, null, 4)}</pre>
-
-            {
-                set.imageUrls.length > 0 && (
-                    <Slider {...slickSettings}>
-                        {
-                            set.imageUrls.map((url: string) => <img src={url} key={url} />)
-                        }
-                    </Slider>
-                )
-            } */}
 
             <Footer />
         </div>

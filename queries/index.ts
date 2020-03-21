@@ -1,16 +1,18 @@
-
 import { gql } from "apollo-boost";
 
-const FETCH_KEYCAPSET_QUERY = gql`query FETCH_KEYCAPSET_QUERY(
+const FETCH_KEYCAPSET_QUERY = gql`
+query FETCH_KEYCAPSET_QUERY(
     $limit: Int,
     $offset: Int,
-  	$type: String
+  	$type: String,
+    $query: String
 ) {
-    keycapsetsCount
+    allKeycapsetsCount
     keycapsets(
         limit: $limit,
         offset: $offset,
-        type: $type
+        type: $type,
+        query: $query
     ) {
         _id
         name
@@ -22,9 +24,11 @@ const FETCH_KEYCAPSET_QUERY = gql`query FETCH_KEYCAPSET_QUERY(
         updatedAt
         createdAt
     }
-}`;
+}
+`;
 
-const CREATE_KEYSET_MUTATION = gql`mutation keycapsetCreateOne(
+const CREATE_KEYSET_MUTATION = gql`
+mutation keycapsetCreateOne(
     $name: String
     $type: String
     $active: Boolean
@@ -52,7 +56,8 @@ const CREATE_KEYSET_MUTATION = gql`mutation keycapsetCreateOne(
     }
 }`
 
-const CREATE_VENDOR_MUTATION = gql`mutation CREATE_VENDOR_MUTATION(
+const CREATE_VENDOR_MUTATION = gql`
+mutation CREATE_VENDOR_MUTATION(
   $name: String,
   $country: String,
   $logoUrl: String,
@@ -71,7 +76,8 @@ const CREATE_VENDOR_MUTATION = gql`mutation CREATE_VENDOR_MUTATION(
     }
 }`
 
-const GET_VENDORS_QUERY = gql`query GET_VENDORS_QUERY {
+const GET_VENDORS_QUERY = gql`
+query GET_VENDORS_QUERY {
   vendors {
     name
     _id
@@ -97,9 +103,29 @@ query GET_SINGLE_SET_QUERY($type: String!, $slug:String!){
         vendors {
             name
             url
+            socials
+            logoUrl
         }
         slug
   }
+}
+`
+
+const GET_SETS_BY_QUERY = gql`
+query getKeycapsetByQuery(
+  $query:String
+) {
+    keycapsetsByQuery(query: $query) {
+        _id
+        name
+        type
+        coverImageUrl
+        slug
+        groupbuyStartDate
+        groupbuyEndDate
+        updatedAt
+        createdAt
+    }
 }
 `
 
@@ -108,5 +134,6 @@ export {
     CREATE_KEYSET_MUTATION,
     CREATE_VENDOR_MUTATION,
     GET_VENDORS_QUERY,
-    GET_SINGLE_SET_QUERY
+    GET_SINGLE_SET_QUERY,
+    GET_SETS_BY_QUERY
 }

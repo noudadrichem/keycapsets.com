@@ -36,9 +36,8 @@ function UploadVendor(props: UploadVendorProps) {
             socials
         };
 
-        // const result = await addVendor({ variables });
-        // console.log('result', result);
-        console.log('variables', variables);
+        const result = await addVendor({ variables });
+        console.log('result', result);
 
         reset();
     }
