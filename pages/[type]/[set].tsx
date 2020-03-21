@@ -18,6 +18,7 @@ import Heading from '../../components/Heading';
 import Nav from '../../components/Nav';
 import LoadingKeyboard from '../../components/LoadingKeyboard';
 import ButtonLink from '../../components/ButtonLink';
+import Meta from '../../components/Meta';
 
 interface SetProps {}
 
@@ -56,6 +57,8 @@ function SetPage(props: SetProps) {
 
     return set !== undefined && (
         <div className="set">
+            <Meta />
+
             <Head>
                 <title>{set.type.toUpperCase()} Keycapset {set.name}</title>
             </Head>
@@ -66,7 +69,7 @@ function SetPage(props: SetProps) {
                 <Heading
                     left
                     mainTitle={`${set.type.toUpperCase()} ${set.name}`}
-                    subTitle={``}
+                    subTitle={`Good luck with sharing!`}
                 />
 
                 <div className="info-section">
@@ -91,7 +94,7 @@ function SetPage(props: SetProps) {
                         {set.vendors.length > 0 && (
                             <>
                                 <br/>
-                                <p>Vendors: </p>
+                                <p>Selling vendors: </p>
                                 <ul>
                                     {set.vendors.map((v: Vendor) => (
                                         <p>- <a href={v.url}>{v.name}</a></p>
