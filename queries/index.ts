@@ -6,6 +6,7 @@ const FETCH_KEYCAPSET_QUERY = gql`query FETCH_KEYCAPSET_QUERY(
     $offset: Int,
   	$type: String
 ) {
+    keycapsetsCount
     keycapsets(
         limit: $limit,
         offset: $offset,
