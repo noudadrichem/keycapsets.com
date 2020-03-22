@@ -17,6 +17,9 @@ import { Vendor } from 'typings';
 import Nav from '../components/Nav';
 import LoadingKeyboard from '../components/LoadingKeyboard';
 import VendorCard from "../components/VendorCard";
+import Meta from "../components/Meta";
+import Head from "next/head";
+import Context from "../context";
 
 interface VendorProps {}
 
@@ -35,11 +38,13 @@ function Vendors(props: VendorProps):JSX.Element {
 
     return (
         <>
+            <Meta />
+
             <Nav />
             <div className="container">
                 <Heading
                     mainTitle="Vendors"
-                    subTitle="All available vendors."
+                    subTitle="Available vendors."
                 />
 
                 <div className="images-container">
