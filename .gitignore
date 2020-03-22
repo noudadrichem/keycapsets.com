@@ -40,3 +40,5 @@ dist/
 .dynamodb/
 tmp/
 temp/
+.DS_store
+out
