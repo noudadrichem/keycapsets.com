@@ -18,7 +18,7 @@ function VendorCard(props: VendorCardProps): JSX.Element {
     return (
         <div className="vendor-card">
             <div className="image">
-                <img src={logoUrl === undefined || logoUrl === '' ? 'https://via.placeholder.com/300/f2f2f2?text=${name}' : logoUrl} alt={name} />
+                <img src={logoUrl === undefined || logoUrl === '' ? `https://via.placeholder.com/400x300/f2f2f2?text=${name}` : logoUrl} alt={name} />
             </div>
 
             <div className="details">
