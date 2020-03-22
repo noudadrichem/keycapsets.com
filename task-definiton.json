@@ -1,0 +1,43 @@
+{
+    "executionRoleArn": "arn:aws:iam::158920049551:role/ecsTaskExecutionRole",
+    "containerDefinitions": [{
+        "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+                "awslogs-group": "/ecs/first-run-task-definition",
+                "awslogs-region": "us-east-2",
+                "awslogs-stream-prefix": "ecs"
+            }
+        },
+        "entryPoint": [],
+        "portMappings": [{
+            "hostPort": 3000,
+            "protocol": "tcp",
+            "containerPort": 3000
+        }],
+        "command": [],
+        "cpu": 0,
+        "environment": [],
+        "mountPoints": [],
+        "volumesFrom": [],
+        "image": "158920049551.dkr.ecr.us-east-2.amazonaws.com/keycapsetscom-prod:latest",
+        "name": "keycapsetscom-prod"
+    }],
+    "placementConstraints": [],
+    "memory": "512",
+    "taskRoleArn": null,
+    "compatibilities": [
+        "EC2",
+        "FARGATE"
+    ],
+    "taskDefinitionArn": "arn:aws:ecs:us-east-2:158920049551:task-definition/first-run-task-definition:2",
+    "family": "first-run-task-definition",
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "networkMode": "awsvpc",
+    "cpu": "256",
+    "revision": 2,
+    "status": "ACTIVE",
+    "volumes": []
+}
