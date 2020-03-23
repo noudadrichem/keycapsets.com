@@ -5,7 +5,7 @@ interface ArrowProps {
     color?: string;
 }
 
-function ArrowRight(props: ArrowProps): JSX.Element {
+function Arrow(props: ArrowProps): JSX.Element {
     const {
         size = 24,
         color = '#539BFB'
@@ -17,4 +17,4 @@ function ArrowRight(props: ArrowProps): JSX.Element {
             <path d='M5 12h13M12 5l7 7-7 7' /></svg>
     );
 }
-export default ArrowRight;
+export default Arrow;
