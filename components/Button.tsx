@@ -1,7 +1,7 @@
 import React, {ReactNode} from 'react'
 
 interface ButtonProps {
-    size: String;
+    size?: String;
     type: String,
     variant: String;
     className?: String;
@@ -25,7 +25,7 @@ function Button(props: ButtonProps): JSX.Element {
 
     return (
         <button
-            className={`btn ${className} ${variant} ${size} ${type} ${isFullWidth ? 'full-width' : ''}`}
+            className={`btn ${variant} ${size} ${type} ${className} ${isFullWidth ? 'full-width' : ''}`}
             disabled={isDisabled}
             onClick={onClick}
         >
