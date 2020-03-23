@@ -29,13 +29,14 @@ function BackToTop(): JSX.Element {
       function tick() {
         currentTime += 1 / 60;
 
-        const p = currentTime / time;
-        const t = easing(p);
+        const timeFrame = currentTime / time;
 
-        if (p < 1) {
+        const getEasing = easing(timeFrame);
+
+        if (timeFrame < 1) {
           window.requestAnimationFrame(tick);
 
-          window.scrollTo(0, y + (0 - y) * t);
+          window.scrollTo(0, y + (0 - y) * getEasing);
         } else {
           window.scrollTo(0, 0);
         }
