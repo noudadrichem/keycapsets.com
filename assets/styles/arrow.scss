@@ -1,0 +1,18 @@
+.arrow {
+
+  &-right {
+    transform: rotate(0);
+  }
+
+  &-left {
+    transform: rotate(180deg);
+  }
+
+  &-bottom {
+    transform: rotate(90deg);
+  }
+
+  &-top {
+    transform: rotate(270deg);
+  }
+}
