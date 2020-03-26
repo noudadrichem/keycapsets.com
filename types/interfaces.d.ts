@@ -3,6 +3,9 @@ declare module 'typings' {
         _id?: string;
         name?: string;
         type?: string;
+        material?: string;
+        brand?: string;
+        designerName?: string;
         groupbuyStartDate?: Date;
         groupbuyEndDate?: string;
         active?: Boolean;

@@ -35,8 +35,8 @@ h2 {
 h3 {
     font-size: 32px;
     line-height: 140%;
-    color: var(--text-color);
-    font-weight: 500;
+    color: var(--text-color-light);
+    font-weight: 300;
 
     @media screen and (max-width: $bp-tablet-md) {
         font-size: 28px;
@@ -49,7 +49,7 @@ h3 {
 
 h4 {
     font-size: 24px;
-    font-weight: 500;
+    font-weight: 300;
     line-height: 140%;
     color: var(--text-color-light);
     margin: 8px 0;

@@ -9,12 +9,20 @@ interface MultiSelectProps {
     value?: any[];
     options: any[];
     onChange: Function;
+    isMulti?: boolean;
+    label: String
 }
 
 function MultiSelect(props: MultiSelectProps): JSX.Element {
-    const { value, options, onChange }: MultiSelectProps = props;
+    const {
+        value,
+        options,
+        onChange,
+        isMulti,
+        label
+    }: MultiSelectProps = props;
 
-    const selectStyles = {
+    const SELECT_STYLES = {
         control: (base: any) => ({
             ...base,
             fontSize: 12,
@@ -28,15 +36,16 @@ function MultiSelect(props: MultiSelectProps): JSX.Element {
 
     return (
         <div className="input-wrapper">
-            <label className="label">Vendors</label>
+            <label className="label">{label}</label>
             <Select
                 className="select-control"
-                styles={selectStyles}
+                styles={SELECT_STYLES}
                 value={value}
                 onChange={(selected: string[]) => onChange(selected)}
                 options={options}
-                isMulti
+                isMulti={isMulti}
                 isSearchable
+                defaultValue={options[0]}
             />
         </div>
     )

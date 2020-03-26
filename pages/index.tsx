@@ -30,7 +30,7 @@ interface HomeProps {
 }
 
 function Home(props: HomeProps) {
-    const LIMIT = 9;
+    const LIMIT = 12;
     const isBrowser = typeof window !== `undefined`
     const client = useApolloClient();
 
