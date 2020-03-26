@@ -10,6 +10,11 @@
         transform: scale(1.007);
     }
 
+    &.disabled {
+      cursor: auto;
+      pointer-events: none;
+    }
+
     .image {
         position: relative;
         overflow: hidden;
