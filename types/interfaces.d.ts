@@ -16,6 +16,9 @@ declare module 'typings' {
         slug?: string;
         createdAt?: Date;
         updatedAt?: Date;
+        accentColor1: string;
+        accentColor2: string;
+        accentColor3: string;
     }
 
     interface Vendor {

@@ -5,6 +5,9 @@ import withGA from 'next-ga';
 import Router from 'next/router';
 import { Keycapset, Vendor } from 'typings';
 import { ExecutionResult } from 'graphql';
+import ColorPicker from 'rc-color-picker';
+
+import 'rc-color-picker/assets/index.css';
 import '../../assets/styles/main.scss';
 
 import { CREATE_KEYSET_MUTATION, GET_VENDORS_QUERY } from '../../queries';
@@ -32,6 +35,10 @@ function UploadSet(props: UploadSetProps): JSX.Element {
     const [websiteUrlValue, websiteUrlInput, setWebsiteUrlInput] = useInput({ label: 'Website:' });
     const [startDateValue, startDateInput, setStartDate] = useInput({ label: 'Start groupbuy:', type: 'date', defaultValue: moment().format('YYYY-MM-DD') });
     const [endDateValue, endDateInput, setEndDateValue] = useInput({ label: 'End groupbuy:', type: 'date', defaultValue: moment().add('1', 'months').format('YYYY-MM-DD') });
+
+    const [accentColor1Value, accentColor1Input, setAccentColor1] = useInput({ label: 'Accent color 1:'});
+    const [accentColor2Value, accentColor2Input, setAccentColor2] = useInput({ label: 'Accent color 2:'});
+    const [accentColor3Value, accentColor3Input, setAccentColor3] = useInput({ label: 'Accent color 3:'});
     // kits here...
     const [imageUrls, setImageUrls] = useState([]);
     const [vendors, setVendors] = useState([]);
@@ -54,6 +61,9 @@ function UploadSet(props: UploadSetProps): JSX.Element {
         groupbuyStartDate: startDateValue,
         groupbuyEndDate: endDateValue,
         designerName: designerNameValue,
+        accentColor1: accentColor1Value,
+        accentColor2: accentColor2Value,
+        accentColor3: accentColor3Value,
         imageUrls,
     };
 
@@ -78,6 +88,7 @@ function UploadSet(props: UploadSetProps): JSX.Element {
         // handleFormValidation();
         if (isFormValid) {
             setUploading(true);
+            console.log('newKeycapset...', newKeycapset)
             const result: ExecutionResult<Keycapset> = await addKeyset({ variables: newKeycapset });
             setUploading(false);
             setFormValid(true);
@@ -85,6 +96,10 @@ function UploadSet(props: UploadSetProps): JSX.Element {
         } else {
             console.log('form is not valid...', {isFormValid})
         }
+    }
+
+    function accentColor1Handler(colors) {
+        setAccentColor1(colors.color)
     }
 
     function isEmptyValue(val) {
@@ -177,17 +192,29 @@ function UploadSet(props: UploadSetProps): JSX.Element {
 
                         <div className="form-ruler" />
                         <h4 className="form-sub-title">Detailed keyset info</h4>
-                        <Multiselect
-                            label="Profile"
-                            value={types}
-                            onChange={(selectedProfiles: any[]) => setTypes(selectedProfiles)}
-                            options={PROFILE_OPTIONS}
-                        />
+                        {/* {accentColor1Input} */}
+                        {/* <ColorPicker
+                            color={'#36c'}
+                            alpha={100}
+                            onChange={accentColor1Handler}
+                            onClose={accentColor1Handler}
+                            className="color-picker"
+                        >
+                            {accentColor1Input}
+                        </ColorPicker>
+                        {accentColor2Input}
+                        {accentColor3Input} */}
                         <Multiselect
                             label="Brand"
                             value={brands}
                             onChange={(selectedbrands: any[]) => setBrands(selectedbrands)}
                             options={BRAND_OPTIONS}
+                        />
+                        <Multiselect
+                            label="Profile"
+                            value={types}
+                            onChange={(selectedProfiles: any[]) => setTypes(selectedProfiles)}
+                            options={PROFILE_OPTIONS}
                         />
                         <Multiselect
                             label="Material"
