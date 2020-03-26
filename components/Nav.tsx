@@ -23,6 +23,9 @@ function Nav(props: NavProps): JSX.Element {
                     </div>
 
                     <div>
+                        <Link href="/vendors" as="/vendors">
+                            <a>Vendors</a>
+                        </Link>
                         <Link href="/upload" as="/upload">
                             <a>Upload</a>
                         </Link>
