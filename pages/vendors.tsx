@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Error from 'next/error'
 import { useMutation, useQuery } from '@apollo/react-hooks';
-import moment from 'moment';
 import withGA from 'next-ga';
 import Router from 'next/router';
 
@@ -13,15 +12,20 @@ import Heading from '../components/Heading';
 import Footer from '../components/Footer';
 
 import '../assets/styles/main.scss';
+import '../assets/styles/vendor-card.scss';
 import { Vendor } from 'typings';
 import Nav from '../components/Nav';
 import LoadingKeyboard from '../components/LoadingKeyboard';
+import VendorCard from "../components/VendorCard";
+import Meta from "../components/Meta";
+import Head from "next/head";
+import Context from "../context";
 
 interface VendorProps {}
 
 function Vendors(props: VendorProps):JSX.Element {
     const { loading, error, data } = useQuery(GET_VENDORS_QUERY);
-    console.log("Data: ", data)
+    console.log("Data: ", data);
 
     if (loading) {
         return <LoadingKeyboard />
@@ -34,23 +38,26 @@ function Vendors(props: VendorProps):JSX.Element {
 
     return (
         <>
-            <Nav />
-            <Heading
-                mainTitle="Vendors"
-                subTitle="All available vendors."
-            />
-            {data.vendors.length > 0
-            ?
-                data.vendors
-                    .map((vendor: Vendor) =>
-                        <h1>{vendor.name}</h1>
-                    )
-            : <div className="container">
-                <p>No vendors here...</p>
-            </div>
-            }
+            <Meta />
 
-            <Footer />
+            <Nav />
+            <div className="container">
+                <Heading
+                    mainTitle="Vendors"
+                    subTitle="Available vendors."
+                />
+
+                <div className="images-container">
+                    {
+                        data.vendors
+                            .map((vendor: Vendor) =>
+                                <VendorCard vendor={vendor} key={vendor._id} />
+                            )
+                    }
+                </div>
+
+                <Footer />
+            </div>
         </>
     )
 }

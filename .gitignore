@@ -40,5 +40,6 @@ dist/
 .dynamodb/
 tmp/
 temp/
+.idea/
 .DS_store
 out

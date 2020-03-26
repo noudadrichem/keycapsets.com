@@ -96,6 +96,7 @@ query GET_VENDORS_QUERY {
     name
     _id
     logoUrl
+    url
   }
 }
 `
