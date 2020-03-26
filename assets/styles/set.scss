@@ -8,6 +8,7 @@
         margin-top: 32px;
 
         @media screen and (max-width: 768px) {
+            display: block;
             grid-template-columns: 1fr;
         }
 

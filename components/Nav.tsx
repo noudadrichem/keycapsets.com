@@ -14,9 +14,11 @@ function Nav(props: NavProps): JSX.Element {
         <nav className="nav">
             <div className={`container ${isLargeContainer ? 'large' : ''}`}>
                 <div className="nav-container">
-                    <div>
+                    <div className="logo">
                         <Link href="/" as="/">
-                            <img src="/images/logo-dark.svg" />
+                            <a>
+                                <img src="/images/logo-dark.svg" />
+                            </a>
                         </Link>
                     </div>
 

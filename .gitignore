@@ -41,3 +41,5 @@ dist/
 tmp/
 temp/
 .idea/
+.DS_store
+out

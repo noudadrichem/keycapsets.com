@@ -36,8 +36,15 @@ mutation keycapsetCreateOne(
     $vendors: [String]
     $imageUrls: [String]
     $websiteUrl: String
+    $brand: String,
+    $material: String
+    $accentColor1: String
+    $accentColor2: String
+    $accentColor3: String
+    $designerName: String
     $groupbuyStartDate: Date
     $groupbuyEndDate: Date
+    $kits: [KitInput]
 ) {
     createKeycapset(
         name: $name
@@ -49,6 +56,13 @@ mutation keycapsetCreateOne(
         websiteUrl: $websiteUrl
         groupbuyStartDate: $groupbuyStartDate
         groupbuyEndDate: $groupbuyEndDate
+        brand: $brand
+        material: $material
+        accentColor1: $accentColor1
+        accentColor2: $accentColor2
+        accentColor3: $accentColor3
+        kits: $kits
+        designerName: $designerName
     ) {
         name
         type
@@ -89,9 +103,10 @@ query GET_VENDORS_QUERY {
 
 const GET_SINGLE_SET_QUERY = gql`
 query GET_SINGLE_SET_QUERY($type: String!, $slug:String!){
-  keycapsetBySlug(type:$type, slug:$slug) {
-      _id
+    keycapsetBySlug(type:$type, slug:$slug) {
+        _id
         name
+        designerName
         type
         coverImageUrl
         groupbuyStartDate
@@ -107,14 +122,18 @@ query GET_SINGLE_SET_QUERY($type: String!, $slug:String!){
             logoUrl
         }
         slug
-  }
+        kits {
+            name
+            description
+            price
+            type
+        }
+    }
 }
 `
 
 const GET_SETS_BY_QUERY = gql`
-query getKeycapsetByQuery(
-  $query:String
-) {
+query getKeycapsetByQuery($query:String) {
     keycapsetsByQuery(query: $query) {
         _id
         name
