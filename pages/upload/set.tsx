@@ -5,7 +5,7 @@ import withGA from 'next-ga';
 import Router from 'next/router';
 import { Keycapset, Vendor } from 'typings';
 import { ExecutionResult } from 'graphql';
-import ColorPicker from 'rc-color-picker';
+// import ColorPicker from 'rc-color-picker';
 
 import 'rc-color-picker/assets/index.css';
 import '../../assets/styles/main.scss';
@@ -25,6 +25,7 @@ import Nav from '../../components/Nav';
 import ImageCard from '../../components/ImageCard';
 import LoadingKeyboard from '../../components/LoadingKeyboard';
 import Meta from '../../components/Meta';
+import ColorPicker from '../../components/ColorPicker';
 
 interface UploadSetProps {}
 
@@ -36,15 +37,15 @@ function UploadSet(props: UploadSetProps): JSX.Element {
     const [startDateValue, startDateInput, setStartDate] = useInput({ label: 'Start groupbuy:', type: 'date', defaultValue: moment().format('YYYY-MM-DD') });
     const [endDateValue, endDateInput, setEndDateValue] = useInput({ label: 'End groupbuy:', type: 'date', defaultValue: moment().add('1', 'months').format('YYYY-MM-DD') });
 
-    const [accentColor1Value, accentColor1Input, setAccentColor1] = useInput({ label: 'Accent color 1:'});
-    const [accentColor2Value, accentColor2Input, setAccentColor2] = useInput({ label: 'Accent color 2:'});
-    const [accentColor3Value, accentColor3Input, setAccentColor3] = useInput({ label: 'Accent color 3:'});
+    const [accentColor1Value, accentColor1Input, setAccentColor1] = useInput({ label: 'Page accent color 1:'});
+    const [accentColor2Value, accentColor2Input, setAccentColor2] = useInput({ label: 'Page accent color 2:'});
+    const [accentColor3Value, accentColor3Input, setAccentColor3] = useInput({ label: 'Page accent color 3:'});
     // kits here...
     const [imageUrls, setImageUrls] = useState([]);
     const [vendors, setVendors] = useState([]);
-    const [types, setTypes] = useState(PROFILE_OPTIONS);
-    const [brands, setBrands] = useState(BRAND_OPTIONS);
-    const [materials, setMaterials] = useState(MATERIAL_OPTIONS);
+    const [type, setType] = useState(PROFILE_OPTIONS[0]);
+    const [brand, setBrand] = useState(BRAND_OPTIONS[0]);
+    const [material, setMaterial] = useState(MATERIAL_OPTIONS[0]);
     const [uploading, setUploading] = useState(false);
     const [shouldReset, setShouldReset] = useState(false);
     const [isFormValid, setFormValid] = useState(true);
@@ -55,7 +56,6 @@ function UploadSet(props: UploadSetProps): JSX.Element {
 
     const keycapset: Keycapset = {
         name: nameValue,
-        active: false,
         coverImageUrl: coverImageUrlValue,
         websiteUrl: websiteUrlValue,
         groupbuyStartDate: startDateValue,
@@ -74,9 +74,9 @@ function UploadSet(props: UploadSetProps): JSX.Element {
 
     async function uploadKeycapset(e) {
         const multiSelectedValues = {
-            type: types[0].value,
-            brand: brands[0].value,
-            material: materials[0].value,
+            type: type.value,
+            brand: brand.value,
+            material: material.value,
             vendors: !!vendors && vendors.map((v) => v.value),
         }
 
@@ -96,10 +96,6 @@ function UploadSet(props: UploadSetProps): JSX.Element {
         } else {
             console.log('form is not valid...', {isFormValid})
         }
-    }
-
-    function accentColor1Handler(colors) {
-        setAccentColor1(colors.color)
     }
 
     function isEmptyValue(val) {
@@ -134,9 +130,9 @@ function UploadSet(props: UploadSetProps): JSX.Element {
 
     function reset() {
         setName('');
-        setTypes(PROFILE_OPTIONS);
-        setBrands(BRAND_OPTIONS);
-        setMaterials(MATERIAL_OPTIONS);
+        // setTypes(PROFILE_OPTIONS);
+        // setBrands(BRAND_OPTIONS);
+        // setMaterials(MATERIAL_OPTIONS);
         setCoverImg('');
         setWebsiteUrlInput('');
         setStartDate('2020-03-24');
@@ -192,36 +188,29 @@ function UploadSet(props: UploadSetProps): JSX.Element {
 
                         <div className="form-ruler" />
                         <h4 className="form-sub-title">Detailed keyset info</h4>
-                        {/* {accentColor1Input} */}
-                        {/* <ColorPicker
-                            color={'#36c'}
-                            alpha={100}
-                            onChange={accentColor1Handler}
-                            onClose={accentColor1Handler}
-                            className="color-picker"
-                        >
-                            {accentColor1Input}
-                        </ColorPicker>
-                        {accentColor2Input}
-                        {accentColor3Input} */}
+
                         <Multiselect
                             label="Brand"
-                            value={brands}
-                            onChange={(selectedbrands: any[]) => setBrands(selectedbrands)}
+                            onChange={(selectedbrand: any) => setBrand(selectedbrand)}
                             options={BRAND_OPTIONS}
                         />
                         <Multiselect
                             label="Profile"
-                            value={types}
-                            onChange={(selectedProfiles: any[]) => setTypes(selectedProfiles)}
+                            onChange={(selectedProfile: any) => setType(selectedProfile)}
                             options={PROFILE_OPTIONS}
                         />
                         <Multiselect
                             label="Material"
-                            value={materials}
-                            onChange={(selectedMaterials: any[]) => setMaterials(selectedMaterials)}
+                            onChange={(selectedMaterial: any) => setMaterial(selectedMaterial)}
                             options={MATERIAL_OPTIONS}
                         />
+
+                        <div className="form-ruler" />
+                        <h4 className="form-sub-title">Single page details</h4>
+                        <p className="light">These values make it possible to upload you own color accents to create a 'themed' single page for your keyset! </p>
+                        <ColorPicker label="Background color" defaultValue='#F8F9FB' onChange={(c) => setAccentColor1(c)} />
+                        <ColorPicker label="Call to action color" defaultValue='#539BFB' onChange={(c) => setAccentColor2(c)} />
+                        <ColorPicker label="Text color" defaultValue='#566073' onChange={(c) => setAccentColor3(c)} />
 
                         <Button
                             onClick={uploadKeycapset}
