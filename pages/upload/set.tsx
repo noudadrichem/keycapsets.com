@@ -184,9 +184,8 @@ function UploadSet(props: UploadSetProps): JSX.Element {
                             shouldReset={shouldReset}
                         />
 
-                        <h4 className="form-sub-title">Keyset kits (coming soon!)</h4>
-
                         <div className="form-ruler" />
+
                         <h4 className="form-sub-title">Detailed keyset info</h4>
 
                         <Multiselect
@@ -206,8 +205,13 @@ function UploadSet(props: UploadSetProps): JSX.Element {
                         />
 
                         <div className="form-ruler" />
-                        <h4 className="form-sub-title">Single page details</h4>
-                        <p className="light">These values make it possible to upload you own color accents to create a 'themed' single page for your keyset! </p>
+
+                        <h4 className="form-sub-title">Keyset kits (coming soon!)</h4>
+
+                        <div className="form-ruler" />
+
+                        <h4 className="form-sub-title">Single page details (Coming soon!)</h4>
+                        {/* <p className="small light">These values will make it possible to upload you own color accents to create a 'themed' single page for your keyset! </p> */}
                         <ColorPicker label="Background color" defaultValue='#F8F9FB' onChange={(c) => setAccentColor1(c)} />
                         <ColorPicker label="Call to action color" defaultValue='#539BFB' onChange={(c) => setAccentColor2(c)} />
                         <ColorPicker label="Text color" defaultValue='#566073' onChange={(c) => setAccentColor3(c)} />
