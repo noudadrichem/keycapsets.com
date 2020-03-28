@@ -19,9 +19,11 @@ function useInput(props: InputProps): any[] {
         defaultValue
     } = props;
     const [value, setValue] = useState(defaultValue);
+    const [evt, setEvt] = useState({});
 
     function onInputChange(e) {
         setValue(e.target.value)
+        setEvt(e);
     }
 
     const inputField: JSX.Element = (
@@ -38,7 +40,7 @@ function useInput(props: InputProps): any[] {
         </div>
     )
 
-    return [value, inputField, setValue]
+    return [value, inputField, setValue, evt]
 }
 
 export default useInput;

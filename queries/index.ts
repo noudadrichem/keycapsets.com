@@ -1,4 +1,4 @@
-import { gql } from "apollo-boost";
+import { gql } from 'apollo-boost';
 
 const FETCH_KEYCAPSET_QUERY = gql`
 query FETCH_KEYCAPSET_QUERY(
@@ -24,9 +24,6 @@ query FETCH_KEYCAPSET_QUERY(
         updatedAt
         createdAt
         designerName
-        kits {
-            name
-        }
     }
 }
 `;
@@ -155,11 +152,31 @@ query getKeycapsetByQuery($query:String) {
 }
 `
 
+const UPLOAD_FILE_STREAM = gql`
+  mutation SingleUploadStream($file: Upload!) {
+    singleUploadStream(file: $file) {
+      filename
+      url
+    }
+  }
+`;
+
+const UPLOAD_FILE_URL = gql`
+mutation  singleUploadFromUrl($url: String!, $filename: String) {
+  singleUploadFromUrl(url: $url, filename: $filename) {
+    filename
+    url
+  }
+}
+`
+
 export {
     FETCH_KEYCAPSET_QUERY,
     CREATE_KEYSET_MUTATION,
     CREATE_VENDOR_MUTATION,
     GET_VENDORS_QUERY,
     GET_SINGLE_SET_QUERY,
-    GET_SETS_BY_QUERY
+    GET_SETS_BY_QUERY,
+    UPLOAD_FILE_STREAM,
+    UPLOAD_FILE_URL
 }
