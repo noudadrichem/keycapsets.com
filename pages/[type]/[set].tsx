@@ -20,7 +20,7 @@ import LoadingKeyboard from '../../components/LoadingKeyboard';
 import ButtonLink from '../../components/ButtonLink';
 import Meta from '../../components/Meta';
 
-interface SetProps {}
+interface SetProps { }
 
 function SetPage(props: SetProps) {
     const router = useRouter();
@@ -57,11 +57,10 @@ function SetPage(props: SetProps) {
 
     return set !== undefined && (
         <div className="set">
-            <Meta />
-
-            <Head>
-                <title>{set.type.toUpperCase()} Keycapset {set.name}</title>
-            </Head>
+            <Meta
+                title={`${set.type.toUpperCase()} Keycapset ${set.name}`}
+                metaImgUrl={set.coverImageUrl}
+            />
 
             <Nav />
 
@@ -87,13 +86,13 @@ function SetPage(props: SetProps) {
 
                     <div>
                         <h3>Info</h3>
-                        <p>type: { set.type }</p>
-                        <p>Start date: { moment(set.groupbuyStartDate).format('dddd YYYY-MM-DD') }</p>
-                        <p>End date: { moment(set.groupbuyEndDate).format('dddd YYYY-MM-DD') }</p>
+                        <p>type: {set.type}</p>
+                        <p>Start date: {moment(set.groupbuyStartDate).format('dddd YYYY-MM-DD')}</p>
+                        <p>End date: {moment(set.groupbuyEndDate).format('dddd YYYY-MM-DD')}</p>
 
                         {set.vendors.length > 0 && (
                             <>
-                                <br/>
+                                <br />
                                 <p>Selling vendors: </p>
                                 <ul>
                                     {set.vendors.map((v: Vendor) => (

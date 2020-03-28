@@ -1,10 +1,18 @@
 import Head from 'next/head'
 
-const title = `Keycapsets.com. Find your favorite keycapset!`;
-const description = `Looking for a beautiful keycapset for your current or future keyboard but don't know where to start? This page shows you existing keycapsets and will point you in the right direction to buy that keycapset!`;
-const metaImgUrl = 'https://keycapsets.com/images/meta/meta-image.png';
+const TITLE = `Keycapsets.com. Find your favorite keycapset!`;
+const DESCRIPTION = `Looking for a beautiful keycapset for your current or future keyboard but don't know where to start? This page shows you existing keycapsets and will point you in the right direction to buy that keycapset!`;
+const META_IMG_URL = 'https://keycapsets.com/images/meta/meta-image.png';
 
-function Meta(props) {
+interface MetaProps {
+    title?: string;
+    description?: string;
+    metaImgUrl?: string;
+}
+
+function Meta(props: MetaProps) {
+    const { title, description, metaImgUrl }: MetaProps = props;
+
     function setGoogleTags() {
         return {
             __html: `
@@ -17,7 +25,7 @@ function Meta(props) {
 
     return (
         <Head>
-            <title>{title}</title>
+            <title>{title || TITLE}</title>
             <meta
                 name="viewport"
                 key="viewport"
@@ -27,15 +35,15 @@ function Meta(props) {
             <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
             <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
             <meta name="author" content="noudadrichem" />
-            <meta property="og:title" content={title} />
-            <meta name="twitter:title" content={title} />
+            <meta property="og:title" content={title || TITLE} />
+            <meta name="twitter:title" content={title || TITLE} />
 
-            <meta name="description" content={description} />
-            <meta property="og:description" content={description} />
-            <meta name="twitter:description" content={description} />
+            <meta name="description" content={description || DESCRIPTION} />
+            <meta property="og:description" content={description || DESCRIPTION} />
+            <meta name="twitter:description" content={description || DESCRIPTION} />
 
-            <meta property="og:image" content={metaImgUrl} />
-            <meta name="twitter:image" content={metaImgUrl} />
+            <meta property="og:image" content={metaImgUrl || META_IMG_URL} />
+            <meta name="twitter:image" content={metaImgUrl || META_IMG_URL} />
 
             {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
             <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115865530-2"></script>
