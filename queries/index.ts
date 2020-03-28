@@ -23,6 +23,10 @@ query FETCH_KEYCAPSET_QUERY(
         groupbuyEndDate
         updatedAt
         createdAt
+        designerName
+        kits {
+            name
+        }
     }
 }
 `;
@@ -122,6 +126,9 @@ query GET_SINGLE_SET_QUERY($type: String!, $slug:String!){
             logoUrl
         }
         slug
+        accentColor1
+        accentColor2
+        accentColor3
         kits {
             name
             description
