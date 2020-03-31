@@ -164,7 +164,7 @@ function UploadSet(props: UploadSetProps): JSX.Element {
 
                 <div className="grid two-column">
                     <div className="column">
-                        <h4 className="form-sub-title">Base keyset info</h4>
+                        <h4 className="form-sub-title">Basis keycapset info</h4>
                         { nameInput }
                         { designerNameInput }
                         { coverImageUrlInput }
@@ -186,7 +186,7 @@ function UploadSet(props: UploadSetProps): JSX.Element {
 
                         <div className="form-ruler" />
 
-                        <h4 className="form-sub-title">Detailed keyset info</h4>
+                        <h4 className="form-sub-title">Detailed keycapset info</h4>
 
                         <Multiselect
                             label="Brand"
@@ -206,7 +206,7 @@ function UploadSet(props: UploadSetProps): JSX.Element {
 
                         <div className="form-ruler" />
 
-                        <h4 className="form-sub-title">Keyset kits (coming soon!)</h4>
+                        <h4 className="form-sub-title">Keycapset kits (coming soon!)</h4>
 
                         <div className="form-ruler" />
 

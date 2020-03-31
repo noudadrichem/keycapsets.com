@@ -6,7 +6,7 @@ declare module 'typings' {
         material?: string;
         brand?: string;
         designerName?: string;
-        groupbuyStartDate?: Date;
+        groupbuyStartDate?: string;
         groupbuyEndDate?: string;
         active?: Boolean;
         coverImageUrl?: string;

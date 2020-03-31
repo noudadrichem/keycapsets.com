@@ -5,8 +5,9 @@ import Link from 'next/link';
 
 import ButtonLink from '../components/ButtonLink';
 import Pill from '../components/Pill';
-import { Keycapset } from 'typings';
+import { Keycapset, InititalState } from 'typings';
 import Context from '../context';
+import StatusLabel from './StatusLabel';
 
 interface ImageCardProps {
     keycapset: Keycapset;
@@ -25,14 +26,15 @@ function ImageCard(props: ImageCardProps): JSX.Element {
         groupbuyEndDate
     } = keycapset;
 
-    const { searchQuery } = useContext(Context);
-
+    const state = useContext<InititalState>(Context);
     const isInFuture: Boolean = moment().diff(groupbuyStartDate, 'days') < 0;
     const isTemplate = !keycapset.hasOwnProperty('_id');
 
     useEffect(() => {
-        forceCheck();
-    }, [searchQuery])
+        if (!isTemplate) {
+            forceCheck();
+        }
+    }, [state.searchQuery])
 
     return (
         <LazyLoad offset={200} height={400} once>
@@ -40,7 +42,12 @@ function ImageCard(props: ImageCardProps): JSX.Element {
                 <div className={`image-card ${isTemplate ? 'disabled' : ''}`}>
                     <div className="image">
                         <img src={coverImageUrl === undefined || coverImageUrl === '' ? '/images/empty-base-kit-illu.svg' : coverImageUrl} />
-                        {!isInFuture && <Pill color='green' />}
+
+                        <StatusLabel
+                            groupbuyStartDate={groupbuyStartDate}
+                            groupbuyEndDate={groupbuyEndDate}
+                            isIc={false}
+                        />
                     </div>
 
                     <div className="details">

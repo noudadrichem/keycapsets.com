@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import Button from './Button';
 import { useRouter } from 'next/router';
 import Pill from './Pill';

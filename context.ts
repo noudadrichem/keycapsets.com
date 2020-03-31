@@ -20,6 +20,6 @@ export const INITITAL_STATE: InititalState = {
     setGlobalState: () => {}
 }
 
-const Context = createContext(undefined);
+const Context = createContext(INITITAL_STATE);
 
 export default Context;
