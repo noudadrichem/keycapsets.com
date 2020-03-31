@@ -29,7 +29,7 @@ function ImageCard(props: ImageCardProps): JSX.Element {
     const isTemplate = !keycapset.hasOwnProperty('_id');
 
     return (
-        <LazyLoad offset={100}>
+        <LazyLoad offset={100} height={400}>
             <Link href="/[type]/[set]" as={`/${type}/${slug}`}>
                 <div className={`image-card ${isTemplate ? 'disabled' : ''}`}>
                     <div className="image">

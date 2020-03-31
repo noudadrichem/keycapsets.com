@@ -1,17 +1,23 @@
 import React, { useEffect, useContext } from 'react';
 import useInput from '../hooks/useInput';
 import Context from '../context';
-import { FETCH_KEYCAPSET_QUERY } from '../queries';
-import { useLazyQuery } from '@apollo/react-hooks';
+import { useRouter } from 'next/router';
 
 function SearchSets() {
-    const [searchValue, searchInput] = useInput({});
+    const router = useRouter();
+    const [searchValue, searchInput, setSearchInputValue] = useInput({ defaultValue: '' });
     const { setGlobalState } = useContext(Context);
 
     useEffect(() => {
-        setGlobalState({
-            searchQuery: searchValue,
-        });
+        const searchQuery = router.query.search;
+        if (searchQuery !== undefined) {
+            setSearchInputValue(searchQuery);
+            setGlobalState({ searchQuery });
+        }
+    }, [router.query.search])
+
+    useEffect(() => {
+        setGlobalState({ searchQuery: searchValue });
     }, [searchValue])
 
     return (

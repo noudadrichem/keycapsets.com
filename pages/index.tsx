@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Error from 'next/error'
 import Head from 'next/head';
-import { useQuery, useApolloClient } from '@apollo/react-hooks';
+import { useApolloClient } from '@apollo/react-hooks';
 import { ApolloClient } from 'apollo-boost';
 import { InititalState, Keycapset } from 'typings';
 import withGA from "next-ga";
@@ -14,7 +13,6 @@ import Heading from '../components/Heading';
 import Footer from '../components/Footer';
 import Images from '../components/Images';
 import Nav from '../components/Nav';
-import LoadingKeyboard from '../components/LoadingKeyboard';
 import LoadingKeyboardIllustration from '../components/LoadingKeyboardIllustration';
 import CTACard from '../components/CTACard';
 import BackToTop from '../components/BackToTop';
@@ -30,43 +28,42 @@ interface HomeProps {
 }
 
 function Home(props: HomeProps) {
-    const LIMIT = 12;
+    const LIMIT = 96;
     const isBrowser = typeof window !== `undefined`
     const client = useApolloClient();
 
     const [state, setState] = useState<InititalState>(INITITAL_STATE);
     const [limit, setLimit] = useState<number>(LIMIT);
     const [offset, setOffset] = useState<number>(LIMIT);
+    const [initLoading , setInitLoading] = useState<boolean>(true);
     const [loadingExtra, setLoadingExtra] = useState<boolean>(true);
     const [isAtBottomOfPage, setIsAtBottomOfPage] = useState(false);
 
     useEffect(function initializeView() {
         if (isBrowser) {
             window.addEventListener('scroll', checkIsBottomPage)
-            initSets()
-
-            return () => window.removeEventListener('scroll', checkIsBottomPage)
+            return () => window.removeEventListener('scroll', checkIsBottomPage);
         }
     }, [])
 
     useEffect(function handleTabChange() {
         setLimit(LIMIT);
         setOffset(LIMIT);
-        initSets();
     }, [state.activeTab])
 
     useEffect(function handleRefetchingOnBottomOfPage() {
         const isEndReached = state.keycapsets.length === state.allKeycapsetsCount;
-        console.log('isendreached..', isEndReached);
 
         if (isEndReached) {
             setLoadingExtra(false);
             return;
         }
         if (isAtBottomOfPage) {
+            console.log('is at bottom')
             setLoadingExtra(true);
             fetchMoreWhenBottomOfPage();
             setIsAtBottomOfPage(false);
+            return;
         }
     }, [isAtBottomOfPage])
 
@@ -76,7 +73,7 @@ function Home(props: HomeProps) {
         clearTimeout(timeout);
 
         timeout = setTimeout(() => {
-            if(state.searchQuery !== '') {
+            if(state.searchQuery !== '' || state.searchQuery !== undefined) {
                 setOffset(0)
                 fetchMoreWhenSearched();
             } else {
@@ -97,16 +94,20 @@ function Home(props: HomeProps) {
     }
 
     async function fetchMoreWhenSearched(): Promise<void> {
+        console.log('fetch more when searched')
         const { data } = await fetchMoreSets(0, 100);
-        const { keycapsets } = data;
+        const { keycapsets, allKeycapsetsCount } = data;
 
         setGlobalState({
-            keycapsets
+            keycapsets,
+            allKeycapsetsCount
         })
+        setInitLoading(false)
     }
 
     async function fetchMoreWhenBottomOfPage(): Promise<void> {
-        if (state.searchQuery === '') {
+        if (state.searchQuery === '' || state.searchQuery === undefined) {
+            console.log('empty search query')
             setLimit(limit + LIMIT);
             setOffset(limit + LIMIT);
 
@@ -133,7 +134,6 @@ function Home(props: HomeProps) {
     }
 
     async function fetchMoreSets(offset: number, limit?: number): Promise<any> {
-        console.log('fetch more sets...')
         const fetchSetQueryResult = await client.query({
             query: FETCH_KEYCAPSET_QUERY,
             variables: {
@@ -147,13 +147,12 @@ function Home(props: HomeProps) {
     }
 
     async function initSets() {
-        console.log('init sets...')
         const { data } = await fetchMoreSets(0);
         const { keycapsets, allKeycapsetsCount } = data;
+
         setGlobalState({
             allKeycapsetsCount,
             keycapsets,
-            // tabs: ['all', 'gmk', 'pbt', 'sa', 'dsa', 'kat', 'jtk', 'kam']
         })
     }
 
@@ -163,11 +162,7 @@ function Home(props: HomeProps) {
 
     return (
         <Context.Provider value={{ ...state, setGlobalState }}>
-            <Meta />
-
-            <Head>
-                <meta property="og:image" content={props.metaImg} />
-            </Head>
+            <Meta metaImgUrl={props.metaImg} />
 
             <Nav isLargeContainer />
             <div className="container large">
@@ -177,7 +172,11 @@ function Home(props: HomeProps) {
                     isHome
                 />
 
-                <Images />
+                {
+                    initLoading
+                    ? <LoadingKeyboardIllustration />
+                    : <Images />
+                }
 
                 { loadingExtra && <LoadingKeyboardIllustration scale={0.3} />}
 
