@@ -7,7 +7,9 @@ export function reduceState(state, obj) {
         ...state,
         ...obj
     }
-    console.log(moment().format('hh:mm:ss') + '_STATE...', reducedState)
+    if (process.env.NODE_ENV === 'development') {
+        console.log(moment().format('hh:mm:ss') + '_STATE...', reducedState)
+    }
     return reducedState;
 }
 

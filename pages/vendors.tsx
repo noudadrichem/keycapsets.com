@@ -25,7 +25,6 @@ interface VendorProps {}
 
 function Vendors(props: VendorProps):JSX.Element {
     const { loading, error, data } = useQuery(GET_VENDORS_QUERY);
-    console.log("Data: ", data);
 
     if (loading) {
         return <LoadingKeyboard />

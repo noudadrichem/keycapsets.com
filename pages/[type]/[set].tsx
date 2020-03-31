@@ -26,7 +26,6 @@ function SetPage(props: SetProps) {
     const router = useRouter();
     const { set: slug, type } = router.query;
 
-    console.log({ slug, type })
     const variables = { slug, type }
     const { loading, error, data } = useQuery(GET_SINGLE_SET_QUERY, { variables });
 

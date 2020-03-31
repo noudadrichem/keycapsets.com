@@ -34,8 +34,6 @@ function Home(props: HomeProps) {
     const client = useApolloClient();
 
     const [state, setState] = useState<InititalState>(INITITAL_STATE);
-    const [limit, setLimit] = useState<number>(LIMIT);
-    const [offset, setOffset] = useState<number>(LIMIT);
     const [initLoading , setInitLoading] = useState<boolean>(true);
     const [loadingExtra, setLoadingExtra] = useState<boolean>(true);
     const [isAtBottomOfPage, setIsAtBottomOfPage] = useState(false);
@@ -48,8 +46,7 @@ function Home(props: HomeProps) {
     }, [])
 
     useEffect(function handleTabChange() {
-        setLimit(LIMIT);
-        setOffset(LIMIT);
+        fetchMoreWhenSearched()
     }, [state.activeTab])
 
     useEffect(function handleRefetchingOnBottomOfPage() {
@@ -60,7 +57,6 @@ function Home(props: HomeProps) {
             return;
         }
         if (isAtBottomOfPage) {
-            console.log('is at bottom')
             setLoadingExtra(true);
             fetchMoreWhenBottomOfPage();
             setIsAtBottomOfPage(false);
@@ -70,12 +66,11 @@ function Home(props: HomeProps) {
 
 
     useEffect(function handleSearch() {
-        let timeout;
+        let timeout: any;
         clearTimeout(timeout);
 
         timeout = setTimeout(() => {
             if(state.searchQuery !== '' || state.searchQuery !== undefined) {
-                setOffset(0)
                 fetchMoreWhenSearched();
                 forceCheck();
             } else {
@@ -87,17 +82,17 @@ function Home(props: HomeProps) {
     }, [state.searchQuery])
 
     function checkIsBottomPage() {
-        const DELIMITER = 5;
-        const currentY = window.scrollY;
-        const docHeight = document.body.clientHeight;
+        const DELIMITER: number = 5;
+        const currentY: number = window.scrollY;
+        const docHeight: number = document.body.clientHeight;
         const alreadyScrolled = currentY + window.innerHeight;
-        const atBottom = alreadyScrolled > (docHeight - DELIMITER);
+        const atBottom: boolean = alreadyScrolled > (docHeight - DELIMITER);
         setIsAtBottomOfPage(atBottom);
     }
 
     async function fetchMoreWhenSearched(): Promise<void> {
-        console.log('fetch more when searched')
-        const { data } = await fetchMoreSets(0, LIMIT);
+        const offsetFetch: number = 0;
+        const { data } = await fetchMoreSets(offsetFetch, LIMIT);
         const { keycapsets, allKeycapsetsCount } = data;
 
         setGlobalState({
@@ -108,16 +103,12 @@ function Home(props: HomeProps) {
     }
 
     async function fetchMoreWhenBottomOfPage(): Promise<void> {
-        console.log('fetch bottom...')
         if (state.searchQuery === '' || state.searchQuery === undefined) {
-            console.log('empty search query')
-            setLimit(limit + LIMIT);
-            setOffset(limit + LIMIT);
-
-            const { data } = await fetchMoreSets(offset);
+            const offsetFetch: number = state.keycapsets.length;
+            const { data } = await fetchMoreSets(offsetFetch, LIMIT);
             const { keycapsets } = data;
 
-            if (keycapsets.length > 0) {
+            if (keycapsets.length > 1) {
                 if (state.searchQuery === '') {
                     setGlobalState({
                         keycapsets: [
@@ -136,27 +127,27 @@ function Home(props: HomeProps) {
         }
     }
 
-    async function fetchMoreSets(offset: number, limit?: number): Promise<any> {
-        const fetchSetQueryResult = await client.query({
-            query: FETCH_KEYCAPSET_QUERY,
-            variables: {
-                offset,
-                limit: limit ? limit : LIMIT,
-                type: state.activeTab,
-                query: state.searchQuery
-            }
-        });
-        return fetchSetQueryResult;
-    }
-
     async function initSets() {
-        const { data } = await fetchMoreSets(0);
+        const { data } = await fetchMoreSets(0, LIMIT);
         const { keycapsets, allKeycapsetsCount } = data;
 
         setGlobalState({
             allKeycapsetsCount,
             keycapsets,
         })
+    }
+
+    async function fetchMoreSets(offset: number, limit?: number): Promise<any> {
+        const fetchSetQueryResult = await client.query({
+            query: FETCH_KEYCAPSET_QUERY,
+            variables: {
+                offset,
+                limit: limit,
+                type: state.activeTab,
+                query: state.searchQuery
+            }
+        });
+        return fetchSetQueryResult;
     }
 
     function setGlobalState(obj: any) {
