@@ -30,7 +30,6 @@ function LoadingKeyboardIllustration(props: LoadingKeyboardIllustrationProps): J
     }
 
     function startLoadingAnimation() {
-        console.log('startLoadingAnimation')
         refs.forEach((ref, i) => {
             toggleFillClass(ref.current, i)
         });

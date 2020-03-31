@@ -7,7 +7,7 @@ export function reduceState(state, obj) {
         ...state,
         ...obj
     }
-    // console.log(moment().format('hh:mm:ss') + '_STATE...', reducedState)
+    console.log(moment().format('hh:mm:ss') + '_STATE...', reducedState)
     return reducedState;
 }
 
