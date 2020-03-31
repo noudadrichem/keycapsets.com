@@ -4,6 +4,7 @@ import { useApolloClient } from '@apollo/react-hooks';
 import { ApolloClient } from 'apollo-boost';
 import { InititalState, Keycapset } from 'typings';
 import withGA from "next-ga";
+import { forceCheck } from 'react-lazyload';
 
 import withData from '../hooks/withData';
 import Context, { INITITAL_STATE, reduceState } from '../context';
@@ -76,6 +77,7 @@ function Home(props: HomeProps) {
             if(state.searchQuery !== '' || state.searchQuery !== undefined) {
                 setOffset(0)
                 fetchMoreWhenSearched();
+                forceCheck();
             } else {
                 initSets();
             }
@@ -95,7 +97,7 @@ function Home(props: HomeProps) {
 
     async function fetchMoreWhenSearched(): Promise<void> {
         console.log('fetch more when searched')
-        const { data } = await fetchMoreSets(0, 100);
+        const { data } = await fetchMoreSets(0, LIMIT);
         const { keycapsets, allKeycapsetsCount } = data;
 
         setGlobalState({
@@ -106,6 +108,7 @@ function Home(props: HomeProps) {
     }
 
     async function fetchMoreWhenBottomOfPage(): Promise<void> {
+        console.log('fetch bottom...')
         if (state.searchQuery === '' || state.searchQuery === undefined) {
             console.log('empty search query')
             setLimit(limit + LIMIT);

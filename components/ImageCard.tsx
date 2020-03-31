@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import moment from 'moment';
-import LazyLoad from 'react-lazyload';
+import LazyLoad, { forceCheck } from 'react-lazyload';
 import Link from 'next/link';
 
 import ButtonLink from '../components/ButtonLink';
 import Pill from '../components/Pill';
 import { Keycapset } from 'typings';
+import Context from '../context';
 
 interface ImageCardProps {
     keycapset: Keycapset;
@@ -24,12 +25,17 @@ function ImageCard(props: ImageCardProps): JSX.Element {
         groupbuyEndDate
     } = keycapset;
 
-    const isInFuture: Boolean = moment().diff(groupbuyStartDate, 'days') < 0;
+    const { searchQuery } = useContext(Context);
 
+    const isInFuture: Boolean = moment().diff(groupbuyStartDate, 'days') < 0;
     const isTemplate = !keycapset.hasOwnProperty('_id');
 
+    useEffect(() => {
+        forceCheck();
+    }, [searchQuery])
+
     return (
-        <LazyLoad offset={100} height={400}>
+        <LazyLoad offset={200} height={400} once>
             <Link href="/[type]/[set]" as={`/${type}/${slug}`}>
                 <div className={`image-card ${isTemplate ? 'disabled' : ''}`}>
                     <div className="image">

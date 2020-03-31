@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Keycapset } from 'typings';
 import Context from '../context';
 import ImageCard from './ImageCard';
