@@ -1,0 +1,44 @@
+.input-checkbox {
+    &-container {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 8px;
+    }
+
+    &-input {
+        border: 0;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        white-space: nowrap;
+        width: 1px;
+    }
+
+    &-styled {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        background-color: #fff;
+        border: 1px solid #e2e5eb;
+        border-radius: 3px;
+
+        &.checked {
+            background: var(--blue);
+            border: 2px solid #ABCCF8;
+        }
+    }
+
+    &-check-icon {
+        fill: none;
+        stroke: white;
+        stroke-width: 2px;
+        visibility: hidden;
+
+        &.checked {
+            visibility: visible;
+        }
+    }
+}

@@ -21,14 +21,18 @@ function useInput(props: InputProps): any[] {
     const [value, setValue] = useState(defaultValue);
 
     function onInputChange(e) {
-        setValue(e.target.value)
+        if (type === 'checkbox') {
+            setValue(e.target.checked)
+        } else {
+            setValue(e.target.value)
+        }
     }
 
     const inputField: JSX.Element = (
-        <div className="input-wrapper">
-            { label && <label className="label">{ label }</label>}
+        <div className={`input-wrapper ${type}`}>
+            {label && <label htmlFor={id} className="label">{ label }</label>}
             <input
-                value={value}
+                // value={value}
                 name={id}
                 id={id}
                 type={type}

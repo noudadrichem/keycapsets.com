@@ -23,11 +23,12 @@ function ImageCard(props: ImageCardProps): JSX.Element {
         type,
         slug,
         groupbuyStartDate,
-        groupbuyEndDate
+        groupbuyEndDate,
+        isInterestCheck
     } = keycapset;
 
     const state = useContext<InititalState>(Context);
-    const isInFuture: Boolean = moment().diff(groupbuyStartDate, 'days') < 0;
+    const isInFuture: boolean = moment().diff(groupbuyStartDate, 'days') < 0;
     const isTemplate = !keycapset.hasOwnProperty('_id');
 
     useEffect(() => {
@@ -46,7 +47,7 @@ function ImageCard(props: ImageCardProps): JSX.Element {
                         <StatusLabel
                             groupbuyStartDate={groupbuyStartDate}
                             groupbuyEndDate={groupbuyEndDate}
-                            isIc={false}
+                            isIc={isInterestCheck}
                         />
                     </div>
 
@@ -59,15 +60,21 @@ function ImageCard(props: ImageCardProps): JSX.Element {
                         <div className="bottom">
                             <p className="light">
                                 {
-                                    isInFuture
-                                        ? <> Starting in <span className="bold"> {getDayDifference(groupbuyStartDate)} </span> days </>
-                                        : <>{
-                                            getDayDifference(groupbuyEndDate) > 0
-                                                ? (<>
-                                                    Ending in <span className="bold"> {getDayDifference(groupbuyEndDate)} </span> days
-                                    </>)
-                                                : 'Ended.'
-                                        }</>
+                                    isInterestCheck ? (
+                                        <>Awaiting interest check </>
+                                    ) : (
+                                        <>
+                                            {
+                                                isInFuture
+                                                    ? <> Starting in <span className="bold"> {getDayDifference(groupbuyStartDate)} </span> days </>
+                                                    : <>{
+                                                        getDayDifference(groupbuyEndDate) > 0
+                                                            ? (<>Ending in <span className="bold"> {getDayDifference(groupbuyEndDate)} </span> days</>)
+                                                            : 'Ended.'
+                                                    }</>
+                                            }
+                                        </>
+                                    )
                                 }
                             </p>
                             <ButtonLink href="/[type]/[set]" as={`/${type}/${slug}`}>View this set</ButtonLink>

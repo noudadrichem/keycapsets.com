@@ -12,7 +12,7 @@
         height: 12px;
         display: inline-flex;
         left: 8px;
-    position: absolute;
+        position: absolute;
         pointer-events: none;
 
         &+input {
@@ -26,16 +26,14 @@
         font-size: 12px;
         color: var(--text-color-secondary);
         width: 100%;
-        background-color: #fff;;
+        background-color: #fff;
         padding: 8px 16px;
-
         font-weight: 400;
         color: #2b3548;
         border: 1px solid #e2e5eb;
         border-radius: 8px;
         outline: none;
         resize: none;
-        -webkit-appearance: none;
 
         &:focus {
             border: 1px solid var(--blue);

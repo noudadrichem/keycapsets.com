@@ -26,6 +26,7 @@ import ImageCard from '../../components/ImageCard';
 import LoadingKeyboard from '../../components/LoadingKeyboard';
 import Meta from '../../components/Meta';
 import ColorPicker from '../../components/ColorPicker';
+import Checkbox from '../../components/Checkbox';
 
 interface UploadSetProps {}
 
@@ -33,13 +34,14 @@ function UploadSet(props: UploadSetProps): JSX.Element {
     const [nameValue, nameInput, setName] = useInput({ label: 'Name:' });
     const [designerNameValue, designerNameInput, setDesignerName] = useInput({ label: 'Designer name:' });
     const [coverImageUrlValue, coverImageUrlInput, setCoverImg] = useInput({ label: 'Cover image (url):' });
-    const [websiteUrlValue, websiteUrlInput, setWebsiteUrlInput] = useInput({ label: 'Website:' });
+    const [websiteUrlValue, websiteUrlInput, setWebsiteUrlInput] = useInput({ label: 'Website (or Geekhack):' });
     const [startDateValue, startDateInput, setStartDate] = useInput({ label: 'Start groupbuy:', type: 'date', defaultValue: moment().format('YYYY-MM-DD') });
     const [endDateValue, endDateInput, setEndDateValue] = useInput({ label: 'End groupbuy:', type: 'date', defaultValue: moment().add('1', 'months').format('YYYY-MM-DD') });
 
     const [accentColor1Value, accentColor1Input, setAccentColor1] = useInput({ label: 'Page accent color 1:'});
     const [accentColor2Value, accentColor2Input, setAccentColor2] = useInput({ label: 'Page accent color 2:'});
     const [accentColor3Value, accentColor3Input, setAccentColor3] = useInput({ label: 'Page accent color 3:'});
+    // const [isInterestCheckValue, isInterestCheckInput] = useInput({ label: 'Is this an interest check?', type: 'checkbox'})
     // kits here...
     const [imageUrls, setImageUrls] = useState([]);
     const [vendors, setVendors] = useState([]);
@@ -50,6 +52,7 @@ function UploadSet(props: UploadSetProps): JSX.Element {
     const [shouldReset, setShouldReset] = useState(false);
     const [isFormValid, setFormValid] = useState(true);
     const [errors, setErrors] = useState([]);
+    const [isInterestCheckValue, setIsInterestCheckValue] = useState<boolean>(false);
 
     const [addKeyset] = useMutation(CREATE_KEYSET_MUTATION);
     const { loading, error, data: vendorQueryResult } = useQuery(GET_VENDORS_QUERY);
@@ -64,8 +67,13 @@ function UploadSet(props: UploadSetProps): JSX.Element {
         accentColor1: accentColor1Value,
         accentColor2: accentColor2Value,
         accentColor3: accentColor3Value,
+        isInterestCheck: isInterestCheckValue || false, // update input hook
         imageUrls,
     };
+
+    useEffect(() => {
+        console.log('upload set sid effect', keycapset)
+    })
 
     useEffect(() => {
         const oneMonthLater = moment(startDateValue).add(1, 'months').add(1, 'days').format('YYYY-MM-DD')
@@ -165,19 +173,33 @@ function UploadSet(props: UploadSetProps): JSX.Element {
                 <div className="grid two-column">
                     <div className="column">
                         <h4 className="form-sub-title">Basis keycapset info</h4>
+                        <Checkbox
+                            label="Is this an interest check?"
+                            checked={isInterestCheckValue}
+                            getVal={(isChecked) => setIsInterestCheckValue(isChecked)}
+                        />
+
                         { nameInput }
                         { designerNameInput }
                         { coverImageUrlInput }
                         { websiteUrlInput }
-                        { startDateInput }
-                        { endDateInput }
-                        <Multiselect
-                            label="Vendors"
-                            value={vendors}
-                            onChange={(selectedVendors: any[]) => setVendors(selectedVendors)}
-                            options={vendorQueryResult.vendors.map((v: Vendor) => ({ value: v._id, label: v.name }))}
-                            isMulti
-                        />
+
+                        {
+                            !isInterestCheckValue && (
+                                <>
+                                    { startDateInput }
+                                    { endDateInput}
+                                    <Multiselect
+                                        label="Vendors"
+                                        value={vendors}
+                                        onChange={(selectedVendors: any[]) => setVendors(selectedVendors)}
+                                        options={vendorQueryResult.vendors.map((v: Vendor) => ({ value: v._id, label: v.name }))}
+                                        isMulti
+                                    />
+                                </>
+                            )
+                        }
+
                         <MultipleInputs
                             label="Images"
                             onChange={(values: string[]) => setImageUrls(values)}

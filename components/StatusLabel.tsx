@@ -22,11 +22,11 @@ function StatusLabel(props: StatusLabelProps): JSX.Element {
     } = props;
 
     const getDayDifference = (date: string | number) => moment(date).diff(moment(), 'days');
-    const awaitingGroupbuy: Boolean = moment().diff(groupbuyStartDate, 'days') < 0;
-    const inGroupbuy: Boolean = getDayDifference(groupbuyEndDate) > 0;
+    const awaitingGroupbuy: boolean = moment().diff(groupbuyStartDate, 'days') < 0;
+    const inGroupbuy: boolean = getDayDifference(groupbuyEndDate) > 0;
 
     if (isIc) {
-        return <Pill color='green' text={Labels.IC} />
+        return <Pill color='orange' text={Labels.IC} />
     } else if (awaitingGroupbuy) {
         return <Pill color='green' text={Labels.AWAITING} />
     } else if (inGroupbuy) {

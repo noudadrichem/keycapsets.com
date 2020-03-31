@@ -8,7 +8,7 @@ declare module 'typings' {
         designerName?: string;
         groupbuyStartDate?: string;
         groupbuyEndDate?: string;
-        active?: Boolean;
+        active?: boolean;
         coverImageUrl?: string;
         imageUrls?: string[];
         websiteUrl?: string;
@@ -19,6 +19,7 @@ declare module 'typings' {
         accentColor1: string;
         accentColor2: string;
         accentColor3: string;
+        isInterestCheck: boolean;
     }
 
     interface Vendor {

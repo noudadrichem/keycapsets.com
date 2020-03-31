@@ -21,12 +21,7 @@ query FETCH_KEYCAPSET_QUERY(
         slug
         groupbuyStartDate
         groupbuyEndDate
-        updatedAt
-        createdAt
-        designerName
-        kits {
-            name
-        }
+        isInterestCheck
     }
 }
 `;
@@ -40,7 +35,7 @@ mutation keycapsetCreateOne(
     $vendors: [String]
     $imageUrls: [String]
     $websiteUrl: String
-    $brand: String,
+    $brand: String
     $material: String
     $accentColor1: String
     $accentColor2: String
@@ -49,6 +44,7 @@ mutation keycapsetCreateOne(
     $groupbuyStartDate: Date
     $groupbuyEndDate: Date
     $kits: [KitInput]
+    $isInterestCheck: Boolean
 ) {
     createKeycapset(
         name: $name
@@ -67,12 +63,14 @@ mutation keycapsetCreateOne(
         accentColor3: $accentColor3
         kits: $kits
         designerName: $designerName
+         isInterestCheck: $isInterestCheck
     ) {
         name
         type
         _id
     }
-}`
+}
+`
 
 const CREATE_VENDOR_MUTATION = gql`
 mutation CREATE_VENDOR_MUTATION(
