@@ -1,4 +1,3 @@
-require('dotenv').config();
 const withSass = require('@zeit/next-sass');
 const withCSS = require("@zeit/next-css");
 const withImages = require('next-images');
@@ -6,9 +5,6 @@ const withImages = require('next-images');
 module.exports = withImages(withCSS(withSass({
     cssLoaderOptions: {
         url: false
-    },
-    env: {
-        doesthis: 'work?'
     },
     webpack(config, options) {
         config.module.rules.push({

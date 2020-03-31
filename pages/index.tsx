@@ -28,7 +28,7 @@ interface HomeProps {
 }
 
 function Home(props: HomeProps) {
-    const LIMIT = 100;
+    const LIMIT = 96;
     const isBrowser = typeof window !== `undefined`
     const client = useApolloClient();
 
@@ -49,7 +49,6 @@ function Home(props: HomeProps) {
     useEffect(function handleTabChange() {
         setLimit(LIMIT);
         setOffset(LIMIT);
-        // initSets();
     }, [state.activeTab])
 
     useEffect(function handleRefetchingOnBottomOfPage() {
@@ -70,7 +69,6 @@ function Home(props: HomeProps) {
 
 
     useEffect(function handleSearch() {
-        console.log('handle search...', state.searchQuery);
         let timeout;
         clearTimeout(timeout);
 
@@ -108,7 +106,6 @@ function Home(props: HomeProps) {
     }
 
     async function fetchMoreWhenBottomOfPage(): Promise<void> {
-        console.log('fetch more when at bottom')
         if (state.searchQuery === '' || state.searchQuery === undefined) {
             console.log('empty search query')
             setLimit(limit + LIMIT);
@@ -150,7 +147,6 @@ function Home(props: HomeProps) {
     }
 
     async function initSets() {
-        console.log('inti sets')
         const { data } = await fetchMoreSets(0);
         const { keycapsets, allKeycapsetsCount } = data;
 
