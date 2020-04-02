@@ -12,6 +12,10 @@
     left: 0;
     z-index: 9;
 
+    @media screen and(max-width: 562px) {
+        position: relative;
+    }
+
     .sponsored-by {
         display: inline-flex;
         align-items: center;
@@ -25,11 +29,12 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+
+        @media screen and(max-width: 562px) {
+            flex-direction: column;
+        }
     }
 
-    @media screen and(max-width: 562px) {
-        flex-direction: column;
-    }
 
     > .flex {
         flex: 1;
