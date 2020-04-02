@@ -90,8 +90,8 @@ function UploadVendor(props: UploadVendorProps) {
                 </div>
 
 
-                <Footer />
             </div>
+            <Footer />
         </>
     )
 }

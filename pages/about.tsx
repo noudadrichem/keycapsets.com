@@ -76,8 +76,8 @@ function About(props: AboutProps) {
 
                 </div>
 
-                <Footer />
             </div>
+            <Footer />
         </>
     )
 }

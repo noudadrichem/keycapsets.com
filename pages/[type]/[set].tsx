@@ -1,7 +1,6 @@
 import React from 'react';
 import moment from 'moment';
 import { useRouter, Router } from 'next/router';
-import Head from 'next/head';
 import Slider from "react-slick";
 import { useQuery } from '@apollo/react-hooks';
 import { Keycapset, Vendor } from 'typings';

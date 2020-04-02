@@ -44,8 +44,8 @@ function Error(props: ErrorProps) {
                     <p>Curabitur in accumsan lorem. Donec ut sodales metus. Duis nec metus aliquet leo facilisis vehicula. Nullam quam lectus, aliquet feugiat consequat quis, fermentum ullamcorper risus. Pellentesque feugiat erat tincidunt maximus tempus. Duis at quam dolor. Curabitur ac turpis nulla.</p>
                 </div> */}
 
-                <Footer />
             </div>
+            <Footer />
         </>
     )
 }
