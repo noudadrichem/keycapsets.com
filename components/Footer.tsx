@@ -1,7 +1,5 @@
 import React from 'react';
 
-import '../assets/styles/footer.scss';
-
 interface FooterProps { }
 
 const Twitter = ({ size = 24 }) => (
@@ -21,22 +19,31 @@ function Footer(props: FooterProps): JSX.Element {
     const { } = props;
 
     return (
-        <div className="container footer">
-            <div>
-                <p>
-                    &copy; Made with <a href="https://bunq.me/noudadrichem/3/I'm%20liking%20keycapsets!">☕</a>in Utrecht.
+        <div className="footer">
+            <div className="container large">
+                <div>
+                    <p>
+                        &copy; Made with <a href="https://bunq.me/noudadrichem/3/I'm%20liking%20keycapsets!">☕</a>in Utrecht.
                 </p>
-            </div>
+                </div>
 
-            <div className="socials-container">
-                {/* <a href="https://bunq.me/noudadrichem/2/">Buy me a cup of coffee</a> */}
-                <a href="mailto:contact@keycapsets.com">contact@keycapsets.com</a>
-                <a href="https://twitter.com/noudadrichem">
-                    <Twitter />
+                {/* <div> */}
+                <a href="https://candykeys.com/" target="_blank" className="sponsored-by">
+                    <img src="https://candykeys.com/img/favicon-16x16.png" alt="Logo CandyKeys"/>
+                    Sponsored by<b>&nbsp;CandyKeys</b>
                 </a>
-                <a href="https://www.instagram.com/keycapsets/">
-                    <Instagram />
-                </a>
+                {/* </div> */}
+
+                <div className="socials-container">
+                    {/* <a href="https://bunq.me/noudadrichem/2/">Buy me a cup of coffee</a> */}
+                    <a href="mailto:contact@keycapsets.com">contact@keycapsets.com</a>
+                    <a href="https://twitter.com/noudadrichem">
+                        <Twitter />
+                    </a>
+                    <a href="https://www.instagram.com/keycapsets/">
+                        <Instagram />
+                    </a>
+                </div>
             </div>
         </div>
     )

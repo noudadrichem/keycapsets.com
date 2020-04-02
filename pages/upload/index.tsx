@@ -31,8 +31,9 @@ function Upload(props: UploadProps) {
 
                 </div>
 
-                <Footer />
             </div>
+
+            <Footer />
         </>
     )
 }

@@ -4,7 +4,6 @@ import Arrow from './Arrow';
 import Button from './Button';
 
 function BackToTop(): JSX.Element {
-
     const isBrowser = typeof window !== `undefined`;
     const [isPastOffset, setIsPastOffset] = useState(false);
     const { y } = useWindowScroll();
@@ -12,7 +11,7 @@ function BackToTop(): JSX.Element {
     useEffect(function updateScrollOffset() {
       if (isBrowser) {
         const innerHeight = window.innerHeight;
-        setIsPastOffset(y > innerHeight);
+        setIsPastOffset(y > (innerHeight / 2));
       }
     })
 

@@ -253,8 +253,8 @@ function UploadSet(props: UploadSetProps): JSX.Element {
                 </div>
 
 
-                <Footer />
             </div>
+            <Footer />
         </>
     )
 }
