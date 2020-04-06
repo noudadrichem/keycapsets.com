@@ -150,6 +150,18 @@ query GET_SINGLE_SET_QUERY($type: String!, $slug:String!){
 }
 `
 
+const GET_SETS_BY_VENDOR = gql`
+query getKeycapsetByVendor($vendorId:String) {
+    keycapsetsByVendor(vendorId: $vendorId) {
+        _id
+        name
+        type
+        coverImageUrl
+        slug
+    }
+}
+`
+
 const GET_SETS_BY_QUERY = gql`
 query getKeycapsetByQuery($query:String) {
     keycapsetsByQuery(query: $query) {
@@ -173,5 +185,6 @@ export {
     GET_VENDORS_QUERY,
     GET_SINGLE_VENDOR_QUERY,
     GET_SINGLE_SET_QUERY,
+    GET_SETS_BY_VENDOR,
     GET_SETS_BY_QUERY
 }
