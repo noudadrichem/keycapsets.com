@@ -12,7 +12,8 @@ function VendorCard(props: VendorCardProps): JSX.Element {
     const {
         name,
         logoUrl,
-        url
+        url,
+        slug
     } = vendor;
 
     return (
@@ -29,7 +30,7 @@ function VendorCard(props: VendorCardProps): JSX.Element {
                     </div>
 
                     <div className="right">
-                        <ButtonLink href={url}>Go to vendor</ButtonLink>
+                        <ButtonLink href="/vendors/[vendor]" as={`/vendors/${slug}`}>Go to vendor</ButtonLink>
                     </div>
                 </div>
 
