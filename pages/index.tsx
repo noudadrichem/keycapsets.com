@@ -177,7 +177,6 @@ function Home(props: HomeProps) {
                     isHome
                 />
 
-                <Images />
 
                 { loadingExtra && <LoadingKeyboardIllustration scale={0.3} />}
 

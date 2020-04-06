@@ -5,19 +5,29 @@ import ImageCard from './ImageCard';
 
 import Tabs from './Tabs';
 
-interface ImagesProps {}
+interface ImagesProps {
+  keycapsets: Array<Keycapset>,
+  activeTab?: String,
+  searchQuery?: String,
+  filter?: Boolean
+}
 
 function Images(props: ImagesProps): JSX.Element {
-    const {} = props;
     const {
-        keycapsets,
-        activeTab,
-        searchQuery
-    } = useContext(Context);
+      keycapsets,
+      activeTab,
+      searchQuery,
+      filter
+    } = props;
+    // const {
+    //     keycapsets,
+    //     activeTab,
+    //     searchQuery
+    // } = useContext(Context);
 
     return (
         <>
-            <Tabs />
+            {filter ? <Tabs /> : null}
 
             <div className="images-container">
                 { keycapsets.length > 0 ?
