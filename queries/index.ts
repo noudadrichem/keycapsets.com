@@ -101,7 +101,18 @@ query GET_VENDORS_QUERY {
     _id
     logoUrl
     url
+    slug
   }
+}
+`
+
+const GET_SINGLE_VENDOR_QUERY = gql`
+query GET_SINGLE_VENDOR_QUERY($slug:String!){
+    vendorBySlug(slug:$slug) {
+        _id
+        name
+        logoUrl
+    }
 }
 `
 
@@ -160,6 +171,7 @@ export {
     CREATE_KEYSET_MUTATION,
     CREATE_VENDOR_MUTATION,
     GET_VENDORS_QUERY,
+    GET_SINGLE_VENDOR_QUERY,
     GET_SINGLE_SET_QUERY,
     GET_SETS_BY_QUERY
 }
