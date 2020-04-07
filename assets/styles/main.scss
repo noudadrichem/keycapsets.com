@@ -8,6 +8,7 @@
 @import 'images';
 @import 'upload';
 @import 'image-card';
+@import 'vendor-card';
 @import 'arrow';
 @import 'back-to-top';
 @import 'checkbox';
@@ -25,6 +26,7 @@ body {
     min-height: 100.1vh;
     max-width: 100vw;
     overflow-x: hidden;
+    padding-bottom: 80px;
 }
 
 ul {
