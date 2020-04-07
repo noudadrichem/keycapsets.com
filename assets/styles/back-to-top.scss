@@ -13,6 +13,7 @@
   cursor: pointer;
   width: 48px;
   height: 48px;
+  z-index: 10;
 
   @media screen and (max-width: 768px) {
     right: 8px;

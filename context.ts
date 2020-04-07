@@ -1,6 +1,7 @@
 import { createContext } from 'react';
 import moment from 'moment';
 import { InititalState } from 'typings';
+import {PROFILE_OPTIONS } from './constants';
 
 export function reduceState(state, obj) {
     const reducedState = {
@@ -15,7 +16,8 @@ export function reduceState(state, obj) {
 
 export const INITITAL_STATE: InititalState = {
     activeTab: 'all',
-    tabs: ['all', 'gmk', 'pbt', 'sa', 'dsa', 'kat', 'jtk', 'kam'],
+    tabs: ['all', 'gmk', 'pbt', 'sa', 'dsa', 'kat', 'jtk', 'kam', 'dcs'],
+    // tabs: PROFILE_OPTIONS.map(o => o.label),
     keycapsets: [],
     searchQuery: '',
     allKeycapsetsCount: 0,

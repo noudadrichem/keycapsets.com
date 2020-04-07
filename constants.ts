@@ -26,5 +26,6 @@ export const PROFILE_OPTIONS = [
     { label: 'KAT', value: 'kat' },
     { label: 'KAM', value: 'kam' },
     { label: 'OEM', value: 'oem' },
-    { label: 'MDA', value: 'mda' }
+    { label: 'MDA', value: 'mda' },
+    { label: 'DCS', value: 'dcs' }
 ]

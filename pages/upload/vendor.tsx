@@ -80,16 +80,17 @@ function UploadVendor(props: UploadVendorProps) {
                         {nameInput}
 
                         <Multiselect
-                            label="Country"
-                            onChange={(selectedCountry: any) => setCountry(selectedCountry)}
-                            options={countries}
-                            defaultValue={{ label: 'Netherlands', value: 'NL'}}
-                        />
-                        <Multiselect
-                            label="Continents"
+                            label="Continent"
                             onChange={(selectedContinent: any) => setContinent(selectedContinent)}
                             options={continents}
                             defaultValue={{ label: "Europe", value: "EU"}}
+                        />
+
+                        <Multiselect
+                            label="Country"
+                            onChange={(selectedCountry: any) => setCountry(selectedCountry)}
+                            options={countries}
+                            defaultValue={{ label: 'Netherlands', value: 'NL' }}
                         />
 
                         {logoUrlInput}
