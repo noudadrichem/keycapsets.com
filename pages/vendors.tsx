@@ -12,7 +12,6 @@ import Heading from '../components/Heading';
 import Footer from '../components/Footer';
 
 import '../assets/styles/main.scss';
-import '../assets/styles/vendor-card.scss';
 import { Vendor } from 'typings';
 import Nav from '../components/Nav';
 import LoadingKeyboard from '../components/LoadingKeyboard';

@@ -11,6 +11,7 @@ interface MultiSelectProps {
     onChange: Function;
     isMulti?: boolean;
     label: String
+    defaultValue?: any;
 }
 
 function MultiSelect(props: MultiSelectProps): JSX.Element {
@@ -19,7 +20,8 @@ function MultiSelect(props: MultiSelectProps): JSX.Element {
         options,
         onChange,
         isMulti,
-        label
+        label,
+        defaultValue
     }: MultiSelectProps = props;
 
     const SELECT_STYLES = {
@@ -45,7 +47,7 @@ function MultiSelect(props: MultiSelectProps): JSX.Element {
                 options={options}
                 isMulti={isMulti}
                 isSearchable
-                defaultValue={options[0]}
+                defaultValue={defaultValue || options[0]}
             />
         </div>
     )
