@@ -175,9 +175,9 @@ function Home(props: HomeProps) {
                 { loadingExtra && <LoadingKeyboardIllustration scale={0.3} />}
 
                 <BackToTop />
-                <Footer />
             </div>
 
+            <Footer />
             <CTACard />
         </Context.Provider>
     )

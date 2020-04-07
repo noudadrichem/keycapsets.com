@@ -53,9 +53,8 @@ function Vendors(props: VendorProps):JSX.Element {
                             )
                     }
                 </div>
-
-                <Footer />
             </div>
+            <Footer />
         </>
     )
 }
