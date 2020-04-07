@@ -36,10 +36,6 @@ function UploadVendor(props: UploadVendorProps) {
     const [shouldReset, setShouldReset] = useState<boolean>(false);
     const [addVendor, mutationResponse] = useMutation<string>(CREATE_VENDOR_MUTATION);
 
-    useEffect(() => {
-        console.log({ countries, continents })
-    }, [])
-
     async function uploadVendor() {
         const variables = {
             name: nameValue,
@@ -48,10 +44,7 @@ function UploadVendor(props: UploadVendorProps) {
             url: urlValue,
             socials
         };
-        console.log(variables);
         const result = await addVendor({ variables });
-        console.log('result', result);
-
         reset();
     }
 
@@ -97,10 +90,7 @@ function UploadVendor(props: UploadVendorProps) {
                         {urlInput}
                         <MultipleInputs
                             label="Social links..."
-                            onChange={(socials: string[]) => {
-                                console.log('change socials...', socials)
-                                setSocials(socials)
-                            }}
+                            onChange={(socials: string[]) => { setSocials(socials) }}
                             shouldReset={shouldReset}
                         />
 
