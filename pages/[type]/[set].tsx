@@ -84,7 +84,10 @@ function SetPage(props: SetProps) {
 
                     <div>
                         <h3>Info</h3>
-                        <p>type: {set.type}</p>
+                        <p>Designer: {set.designerName || 'Unknown'}</p>
+                        <p>Profile: {set.type}</p>
+                        <p>Brand: {set.brand || 'Unknown'}</p>
+                        <p>Material: {set.material || 'Unknown'}</p>
                         <p>Start date: {moment(set.groupbuyStartDate).format('dddd YYYY-MM-DD')}</p>
                         <p>End date: {moment(set.groupbuyEndDate).format('dddd YYYY-MM-DD')}</p>
 
