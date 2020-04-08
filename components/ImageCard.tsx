@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import moment from 'moment';
 import LazyLoad, { forceCheck } from 'react-lazyload';
 import Link from 'next/link';
@@ -37,10 +37,12 @@ function ImageCard(props: ImageCardProps): JSX.Element {
         }
     }, [state.searchQuery])
 
+    const [ isHovered, setHover ] = useState(false)
+
     return (
         <LazyLoad offset={200} height={400} once>
             <Link href="/[type]/[set]" as={`/${type}/${slug}`}>
-                <div className={`image-card ${isTemplate ? 'disabled' : ''}`}>
+                <div className={`image-card ${isTemplate ? 'disabled' : ''}`} onMouseOver={() => setHover(true)} onMouseLeave={() => setHover(false)}>
                     <div className="image">
                         <img src={coverImageUrl === undefined || coverImageUrl === '' ? '/images/empty-base-kit-illu.svg' : coverImageUrl} />
 
@@ -77,7 +79,7 @@ function ImageCard(props: ImageCardProps): JSX.Element {
                                     )
                                 }
                             </p>
-                            <ButtonLink href="/[type]/[set]" as={`/${type}/${slug}`}>View this set</ButtonLink>
+                            <ButtonLink isHovered={isHovered}>View this set</ButtonLink>
                         </div>
                     </div>
                 </div>

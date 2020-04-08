@@ -18,7 +18,13 @@
 
     &:hover {
         border-bottom: 2px solid #539BFB;
+        .arrow {
+            transform: translateX(3px);
+        }
+    }
 
+    &.hover {
+        border-bottom: 2px solid #539BFB;
         .arrow {
             transform: translateX(3px);
         }
