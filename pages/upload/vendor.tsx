@@ -112,7 +112,7 @@ function UploadVendor(props: UploadVendorProps) {
     )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     const filepath = process.cwd() + '/assets/countries.json';
     const fileContents = fs.readFileSync(filepath, 'utf8')
     const countries = JSON.parse(fileContents);
