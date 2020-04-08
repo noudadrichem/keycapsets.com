@@ -1,8 +1,21 @@
 .nav {
-    padding: 24px 0;
     // background-color: var(--white);
     @media screen and (max-width: 562px) {
         // margin: 0 12px;
+    }
+
+    .discord-banner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        background: #7289da;
+        color: #fff;
+
+        img {
+            height: 20px;
+            margin-right: 10px;
+        }
     }
 
     .logo {
@@ -10,6 +23,7 @@
     }
 
     .container {
+        padding: 24px 0;
         .nav-container {
             display: flex;
             justify-content: space-between;
