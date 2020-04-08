@@ -65,7 +65,7 @@ function SetPage(props: SetProps) {
             <div className="container">
                 <Heading
                     left
-                    mainTitle={`${set.type.toUpperCase()} ${set.name}`}
+                    mainTitle={`${set.name} ${set.designerName ? `designed by ${set.designerName}`: ''}`}
                     subTitle={`Good luck with sharing!`}
                 />
 
