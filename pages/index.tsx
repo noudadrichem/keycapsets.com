@@ -1,26 +1,26 @@
-import React, { useEffect, useState } from "react";
-import Head from "next/head";
-import { useApolloClient } from "@apollo/react-hooks";
-import { ApolloClient } from "apollo-boost";
-import { InititalState, Keycapset } from "typings";
-import withGA from "next-ga";
-import { forceCheck } from "react-lazyload";
+import React, { useEffect, useState } from 'react';
+import Head from 'next/head';
+import { useApolloClient } from '@apollo/react-hooks';
+import { ApolloClient } from 'apollo-boost';
+import { InititalState, Keycapset } from 'typings';
+import withGA from 'next-ga';
+import { forceCheck } from 'react-lazyload';
 
-import withData from "../hooks/withData";
-import Context, { INITITAL_STATE, reduceState } from "../context";
-import { FETCH_KEYCAPSET_QUERY } from "../queries";
+import withData from '../hooks/withData';
+import Context, { INITITAL_STATE, reduceState } from '../context';
+import { FETCH_KEYCAPSET_QUERY } from '../queries';
 
-import Heading from "../components/Heading";
-import Footer from "../components/Footer";
-import Images from "../components/Images";
-import Nav from "../components/Nav";
-import LoadingKeyboardIllustration from "../components/LoadingKeyboardIllustration";
-import CTACard from "../components/CTACard";
-import BackToTop from "../components/BackToTop";
+import Heading from '../components/Heading';
+import Footer from '../components/Footer';
+import Images from '../components/Images';
+import Nav from '../components/Nav';
+import LoadingKeyboardIllustration from '../components/LoadingKeyboardIllustration';
+import CTACard from '../components/CTACard';
+import BackToTop from '../components/BackToTop';
 
-import "../assets/styles/main.scss";
-import Meta from "../components/Meta";
-import { Router } from "next/router";
+import '../assets/styles/main.scss';
+import Meta from '../components/Meta';
+import { Router } from 'next/router';
 
 interface HomeProps {
     url: any;
@@ -40,9 +40,9 @@ function Home(props: HomeProps) {
 
     useEffect(function initializeView() {
         if (isBrowser) {
-            window.addEventListener("scroll", checkIsBottomPage);
+            window.addEventListener('scroll', checkIsBottomPage);
             return () =>
-                window.removeEventListener("scroll", checkIsBottomPage);
+                window.removeEventListener('scroll', checkIsBottomPage);
         }
     }, []);
 
@@ -79,7 +79,7 @@ function Home(props: HomeProps) {
 
             timeout = setTimeout(() => {
                 if (
-                    state.searchQuery !== "" ||
+                    state.searchQuery !== '' ||
                     state.searchQuery !== undefined
                 ) {
                     fetchMoreWhenSearched();
@@ -116,13 +116,13 @@ function Home(props: HomeProps) {
     }
 
     async function fetchMoreWhenBottomOfPage(): Promise<void> {
-        if (state.searchQuery === "" || state.searchQuery === undefined) {
+        if (state.searchQuery === '' || state.searchQuery === undefined) {
             const offsetFetch: number = state.keycapsets.length;
             const { data } = await fetchMoreSets(offsetFetch, LIMIT);
             const { keycapsets } = data;
 
             if (keycapsets.length > 1) {
-                if (state.searchQuery === "") {
+                if (state.searchQuery === '') {
                     setGlobalState({
                         keycapsets: [...state.keycapsets, ...keycapsets],
                     });
@@ -132,7 +132,7 @@ function Home(props: HomeProps) {
                     });
                 }
             } else {
-                window.removeEventListener("scroll", checkIsBottomPage);
+                window.removeEventListener('scroll', checkIsBottomPage);
             }
         }
     }
@@ -189,4 +189,4 @@ function Home(props: HomeProps) {
     );
 }
 
-export default withGA("UA-115865530-2", Router)(withData(Home));
+export default withGA('UA-115865530-2', Router)(withData(Home));

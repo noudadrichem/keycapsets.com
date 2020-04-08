@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
-import Button from "../Button";
-import Context from "../../context";
+import React, { useContext } from 'react';
+import Button from '../Button';
+import Context from '../../context';
 
 interface TabProps {
     id: String;
-    type: "cap" | "availability";
+    type: 'cap' | 'availability';
 }
 
 function Tab(props: TabProps): JSX.Element {
@@ -17,11 +17,11 @@ function Tab(props: TabProps): JSX.Element {
                 onClick={() =>
                     type === "cap"
                         ? isActive
-                            ? state.setGlobalState({ activeTab: "all" })
+                            ? state.setGlobalState({ activeTab: 'all' })
                             : state.setGlobalState({ activeTab: id })
                         : isActive
                         ? state.setGlobalState({
-                              availabilityFilter: "none",
+                              availabilityFilter: 'none',
                           })
                         : state.setGlobalState({
                               availabilityFilter: id,
@@ -29,7 +29,7 @@ function Tab(props: TabProps): JSX.Element {
                 }
                 variant="primary"
                 size="sm"
-                className={isActive ? "primary" : "inverted"}
+                className={isActive ? 'primary' : 'inverted'}
             >
                 {id}
             </Button>

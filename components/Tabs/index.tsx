@@ -1,9 +1,9 @@
-import React, { useContext, Fragment } from "react";
-import { InititalState } from "typings";
+import React, { useContext, Fragment } from 'react';
+import { InititalState } from 'typings';
 
-import Tab from "./Tab";
-import Context from "../../context";
-import Select from "../Select";
+import Tab from './Tab';
+import Context from '../../context';
+import Select from '../Select';
 
 interface TabsProps {}
 
