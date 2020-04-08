@@ -13,7 +13,7 @@ function Nav(props: NavProps): JSX.Element {
     return (
         <nav className="nav">
             <a className="discord-banner">
-                <img src="/images/discord.svg" /> Join our discord!
+                <img src="/images/discord.svg" /> Join the conversation on our discord!
             </a>
             <div className={`container ${isLargeContainer ? 'large' : ''}`}>
                 <div className="nav-container">
