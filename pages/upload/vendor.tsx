@@ -1,5 +1,6 @@
 import path from 'path';
 import fs from 'fs';
+import { GetStaticProps } from 'next'
 import React, { useEffect, useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import withGA from 'next-ga';
@@ -112,7 +113,7 @@ function UploadVendor(props: UploadVendorProps) {
     )
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
     const filepath = process.cwd() + '/assets/countries.json';
     const fileContents = fs.readFileSync(filepath, 'utf8')
     const countries = JSON.parse(fileContents);
