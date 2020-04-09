@@ -14,7 +14,8 @@ import Nav from '../../components/Nav';
 interface UploadProps {}
 
 function Upload(props: UploadProps) {
-    return (
+    return null;
+    (
         <>
             <Nav />
             <div className="container upload">

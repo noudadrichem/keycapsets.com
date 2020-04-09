@@ -85,7 +85,8 @@ function UploadVendor(props: UploadVendorProps) {
         })
     }
 
-    return (
+    return null;
+    (
         <>
             <Meta />
             <Nav />

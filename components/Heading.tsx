@@ -34,7 +34,7 @@ function Heading(props: HeadingProps): JSX.Element {
 
                         <SearchSets />
 
-                        <div className="heading-cta">
+                        {/* <div className="heading-cta">
                             <Button
                                 onClick={() => router.push('/upload/set')}
                                 variant="primary"
@@ -50,7 +50,7 @@ function Heading(props: HeadingProps): JSX.Element {
                                 className='center'
                             >Add as vendor
                             </Button>
-                        </div>
+                        </div> */}
                     </>
                 )
             }
