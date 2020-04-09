@@ -45,7 +45,7 @@ function About(props: AboutProps) {
                         <ButtonLink isLarge href="https://github.com/noudadrichem/keycapsets.com/issues">Leave us some feedback!</ButtonLink>
                     </div>
 
-                    <h4>More about the upload inciden</h4>
+                    <h4>More about the upload incident</h4>
                     <div style={{ margin: '0 0 64px 0' }}>
                         <ButtonLink isLarge href="/upload-statement">We made a statement.</ButtonLink>
                     </div>
