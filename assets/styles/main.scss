@@ -37,6 +37,11 @@ ul {
 a {
     text-decoration: none;
     color: inherit;
+
+    &.link {
+        color: #539BFB;
+        border-bottom: 2px solid #D4E4FA;
+    }
 }
 
 img {

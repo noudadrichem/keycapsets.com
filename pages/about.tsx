@@ -42,7 +42,12 @@ function About(props: AboutProps) {
                 <div className="text-container">
 
                     <div style={{ margin: '0 0 64px 0' }}>
-                        <ButtonLink isLarge href="mailto://info@noudadrichem.com">Leave me some feedback!</ButtonLink>
+                        <ButtonLink isLarge href="https://github.com/noudadrichem/keycapsets.com/issues">Leave us some feedback!</ButtonLink>
+                    </div>
+
+                    <h4>More about the upload inciden</h4>
+                    <div style={{ margin: '0 0 64px 0' }}>
+                        <ButtonLink isLarge href="/upload-statement">We made a statement.</ButtonLink>
                     </div>
 
                     <h4 className="alinea-title">Intro</h4>
@@ -68,12 +73,6 @@ function About(props: AboutProps) {
                     <p className="light alinea">
                         This should be your go-to website to look for keycap sets. I want you to be able to search based on name, type or even the color you like. I want to make it as easy as possible for you to decide what set you should go with on your next build.
                     </p>
-
-                    <h4 className="alinea-title">The person behind</h4>
-                    <p className="light alinea">
-                        I'm Noud Adrichem, a 21 year old mechanical keyboard enthusiast. Stu-dying Software Engineering at Hogeschool Utrecht and working as a Software Engineer at <a href="https://bannerwise.io">Bannerwise.io</a>.
-                    </p>
-
                 </div>
 
             </div>

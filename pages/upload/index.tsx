@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import withGA from 'next-ga';
 import Router from 'next/router';
@@ -14,6 +14,10 @@ import Nav from '../../components/Nav';
 interface UploadProps {}
 
 function Upload(props: UploadProps) {
+    useEffect(() => {
+        Router.push('/');
+    })
+
     return null;
     (
         <>

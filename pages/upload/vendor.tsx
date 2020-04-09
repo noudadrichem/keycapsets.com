@@ -1,6 +1,6 @@
 import path from 'path';
 import fs from 'fs';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import withGA from 'next-ga';
 import Router from 'next/router';
@@ -36,6 +36,10 @@ function UploadVendor(props: UploadVendorProps) {
     const [loading, setLoading] = useState<boolean>(false);
     const [shouldReset, setShouldReset] = useState<boolean>(false);
     const [addVendor, mutationResponse] = useMutation<string>(CREATE_VENDOR_MUTATION);
+
+    useEffect(() => {
+        Router.push('/');
+    })
 
     const countriesFormatted: any[] = countries.map((country: any) => {
         return {

@@ -19,6 +19,7 @@ import VendorCard from "../components/VendorCard";
 import Meta from "../components/Meta";
 import Head from "next/head";
 import Context from "../context";
+import CTACard from '../components/CTACard';
 
 interface VendorProps {}
 
@@ -55,6 +56,7 @@ function Vendors(props: VendorProps):JSX.Element {
                 </div>
             </div>
             <Footer />
+            <CTACard />
         </>
     )
 }

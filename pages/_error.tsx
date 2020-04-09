@@ -8,6 +8,7 @@ import '../assets/styles/main.scss';
 import Heading from '../components/Heading';
 import Footer from '../components/Footer';
 import Nav from '../components/Nav';
+import CTACard from '../components/CTACard';
 
 interface ErrorProps {
     statusCode?: string;
@@ -46,6 +47,7 @@ function Error(props: ErrorProps) {
 
             </div>
             <Footer />
+            <CTACard />
         </>
     )
 }

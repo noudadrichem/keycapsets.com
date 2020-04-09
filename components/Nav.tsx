@@ -29,9 +29,9 @@ function Nav(props: NavProps): JSX.Element {
                         <Link href="/vendors" as="/vendors">
                             <a>Vendors</a>
                         </Link>
-                        <Link href="/upload" as="/upload">
+                        {/* <Link href="/upload" as="/upload">
                             <a>Upload</a>
-                        </Link>
+                        </Link> */}
                         <Link href="/about" as="/about">
                             <a>About</a>
                         </Link>

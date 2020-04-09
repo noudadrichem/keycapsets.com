@@ -9,6 +9,7 @@
     box-shadow: 0px 1px 22px rgba(0, 16, 75, 0.2);
     transition: 320ms ease-out;
     transform: translateX(120%);
+    z-index: 12;
 
     @media screen and(max-width: 868px) {
         width: calc(100% - 24px);
