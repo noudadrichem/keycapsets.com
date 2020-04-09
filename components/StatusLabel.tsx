@@ -14,6 +14,8 @@ enum Labels {
     INGROUPBUY = 'In groupbuy'
 }
 
+export const getDayDifference = (date: string | number) => moment(date).diff(moment(), 'days');
+
 function StatusLabel(props: StatusLabelProps): JSX.Element {
     const {
         groupbuyStartDate,
@@ -21,7 +23,6 @@ function StatusLabel(props: StatusLabelProps): JSX.Element {
         isIc,
     } = props;
 
-    const getDayDifference = (date: string | number) => moment(date).diff(moment(), 'days');
     const awaitingGroupbuy: boolean = moment().diff(groupbuyStartDate, 'days') < 0;
     const inGroupbuy: boolean = getDayDifference(groupbuyEndDate) > 0;
 

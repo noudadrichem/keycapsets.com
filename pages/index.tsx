@@ -50,7 +50,7 @@ function Home(props: HomeProps) {
         function handleTabChange() {
             fetchMoreWhenSearched();
         },
-        [state.activeTab]
+        [state.filters.activeTab, state.filters.availabilityFilter]
     );
 
     useEffect(
@@ -153,7 +153,7 @@ function Home(props: HomeProps) {
             variables: {
                 offset,
                 limit: limit,
-                type: state.activeTab,
+                type: state.filters.activeTab,
                 query: state.searchQuery,
             },
         });
