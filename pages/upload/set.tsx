@@ -159,7 +159,8 @@ function UploadSet(props: UploadSetProps): JSX.Element {
         return <p>'Error loading keycapsets.com... Please refresh this page'</p>;
     }
 
-    return (
+    return null;
+    (
         <>
             <Meta />
             <Nav />

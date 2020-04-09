@@ -1,4 +1,4 @@
-[
+export default [
     {
         "continentName": "Asia",
         "continentCode": "AS",
