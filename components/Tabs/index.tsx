@@ -28,7 +28,7 @@ function Tabs(props: TabsProps): JSX.Element {
                         name="Choose availability"
                         onSelectChange={(selectedFilterValue) =>
                             state.setGlobalState({
-                                availabilityFilter: selectedFilterValue,
+                                filters: {...state.filters, availabilityFilter: selectedFilterValue},
                             })
                         }
                         values={state.availability.map((t) => ({
@@ -54,7 +54,7 @@ function Tabs(props: TabsProps): JSX.Element {
                         name="Choose type"
                         onSelectChange={(selectedFilterValue) =>
                             state.setGlobalState({
-                                activeTab: selectedFilterValue,
+                                filters: {...state.filters,  activeTab: selectedFilterValue},
                             })
                         }
                         values={state.tabs.map((t) => ({ id: t, name: t }))}

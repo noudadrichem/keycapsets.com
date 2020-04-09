@@ -15,8 +15,10 @@ export function reduceState(state, obj) {
 }
 
 export const INITITAL_STATE: InititalState = {
-    activeTab: 'all',
-    availabilityFilter: 'none',
+    filters: {
+        activeTab: 'all',
+        availabilityFilter: 'none',
+    },
     tabs: ['all', 'gmk', 'pbt', 'sa', 'dsa', 'kat', 'jtk', 'kam', 'dcs'],
     availability: ['ic', 'waiting', 'gb', 'ended'],
     // tabs: PROFILE_OPTIONS.map(o => o.label),

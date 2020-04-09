@@ -35,8 +35,10 @@ declare module "typings" {
     }
 
     interface InititalState {
-        activeTab: string;
-        availabilityFilter: string;
+        filters: {
+            activeTab: string;
+            availabilityFilter: string;
+        }
         tabs: string[];
         availability: string[];
         keycapsets: any[];
