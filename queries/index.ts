@@ -90,7 +90,8 @@ mutation CREATE_VENDOR_MUTATION(
         name
         _id
     }
-}`
+}
+`
 
 const GET_VENDORS_QUERY = gql`
 query GET_VENDORS_QUERY {
