@@ -6,6 +6,12 @@ import { getDayDifference } from './StatusLabel'
 
 import Tabs from './Tabs';
 import moment from 'moment';
+import { 
+    INTEREST_CHECK,
+    WAITING_FOR_GROUPBUY,
+    IN_GROUP_BUY,
+    ENDED
+} from '../constants';
 
 interface ImagesProps {}
 
@@ -27,19 +33,25 @@ function Images(props: ImagesProps): JSX.Element {
         const {groupbuyEndDate, groupbuyStartDate, isInterestCheck} = set;
 
         switch (availabilityFilter){
-        case 'ic':
+        case INTEREST_CHECK:
             return isInterestCheck;
-        case 'waiting':
+        case WAITING_FOR_GROUPBUY:
             return moment().diff(groupbuyStartDate, 'days') < 0 && !isInterestCheck;
-        case 'gb':
+        case IN_GROUP_BUY:
             return getDayDifference(groupbuyEndDate) > 0 && !isInterestCheck;
-        case 'ended':
+        case ENDED:
             return !isInterestCheck 
                 && !(getDayDifference(groupbuyEndDate) > 0) 
                 &&  !(moment().diff(groupbuyStartDate, 'days') < 0) 
         default:
             return false
         }
+    }
+
+    const handleFilters = (keycapset:Keycapset): boolean => {
+        if (activeTab === 'all' && availabilityFilter === 'none') return true;
+        if(activeTab === 'all') return filterByAvailability(keycapset);
+        return keycapset.type === activeTab && filterByAvailability(keycapset);
     }
 
     return (
@@ -49,11 +61,7 @@ function Images(props: ImagesProps): JSX.Element {
                 { keycapsets.length > 0 ?
                     (
                     keycapsets
-                        .filter((keycapset: Keycapset) => {
-                            if (activeTab === 'all' && availabilityFilter === 'none') return true;
-                            if(activeTab === 'all') return filterByAvailability(keycapset);
-                            return keycapset.type === activeTab && filterByAvailability(keycapset);
-                        })
+                        .filter((keycapset: Keycapset) => handleFilters(keycapset))
                         // .filter((keycapset: Keycapset) => keycapset.name.toLowerCase().includes(searchQuery.toLowerCase()))
                         .map((keycapset: Keycapset) =>
                             <ImageCard {...{ keycapset }} key={keycapset._id} />

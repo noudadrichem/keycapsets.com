@@ -13,23 +13,24 @@ function Tab(props: TabProps): JSX.Element {
             activeTab, availabilityFilter
             }
         } = useContext(Context);
+    const handleUpdateFilters = (): void => {
+        type === "cap"
+            ? isActive
+                ? setGlobalState({ filters:{availabilityFilter, activeTab: 'all'} })
+                : setGlobalState({ filters:{availabilityFilter, activeTab: id} })
+            : isActive
+            ? setGlobalState({
+                  filters:{ activeTab ,availabilityFilter: 'none'},
+              })
+            : setGlobalState({
+                  filters:{ activeTab, availabilityFilter: id},
+              })
+    }
     const isActive = id === activeTab || id === availabilityFilter;
     return (
         <li className="tab">
             <Button
-                onClick={() =>
-                    type === "cap"
-                        ? isActive
-                            ? setGlobalState({ filters:{availabilityFilter, activeTab: 'all'} })
-                            : setGlobalState({ filters:{availabilityFilter, activeTab: id} })
-                        : isActive
-                        ? setGlobalState({
-                              filters:{ activeTab ,availabilityFilter: 'none'},
-                          })
-                        : setGlobalState({
-                              filters:{ activeTab, availabilityFilter: id},
-                          })
-                }
+                onClick={() => handleUpdateFilters()}
                 variant="primary"
                 size="sm"
                 className={isActive ? 'primary' : 'inverted'}

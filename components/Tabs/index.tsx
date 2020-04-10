@@ -1,4 +1,4 @@
-import React, { useContext, Fragment } from 'react';
+import React, { useContext } from 'react';
 import { InititalState } from 'typings';
 
 import Tab from './Tab';
@@ -12,7 +12,7 @@ function Tabs(props: TabsProps): JSX.Element {
     const state = useContext<InititalState>(Context);
 
     return (
-        <Fragment>
+        <>
             <div className="filters">
                 <div className="tabs">
                     <label className="label">Filter availability</label>
@@ -67,7 +67,7 @@ function Tabs(props: TabsProps): JSX.Element {
                     </p>
                 </div>
             </div>
-        </Fragment>
+        </>
     );
 }
 
