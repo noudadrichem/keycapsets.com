@@ -1,8 +1,8 @@
-[
+export default [
     {
         "continentName": "Asia",
         "continentCode": "AS",
-        "countryName": "Afghanistan, Islamic Republic of",
+        "countryName": "Afghanistan, Islamic ",
         "twoLetterCountryCode": "AF",
         "threeLetterCountryCode": "AFG",
         "countryNumber": 4
@@ -10,7 +10,7 @@
     {
         "continentName": "Europe",
         "continentCode": "EU",
-        "countryName": "Albania, Republic of",
+        "countryName": "Albania, ",
         "twoLetterCountryCode": "AL",
         "threeLetterCountryCode": "ALB",
         "countryNumber": 8
@@ -18,7 +18,7 @@
     {
         "continentName": "Antarctica",
         "continentCode": "AN",
-        "countryName": "Antarctica (the territory South of 60 deg S)",
+        "countryName": "Antarctica",
         "twoLetterCountryCode": "AQ",
         "threeLetterCountryCode": "ATA",
         "countryNumber": 10
@@ -26,7 +26,7 @@
     {
         "continentName": "Africa",
         "continentCode": "AF",
-        "countryName": "Algeria, People's Democratic Republic of",
+        "countryName": "Algeria",
         "twoLetterCountryCode": "DZ",
         "threeLetterCountryCode": "DZA",
         "countryNumber": 12
@@ -42,7 +42,7 @@
     {
         "continentName": "Europe",
         "continentCode": "EU",
-        "countryName": "Andorra, Principality of",
+        "countryName": "Andorra",
         "twoLetterCountryCode": "AD",
         "threeLetterCountryCode": "AND",
         "countryNumber": 20
@@ -50,7 +50,7 @@
     {
         "continentName": "Africa",
         "continentCode": "AF",
-        "countryName": "Angola, Republic of",
+        "countryName": "Angola, ",
         "twoLetterCountryCode": "AO",
         "threeLetterCountryCode": "AGO",
         "countryNumber": 24
@@ -66,7 +66,7 @@
     {
         "continentName": "Europe",
         "continentCode": "EU",
-        "countryName": "Azerbaijan, Republic of",
+        "countryName": "Azerbaijan, ",
         "twoLetterCountryCode": "AZ",
         "threeLetterCountryCode": "AZE",
         "countryNumber": 31
@@ -74,7 +74,7 @@
     {
         "continentName": "Asia",
         "continentCode": "AS",
-        "countryName": "Azerbaijan, Republic of",
+        "countryName": "Azerbaijan, ",
         "twoLetterCountryCode": "AZ",
         "threeLetterCountryCode": "AZE",
         "countryNumber": 31
@@ -98,7 +98,7 @@
     {
         "continentName": "Europe",
         "continentCode": "EU",
-        "countryName": "Austria, Republic of",
+        "countryName": "Austria, ",
         "twoLetterCountryCode": "AT",
         "threeLetterCountryCode": "AUT",
         "countryNumber": 40
@@ -122,7 +122,7 @@
     {
         "continentName": "Asia",
         "continentCode": "AS",
-        "countryName": "Bangladesh, People's Republic of",
+        "countryName": "Bangladesh, People's ",
         "twoLetterCountryCode": "BD",
         "threeLetterCountryCode": "BGD",
         "countryNumber": 50
@@ -130,7 +130,7 @@
     {
         "continentName": "Europe",
         "continentCode": "EU",
-        "countryName": "Armenia, Republic of",
+        "countryName": "Armenia, ",
         "twoLetterCountryCode": "AM",
         "threeLetterCountryCode": "ARM",
         "countryNumber": 51
@@ -138,7 +138,7 @@
     {
         "continentName": "Asia",
         "continentCode": "AS",
-        "countryName": "Armenia, Republic of",
+        "countryName": "Armenia, ",
         "twoLetterCountryCode": "AM",
         "threeLetterCountryCode": "ARM",
         "countryNumber": 51
@@ -178,7 +178,7 @@
     {
         "continentName": "South America",
         "continentCode": "SA",
-        "countryName": "Bolivia, Republic of",
+        "countryName": "Bolivia, ",
         "twoLetterCountryCode": "BO",
         "threeLetterCountryCode": "BOL",
         "countryNumber": 68
@@ -194,7 +194,7 @@
     {
         "continentName": "Africa",
         "continentCode": "AF",
-        "countryName": "Botswana, Republic of",
+        "countryName": "Botswana, ",
         "twoLetterCountryCode": "BW",
         "threeLetterCountryCode": "BWA",
         "countryNumber": 72
@@ -210,7 +210,7 @@
     {
         "continentName": "South America",
         "continentCode": "SA",
-        "countryName": "Brazil, Federative Republic of",
+        "countryName": "Brazil, Federative ",
         "twoLetterCountryCode": "BR",
         "threeLetterCountryCode": "BRA",
         "countryNumber": 76
@@ -258,7 +258,7 @@
     {
         "continentName": "Europe",
         "continentCode": "EU",
-        "countryName": "Bulgaria, Republic of",
+        "countryName": "Bulgaria, ",
         "twoLetterCountryCode": "BG",
         "threeLetterCountryCode": "BGR",
         "countryNumber": 100
@@ -274,7 +274,7 @@
     {
         "continentName": "Africa",
         "continentCode": "AF",
-        "countryName": "Burundi, Republic of",
+        "countryName": "Burundi, ",
         "twoLetterCountryCode": "BI",
         "threeLetterCountryCode": "BDI",
         "countryNumber": 108
@@ -282,7 +282,7 @@
     {
         "continentName": "Europe",
         "continentCode": "EU",
-        "countryName": "Belarus, Republic of",
+        "countryName": "Belarus, ",
         "twoLetterCountryCode": "BY",
         "threeLetterCountryCode": "BLR",
         "countryNumber": 112
@@ -298,7 +298,7 @@
     {
         "continentName": "Africa",
         "continentCode": "AF",
-        "countryName": "Cameroon, Republic of",
+        "countryName": "Cameroon, ",
         "twoLetterCountryCode": "CM",
         "threeLetterCountryCode": "CMR",
         "countryNumber": 120
@@ -314,7 +314,7 @@
     {
         "continentName": "Africa",
         "continentCode": "AF",
-        "countryName": "Cape Verde, Republic of",
+        "countryName": "Cape Verde, ",
         "twoLetterCountryCode": "CV",
         "threeLetterCountryCode": "CPV",
         "countryNumber": 132
@@ -338,7 +338,7 @@
     {
         "continentName": "Asia",
         "continentCode": "AS",
-        "countryName": "Sri Lanka, Democratic Socialist Republic of",
+        "countryName": "Sri Lanka, Democratic Socialist ",
         "twoLetterCountryCode": "LK",
         "threeLetterCountryCode": "LKA",
         "countryNumber": 144
@@ -346,7 +346,7 @@
     {
         "continentName": "Africa",
         "continentCode": "AF",
-        "countryName": "Chad, Republic of",
+        "countryName": "Chad, ",
         "twoLetterCountryCode": "TD",
         "threeLetterCountryCode": "TCD",
         "countryNumber": 148
@@ -354,7 +354,7 @@
     {
         "continentName": "South America",
         "continentCode": "SA",
-        "countryName": "Chile, Republic of",
+        "countryName": "Chile, ",
         "twoLetterCountryCode": "CL",
         "threeLetterCountryCode": "CHL",
         "countryNumber": 152
@@ -362,7 +362,7 @@
     {
         "continentName": "Asia",
         "continentCode": "AS",
-        "countryName": "China, People's Republic of",
+        "countryName": "China, People's ",
         "twoLetterCountryCode": "CN",
         "threeLetterCountryCode": "CHN",
         "countryNumber": 156
@@ -394,7 +394,7 @@
     {
         "continentName": "South America",
         "continentCode": "SA",
-        "countryName": "Colombia, Republic of",
+        "countryName": "Colombia, ",
         "twoLetterCountryCode": "CO",
         "threeLetterCountryCode": "COL",
         "countryNumber": 170
@@ -418,7 +418,7 @@
     {
         "continentName": "Africa",
         "continentCode": "AF",
-        "countryName": "Congo, Republic of the",
+        "countryName": "Congo,  the",
         "twoLetterCountryCode": "CG",
         "threeLetterCountryCode": "COG",
         "countryNumber": 178
@@ -426,7 +426,7 @@
     {
         "continentName": "Africa",
         "continentCode": "AF",
-        "countryName": "Congo, Democratic Republic of the",
+        "countryName": "Congo, Democratic  the",
         "twoLetterCountryCode": "CD",
         "threeLetterCountryCode": "COD",
         "countryNumber": 180
@@ -442,7 +442,7 @@
     {
         "continentName": "North America",
         "continentCode": "NA",
-        "countryName": "Costa Rica, Republic of",
+        "countryName": "Costa Rica, ",
         "twoLetterCountryCode": "CR",
         "threeLetterCountryCode": "CRI",
         "countryNumber": 188
@@ -450,7 +450,7 @@
     {
         "continentName": "Europe",
         "continentCode": "EU",
-        "countryName": "Croatia, Republic of",
+        "countryName": "Croatia, ",
         "twoLetterCountryCode": "HR",
         "threeLetterCountryCode": "HRV",
         "countryNumber": 191
@@ -458,7 +458,7 @@
     {
         "continentName": "North America",
         "continentCode": "NA",
-        "countryName": "Cuba, Republic of",
+        "countryName": "Cuba, ",
         "twoLetterCountryCode": "CU",
         "threeLetterCountryCode": "CUB",
         "countryNumber": 192
@@ -466,7 +466,7 @@
     {
         "continentName": "Europe",
         "continentCode": "EU",
-        "countryName": "Cyprus, Republic of",
+        "countryName": "Cyprus, ",
         "twoLetterCountryCode": "CY",
         "threeLetterCountryCode": "CYP",
         "countryNumber": 196
@@ -474,7 +474,7 @@
     {
         "continentName": "Asia",
         "continentCode": "AS",
-        "countryName": "Cyprus, Republic of",
+        "countryName": "Cyprus, ",
         "twoLetterCountryCode": "CY",
         "threeLetterCountryCode": "CYP",
         "countryNumber": 196
@@ -490,7 +490,7 @@
     {
         "continentName": "Africa",
         "continentCode": "AF",
-        "countryName": "Benin, Republic of",
+        "countryName": "Benin, ",
         "twoLetterCountryCode": "BJ",
         "threeLetterCountryCode": "BEN",
         "countryNumber": 204
@@ -522,7 +522,7 @@
     {
         "continentName": "South America",
         "continentCode": "SA",
-        "countryName": "Ecuador, Republic of",
+        "countryName": "Ecuador, ",
         "twoLetterCountryCode": "EC",
         "threeLetterCountryCode": "ECU",
         "countryNumber": 218
@@ -530,7 +530,7 @@
     {
         "continentName": "North America",
         "continentCode": "NA",
-        "countryName": "El Salvador, Republic of",
+        "countryName": "El Salvador, ",
         "twoLetterCountryCode": "SV",
         "threeLetterCountryCode": "SLV",
         "countryNumber": 222
@@ -538,7 +538,7 @@
     {
         "continentName": "Africa",
         "continentCode": "AF",
-        "countryName": "Equatorial Guinea, Republic of",
+        "countryName": "Equatorial Guinea, ",
         "twoLetterCountryCode": "GQ",
         "threeLetterCountryCode": "GNQ",
         "countryNumber": 226
@@ -546,7 +546,7 @@
     {
         "continentName": "Africa",
         "continentCode": "AF",
-        "countryName": "Ethiopia, Federal Democratic Republic of",
+        "countryName": "Ethiopia, Federal Democratic ",
         "twoLetterCountryCode": "ET",
         "threeLetterCountryCode": "ETH",
         "countryNumber": 231
@@ -562,7 +562,7 @@
     {
         "continentName": "Europe",
         "continentCode": "EU",
-        "countryName": "Estonia, Republic of",
+        "countryName": "Estonia, ",
         "twoLetterCountryCode": "EE",
         "threeLetterCountryCode": "EST",
         "countryNumber": 233
@@ -594,7 +594,7 @@
     {
         "continentName": "Oceania",
         "continentCode": "OC",
-        "countryName": "Fiji, Republic of the Fiji Islands",
+        "countryName": "Fiji,  the Fiji Islands",
         "twoLetterCountryCode": "FJ",
         "threeLetterCountryCode": "FJI",
         "countryNumber": 242
@@ -602,7 +602,7 @@
     {
         "continentName": "Europe",
         "continentCode": "EU",
-        "countryName": "Finland, Republic of",
+        "countryName": "Finland, ",
         "twoLetterCountryCode": "FI",
         "threeLetterCountryCode": "FIN",
         "countryNumber": 246
@@ -650,7 +650,7 @@
     {
         "continentName": "Africa",
         "continentCode": "AF",
-        "countryName": "Djibouti, Republic of",
+        "countryName": "Djibouti, ",
         "twoLetterCountryCode": "DJ",
         "threeLetterCountryCode": "DJI",
         "countryNumber": 262
@@ -682,7 +682,7 @@
     {
         "continentName": "Africa",
         "continentCode": "AF",
-        "countryName": "Gambia, Republic of the",
+        "countryName": "Gambia,  the",
         "twoLetterCountryCode": "GM",
         "threeLetterCountryCode": "GMB",
         "countryNumber": 270
@@ -698,7 +698,7 @@
     {
         "continentName": "Europe",
         "continentCode": "EU",
-        "countryName": "Germany, Federal Republic of",
+        "countryName": "Germany, Federal ",
         "twoLetterCountryCode": "DE",
         "threeLetterCountryCode": "DEU",
         "countryNumber": 276
@@ -706,7 +706,7 @@
     {
         "continentName": "Africa",
         "continentCode": "AF",
-        "countryName": "Ghana, Republic of",
+        "countryName": "Ghana, ",
         "twoLetterCountryCode": "GH",
         "threeLetterCountryCode": "GHA",
         "countryNumber": 288
@@ -722,7 +722,7 @@
     {
         "continentName": "Oceania",
         "continentCode": "OC",
-        "countryName": "Kiribati, Republic of",
+        "countryName": "Kiribati, ",
         "twoLetterCountryCode": "KI",
         "threeLetterCountryCode": "KIR",
         "countryNumber": 296
@@ -770,7 +770,7 @@
     {
         "continentName": "North America",
         "continentCode": "NA",
-        "countryName": "Guatemala, Republic of",
+        "countryName": "Guatemala, ",
         "twoLetterCountryCode": "GT",
         "threeLetterCountryCode": "GTM",
         "countryNumber": 320
@@ -778,7 +778,7 @@
     {
         "continentName": "Africa",
         "continentCode": "AF",
-        "countryName": "Guinea, Republic of",
+        "countryName": "Guinea, ",
         "twoLetterCountryCode": "GN",
         "threeLetterCountryCode": "GIN",
         "countryNumber": 324
@@ -786,7 +786,7 @@
     {
         "continentName": "South America",
         "continentCode": "SA",
-        "countryName": "Guyana, Co-operative Republic of",
+        "countryName": "Guyana, Co-operative ",
         "twoLetterCountryCode": "GY",
         "threeLetterCountryCode": "GUY",
         "countryNumber": 328
@@ -794,7 +794,7 @@
     {
         "continentName": "North America",
         "continentCode": "NA",
-        "countryName": "Haiti, Republic of",
+        "countryName": "Haiti, ",
         "twoLetterCountryCode": "HT",
         "threeLetterCountryCode": "HTI",
         "countryNumber": 332
@@ -818,7 +818,7 @@
     {
         "continentName": "North America",
         "continentCode": "NA",
-        "countryName": "Honduras, Republic of",
+        "countryName": "Honduras, ",
         "twoLetterCountryCode": "HN",
         "threeLetterCountryCode": "HND",
         "countryNumber": 340
@@ -834,7 +834,7 @@
     {
         "continentName": "Europe",
         "continentCode": "EU",
-        "countryName": "Hungary, Republic of",
+        "countryName": "Hungary, ",
         "twoLetterCountryCode": "HU",
         "threeLetterCountryCode": "HUN",
         "countryNumber": 348
@@ -842,7 +842,7 @@
     {
         "continentName": "Europe",
         "continentCode": "EU",
-        "countryName": "Iceland, Republic of",
+        "countryName": "Iceland, ",
         "twoLetterCountryCode": "IS",
         "threeLetterCountryCode": "ISL",
         "countryNumber": 352
@@ -850,7 +850,7 @@
     {
         "continentName": "Asia",
         "continentCode": "AS",
-        "countryName": "India, Republic of",
+        "countryName": "India, ",
         "twoLetterCountryCode": "IN",
         "threeLetterCountryCode": "IND",
         "countryNumber": 356
@@ -858,7 +858,7 @@
     {
         "continentName": "Asia",
         "continentCode": "AS",
-        "countryName": "Indonesia, Republic of",
+        "countryName": "Indonesia, ",
         "twoLetterCountryCode": "ID",
         "threeLetterCountryCode": "IDN",
         "countryNumber": 360
@@ -866,7 +866,7 @@
     {
         "continentName": "Asia",
         "continentCode": "AS",
-        "countryName": "Iran, Islamic Republic of",
+        "countryName": "Iran, Islamic ",
         "twoLetterCountryCode": "IR",
         "threeLetterCountryCode": "IRN",
         "countryNumber": 364
@@ -874,7 +874,7 @@
     {
         "continentName": "Asia",
         "continentCode": "AS",
-        "countryName": "Iraq, Republic of",
+        "countryName": "Iraq, ",
         "twoLetterCountryCode": "IQ",
         "threeLetterCountryCode": "IRQ",
         "countryNumber": 368
@@ -906,7 +906,7 @@
     {
         "continentName": "Africa",
         "continentCode": "AF",
-        "countryName": "Cote d'Ivoire, Republic of",
+        "countryName": "Cote d'Ivoire, ",
         "twoLetterCountryCode": "CI",
         "threeLetterCountryCode": "CIV",
         "countryNumber": 384
@@ -930,7 +930,7 @@
     {
         "continentName": "Europe",
         "continentCode": "EU",
-        "countryName": "Kazakhstan, Republic of",
+        "countryName": "Kazakhstan, ",
         "twoLetterCountryCode": "KZ",
         "threeLetterCountryCode": "KAZ",
         "countryNumber": 398
@@ -938,7 +938,7 @@
     {
         "continentName": "Asia",
         "continentCode": "AS",
-        "countryName": "Kazakhstan, Republic of",
+        "countryName": "Kazakhstan, ",
         "twoLetterCountryCode": "KZ",
         "threeLetterCountryCode": "KAZ",
         "countryNumber": 398
@@ -954,7 +954,7 @@
     {
         "continentName": "Africa",
         "continentCode": "AF",
-        "countryName": "Kenya, Republic of",
+        "countryName": "Kenya, ",
         "twoLetterCountryCode": "KE",
         "threeLetterCountryCode": "KEN",
         "countryNumber": 404
@@ -962,7 +962,7 @@
     {
         "continentName": "Asia",
         "continentCode": "AS",
-        "countryName": "Korea, Democratic People's Republic of",
+        "countryName": "Korea, Democratic People's ",
         "twoLetterCountryCode": "KP",
         "threeLetterCountryCode": "PRK",
         "countryNumber": 408
@@ -970,7 +970,7 @@
     {
         "continentName": "Asia",
         "continentCode": "AS",
-        "countryName": "Korea, Republic of",
+        "countryName": "Korea, ",
         "twoLetterCountryCode": "KR",
         "threeLetterCountryCode": "KOR",
         "countryNumber": 410
@@ -1018,7 +1018,7 @@
     {
         "continentName": "Europe",
         "continentCode": "EU",
-        "countryName": "Latvia, Republic of",
+        "countryName": "Latvia, ",
         "twoLetterCountryCode": "LV",
         "threeLetterCountryCode": "LVA",
         "countryNumber": 428
@@ -1026,7 +1026,7 @@
     {
         "continentName": "Africa",
         "continentCode": "AF",
-        "countryName": "Liberia, Republic of",
+        "countryName": "Liberia, ",
         "twoLetterCountryCode": "LR",
         "threeLetterCountryCode": "LBR",
         "countryNumber": 430
@@ -1050,7 +1050,7 @@
     {
         "continentName": "Europe",
         "continentCode": "EU",
-        "countryName": "Lithuania, Republic of",
+        "countryName": "Lithuania, ",
         "twoLetterCountryCode": "LT",
         "threeLetterCountryCode": "LTU",
         "countryNumber": 440
@@ -1074,7 +1074,7 @@
     {
         "continentName": "Africa",
         "continentCode": "AF",
-        "countryName": "Madagascar, Republic of",
+        "countryName": "Madagascar, ",
         "twoLetterCountryCode": "MG",
         "threeLetterCountryCode": "MDG",
         "countryNumber": 450
@@ -1082,7 +1082,7 @@
     {
         "continentName": "Africa",
         "continentCode": "AF",
-        "countryName": "Malawi, Republic of",
+        "countryName": "Malawi, ",
         "twoLetterCountryCode": "MW",
         "threeLetterCountryCode": "MWI",
         "countryNumber": 454
@@ -1098,7 +1098,7 @@
     {
         "continentName": "Asia",
         "continentCode": "AS",
-        "countryName": "Maldives, Republic of",
+        "countryName": "Maldives, ",
         "twoLetterCountryCode": "MV",
         "threeLetterCountryCode": "MDV",
         "countryNumber": 462
@@ -1106,7 +1106,7 @@
     {
         "continentName": "Africa",
         "continentCode": "AF",
-        "countryName": "Mali, Republic of",
+        "countryName": "Mali, ",
         "twoLetterCountryCode": "ML",
         "threeLetterCountryCode": "MLI",
         "countryNumber": 466
@@ -1114,7 +1114,7 @@
     {
         "continentName": "Europe",
         "continentCode": "EU",
-        "countryName": "Malta, Republic of",
+        "countryName": "Malta, ",
         "twoLetterCountryCode": "MT",
         "threeLetterCountryCode": "MLT",
         "countryNumber": 470
@@ -1130,7 +1130,7 @@
     {
         "continentName": "Africa",
         "continentCode": "AF",
-        "countryName": "Mauritania, Islamic Republic of",
+        "countryName": "Mauritania, Islamic ",
         "twoLetterCountryCode": "MR",
         "threeLetterCountryCode": "MRT",
         "countryNumber": 478
@@ -1138,7 +1138,7 @@
     {
         "continentName": "Africa",
         "continentCode": "AF",
-        "countryName": "Mauritius, Republic of",
+        "countryName": "Mauritius, ",
         "twoLetterCountryCode": "MU",
         "threeLetterCountryCode": "MUS",
         "countryNumber": 480
@@ -1170,7 +1170,7 @@
     {
         "continentName": "Europe",
         "continentCode": "EU",
-        "countryName": "Moldova, Republic of",
+        "countryName": "Moldova, ",
         "twoLetterCountryCode": "MD",
         "threeLetterCountryCode": "MDA",
         "countryNumber": 498
@@ -1178,7 +1178,7 @@
     {
         "continentName": "Europe",
         "continentCode": "EU",
-        "countryName": "Montenegro, Republic of",
+        "countryName": "Montenegro, ",
         "twoLetterCountryCode": "ME",
         "threeLetterCountryCode": "MNE",
         "countryNumber": 499
@@ -1202,7 +1202,7 @@
     {
         "continentName": "Africa",
         "continentCode": "AF",
-        "countryName": "Mozambique, Republic of",
+        "countryName": "Mozambique, ",
         "twoLetterCountryCode": "MZ",
         "threeLetterCountryCode": "MOZ",
         "countryNumber": 508
@@ -1218,7 +1218,7 @@
     {
         "continentName": "Africa",
         "continentCode": "AF",
-        "countryName": "Namibia, Republic of",
+        "countryName": "Namibia, ",
         "twoLetterCountryCode": "NA",
         "threeLetterCountryCode": "NAM",
         "countryNumber": 516
@@ -1226,7 +1226,7 @@
     {
         "continentName": "Oceania",
         "continentCode": "OC",
-        "countryName": "Nauru, Republic of",
+        "countryName": "Nauru, ",
         "twoLetterCountryCode": "NR",
         "threeLetterCountryCode": "NRU",
         "countryNumber": 520
@@ -1290,7 +1290,7 @@
     {
         "continentName": "Oceania",
         "continentCode": "OC",
-        "countryName": "Vanuatu, Republic of",
+        "countryName": "Vanuatu, ",
         "twoLetterCountryCode": "VU",
         "threeLetterCountryCode": "VUT",
         "countryNumber": 548
@@ -1306,7 +1306,7 @@
     {
         "continentName": "North America",
         "continentCode": "NA",
-        "countryName": "Nicaragua, Republic of",
+        "countryName": "Nicaragua, ",
         "twoLetterCountryCode": "NI",
         "threeLetterCountryCode": "NIC",
         "countryNumber": 558
@@ -1378,7 +1378,7 @@
     {
         "continentName": "Oceania",
         "continentCode": "OC",
-        "countryName": "Marshall Islands, Republic of the",
+        "countryName": "Marshall Islands,  the",
         "twoLetterCountryCode": "MH",
         "threeLetterCountryCode": "MHL",
         "countryNumber": 584
@@ -1386,7 +1386,7 @@
     {
         "continentName": "Oceania",
         "continentCode": "OC",
-        "countryName": "Palau, Republic of",
+        "countryName": "Palau, ",
         "twoLetterCountryCode": "PW",
         "threeLetterCountryCode": "PLW",
         "countryNumber": 585
@@ -1394,7 +1394,7 @@
     {
         "continentName": "Asia",
         "continentCode": "AS",
-        "countryName": "Pakistan, Islamic Republic of",
+        "countryName": "Pakistan, Islamic ",
         "twoLetterCountryCode": "PK",
         "threeLetterCountryCode": "PAK",
         "countryNumber": 586
@@ -1402,7 +1402,7 @@
     {
         "continentName": "North America",
         "continentCode": "NA",
-        "countryName": "Panama, Republic of",
+        "countryName": "Panama, ",
         "twoLetterCountryCode": "PA",
         "threeLetterCountryCode": "PAN",
         "countryNumber": 591
@@ -1418,7 +1418,7 @@
     {
         "continentName": "South America",
         "continentCode": "SA",
-        "countryName": "Paraguay, Republic of",
+        "countryName": "Paraguay, ",
         "twoLetterCountryCode": "PY",
         "threeLetterCountryCode": "PRY",
         "countryNumber": 600
@@ -1426,7 +1426,7 @@
     {
         "continentName": "South America",
         "continentCode": "SA",
-        "countryName": "Peru, Republic of",
+        "countryName": "Peru, ",
         "twoLetterCountryCode": "PE",
         "threeLetterCountryCode": "PER",
         "countryNumber": 604
@@ -1434,7 +1434,7 @@
     {
         "continentName": "Asia",
         "continentCode": "AS",
-        "countryName": "Philippines, Republic of the",
+        "countryName": "Philippines,  the",
         "twoLetterCountryCode": "PH",
         "threeLetterCountryCode": "PHL",
         "countryNumber": 608
@@ -1450,7 +1450,7 @@
     {
         "continentName": "Europe",
         "continentCode": "EU",
-        "countryName": "Poland, Republic of",
+        "countryName": "Poland, ",
         "twoLetterCountryCode": "PL",
         "threeLetterCountryCode": "POL",
         "countryNumber": 616
@@ -1466,7 +1466,7 @@
     {
         "continentName": "Africa",
         "continentCode": "AF",
-        "countryName": "Guinea-Bissau, Republic of",
+        "countryName": "Guinea-Bissau, ",
         "twoLetterCountryCode": "GW",
         "threeLetterCountryCode": "GNB",
         "countryNumber": 624
@@ -1474,7 +1474,7 @@
     {
         "continentName": "Asia",
         "continentCode": "AS",
-        "countryName": "Timor-Leste, Democratic Republic of",
+        "countryName": "Timor-Leste, Democratic ",
         "twoLetterCountryCode": "TL",
         "threeLetterCountryCode": "TLS",
         "countryNumber": 626
@@ -1530,7 +1530,7 @@
     {
         "continentName": "Africa",
         "continentCode": "AF",
-        "countryName": "Rwanda, Republic of",
+        "countryName": "Rwanda, ",
         "twoLetterCountryCode": "RW",
         "threeLetterCountryCode": "RWA",
         "countryNumber": 646
@@ -1602,7 +1602,7 @@
     {
         "continentName": "Europe",
         "continentCode": "EU",
-        "countryName": "San Marino, Republic of",
+        "countryName": "San Marino, ",
         "twoLetterCountryCode": "SM",
         "threeLetterCountryCode": "SMR",
         "countryNumber": 674
@@ -1610,7 +1610,7 @@
     {
         "continentName": "Africa",
         "continentCode": "AF",
-        "countryName": "Sao Tome and Principe, Democratic Republic of",
+        "countryName": "Sao Tome and Principe, Democratic ",
         "twoLetterCountryCode": "ST",
         "threeLetterCountryCode": "STP",
         "countryNumber": 678
@@ -1626,7 +1626,7 @@
     {
         "continentName": "Africa",
         "continentCode": "AF",
-        "countryName": "Senegal, Republic of",
+        "countryName": "Senegal, ",
         "twoLetterCountryCode": "SN",
         "threeLetterCountryCode": "SEN",
         "countryNumber": 686
@@ -1634,7 +1634,7 @@
     {
         "continentName": "Europe",
         "continentCode": "EU",
-        "countryName": "Serbia, Republic of",
+        "countryName": "Serbia, ",
         "twoLetterCountryCode": "RS",
         "threeLetterCountryCode": "SRB",
         "countryNumber": 688
@@ -1642,7 +1642,7 @@
     {
         "continentName": "Africa",
         "continentCode": "AF",
-        "countryName": "Seychelles, Republic of",
+        "countryName": "Seychelles, ",
         "twoLetterCountryCode": "SC",
         "threeLetterCountryCode": "SYC",
         "countryNumber": 690
@@ -1650,7 +1650,7 @@
     {
         "continentName": "Africa",
         "continentCode": "AF",
-        "countryName": "Sierra Leone, Republic of",
+        "countryName": "Sierra Leone, ",
         "twoLetterCountryCode": "SL",
         "threeLetterCountryCode": "SLE",
         "countryNumber": 694
@@ -1658,7 +1658,7 @@
     {
         "continentName": "Asia",
         "continentCode": "AS",
-        "countryName": "Singapore, Republic of",
+        "countryName": "Singapore, ",
         "twoLetterCountryCode": "SG",
         "threeLetterCountryCode": "SGP",
         "countryNumber": 702
@@ -1674,7 +1674,7 @@
     {
         "continentName": "Asia",
         "continentCode": "AS",
-        "countryName": "Vietnam, Socialist Republic of",
+        "countryName": "Vietnam",
         "twoLetterCountryCode": "VN",
         "threeLetterCountryCode": "VNM",
         "countryNumber": 704
@@ -1682,7 +1682,7 @@
     {
         "continentName": "Europe",
         "continentCode": "EU",
-        "countryName": "Slovenia, Republic of",
+        "countryName": "Slovenia, ",
         "twoLetterCountryCode": "SI",
         "threeLetterCountryCode": "SVN",
         "countryNumber": 705
@@ -1698,7 +1698,7 @@
     {
         "continentName": "Africa",
         "continentCode": "AF",
-        "countryName": "South Africa, Republic of",
+        "countryName": "South Africa, ",
         "twoLetterCountryCode": "ZA",
         "threeLetterCountryCode": "ZAF",
         "countryNumber": 710
@@ -1706,7 +1706,7 @@
     {
         "continentName": "Africa",
         "continentCode": "AF",
-        "countryName": "Zimbabwe, Republic of",
+        "countryName": "Zimbabwe, ",
         "twoLetterCountryCode": "ZW",
         "threeLetterCountryCode": "ZWE",
         "countryNumber": 716
@@ -1738,7 +1738,7 @@
     {
         "continentName": "Africa",
         "continentCode": "AF",
-        "countryName": "Sudan, Republic of",
+        "countryName": "Sudan, ",
         "twoLetterCountryCode": "SD",
         "threeLetterCountryCode": "SDN",
         "countryNumber": 736
@@ -1746,7 +1746,7 @@
     {
         "continentName": "South America",
         "continentCode": "SA",
-        "countryName": "Suriname, Republic of",
+        "countryName": "Suriname, ",
         "twoLetterCountryCode": "SR",
         "threeLetterCountryCode": "SUR",
         "countryNumber": 740
@@ -1794,7 +1794,7 @@
     {
         "continentName": "Asia",
         "continentCode": "AS",
-        "countryName": "Tajikistan, Republic of",
+        "countryName": "Tajikistan, ",
         "twoLetterCountryCode": "TJ",
         "threeLetterCountryCode": "TJK",
         "countryNumber": 762
@@ -1834,7 +1834,7 @@
     {
         "continentName": "North America",
         "continentCode": "NA",
-        "countryName": "Trinidad and Tobago, Republic of",
+        "countryName": "Trinidad and Tobago, ",
         "twoLetterCountryCode": "TT",
         "threeLetterCountryCode": "TTO",
         "countryNumber": 780
@@ -1858,7 +1858,7 @@
     {
         "continentName": "Europe",
         "continentCode": "EU",
-        "countryName": "Turkey, Republic of",
+        "countryName": "Turkey, ",
         "twoLetterCountryCode": "TR",
         "threeLetterCountryCode": "TUR",
         "countryNumber": 792
@@ -1866,7 +1866,7 @@
     {
         "continentName": "Asia",
         "continentCode": "AS",
-        "countryName": "Turkey, Republic of",
+        "countryName": "Turkey, ",
         "twoLetterCountryCode": "TR",
         "threeLetterCountryCode": "TUR",
         "countryNumber": 792
@@ -1898,7 +1898,7 @@
     {
         "continentName": "Africa",
         "continentCode": "AF",
-        "countryName": "Uganda, Republic of",
+        "countryName": "Uganda, ",
         "twoLetterCountryCode": "UG",
         "threeLetterCountryCode": "UGA",
         "countryNumber": 800
@@ -1914,7 +1914,7 @@
     {
         "continentName": "Europe",
         "continentCode": "EU",
-        "countryName": "Macedonia, The Former Yugoslav Republic of",
+        "countryName": "Macedonia, The Former Yugoslav ",
         "twoLetterCountryCode": "MK",
         "threeLetterCountryCode": "MKD",
         "countryNumber": 807
@@ -1922,7 +1922,7 @@
     {
         "continentName": "Africa",
         "continentCode": "AF",
-        "countryName": "Egypt, Arab Republic of",
+        "countryName": "Egypt, Arab ",
         "twoLetterCountryCode": "EG",
         "threeLetterCountryCode": "EGY",
         "countryNumber": 818
@@ -1962,7 +1962,7 @@
     {
         "continentName": "Africa",
         "continentCode": "AF",
-        "countryName": "Tanzania, United Republic of",
+        "countryName": "Tanzania, United ",
         "twoLetterCountryCode": "TZ",
         "threeLetterCountryCode": "TZA",
         "countryNumber": 834
@@ -1994,7 +1994,7 @@
     {
         "continentName": "South America",
         "continentCode": "SA",
-        "countryName": "Uruguay, Eastern Republic of",
+        "countryName": "Uruguay, Eastern ",
         "twoLetterCountryCode": "UY",
         "threeLetterCountryCode": "URY",
         "countryNumber": 858
@@ -2002,7 +2002,7 @@
     {
         "continentName": "Asia",
         "continentCode": "AS",
-        "countryName": "Uzbekistan, Republic of",
+        "countryName": "Uzbekistan, ",
         "twoLetterCountryCode": "UZ",
         "threeLetterCountryCode": "UZB",
         "countryNumber": 860
@@ -2010,7 +2010,7 @@
     {
         "continentName": "South America",
         "continentCode": "SA",
-        "countryName": "Venezuela, Bolivarian Republic of",
+        "countryName": "Venezuela, Bolivarian ",
         "twoLetterCountryCode": "VE",
         "threeLetterCountryCode": "VEN",
         "countryNumber": 862

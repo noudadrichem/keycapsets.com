@@ -72,6 +72,10 @@ function UploadSet(props: UploadSetProps): JSX.Element {
     };
 
     useEffect(() => {
+        Router.push('/');
+    })
+
+    useEffect(() => {
         const oneMonthLater = moment(startDateValue).add(1, 'months').add(1, 'days').format('YYYY-MM-DD')
         setEndDateValue(oneMonthLater)
     }, [startDateValue])
@@ -159,7 +163,8 @@ function UploadSet(props: UploadSetProps): JSX.Element {
         return <p>'Error loading keycapsets.com... Please refresh this page'</p>;
     }
 
-    return (
+    return null;
+    (
         <>
             <Meta />
             <Nav />

@@ -40,6 +40,7 @@ function MultiSelect(props: MultiSelectProps): JSX.Element {
         <div className="input-wrapper">
             <label className="label">{label}</label>
             <Select
+                id={label}
                 className="select-control"
                 styles={SELECT_STYLES}
                 value={value}

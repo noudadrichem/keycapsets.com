@@ -22,12 +22,12 @@ function CTACard(props: CTACardProps): JSX.Element {
     const [visible, setVisible] = useState(false);
 
     useEffect(() => {
-        const CTADate = window.localStorage.getItem('CTA');
-        if (!CTADate) {
-            setTimeout(() => {
-                setVisible(true);
-            }, 1700)
-        }
+        // const CTADate = window.localStorage.getItem('CTA');
+        // if (!CTADate) {
+        setTimeout(() => {
+            setVisible(true);
+        }, 1700)
+        // }
     }, [])
 
     function close() {
@@ -39,14 +39,15 @@ function CTACard(props: CTACardProps): JSX.Element {
         <div className={`cta-card ${visible ? 'visible' : 'hidden'}`}>
             <CrossIcon onClick={() => close()} />
 
-            <h4>Missing a set?</h4>
-            <p className="light"><Link href="/upload/set"><a>Upload</a></Link> the set yourself or contact me on <a href="mailto:contact@keycapsets.com">contact@keycapsets.com</a></p>
+            <h4>Live and learn.</h4>
+            <p className="light">We're sad to announce we are temporarily closing the website for uploads due to incidents that occurred by it.</p>
+
             <Button
-                onClick={() => router.push('/upload/set')}
+                onClick={() => router.push('/upload-statement')}
                 variant="primary"
                 size="md"
                 className='center'
-            >Upload directly</Button>
+            >More about it here</Button>
         </div>
     )
 }
