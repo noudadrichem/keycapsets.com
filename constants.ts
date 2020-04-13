@@ -29,3 +29,17 @@ export const PROFILE_OPTIONS = [
     { label: 'MDA', value: 'mda' },
     { label: 'DCS', value: 'dcs' },
 ];
+
+export const INTEREST_CHECK = 'ic';
+export const WAITING_FOR_GROUPBUY = 'waiting';
+export const IN_GROUP_BUY = 'gb';
+export const ENDED = 'ended';
+export const AVAILABILITY = [
+    INTEREST_CHECK,
+    WAITING_FOR_GROUPBUY,
+    IN_GROUP_BUY,
+    ENDED,
+];
+
+export const AVAILABILITY_FILTER = 'availability';
+export const CAP_FILTER = 'cap';

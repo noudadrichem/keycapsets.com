@@ -72,7 +72,7 @@ function ImageCard(props: ImageCardProps): JSX.Element {
                         <div className="bottom">
                             <p className="light">
                                 {isInterestCheck ? (
-                                    <>Awaiting interest check </>
+                                    <></>
                                 ) : (
                                     <>
                                         {isInFuture ? (

@@ -27,7 +27,7 @@ body {
     min-height: 100.1vh;
     max-width: 100vw;
     overflow-x: hidden;
-    padding-bottom: 80px;
+    padding-bottom: 96px;
 }
 
 ul {
@@ -109,4 +109,8 @@ img {
 
 .text-container {
     max-width: 900px;
+}
+
+.clickable {
+    cursor: pointer;
 }
