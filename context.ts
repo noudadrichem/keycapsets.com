@@ -1,15 +1,15 @@
 import { createContext } from 'react';
 import moment from 'moment';
 import { InititalState } from 'typings';
-import {PROFILE_OPTIONS } from './constants';
+import { PROFILE_OPTIONS } from './constants';
 
 export function reduceState(state, obj) {
     const reducedState = {
         ...state,
-        ...obj
-    }
+        ...obj,
+    };
     if (process.env.NODE_ENV === 'development') {
-        console.log(moment().format('hh:mm:ss') + '_STATE...', reducedState)
+        console.log(moment().format('hh:mm:ss') + '_STATE...', reducedState);
     }
     return reducedState;
 }
@@ -21,8 +21,8 @@ export const INITITAL_STATE: InititalState = {
     keycapsets: [],
     searchQuery: '',
     allKeycapsetsCount: 0,
-    setGlobalState: () => {}
-}
+    setGlobalState: () => {},
+};
 
 const Context = createContext(INITITAL_STATE);
 

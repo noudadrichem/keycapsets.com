@@ -36,8 +36,8 @@ declare module 'typings' {
 
     interface InititalState {
         activeTab: string;
-        tabs: string[],
-        keycapsets: any[],
+        tabs: string[];
+        keycapsets: any[];
         searchQuery: string;
         allKeycapsetsCount: number;
         setGlobalState?: Function;

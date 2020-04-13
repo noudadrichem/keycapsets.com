@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import Error from 'next/error'
+import Error from 'next/error';
 import { useMutation, useQuery } from '@apollo/react-hooks';
 import withGA from 'next-ga';
 import Router from 'next/router';
@@ -15,24 +15,24 @@ import '../assets/styles/main.scss';
 import { Vendor } from 'typings';
 import Nav from '../components/Nav';
 import LoadingKeyboard from '../components/LoadingKeyboard';
-import VendorCard from "../components/VendorCard";
-import Meta from "../components/Meta";
-import Head from "next/head";
-import Context from "../context";
+import VendorCard from '../components/VendorCard';
+import Meta from '../components/Meta';
+import Head from 'next/head';
+import Context from '../context';
 import CTACard from '../components/CTACard';
 
 interface VendorProps {}
 
-function Vendors(props: VendorProps):JSX.Element {
+function Vendors(props: VendorProps): JSX.Element {
     const { loading, error, data } = useQuery(GET_VENDORS_QUERY);
 
     if (loading) {
-        return <LoadingKeyboard />
+        return <LoadingKeyboard />;
     }
 
     if (error) {
         console.error(error);
-        return <Error title="Oops, small mistake here..." statusCode={502} />
+        return <Error title="Oops, small mistake here..." statusCode={502} />;
     }
 
     return (
@@ -41,24 +41,18 @@ function Vendors(props: VendorProps):JSX.Element {
 
             <Nav />
             <div className="container">
-                <Heading
-                    mainTitle="Vendors"
-                    subTitle="Available vendors."
-                />
+                <Heading mainTitle="Vendors" subTitle="Available vendors." />
 
                 <div className="images-container">
-                    {
-                        data.vendors
-                            .map((vendor: Vendor) =>
-                                <VendorCard vendor={vendor} key={vendor._id} />
-                            )
-                    }
+                    {data.vendors.map((vendor: Vendor) => (
+                        <VendorCard vendor={vendor} key={vendor._id} />
+                    ))}
                 </div>
             </div>
             <Footer />
             <CTACard />
         </>
-    )
+    );
 }
 
 export default withGA('UA-115865530-2', Router)(withData(Vendors));

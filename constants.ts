@@ -9,13 +9,13 @@ export const BRAND_OPTIONS = [
     { value: 'maxkey', label: 'MaxKey' },
     { value: 'zfrontier', label: 'zFrontier' },
     { value: 'leopold', label: 'Leopold' },
-    { value: 'ducky', labele: 'Ducky' }
+    { value: 'ducky', labele: 'Ducky' },
 ];
 
 export const MATERIAL_OPTIONS = [
     { value: 'abs', label: 'ABS' },
-    { value: 'pbt', label: 'PBT' }
-]
+    { value: 'pbt', label: 'PBT' },
+];
 
 export const PROFILE_OPTIONS = [
     { label: 'Cherry', value: 'cherry' },
@@ -27,5 +27,5 @@ export const PROFILE_OPTIONS = [
     { label: 'KAM', value: 'kam' },
     { label: 'OEM', value: 'oem' },
     { label: 'MDA', value: 'mda' },
-    { label: 'DCS', value: 'dcs' }
-]
+    { label: 'DCS', value: 'dcs' },
+];

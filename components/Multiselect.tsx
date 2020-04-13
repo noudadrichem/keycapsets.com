@@ -3,14 +3,14 @@ import Select from 'react-select';
 
 /**
  * https://react-select.com
-*/
+ */
 
 interface MultiSelectProps {
     value?: any[];
     options: any[];
     onChange: Function;
     isMulti?: boolean;
-    label: String
+    label: String;
     defaultValue?: any;
 }
 
@@ -21,20 +21,20 @@ function MultiSelect(props: MultiSelectProps): JSX.Element {
         onChange,
         isMulti,
         label,
-        defaultValue
+        defaultValue,
     }: MultiSelectProps = props;
 
     const SELECT_STYLES = {
         control: (base: any) => ({
             ...base,
             fontSize: 12,
-            borderColor: '#e2e5eb'
+            borderColor: '#e2e5eb',
         }),
         menu: (base: any) => ({
             ...base,
-            fontSize: 12
-        })
-    }
+            fontSize: 12,
+        }),
+    };
 
     return (
         <div className="input-wrapper">
@@ -51,7 +51,7 @@ function MultiSelect(props: MultiSelectProps): JSX.Element {
                 defaultValue={defaultValue || options[0]}
             />
         </div>
-    )
+    );
 }
 
 export default MultiSelect;

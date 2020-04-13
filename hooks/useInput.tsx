@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import '../assets/styles/input.scss';
 
 interface InputProps {
@@ -11,26 +11,24 @@ interface InputProps {
 }
 
 function useInput(props: InputProps): any[] {
-    const {
-        type = 'text',
-        label,
-        placeholder,
-        id,
-        defaultValue
-    } = props;
+    const { type = 'text', label, placeholder, id, defaultValue } = props;
     const [value, setValue] = useState(defaultValue);
 
     function onInputChange(e) {
         if (type === 'checkbox') {
-            setValue(e.target.checked)
+            setValue(e.target.checked);
         } else {
-            setValue(e.target.value)
+            setValue(e.target.value);
         }
     }
 
     const inputField: JSX.Element = (
         <div className={`input-wrapper ${type}`}>
-            {label && <label htmlFor={id} className="label">{ label }</label>}
+            {label && (
+                <label htmlFor={id} className="label">
+                    {label}
+                </label>
+            )}
             <input
                 // value={value}
                 name={id}
@@ -40,9 +38,9 @@ function useInput(props: InputProps): any[] {
                 onChange={onInputChange}
             />
         </div>
-    )
+    );
 
-    return [value, inputField, setValue]
+    return [value, inputField, setValue];
 }
 
 export default useInput;

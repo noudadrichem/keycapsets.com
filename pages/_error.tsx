@@ -23,7 +23,11 @@ function Error(props: ErrorProps) {
         <>
             <Head>
                 <title>{title}</title>
-                <meta name="viewport" key="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.00, minimum-scale=1.00" />
+                <meta
+                    name="viewport"
+                    key="viewport"
+                    content="width=device-width, initial-scale=1.0, maximum-scale=1.00, minimum-scale=1.00"
+                />
                 <meta name="author" content="noudadrichem" />
                 <meta property="og:title" content={title} />
                 <meta name="twitter:title" content={title} />
@@ -35,7 +39,11 @@ function Error(props: ErrorProps) {
             <Nav />
             <div className="container">
                 <Heading
-                    mainTitle={statusCode ? `An error ${statusCode} occurred on server` : 'An error occurred on client'}
+                    mainTitle={
+                        statusCode
+                            ? `An error ${statusCode} occurred on server`
+                            : 'An error occurred on client'
+                    }
                     subTitle="This page does not exist..."
                     backgroundColor="#f8abab"
                     left
@@ -44,17 +52,16 @@ function Error(props: ErrorProps) {
                 {/* <div>
                     <p>Curabitur in accumsan lorem. Donec ut sodales metus. Duis nec metus aliquet leo facilisis vehicula. Nullam quam lectus, aliquet feugiat consequat quis, fermentum ullamcorper risus. Pellentesque feugiat erat tincidunt maximus tempus. Duis at quam dolor. Curabitur ac turpis nulla.</p>
                 </div> */}
-
             </div>
             <Footer />
             <CTACard />
         </>
-    )
+    );
 }
 
 Error.getInitialProps = ({ res, err }) => {
-    const statusCode = res ? res.statusCode : err ? err.statusCode : 404
-    return { statusCode }
-}
+    const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
+    return { statusCode };
+};
 
 export default withGA('UA-115865530-2', Router)(Error);

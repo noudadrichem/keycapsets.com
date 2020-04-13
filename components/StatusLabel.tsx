@@ -11,26 +11,24 @@ interface StatusLabelProps {
 enum Labels {
     IC = 'Interest check',
     AWAITING = 'Awaiting groupbuy',
-    INGROUPBUY = 'In groupbuy'
+    INGROUPBUY = 'In groupbuy',
 }
 
 function StatusLabel(props: StatusLabelProps): JSX.Element {
-    const {
-        groupbuyStartDate,
-        groupbuyEndDate,
-        isIc,
-    } = props;
+    const { groupbuyStartDate, groupbuyEndDate, isIc } = props;
 
-    const getDayDifference = (date: string | number) => moment(date).diff(moment(), 'days');
-    const awaitingGroupbuy: boolean = moment().diff(groupbuyStartDate, 'days') < 0;
+    const getDayDifference = (date: string | number) =>
+        moment(date).diff(moment(), 'days');
+    const awaitingGroupbuy: boolean =
+        moment().diff(groupbuyStartDate, 'days') < 0;
     const inGroupbuy: boolean = getDayDifference(groupbuyEndDate) > 0;
 
     if (isIc) {
-        return <Pill color='orange' text={Labels.IC} />
+        return <Pill color="orange" text={Labels.IC} />;
     } else if (awaitingGroupbuy) {
-        return <Pill color='green' text={Labels.AWAITING} />
+        return <Pill color="green" text={Labels.AWAITING} />;
     } else if (inGroupbuy) {
-        return <Pill color='green' text={Labels.INGROUPBUY} />
+        return <Pill color="green" text={Labels.INGROUPBUY} />;
     }
 
     return null;

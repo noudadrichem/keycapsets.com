@@ -5,7 +5,9 @@ import { useRouter } from 'next/router';
 
 function SearchSets() {
     const router = useRouter();
-    const [searchValue, searchInput, setSearchInputValue] = useInput({ defaultValue: '' });
+    const [searchValue, searchInput, setSearchInputValue] = useInput({
+        defaultValue: '',
+    });
     const { setGlobalState } = useContext(Context);
 
     useEffect(() => {
@@ -14,17 +16,13 @@ function SearchSets() {
             setSearchInputValue(searchQuery);
             setGlobalState({ searchQuery });
         }
-    }, [router.query.search])
+    }, [router.query.search]);
 
     useEffect(() => {
         setGlobalState({ searchQuery: searchValue });
-    }, [searchValue])
+    }, [searchValue]);
 
-    return (
-        <div className="search-input">
-            {searchInput}
-        </div>
-    )
+    return <div className="search-input">{searchInput}</div>;
 }
 
 export default SearchSets;

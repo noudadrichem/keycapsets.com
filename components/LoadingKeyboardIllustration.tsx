@@ -1,6 +1,6 @@
-'use strict'
+'use strict';
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from 'react';
 
 import '../assets/styles/loading-keyboard.scss';
 
@@ -8,9 +8,11 @@ interface LoadingKeyboardIllustrationProps {
     scale?: number;
 }
 
-function LoadingKeyboardIllustration(props: LoadingKeyboardIllustrationProps): JSX.Element {
+function LoadingKeyboardIllustration(
+    props: LoadingKeyboardIllustrationProps
+): JSX.Element {
     const { scale = 1 } = props;
-    const IDS: string[] = ['L', 'O', 'A', 'D', 'I', 'N', 'G', 'ENTER']
+    const IDS: string[] = ['L', 'O', 'A', 'D', 'I', 'N', 'G', 'ENTER'];
     const L = useRef(null);
     const O = useRef(null);
     const A = useRef(null);
@@ -19,19 +21,23 @@ function LoadingKeyboardIllustration(props: LoadingKeyboardIllustrationProps): J
     const N = useRef(null);
     const G = useRef(null);
     const ENTER = useRef(null);
-    const refs = [L, O, A, D, I, N, G, ENTER]
+    const refs = [L, O, A, D, I, N, G, ENTER];
 
     function toggleFillClass(ref, i) {
         const KEY_DOWN = 400 * i;
         const KEY_UP = 1000 + KEY_DOWN;
 
-        setTimeout(() => { ref.classList.add('fill'); }, KEY_DOWN)
-        setTimeout(() => { ref.classList.remove('fill'); }, KEY_UP)
+        setTimeout(() => {
+            ref.classList.add('fill');
+        }, KEY_DOWN);
+        setTimeout(() => {
+            ref.classList.remove('fill');
+        }, KEY_UP);
     }
 
     function startLoadingAnimation() {
         refs.forEach((ref, i) => {
-            toggleFillClass(ref.current, i)
+            toggleFillClass(ref.current, i);
         });
     }
 
@@ -39,10 +45,10 @@ function LoadingKeyboardIllustration(props: LoadingKeyboardIllustrationProps): J
         startLoadingAnimation();
         const interval = setInterval(() => {
             startLoadingAnimation();
-        }, IDS.length * 650)
+        }, IDS.length * 650);
 
         return () => clearInterval(interval);
-    }, [])
+    }, []);
 
     return (
         <svg
@@ -52,7 +58,7 @@ function LoadingKeyboardIllustration(props: LoadingKeyboardIllustrationProps): J
             viewBox="0 0 432 179"
             id="loading-keyboard-illu"
             style={{
-                transform: `scale(${scale})`
+                transform: `scale(${scale})`,
             }}
         >
             <g

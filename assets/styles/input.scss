@@ -15,7 +15,7 @@
         position: absolute;
         pointer-events: none;
 
-        &+input {
+        & + input {
             padding: 8px 16px 8px 24px;
         }
     }
@@ -40,7 +40,6 @@
         }
     }
 }
-
 
 .input-wrapper-multiple {
     display: block;

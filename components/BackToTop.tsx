@@ -9,49 +9,47 @@ function BackToTop(): JSX.Element {
     const { y } = useWindowScroll();
 
     useEffect(function updateScrollOffset() {
-      if (isBrowser) {
-        const innerHeight = window.innerHeight;
-        setIsPastOffset(y > (innerHeight / 2));
-      }
-    })
+        if (isBrowser) {
+            const innerHeight = window.innerHeight;
+            setIsPastOffset(y > innerHeight / 2);
+        }
+    });
 
     function scrollToTop() {
-      const speed = 2000;
-      const easing = pos => Math.sin(pos * (Math.PI / 2));
-      let currentTime = 0;
+        const speed = 2000;
+        const easing = (pos) => Math.sin(pos * (Math.PI / 2));
+        let currentTime = 0;
 
-      const time = Math.max(
-        0.1,
-        Math.min(y / speed, 0.8)
-      )
+        const time = Math.max(0.1, Math.min(y / speed, 0.8));
 
-      function tick() {
-        currentTime += 1 / 60;
+        function tick() {
+            currentTime += 1 / 60;
 
-        const timeFrame = currentTime / time;
+            const timeFrame = currentTime / time;
 
-        const getEasing = easing(timeFrame);
+            const getEasing = easing(timeFrame);
 
-        if (timeFrame < 1) {
-          window.requestAnimationFrame(tick);
+            if (timeFrame < 1) {
+                window.requestAnimationFrame(tick);
 
-          window.scrollTo(0, y + (0 - y) * getEasing);
-        } else {
-          window.scrollTo(0, 0);
+                window.scrollTo(0, y + (0 - y) * getEasing);
+            } else {
+                window.scrollTo(0, 0);
+            }
         }
-      }
 
-      tick();
+        tick();
     }
 
     return (
-      <Button
-          onClick={() => scrollToTop()}
-          variant="secondary"
-          className={`back-to-top ${isPastOffset ? 'back-to-top-show' : ''}`}>
-           <Arrow direction="top" />
-      </Button>
-    )
+        <Button
+            onClick={() => scrollToTop()}
+            variant="secondary"
+            className={`back-to-top ${isPastOffset ? 'back-to-top-show' : ''}`}
+        >
+            <Arrow direction="top" />
+        </Button>
+    );
 }
 
-export default BackToTop
+export default BackToTop;

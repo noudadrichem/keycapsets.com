@@ -22,7 +22,7 @@
 
 body {
     font-family: 'Rubik', sans-serif;
-    background: #F8F9FB;
+    background: #f8f9fb;
     // background: #f2f2f2;
     min-height: 100.1vh;
     max-width: 100vw;
@@ -39,8 +39,8 @@ a {
     color: inherit;
 
     &.link {
-        color: #539BFB;
-        border-bottom: 2px solid #D4E4FA;
+        color: #539bfb;
+        border-bottom: 2px solid #d4e4fa;
     }
 }
 
@@ -48,7 +48,6 @@ img {
     max-width: 100%;
     box-sizing: border-box;
 }
-
 
 .fadeInUp {
     animation-name: fadeInUp;
