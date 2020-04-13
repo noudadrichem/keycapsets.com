@@ -6,15 +6,21 @@
     "scripts": {
         "dev": "next",
         "build": "next build",
-        "start": "NODE_ENV=production next start"
+        "start": "NODE_ENV=production next start",
+        "pretty": "prettier --ignore-path=.prettierignore --write ."
     },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/noudadrichem/keycapsets.com.git"
     },
+    "husky": {
+        "hooks": {
+            "pre-commit": "pretty-quick --staged"
+        }
+    },
     "keywords": [],
-    "author": "",
-    "license": "ISC",
+    "author": "noudadrichem",
+    "license": "GNU",
     "bugs": {
         "url": "https://github.com/noudadrichem/keycapsets.com/issues"
     },
@@ -47,7 +53,10 @@
     "devDependencies": {
         "@types/node": "^13.9.1",
         "@types/react": "^16.9.23",
+        "husky": "^4.2.5",
         "json-loader": "^0.5.7",
+        "prettier": "^2.0.4",
+        "pretty-quick": "^2.0.1",
         "sass-loader": "^8.0.2",
         "typescript": "^3.8.3"
     }
