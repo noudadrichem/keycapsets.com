@@ -52,7 +52,7 @@ function SetPage(props: SetProps) {
         autoplay: set.coverImageUrl.length > 1,
         autoPlaySpeed: 1600,
     };
-
+    console.log(set)
     return set !== undefined && (
         <div className="set">
             <Meta
@@ -88,8 +88,12 @@ function SetPage(props: SetProps) {
                         <p>Profile: {set.type}</p>
                         <p>Brand: {set.brand || 'Unknown'}</p>
                         <p>Material: {set.material || 'Unknown'}</p>
-                        <p>Start date: {moment(set.groupbuyStartDate).format('dddd YYYY-MM-DD')}</p>
-                        <p>End date: {moment(set.groupbuyEndDate).format('dddd YYYY-MM-DD')}</p>
+                        {!set.isInterestCheck && (
+                            <>
+                                <p>Start date: {moment(set.groupbuyStartDate).format('dddd YYYY-MM-DD')}</p>
+                                <p>End date: {moment(set.groupbuyEndDate).format('dddd YYYY-MM-DD')}</p>
+                            </>
+                        )}
 
                         {set.vendors.length > 0 && (
                             <>

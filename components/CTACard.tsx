@@ -22,12 +22,12 @@ function CTACard(props: CTACardProps): JSX.Element {
     const [visible, setVisible] = useState(false);
 
     useEffect(() => {
-        // const CTADate = window.localStorage.getItem('CTA');
-        // if (!CTADate) {
+        const CTADate = window.localStorage.getItem('CTA');
+        if (!CTADate) {
         setTimeout(() => {
             setVisible(true);
         }, 1700)
-        // }
+        }
     }, [])
 
     function close() {

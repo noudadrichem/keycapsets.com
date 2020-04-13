@@ -137,6 +137,7 @@ query GET_SINGLE_SET_QUERY($type: String!, $slug:String!){
         designerName
         brand
         material
+        isInterestCheck
     }
 }
 `
