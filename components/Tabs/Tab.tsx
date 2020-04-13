@@ -16,23 +16,24 @@ function Tab(props: TabProps): JSX.Element {
     } = useContext(Context);
 
     function handleUpdateFilters(): void {
-        type === 'cap'
-            ? isActive
-                ? setGlobalState({
-                      filters: { availabilityFilter, activeTab: 'all' },
-                  })
-                : setGlobalState({
-                      filters: { availabilityFilter, activeTab: id },
-                  })
-            : isActive
-            ? setGlobalState({
-                  filters: { activeTab, availabilityFilter: 'none' },
-              })
-            : setGlobalState({
-                  filters: { activeTab, availabilityFilter: id },
-              });
-
         if (type === 'cap') {
+            if (isActive) {
+                setGlobalState({
+                    filters: { availabilityFilter, activeTab: 'all' },
+                });
+            } else {
+                setGlobalState({
+                    filters: { availabilityFilter, activeTab: id },
+                });
+            }
+        } else if (isActive) {
+            setGlobalState({
+                filters: { activeTab, availabilityFilter: 'none' },
+            });
+        } else {
+            setGlobalState({
+                filters: { activeTab, availabilityFilter: id },
+            });
         }
     }
 

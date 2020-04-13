@@ -39,8 +39,8 @@ a {
     color: inherit;
 
     &.link {
-        color: #539bfb;
-        border-bottom: 2px solid #d4e4fa;
+        color: var(--blue);
+        border-bottom: 2px solid var(--blue-lightest);
     }
 }
 
