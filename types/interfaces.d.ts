@@ -1,4 +1,4 @@
-declare module "typings" {
+declare module 'typings' {
     interface Keycapset {
         _id?: string;
         name?: string;
@@ -38,7 +38,7 @@ declare module "typings" {
         filters: {
             activeTab: string;
             availabilityFilter: string;
-        }
+        };
         tabs: string[];
         availability: string[];
         keycapsets: any[];

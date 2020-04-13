@@ -9,23 +9,27 @@ interface TabProps {
 
 function Tab(props: TabProps): JSX.Element {
     const { id, type } = props;
-    const { setGlobalState, filters: {
-            activeTab, availabilityFilter
-            }
-        } = useContext(Context);
+    const {
+        setGlobalState,
+        filters: { activeTab, availabilityFilter },
+    } = useContext(Context);
     const handleUpdateFilters = (): void => {
-        type === "cap"
+        type === 'cap'
             ? isActive
-                ? setGlobalState({ filters:{availabilityFilter, activeTab: 'all'} })
-                : setGlobalState({ filters:{availabilityFilter, activeTab: id} })
+                ? setGlobalState({
+                      filters: { availabilityFilter, activeTab: 'all' },
+                  })
+                : setGlobalState({
+                      filters: { availabilityFilter, activeTab: id },
+                  })
             : isActive
             ? setGlobalState({
-                  filters:{ activeTab ,availabilityFilter: 'none'},
+                  filters: { activeTab, availabilityFilter: 'none' },
               })
             : setGlobalState({
-                  filters:{ activeTab, availabilityFilter: id},
-              })
-    }
+                  filters: { activeTab, availabilityFilter: id },
+              });
+    };
     const isActive = id === activeTab || id === availabilityFilter;
     return (
         <li className="tab">

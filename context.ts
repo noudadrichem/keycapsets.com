@@ -6,7 +6,7 @@ import {
     INTEREST_CHECK,
     WAITING_FOR_GROUPBUY,
     IN_GROUP_BUY,
-    ENDED
+    ENDED,
 } from './constants';
 
 export function reduceState(state, obj) {
