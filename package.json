@@ -15,7 +15,7 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "npm run pretty"
+            "pre-commit": "pretty-quick --staged"
         }
     },
     "keywords": [],
@@ -55,6 +55,7 @@
         "@types/react": "^16.9.23",
         "husky": "^4.2.5",
         "json-loader": "^0.5.7",
+        "prettier": "^2.0.4",
         "pretty-quick": "^2.0.1",
         "sass-loader": "^8.0.2",
         "typescript": "^3.8.3"
