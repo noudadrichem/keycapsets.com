@@ -96,8 +96,8 @@ function SetPage(props: SetProps) {
                                 <br />
                                 <p>Selling vendors: </p>
                                 <ul>
-                                    {set.vendors.map((v: Vendor) => (
-                                        <p>- <a href={v.url}>{v.name}</a></p>
+                                    {set.vendors.map((v: Vendor, idx) => (
+                                        <p key={idx}>- <a href={v.url}>{v.name}</a></p>
                                     ))}
                                 </ul>
                             </>
