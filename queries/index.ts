@@ -134,6 +134,9 @@ query GET_SINGLE_SET_QUERY($type: String!, $slug:String!){
             price
             type
         }
+        designerName
+        brand
+        material
     }
 }
 `

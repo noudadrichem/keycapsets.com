@@ -65,7 +65,7 @@ function SetPage(props: SetProps) {
             <div className="container">
                 <Heading
                     left
-                    mainTitle={`${set.type.toUpperCase()} ${set.name}`}
+                    mainTitle={`${set.name} ${set.designerName ? `designed by ${set.designerName}`: ''}`}
                     subTitle={`Good luck with sharing!`}
                 />
 
@@ -84,7 +84,10 @@ function SetPage(props: SetProps) {
 
                     <div>
                         <h3>Info</h3>
-                        <p>type: {set.type}</p>
+                        <p>Designer: {set.designerName || 'Unknown'}</p>
+                        <p>Profile: {set.type}</p>
+                        <p>Brand: {set.brand || 'Unknown'}</p>
+                        <p>Material: {set.material || 'Unknown'}</p>
                         <p>Start date: {moment(set.groupbuyStartDate).format('dddd YYYY-MM-DD')}</p>
                         <p>End date: {moment(set.groupbuyEndDate).format('dddd YYYY-MM-DD')}</p>
 
@@ -93,8 +96,8 @@ function SetPage(props: SetProps) {
                                 <br />
                                 <p>Selling vendors: </p>
                                 <ul>
-                                    {set.vendors.map((v: Vendor) => (
-                                        <p>- <a href={v.url}>{v.name}</a></p>
+                                    {set.vendors.map((v: Vendor, idx) => (
+                                        <p key={idx}>- <a href={v.url}>{v.name}</a></p>
                                     ))}
                                 </ul>
                             </>
