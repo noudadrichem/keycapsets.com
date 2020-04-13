@@ -27,5 +27,10 @@ export const PROFILE_OPTIONS = [
     { label: 'KAM', value: 'kam' },
     { label: 'OEM', value: 'oem' },
     { label: 'MDA', value: 'mda' },
-    { label: 'DCS', value: 'dcs' },
-];
+    { label: 'DCS', value: 'dcs' }
+]
+
+export const INTEREST_CHECK = 'ic';
+export const WAITING_FOR_GROUPBUY = 'waiting';
+export const IN_GROUP_BUY = 'gb';
+export const ENDED = 'ended';
