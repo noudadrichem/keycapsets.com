@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import Button from '../Button';
 import Context from '../../context';
+import { AVAILABILITY_FILTER, CAP_FILTER } from '../../constants';
 
 interface TabProps {
     id: String;
@@ -13,7 +14,8 @@ function Tab(props: TabProps): JSX.Element {
         setGlobalState,
         filters: { activeTab, availabilityFilter },
     } = useContext(Context);
-    const handleUpdateFilters = (): void => {
+
+    function handleUpdateFilters(): void {
         type === 'cap'
             ? isActive
                 ? setGlobalState({
@@ -29,7 +31,11 @@ function Tab(props: TabProps): JSX.Element {
             : setGlobalState({
                   filters: { activeTab, availabilityFilter: id },
               });
-    };
+
+        if (type === 'cap') {
+        }
+    }
+
     const isActive = id === activeTab || id === availabilityFilter;
     return (
         <li className="tab">

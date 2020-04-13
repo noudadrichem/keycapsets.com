@@ -23,7 +23,7 @@ function Images(props: ImagesProps): JSX.Element {
         searchQuery,
     } = useContext(Context);
 
-    const filterByAvailability = (set: Keycapset): boolean => {
+    function filterByAvailability(set: Keycapset): boolean {
         if (availabilityFilter === 'none') {
             return true;
         }
@@ -50,13 +50,13 @@ function Images(props: ImagesProps): JSX.Element {
             default:
                 return false;
         }
-    };
+    }
 
-    const handleFilters = (keycapset: Keycapset): boolean => {
+    function handleFilters(keycapset: Keycapset): boolean {
         if (activeTab === 'all' && availabilityFilter === 'none') return true;
         if (activeTab === 'all') return filterByAvailability(keycapset);
         return keycapset.type === activeTab && filterByAvailability(keycapset);
-    };
+    }
 
     return (
         <>
@@ -64,10 +64,7 @@ function Images(props: ImagesProps): JSX.Element {
             <div className="images-container">
                 {keycapsets.length > 0 ? (
                     keycapsets
-                        .filter((keycapset: Keycapset) =>
-                            handleFilters(keycapset)
-                        )
-                        // .filter((keycapset: Keycapset) => keycapset.name.toLowerCase().includes(searchQuery.toLowerCase()))
+                        .filter(handleFilters)
                         .map((keycapset: Keycapset) => (
                             <ImageCard {...{ keycapset }} key={keycapset._id} />
                         ))

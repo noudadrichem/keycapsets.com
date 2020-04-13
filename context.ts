@@ -1,13 +1,7 @@
 import { createContext } from 'react';
 import moment from 'moment';
 import { InititalState } from 'typings';
-import {
-    PROFILE_OPTIONS,
-    INTEREST_CHECK,
-    WAITING_FOR_GROUPBUY,
-    IN_GROUP_BUY,
-    ENDED,
-} from './constants';
+import { AVAILABILITY } from './constants';
 
 export function reduceState(state, obj) {
     const reducedState = {
@@ -26,7 +20,7 @@ export const INITITAL_STATE: InititalState = {
         availabilityFilter: 'none',
     },
     tabs: ['all', 'gmk', 'pbt', 'sa', 'dsa', 'kat', 'jtk', 'kam', 'dcs'],
-    availability: [INTEREST_CHECK, WAITING_FOR_GROUPBUY, IN_GROUP_BUY, ENDED],
+    availability: AVAILABILITY,
     // tabs: PROFILE_OPTIONS.map(o => o.label),
     keycapsets: [],
     searchQuery: '',
