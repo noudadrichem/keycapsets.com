@@ -1,6 +1,7 @@
 # How to contribute to keycapsets.com
 
 ## Did you find a bug?
+
 Ensure the bug was not already reported by searching [Issues](https://github.com/noudadrichem/keycapsets.com/issues).
 
 If you're unable to find an open issue addressing the same issue, [make a new one](https://github.com/noudadrichem/keycapsets.com/issues/new)..

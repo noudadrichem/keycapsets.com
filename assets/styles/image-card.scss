@@ -11,8 +11,8 @@
     // }
 
     &.disabled {
-      cursor: auto;
-      pointer-events: none;
+        cursor: auto;
+        pointer-events: none;
     }
 
     .image {
@@ -35,7 +35,6 @@
             width: 100%;
             object-fit: cover;
         }
-
     }
 
     .details {

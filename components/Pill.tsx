@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode } from 'react';
 
 import '../assets/styles/pill.scss';
 
@@ -14,13 +14,13 @@ function Pill(props: PillProps): JSX.Element {
 
     return (
         <div className={`pill ${color}`}>
-            { text ? text :
-                color === 'green'
+            {text
+                ? text
+                : color === 'green'
                 ? 'Available for purchase!'
-                : 'Not available for purchase'
-            }
+                : 'Not available for purchase'}
         </div>
-    )
+    );
 }
 
-export default Pill
+export default Pill;

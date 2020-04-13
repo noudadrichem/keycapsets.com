@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode } from 'react';
 import Link from 'next/link';
 
 import '../assets/styles/nav.scss';
@@ -13,7 +13,8 @@ function Nav(props: NavProps): JSX.Element {
     return (
         <nav className="nav">
             <a className="discord-banner" href="https://discord.gg/dq8cyMS">
-                <img src="/images/discord.svg" /> Join the conversation on our discord!
+                <img src="/images/discord.svg" /> Join the conversation on our
+                discord!
             </a>
             <div className={`container ${isLargeContainer ? 'large' : ''}`}>
                 <div className="nav-container">
@@ -39,7 +40,7 @@ function Nav(props: NavProps): JSX.Element {
                 </div>
             </div>
         </nav>
-    )
+    );
 }
 
-export default Nav
+export default Nav;

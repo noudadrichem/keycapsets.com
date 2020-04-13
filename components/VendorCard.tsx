@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ButtonLink from '../components/ButtonLink';
-import { Vendor } from "typings";
+import { Vendor } from 'typings';
 
 interface VendorCardProps {
     vendor: Vendor;
@@ -9,20 +9,22 @@ interface VendorCardProps {
 
 function VendorCard(props: VendorCardProps): JSX.Element {
     const { vendor } = props;
-    const {
-        name,
-        logoUrl,
-        url
-    } = vendor;
+    const { name, logoUrl, url } = vendor;
 
     return (
         <div className="vendor-card">
             <div className="image">
-                <img src={logoUrl === undefined || logoUrl === '' ? `https://via.placeholder.com/400x300/f2f2f2?text=${name}` : logoUrl} alt={name} />
+                <img
+                    src={
+                        logoUrl === undefined || logoUrl === ''
+                            ? `https://via.placeholder.com/400x300/f2f2f2?text=${name}`
+                            : logoUrl
+                    }
+                    alt={name}
+                />
             </div>
 
             <div className="details">
-
                 <div className="horizontal">
                     <div className="left">
                         <h4>{name}</h4>
@@ -32,10 +34,9 @@ function VendorCard(props: VendorCardProps): JSX.Element {
                         <ButtonLink href={url}>Go to vendor</ButtonLink>
                     </div>
                 </div>
-
             </div>
         </div>
-    )
+    );
 }
 
 export default VendorCard;

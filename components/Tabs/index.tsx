@@ -8,7 +8,7 @@ import Select from '../Select';
 interface TabsProps {}
 
 function Tabs(props: TabsProps): JSX.Element {
-    const { } = props;
+    const {} = props;
     const state = useContext<InititalState>(Context);
 
     return (
@@ -16,7 +16,9 @@ function Tabs(props: TabsProps): JSX.Element {
             <div className="tabs">
                 <label className="label">Choose your keycap type</label>
                 <ul>
-                    {state.tabs.map((tab: String, idx: number) => <Tab id={tab} key={idx} />)}
+                    {state.tabs.map((tab: String, idx: number) => (
+                        <Tab id={tab} key={idx} />
+                    ))}
                 </ul>
             </div>
 
@@ -24,17 +26,21 @@ function Tabs(props: TabsProps): JSX.Element {
                 <Select
                     label="Filter caps by type"
                     name="Choose type"
-                    onSelectChange={(selectedFilterValue) => state.setGlobalState({ activeTab: selectedFilterValue })}
+                    onSelectChange={(selectedFilterValue) =>
+                        state.setGlobalState({ activeTab: selectedFilterValue })
+                    }
                     values={state.tabs.map((t) => ({ id: t, name: t }))}
                 />
             </div>
 
             <div className="counter">
                 <label className="label">Count:</label>
-                <p className="light">{state.keycapsets.length }/{state.allKeycapsetsCount}</p>
+                <p className="light">
+                    {state.keycapsets.length}/{state.allKeycapsetsCount}
+                </p>
             </div>
         </div>
-    )
+    );
 }
 
 export default Tabs;

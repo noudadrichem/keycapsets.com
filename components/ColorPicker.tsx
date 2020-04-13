@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 import ColorPickerLib from 'rc-color-picker';
 
 import useInput from '../hooks/useInput';
@@ -10,22 +10,21 @@ interface ColorPickerProps {
 }
 
 function ColorPicker(props: ColorPickerProps): JSX.Element {
-    const {
-        label,
-        defaultValue = '#ABACAD',
-        onChange
-    } = props;
+    const { label, defaultValue = '#ABACAD', onChange } = props;
 
-    const [accentColorValue, accentColorInput, setAccentColor] = useInput({ label, defaultValue });
+    const [accentColorValue, accentColorInput, setAccentColor] = useInput({
+        label,
+        defaultValue,
+    });
 
     function handler(colors) {
-        setAccentColor(colors.color)
-        onChange(colors.color)
+        setAccentColor(colors.color);
+        onChange(colors.color);
     }
 
     useEffect(function initColorPickerDefaultValue() {
-        handler({ color: defaultValue })
-    }, [])
+        handler({ color: defaultValue });
+    }, []);
 
     return (
         <div className={`color-picker-container`}>
@@ -41,7 +40,7 @@ function ColorPicker(props: ColorPickerProps): JSX.Element {
                 <span className="color-container"></span>
             </ColorPickerLib>
         </div>
-    )
+    );
 }
 
-export default ColorPicker
+export default ColorPicker;

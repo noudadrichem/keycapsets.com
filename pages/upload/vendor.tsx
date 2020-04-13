@@ -12,7 +12,7 @@ import { CREATE_VENDOR_MUTATION } from '../../queries';
 import useInput from '../../hooks/useInput';
 import withData from '../../hooks/withData';
 
-import MultipleInputs from '../../components/MultipleInputs'
+import MultipleInputs from '../../components/MultipleInputs';
 import Button from '../../components/Button';
 import Heading from '../../components/Heading';
 import Footer from '../../components/Footer';
@@ -27,40 +27,55 @@ interface UploadVendorProps {
 
 function UploadVendor(props: UploadVendorProps) {
     const {} = props;
-    const [nameValue, nameInput, setName] = useInput({ label: 'Name:'});
-    const [countryValue, setCountry] = useState<any>({ label: 'Netherlands', value: 'NL' });
-    const [continentValue, setContinent] = useState<any>({ label: "Europe", value: "EU" });
-    const [logoUrlValue, logoUrlInput, setLogoInput] = useInput({ label: 'Logo url:'});
-    const [urlValue, urlInput, setUrl] = useInput({ label: 'Website address:'});
+    const [nameValue, nameInput, setName] = useInput({ label: 'Name:' });
+    const [countryValue, setCountry] = useState<any>({
+        label: 'Netherlands',
+        value: 'NL',
+    });
+    const [continentValue, setContinent] = useState<any>({
+        label: 'Europe',
+        value: 'EU',
+    });
+    const [logoUrlValue, logoUrlInput, setLogoInput] = useInput({
+        label: 'Logo url:',
+    });
+    const [urlValue, urlInput, setUrl] = useInput({
+        label: 'Website address:',
+    });
     const [socials, setSocials] = useState<any[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [shouldReset, setShouldReset] = useState<boolean>(false);
-    const [addVendor, mutationResponse] = useMutation<string>(CREATE_VENDOR_MUTATION);
+    const [addVendor, mutationResponse] = useMutation<string>(
+        CREATE_VENDOR_MUTATION
+    );
 
     useEffect(() => {
         Router.push('/');
-    })
+    });
 
     const countriesFormatted: any[] = countries.map((country: any) => {
         return {
             label: country.countryName,
-            value: country.twoLetterCountryCode
-        }
+            value: country.twoLetterCountryCode,
+        };
     });
 
     const continentsFormatted = countries
-        .reduce((res, country) => {
-            if (!res[1].includes(country.continentCode)) {
-                res[1].push(country.continentCode);
-                res[0].push(country);
-            }
-            return res;
-        }, [[],[]])[0]
+        .reduce(
+            (res, country) => {
+                if (!res[1].includes(country.continentCode)) {
+                    res[1].push(country.continentCode);
+                    res[0].push(country);
+                }
+                return res;
+            },
+            [[], []]
+        )[0]
         .map((country: any) => {
             return {
                 label: country.continentName,
-                value: country.continentCode
-            }
+                value: country.continentCode,
+            };
         });
 
     async function uploadVendor() {
@@ -69,10 +84,10 @@ function UploadVendor(props: UploadVendorProps) {
             country: `${continentValue.value}-${countryValue.value}`,
             logoUrl: logoUrlValue,
             url: urlValue,
-            socials
+            socials,
         };
         const result = await addVendor({ variables });
-        console.log({result})
+        console.log({ result });
         reset();
     }
 
@@ -83,10 +98,10 @@ function UploadVendor(props: UploadVendorProps) {
         setUrl('');
         setSocials([]);
 
-        setShouldReset(true)
-        setTimeout(() =>  {
-            setShouldReset(false)
-        })
+        setShouldReset(true);
+        setTimeout(() => {
+            setShouldReset(false);
+        });
     }
 
     return null;
@@ -95,7 +110,11 @@ function UploadVendor(props: UploadVendorProps) {
             <Meta />
             <Nav />
             <div className="container upload">
-                <Heading mainTitle="By adding yourself as a vendor" subTitle="Make yourself famous!" left />
+                <Heading
+                    mainTitle="By adding yourself as a vendor"
+                    subTitle="Make yourself famous!"
+                    left
+                />
 
                 <div className="grid-container">
                     <div className="column">
@@ -103,14 +122,18 @@ function UploadVendor(props: UploadVendorProps) {
 
                         <Multiselect
                             label="Continent"
-                            onChange={(selectedContinent: any) => setContinent(selectedContinent)}
+                            onChange={(selectedContinent: any) =>
+                                setContinent(selectedContinent)
+                            }
                             options={continentsFormatted}
-                            defaultValue={{ label: "Europe", value: "EU"}}
+                            defaultValue={{ label: 'Europe', value: 'EU' }}
                         />
 
                         <Multiselect
                             label="Country"
-                            onChange={(selectedCountry: any) => setCountry(selectedCountry)}
+                            onChange={(selectedCountry: any) =>
+                                setCountry(selectedCountry)
+                            }
                             options={countriesFormatted}
                             defaultValue={{ label: 'Netherlands', value: 'NL' }}
                         />
@@ -119,7 +142,9 @@ function UploadVendor(props: UploadVendorProps) {
                         {urlInput}
                         <MultipleInputs
                             label="Social links..."
-                            onChange={(socials: string[]) => { setSocials(socials) }}
+                            onChange={(socials: string[]) => {
+                                setSocials(socials);
+                            }}
                             shouldReset={shouldReset}
                         />
 
@@ -128,19 +153,16 @@ function UploadVendor(props: UploadVendorProps) {
                             variant="primary"
                             size="sm"
                             className="align-right"
-                            >
+                        >
                             {loading ? 'Adding...' : 'Add vendor'}
                         </Button>
                     </div>
                 </div>
-
-
             </div>
             <Footer />
         </>
-    )
+    );
 }
-
 
 // commenting this as it's not working, need to fix asap.
 // export async function getServerSideProps() {

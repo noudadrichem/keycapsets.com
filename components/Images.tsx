@@ -9,34 +9,29 @@ interface ImagesProps {}
 
 function Images(props: ImagesProps): JSX.Element {
     const {} = props;
-    const {
-        keycapsets,
-        activeTab,
-        searchQuery
-    } = useContext(Context);
+    const { keycapsets, activeTab, searchQuery } = useContext(Context);
 
     return (
         <>
             <Tabs />
 
             <div className="images-container">
-                { keycapsets.length > 0 ?
-                    (
+                {keycapsets.length > 0 ? (
                     keycapsets
                         .filter((keycapset: Keycapset) => {
                             if (activeTab === 'all') return true;
                             return keycapset.type === activeTab;
                         })
                         // .filter((keycapset: Keycapset) => keycapset.name.toLowerCase().includes(searchQuery.toLowerCase()))
-                        .map((keycapset: Keycapset) =>
+                        .map((keycapset: Keycapset) => (
                             <ImageCard {...{ keycapset }} key={keycapset._id} />
-                        )
-                    )
-                    : <p>No keycapsets found...</p>
-                }
+                        ))
+                ) : (
+                    <p>No keycapsets found...</p>
+                )}
             </div>
         </>
-    )
+    );
 }
 
 export default Images;

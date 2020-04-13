@@ -24,7 +24,7 @@ function ImageCard(props: ImageCardProps): JSX.Element {
         slug,
         groupbuyStartDate,
         groupbuyEndDate,
-        isInterestCheck
+        isInterestCheck,
     } = keycapset;
 
     const state = useContext<InititalState>(Context);
@@ -35,14 +35,21 @@ function ImageCard(props: ImageCardProps): JSX.Element {
         if (!isTemplate) {
             forceCheck();
         }
-    }, [state.searchQuery])
+    }, [state.searchQuery]);
 
     return (
         <LazyLoad offset={400} height={400} once>
             <Link href="/[type]/[set]" as={`/${type}/${slug}`}>
                 <div className={`image-card ${isTemplate ? 'disabled' : ''}`}>
                     <div className="image">
-                        <img src={coverImageUrl === undefined || coverImageUrl === '' ? '/images/empty-base-kit-illu.svg' : coverImageUrl} />
+                        <img
+                            src={
+                                coverImageUrl === undefined ||
+                                coverImageUrl === ''
+                                    ? '/images/empty-base-kit-illu.svg'
+                                    : coverImageUrl
+                            }
+                        />
 
                         <StatusLabel
                             groupbuyStartDate={groupbuyStartDate}
@@ -53,37 +60,68 @@ function ImageCard(props: ImageCardProps): JSX.Element {
 
                     <div className="details">
                         <div className="top">
-                            <h4 className="set-title"><span className="small">{type}</span> {name || 'Title goes here'}</h4>
-                            <p className="light">{moment(groupbuyStartDate).format('YYYY')}</p>
+                            <h4 className="set-title">
+                                <span className="small">{type}</span>{' '}
+                                {name || 'Title goes here'}
+                            </h4>
+                            <p className="light">
+                                {moment(groupbuyStartDate).format('YYYY')}
+                            </p>
                         </div>
 
                         <div className="bottom">
                             <p className="light">
-                                {
-                                    isInterestCheck ? (
-                                        <>Awaiting interest check </>
-                                    ) : (
-                                        <>
-                                            {
-                                                isInFuture
-                                                    ? <> Starting in <span className="bold"> {getDayDifference(groupbuyStartDate)} </span> days </>
-                                                    : <>{
-                                                        getDayDifference(groupbuyEndDate) > 0
-                                                            ? (<>Ending in <span className="bold"> {getDayDifference(groupbuyEndDate)} </span> days</>)
-                                                            : 'Ended.'
-                                                    }</>
-                                            }
-                                        </>
-                                    )
-                                }
+                                {isInterestCheck ? (
+                                    <>Awaiting interest check </>
+                                ) : (
+                                    <>
+                                        {isInFuture ? (
+                                            <>
+                                                {' '}
+                                                Starting in{' '}
+                                                <span className="bold">
+                                                    {' '}
+                                                    {getDayDifference(
+                                                        groupbuyStartDate
+                                                    )}{' '}
+                                                </span>{' '}
+                                                days{' '}
+                                            </>
+                                        ) : (
+                                            <>
+                                                {getDayDifference(
+                                                    groupbuyEndDate
+                                                ) > 0 ? (
+                                                    <>
+                                                        Ending in{' '}
+                                                        <span className="bold">
+                                                            {' '}
+                                                            {getDayDifference(
+                                                                groupbuyEndDate
+                                                            )}{' '}
+                                                        </span>{' '}
+                                                        days
+                                                    </>
+                                                ) : (
+                                                    'Ended.'
+                                                )}
+                                            </>
+                                        )}
+                                    </>
+                                )}
                             </p>
-                            <ButtonLink href="/[type]/[set]" as={`/${type}/${slug}`}>View this set</ButtonLink>
+                            <ButtonLink
+                                href="/[type]/[set]"
+                                as={`/${type}/${slug}`}
+                            >
+                                View this set
+                            </ButtonLink>
                         </div>
                     </div>
                 </div>
             </Link>
         </LazyLoad>
-    )
+    );
 }
 
 export default ImageCard;

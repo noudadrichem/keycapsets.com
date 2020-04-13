@@ -16,31 +16,31 @@ interface UploadProps {}
 function Upload(props: UploadProps) {
     useEffect(() => {
         Router.push('/');
-    })
+    });
 
     return null;
-    (
-        <>
-            <Nav />
-            <div className="container upload">
-                <Heading mainTitle="Upload a set or apply as a vendor!" subTitle="Start shining out there!" left />
+    <>
+        <Nav />
+        <div className="container upload">
+            <Heading
+                mainTitle="Upload a set or apply as a vendor!"
+                subTitle="Start shining out there!"
+                left
+            />
 
-                <div className="cards">
-                    <div className="card">
-                        <Link  href="/upload/set">Add a set!</Link>
-                    </div>
-
-                    <div className="card">
-                        <Link  href="/upload/vendor">Are you a vendor?</Link>
-                    </div>
-
+            <div className="cards">
+                <div className="card">
+                    <Link href="/upload/set">Add a set!</Link>
                 </div>
 
+                <div className="card">
+                    <Link href="/upload/vendor">Are you a vendor?</Link>
+                </div>
             </div>
+        </div>
 
-            <Footer />
-        </>
-    )
+        <Footer />
+    </>;
 }
 
 export default withGA('UA-115865530-2', Router)(withData(Upload));

@@ -23,38 +23,46 @@ function Terms() {
 
             <Nav />
             <div className="terms container">
-                <Heading
-                    mainTitle={title}
-                    subTitle={description}
-                    left
-                />
+                <Heading mainTitle={title} subTitle={description} left />
 
                 <div className="text-container">
                     <h4>Use of the Service</h4>
                     <p className="light alinea">
-                        This site tracks analytics via Google Analytics. By using this platform you agree that we track views of this site. We don't save sensitive and personal data.
+                        This site tracks analytics via Google Analytics. By
+                        using this platform you agree that we track views of
+                        this site. We don't save sensitive and personal data.
                     </p>
 
                     <h4>The content</h4>
                     <p className="light alinea">
-                        The keycapsets team is not responsible for what people say about or post on this platform. See <a className="link" href="/upload-statement">this link</a> for more information about the occured issue.
+                        The keycapsets team is not responsible for what people
+                        say about or post on this platform. See{' '}
+                        <a className="link" href="/upload-statement">
+                            this link
+                        </a>{' '}
+                        for more information about the occured issue.
                     </p>
 
-                    <br/>
+                    <br />
 
-                    <ButtonLink isLarge href="https://github.com/noudadrichem/keycapsets.com/issues">If you want to leave any suggestions, feedback or feature request you can do so here.</ButtonLink>
-                    <br/><br/>
+                    <ButtonLink
+                        isLarge
+                        href="https://github.com/noudadrichem/keycapsets.com/issues"
+                    >
+                        If you want to leave any suggestions, feedback or
+                        feature request you can do so here.
+                    </ButtonLink>
+                    <br />
+                    <br />
                     <p className="light alinea">
                         Or contact us on contact@keycapsets.com
                     </p>
-
                 </div>
-
             </div>
             <Footer />
             <CTACard />
         </>
-    )
+    );
 }
 
 export default withGA('UA-115865530-2', Router)(withData(Terms));
