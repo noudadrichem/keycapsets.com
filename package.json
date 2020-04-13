@@ -6,7 +6,8 @@
     "scripts": {
         "dev": "next",
         "build": "next build",
-        "start": "NODE_ENV=production next start"
+        "start": "NODE_ENV=production next start",
+        "pretty": "prettier --ignore-path=.prettierignore --write ."
     },
     "repository": {
         "type": "git",
