@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Error from 'next/error'
-import { useMutation, useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/react-hooks';
 import withGA from 'next-ga';
 import Router from 'next/router';
 
@@ -18,14 +18,11 @@ import Nav from '../components/Nav';
 import LoadingKeyboard from '../components/LoadingKeyboard';
 import VendorCard from "../components/VendorCard";
 import Meta from "../components/Meta";
-import Head from "next/head";
-import Context from "../context";
 
 interface VendorProps {}
 
 function Vendors(props: VendorProps):JSX.Element {
     const { loading, error, data } = useQuery(GET_VENDORS_QUERY);
-    console.log("Data: ", data);
 
     if (loading) {
         return <LoadingKeyboard />
@@ -50,8 +47,10 @@ function Vendors(props: VendorProps):JSX.Element {
                 <div className="images-container">
                     {
                         data.vendors
-                            .map((vendor: Vendor) =>
-                                <VendorCard vendor={vendor} key={vendor._id} />
+                            .map((vendor: Vendor) => {
+                                    console.log('Vendor country: ',vendor.country);
+                                    return <VendorCard vendor={vendor} key={vendor._id}/>;
+                                }
                             )
                     }
                 </div>

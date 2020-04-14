@@ -83,6 +83,7 @@ query GET_VENDORS_QUERY {
     _id
     logoUrl
     url
+    country
   }
 }
 `
