@@ -26,10 +26,12 @@ function ImageCard(props: ImageCardProps): JSX.Element {
 
     const isInFuture: Boolean = moment().diff(groupbuyStartDate, 'days') < 0;
 
+    const isTemplate = !keycapset.hasOwnProperty('_id');
+
     return (
         <LazyLoad offset={100}>
             <Link href="/[type]/[set]" as={`/${type}/${slug}`}>
-                <div className="image-card">
+                <div className={`image-card ${isTemplate ? 'disabled' : ''}`}>
                     <div className="image">
                         <img src={coverImageUrl === undefined || coverImageUrl === '' ? '/images/empty-base-kit-illu.svg' : coverImageUrl} />
                         {!isInFuture && <Pill color='green' />}

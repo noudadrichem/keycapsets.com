@@ -5,6 +5,10 @@
 
     &.left {
         padding: 48px 0;
+
+        @media screen and (max-width: $bp-tablet-sm) {
+            padding: 48px 0 0px;
+        }
     }
 
     @media screen and (max-width: $bp-tablet-sm) {

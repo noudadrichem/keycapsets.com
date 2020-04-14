@@ -14,6 +14,7 @@ import Button from '../../components/Button';
 import Heading from '../../components/Heading';
 import Footer from '../../components/Footer';
 import Nav from '../../components/Nav';
+import Meta from '../../components/Meta';
 
 interface UploadVendorProps { }
 
@@ -57,6 +58,7 @@ function UploadVendor(props: UploadVendorProps) {
 
     return (
         <>
+            <Meta />
             <Nav />
             <div className="container upload">
                 <Heading mainTitle="By adding yourself as a vendor" subTitle="Make yourself famous!" left />

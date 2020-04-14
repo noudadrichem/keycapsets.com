@@ -1,0 +1,26 @@
+.back-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  padding: 0;
+  border-radius: 50%;
+  opacity: 0;
+  visibility: hidden;
+  transition: 120ms;
+  outline: none;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  width: 48px;
+  height: 48px;
+
+  @media screen and (max-width: 768px) {
+    right: 8px;
+    bottom: 8px;
+  }
+
+  &-show {
+    visibility: visible;
+    opacity: 1;
+  }
+}

@@ -17,6 +17,7 @@ import Nav from '../components/Nav';
 import LoadingKeyboard from '../components/LoadingKeyboard';
 import LoadingKeyboardIllustration from '../components/LoadingKeyboardIllustration';
 import CTACard from '../components/CTACard';
+import BackToTop from '../components/BackToTop';
 
 import '../assets/styles/main.scss';
 import Meta from '../components/Meta';
@@ -29,7 +30,7 @@ interface HomeProps {
 }
 
 function Home(props: HomeProps) {
-    const LIMIT = 9;
+    const LIMIT = 12;
     const isBrowser = typeof window !== `undefined`
     const client = useApolloClient();
 
@@ -179,6 +180,8 @@ function Home(props: HomeProps) {
                 <Images />
 
                 { loadingExtra && <LoadingKeyboardIllustration scale={0.3} />}
+
+                <BackToTop />
                 <Footer />
             </div>
 

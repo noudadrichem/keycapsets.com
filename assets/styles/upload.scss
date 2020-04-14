@@ -18,6 +18,18 @@
         }
     }
 
+    .form-ruler {
+        margin: 24px 0 24px;
+        width: 100%;
+        height: 1px;
+        display: block;
+        border-radius: 1px;
+        background-color: #e2e5eb;
+    }
+
+    .form-sub-title {
+        margin-bottom: 8px;
+    }
 
     .column {
         margin-top: 40px;
