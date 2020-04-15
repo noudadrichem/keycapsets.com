@@ -90,12 +90,12 @@ const CREATE_VENDOR_MUTATION = gql`
 
 const GET_VENDORS_QUERY = gql`
     query GET_VENDORS_QUERY {
-    vendors {
-        name
-        _id
-        logoUrl
-        url
-        country
+        vendors {
+            name
+            _id
+            logoUrl
+            url
+            country
         }
     }
 `;
