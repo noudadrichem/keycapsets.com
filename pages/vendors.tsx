@@ -78,27 +78,26 @@ function Vendors(props: VendorProps): JSX.Element {
         return accum;
     }, totalAcc);
 
-    const sortedVendors = filteredVendorLists.reduce(function (
-        sortedVendors,
-        field,
-        index
-    ) {
-        sortedVendors[availableContinents[index]] = field;
+    const sortedVendors = filteredVendorLists.reduce(
+        (sortedVendors, field, index) => {
+            sortedVendors[availableContinents[index]] = field;
 
-        // add continent display label to vendor
-        countryIsoList.forEach((countryIso) => {
-            if (availableContinents[index] === 'ALL') {
-                sortedVendors[availableContinents[index]].label = 'Worldwide';
-            }
-            if (countryIso.continentCode === availableContinents[index]) {
-                sortedVendors[availableContinents[index]].label =
-                    countryIso.continentName;
-            }
-        });
+            // add continent display label to vendor
+            countryIsoList.forEach((countryIso) => {
+                if (availableContinents[index] === 'ALL') {
+                    sortedVendors[availableContinents[index]].label =
+                        'Worldwide';
+                }
+                if (countryIso.continentCode === availableContinents[index]) {
+                    sortedVendors[availableContinents[index]].label =
+                        countryIso.continentName;
+                }
+            });
 
-        return sortedVendors;
-    },
-    {});
+            return sortedVendors;
+        },
+        {}
+    );
 
     return (
         <>
