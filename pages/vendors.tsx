@@ -44,11 +44,26 @@ function Vendors(props: VendorProps):JSX.Element {
                     subTitle="Available vendors."
                 />
 
+                <h2 className={'no-bold center'}>Europe</h2>
                 <div className="images-container">
+                    {/* REGION EU */}
                     {
                         data.vendors
                             .map((vendor: Vendor) => {
-                                    console.log('Vendor country: ',vendor.country);
+                                    if (vendor.country.includes('EU')) {
+                                        return <VendorCard vendor={vendor} key={vendor._id}/>;
+                                    }
+                                }
+                            )
+                    }
+                </div>
+
+                <div className="images-container">
+                    {/* UNFILTERED */}
+                    {
+                        data.vendors
+                            .map((vendor: Vendor) => {
+                                    console.log(vendor.name,': ',vendor.country);
                                     return <VendorCard vendor={vendor} key={vendor._id}/>;
                                 }
                             )
