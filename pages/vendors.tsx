@@ -61,7 +61,7 @@ function Vendors(props: VendorProps): JSX.Element {
             return res;
         }, []);
 
-    let totalAcc = generateAccumArray(availableContinents.length);
+    const totalAcc = generateAccumArray(availableContinents.length);
 
     // filter all vendor objects by key 'country', push all vendors to dedicated continent array
     const filteredVendorLists = vendors.reduce((accum, vendor) => {
