@@ -108,10 +108,7 @@ function Vendors(props: VendorProps): JSX.Element {
                 {Object.keys(sortedVendors).map((key) => (
                     <div className="continent-section">
                         <div className="continent-bar">
-                            <h2 className={'no-bold left'}>
-                                {' '}
-                                {sortedVendors[key].label}{' '}
-                            </h2>
+                            <h2 className={'no-bold left'}> { sortedVendors[key].label } </h2>
                         </div>
 
                         <div className="images-container">
