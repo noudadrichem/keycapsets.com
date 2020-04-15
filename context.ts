@@ -1,25 +1,33 @@
 import { createContext } from 'react';
 import moment from 'moment';
 import { InititalState } from 'typings';
+import { AVAILABILITY } from './constants';
 
 export function reduceState(state, obj) {
     const reducedState = {
         ...state,
-        ...obj
+        ...obj,
+    };
+    if (process.env.NODE_ENV === 'development') {
+        console.log(moment().format('hh:mm:ss') + '_STATE...', reducedState);
     }
-    // console.log(moment().format('hh:mm:ss') + '_STATE...', reducedState)
     return reducedState;
 }
 
 export const INITITAL_STATE: InititalState = {
-    activeTab: 'all',
-    tabs: ['all', 'gmk', 'pbt', 'sa', 'dsa', 'kat', 'jtk', 'kam'],
+    filters: {
+        activeTab: 'all',
+        availabilityFilter: 'none',
+    },
+    tabs: ['all', 'gmk', 'pbt', 'sa', 'dsa', 'kat', 'jtk', 'kam', 'dcs'],
+    availability: AVAILABILITY,
+    // tabs: PROFILE_OPTIONS.map(o => o.label),
     keycapsets: [],
     searchQuery: '',
     allKeycapsetsCount: 0,
-    setGlobalState: () => {}
-}
+    setGlobalState: () => {},
+};
 
-const Context = createContext(undefined);
+const Context = createContext(INITITAL_STATE);
 
 export default Context;

@@ -1,27 +1,27 @@
-  :root {
+:root {
     --text-color: #323232;
     --text-color-light: #566073;
-    --text-color-lightest: #A9A9A9;
+    --text-color-lightest: #a9a9a9;
     --panel-background: #f2f2f2;
-    --blue-darker: #306AB0;
-    --blue: #539BFB;
-    --blue-lighter: #ABCCF8;
-    // --blue-lightest: #D4E4FA;
-    --blue-lightest: #D4E4FA;
+    --blue-darker: #306ab0;
+    --blue: #539bfb;
+    --blue-lighter: #abccf8;
+    // --blue-lightest: #D4E4FA;/
+    --blue-lightest: #d4e4fa;
 
     --white: #fff;
-    --darker-white: #F8F9FB;
+    --darker-white: #f8f9fb;
     --darkest-gray: ;
     --light-gray: #848484;
     --red: #f8abab;
-  }
+}
 
-  // Breakpoints
-  $bp-mobile-sm: 321px;
-  $bp-mobile-md: 376px;
-  $bp-mobile-lg: 414px;
-  $bp-tablet-sm: 562px;
-  $bp-tablet-md: 768px;
-  $bp-desktop-sm: 1120px;
-  $bp-desktop-md: 1280px;
-  $bp-desktop-lg: 1536px;
+// Breakpoints
+$bp-mobile-sm: 321px;
+$bp-mobile-md: 376px;
+$bp-mobile-lg: 414px;
+$bp-tablet-sm: 562px;
+$bp-tablet-md: 768px;
+$bp-desktop-sm: 1120px;
+$bp-desktop-md: 1280px;
+$bp-desktop-lg: 1536px;

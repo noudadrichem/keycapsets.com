@@ -1,8 +1,8 @@
-import React, {ReactNode} from 'react'
+import React, { ReactNode } from 'react';
 
 interface ButtonProps {
     size?: String;
-    type: String,
+    type: String;
     variant: String;
     className?: String;
     isDisabled?: boolean;
@@ -20,22 +20,24 @@ function Button(props: ButtonProps): JSX.Element {
         isFullWidth,
         children,
         className,
-        onClick
+        onClick,
     } = props;
 
     return (
         <button
-            className={`btn ${variant} ${size} ${type} ${className} ${isFullWidth ? 'full-width' : ''}`}
+            className={`btn ${variant} ${size} ${type} ${className} ${
+                isFullWidth ? 'full-width' : ''
+            }`}
             disabled={isDisabled}
             onClick={onClick}
         >
-            { children }
+            {children}
         </button>
-    )
+    );
 }
 
 Button.defaultProps = {
-    type: 'button'
-}
+    type: 'button',
+};
 
-export default Button
+export default Button;

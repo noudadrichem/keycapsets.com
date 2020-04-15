@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
-import Error from 'next/error'
-import { useQuery } from '@apollo/react-hooks';
+import Error from 'next/error';
+import { useMutation, useQuery } from '@apollo/react-hooks';
 import withGA from 'next-ga';
 import Router from 'next/router';
 
@@ -12,25 +12,27 @@ import Heading from '../components/Heading';
 import Footer from '../components/Footer';
 
 import '../assets/styles/main.scss';
-import '../assets/styles/vendor-card.scss';
 import { Vendor } from 'typings';
 import Nav from '../components/Nav';
 import LoadingKeyboard from '../components/LoadingKeyboard';
-import VendorCard from "../components/VendorCard";
-import Meta from "../components/Meta";
+import VendorCard from '../components/VendorCard';
+import Meta from '../components/Meta';
+import Head from 'next/head';
+import Context from '../context';
+import CTACard from '../components/CTACard';
 
 interface VendorProps {}
 
-function Vendors(props: VendorProps):JSX.Element {
+function Vendors(props: VendorProps): JSX.Element {
     const { loading, error, data } = useQuery(GET_VENDORS_QUERY);
 
     if (loading) {
-        return <LoadingKeyboard />
+        return <LoadingKeyboard />;
     }
 
     if (error) {
         console.error(error);
-        return <Error title="Oops, small mistake here..." statusCode={502} />
+        return <Error title="Oops, small mistake here..." statusCode={502} />;
     }
 
     return (
@@ -39,10 +41,7 @@ function Vendors(props: VendorProps):JSX.Element {
 
             <Nav />
             <div className="container">
-                <Heading
-                    mainTitle="Vendors"
-                    subTitle="Available vendors."
-                />
+                <Heading mainTitle="Vendors" subTitle="Available vendors." />
 
                 <h2 className={'no-bold center'}>Europe</h2>
                 <div className="images-container">
@@ -69,11 +68,11 @@ function Vendors(props: VendorProps):JSX.Element {
                             )
                     }
                 </div>
-
-                <Footer />
             </div>
+            <Footer />
+            <CTACard />
         </>
-    )
+    );
 }
 
 export default withGA('UA-115865530-2', Router)(withData(Vendors));

@@ -6,15 +6,21 @@
     "scripts": {
         "dev": "next",
         "build": "next build",
-        "start": "NODE_ENV=production next start"
+        "start": "NODE_ENV=production next start",
+        "pretty": "prettier --ignore-path=.prettierignore --write ."
     },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/noudadrichem/keycapsets.com.git"
     },
+    "husky": {
+        "hooks": {
+            "pre-commit": "pretty-quick --staged"
+        }
+    },
     "keywords": [],
-    "author": "",
-    "license": "ISC",
+    "author": "noudadrichem",
+    "license": "GNU",
     "bugs": {
         "url": "https://github.com/noudadrichem/keycapsets.com/issues"
     },
@@ -27,13 +33,14 @@
         "dotenv": "^8.2.0",
         "graphql": "^14.6.0",
         "moment": "^2.24.0",
-        "next": "^9.3.0",
+        "next": "^9.3.2",
         "next-apollo": "^3.1.10",
         "next-ga": "^2.3.4",
         "next-images": "^1.3.1",
         "next-with-apollo": "^5.0.0",
         "node-fetch": "^2.6.0",
         "node-sass": "^4.13.1",
+        "rc-color-picker": "^1.2.6",
         "react": "^16.13.0",
         "react-apollo": "^3.1.3",
         "react-dom": "^16.13.0",
@@ -46,7 +53,10 @@
     "devDependencies": {
         "@types/node": "^13.9.1",
         "@types/react": "^16.9.23",
+        "husky": "^4.2.5",
         "json-loader": "^0.5.7",
+        "prettier": "^2.0.4",
+        "pretty-quick": "^2.0.1",
         "sass-loader": "^8.0.2",
         "typescript": "^3.8.3"
     }

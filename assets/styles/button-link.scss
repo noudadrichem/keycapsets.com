@@ -1,7 +1,7 @@
 .button-link {
     font-size: 14px;
-    color: #539BFB;
-    border-bottom: 2px solid #D4E4FA;
+    color: #539bfb;
+    border-bottom: 2px solid #d4e4fa;
     display: inline-flex;
     align-items: center;
     cursor: pointer;
@@ -17,7 +17,7 @@
     }
 
     &:hover {
-        border-bottom: 2px solid #539BFB;
+        border-bottom: 2px solid #539bfb;
 
         .arrow {
             transform: translateX(3px);
