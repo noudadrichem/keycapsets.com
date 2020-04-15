@@ -34,14 +34,17 @@ declare module 'typings' {
         slug?: string;
     }
 
+    interface Filters {
+        activeTab: string;
+        availabilityFilter: string;
+    }
+
     interface InititalState {
-        filters: {
-            activeTab: string;
-            availabilityFilter: string;
-        };
+        filters: Filters;
         tabs: string[];
         availability: string[];
-        keycapsets: any[];
+        keycapsets: Keycapset[];
+        filteredSets: Keycapset[];
         searchQuery: string;
         allKeycapsetsCount: number;
         setGlobalState?: Function;
