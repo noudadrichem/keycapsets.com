@@ -78,7 +78,7 @@ function Vendors(props: VendorProps): JSX.Element {
         return accum;
     }, totalAcc);
 
-    var sortedVendors = filteredVendorLists.reduce(function (
+    const sortedVendors = filteredVendorLists.reduce(function (
         sortedVendors,
         field,
         index
