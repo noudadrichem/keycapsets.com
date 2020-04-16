@@ -1,7 +1,7 @@
 .button-link {
     font-size: 14px;
-    color: #539BFB;
-    border-bottom: 2px solid #D4E4FA;
+    color: #539bfb;
+    border-bottom: 2px solid #d4e4fa;
     display: inline-flex;
     align-items: center;
     cursor: pointer;
@@ -14,13 +14,5 @@
     .arrow {
         margin-left: 4px;
         transition: 120ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
-    }
-
-    &:hover {
-        border-bottom: 2px solid #539BFB;
-
-        .arrow {
-            transform: translateX(3px);
-        }
     }
 }

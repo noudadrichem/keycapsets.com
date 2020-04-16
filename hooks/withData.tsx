@@ -7,7 +7,7 @@ export default withApollo(
         return new ApolloClient({
             // uri: 'http://localhost:4000/graphql',
             uri: 'https://api.keycapsets.com/graphql',
-            cache: new InMemoryCache().restore(initialState || {})
+            cache: new InMemoryCache().restore(initialState || {}),
         });
     },
     {
@@ -17,6 +17,6 @@ export default withApollo(
                     <Page {...props} />
                 </ApolloProvider>
             );
-        }
+        },
     }
 );
