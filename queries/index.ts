@@ -95,6 +95,7 @@ const GET_VENDORS_QUERY = gql`
             _id
             logoUrl
             url
+            country
         }
     }
 `;
