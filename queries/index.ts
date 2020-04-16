@@ -1,12 +1,7 @@
 import { gql } from 'apollo-boost';
 
 const FETCH_KEYCAPSET_QUERY = gql`
-    query FETCH_KEYCAPSET_QUERY(
-        $limit: Int
-        $offset: Int
-        $type: String
-        $query: String
-    ) {
+    query FETCH_KEYCAPSET_QUERY($limit: Int, $offset: Int, $type: String, $query: String) {
         allKeycapsetsCount
         keycapsets(limit: $limit, offset: $offset, type: $type, query: $query) {
             _id
@@ -75,13 +70,7 @@ const CREATE_VENDOR_MUTATION = gql`
         $socials: [String]
         $url: String
     ) {
-        createVendor(
-            name: $name
-            country: $country
-            logoUrl: $logoUrl
-            socials: $socials
-            url: $url
-        ) {
+        createVendor(name: $name, country: $country, logoUrl: $logoUrl, socials: $socials, url: $url) {
             name
             _id
         }
@@ -89,47 +78,23 @@ const CREATE_VENDOR_MUTATION = gql`
 `;
 
 const GET_VENDORS_QUERY = gql`
-query GET_VENDORS_QUERY {
-  vendors {
-    name
-    _id
-    logoUrl
-    url
-    slug
-  }
-}
-`
-
-const GET_SINGLE_VENDOR_QUERY = gql`
-query GET_SINGLE_VENDOR_QUERY($slug:String!){
-    vendorBySlug(slug:$slug) {
-        _id
-        name
-        logoUrl
-    }
-}
-`
-
-const GET_SINGLE_SET_QUERY = gql`
-query GET_SINGLE_SET_QUERY($type: String!, $slug:String!){
-    keycapsetBySlug(type:$type, slug:$slug) {
-        _id
-        name
-        designerName
-        type
-        coverImageUrl
-        groupbuyStartDate
-        groupbuyEndDate
-        active
-        coverImageUrl
-        imageUrls
-        websiteUrl
+    query GET_VENDORS_QUERY {
         vendors {
             name
             _id
             logoUrl
             url
-            country
+            slug
+        }
+    }
+`;
+
+const GET_SINGLE_VENDOR_QUERY = gql`
+    query GET_SINGLE_VENDOR_QUERY($slug: String!) {
+        vendorBySlug(slug: $slug) {
+            _id
+            name
+            logoUrl
         }
     }
 `;
@@ -173,16 +138,16 @@ const GET_SINGLE_SET_QUERY = gql`
 `;
 
 const GET_SETS_BY_VENDOR = gql`
-query getKeycapsetByVendor($vendorId:String) {
-    keycapsetsByVendor(vendorId: $vendorId) {
-        _id
-        name
-        type
-        coverImageUrl
-        slug
+    query getKeycapsetByVendor($vendorId: String) {
+        keycapsetsByVendor(vendorId: $vendorId) {
+            _id
+            name
+            type
+            coverImageUrl
+            slug
+        }
     }
-}
-`
+`;
 
 const GET_SETS_BY_QUERY = gql`
     query getKeycapsetByQuery($query: String) {
@@ -208,5 +173,5 @@ export {
     GET_SINGLE_VENDOR_QUERY,
     GET_SINGLE_SET_QUERY,
     GET_SETS_BY_VENDOR,
-    GET_SETS_BY_QUERY
-}
+    GET_SETS_BY_QUERY,
+};
