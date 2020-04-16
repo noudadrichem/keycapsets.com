@@ -59,4 +59,18 @@
             }
         }
     }
+
+    &:hover {
+        .details {
+            .bottom {
+                .button-link {
+                    border-bottom: 2px solid #539bfb;
+
+                    .arrow {
+                        transform: translateX(4px);
+                    }
+                }
+            }
+        }
+    }
 }
