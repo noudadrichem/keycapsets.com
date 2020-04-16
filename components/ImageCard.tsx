@@ -61,7 +61,7 @@ function ImageCard(props: ImageCardProps): JSX.Element {
                     <div className="details">
                         <div className="top">
                             <h4 className="set-title">
-                                <span className="small">{type}</span>{' '}
+                                <span className="small">{type}</span>
                                 {name || 'Title goes here'}
                             </h4>
                             <p className="light">
@@ -77,15 +77,13 @@ function ImageCard(props: ImageCardProps): JSX.Element {
                                     <>
                                         {isInFuture ? (
                                             <>
-                                                {' '}
-                                                Starting in{' '}
+                                                Starting in
                                                 <span className="bold">
-                                                    {' '}
                                                     {getDayDifference(
                                                         groupbuyStartDate
-                                                    )}{' '}
-                                                </span>{' '}
-                                                days{' '}
+                                                    )}
+                                                </span>
+                                                days
                                             </>
                                         ) : (
                                             <>
@@ -93,13 +91,12 @@ function ImageCard(props: ImageCardProps): JSX.Element {
                                                     groupbuyEndDate
                                                 ) > 0 ? (
                                                     <>
-                                                        Ending in{' '}
+                                                        Ending in
                                                         <span className="bold">
-                                                            {' '}
                                                             {getDayDifference(
                                                                 groupbuyEndDate
-                                                            )}{' '}
-                                                        </span>{' '}
+                                                            )}
+                                                        </span>
                                                         days
                                                     </>
                                                 ) : (
