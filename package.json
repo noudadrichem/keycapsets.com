@@ -7,7 +7,7 @@
         "dev": "next",
         "build": "next build",
         "start": "NODE_ENV=production next start",
-        "pretty": "prettier --ignore-path=.prettierignore --write ."
+        "pretty": "prettier --ignore .next --write './**/*.{ts,tsx,json,scss}'"
     },
     "repository": {
         "type": "git",
