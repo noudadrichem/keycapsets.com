@@ -35,9 +35,7 @@ function SetPage(props: SetProps) {
     }
 
     if (error) {
-        return (
-            <p>'Error loading keycapsets.com... Please refresh this page'</p>
-        );
+        return <p>'Error loading keycapsets.com... Please refresh this page'</p>;
     }
 
     const set: Keycapset = data.keycapsetBySlug;
@@ -57,21 +55,14 @@ function SetPage(props: SetProps) {
     return (
         set !== undefined && (
             <div className="set">
-                <Meta
-                    title={`${set.type.toUpperCase()} Keycapset ${set.name}`}
-                    metaImgUrl={set.coverImageUrl}
-                />
+                <Meta title={`${set.type.toUpperCase()} Keycapset ${set.name}`} metaImgUrl={set.coverImageUrl} />
 
                 <Nav />
 
                 <div className="container">
                     <Heading
                         left
-                        mainTitle={`${set.name} ${
-                            set.designerName
-                                ? `designed by ${set.designerName}`
-                                : ''
-                        }`}
+                        mainTitle={`${set.name} ${set.designerName ? `designed by ${set.designerName}` : ''}`}
                         subTitle={`Good luck with sharing!`}
                     />
 
@@ -94,18 +85,8 @@ function SetPage(props: SetProps) {
                             <p>Material: {set.material || 'Unknown'}</p>
                             {!set.isInterestCheck && (
                                 <>
-                                    <p>
-                                        Start date:{' '}
-                                        {moment(set.groupbuyStartDate).format(
-                                            'dddd YYYY-MM-DD'
-                                        )}
-                                    </p>
-                                    <p>
-                                        End date:{' '}
-                                        {moment(set.groupbuyEndDate).format(
-                                            'dddd YYYY-MM-DD'
-                                        )}
-                                    </p>
+                                    <p>Start date: {moment(set.groupbuyStartDate).format('dddd YYYY-MM-DD')}</p>
+                                    <p>End date: {moment(set.groupbuyEndDate).format('dddd YYYY-MM-DD')}</p>
                                 </>
                             )}
 

@@ -41,8 +41,7 @@ function Home(props: HomeProps) {
     useEffect(function initializeView() {
         if (isBrowser) {
             window.addEventListener('scroll', checkIsBottomPage);
-            return () =>
-                window.removeEventListener('scroll', checkIsBottomPage);
+            return () => window.removeEventListener('scroll', checkIsBottomPage);
         }
     }, []);
 
@@ -55,8 +54,7 @@ function Home(props: HomeProps) {
 
     useEffect(
         function handleRefetchingOnBottomOfPage() {
-            const isEndReached =
-                state.keycapsets.length === state.allKeycapsetsCount;
+            const isEndReached = state.keycapsets.length === state.allKeycapsetsCount;
 
             if (isEndReached) {
                 setLoadingExtra(false);
@@ -78,10 +76,7 @@ function Home(props: HomeProps) {
             clearTimeout(timeout);
 
             timeout = setTimeout(() => {
-                if (
-                    state.searchQuery !== '' ||
-                    state.searchQuery !== undefined
-                ) {
+                if (state.searchQuery !== '' || state.searchQuery !== undefined) {
                     fetchMoreWhenSearched();
                     forceCheck();
                 } else {
@@ -170,11 +165,7 @@ function Home(props: HomeProps) {
 
             <Nav isLargeContainer />
             <div className="container large">
-                <Heading
-                    mainTitle="Find your favorite keycapset!"
-                    subTitle="keycapsets.com"
-                    isHome
-                />
+                <Heading mainTitle="Find your favorite keycapset!" subTitle="keycapsets.com" isHome />
 
                 {initLoading ? <LoadingKeyboardIllustration /> : <Images />}
 

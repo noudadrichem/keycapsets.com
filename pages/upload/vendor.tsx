@@ -45,9 +45,7 @@ function UploadVendor(props: UploadVendorProps) {
     const [socials, setSocials] = useState<any[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [shouldReset, setShouldReset] = useState<boolean>(false);
-    const [addVendor, mutationResponse] = useMutation<string>(
-        CREATE_VENDOR_MUTATION
-    );
+    const [addVendor, mutationResponse] = useMutation<string>(CREATE_VENDOR_MUTATION);
 
     useEffect(() => {
         Router.push('/');
@@ -110,11 +108,7 @@ function UploadVendor(props: UploadVendorProps) {
             <Meta />
             <Nav />
             <div className="container upload">
-                <Heading
-                    mainTitle="By adding yourself as a vendor"
-                    subTitle="Make yourself famous!"
-                    left
-                />
+                <Heading mainTitle="By adding yourself as a vendor" subTitle="Make yourself famous!" left />
 
                 <div className="grid-container">
                     <div className="column">
@@ -122,18 +116,14 @@ function UploadVendor(props: UploadVendorProps) {
 
                         <Multiselect
                             label="Continent"
-                            onChange={(selectedContinent: any) =>
-                                setContinent(selectedContinent)
-                            }
+                            onChange={(selectedContinent: any) => setContinent(selectedContinent)}
                             options={continentsFormatted}
                             defaultValue={{ label: 'Europe', value: 'EU' }}
                         />
 
                         <Multiselect
                             label="Country"
-                            onChange={(selectedCountry: any) =>
-                                setCountry(selectedCountry)
-                            }
+                            onChange={(selectedCountry: any) => setCountry(selectedCountry)}
                             options={countriesFormatted}
                             defaultValue={{ label: 'Netherlands', value: 'NL' }}
                         />
@@ -148,12 +138,7 @@ function UploadVendor(props: UploadVendorProps) {
                             shouldReset={shouldReset}
                         />
 
-                        <Button
-                            onClick={uploadVendor}
-                            variant="primary"
-                            size="sm"
-                            className="align-right"
-                        >
+                        <Button onClick={uploadVendor} variant="primary" size="sm" className="align-right">
                             {loading ? 'Adding...' : 'Add vendor'}
                         </Button>
                     </div>

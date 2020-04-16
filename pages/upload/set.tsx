@@ -11,11 +11,7 @@ import 'rc-color-picker/assets/index.css';
 import '../../assets/styles/main.scss';
 
 import { CREATE_KEYSET_MUTATION, GET_VENDORS_QUERY } from '../../queries';
-import {
-    PROFILE_OPTIONS,
-    BRAND_OPTIONS,
-    MATERIAL_OPTIONS,
-} from '../../constants';
+import { PROFILE_OPTIONS, BRAND_OPTIONS, MATERIAL_OPTIONS } from '../../constants';
 
 import useInput from '../../hooks/useInput';
 import withData from '../../hooks/withData';
@@ -76,14 +72,10 @@ function UploadSet(props: UploadSetProps): JSX.Element {
     const [shouldReset, setShouldReset] = useState(false);
     const [isFormValid, setFormValid] = useState(true);
     const [errors, setErrors] = useState([]);
-    const [isInterestCheckValue, setIsInterestCheckValue] = useState<boolean>(
-        false
-    );
+    const [isInterestCheckValue, setIsInterestCheckValue] = useState<boolean>(false);
 
     const [addKeyset] = useMutation(CREATE_KEYSET_MUTATION);
-    const { loading, error, data: vendorQueryResult } = useQuery(
-        GET_VENDORS_QUERY
-    );
+    const { loading, error, data: vendorQueryResult } = useQuery(GET_VENDORS_QUERY);
 
     const keycapset: Keycapset = {
         name: nameValue,
@@ -104,10 +96,7 @@ function UploadSet(props: UploadSetProps): JSX.Element {
     });
 
     useEffect(() => {
-        const oneMonthLater = moment(startDateValue)
-            .add(1, 'months')
-            .add(1, 'days')
-            .format('YYYY-MM-DD');
+        const oneMonthLater = moment(startDateValue).add(1, 'months').add(1, 'days').format('YYYY-MM-DD');
         setEndDateValue(oneMonthLater);
     }, [startDateValue]);
 
@@ -142,8 +131,7 @@ function UploadSet(props: UploadSetProps): JSX.Element {
     function isEmptyValue(val) {
         console.log('val..', val);
         console.log('val === []', val === []);
-        const isEmpty =
-            val === '' || val === undefined || val === null || val === [];
+        const isEmpty = val === '' || val === undefined || val === null || val === [];
 
         return isEmpty;
     }
@@ -191,9 +179,7 @@ function UploadSet(props: UploadSetProps): JSX.Element {
 
     if (error) {
         console.error('error', error);
-        return (
-            <p>'Error loading keycapsets.com... Please refresh this page'</p>
-        );
+        return <p>'Error loading keycapsets.com... Please refresh this page'</p>;
     }
 
     return null;
@@ -201,11 +187,7 @@ function UploadSet(props: UploadSetProps): JSX.Element {
         <Meta />
         <Nav />
         <div className="container upload">
-            <Heading
-                mainTitle="Upload a keycapset"
-                subTitle="Make your set famous!"
-                left
-            />
+            <Heading mainTitle="Upload a keycapset" subTitle="Make your set famous!" left />
 
             <div className="grid two-column">
                 <div className="column">
@@ -213,9 +195,7 @@ function UploadSet(props: UploadSetProps): JSX.Element {
                     <Checkbox
                         label="Is this an interest check?"
                         checked={isInterestCheckValue}
-                        getVal={(isChecked) =>
-                            setIsInterestCheckValue(isChecked)
-                        }
+                        getVal={(isChecked) => setIsInterestCheckValue(isChecked)}
                     />
 
                     {nameInput}
@@ -230,15 +210,11 @@ function UploadSet(props: UploadSetProps): JSX.Element {
                             <Multiselect
                                 label="Vendors"
                                 value={vendors}
-                                onChange={(selectedVendors: any[]) =>
-                                    setVendors(selectedVendors)
-                                }
-                                options={vendorQueryResult.vendors.map(
-                                    (v: Vendor) => ({
-                                        value: v._id,
-                                        label: v.name,
-                                    })
-                                )}
+                                onChange={(selectedVendors: any[]) => setVendors(selectedVendors)}
+                                options={vendorQueryResult.vendors.map((v: Vendor) => ({
+                                    value: v._id,
+                                    label: v.name,
+                                }))}
                                 isMulti
                             />
                         </>
@@ -256,53 +232,35 @@ function UploadSet(props: UploadSetProps): JSX.Element {
 
                     <Multiselect
                         label="Brand"
-                        onChange={(selectedbrand: any) =>
-                            setBrand(selectedbrand)
-                        }
+                        onChange={(selectedbrand: any) => setBrand(selectedbrand)}
                         options={BRAND_OPTIONS}
                     />
                     <Multiselect
                         label="Profile"
-                        onChange={(selectedProfile: any) =>
-                            setType(selectedProfile)
-                        }
+                        onChange={(selectedProfile: any) => setType(selectedProfile)}
                         options={PROFILE_OPTIONS}
                     />
                     <Multiselect
                         label="Material"
-                        onChange={(selectedMaterial: any) =>
-                            setMaterial(selectedMaterial)
-                        }
+                        onChange={(selectedMaterial: any) => setMaterial(selectedMaterial)}
                         options={MATERIAL_OPTIONS}
                     />
 
                     <div className="form-ruler" />
 
-                    <h4 className="form-sub-title">
-                        Keycapset kits (coming soon!)
-                    </h4>
+                    <h4 className="form-sub-title">Keycapset kits (coming soon!)</h4>
 
                     <div className="form-ruler" />
 
-                    <h4 className="form-sub-title">
-                        Single page details (Coming soon!)
-                    </h4>
+                    <h4 className="form-sub-title">Single page details (Coming soon!)</h4>
                     {/* <p className="small light">These values will make it possible to upload you own color accents to create a 'themed' single page for your keyset! </p> */}
-                    <ColorPicker
-                        label="Background color"
-                        defaultValue="#F8F9FB"
-                        onChange={(c) => setAccentColor1(c)}
-                    />
+                    <ColorPicker label="Background color" defaultValue="#F8F9FB" onChange={(c) => setAccentColor1(c)} />
                     <ColorPicker
                         label="Call to action color"
                         defaultValue="#539BFB"
                         onChange={(c) => setAccentColor2(c)}
                     />
-                    <ColorPicker
-                        label="Text color"
-                        defaultValue="#566073"
-                        onChange={(c) => setAccentColor3(c)}
-                    />
+                    <ColorPicker label="Text color" defaultValue="#566073" onChange={(c) => setAccentColor3(c)} />
 
                     <Button
                         onClick={uploadKeycapset}

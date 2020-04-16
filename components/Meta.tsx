@@ -32,34 +32,21 @@ function Meta(props: MetaProps) {
                 content="width=device-width, initial-scale=1.0, maximum-scale=1.00, minimum-scale=1.00"
             />
 
-            <link
-                rel="shortcut icon"
-                href="/images/favicon.ico"
-                type="image/x-icon"
-            />
+            <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
             <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
             <meta name="author" content="noudadrichem" />
             <meta property="og:title" content={title || TITLE} />
             <meta name="twitter:title" content={title || TITLE} />
 
             <meta name="description" content={description || DESCRIPTION} />
-            <meta
-                property="og:description"
-                content={description || DESCRIPTION}
-            />
-            <meta
-                name="twitter:description"
-                content={description || DESCRIPTION}
-            />
+            <meta property="og:description" content={description || DESCRIPTION} />
+            <meta name="twitter:description" content={description || DESCRIPTION} />
 
             <meta property="og:image" content={metaImgUrl || META_IMG_URL} />
             <meta name="twitter:image" content={metaImgUrl || META_IMG_URL} />
 
             {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
-            <script
-                async
-                src="https://www.googletagmanager.com/gtag/js?id=UA-115865530-2"
-            ></script>
+            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115865530-2"></script>
             <script dangerouslySetInnerHTML={setGoogleTags()} />
         </Head>
     );

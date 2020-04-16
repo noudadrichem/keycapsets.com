@@ -53,18 +53,11 @@ function Tabs(props: TabsProps): JSX.Element {
                     <label className="label">Filter availability</label>
                     <ul>
                         {state.availability.map((tab: String, idx: number) => (
-                            <Tab
-                                type={AVAILABILITY_FILTER}
-                                id={tab}
-                                key={idx}
-                            />
+                            <Tab type={AVAILABILITY_FILTER} id={tab} key={idx} />
                         ))}
                         <li>
                             {state.filters.availabilityFilter !== 'none' && (
-                                <p
-                                    className="small light clickable"
-                                    onClick={resetFilter}
-                                >
+                                <p className="small light clickable" onClick={resetFilter}>
                                     reset
                                 </p>
                             )}

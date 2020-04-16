@@ -14,10 +14,7 @@ function Heading(props: HeadingProps): JSX.Element {
     return (
         <div className="input-wrapper-select">
             {!!label && <label className="label">{label}</label>}
-            <select
-                className="input"
-                onChange={(e: any) => onSelectChange(e.target.value)}
-            >
+            <select className="input" onChange={(e: any) => onSelectChange(e.target.value)}>
                 <option value="">{name}</option>
                 {!!values &&
                     values.map((value: any) => (

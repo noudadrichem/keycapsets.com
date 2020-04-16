@@ -8,18 +8,9 @@ interface CheckboxProps {
 
 const Checkbox: React.ElementType = ({ checked, getVal }: CheckboxProps) => (
     <div className="input-checkbox-container">
-        <input
-            type="checkbox"
-            className="input-checkbox-input"
-            onChange={(e) => getVal(e.target.checked)}
-        />
+        <input type="checkbox" className="input-checkbox-input" onChange={(e) => getVal(e.target.checked)} />
         <div className={`input-checkbox-styled ${checked ? 'checked' : ''}`}>
-            <svg
-                className={`input-checkbox-check-icon ${
-                    checked ? 'checked' : ''
-                }`}
-                viewBox="0 0 24 24"
-            >
+            <svg className={`input-checkbox-check-icon ${checked ? 'checked' : ''}`} viewBox="0 0 24 24">
                 <polyline points="20 6 9 17 4 12" />
             </svg>
         </div>
@@ -32,10 +23,7 @@ function CheckboxContainer(props: CheckboxProps): JSX.Element {
     return (
         <div className="input-wrapper checkbox">
             <label className="label">
-                <Checkbox
-                    checked={checked}
-                    getVal={(isChecked) => getVal(isChecked)}
-                />
+                <Checkbox checked={checked} getVal={(isChecked) => getVal(isChecked)} />
                 {label}
             </label>
         </div>

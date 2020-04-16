@@ -14,11 +14,7 @@ function Pill(props: PillProps): JSX.Element {
 
     return (
         <div className={`pill ${color}`}>
-            {text
-                ? text
-                : color === 'green'
-                ? 'Available for purchase!'
-                : 'Not available for purchase'}
+            {text ? text : color === 'green' ? 'Available for purchase!' : 'Not available for purchase'}
         </div>
     );
 }

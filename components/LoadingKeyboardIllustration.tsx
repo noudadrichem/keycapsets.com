@@ -8,9 +8,7 @@ interface LoadingKeyboardIllustrationProps {
     scale?: number;
 }
 
-function LoadingKeyboardIllustration(
-    props: LoadingKeyboardIllustrationProps
-): JSX.Element {
+function LoadingKeyboardIllustration(props: LoadingKeyboardIllustrationProps): JSX.Element {
     const { scale = 1 } = props;
     const IDS: string[] = ['L', 'O', 'A', 'D', 'I', 'N', 'G', 'ENTER'];
     const L = useRef(null);
@@ -61,14 +59,7 @@ function LoadingKeyboardIllustration(
                 transform: `scale(${scale})`,
             }}
         >
-            <g
-                id="Page-1"
-                fill="none"
-                fillOpacity="0.299"
-                fillRule="evenodd"
-                stroke="none"
-                strokeWidth="1"
-            >
+            <g id="Page-1" fill="none" fillOpacity="0.299" fillRule="evenodd" stroke="none" strokeWidth="1">
                 <g
                     id="empty-base-kit-illu-copy"
                     fill="#B2C1D5"
@@ -77,15 +68,7 @@ function LoadingKeyboardIllustration(
                     transform="translate(-198 -175)"
                 >
                     <g id="small-keeb-illu" transform="translate(199 176)">
-                        <rect
-                            className="key"
-                            id="Rectangle"
-                            width="27.2"
-                            height="26.4"
-                            x="0"
-                            y="0"
-                            rx="1.6"
-                        ></rect>
+                        <rect className="key" id="Rectangle" width="27.2" height="26.4" x="0" y="0" rx="1.6"></rect>
                         <rect
                             className="key"
                             id="Rectangle-Copy-16"

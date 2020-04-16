@@ -15,14 +15,7 @@ interface MultiSelectProps {
 }
 
 function MultiSelect(props: MultiSelectProps): JSX.Element {
-    const {
-        value,
-        options,
-        onChange,
-        isMulti,
-        label,
-        defaultValue,
-    }: MultiSelectProps = props;
+    const { value, options, onChange, isMulti, label, defaultValue }: MultiSelectProps = props;
 
     const SELECT_STYLES = {
         control: (base: any) => ({

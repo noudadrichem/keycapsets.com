@@ -12,22 +12,11 @@ interface ButtonProps {
 }
 
 function Button(props: ButtonProps): JSX.Element {
-    const {
-        size,
-        type,
-        variant,
-        isDisabled,
-        isFullWidth,
-        children,
-        className,
-        onClick,
-    } = props;
+    const { size, type, variant, isDisabled, isFullWidth, children, className, onClick } = props;
 
     return (
         <button
-            className={`btn ${variant} ${size} ${type} ${className} ${
-                isFullWidth ? 'full-width' : ''
-            }`}
+            className={`btn ${variant} ${size} ${type} ${className} ${isFullWidth ? 'full-width' : ''}`}
             disabled={isDisabled}
             onClick={onClick}
         >

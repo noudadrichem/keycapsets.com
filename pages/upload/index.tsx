@@ -22,11 +22,7 @@ function Upload(props: UploadProps) {
     <>
         <Nav />
         <div className="container upload">
-            <Heading
-                mainTitle="Upload a set or apply as a vendor!"
-                subTitle="Start shining out there!"
-                left
-            />
+            <Heading mainTitle="Upload a set or apply as a vendor!" subTitle="Start shining out there!" left />
 
             <div className="cards">
                 <div className="card">

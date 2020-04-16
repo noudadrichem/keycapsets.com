@@ -44,10 +44,7 @@ function About(props: AboutProps) {
 
                 <div className="text-container">
                     <div style={{ margin: '0 0 64px 0' }}>
-                        <ButtonLink
-                            isLarge
-                            href="https://github.com/noudadrichem/keycapsets.com/issues"
-                        >
+                        <ButtonLink isLarge href="https://github.com/noudadrichem/keycapsets.com/issues">
                             Leave us some feedback!
                         </ButtonLink>
                     </div>
@@ -61,46 +58,36 @@ function About(props: AboutProps) {
 
                     <h4 className="alinea-title">Intro</h4>
                     <p className="light alinea">
-                        Friends came to me enthusiastic about mechanical
-                        keyboards. I'm always in to help them find their best
-                        keyboard. The second step is ofcource, a nice keyset!
+                        Friends came to me enthusiastic about mechanical keyboards. I'm always in to help them find
+                        their best keyboard. The second step is ofcource, a nice keyset!
                     </p>
 
                     <p className="light alinea">
-                        We were surfing and browsing through several websites
-                        like Geekhack and other vendor sites. This is where the
-                        idea came to mind. One website to rule them all. Just
-                        one website with an overview of keysets that are
-                        available or will be available soon. I don't want to be
-                        a vendor. Let this site be a proxy to your vendor.
+                        We were surfing and browsing through several websites like Geekhack and other vendor sites. This
+                        is where the idea came to mind. One website to rule them all. Just one website with an overview
+                        of keysets that are available or will be available soon. I don't want to be a vendor. Let this
+                        site be a proxy to your vendor.
                     </p>
 
                     <h4 className="alinea-title">For vendors</h4>
                     <p className="light alinea">
-                        This site should be an advantage to your business. From
-                        overview to single I'll proxy the user to their vendor.
-                        There will be an overview page with vendors categorised
-                        by country and continent.
+                        This site should be an advantage to your business. From overview to single I'll proxy the user
+                        to their vendor. There will be an overview page with vendors categorised by country and
+                        continent.
                     </p>
 
-                    <h4 className="alinea-title">
-                        The Future for set designers
-                    </h4>
+                    <h4 className="alinea-title">The Future for set designers</h4>
                     <p className="light alinea">
-                        I want to make it easier for you as a designer to
-                        express yourself. <br /> My goal is to make it possible
-                        for you to have a single webpage with all the
-                        information you need. Such as vendors, renders, previews
-                        etc.
+                        I want to make it easier for you as a designer to express yourself. <br /> My goal is to make it
+                        possible for you to have a single webpage with all the information you need. Such as vendors,
+                        renders, previews etc.
                     </p>
 
                     <h4 className="alinea-title">The Future for explorers</h4>
                     <p className="light alinea">
-                        This should be your go-to website to look for keycap
-                        sets. I want you to be able to search based on name,
-                        type or even the color you like. I want to make it as
-                        easy as possible for you to decide what set you should
-                        go with on your next build.
+                        This should be your go-to website to look for keycap sets. I want you to be able to search based
+                        on name, type or even the color you like. I want to make it as easy as possible for you to
+                        decide what set you should go with on your next build.
                     </p>
                 </div>
             </div>

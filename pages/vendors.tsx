@@ -78,26 +78,21 @@ function Vendors(props: VendorProps): JSX.Element {
         return accum;
     }, totalAcc);
 
-    const sortedVendors = filteredVendorLists.reduce(
-        (sortedVendors, field, index) => {
-            sortedVendors[availableContinents[index]] = field;
+    const sortedVendors = filteredVendorLists.reduce((sortedVendors, field, index) => {
+        sortedVendors[availableContinents[index]] = field;
 
-            // add continent display label to vendor
-            countryIsoList.forEach((countryIso) => {
-                if (availableContinents[index] === 'ALL') {
-                    sortedVendors[availableContinents[index]].label =
-                        'Worldwide';
-                }
-                if (countryIso.continentCode === availableContinents[index]) {
-                    sortedVendors[availableContinents[index]].label =
-                        countryIso.continentName;
-                }
-            });
+        // add continent display label to vendor
+        countryIsoList.forEach((countryIso) => {
+            if (availableContinents[index] === 'ALL') {
+                sortedVendors[availableContinents[index]].label = 'Worldwide';
+            }
+            if (countryIso.continentCode === availableContinents[index]) {
+                sortedVendors[availableContinents[index]].label = countryIso.continentName;
+            }
+        });
 
-            return sortedVendors;
-        },
-        {}
-    );
+        return sortedVendors;
+    }, {});
 
     return (
         <>
@@ -108,7 +103,7 @@ function Vendors(props: VendorProps): JSX.Element {
                 {Object.keys(sortedVendors).map((key) => (
                     <div className="continent-section">
                         <div className="continent-bar">
-                            <h2 className={'no-bold left'}> { sortedVendors[key].label } </h2>
+                            <h2 className={'no-bold left'}> {sortedVendors[key].label} </h2>
                         </div>
 
                         <div className="images-container">

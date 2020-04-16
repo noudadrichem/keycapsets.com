@@ -52,16 +52,11 @@ function CTACard(props: CTACardProps): JSX.Element {
 
             <h4>Live and learn.</h4>
             <p className="light">
-                We're sad to announce we are temporarily closing the website for
-                uploads due to incidents that occurred by it.
+                We're sad to announce we are temporarily closing the website for uploads due to incidents that occurred
+                by it.
             </p>
 
-            <Button
-                onClick={() => router.push('/upload-statement')}
-                variant="primary"
-                size="md"
-                className="center"
-            >
+            <Button onClick={() => router.push('/upload-statement')} variant="primary" size="md" className="center">
                 More about it here
             </Button>
         </div>

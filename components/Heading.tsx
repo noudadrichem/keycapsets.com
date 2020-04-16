@@ -13,25 +13,14 @@ interface HeadingProps {
 }
 
 function Heading(props: HeadingProps): JSX.Element {
-    const {
-        mainTitle,
-        subTitle,
-        isHome = false,
-        left = false,
-        backgroundColor,
-    } = props;
+    const { mainTitle, subTitle, isHome = false, left = false, backgroundColor } = props;
     const router = useRouter();
 
     return (
-        <header
-            className={`heading ${left ? 'left' : 'center'}`}
-            style={{ background: backgroundColor }}
-        >
+        <header className={`heading ${left ? 'left' : 'center'}`} style={{ background: backgroundColor }}>
             <Pill color="gray" text="BETA" />
             <h4 className={`italic ${left ? 'left' : 'center'}`}>{subTitle}</h4>
-            <h1 className={`no-bold ${left ? 'left' : 'center'}`}>
-                {mainTitle}
-            </h1>
+            <h1 className={`no-bold ${left ? 'left' : 'center'}`}>{mainTitle}</h1>
 
             {isHome && (
                 <>
