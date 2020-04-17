@@ -13,7 +13,6 @@ import Heading from '../components/Heading';
 import Footer from '../components/Footer';
 import Nav from '../components/Nav';
 import LoadingKeyboard from '../components/LoadingKeyboard';
-// import VendorCard from '../components/VendorCard';
 import ImageCard from '../components/ImageCard';
 import Meta from '../components/Meta';
 import CTACard from '../components/CTACard';
@@ -99,7 +98,7 @@ function Vendors(props: VendorProps): JSX.Element {
         <>
             <Meta />
             <Nav />
-            <div className="container">
+            <div className="container large">
                 <Heading mainTitle="Vendors" subTitle="Available vendors." />
                 {Object.keys(sortedVendors).map((key) => (
                     <div className="continent-section">
@@ -110,7 +109,7 @@ function Vendors(props: VendorProps): JSX.Element {
                         <div className="images-container">
                             {sortedVendors[key].map((vendor: Vendor) => (
                                 <ImageCard
-                                    type="keycapset"
+                                    type="vendor"
                                     key={vendor._id}
                                     title={vendor.name}
                                     coverImageUrl={vendor.logoUrl}

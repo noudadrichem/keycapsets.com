@@ -30,10 +30,20 @@
             right: 12px;
         }
 
-        img {
+        .set {
             height: 100%;
             width: 100%;
             object-fit: cover;
+        }
+
+        .logo {
+            height: 90%;
+            width: 90%;
+            object-fit: contain;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 5%;
         }
     }
 

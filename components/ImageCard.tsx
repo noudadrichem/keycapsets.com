@@ -43,7 +43,7 @@ function ImageCard(props: ImageCardProps): JSX.Element {
             <Link href="/[type]/[set]" as={link}>
                 <div className={`image-card ${isTemplate ? 'disabled' : ''}`}>
                     <div className="image">
-                        <img src={coverImageUrl} />
+                        <img className={isVendor ? 'logo' : 'set'} src={coverImageUrl} />
 
                         {/* <StatusLabel
                             groupbuyStartDate={groupbuyStartDate}
