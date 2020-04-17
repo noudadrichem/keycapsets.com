@@ -1,12 +1,7 @@
 import { gql } from 'apollo-boost';
 
 const FETCH_KEYCAPSET_QUERY = gql`
-    query FETCH_KEYCAPSET_QUERY(
-        $limit: Int
-        $offset: Int
-        $type: String
-        $query: String
-    ) {
+    query FETCH_KEYCAPSET_QUERY($limit: Int, $offset: Int, $type: String, $query: String) {
         allKeycapsetsCount
         keycapsets(limit: $limit, offset: $offset, type: $type, query: $query) {
             _id
@@ -17,6 +12,7 @@ const FETCH_KEYCAPSET_QUERY = gql`
             groupbuyStartDate
             groupbuyEndDate
             isInterestCheck
+            brand
         }
     }
 `;
@@ -75,13 +71,7 @@ const CREATE_VENDOR_MUTATION = gql`
         $socials: [String]
         $url: String
     ) {
-        createVendor(
-            name: $name
-            country: $country
-            logoUrl: $logoUrl
-            socials: $socials
-            url: $url
-        ) {
+        createVendor(name: $name, country: $country, logoUrl: $logoUrl, socials: $socials, url: $url) {
             name
             _id
         }
@@ -150,6 +140,7 @@ const GET_SETS_BY_QUERY = gql`
             groupbuyEndDate
             updatedAt
             createdAt
+            brand
         }
     }
 `;

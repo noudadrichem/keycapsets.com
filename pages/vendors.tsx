@@ -13,7 +13,8 @@ import Heading from '../components/Heading';
 import Footer from '../components/Footer';
 import Nav from '../components/Nav';
 import LoadingKeyboard from '../components/LoadingKeyboard';
-import VendorCard from '../components/VendorCard';
+// import VendorCard from '../components/VendorCard';
+import ImageCard from '../components/ImageCard';
 import Meta from '../components/Meta';
 import CTACard from '../components/CTACard';
 
@@ -78,26 +79,21 @@ function Vendors(props: VendorProps): JSX.Element {
         return accum;
     }, totalAcc);
 
-    const sortedVendors = filteredVendorLists.reduce(
-        (sortedVendors, field, index) => {
-            sortedVendors[availableContinents[index]] = field;
+    const sortedVendors = filteredVendorLists.reduce((sortedVendors, field, index) => {
+        sortedVendors[availableContinents[index]] = field;
 
-            // add continent display label to vendor
-            countryIsoList.forEach((countryIso) => {
-                if (availableContinents[index] === 'ALL') {
-                    sortedVendors[availableContinents[index]].label =
-                        'Worldwide';
-                }
-                if (countryIso.continentCode === availableContinents[index]) {
-                    sortedVendors[availableContinents[index]].label =
-                        countryIso.continentName;
-                }
-            });
+        // add continent display label to vendor
+        countryIsoList.forEach((countryIso) => {
+            if (availableContinents[index] === 'ALL') {
+                sortedVendors[availableContinents[index]].label = 'Worldwide';
+            }
+            if (countryIso.continentCode === availableContinents[index]) {
+                sortedVendors[availableContinents[index]].label = countryIso.continentName;
+            }
+        });
 
-            return sortedVendors;
-        },
-        {}
-    );
+        return sortedVendors;
+    }, {});
 
     return (
         <>
@@ -108,12 +104,18 @@ function Vendors(props: VendorProps): JSX.Element {
                 {Object.keys(sortedVendors).map((key) => (
                     <div className="continent-section">
                         <div className="continent-bar">
-                            <h2 className={'no-bold left'}> { sortedVendors[key].label } </h2>
+                            <h2 className={'no-bold left'}> {sortedVendors[key].label} </h2>
                         </div>
 
                         <div className="images-container">
                             {sortedVendors[key].map((vendor: Vendor) => (
-                                <VendorCard vendor={vendor} key={vendor._id} />
+                                <ImageCard
+                                    type="keycapset"
+                                    key={vendor._id}
+                                    title={vendor.name}
+                                    coverImageUrl={vendor.logoUrl}
+                                    link={vendor.url}
+                                />
                             ))}
                         </div>
                     </div>
