@@ -7,6 +7,7 @@ function SearchSets() {
     const router = useRouter();
     const [searchValue, searchInput, setSearchInputValue] = useInput({
         defaultValue: '',
+        placeholder: 'E.g. Carbon',
     });
     const { setGlobalState } = useContext(Context);
 

@@ -31,12 +31,16 @@
         font-weight: 400;
         color: #2b3548;
         border: 1px solid #e2e5eb;
-        border-radius: 8px;
+        border-radius: 6px;
         outline: none;
         resize: none;
 
         &:focus {
             border: 1px solid var(--blue);
+        }
+
+        &::placeholder {
+            color: var(--text-color-disabled);
         }
     }
 }

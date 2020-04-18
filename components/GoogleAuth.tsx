@@ -18,8 +18,6 @@ function GoogleAuth(props: GoogleAuthProps): JSX.Element {
     const client: ApolloClient<any> = useApolloClient();
 
     async function success(response) {
-        console.log(response);
-
         try {
             const {
                 data: { googleLogin },
@@ -53,6 +51,7 @@ function GoogleAuth(props: GoogleAuthProps): JSX.Element {
                     }
                     variant="primary"
                     size="md"
+                    className="google-button"
                     isDisabled
                 >
                     <GoogleIcon variant="white" />

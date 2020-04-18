@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import Link from 'next/link';
 
 import '../assets/styles/nav.scss';
+import GoogleAuth from './GoogleAuth';
 
 interface NavProps {
     isLargeContainer?: boolean;
@@ -26,7 +27,7 @@ function Nav(props: NavProps): JSX.Element {
                         </Link>
                     </div>
 
-                    <div>
+                    <div className="nav-items">
                         <Link href="/vendors" as="/vendors">
                             <a>Vendors</a>
                         </Link>
@@ -36,6 +37,7 @@ function Nav(props: NavProps): JSX.Element {
                         <Link href="/about" as="/about">
                             <a>About</a>
                         </Link>
+                        <GoogleAuth />
                     </div>
                 </div>
             </div>
