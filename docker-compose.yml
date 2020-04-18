@@ -9,7 +9,7 @@ services:
         labels:
             - 'traefik.enable=true'
             - 'traefik.backend=keycapsets'
-            - 'traefik.frontend.rule=Host:keycapsets.com'
+            - 'traefik.frontend.rule=Host:keycapsets.com,www.keycapsets.com'
             - 'traefik.port=3000'
 
 networks:
