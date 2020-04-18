@@ -4,17 +4,9 @@ import { InititalState, Filters, Keycapset } from 'typings';
 
 import { AVAILABILITY, TABS } from './constants';
 import { getDayDifference } from './components/StatusLabel';
-import {
-    INTEREST_CHECK,
-    WAITING_FOR_GROUPBUY,
-    IN_GROUP_BUY,
-    ENDED,
-} from './constants';
+import { INTEREST_CHECK, WAITING_FOR_GROUPBUY, IN_GROUP_BUY, ENDED } from './constants';
 
-function filterByAvailability(
-    set: Keycapset,
-    availabilityFilter: string
-): boolean {
+function filterByAvailability(set: Keycapset, availabilityFilter: string): boolean {
     if (availabilityFilter === 'none') {
         return true;
     }
@@ -24,9 +16,7 @@ function filterByAvailability(
         case INTEREST_CHECK:
             return isInterestCheck;
         case WAITING_FOR_GROUPBUY:
-            return (
-                moment().diff(groupbuyStartDate, 'days') < 0 && !isInterestCheck
-            );
+            return moment().diff(groupbuyStartDate, 'days') < 0 && !isInterestCheck;
         case IN_GROUP_BUY:
             return getDayDifference(groupbuyEndDate) > 0 && !isInterestCheck;
         case ENDED:
@@ -41,14 +31,9 @@ function filterByAvailability(
 }
 
 function handleFilters(keycapset: Keycapset, filters: Filters): boolean {
-    if (filters.activeTab === 'all' && filters.availabilityFilter === 'none')
-        return true;
-    if (filters.activeTab === 'all')
-        return filterByAvailability(keycapset, filters.availabilityFilter);
-    return (
-        keycapset.type === filters.activeTab &&
-        filterByAvailability(keycapset, filters.availabilityFilter)
-    );
+    if (filters.activeTab === 'all' && filters.availabilityFilter === 'none') return true;
+    if (filters.activeTab === 'all') return filterByAvailability(keycapset, filters.availabilityFilter);
+    return keycapset.type === filters.activeTab && filterByAvailability(keycapset, filters.availabilityFilter);
 }
 
 export function reduceState(state, obj) {
@@ -61,9 +46,7 @@ export function reduceState(state, obj) {
     }
     return {
         ...reducedState,
-        filteredSets: reducedState.keycapsets.filter((set) =>
-            handleFilters(set, reducedState.filters)
-        ),
+        filteredSets: reducedState.keycapsets.filter((set) => handleFilters(set, reducedState.filters)),
     };
 }
 
@@ -74,7 +57,6 @@ export const INITITAL_STATE: InititalState = {
     },
     tabs: TABS,
     availability: AVAILABILITY,
-    // tabs: PROFILE_OPTIONS.map(o => o.label),
     keycapsets: [],
     filteredSets: [],
     searchQuery: '',

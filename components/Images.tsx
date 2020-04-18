@@ -8,21 +8,14 @@ import Tabs from './Tabs';
 interface ImagesProps {}
 
 function Images(props: ImagesProps): JSX.Element {
-    const {} = props;
-    const {
-        filters: { activeTab, availabilityFilter },
-        filteredSets,
-        searchQuery,
-    } = useContext(Context);
+    const { filteredSets } = useContext(Context);
 
     return (
         <>
             <Tabs />
             <div className="images-container">
                 {filteredSets.length > 0 ? (
-                    filteredSets.map((keycapset: Keycapset) => (
-                        <ImageCard {...{ keycapset }} key={keycapset._id} />
-                    ))
+                    filteredSets.map((keycapset: Keycapset) => <ImageCard {...{ keycapset }} key={keycapset._id} />)
                 ) : (
                     <p>No keycapsets found...</p>
                 )}
