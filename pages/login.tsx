@@ -5,13 +5,18 @@ import withGA from 'next-ga';
 import '../assets/styles/main.scss';
 
 import GoogleAuth from '../components/GoogleAuth';
+import Nav from '../components/Nav';
+import Footer from '../components/Footer';
 
 function Loading() {
     return (
         <>
-            <h1>Login</h1>
+            <Nav />
+            <div className="container">
+                <GoogleAuth />
+            </div>
 
-            <GoogleAuth />
+            <Footer />
         </>
     );
 }

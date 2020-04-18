@@ -1,38 +1,39 @@
 import React from 'react';
 import GoogleLogin from 'react-google-login';
-import Nav from './Nav';
-import Footer from './Footer';
+import { ApolloClient } from 'apollo-boost';
+import { useApolloClient } from '@apollo/react-hooks';
+
+import { GOOGLE_LOGIN } from '../queries';
+
+import withData from '../hooks/withData';
+import Button from './Button';
+import GoogleIcon from './GoogleIcon';
+
+const CLIENT_ID =
+    '22533085590-p56b9iva0qoq0btq94q252uuv34rphec.apps.googleusercontent.com';
 
 interface GoogleAuthProps {}
 
-function GoogleAuth(props: GoogleAuthProps) {
-    function success(response) {
+function GoogleAuth(props: GoogleAuthProps): JSX.Element {
+    const client: ApolloClient<any> = useApolloClient();
+
+    async function success(response) {
         console.log(response);
 
-        // try {
-        //     const authResult = await client.mutate({
-        //         mutation: gql`
-        //             mutation googleLogin($idToken: String!) {
-        //                 googleLogin(idToken: $idToken) {
-        //                 token
-        //                 user {
-        //                     id
-        //                 }
-        //                 firstLogin
-        //                 }
-        //             }
-        //             `,
-        //         variables: {
-        //             idToken: response.tokenId
-        //         }
-        //     });
+        try {
+            const {
+                data: { googleLogin },
+            } = await client.mutate({
+                mutation: GOOGLE_LOGIN,
+                variables: {
+                    token: response.tokenId,
+                },
+            });
 
-        //     const { token } = authResult.data.googleLogin;
-        //     dispatch(login({ token }));
-        //     dispatch(closeAuthModal());
-        // } catch (err) {
-        //     console.warn(err);
-        // }
+            console.log({ googleLogin });
+        } catch (err) {
+            console.error(err);
+        }
     }
 
     function error(res) {
@@ -40,28 +41,26 @@ function GoogleAuth(props: GoogleAuthProps) {
     }
 
     return (
-        <>
-            <Nav />
-
-            <GoogleLogin
-                clientId={CLIENT_ID}
-                onSuccess={success}
-                onFailure={error}
-                responseType="id_token"
-                render={(renderProps) => (
-                    <button
-                        onClick={renderProps.onClick}
-                        disabled={renderProps.disabled}
-                        className="btn btn-block btn-white btn-icon"
-                    >
-                        <span className="btn-inner--text">Google</span>
-                    </button>
-                )}
-            />
-
-            <Footer />
-        </>
+        <GoogleLogin
+            clientId={CLIENT_ID}
+            onSuccess={success}
+            onFailure={error}
+            responseType="id_token"
+            render={(renderProps) => (
+                <Button
+                    onClick={
+                        /*renderProps.onClick*/ () => console.log('Coming soon')
+                    }
+                    variant="primary"
+                    size="md"
+                    isDisabled
+                >
+                    <GoogleIcon variant="white" />
+                    Sign up with Google
+                </Button>
+            )}
+        />
     );
 }
 
-export default GoogleAuth;
+export default withData(GoogleAuth);
