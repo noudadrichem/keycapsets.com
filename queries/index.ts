@@ -154,6 +154,18 @@ const GET_SETS_BY_QUERY = gql`
     }
 `;
 
+const GOOGLE_LOGIN = gql`
+    mutation GOOGLE_LOGIN($token: String!) {
+        googleLogin(token: $token) {
+            token
+            user {
+                name
+            }
+            firstLogin
+        }
+    }
+`;
+
 export {
     FETCH_KEYCAPSET_QUERY,
     CREATE_KEYSET_MUTATION,
@@ -161,4 +173,5 @@ export {
     GET_VENDORS_QUERY,
     GET_SINGLE_SET_QUERY,
     GET_SETS_BY_QUERY,
+    GOOGLE_LOGIN,
 };

@@ -5,10 +5,12 @@
     transition: 120ms;
     cursor: pointer;
     border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &:disabled {
         opacity: 0.5;
-        cursor: not-allowed;
         box-shadow: none;
     }
 
@@ -97,5 +99,9 @@
                 opacity: 0.5;
             }
         }
+    }
+
+    .google-icon {
+        margin-right: 8px;
     }
 }

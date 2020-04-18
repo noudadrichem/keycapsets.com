@@ -1,9 +1,9 @@
 import React, { ReactNode } from 'react';
 
 interface ButtonProps {
-    size?: String;
+    size?: 'sm' | 'md' | 'lg';
     type: String;
-    variant: String;
+    variant: 'primary' | 'secondary' | 'inverted';
     className?: String;
     isDisabled?: boolean;
     isFullWidth?: boolean;
