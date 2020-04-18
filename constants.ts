@@ -41,5 +41,17 @@ export const AVAILABILITY = [
     ENDED,
 ];
 
+export const TABS = [
+    'all',
+    'gmk',
+    'pbt',
+    'sa',
+    'dsa',
+    'kat',
+    'jtk',
+    'kam',
+    'dcs',
+];
+
 export const AVAILABILITY_FILTER = 'availability';
 export const CAP_FILTER = 'cap';
