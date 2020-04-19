@@ -6,21 +6,12 @@ import { getDayDifference } from './StatusLabel';
 
 import Tabs from './Tabs';
 import moment from 'moment';
-import {
-    INTEREST_CHECK,
-    WAITING_FOR_GROUPBUY,
-    IN_GROUP_BUY,
-    ENDED,
-} from '../constants';
+import { INTEREST_CHECK, WAITING_FOR_GROUPBUY, IN_GROUP_BUY, ENDED } from '../constants';
 
-interface ImagesProps {
-  keycapsets: Array<Keycapset>,
-  activeTab?: String,
-  searchQuery?: String,
-  filter?: Boolean
-}
+interface ImagesProps {}
 
 function Images(props: ImagesProps): JSX.Element {
+    const {} = props;
     const {
         filters: { activeTab, availabilityFilter },
         keycapsets,
@@ -37,14 +28,9 @@ function Images(props: ImagesProps): JSX.Element {
             case INTEREST_CHECK:
                 return isInterestCheck;
             case WAITING_FOR_GROUPBUY:
-                return (
-                    moment().diff(groupbuyStartDate, 'days') < 0 &&
-                    !isInterestCheck
-                );
+                return moment().diff(groupbuyStartDate, 'days') < 0 && !isInterestCheck;
             case IN_GROUP_BUY:
-                return (
-                    getDayDifference(groupbuyEndDate) > 0 && !isInterestCheck
-                );
+                return getDayDifference(groupbuyEndDate) > 0 && !isInterestCheck;
             case ENDED:
                 return (
                     !isInterestCheck &&
@@ -69,9 +55,7 @@ function Images(props: ImagesProps): JSX.Element {
                 {keycapsets.length > 0 ? (
                     keycapsets
                         .filter(handleFilters)
-                        .map((keycapset: Keycapset) => (
-                            <ImageCard {...{ keycapset }} key={keycapset._id} />
-                        ))
+                        .map((keycapset: Keycapset) => <ImageCard {...{ keycapset }} key={keycapset._id} />)
                 ) : (
                     <p>No keycapsets found...</p>
                 )}
