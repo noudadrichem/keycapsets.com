@@ -5,6 +5,7 @@ import withGA from 'next-ga';
 import '../assets/styles/main.scss';
 
 import GoogleAuth from '../components/GoogleAuth';
+import RedditAuth from '../components/RedditAuth';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 
@@ -14,6 +15,8 @@ function Loading() {
             <Nav />
             <div className="container">
                 <GoogleAuth />
+
+                <RedditAuth />
             </div>
 
             <Footer />

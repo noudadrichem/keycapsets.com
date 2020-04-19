@@ -1,12 +1,7 @@
 import { gql } from 'apollo-boost';
 
 const FETCH_KEYCAPSET_QUERY = gql`
-    query FETCH_KEYCAPSET_QUERY(
-        $limit: Int
-        $offset: Int
-        $type: String
-        $query: String
-    ) {
+    query FETCH_KEYCAPSET_QUERY($limit: Int, $offset: Int, $type: String, $query: String) {
         allKeycapsetsCount
         keycapsets(limit: $limit, offset: $offset, type: $type, query: $query) {
             _id
@@ -75,13 +70,7 @@ const CREATE_VENDOR_MUTATION = gql`
         $socials: [String]
         $url: String
     ) {
-        createVendor(
-            name: $name
-            country: $country
-            logoUrl: $logoUrl
-            socials: $socials
-            url: $url
-        ) {
+        createVendor(name: $name, country: $country, logoUrl: $logoUrl, socials: $socials, url: $url) {
             name
             _id
         }
@@ -166,6 +155,20 @@ const GOOGLE_LOGIN = gql`
     }
 `;
 
+const REDDIT_LOGIN = gql`
+    mutation REDDIT_LOGIN($redditUserName: String!, $redditId: String!) {
+        redditLogin(redditUserName: $redditUserName, redditId: $redditId) {
+            token
+            user {
+                name
+                googleId
+                _id
+            }
+            firstLogin
+        }
+    }
+`;
+
 export {
     FETCH_KEYCAPSET_QUERY,
     CREATE_KEYSET_MUTATION,
@@ -174,4 +177,5 @@ export {
     GET_SINGLE_SET_QUERY,
     GET_SETS_BY_QUERY,
     GOOGLE_LOGIN,
+    REDDIT_LOGIN,
 };

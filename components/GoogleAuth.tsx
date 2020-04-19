@@ -8,9 +8,9 @@ import { GOOGLE_LOGIN } from '../queries';
 import withData from '../hooks/withData';
 import Button from './Button';
 import GoogleIcon from './GoogleIcon';
+import { loginUser } from '../utils/userLogin';
 
-const CLIENT_ID =
-    '22533085590-p56b9iva0qoq0btq94q252uuv34rphec.apps.googleusercontent.com';
+const CLIENT_ID = '22533085590-p56b9iva0qoq0btq94q252uuv34rphec.apps.googleusercontent.com';
 
 interface GoogleAuthProps {}
 
@@ -27,15 +27,14 @@ function GoogleAuth(props: GoogleAuthProps): JSX.Element {
                     token: response.tokenId,
                 },
             });
-
-            console.log({ googleLogin });
+            loginUser(googleLogin);
         } catch (err) {
             console.error(err);
         }
     }
 
     function error(res) {
-        console.log('error', res);
+        console.error('error', res);
     }
 
     return (
@@ -46,13 +45,11 @@ function GoogleAuth(props: GoogleAuthProps): JSX.Element {
             responseType="id_token"
             render={(renderProps) => (
                 <Button
-                    onClick={
-                        /*renderProps.onClick*/ () => console.log('Coming soon')
-                    }
+                    onClick={renderProps.onClick /* () => console.log('Coming soon')*/}
                     variant="primary"
                     size="md"
                     className="google-button"
-                    isDisabled
+                    // isDisabled
                 >
                     <GoogleIcon variant="white" />
                     Sign up with Google
