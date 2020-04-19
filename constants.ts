@@ -9,7 +9,7 @@ export const BRAND_OPTIONS = [
     { value: 'maxkey', label: 'MaxKey' },
     { value: 'zfrontier', label: 'zFrontier' },
     { value: 'leopold', label: 'Leopold' },
-    { value: 'ducky', labele: 'Ducky' },
+    { value: 'ducky', label: 'Ducky' },
 ];
 
 export const MATERIAL_OPTIONS = [
@@ -34,24 +34,10 @@ export const INTEREST_CHECK = 'ic';
 export const WAITING_FOR_GROUPBUY = 'waiting';
 export const IN_GROUP_BUY = 'gb';
 export const ENDED = 'ended';
-export const AVAILABILITY = [
-    INTEREST_CHECK,
-    WAITING_FOR_GROUPBUY,
-    IN_GROUP_BUY,
-    ENDED,
-];
+export const AVAILABILITY = [INTEREST_CHECK, WAITING_FOR_GROUPBUY, IN_GROUP_BUY, ENDED];
 
-export const TABS = [
-    'all',
-    'gmk',
-    'pbt',
-    'sa',
-    'dsa',
-    'kat',
-    'jtk',
-    'kam',
-    'dcs',
-];
+export const TABS = ['all', 'gmk', 'pbt', 'sa', 'dsa', 'kat', 'jtk', 'kam', 'dcs'];
 
 export const AVAILABILITY_FILTER = 'availability';
+export const BRAND_FILTER = 'brand';
 export const CAP_FILTER = 'cap';

@@ -17,15 +17,7 @@ const getDayDifference = (date: any) => moment(date).diff(moment(), 'days');
 
 function ImageCard(props: ImageCardProps): JSX.Element {
     const { keycapset } = props;
-    const {
-        name,
-        coverImageUrl,
-        type,
-        slug,
-        groupbuyStartDate,
-        groupbuyEndDate,
-        isInterestCheck,
-    } = keycapset;
+    const { name, coverImageUrl, type, slug, groupbuyStartDate, groupbuyEndDate, isInterestCheck } = keycapset;
 
     const state = useContext<InititalState>(Context);
     const isInFuture: boolean = moment().diff(groupbuyStartDate, 'days') < 0;
@@ -44,8 +36,7 @@ function ImageCard(props: ImageCardProps): JSX.Element {
                     <div className="image">
                         <img
                             src={
-                                coverImageUrl === undefined ||
-                                coverImageUrl === ''
+                                coverImageUrl === undefined || coverImageUrl === ''
                                     ? '/images/empty-base-kit-illu.svg'
                                     : coverImageUrl
                             }
@@ -64,9 +55,7 @@ function ImageCard(props: ImageCardProps): JSX.Element {
                                 <span className="small">{type}</span>
                                 {name || 'Title goes here'}
                             </h4>
-                            <p className="light">
-                                {moment(groupbuyStartDate).format('YYYY')}
-                            </p>
+                            <p className="light">{moment(groupbuyStartDate).format('YYYY')}</p>
                         </div>
 
                         <div className="bottom">
@@ -77,25 +66,16 @@ function ImageCard(props: ImageCardProps): JSX.Element {
                                     <>
                                         {isInFuture ? (
                                             <>
-                                                Starting in
-                                                <span className="bold">
-                                                    {getDayDifference(
-                                                        groupbuyStartDate
-                                                    )}
-                                                </span>
-                                                days
+                                                Starting in{' '}
+                                                <span className="bold">{getDayDifference(groupbuyStartDate)}</span> days
                                             </>
                                         ) : (
                                             <>
-                                                {getDayDifference(
-                                                    groupbuyEndDate
-                                                ) > 0 ? (
+                                                {getDayDifference(groupbuyEndDate) > 0 ? (
                                                     <>
                                                         Ending in
                                                         <span className="bold">
-                                                            {getDayDifference(
-                                                                groupbuyEndDate
-                                                            )}
+                                                            {getDayDifference(groupbuyEndDate)}
                                                         </span>
                                                         days
                                                     </>
@@ -107,10 +87,7 @@ function ImageCard(props: ImageCardProps): JSX.Element {
                                     </>
                                 )}
                             </p>
-                            <ButtonLink
-                                href="/[type]/[set]"
-                                as={`/${type}/${slug}`}
-                            >
+                            <ButtonLink href="/[type]/[set]" as={`/${type}/${slug}`}>
                                 View this set
                             </ButtonLink>
                         </div>

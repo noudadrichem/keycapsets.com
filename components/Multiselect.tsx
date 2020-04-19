@@ -5,24 +5,17 @@ import Select from 'react-select';
  * https://react-select.com
  */
 
-interface MultiSelectProps {
-    value?: any[];
-    options: any[];
+interface MultiSelectProps<T> {
+    value?: T[];
+    options: T[];
     onChange: Function;
     isMulti?: boolean;
     label: String;
-    defaultValue?: any;
+    defaultValue?: T;
 }
 
-function MultiSelect(props: MultiSelectProps): JSX.Element {
-    const {
-        value,
-        options,
-        onChange,
-        isMulti,
-        label,
-        defaultValue,
-    }: MultiSelectProps = props;
+function MultiSelect<T>(props: MultiSelectProps<T>): JSX.Element {
+    const { value, options, onChange, isMulti, label, defaultValue }: MultiSelectProps<T> = props;
 
     const SELECT_STYLES = {
         control: (base: any) => ({
@@ -48,7 +41,7 @@ function MultiSelect(props: MultiSelectProps): JSX.Element {
                 options={options}
                 isMulti={isMulti}
                 isSearchable
-                defaultValue={defaultValue || options[0]}
+                defaultValue={isMulti ? defaultValue : defaultValue || options[0]}
             />
         </div>
     );
