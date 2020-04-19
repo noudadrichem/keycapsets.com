@@ -8,10 +8,17 @@ import withData from '../hooks/withData';
 
 import Button from './Button';
 import { loginUser } from '../utils/userLogin';
+import RedditIcon from './RedditIcon';
 
 const CLIENT_ID = 'OGPS_JHNLNt2sA';
+const REDIRECT_URI = 'http://localhost:3000/sign-up/reddit';
 
-function RedditAuth(): JSX.Element {
+interface RedditAuthProps {
+    asLink: boolean;
+}
+
+function RedditAuth(props: RedditAuthProps): JSX.Element {
+    const { asLink } = props;
     const router: NextRouter = useRouter();
     const client: ApolloClient<any> = useApolloClient();
 
@@ -52,15 +59,20 @@ function RedditAuth(): JSX.Element {
     }
 
     async function handleRedditAuth() {
-        const identifyUrl = `https://www.reddit.com/api/v1/authorize?client_id=${CLIENT_ID}&response_type=token&state=kcs&redirect_uri=http://localhost:3000/login&duration&scope=identity`;
+        const identifyUrl = `https://www.reddit.com/api/v1/authorize?client_id=${CLIENT_ID}&response_type=token&state=kcs&redirect_uri=${REDIRECT_URI}&duration&scope=identity`;
         window.open(identifyUrl, '_self');
     }
 
-    return (
+    return asLink ? (
+        <a onClick={handleRedditAuth}>
+            <RedditIcon variant="dark" />
+            Sign up with Reddit
+        </a>
+    ) : (
         <Button variant="primary" size="md" onClick={handleRedditAuth}>
             Sign up with Reddit
         </Button>
     );
 }
 
-export default withData(RedditAuth);
+export default RedditAuth;
