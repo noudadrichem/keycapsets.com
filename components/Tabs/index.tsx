@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { InititalState } from 'typings';
+import Router, { useRouter } from 'next/router';
 
 import Tab from './Tab';
 import Context from '../../context';
@@ -11,15 +12,9 @@ interface TabsProps {}
 function Tabs(props: TabsProps): JSX.Element {
     const {} = props;
     const state = useContext<InititalState>(Context);
+    const { query } = useRouter();
 
-    function resetFilter() {
-        state.setGlobalState({
-            filters: {
-                ...state.filters,
-                availabilityFilter: 'none',
-            },
-        });
-    }
+    const resetFilter = () => Router.push('/');
 
     return (
         <>
@@ -40,7 +35,7 @@ function Tabs(props: TabsProps): JSX.Element {
                         onSelectChange={(selectedFilterValue) =>
                             state.setGlobalState({
                                 filters: {
-                                    ...state.filters,
+                                    ...query,
                                     activeTab: selectedFilterValue,
                                 },
                             })
@@ -53,18 +48,11 @@ function Tabs(props: TabsProps): JSX.Element {
                     <label className="label">Filter availability</label>
                     <ul>
                         {state.availability.map((tab: String, idx: number) => (
-                            <Tab
-                                type={AVAILABILITY_FILTER}
-                                id={tab}
-                                key={idx}
-                            />
+                            <Tab type={AVAILABILITY_FILTER} id={tab} key={idx} />
                         ))}
                         <li>
-                            {state.filters.availabilityFilter !== 'none' && (
-                                <p
-                                    className="small light clickable"
-                                    onClick={resetFilter}
-                                >
+                            {query.availability !== 'none' && (
+                                <p className="small light clickable" onClick={resetFilter}>
                                     reset
                                 </p>
                             )}
@@ -75,14 +63,7 @@ function Tabs(props: TabsProps): JSX.Element {
                     <Select
                         label="Filter caps by availability"
                         name="Choose availability"
-                        onSelectChange={(selectedFilterValue) =>
-                            state.setGlobalState({
-                                filters: {
-                                    ...state.filters,
-                                    availabilityFilter: selectedFilterValue,
-                                },
-                            })
-                        }
+                        onSelectChange={(selectedFilterValue) => Router.push(`/?availability=${selectedFilterValue}`)}
                         values={state.availability.map((t) => ({
                             id: t,
                             name: t,

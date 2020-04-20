@@ -6,13 +6,13 @@ import { AVAILABILITY, TABS } from './constants';
 import { getDayDifference } from './components/StatusLabel';
 import { INTEREST_CHECK, WAITING_FOR_GROUPBUY, IN_GROUP_BUY, ENDED } from './constants';
 
-function filterByAvailability(set: Keycapset, availabilityFilter: string): boolean {
-    if (availabilityFilter === 'none') {
+function filterByAvailability(set: Keycapset, availability: string): boolean {
+    if (availability === 'none') {
         return true;
     }
     const { groupbuyEndDate, groupbuyStartDate, isInterestCheck } = set;
 
-    switch (availabilityFilter) {
+    switch (availability) {
         case INTEREST_CHECK:
             return isInterestCheck;
         case WAITING_FOR_GROUPBUY:
@@ -31,9 +31,9 @@ function filterByAvailability(set: Keycapset, availabilityFilter: string): boole
 }
 
 function handleFilters(keycapset: Keycapset, filters: Filters): boolean {
-    if (filters.activeTab === 'all' && filters.availabilityFilter === 'none') return true;
-    if (filters.activeTab === 'all') return filterByAvailability(keycapset, filters.availabilityFilter);
-    return keycapset.type === filters.activeTab && filterByAvailability(keycapset, filters.availabilityFilter);
+    if (filters.activeTab === 'all' && filters.availability === 'none') return true;
+    if (filters.activeTab === 'all') return filterByAvailability(keycapset, filters.availability);
+    return keycapset.type === filters.activeTab && filterByAvailability(keycapset, filters.availability);
 }
 
 export function reduceState(state, obj) {
@@ -41,19 +41,20 @@ export function reduceState(state, obj) {
         ...state,
         ...obj,
     };
-    if (process.env.NODE_ENV === 'development') {
-        console.log(moment().format('hh:mm:ss') + '_STATE...', reducedState);
-    }
-    return {
+    const filteredReducedState = {
         ...reducedState,
         filteredSets: reducedState.keycapsets.filter((set) => handleFilters(set, reducedState.filters)),
     };
+    if (process.env.NODE_ENV === 'development') {
+        console.log(moment().format('hh:mm:ss') + '_STATE...', filteredReducedState);
+    }
+    return filteredReducedState;
 }
 
 export const INITITAL_STATE: InititalState = {
     filters: {
         activeTab: 'all',
-        availabilityFilter: 'none',
+        availability: 'none',
     },
     tabs: TABS,
     availability: AVAILABILITY,

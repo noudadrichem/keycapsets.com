@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { useApolloClient } from '@apollo/react-hooks';
 import { ApolloClient } from 'apollo-boost';
-import { InititalState, Keycapset } from 'typings';
+import { InititalState, Keycapset, Filters } from 'typings';
 import withGA from 'next-ga';
 import { forceCheck } from 'react-lazyload';
 
@@ -33,6 +34,7 @@ function Home(props: HomeProps) {
     const isBrowser = typeof window !== `undefined`;
     const client = useApolloClient();
 
+    const { query } = useRouter();
     const [state, setState] = useState<InititalState>(INITITAL_STATE);
     const [initLoading, setInitLoading] = useState<boolean>(true);
     const [loadingExtra, setLoadingExtra] = useState<boolean>(true);
@@ -41,22 +43,22 @@ function Home(props: HomeProps) {
     useEffect(function initializeView() {
         if (isBrowser) {
             window.addEventListener('scroll', checkIsBottomPage);
-            return () =>
-                window.removeEventListener('scroll', checkIsBottomPage);
+            return () => window.removeEventListener('scroll', checkIsBottomPage);
         }
     }, []);
 
-    useEffect(
-        function handleTabChange() {
-            fetchMoreWhenSearched();
-        },
-        [state.filters.activeTab, state.filters.availabilityFilter]
-    );
+    useEffect(() => {
+        // function handleTabChange() {
+        //     fetchMoreWhenSearched();
+        // },
+        console.log({ query });
+        setState(reduceState(state, { filters: { ...query } }));
+        fetchMoreWhenSearched();
+    }, [query]);
 
     useEffect(
         function handleRefetchingOnBottomOfPage() {
-            const isEndReached =
-                state.keycapsets.length === state.allKeycapsetsCount;
+            const isEndReached = state.keycapsets.length === state.allKeycapsetsCount;
 
             if (isEndReached) {
                 setLoadingExtra(false);
@@ -78,10 +80,7 @@ function Home(props: HomeProps) {
             clearTimeout(timeout);
 
             timeout = setTimeout(() => {
-                if (
-                    state.searchQuery !== '' ||
-                    state.searchQuery !== undefined
-                ) {
+                if (state.searchQuery !== '' || state.searchQuery !== undefined) {
                     fetchMoreWhenSearched();
                     forceCheck();
                 } else {
@@ -153,7 +152,7 @@ function Home(props: HomeProps) {
             variables: {
                 offset,
                 limit: limit,
-                type: state.filters.activeTab,
+                type: state.filters.activeTab || 'all',
                 query: state.searchQuery,
             },
         });
@@ -170,11 +169,7 @@ function Home(props: HomeProps) {
 
             <Nav isLargeContainer />
             <div className="container large">
-                <Heading
-                    mainTitle="Find your favorite keycapset!"
-                    subTitle="keycapsets.com"
-                    isHome
-                />
+                <Heading mainTitle="Find your favorite keycapset!" subTitle="keycapsets.com" isHome />
 
                 {initLoading ? <LoadingKeyboardIllustration /> : <Images />}
 

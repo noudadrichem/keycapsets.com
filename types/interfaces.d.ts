@@ -35,8 +35,9 @@ declare module 'typings' {
     }
 
     interface Filters {
+        [key as string]: String;
         activeTab: string;
-        availabilityFilter: string;
+        availability: string;
     }
 
     interface InititalState {
