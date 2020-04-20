@@ -1,0 +1,29 @@
+.vendor {
+    .info-section {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 1fr;
+        grid-gap: 32px;
+        margin: 32px 0;
+
+        img {
+            width: 100%;
+            min-height: 400px;
+            object-fit: contain;
+        }
+
+        @media screen and (max-width: 768px) {
+            display: block;
+            grid-template-columns: 1fr;
+        }
+
+        .button-link {
+            margin-top: 24px;
+        }
+    }
+
+    &__keycapsets {
+        h3 {
+            margin-bottom: 16px;
+        }
+    }
+}
