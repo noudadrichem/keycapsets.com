@@ -2,7 +2,7 @@ import { createContext } from 'react';
 import moment from 'moment';
 import { InititalState, Filters, Keycapset } from 'typings';
 
-import { AVAILABILITY, TABS } from './constants';
+import { AVAILABILITY, BRAND_OPTIONS } from './constants';
 import { getDayDifference } from './components/StatusLabel';
 import { INTEREST_CHECK, WAITING_FOR_GROUPBUY, IN_GROUP_BUY, ENDED } from './constants';
 
@@ -30,13 +30,22 @@ function filterByAvailability(set: Keycapset, availabilityFilter: string): boole
     }
 }
 
-function handleFilters(keycapset: Keycapset, filters: Filters): boolean {
-    if (filters.activeTab === 'all' && filters.availabilityFilter === 'none') return true;
-    if (filters.activeTab === 'all') return filterByAvailability(keycapset, filters.availabilityFilter);
-    return keycapset.type === filters.activeTab && filterByAvailability(keycapset, filters.availabilityFilter);
+function filterByBrand(set: Keycapset, brandFilter: string[] = []): boolean {
+    return brandFilter.length === 0 || brandFilter.includes(set.brand);
 }
 
-export function reduceState(state, obj) {
+function handleFilters(keycapset: Keycapset, filters: Filters): boolean {
+    if (!filterByAvailability(keycapset, filters.availabilityFilter)) {
+        return false;
+    }
+    if (!filterByBrand(keycapset, filters.brandFilter)) {
+        return false;
+    }
+
+    return true;
+}
+
+export function reduceState(state: InititalState, obj: InititalState) {
     const reducedState = {
         ...state,
         ...obj,
@@ -46,7 +55,7 @@ export function reduceState(state, obj) {
     }
     return {
         ...reducedState,
-        filteredSets: reducedState.keycapsets.filter((set) => handleFilters(set, reducedState.filters)),
+        filteredSets: reducedState.keycapsets.filter((set: Keycapset) => handleFilters(set, reducedState.filters)),
     };
 }
 
@@ -54,9 +63,10 @@ export const INITITAL_STATE: InititalState = {
     filters: {
         activeTab: 'all',
         availabilityFilter: 'none',
+        brandFilter: [],
     },
-    tabs: TABS,
     availability: AVAILABILITY,
+    brands: BRAND_OPTIONS,
     keycapsets: [],
     filteredSets: [],
     searchQuery: '',
@@ -65,5 +75,4 @@ export const INITITAL_STATE: InititalState = {
 };
 
 const Context = createContext(INITITAL_STATE);
-
 export default Context;

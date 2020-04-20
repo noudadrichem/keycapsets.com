@@ -22,6 +22,19 @@ declare module 'typings' {
         isInterestCheck: boolean;
     }
 
+    interface Brand {
+        value: string;
+        label: string;
+    }
+    interface Material {
+        value: string;
+        label: string;
+    }
+    interface Profile {
+        value: string;
+        label: string;
+    }
+
     interface Vendor {
         _id?: string;
         socials?: string[];
@@ -37,12 +50,13 @@ declare module 'typings' {
     interface Filters {
         activeTab: string;
         availabilityFilter: string;
+        brandFilter: string[];
     }
 
     interface InititalState {
         filters: Filters;
-        tabs: string[];
         availability: string[];
+        brands: Brand[];
         keycapsets: Keycapset[];
         filteredSets: Keycapset[];
         searchQuery: string;
