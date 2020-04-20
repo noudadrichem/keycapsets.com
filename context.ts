@@ -45,7 +45,7 @@ function handleFilters(keycapset: Keycapset, filters: Filters): boolean {
     return true;
 }
 
-export function reduceState(state, obj) {
+export function reduceState(state: InititalState, obj: InititalState) {
     const reducedState = {
         ...state,
         ...obj,

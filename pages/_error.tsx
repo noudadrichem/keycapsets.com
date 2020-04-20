@@ -39,22 +39,13 @@ function Error(props: ErrorProps) {
             <Nav />
             <div className="container">
                 <Heading
-                    mainTitle={
-                        statusCode
-                            ? `An error ${statusCode} occurred on server`
-                            : 'An error occurred on client'
-                    }
+                    mainTitle={statusCode ? `An error ${statusCode} occurred on server` : 'An error occurred on client'}
                     subTitle="This page does not exist..."
                     backgroundColor="#f8abab"
                     left
                 />
-
-                {/* <div>
-                    <p>Curabitur in accumsan lorem. Donec ut sodales metus. Duis nec metus aliquet leo facilisis vehicula. Nullam quam lectus, aliquet feugiat consequat quis, fermentum ullamcorper risus. Pellentesque feugiat erat tincidunt maximus tempus. Duis at quam dolor. Curabitur ac turpis nulla.</p>
-                </div> */}
             </div>
             <Footer />
-            <CTACard />
         </>
     );
 }
