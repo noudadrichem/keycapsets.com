@@ -85,6 +85,7 @@ const GET_VENDORS_QUERY = gql`
             logoUrl
             url
             slug
+            country
         }
     }
 `;
@@ -94,7 +95,10 @@ const GET_SINGLE_VENDOR_QUERY = gql`
         vendorBySlug(slug: $slug) {
             _id
             name
+            url
             logoUrl
+            country
+            socials
         }
     }
 `;
@@ -138,8 +142,8 @@ const GET_SINGLE_SET_QUERY = gql`
 `;
 
 const GET_SETS_BY_VENDOR = gql`
-    query getKeycapsetByVendor($vendorId: String) {
-        keycapsetsByVendor(vendorId: $vendorId) {
+    query getKeycapsetByVendor($id: ID!) {
+        keycapsetsByVendor(vendorId: $id) {
             _id
             name
             type
