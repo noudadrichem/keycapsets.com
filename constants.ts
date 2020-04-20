@@ -1,4 +1,6 @@
-export const BRAND_OPTIONS = [
+import { Brand, Material, Profile } from 'typings';
+
+export const BRAND_OPTIONS: Brand[] = [
     { value: 'gmk', label: 'GMK' },
     { value: 'epbt', label: 'E-PBT' },
     { value: 'jtk', label: 'JTK' },
@@ -12,12 +14,12 @@ export const BRAND_OPTIONS = [
     { value: 'ducky', label: 'Ducky' },
 ];
 
-export const MATERIAL_OPTIONS = [
+export const MATERIAL_OPTIONS: Material[] = [
     { value: 'abs', label: 'ABS' },
     { value: 'pbt', label: 'PBT' },
 ];
 
-export const PROFILE_OPTIONS = [
+export const PROFILE_OPTIONS: Profile[] = [
     { label: 'Cherry', value: 'cherry' },
     { label: 'SA', value: 'sa' },
     { label: 'DSA', value: 'dsa' },
@@ -30,14 +32,12 @@ export const PROFILE_OPTIONS = [
     { label: 'DCS', value: 'dcs' },
 ];
 
-export const INTEREST_CHECK = 'ic';
-export const WAITING_FOR_GROUPBUY = 'waiting';
-export const IN_GROUP_BUY = 'gb';
-export const ENDED = 'ended';
-export const AVAILABILITY = [INTEREST_CHECK, WAITING_FOR_GROUPBUY, IN_GROUP_BUY, ENDED];
+export const INTEREST_CHECK: 'ic' = 'ic';
+export const WAITING_FOR_GROUPBUY: 'waiting' = 'waiting';
+export const IN_GROUP_BUY: 'gb' = 'gb';
+export const ENDED: 'ended' = 'ended';
+export const AVAILABILITY: string[] = [INTEREST_CHECK, WAITING_FOR_GROUPBUY, IN_GROUP_BUY, ENDED];
 
-export const TABS = ['all', 'gmk', 'pbt', 'sa', 'dsa', 'kat', 'jtk', 'kam', 'dcs'];
-
-export const AVAILABILITY_FILTER = 'availability';
-export const BRAND_FILTER = 'brand';
-export const CAP_FILTER = 'cap';
+export const AVAILABILITY_FILTER: 'availability' = 'availability';
+export const BRAND_FILTER: 'brand' = 'brand';
+export const CAP_FILTER: 'cap' = 'cap';

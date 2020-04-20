@@ -25,16 +25,14 @@ function Tab(props: TabProps): JSX.Element {
 
     const isActive = id === filters[typeKey];
     return (
-        <li className="tab">
-            <Button
-                onClick={() => handleUpdateFilters()}
-                variant="primary"
-                size="sm"
-                className={isActive ? 'primary' : 'inverted'}
-            >
-                {id}
-            </Button>
-        </li>
+        <Button
+            onClick={() => handleUpdateFilters()}
+            variant="primary"
+            size="sm"
+            className={isActive ? 'primary' : 'inverted'}
+        >
+            {id}
+        </Button>
     );
 }
 

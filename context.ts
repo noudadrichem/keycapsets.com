@@ -2,7 +2,7 @@ import { createContext } from 'react';
 import moment from 'moment';
 import { InititalState, Filters, Keycapset } from 'typings';
 
-import { AVAILABILITY, TABS, BRAND_OPTIONS } from './constants';
+import { AVAILABILITY, BRAND_OPTIONS } from './constants';
 import { getDayDifference } from './components/StatusLabel';
 import { INTEREST_CHECK, WAITING_FOR_GROUPBUY, IN_GROUP_BUY, ENDED } from './constants';
 
@@ -35,17 +35,9 @@ function filterByBrand(set: Keycapset, brandFilter: string[] = []): boolean {
 }
 
 function handleFilters(keycapset: Keycapset, filters: Filters): boolean {
-    // This part is just an old way of filtering, should be dismissed
-    if (filters.activeTab !== 'all' && keycapset.type !== filters.activeTab) {
-        return false;
-    }
-
-    // Check for availability filter
     if (!filterByAvailability(keycapset, filters.availabilityFilter)) {
         return false;
     }
-
-    // Check for brand filter
     if (!filterByBrand(keycapset, filters.brandFilter)) {
         return false;
     }
@@ -63,7 +55,7 @@ export function reduceState(state, obj) {
     }
     return {
         ...reducedState,
-        filteredSets: reducedState.keycapsets.filter((set) => handleFilters(set, reducedState.filters)),
+        filteredSets: reducedState.keycapsets.filter((set: Keycapset) => handleFilters(set, reducedState.filters)),
     };
 }
 
@@ -73,9 +65,8 @@ export const INITITAL_STATE: InititalState = {
         availabilityFilter: 'none',
         brandFilter: [],
     },
-    tabs: TABS,
     availability: AVAILABILITY,
-    brand: BRAND_OPTIONS,
+    brands: BRAND_OPTIONS,
     keycapsets: [],
     filteredSets: [],
     searchQuery: '',
@@ -84,5 +75,4 @@ export const INITITAL_STATE: InititalState = {
 };
 
 const Context = createContext(INITITAL_STATE);
-
 export default Context;

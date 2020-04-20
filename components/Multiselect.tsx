@@ -33,14 +33,14 @@ function MultiSelect<T>(props: MultiSelectProps<T>): JSX.Element {
         <div className="input-wrapper">
             <label className="label">{label}</label>
             <Select
+                isSearchable
                 id={label}
                 className="select-control"
                 styles={SELECT_STYLES}
                 value={value}
-                onChange={(selected: string[]) => onChange(selected)}
+                onChange={(selected: string[]) => onChange(selected || [])}
                 options={options}
                 isMulti={isMulti}
-                isSearchable
                 defaultValue={isMulti ? defaultValue : defaultValue || options[0]}
             />
         </div>

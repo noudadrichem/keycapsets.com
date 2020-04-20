@@ -1,69 +1,73 @@
 .filters {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 16px 0 24px;
     margin-top: 48px;
-    justify-content: space-between;
-    background: #f8f9fb;
-
-    // position: sticky;
-    // top: 0;
-    // z-index: 8;
 
     .counter {
         margin-left: 16px;
+        text-align: right;
+    }
+
+    .left-side {
+        display: inline-flex;
+
+        .filter {
+            display: flex;
+            flex-direction: column;
+            margin-right: 16px;
+
+            &.mobile-only {
+                display: none;
+
+                @media screen and (max-width: 556px) {
+                    display: flex !important;
+                    flex: 1;
+                }
+            }
+
+            &.desktop-only {
+                display: inline-flex;
+
+                @media screen and (max-width: 556px) {
+                    display: none;
+                }
+            }
+
+            .tabs {
+                display: flex;
+
+                .btn {
+                    min-width: 80px;
+                    margin-right: 8px;
+                }
+            }
+
+            .input-wrapper {
+                min-width: 216px;
+            }
+        }
     }
 
     @media screen and (max-width: 556px) {
-        margin: 24px 0;
-    }
-
-    .select {
-        display: none;
-        @media screen and (max-width: 556px) {
-            display: flex;
-            flex: 1;
-        }
-    }
-
-    .tabs {
-        display: inline-flex;
+        margin: 16px 0;
         flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
 
-        @media screen and (max-width: 556px) {
-            display: none;
-        }
-
-        ul {
-            display: flex;
-
-            li:first-child {
-                margin-left: 0;
-            }
-        }
-
-        .tab {
-            margin: 0 8px;
-
-            .btn {
-                width: 88px;
-            }
-        }
-    }
-
-    .brand {
-        margin-top: 8px;
-    }
-
-    .search-input {
-        margin-left: 48px;
-        display: inline-flex;
-        flex-direction: column;
-        flex: 1;
-
-        .input-wrapper {
+        .left-side {
+            width: 100%;
             display: block;
-            height: 100%;
+
+            .filter {
+                margin: 0 0 24px;
+                flex: 1;
+            }
+        }
+
+        .counter {
+            display: none;
         }
     }
 }

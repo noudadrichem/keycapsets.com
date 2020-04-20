@@ -26,6 +26,14 @@ declare module 'typings' {
         value: string;
         label: string;
     }
+    interface Material {
+        value: string;
+        label: string;
+    }
+    interface Profile {
+        value: string;
+        label: string;
+    }
 
     interface Vendor {
         _id?: string;
@@ -47,9 +55,8 @@ declare module 'typings' {
 
     interface InititalState {
         filters: Filters;
-        tabs: string[];
         availability: string[];
-        brand: Brand[];
+        brands: Brand[];
         keycapsets: Keycapset[];
         filteredSets: Keycapset[];
         searchQuery: string;
