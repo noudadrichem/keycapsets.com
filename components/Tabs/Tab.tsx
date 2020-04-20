@@ -1,43 +1,29 @@
 import React, { useContext } from 'react';
-import Button from '../Button';
 import Context from '../../context';
-import { AVAILABILITY_FILTER, CAP_FILTER } from '../../constants';
+import Button from '../Button';
 
 interface TabProps {
     id: String;
     type: 'cap' | 'availability';
 }
 
+const stateFilterKeys = {
+    cap: 'activeTab',
+    availability: 'availabilityFilter',
+};
+
 function Tab(props: TabProps): JSX.Element {
     const { id, type } = props;
-    const {
-        setGlobalState,
-        filters: { activeTab, availabilityFilter },
-    } = useContext(Context);
+    const { setGlobalState, filters } = useContext(Context);
+    const typeKey = stateFilterKeys[type];
 
     function handleUpdateFilters(): void {
-        if (type === 'cap') {
-            if (isActive) {
-                setGlobalState({
-                    filters: { availabilityFilter, activeTab: 'all' },
-                });
-            } else {
-                setGlobalState({
-                    filters: { availabilityFilter, activeTab: id },
-                });
-            }
-        } else if (isActive) {
-            setGlobalState({
-                filters: { activeTab, availabilityFilter: 'none' },
-            });
-        } else {
-            setGlobalState({
-                filters: { activeTab, availabilityFilter: id },
-            });
-        }
+        setGlobalState({
+            filters: { ...filters, [typeKey]: id === filters[typeKey] ? 'none' : id },
+        });
     }
 
-    const isActive = id === activeTab || id === availabilityFilter;
+    const isActive = id === filters[typeKey];
     return (
         <li className="tab">
             <Button

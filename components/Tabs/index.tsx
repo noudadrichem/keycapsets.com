@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { InititalState } from 'typings';
-
-import Tab from './Tab';
+import { AVAILABILITY_FILTER } from '../../constants';
 import Context from '../../context';
+import MultiSelect from '../Multiselect';
 import Select from '../Select';
-import { AVAILABILITY_FILTER, CAP_FILTER } from '../../constants';
+import Tab from './Tab';
 
 interface TabsProps {}
 
@@ -17,6 +17,7 @@ function Tabs(props: TabsProps): JSX.Element {
             filters: {
                 ...state.filters,
                 availabilityFilter: 'none',
+                brandFilter: [],
             },
         });
     }
@@ -49,45 +50,56 @@ function Tabs(props: TabsProps): JSX.Element {
                     />
                 </div> */}
 
-                <div className="tabs">
-                    <label className="label">Filter availability</label>
-                    <ul>
-                        {state.availability.map((tab: String, idx: number) => (
-                            <Tab
-                                type={AVAILABILITY_FILTER}
-                                id={tab}
-                                key={idx}
-                            />
-                        ))}
-                        <li>
-                            {state.filters.availabilityFilter !== 'none' && (
-                                <p
-                                    className="small light clickable"
-                                    onClick={resetFilter}
-                                >
-                                    reset
-                                </p>
-                            )}
-                        </li>
-                    </ul>
-                </div>
-                <div className="select">
-                    <Select
-                        label="Filter caps by availability"
-                        name="Choose availability"
-                        onSelectChange={(selectedFilterValue) =>
-                            state.setGlobalState({
-                                filters: {
-                                    ...state.filters,
-                                    availabilityFilter: selectedFilterValue,
-                                },
-                            })
-                        }
-                        values={state.availability.map((t) => ({
-                            id: t,
-                            name: t,
-                        }))}
-                    />
+                <div>
+                    <div className="tabs">
+                        <label className="label">Filter availability</label>
+                        <ul>
+                            {state.availability.map((tab: String, idx: number) => (
+                                <Tab type={AVAILABILITY_FILTER} id={tab} key={idx} />
+                            ))}
+                            <li>
+                                {state.filters.availabilityFilter !== 'none' && (
+                                    <p className="small light clickable" onClick={resetFilter}>
+                                        reset
+                                    </p>
+                                )}
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="select">
+                        <Select
+                            label="Filter caps by availability"
+                            name="Choose availability"
+                            onSelectChange={(selectedFilterValue) =>
+                                state.setGlobalState({
+                                    filters: {
+                                        ...state.filters,
+                                        availabilityFilter: selectedFilterValue,
+                                    },
+                                })
+                            }
+                            values={state.availability.map((t) => ({
+                                id: t,
+                                name: t,
+                            }))}
+                        />
+                    </div>
+
+                    <div className="brand">
+                        <MultiSelect
+                            isMulti={true}
+                            label="Filter brands"
+                            options={state.brand}
+                            onChange={(values) => {
+                                state.setGlobalState({
+                                    filters: {
+                                        ...state.filters,
+                                        brandFilter: (values || []).map((brand) => brand.value),
+                                    },
+                                });
+                            }}
+                        />
+                    </div>
                 </div>
 
                 <div className="counter">
