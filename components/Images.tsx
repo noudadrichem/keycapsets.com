@@ -4,13 +4,10 @@ import Context from '../context';
 import ImageCard from './ImageCard';
 
 import Tabs from './Tabs';
+import moment from 'moment';
+import { INTEREST_CHECK, WAITING_FOR_GROUPBUY, IN_GROUP_BUY, ENDED } from '../constants';
 
-interface ImagesProps {
-  keycapsets: Array<Keycapset>,
-  activeTab?: String,
-  searchQuery?: String,
-  filter?: Boolean
-}
+interface ImagesProps {}
 
 function Images(props: ImagesProps): JSX.Element {
     const { filteredSets } = useContext(Context);
@@ -26,7 +23,8 @@ function Images(props: ImagesProps): JSX.Element {
                 )}
             </div>
         </>
-    );2
+    );
+    2;
 }
 
 export default Images;

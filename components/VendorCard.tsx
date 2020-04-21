@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 import ButtonLink from '../components/ButtonLink';
 import { Vendor } from 'typings';
@@ -9,15 +10,10 @@ interface VendorCardProps {
 
 function VendorCard(props: VendorCardProps): JSX.Element {
     const { vendor } = props;
-    const {
-        name,
-        logoUrl,
-        url,
-        slug
-    } = vendor;
+    const { name, logoUrl, url, slug } = vendor;
 
     return (
-        <a href={url} target="_blank">
+        <Link href="/vendors/[vendor]" as={`/vendors/${slug}`}>
             <div className="vendor-card">
                 <div className="image">
                     <img
@@ -36,17 +32,15 @@ function VendorCard(props: VendorCardProps): JSX.Element {
                             <h4>{name}</h4>
                         </div>
 
-                <div className="horizontal">
-                    <div className="left">
-                        <h4>{name}</h4>
-                    </div>
-
-                    <div className="right">
-                        <ButtonLink href="/vendors/[vendor]" as={`/vendors/${slug}`}>Go to vendor</ButtonLink>
+                        <div className="right">
+                            <ButtonLink href="/vendors/[vendor]" as={`/vendors/${slug}`}>
+                                Go to vendor
+                            </ButtonLink>
+                        </div>
                     </div>
                 </div>
             </div>
-        </a>
+        </Link>
     );
 }
 

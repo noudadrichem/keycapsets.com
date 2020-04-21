@@ -79,47 +79,36 @@ const CREATE_VENDOR_MUTATION = gql`
 `;
 
 const GET_VENDORS_QUERY = gql`
-query GET_VENDORS_QUERY {
-  vendors {
-    name
-    _id
-    logoUrl
-    url
-    slug
-  }
-}
-`
-
-const GET_SINGLE_VENDOR_QUERY = gql`
-query GET_SINGLE_VENDOR_QUERY($slug:String!){
-    vendorBySlug(slug:$slug) {
-        _id
-        name
-        logoUrl
-    }
-}
-`
-
-const GET_SINGLE_SET_QUERY = gql`
-query GET_SINGLE_SET_QUERY($type: String!, $slug:String!){
-    keycapsetBySlug(type:$type, slug:$slug) {
-        _id
-        name
-        designerName
-        type
-        coverImageUrl
-        groupbuyStartDate
-        groupbuyEndDate
-        active
-        coverImageUrl
-        imageUrls
-        websiteUrl
+    query GET_VENDORS_QUERY {
         vendors {
             name
             _id
             logoUrl
             url
+            slug
+        }
+    }
+`;
+
+const GET_SINGLE_VENDOR_QUERY = gql`
+    query GET_SINGLE_VENDOR_QUERY($slug: String!) {
+        vendorBySlug(slug: $slug) {
+            _id
+            name
+            logoUrl
+        }
+    }
+`;
+
+const GET_SINGLE_VENDOR_QUERY = gql`
+    query GET_SINGLE_VENDOR_QUERY($slug: String!) {
+        vendorBySlug(slug: $slug) {
+            _id
+            name
+            url
+            logoUrl
             country
+            socials
         }
     }
 `;
@@ -163,16 +152,16 @@ const GET_SINGLE_SET_QUERY = gql`
 `;
 
 const GET_SETS_BY_VENDOR = gql`
-query getKeycapsetByVendor($vendorId:String) {
-    keycapsetsByVendor(vendorId: $vendorId) {
-        _id
-        name
-        type
-        coverImageUrl
-        slug
+    query getKeycapsetByVendor($id: ID!) {
+        keycapsetsByVendor(vendorId: $id) {
+            _id
+            name
+            type
+            coverImageUrl
+            slug
+        }
     }
-}
-`
+`;
 
 const GET_SETS_BY_QUERY = gql`
     query getKeycapsetByQuery($query: String) {
@@ -210,6 +199,6 @@ export {
     GET_SINGLE_VENDOR_QUERY,
     GET_SINGLE_SET_QUERY,
     GET_SETS_BY_VENDOR,
-    GET_SETS_BY_QUERY
+    GET_SETS_BY_QUERY,
     GOOGLE_LOGIN,
 };
