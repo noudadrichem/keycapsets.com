@@ -52,6 +52,7 @@ declare module 'typings' {
         availabilityFilter: string;
         brandFilter: string[];
         profileFilter: string[];
+        materialFilter: string[];
     }
 
     interface InititalState {
@@ -59,6 +60,7 @@ declare module 'typings' {
         availability: string[];
         brands: Brand[];
         profiles: Profile[];
+        materials: Material[];
         keycapsets: Keycapset[];
         filteredSets: Keycapset[];
         searchQuery: string;
