@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { InititalState, Brand } from 'typings';
+import { InititalState, Brand, Profile } from 'typings';
 import { AVAILABILITY_FILTER } from '../../constants';
 import Context from '../../context';
 import MultiSelect from '../Multiselect';
@@ -27,6 +27,14 @@ function Tabs(props: TabsProps): JSX.Element {
             filters: {
                 ...context.filters,
                 brandFilter: values.map((b: Brand) => b.value),
+            },
+        });
+    }
+    function handleProfileFilter(values: Profile[]) {
+        context.setGlobalState({
+            filters: {
+                ...context.filters,
+                brandFilter: values.map((b: Profile) => b.value),
             },
         });
     }
@@ -76,6 +84,15 @@ function Tabs(props: TabsProps): JSX.Element {
                             label="Filter brands"
                             options={context.brands}
                             onChange={handleBrandFilter}
+                        />
+                    </div>
+
+                    <div className="filter profile">
+                        <MultiSelect
+                            isMulti
+                            label="Filter Profile"
+                            options={context.profiles}
+                            onChange={handleProfileFilter}
                         />
                     </div>
                 </div>
