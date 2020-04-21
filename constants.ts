@@ -1,4 +1,6 @@
-export const BRAND_OPTIONS = [
+import { Brand, Material, Profile } from 'typings';
+
+export const BRAND_OPTIONS: Brand[] = [
     { value: 'gmk', label: 'GMK' },
     { value: 'epbt', label: 'E-PBT' },
     { value: 'jtk', label: 'JTK' },
@@ -9,15 +11,15 @@ export const BRAND_OPTIONS = [
     { value: 'maxkey', label: 'MaxKey' },
     { value: 'zfrontier', label: 'zFrontier' },
     { value: 'leopold', label: 'Leopold' },
-    { value: 'ducky', labele: 'Ducky' }
+    { value: 'ducky', label: 'Ducky' },
 ];
 
-export const MATERIAL_OPTIONS = [
+export const MATERIAL_OPTIONS: Material[] = [
     { value: 'abs', label: 'ABS' },
-    { value: 'pbt', label: 'PBT' }
-]
+    { value: 'pbt', label: 'PBT' },
+];
 
-export const PROFILE_OPTIONS = [
+export const PROFILE_OPTIONS: Profile[] = [
     { label: 'Cherry', value: 'cherry' },
     { label: 'SA', value: 'sa' },
     { label: 'DSA', value: 'dsa' },
@@ -26,5 +28,16 @@ export const PROFILE_OPTIONS = [
     { label: 'KAT', value: 'kat' },
     { label: 'KAM', value: 'kam' },
     { label: 'OEM', value: 'oem' },
-    { label: 'MDA', value: 'mda' }
-]
+    { label: 'MDA', value: 'mda' },
+    { label: 'DCS', value: 'dcs' },
+];
+
+export const INTEREST_CHECK: 'ic' = 'ic';
+export const WAITING_FOR_GROUPBUY: 'waiting' = 'waiting';
+export const IN_GROUP_BUY: 'gb' = 'gb';
+export const ENDED: 'ended' = 'ended';
+export const AVAILABILITY: string[] = [INTEREST_CHECK, WAITING_FOR_GROUPBUY, IN_GROUP_BUY, ENDED];
+
+export const AVAILABILITY_FILTER: 'availability' = 'availability';
+export const BRAND_FILTER: 'brand' = 'brand';
+export const CAP_FILTER: 'cap' = 'cap';

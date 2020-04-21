@@ -1,32 +1,39 @@
-import React from 'react';
-import Button from '../Button';
+import React, { useContext } from 'react';
 import Context from '../../context';
+import Button from '../Button';
 
 interface TabProps {
     id: String;
+    type: 'cap' | 'availability';
 }
 
-function Tab(props: TabProps): JSX.Element {
-    const { id } = props;
+const stateFilterKeys = {
+    cap: 'activeTab',
+    availability: 'availabilityFilter',
+};
 
+function Tab(props: TabProps): JSX.Element {
+    const { id, type } = props;
+    const { setGlobalState, filters } = useContext(Context);
+    const typeKey = stateFilterKeys[type];
+
+    function handleUpdateFilters(): void {
+        setGlobalState({
+            filters: { ...filters, [typeKey]: id === filters[typeKey] ? 'none' : id },
+        });
+    }
+
+    const isActive = id === filters[typeKey];
     return (
-        <Context.Consumer>
-            {
-                (state: any) => (
-                    <li className="tab">
-                        <Button
-                            onClick={() => state.setGlobalState({ activeTab: id })}
-                            variant="primary"
-                            size="sm"
-                            className={id === state.activeTab ? 'primary' : 'inverted'
-                        }>
-                            {id}
-                        </Button>
-                    </li>
-                )
-            }
-        </Context.Consumer>
-    )
+        <Button
+            onClick={() => handleUpdateFilters()}
+            variant="primary"
+            size="sm"
+            className={isActive ? 'primary' : 'inverted'}
+        >
+            {id}
+        </Button>
+    );
 }
 
 export default Tab;

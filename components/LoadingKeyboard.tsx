@@ -17,7 +17,7 @@ function LoadingKeyboard(): JSX.Element {
             </div>
             <Footer />
         </>
-    )
+    );
 }
 
 export default LoadingKeyboard;

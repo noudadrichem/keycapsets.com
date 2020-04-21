@@ -6,9 +6,9 @@ declare module 'typings' {
         material?: string;
         brand?: string;
         designerName?: string;
-        groupbuyStartDate?: Date;
+        groupbuyStartDate?: string;
         groupbuyEndDate?: string;
-        active?: Boolean;
+        active?: boolean;
         coverImageUrl?: string;
         imageUrls?: string[];
         websiteUrl?: string;
@@ -19,6 +19,20 @@ declare module 'typings' {
         accentColor1: string;
         accentColor2: string;
         accentColor3: string;
+        isInterestCheck: boolean;
+    }
+
+    interface Brand {
+        value: string;
+        label: string;
+    }
+    interface Material {
+        value: string;
+        label: string;
+    }
+    interface Profile {
+        value: string;
+        label: string;
     }
 
     interface Vendor {
@@ -33,10 +47,18 @@ declare module 'typings' {
         slug?: string;
     }
 
-    interface InititalState {
+    interface Filters {
         activeTab: string;
-        tabs: string[],
-        keycapsets: any[],
+        availabilityFilter: string;
+        brandFilter: string[];
+    }
+
+    interface InititalState {
+        filters: Filters;
+        availability: string[];
+        brands: Brand[];
+        keycapsets: Keycapset[];
+        filteredSets: Keycapset[];
         searchQuery: string;
         allKeycapsetsCount: number;
         setGlobalState?: Function;

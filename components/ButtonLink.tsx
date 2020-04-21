@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode } from 'react';
 import ArrowRight from './Arrow';
 
 import '../assets/styles/button-link.scss';
@@ -13,26 +13,22 @@ interface LinkProps {
 }
 
 function ButtonLink(props: LinkProps): JSX.Element {
-    const {children, href, as, isLarge = false } = props;
+    const { children, href, as, isLarge = false } = props;
 
     return (
         <div className={`button-link arrow-right ${isLarge ? 'large' : ''}`}>
-            {
-                href.startsWith('http')
-                    ? (
-                        <a href={href} target="_blank">
-                            {children}
-                        </a>
-                    )
-                    : (
-                        <Link href={href} as={as}>
-                            <a>{children}</a>
-                        </Link>
-                    )
-            }
+            {href.startsWith('http') ? (
+                <a href={href} target="_blank">
+                    {children}
+                </a>
+            ) : (
+                <Link href={href} as={as}>
+                    <a>{children}</a>
+                </Link>
+            )}
             <ArrowRight size={16} />
         </div>
-    )
+    );
 }
 
-export default ButtonLink
+export default ButtonLink;

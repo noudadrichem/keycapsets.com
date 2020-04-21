@@ -5,10 +5,12 @@
     transition: 120ms;
     cursor: pointer;
     border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &:disabled {
-        opacity: .5;
-        cursor: not-allowed;
+        opacity: 0.5;
         box-shadow: none;
     }
 
@@ -43,7 +45,7 @@
     &.primary {
         background-color: var(--blue);
         border: 1px solid var(--blue);
-        color: white;;
+        color: white;
         font-weight: 600;
 
         &:active {
@@ -56,7 +58,7 @@
             border: 1px solid var(--blue-darker);
 
             &:disabled {
-                opacity: .5;
+                opacity: 0.5;
             }
         }
     }
@@ -64,7 +66,7 @@
     &.secondary {
         background-color: var(--blue-lightest);
         border: 1px solid var(--blue-lightest);
-        color: var(--blue);;
+        color: var(--blue);
         font-weight: 600;
 
         &:active {
@@ -78,24 +80,28 @@
             color: white;
 
             &:disabled {
-                opacity: .5;
+                opacity: 0.5;
             }
         }
     }
 
     &.inverted {
-         background-color: white;;
-         color: var(--blue);
-         border: 1px solid var(--blue);
+        background-color: white;
+        color: var(--blue);
+        border: 1px solid var(--blue);
 
-         &:hover {
-             background-color: var(--blue);
-             border: 1px solid var(--blue);
-             color: white;
+        &:hover {
+            background-color: var(--blue);
+            border: 1px solid var(--blue);
+            color: white;
 
-             &:disabled {
-                 opacity: .5;
-             }
-         }
+            &:disabled {
+                opacity: 0.5;
+            }
+        }
+    }
+
+    .google-icon {
+        margin-right: 8px;
     }
 }

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import Button from './Button';
 import { useRouter } from 'next/router';
 import Pill from './Pill';
@@ -18,23 +18,26 @@ function Heading(props: HeadingProps): JSX.Element {
         subTitle,
         isHome = false,
         left = false,
-        backgroundColor
+        backgroundColor,
     } = props;
     const router = useRouter();
 
     return (
-        <header className={`heading ${left ? 'left' : 'center'}`} style={{ background: backgroundColor }}>
+        <header
+            className={`heading ${left ? 'left' : 'center'}`}
+            style={{ background: backgroundColor }}
+        >
             <Pill color="gray" text="BETA" />
-            <h4 className={`italic ${left ? 'left' : 'center'}`}>{ subTitle }</h4>
-            <h1 className={`no-bold ${left ? 'left' : 'center'}`}>{ mainTitle  }</h1>
+            <h4 className={`italic ${left ? 'left' : 'center'}`}>{subTitle}</h4>
+            <h1 className={`no-bold ${left ? 'left' : 'center'}`}>
+                {mainTitle}
+            </h1>
 
-            {
-                isHome && (
-                    <>
+            {isHome && (
+                <>
+                    <SearchSets />
 
-                        <SearchSets />
-
-                        <div className="heading-cta">
+                    {/* <div className="heading-cta">
                             <Button
                                 onClick={() => router.push('/upload/set')}
                                 variant="primary"
@@ -50,13 +53,11 @@ function Heading(props: HeadingProps): JSX.Element {
                                 className='center'
                             >Add as vendor
                             </Button>
-                        </div>
-                    </>
-                )
-            }
-
+                        </div> */}
+                </>
+            )}
         </header>
-    )
+    );
 }
 
 export default Heading;

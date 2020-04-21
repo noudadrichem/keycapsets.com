@@ -26,30 +26,33 @@ function useSetsFetch(props: fetchProps) {
                     offset,
                     type,
                     query,
-                    limit: LIMIT
-                }
+                    limit: LIMIT,
+                },
             });
-            const { data: { keycapsets }, loading } = await fetchSetQueryResult;
-            setKeycapsets(keycapsets)
+            const {
+                data: { keycapsets },
+                loading,
+            } = await fetchSetQueryResult;
+            setKeycapsets(keycapsets);
 
             // if (keycapsets.length > 0) {
             // } else {
             //     setKeycapsets([])
-                // setLoadingExtra(false)
-                // window.removeEventListener('scroll', checkIsBottomPage)
+            // setLoadingExtra(false)
+            // window.removeEventListener('scroll', checkIsBottomPage)
             // }
         }
 
         fetchKeycapsets();
-    }, [query, type])
+    }, [query, type]);
 
     return {
         keycapsets,
         setLimit,
         setOffset,
         setQuery,
-        setType
+        setType,
     };
 }
 
-export default useSetsFetch
+export default useSetsFetch;

@@ -6,13 +6,13 @@
     transition: 120ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
     cursor: pointer;
 
-    &:hover {
-        transform: scale(1.007);
-    }
+    // &:hover {
+    //     transform: scale(1.007);
+    // }
 
     &.disabled {
-      cursor: auto;
-      pointer-events: none;
+        cursor: auto;
+        pointer-events: none;
     }
 
     .image {
@@ -35,7 +35,6 @@
             width: 100%;
             object-fit: cover;
         }
-
     }
 
     .details {
@@ -57,6 +56,20 @@
                 position: absolute;
                 top: 60%;
                 left: 0;
+            }
+        }
+    }
+
+    &:hover {
+        .details {
+            .bottom {
+                .button-link {
+                    border-bottom: 2px solid #539bfb;
+
+                    .arrow {
+                        transform: translateX(4px);
+                    }
+                }
             }
         }
     }
