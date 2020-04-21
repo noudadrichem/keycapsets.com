@@ -2,7 +2,7 @@ import { createContext } from 'react';
 import moment from 'moment';
 import { InititalState, Filters, Keycapset } from 'typings';
 
-import { AVAILABILITY, BRAND_OPTIONS } from './constants';
+import { AVAILABILITY, BRAND_OPTIONS, PROFILE_OPTIONS } from './constants';
 import { getDayDifference } from './components/StatusLabel';
 import { INTEREST_CHECK, WAITING_FOR_GROUPBUY, IN_GROUP_BUY, ENDED } from './constants';
 
@@ -33,12 +33,18 @@ function filterByAvailability(set: Keycapset, availabilityFilter: string): boole
 function filterByBrand(set: Keycapset, brandFilter: string[] = []): boolean {
     return brandFilter.length === 0 || brandFilter.includes(set.brand);
 }
+function filterByProfile(set: Keycapset, profileFilter: string[] = []): boolean {
+    return profileFilter.length === 0 || profileFilter.includes(set.type.toLowerCase());
+}
 
 function handleFilters(keycapset: Keycapset, filters: Filters): boolean {
     if (!filterByAvailability(keycapset, filters.availabilityFilter)) {
         return false;
     }
     if (!filterByBrand(keycapset, filters.brandFilter)) {
+        return false;
+    }
+    if (!filterByProfile(keycapset, filters.profileFilter)) {
         return false;
     }
 
@@ -64,9 +70,11 @@ export const INITITAL_STATE: InititalState = {
         activeTab: 'all',
         availabilityFilter: 'none',
         brandFilter: [],
+        profileFilter: [],
     },
     availability: AVAILABILITY,
     brands: BRAND_OPTIONS,
+    profiles: PROFILE_OPTIONS,
     keycapsets: [],
     filteredSets: [],
     searchQuery: '',
