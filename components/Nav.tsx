@@ -41,12 +41,8 @@ function Nav(props: NavProps): JSX.Element {
                             Sign up
                             <div className="pop-over">
                                 <div className="pop-over-container">
-                                    <Link href="/sign-up/google">
-                                        <GoogleAuth asLink />
-                                    </Link>
-                                    <Link href="/sign-up/reddit">
-                                        <RedditAuth asLink />
-                                    </Link>
+                                    <GoogleAuth asLink />
+                                    <RedditAuth asLink />
                                 </div>
                             </div>
                         </Button>

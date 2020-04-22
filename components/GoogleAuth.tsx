@@ -9,6 +9,7 @@ import withData from '../hooks/withData';
 import Button from './Button';
 import GoogleIcon from './GoogleIcon';
 import { loginUser } from '../utils/userLogin';
+import { useRouter, NextRouter } from 'next/router';
 
 const CLIENT_ID = '22533085590-p56b9iva0qoq0btq94q252uuv34rphec.apps.googleusercontent.com';
 
@@ -19,6 +20,7 @@ interface GoogleAuthProps {
 function GoogleAuth(props: GoogleAuthProps): JSX.Element {
     const { asLink } = props;
     const client: ApolloClient<any> = useApolloClient();
+    const router: NextRouter = useRouter();
 
     async function success(response) {
         try {
@@ -31,6 +33,7 @@ function GoogleAuth(props: GoogleAuthProps): JSX.Element {
                 },
             });
             loginUser(googleLogin);
+            router.push('/sign-up/google');
         } catch (err) {
             console.error(err);
         }
