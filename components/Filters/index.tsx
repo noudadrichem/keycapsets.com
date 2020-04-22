@@ -22,6 +22,7 @@ function Tabs(props: TabsProps): JSX.Element {
         });
     }
 
+    // TODO: This needs refactoring...
     function handleBrandFilter(values: Brand[]) {
         context.setGlobalState({
             filters: {

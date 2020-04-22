@@ -41,12 +41,12 @@ function ImageCard(props: ImageCardProps): JSX.Element {
                                     : coverImageUrl
                             }
                         />
-
                         <StatusLabel
                             groupbuyStartDate={groupbuyStartDate}
                             groupbuyEndDate={groupbuyEndDate}
                             isIc={isInterestCheck}
                         />
+                        ß
                     </div>
 
                     <div className="details">

@@ -11,16 +11,26 @@ function SearchSets() {
     });
     const { setGlobalState } = useContext(Context);
 
-    useEffect(() => {
-        const searchQuery = router.query.search;
-        if (searchQuery !== undefined) {
-            setSearchInputValue(searchQuery);
-            setGlobalState({ searchQuery });
-        }
-    }, [router.query.search]);
+    // TODO: this supported the use of search?= query in URL...
+    // useEffect(() => {
+    //     const searchQuery = router.query.search;
+    //     if (searchQuery !== undefined) {
+    //         setSearchInputValue(searchQuery);
+    //         setGlobalState({ searchQuery });
+    //     }
+    // }, [router.query.search]);
 
     useEffect(() => {
-        setGlobalState({ searchQuery: searchValue });
+        let timeout: any;
+        clearTimeout(timeout);
+
+        timeout = setTimeout(() => {
+            if (searchValue !== '' || searchValue !== undefined) {
+                setGlobalState({ searchQuery: searchValue });
+            }
+        }, 200);
+
+        return () => clearTimeout(timeout);
     }, [searchValue]);
 
     return <div className="search-input">{searchInput}</div>;
