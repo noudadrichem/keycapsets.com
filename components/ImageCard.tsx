@@ -19,15 +19,15 @@ function ImageCard(props: ImageCardProps): JSX.Element {
     const { keycapset } = props;
     const { name, coverImageUrl, type, slug, groupbuyStartDate, groupbuyEndDate, isInterestCheck } = keycapset;
 
-    const state = useContext<InititalState>(Context);
+    const context = useContext<InititalState>(Context);
     const isInFuture: boolean = moment().diff(groupbuyStartDate, 'days') < 0;
     const isTemplate = !keycapset.hasOwnProperty('_id');
 
     useEffect(() => {
         if (!isTemplate) {
-            forceCheck();
+            setTimeout(forceCheck);
         }
-    }, [state.searchQuery]);
+    }, [context.searchQuery]);
 
     return (
         <LazyLoad offset={400} height={400} once>
@@ -41,12 +41,12 @@ function ImageCard(props: ImageCardProps): JSX.Element {
                                     : coverImageUrl
                             }
                         />
-
                         <StatusLabel
                             groupbuyStartDate={groupbuyStartDate}
                             groupbuyEndDate={groupbuyEndDate}
                             isIc={isInterestCheck}
                         />
+                        ß
                     </div>
 
                     <div className="details">

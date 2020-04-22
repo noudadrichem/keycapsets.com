@@ -51,12 +51,16 @@ declare module 'typings' {
         activeTab: string;
         availabilityFilter: string;
         brandFilter: string[];
+        profileFilter: string[];
+        materialFilter: string[];
     }
 
     interface InititalState {
         filters: Filters;
         availability: string[];
         brands: Brand[];
+        profiles: Profile[];
+        materials: Material[];
         keycapsets: Keycapset[];
         filteredSets: Keycapset[];
         searchQuery: string;

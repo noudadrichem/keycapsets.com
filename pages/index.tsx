@@ -72,19 +72,12 @@ function Home(props: HomeProps) {
 
     useEffect(
         function handleSearch() {
-            let timeout: any;
-            clearTimeout(timeout);
-
-            timeout = setTimeout(() => {
-                if (state.searchQuery !== '' || state.searchQuery !== undefined) {
-                    fetchMoreWhenSearched();
-                    forceCheck();
-                } else {
-                    initSets();
-                }
-            }, 500);
-
-            return () => clearTimeout(timeout);
+            if (state.searchQuery !== '' || state.searchQuery !== undefined) {
+                fetchMoreWhenSearched();
+            } else {
+                initSets();
+            }
+            forceCheck();
         },
         [state.searchQuery]
     );

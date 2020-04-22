@@ -3,9 +3,7 @@ import { Keycapset } from 'typings';
 import Context from '../context';
 import ImageCard from './ImageCard';
 
-import Tabs from './Tabs';
-import moment from 'moment';
-import { INTEREST_CHECK, WAITING_FOR_GROUPBUY, IN_GROUP_BUY, ENDED } from '../constants';
+import Tabs from './Filters';
 
 interface ImagesProps {}
 

@@ -9,8 +9,7 @@ import withData from '../hooks/withData';
 import Button from './Button';
 import GoogleIcon from './GoogleIcon';
 
-const CLIENT_ID =
-    '22533085590-p56b9iva0qoq0btq94q252uuv34rphec.apps.googleusercontent.com';
+const CLIENT_ID = '22533085590-p56b9iva0qoq0btq94q252uuv34rphec.apps.googleusercontent.com';
 
 interface GoogleAuthProps {}
 
@@ -44,11 +43,11 @@ function GoogleAuth(props: GoogleAuthProps): JSX.Element {
             onSuccess={success}
             onFailure={error}
             responseType="id_token"
+            // isSignedIn
+            cookiePolicy={'single_host_origin'}
             render={(renderProps) => (
                 <Button
-                    onClick={
-                        /*renderProps.onClick*/ () => console.log('Coming soon')
-                    }
+                    onClick={/*renderProps.onClick*/ () => console.log('Coming soon')}
                     variant="primary"
                     size="md"
                     className="google-button"
@@ -62,4 +61,4 @@ function GoogleAuth(props: GoogleAuthProps): JSX.Element {
     );
 }
 
-export default withData(GoogleAuth);
+export default GoogleAuth;
