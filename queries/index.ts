@@ -149,6 +149,9 @@ const GET_SETS_BY_VENDOR = gql`
             name
             type
             coverImageUrl
+            groupbuyStartDate
+            groupbuyEndDate
+            isInterestCheck
             slug
         }
     }
