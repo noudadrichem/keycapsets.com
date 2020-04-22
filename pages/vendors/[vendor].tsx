@@ -60,14 +60,13 @@ function VendorPage(props: SetProps) {
     console.log(vendor);
 
     const vendorRegion = countryIsoList.find((country) => {
-        const _continent = vendor.country.split('-')[0];
-        const _country = vendor.country.split('-')[1];
+        const [vendorContinent, vendorCountry] = vendor.country.split('-');
 
-        if (typeof _country === undefined) {
-            return country.continentCode === _continent;
+        if (typeof vendorCountry === undefined) {
+            return country.continentCode === vendorContinent;
         }
 
-        return country.continentCode === _continent && country.twoLetterCountryCode === _country;
+        return country.continentCode === vendorContinent && country.twoLetterCountryCode === vendorCountry;
     });
 
     return (
