@@ -13,6 +13,7 @@ const FETCH_KEYCAPSET_QUERY = gql`
             groupbuyStartDate
             groupbuyEndDate
             isInterestCheck
+            material
         }
     }
 `;
