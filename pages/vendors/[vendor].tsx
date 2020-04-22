@@ -74,7 +74,7 @@ function VendorPage(props: SetProps) {
             <div className="vendor">
                 <Nav />
 
-                <div className="container">
+                <div className="container large">
                     <Heading left mainTitle={vendor.name} subTitle={`Good luck with sharing!`} />
 
                     <div className="info-section">
