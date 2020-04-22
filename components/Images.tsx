@@ -3,7 +3,7 @@ import { Keycapset } from 'typings';
 import Context from '../context';
 import ImageCard from './ImageCard';
 
-import Tabs from './Tabs';
+import Tabs from './Filters';
 
 interface ImagesProps {}
 

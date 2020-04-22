@@ -7,11 +7,13 @@ const FETCH_KEYCAPSET_QUERY = gql`
             _id
             name
             type
+            brand
             coverImageUrl
             slug
             groupbuyStartDate
             groupbuyEndDate
             isInterestCheck
+            material
         }
     }
 `;
