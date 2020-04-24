@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { ReactNode, useContext } from 'react';
 import Link from 'next/link';
 
-import '../assets/styles/nav.scss';
+import Button from './Button';
+import GoogleIcon from './GoogleIcon';
+import RedditIcon from './RedditIcon';
+import { InititalState, Context } from 'typings';
+import { context } from '../context';
 
 interface NavProps {
     isLargeContainer?: boolean;
@@ -9,6 +13,8 @@ interface NavProps {
 
 function Nav(props: NavProps): JSX.Element {
     const { isLargeContainer } = props;
+    const { state, dispatch } = useContext<Context>(context);
+    const { isLoggedIn = false } = state;
 
     return (
         <nav className="nav">
@@ -32,6 +38,30 @@ function Nav(props: NavProps): JSX.Element {
                         <Link href="/about" as="/about">
                             <a>About</a>
                         </Link>
+                        {!isLoggedIn && (
+                            <Button variant="primary" size="md" className="btn-sign-up medium-large">
+                                Sign up
+                                <div className="pop-over">
+                                    <div className="pop-over-container">
+                                        <Link href="/sign-up/google">
+                                            <a>
+                                                <GoogleIcon variant="dark" />
+                                                Sign up with Google
+                                            </a>
+                                        </Link>
+                                        <Link href="/sign-up/reddit">
+                                            <a>
+                                                <RedditIcon variant="dark" />
+                                                Sign up with Reddit
+                                            </a>
+                                        </Link>
+                                        {/* <GoogleAuth asLink />
+
+                                    <RedditAuth asLink /> */}
+                                    </div>
+                                </div>
+                            </Button>
+                        )}
                     </div>
                 </div>
             </div>

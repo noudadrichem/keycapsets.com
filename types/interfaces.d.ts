@@ -60,6 +60,7 @@ declare module 'typings' {
         filteredSets: Keycapset[];
         searchQuery: string;
         allKeycapsetsCount: number;
+        isLoggedIn: boolean;
     }
 
     interface Action {

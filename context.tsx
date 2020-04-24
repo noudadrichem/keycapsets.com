@@ -67,6 +67,7 @@ export const INITITAL_STATE: InititalState = {
     filteredSets: [],
     searchQuery: '',
     allKeycapsetsCount: 0,
+    isLoggedIn: false,
 };
 
 const context = createContext<any>(INITITAL_STATE);
