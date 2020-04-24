@@ -1,0 +1,14 @@
+.page {
+    &.google-sign-up {
+    }
+
+    .flex {
+        display: flex;
+
+        &.align {
+            &.center {
+                justify-content: center;
+            }
+        }
+    }
+}

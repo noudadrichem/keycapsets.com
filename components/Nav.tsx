@@ -1,11 +1,11 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useContext } from 'react';
 import Link from 'next/link';
 
 import Button from './Button';
 import GoogleIcon from './GoogleIcon';
 import RedditIcon from './RedditIcon';
-import GoogleAuth from './GoogleAuth';
-import RedditAuth from './RedditAuth';
+import { InititalState } from 'typings';
+import Context from '../context';
 
 interface NavProps {
     isLargeContainer?: boolean;
@@ -13,6 +13,7 @@ interface NavProps {
 
 function Nav(props: NavProps): JSX.Element {
     const { isLargeContainer } = props;
+    const { isLoggedIn }: InititalState = useContext(Context);
 
     return (
         <nav className="nav">
@@ -36,16 +37,30 @@ function Nav(props: NavProps): JSX.Element {
                         <Link href="/about" as="/about">
                             <a>About</a>
                         </Link>
+                        {!isLoggedIn && (
+                            <Button variant="primary" size="md" className="btn-sign-up medium-large">
+                                Sign up
+                                <div className="pop-over">
+                                    <div className="pop-over-container">
+                                        <Link href="/sign-up/google">
+                                            <a>
+                                                <GoogleIcon variant="dark" />
+                                                Sign up with Google
+                                            </a>
+                                        </Link>
+                                        <Link href="/sign-up/reddit">
+                                            <a>
+                                                <RedditIcon variant="dark" />
+                                                Sign up with Reddit
+                                            </a>
+                                        </Link>
+                                        {/* <GoogleAuth asLink />
 
-                        <Button variant="primary" size="md" className="btn-sign-up medium-large">
-                            Sign up
-                            <div className="pop-over">
-                                <div className="pop-over-container">
-                                    <GoogleAuth asLink />
-                                    <RedditAuth asLink />
+                                    <RedditAuth asLink /> */}
+                                    </div>
                                 </div>
-                            </div>
-                        </Button>
+                            </Button>
+                        )}
                     </div>
                 </div>
             </div>

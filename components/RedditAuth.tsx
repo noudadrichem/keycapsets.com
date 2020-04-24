@@ -17,6 +17,11 @@ interface RedditAuthProps {
     asLink: boolean;
 }
 
+export function handleRedditAuth() {
+    const identifyUrl = `https://www.reddit.com/api/v1/authorize?client_id=${CLIENT_ID}&response_type=token&state=kcs&redirect_uri=${REDIRECT_URI}&duration&scope=identity`;
+    window.open(identifyUrl, '_self');
+}
+
 function RedditAuth(props: RedditAuthProps): JSX.Element {
     const { asLink } = props;
     const router: NextRouter = useRouter();
@@ -56,11 +61,6 @@ function RedditAuth(props: RedditAuthProps): JSX.Element {
             },
         });
         loginUser(redditLogin);
-    }
-
-    async function handleRedditAuth() {
-        const identifyUrl = `https://www.reddit.com/api/v1/authorize?client_id=${CLIENT_ID}&response_type=token&state=kcs&redirect_uri=${REDIRECT_URI}&duration&scope=identity`;
-        window.open(identifyUrl, '_self');
     }
 
     return asLink ? (

@@ -14,11 +14,13 @@ import { useRouter, NextRouter } from 'next/router';
 const CLIENT_ID = '22533085590-p56b9iva0qoq0btq94q252uuv34rphec.apps.googleusercontent.com';
 
 interface GoogleAuthProps {
-    asLink: boolean;
+    asLink?: boolean;
+    text: string;
+    callback: Function;
 }
 
 function GoogleAuth(props: GoogleAuthProps): JSX.Element {
-    const { asLink } = props;
+    const { text, callback, asLink = false } = props;
     const client: ApolloClient<any> = useApolloClient();
     const router: NextRouter = useRouter();
 
@@ -33,7 +35,9 @@ function GoogleAuth(props: GoogleAuthProps): JSX.Element {
                 },
             });
             loginUser(googleLogin);
-            router.push('/sign-up/google');
+            if (callback !== undefined) {
+                callback(true);
+            }
         } catch (err) {
             console.error(err);
         }
@@ -53,7 +57,7 @@ function GoogleAuth(props: GoogleAuthProps): JSX.Element {
                 asLink ? (
                     <a onClick={renderProps.onClick /* () => console.log('Coming soon')*/}>
                         <GoogleIcon variant="dark" />
-                        Sign up with Google
+                        {text}
                     </a>
                 ) : (
                     <Button
@@ -61,10 +65,9 @@ function GoogleAuth(props: GoogleAuthProps): JSX.Element {
                         variant="primary"
                         size="md"
                         className="google-button"
-                        // isDisabled
                     >
                         <GoogleIcon variant="white" />
-                        Sign up with Google
+                        {text}
                     </Button>
                 )
             }
