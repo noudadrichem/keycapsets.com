@@ -14,7 +14,9 @@ const CLIENT_ID = 'OGPS_JHNLNt2sA';
 const REDIRECT_URI = 'http://localhost:3000/sign-up/reddit';
 
 interface RedditAuthProps {
-    asLink: boolean;
+    asLink?: boolean;
+    text: string;
+    callback?: Function;
 }
 
 export function handleRedditAuth() {
@@ -23,7 +25,7 @@ export function handleRedditAuth() {
 }
 
 function RedditAuth(props: RedditAuthProps): JSX.Element {
-    const { asLink } = props;
+    const { text, callback, asLink = false } = props;
     const router: NextRouter = useRouter();
     const client: ApolloClient<any> = useApolloClient();
 
@@ -61,16 +63,17 @@ function RedditAuth(props: RedditAuthProps): JSX.Element {
             },
         });
         loginUser(redditLogin);
+        callback(true);
     }
 
     return asLink ? (
         <a onClick={handleRedditAuth}>
             <RedditIcon variant="dark" />
-            Sign up with Reddit
+            {text}
         </a>
     ) : (
         <Button variant="primary" size="md" onClick={handleRedditAuth}>
-            Sign up with Reddit
+            {text}
         </Button>
     );
 }

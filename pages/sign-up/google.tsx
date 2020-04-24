@@ -21,7 +21,6 @@ function SignUpGoogle() {
         if (success) {
             await context.setGlobalState({ isLoggedIn: true });
             console.log('google success...', context);
-            router.push('/');
         }
     }
 

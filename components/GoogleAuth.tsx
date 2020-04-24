@@ -53,6 +53,7 @@ function GoogleAuth(props: GoogleAuthProps): JSX.Element {
             onSuccess={success}
             onFailure={error}
             responseType="id_token"
+            cookiePolicy={'single_host_origin'}
             render={(renderProps) =>
                 asLink ? (
                     <a onClick={renderProps.onClick /* () => console.log('Coming soon')*/}>
