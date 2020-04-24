@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { InititalState, Brand, Profile, Material, Context } from 'typings';
+import { Brand, Profile, Material, Context } from 'typings';
 import {
     AVAILABILITY_FILTER,
     AVAILABILITY_OPTIONS,

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import LazyLoad, { forceCheck } from 'react-lazyload';
+import { forceCheck } from 'react-lazyload';
 import { Keycapset, Context } from 'typings';
 import context from '../context';
 import ImageCard from './ImageCard';

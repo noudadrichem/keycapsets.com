@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { FETCH_KEYCAPSET_QUERY } from '../queries';
 import { Keycapset } from 'typings';
-import { ApolloClient, empty } from 'apollo-boost';
+import { ApolloClient } from 'apollo-boost';
 
 interface fetchProps {
     apolloClient: ApolloClient<any>;

@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
-import Head from 'next/head';
 import { useApolloClient } from '@apollo/react-hooks';
 import { ApolloClient } from 'apollo-boost';
-import { InititalState, Keycapset, Context } from 'typings';
+import { Context } from 'typings';
 import withGA from 'next-ga';
 import { forceCheck } from 'react-lazyload';
 
@@ -15,12 +14,11 @@ import Footer from '../components/Footer';
 import Images from '../components/Images';
 import Nav from '../components/Nav';
 import LoadingKeyboardIllustration from '../components/LoadingKeyboardIllustration';
-import CTACard from '../components/CTACard';
-import BackToTop from '../components/BackToTop';
 
 import '../assets/styles/main.scss';
 import Meta from '../components/Meta';
 import { Router } from 'next/router';
+import BackToTop from '../components/BackToTop';
 
 interface HomeProps {
     url: any;

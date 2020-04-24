@@ -10,8 +10,6 @@ import Footer from '../components/Footer';
 import Nav from '../components/Nav';
 import ButtonLink from '../components/ButtonLink';
 import Meta from '../components/Meta';
-import Link from 'next/link';
-import CTACard from '../components/CTACard';
 
 function Terms() {
     const title = `Terms and Conditions`;

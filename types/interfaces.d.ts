@@ -56,10 +56,6 @@ declare module 'typings' {
 
     interface InititalState {
         filters: Filters;
-        // availability: string[];
-        // brands: Brand[];
-        // profiles: Profile[];
-        // materials: Material[];
         keycapsets: Keycapset[];
         filteredSets: Keycapset[];
         searchQuery: string;

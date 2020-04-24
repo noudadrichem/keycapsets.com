@@ -29,6 +29,7 @@ function filterByAvailability(set: Keycapset, availabilityFilter: string): boole
     }
 }
 
+// TODO: Refactor this aswell, it's duplicated code?
 function filterByBrand(set: Keycapset, brandFilter: string[]): boolean {
     return brandFilter.length === 0 || brandFilter.includes(set.brand);
 }
