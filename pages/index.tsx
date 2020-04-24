@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import Head from 'next/head';
+import React, { useEffect, useState, useContext } from 'react';
 import { useApolloClient } from '@apollo/react-hooks';
 import { ApolloClient } from 'apollo-boost';
-import { InititalState, Keycapset } from 'typings';
+import { Context } from 'typings';
 import withGA from 'next-ga';
 import { forceCheck } from 'react-lazyload';
 
 import withData from '../hooks/withData';
-import Context, { INITITAL_STATE, reduceState } from '../context';
+import { context } from '../context';
 import { FETCH_KEYCAPSET_QUERY } from '../queries';
 
 import Heading from '../components/Heading';
@@ -15,12 +14,11 @@ import Footer from '../components/Footer';
 import Images from '../components/Images';
 import Nav from '../components/Nav';
 import LoadingKeyboardIllustration from '../components/LoadingKeyboardIllustration';
-import CTACard from '../components/CTACard';
-import BackToTop from '../components/BackToTop';
 
 import '../assets/styles/main.scss';
 import Meta from '../components/Meta';
 import { Router } from 'next/router';
+import BackToTop from '../components/BackToTop';
 
 interface HomeProps {
     url: any;
@@ -32,16 +30,18 @@ function Home(props: HomeProps) {
     const LIMIT = 12;
     const isBrowser = typeof window !== `undefined`;
     const client = useApolloClient();
-
-    const [state, setState] = useState<InititalState>(INITITAL_STATE);
     const [initLoading, setInitLoading] = useState<boolean>(true);
     const [loadingExtra, setLoadingExtra] = useState<boolean>(true);
     const [isAtBottomOfPage, setIsAtBottomOfPage] = useState(false);
+
+    const { state, dispatch } = useContext<Context>(context);
 
     useEffect(function initializeView() {
         console.log('initializeView...');
         if (isBrowser) {
             window.addEventListener('scroll', checkIsBottomPage);
+            initSets();
+
             return () => window.removeEventListener('scroll', checkIsBottomPage);
         }
     }, []);
@@ -50,7 +50,7 @@ function Home(props: HomeProps) {
         function handleTabChange() {
             fetchMoreWhenSearched();
         },
-        [state.filters.activeTab, state.filters.availabilityFilter]
+        [state.filters.availabilityFilter]
     );
 
     useEffect(
@@ -99,11 +99,12 @@ function Home(props: HomeProps) {
         const { data } = await fetchMoreSets(offsetFetch, LIMIT);
         const { keycapsets, allKeycapsetsCount } = data;
 
-        console.log('fetch more when searched...', keycapsets);
-
-        setGlobalState({
-            keycapsets,
-            allKeycapsetsCount,
+        dispatch({
+            type: 'set',
+            payload: {
+                allKeycapsetsCount,
+                keycapsets,
+            },
         });
         setInitLoading(false);
     }
@@ -117,12 +118,18 @@ function Home(props: HomeProps) {
 
             if (keycapsets.length > 1) {
                 if (state.searchQuery === '') {
-                    setGlobalState({
-                        keycapsets: [...state.keycapsets, ...keycapsets],
+                    dispatch({
+                        type: 'set',
+                        payload: {
+                            keycapsets: [...state.keycapsets, ...keycapsets],
+                        },
                     });
                 } else {
-                    setGlobalState({
-                        keycapsets,
+                    dispatch({
+                        type: 'set',
+                        payload: {
+                            keycapsets,
+                        },
                     });
                 }
             } else {
@@ -136,9 +143,12 @@ function Home(props: HomeProps) {
         const { data } = await fetchMoreSets(0, LIMIT);
         const { keycapsets, allKeycapsetsCount } = data;
 
-        setGlobalState({
-            allKeycapsetsCount,
-            keycapsets,
+        dispatch({
+            type: 'set',
+            payload: {
+                allKeycapsetsCount,
+                keycapsets,
+            },
         });
     }
 
@@ -149,20 +159,15 @@ function Home(props: HomeProps) {
             variables: {
                 offset,
                 limit: limit,
-                type: state.filters.activeTab,
+                type: 'all',
                 query: state.searchQuery,
             },
         });
         return fetchSetQueryResult;
     }
 
-    function setGlobalState(obj: any) {
-        console.log('set globa state...', obj);
-        setState(reduceState(state, obj));
-    }
-
     return (
-        <Context.Provider value={{ ...state, setGlobalState }}>
+        <>
             <Meta metaImgUrl={props.metaImg} />
             <Nav isLargeContainer />
             <div className="container large">
@@ -172,7 +177,7 @@ function Home(props: HomeProps) {
                 <BackToTop />
             </div>
             <Footer />
-        </Context.Provider>
+        </>
     );
 }
 

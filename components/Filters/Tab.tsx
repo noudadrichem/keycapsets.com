@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
-import Context from '../../context';
+import context from '../../context';
 import Button from '../Button';
+import { InititalState, Context } from 'typings';
 
 interface TabProps {
     id: String;
@@ -14,12 +15,19 @@ const stateFilterKeys = {
 
 function Tab(props: TabProps): JSX.Element {
     const { id, type } = props;
-    const { setGlobalState, filters } = useContext(Context);
+    const { state, dispatch } = useContext<Context>(context);
+    const { filters }: InititalState = state;
     const typeKey = stateFilterKeys[type];
 
     function handleUpdateFilters(): void {
-        setGlobalState({
-            filters: { ...filters, [typeKey]: id === filters[typeKey] ? 'none' : id },
+        dispatch({
+            type: 'set',
+            payload: {
+                filters: {
+                    ...filters,
+                    [typeKey]: id === filters[typeKey] ? 'none' : id,
+                },
+            },
         });
     }
 
