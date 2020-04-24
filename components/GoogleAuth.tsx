@@ -1,30 +1,30 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import GoogleLogin from 'react-google-login';
 import { ApolloClient } from 'apollo-boost';
 import { useApolloClient } from '@apollo/react-hooks';
 
 import { GOOGLE_LOGIN } from '../queries';
 
-import withData from '../hooks/withData';
 import Button from './Button';
 import GoogleIcon from './GoogleIcon';
 import { loginUser } from '../utils/userLogin';
-import { useRouter, NextRouter } from 'next/router';
+import Context from '../context';
+import { useRouter } from 'next/router';
 
 const CLIENT_ID = '22533085590-p56b9iva0qoq0btq94q252uuv34rphec.apps.googleusercontent.com';
 
 interface GoogleAuthProps {
     asLink?: boolean;
     text: string;
-    callback: Function;
+    callback?: Function;
 }
 
 function GoogleAuth(props: GoogleAuthProps): JSX.Element {
     const { text, callback, asLink = false } = props;
     const client: ApolloClient<any> = useApolloClient();
-    const router: NextRouter = useRouter();
+    const router = useRouter();
 
-    async function success(response) {
+    async function success(response: any) {
         try {
             const {
                 data: { googleLogin },
@@ -35,16 +35,15 @@ function GoogleAuth(props: GoogleAuthProps): JSX.Element {
                 },
             });
             loginUser(googleLogin);
-            if (callback !== undefined) {
-                callback(true);
-            }
+            console.log('router push');
+            router.push('/');
         } catch (err) {
             console.error(err);
         }
     }
 
-    function error(res) {
-        console.error('error', res);
+    function error(response: any) {
+        console.error('error', response);
     }
 
     return (
@@ -56,17 +55,12 @@ function GoogleAuth(props: GoogleAuthProps): JSX.Element {
             cookiePolicy={'single_host_origin'}
             render={(renderProps) =>
                 asLink ? (
-                    <a onClick={renderProps.onClick /* () => console.log('Coming soon')*/}>
+                    <a onClick={renderProps.onClick}>
                         <GoogleIcon variant="dark" />
                         {text}
                     </a>
                 ) : (
-                    <Button
-                        onClick={renderProps.onClick /* () => console.log('Coming soon')*/}
-                        variant="primary"
-                        size="md"
-                        className="google-button"
-                    >
+                    <Button onClick={renderProps.onClick} variant="primary" size="md" className="google-button">
                         <GoogleIcon variant="white" />
                         {text}
                     </Button>
