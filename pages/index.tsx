@@ -7,7 +7,7 @@ import withGA from 'next-ga';
 import { forceCheck } from 'react-lazyload';
 
 import withData from '../hooks/withData';
-import Context, { INITITAL_STATE, reduceState } from '../context';
+import Context from '../context';
 import { FETCH_KEYCAPSET_QUERY } from '../queries';
 
 import Heading from '../components/Heading';
@@ -29,142 +29,143 @@ interface HomeProps {
 }
 
 function Home(props: HomeProps) {
-    const LIMIT = 282;
-    const isBrowser = typeof window !== `undefined`;
-    const client = useApolloClient();
+    return <div>Home</div>;
+    // const LIMIT = 282;
+    // const isBrowser = typeof window !== `undefined`;
+    // const client = useApolloClient();
 
-    const [state, setState] = useState<InititalState>(INITITAL_STATE);
-    const [initLoading, setInitLoading] = useState<boolean>(true);
-    const [loadingExtra, setLoadingExtra] = useState<boolean>(true);
-    const [isAtBottomOfPage, setIsAtBottomOfPage] = useState(false);
+    // const [state, setState] = useState<InititalState>(INITITAL_STATE);
+    // const [initLoading, setInitLoading] = useState<boolean>(true);
+    // const [loadingExtra, setLoadingExtra] = useState<boolean>(true);
+    // const [isAtBottomOfPage, setIsAtBottomOfPage] = useState(false);
 
-    useEffect(function initializeView() {
-        if (isBrowser) {
-            window.addEventListener('scroll', checkIsBottomPage);
-            return () => window.removeEventListener('scroll', checkIsBottomPage);
-        }
-    }, []);
+    // useEffect(function initializeView() {
+    //     if (isBrowser) {
+    //         window.addEventListener('scroll', checkIsBottomPage);
+    //         return () => window.removeEventListener('scroll', checkIsBottomPage);
+    //     }
+    // }, []);
 
-    useEffect(
-        function handleTabChange() {
-            fetchMoreWhenSearched();
-        },
-        [state.filters.activeTab, state.filters.availabilityFilter]
-    );
+    // useEffect(
+    //     function handleTabChange() {
+    //         fetchMoreWhenSearched();
+    //     },
+    //     [state.filters.activeTab, state.filters.availabilityFilter]
+    // );
 
-    useEffect(
-        function handleRefetchingOnBottomOfPage() {
-            const isEndReached = state.keycapsets.length === state.allKeycapsetsCount;
+    // useEffect(
+    //     function handleRefetchingOnBottomOfPage() {
+    //         const isEndReached = state.keycapsets.length === state.allKeycapsetsCount;
 
-            if (isEndReached) {
-                setLoadingExtra(false);
-                return;
-            }
-            if (isAtBottomOfPage) {
-                setLoadingExtra(true);
-                fetchMoreWhenBottomOfPage();
-                setIsAtBottomOfPage(false);
-                return;
-            }
-        },
-        [isAtBottomOfPage]
-    );
+    //         if (isEndReached) {
+    //             setLoadingExtra(false);
+    //             return;
+    //         }
+    //         if (isAtBottomOfPage) {
+    //             setLoadingExtra(true);
+    //             fetchMoreWhenBottomOfPage();
+    //             setIsAtBottomOfPage(false);
+    //             return;
+    //         }
+    //     },
+    //     [isAtBottomOfPage]
+    // );
 
-    useEffect(
-        function handleSearch() {
-            if (state.searchQuery !== '' || state.searchQuery !== undefined) {
-                fetchMoreWhenSearched();
-            } else {
-                initSets();
-            }
-            forceCheck();
-        },
-        [state.searchQuery]
-    );
+    // useEffect(
+    //     function handleSearch() {
+    //         if (state.searchQuery !== '' || state.searchQuery !== undefined) {
+    //             fetchMoreWhenSearched();
+    //         } else {
+    //             initSets();
+    //         }
+    //         forceCheck();
+    //     },
+    //     [state.searchQuery]
+    // );
 
-    function checkIsBottomPage() {
-        const DELIMITER: number = 5;
-        const currentY: number = window.scrollY;
-        const docHeight: number = document.body.clientHeight;
-        const alreadyScrolled = currentY + window.innerHeight;
-        const atBottom: boolean = alreadyScrolled > docHeight - DELIMITER;
-        setIsAtBottomOfPage(atBottom);
-    }
+    // function checkIsBottomPage() {
+    //     const DELIMITER: number = 5;
+    //     const currentY: number = window.scrollY;
+    //     const docHeight: number = document.body.clientHeight;
+    //     const alreadyScrolled = currentY + window.innerHeight;
+    //     const atBottom: boolean = alreadyScrolled > docHeight - DELIMITER;
+    //     setIsAtBottomOfPage(atBottom);
+    // }
 
-    async function fetchMoreWhenSearched(): Promise<void> {
-        const offsetFetch: number = 0;
-        const { data } = await fetchMoreSets(offsetFetch, LIMIT);
-        const { keycapsets, allKeycapsetsCount } = data;
+    // async function fetchMoreWhenSearched(): Promise<void> {
+    //     const offsetFetch: number = 0;
+    //     const { data } = await fetchMoreSets(offsetFetch, LIMIT);
+    //     const { keycapsets, allKeycapsetsCount } = data;
 
-        setGlobalState({
-            keycapsets,
-            allKeycapsetsCount,
-        });
-        setInitLoading(false);
-    }
+    //     setGlobalState({
+    //         keycapsets,
+    //         allKeycapsetsCount,
+    //     });
+    //     setInitLoading(false);
+    // }
 
-    async function fetchMoreWhenBottomOfPage(): Promise<void> {
-        if (state.searchQuery === '' || state.searchQuery === undefined) {
-            const offsetFetch: number = state.keycapsets.length;
-            const { data } = await fetchMoreSets(offsetFetch, LIMIT);
-            const { keycapsets } = data;
+    // async function fetchMoreWhenBottomOfPage(): Promise<void> {
+    //     if (state.searchQuery === '' || state.searchQuery === undefined) {
+    //         const offsetFetch: number = state.keycapsets.length;
+    //         const { data } = await fetchMoreSets(offsetFetch, LIMIT);
+    //         const { keycapsets } = data;
 
-            if (keycapsets.length > 1) {
-                if (state.searchQuery === '') {
-                    setGlobalState({
-                        keycapsets: [...state.keycapsets, ...keycapsets],
-                    });
-                } else {
-                    setGlobalState({
-                        keycapsets,
-                    });
-                }
-            } else {
-                window.removeEventListener('scroll', checkIsBottomPage);
-            }
-        }
-    }
+    //         if (keycapsets.length > 1) {
+    //             if (state.searchQuery === '') {
+    //                 setGlobalState({
+    //                     keycapsets: [...state.keycapsets, ...keycapsets],
+    //                 });
+    //             } else {
+    //                 setGlobalState({
+    //                     keycapsets,
+    //                 });
+    //             }
+    //         } else {
+    //             window.removeEventListener('scroll', checkIsBottomPage);
+    //         }
+    //     }
+    // }
 
-    async function initSets() {
-        const { data } = await fetchMoreSets(0, LIMIT);
-        const { keycapsets, allKeycapsetsCount } = data;
+    // async function initSets() {
+    //     const { data } = await fetchMoreSets(0, LIMIT);
+    //     const { keycapsets, allKeycapsetsCount } = data;
 
-        setGlobalState({
-            allKeycapsetsCount,
-            keycapsets,
-        });
-    }
+    //     setGlobalState({
+    //         allKeycapsetsCount,
+    //         keycapsets,
+    //     });
+    // }
 
-    async function fetchMoreSets(offset: number, limit?: number): Promise<any> {
-        const fetchSetQueryResult = await client.query({
-            query: FETCH_KEYCAPSET_QUERY,
-            variables: {
-                offset,
-                limit: limit,
-                type: state.filters.activeTab,
-                query: state.searchQuery,
-            },
-        });
-        return fetchSetQueryResult;
-    }
+    // async function fetchMoreSets(offset: number, limit?: number): Promise<any> {
+    //     const fetchSetQueryResult = await client.query({
+    //         query: FETCH_KEYCAPSET_QUERY,
+    //         variables: {
+    //             offset,
+    //             limit: limit,
+    //             type: state.filters.activeTab,
+    //             query: state.searchQuery,
+    //         },
+    //     });
+    //     return fetchSetQueryResult;
+    // }
 
-    function setGlobalState(obj: any) {
-        setState(reduceState(state, obj));
-    }
+    // function setGlobalState(obj: any) {
+    //     setState(reduceState(state, obj));
+    // }
 
-    return (
-        <Context.Provider value={{ ...state, setGlobalState }}>
-            <Meta metaImgUrl={props.metaImg} />
-            <Nav isLargeContainer />
-            <div className="container large">
-                <Heading mainTitle="Find your favorite keycapset!" subTitle="keycapsets.com" isHome />
-                {initLoading ? <LoadingKeyboardIllustration /> : <Images />}
-                {loadingExtra && <LoadingKeyboardIllustration scale={0.3} />}
-                <BackToTop />
-            </div>
-            <Footer />
-        </Context.Provider>
-    );
+    // return (
+    //     <Context.Provider value={{ ...state, setGlobalState }}>
+    //         <Meta metaImgUrl={props.metaImg} />
+    //         <Nav isLargeContainer />
+    //         <div className="container large">
+    //             <Heading mainTitle="Find your favorite keycapset!" subTitle="keycapsets.com" isHome />
+    //             {initLoading ? <LoadingKeyboardIllustration /> : <Images />}
+    //             {loadingExtra && <LoadingKeyboardIllustration scale={0.3} />}
+    //             <BackToTop />
+    //         </div>
+    //         <Footer />
+    //     </Context.Provider>
+    // );
 }
 
 export default withGA('UA-115865530-2', Router)(withData(Home));

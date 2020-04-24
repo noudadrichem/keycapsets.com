@@ -57,14 +57,23 @@ declare module 'typings' {
 
     interface InititalState {
         filters: Filters;
-        availability: string[];
-        brands: Brand[];
-        profiles: Profile[];
-        materials: Material[];
+        // availability: string[];
+        // brands: Brand[];
+        // profiles: Profile[];
+        // materials: Material[];
         keycapsets: Keycapset[];
         filteredSets: Keycapset[];
         searchQuery: string;
         allKeycapsetsCount: number;
-        setGlobalState?: Function;
+    }
+
+    interface Action {
+        type: string;
+        payload: any;
+    }
+
+    interface Context {
+        state: InititalState;
+        dispatch(action: Action): Function;
     }
 }

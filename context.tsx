@@ -1,10 +1,9 @@
-import { createContext } from 'react';
+import React, { createContext, useReducer } from 'react';
+import { InititalState, Action, Context, Keycapset, Filters } from 'typings';
 import moment from 'moment';
-import { InititalState, Filters, Keycapset } from 'typings';
 
-import { AVAILABILITY, BRAND_OPTIONS, PROFILE_OPTIONS, MATERIAL_OPTIONS } from './constants';
-import { getDayDifference } from './components/StatusLabel';
 import { INTEREST_CHECK, WAITING_FOR_GROUPBUY, IN_GROUP_BUY, ENDED } from './constants';
+import { getDayDifference } from './components/StatusLabel';
 
 function filterByAvailability(set: Keycapset, availabilityFilter: string): boolean {
     if (availabilityFilter === 'none') {
@@ -56,20 +55,6 @@ function handleFilters(keycapset: Keycapset, filters: Filters): boolean {
     return true;
 }
 
-export function reduceState(state: InititalState, obj: InititalState): InititalState {
-    const reducedState = {
-        ...state,
-        ...obj,
-    };
-    if (process.env.NODE_ENV === 'development') {
-        console.log(moment().format('hh:mm:ss') + '_STATE...', reducedState);
-    }
-    return {
-        ...reducedState,
-        filteredSets: reducedState.keycapsets.filter((set: Keycapset) => handleFilters(set, reducedState.filters)),
-    };
-}
-
 export const INITITAL_STATE: InititalState = {
     filters: {
         activeTab: 'all',
@@ -78,16 +63,35 @@ export const INITITAL_STATE: InititalState = {
         profileFilter: [],
         materialFilter: [],
     },
-    availability: AVAILABILITY,
-    brands: BRAND_OPTIONS,
-    profiles: PROFILE_OPTIONS,
-    materials: MATERIAL_OPTIONS,
+    // availability: AVAILABILITY,
+    // brands: BRAND_OPTIONS,
+    // profiles: PROFILE_OPTIONS,
+    // materials: MATERIAL_OPTIONS,
     keycapsets: [],
     filteredSets: [],
     searchQuery: '',
     allKeycapsetsCount: 0,
-    setGlobalState: () => {},
 };
 
-const Context = createContext(INITITAL_STATE);
-export default Context;
+const context = createContext<any>(INITITAL_STATE);
+const StateProvider = ({ children }) => {
+    const [state, dispatch]: any[] = useReducer((state: InititalState, action: Action) => {
+        switch (action.type) {
+            case 'set':
+                const newState: InititalState = {
+                    ...state,
+                    ...action.payload,
+                };
+                return newState;
+            default:
+                return state;
+        }
+    }, INITITAL_STATE);
+    // if (process.env.NODE_ENV === 'development') {
+    //     console.log(moment().format('hh:mm:ss') + '_STATE...', state);
+    // }
+    return <context.Provider value={{ state, dispatch }}>{children}</context.Provider>;
+};
+
+export { context, StateProvider };
+export default context;
