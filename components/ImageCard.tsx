@@ -1,12 +1,10 @@
-import React, { useEffect, useContext } from 'react';
+import React from 'react';
 import moment from 'moment';
-import LazyLoad, { forceCheck } from 'react-lazyload';
+import LazyLoad from 'react-lazyload';
 import Link from 'next/link';
 
 import ButtonLink from '../components/ButtonLink';
-import Pill from '../components/Pill';
-import { Keycapset, InititalState } from 'typings';
-import Context from '../context';
+import { Keycapset } from 'typings';
 import StatusLabel from './StatusLabel';
 
 interface ImageCardProps {
@@ -17,20 +15,20 @@ const getDayDifference = (date: any) => moment(date).diff(moment(), 'days');
 
 function ImageCard(props: ImageCardProps): JSX.Element {
     const { keycapset } = props;
-    const { name, coverImageUrl, type, slug, groupbuyStartDate, groupbuyEndDate, isInterestCheck } = keycapset;
-
-    const context = useContext<InititalState>(Context);
+    const {
+        name,
+        coverImageUrl,
+        type,
+        slug,
+        groupbuyStartDate,
+        groupbuyEndDate,
+        isInterestCheck,
+    }: Keycapset = keycapset;
     const isInFuture: boolean = moment().diff(groupbuyStartDate, 'days') < 0;
-    const isTemplate = !keycapset.hasOwnProperty('_id');
-
-    useEffect(() => {
-        if (!isTemplate) {
-            setTimeout(forceCheck);
-        }
-    }, [context.searchQuery]);
+    const isTemplate: boolean = !keycapset.hasOwnProperty('_id');
 
     return (
-        <LazyLoad offset={400} height={400} once>
+        <LazyLoad offset={400} height={400}>
             <Link href="/[type]/[set]" as={`/${type}/${slug}`}>
                 <div className={`image-card ${isTemplate ? 'disabled' : ''}`}>
                     <div className="image">

@@ -11,7 +11,7 @@ interface InputProps {
 }
 
 function useInput(props: InputProps): any[] {
-    const { type = 'text', label, placeholder, id, defaultValue } = props;
+    const { type = 'text', label, placeholder, id, defaultValue = '' } = props;
     const [value, setValue] = useState(defaultValue);
 
     function onInputChange(e) {
@@ -30,12 +30,12 @@ function useInput(props: InputProps): any[] {
                 </label>
             )}
             <input
-                // value={value}
+                onChange={onInputChange}
+                defaultValue={value}
                 name={id}
                 id={id}
                 type={type}
                 placeholder={placeholder}
-                onChange={onInputChange}
             />
         </div>
     );

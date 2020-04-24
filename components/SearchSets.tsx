@@ -1,24 +1,27 @@
 import React, { useEffect, useContext } from 'react';
 import useInput from '../hooks/useInput';
-import Context from '../context';
-import { useRouter } from 'next/router';
+import context from '../context';
+import { useRouter, NextRouter } from 'next/router';
+import { Context } from 'typings';
 
 function SearchSets() {
-    const router = useRouter();
+    const router: NextRouter = useRouter();
     const [searchValue, searchInput, setSearchInputValue] = useInput({
-        defaultValue: '',
         placeholder: 'E.g. Carbon',
     });
-    const { setGlobalState } = useContext(Context);
+    const { state, dispatch } = useContext<Context>(context);
 
     // TODO: this supported the use of search?= query in URL...
-    // useEffect(() => {
-    //     const searchQuery = router.query.search;
-    //     if (searchQuery !== undefined) {
-    //         setSearchInputValue(searchQuery);
-    //         setGlobalState({ searchQuery });
-    //     }
-    // }, [router.query.search]);
+    useEffect(() => {
+        const searchQuery = router.query.search;
+        if (searchQuery !== undefined) {
+            setSearchInputValue(searchQuery);
+            dispatch({
+                type: 'set',
+                payload: { searchQuery: searchValue },
+            });
+        }
+    }, [router.query.search]);
 
     useEffect(() => {
         let timeout: any;
@@ -26,9 +29,12 @@ function SearchSets() {
 
         timeout = setTimeout(() => {
             if (searchValue !== '' || searchValue !== undefined) {
-                setGlobalState({ searchQuery: searchValue });
+                dispatch({
+                    type: 'set',
+                    payload: { searchQuery: searchValue },
+                });
             }
-        }, 200);
+        }, 300);
 
         return () => clearTimeout(timeout);
     }, [searchValue]);
