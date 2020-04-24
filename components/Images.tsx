@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
+import LazyLoad, { forceCheck } from 'react-lazyload';
 import { Keycapset, Context } from 'typings';
 import context from '../context';
 import ImageCard from './ImageCard';
@@ -10,6 +11,10 @@ interface ImagesProps {}
 function Images(props: ImagesProps): JSX.Element {
     const { state } = useContext<Context>(context);
     const { filteredSets } = state;
+
+    useEffect(() => {
+        forceCheck();
+    });
 
     return (
         <>
