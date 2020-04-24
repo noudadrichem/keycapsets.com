@@ -37,7 +37,6 @@ function Home(props: HomeProps) {
     const { state, dispatch } = useContext<Context>(context);
 
     useEffect(function initializeView() {
-        console.log('initializeView...');
         if (isBrowser) {
             window.addEventListener('scroll', checkIsBottomPage);
             initSets();
@@ -73,7 +72,6 @@ function Home(props: HomeProps) {
 
     useEffect(
         function handleSearch() {
-            console.log('handle search', { searchQuery: state.searchQuery });
             if (state.searchQuery !== '') {
                 fetchMoreWhenSearched();
             } else {
@@ -85,7 +83,6 @@ function Home(props: HomeProps) {
     );
 
     function checkIsBottomPage() {
-        console.log('check is at bottom page');
         // const DELIMITER: number = 5;
         // const currentY: number = window.scrollY;
         // const docHeight: number = document.body.clientHeight;
@@ -110,7 +107,6 @@ function Home(props: HomeProps) {
     }
 
     async function fetchMoreWhenBottomOfPage(): Promise<void> {
-        console.log('fetch more when bottom page...');
         if (state.searchQuery === '' || state.searchQuery === undefined) {
             const offsetFetch: number = state.keycapsets.length;
             const { data } = await fetchMoreSets(offsetFetch, LIMIT);
@@ -139,7 +135,6 @@ function Home(props: HomeProps) {
     }
 
     async function initSets() {
-        console.log('init sets...');
         const { data } = await fetchMoreSets(0, LIMIT);
         const { keycapsets, allKeycapsetsCount } = data;
 
@@ -153,7 +148,6 @@ function Home(props: HomeProps) {
     }
 
     async function fetchMoreSets(offset: number, limit?: number): Promise<any> {
-        console.log('fetch more sets...');
         const fetchSetQueryResult = await client.query({
             query: FETCH_KEYCAPSET_QUERY,
             variables: {

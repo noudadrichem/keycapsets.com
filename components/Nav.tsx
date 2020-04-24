@@ -13,8 +13,7 @@ interface NavProps {
 
 function Nav(props: NavProps): JSX.Element {
     const { isLargeContainer } = props;
-    const { state, dispatch } = useContext<Context>(context);
-    const { isLoggedIn = false } = state;
+    const { state } = useContext<Context>(context);
 
     return (
         <nav className="nav">
@@ -38,7 +37,7 @@ function Nav(props: NavProps): JSX.Element {
                         <Link href="/about" as="/about">
                             <a>About</a>
                         </Link>
-                        {!isLoggedIn && (
+                        {!state.isLoggedIn && (
                             <Button variant="primary" size="md" className="btn-sign-up medium-large">
                                 Sign up
                                 <div className="pop-over">

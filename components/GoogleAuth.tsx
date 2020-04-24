@@ -8,8 +8,9 @@ import { GOOGLE_LOGIN } from '../queries';
 import Button from './Button';
 import GoogleIcon from './GoogleIcon';
 import { loginUser } from '../utils/userLogin';
-import Context from '../context';
 import { useRouter } from 'next/router';
+import { Context } from 'typings';
+import context from '../context';
 
 const CLIENT_ID = '22533085590-p56b9iva0qoq0btq94q252uuv34rphec.apps.googleusercontent.com';
 
@@ -20,9 +21,10 @@ interface GoogleAuthProps {
 }
 
 function GoogleAuth(props: GoogleAuthProps): JSX.Element {
-    const { text, callback, asLink = false } = props;
+    const { text, asLink = false } = props;
     const client: ApolloClient<any> = useApolloClient();
     const router = useRouter();
+    const { state, dispatch } = useContext<Context>(context);
 
     async function success(response: any) {
         try {
@@ -35,7 +37,12 @@ function GoogleAuth(props: GoogleAuthProps): JSX.Element {
                 },
             });
             loginUser(googleLogin);
-            console.log('router push');
+            dispatch({
+                type: 'set',
+                payload: {
+                    isLoggedIn: true,
+                },
+            });
             router.push('/');
         } catch (err) {
             console.error(err);

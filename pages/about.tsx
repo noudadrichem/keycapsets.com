@@ -16,6 +16,7 @@ interface AboutProps {}
 function About(props: AboutProps) {
     const title = `About Keycapsets`;
     const description = `Made for love of mechanical keyboard, and the trouble of finding a nice overview of keycapsets!`;
+
     return (
         <>
             <Head>

@@ -72,6 +72,7 @@ export const INITITAL_STATE: InititalState = {
 
 const context = createContext<any>(INITITAL_STATE);
 const StateProvider = ({ children }) => {
+    const isBrowser: boolean = typeof window !== `undefined`;
     let [state, dispatch]: any[] = useReducer((state: InititalState, action: Action) => {
         switch (action.type) {
             case 'set':
@@ -88,6 +89,7 @@ const StateProvider = ({ children }) => {
     // TODO: This way to add filtered sets might be a bit ugly, yes?
     state = {
         ...state,
+        isLoggedIn: isBrowser ? window.localStorage.getItem('TOKEN') !== null : false,
         filteredSets: state.keycapsets.filter((set: Keycapset) => handleFilters(set, state.filters)),
     };
 
