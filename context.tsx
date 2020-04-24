@@ -62,10 +62,6 @@ export const INITITAL_STATE: InititalState = {
         profileFilter: [],
         materialFilter: [],
     },
-    // availability: AVAILABILITY,
-    // brands: BRAND_OPTIONS,
-    // profiles: PROFILE_OPTIONS,
-    // materials: MATERIAL_OPTIONS,
     keycapsets: [],
     filteredSets: [],
     searchQuery: '',
@@ -86,15 +82,16 @@ const StateProvider = ({ children }) => {
                 return state;
         }
     }, INITITAL_STATE);
-    if (process.env.NODE_ENV === 'development') {
-        console.log(moment().format('hh:mm:ss') + '_STATE...', state);
-    }
 
     // TODO: This way to add filtered sets might be a bit ugly, yes?
     state = {
         ...state,
         filteredSets: state.keycapsets.filter((set: Keycapset) => handleFilters(set, state.filters)),
     };
+
+    if (process.env.NODE_ENV === 'development') {
+        console.log(moment().format('hh:mm:ss') + '_STATE...', state);
+    }
     return <context.Provider value={{ state, dispatch }}>{children}</context.Provider>;
 };
 
