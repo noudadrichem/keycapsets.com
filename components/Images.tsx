@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { Keycapset } from 'typings';
-import Context from '../context';
+import { Keycapset, Context } from 'typings';
+import context from '../context';
 import ImageCard from './ImageCard';
 
 import Tabs from './Filters';
@@ -8,7 +8,8 @@ import Tabs from './Filters';
 interface ImagesProps {}
 
 function Images(props: ImagesProps): JSX.Element {
-    const { filteredSets } = useContext(Context);
+    const { state } = useContext<Context>(context);
+    const { filteredSets } = state;
 
     return (
         <>

@@ -48,7 +48,6 @@ declare module 'typings' {
     }
 
     interface Filters {
-        activeTab: string;
         availabilityFilter: string;
         brandFilter: string[];
         profileFilter: string[];

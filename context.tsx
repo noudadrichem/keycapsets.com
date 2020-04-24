@@ -57,7 +57,6 @@ function handleFilters(keycapset: Keycapset, filters: Filters): boolean {
 
 export const INITITAL_STATE: InititalState = {
     filters: {
-        activeTab: 'all',
         availabilityFilter: 'none',
         brandFilter: [],
         profileFilter: [],
@@ -75,7 +74,7 @@ export const INITITAL_STATE: InititalState = {
 
 const context = createContext<any>(INITITAL_STATE);
 const StateProvider = ({ children }) => {
-    const [state, dispatch]: any[] = useReducer((state: InititalState, action: Action) => {
+    let [state, dispatch]: any[] = useReducer((state: InititalState, action: Action) => {
         switch (action.type) {
             case 'set':
                 const newState: InititalState = {
@@ -87,9 +86,15 @@ const StateProvider = ({ children }) => {
                 return state;
         }
     }, INITITAL_STATE);
-    // if (process.env.NODE_ENV === 'development') {
-    //     console.log(moment().format('hh:mm:ss') + '_STATE...', state);
-    // }
+    if (process.env.NODE_ENV === 'development') {
+        console.log(moment().format('hh:mm:ss') + '_STATE...', state);
+    }
+
+    // TODO: This way to add filtered sets might be a bit ugly, yes?
+    state = {
+        ...state,
+        filteredSets: state.keycapsets.filter((set: Keycapset) => handleFilters(set, state.filters)),
+    };
     return <context.Provider value={{ state, dispatch }}>{children}</context.Provider>;
 };
 
