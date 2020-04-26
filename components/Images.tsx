@@ -6,12 +6,11 @@ import ImageCard from './ImageCard';
 
 import Tabs from './Filters';
 
-interface ImagesProps {}
+interface ImagesProps {
+    keycapsets: Keycapset[];
+}
 
-function Images(props: ImagesProps): JSX.Element {
-    const { state } = useContext<Context>(context);
-    const { filteredSets } = state;
-
+function Images({ keycapsets }: ImagesProps): JSX.Element {
     useEffect(() => {
         forceCheck();
     });
@@ -20,8 +19,8 @@ function Images(props: ImagesProps): JSX.Element {
         <>
             <Tabs />
             <div className="images-container">
-                {filteredSets.length > 0 ? (
-                    filteredSets.map((keycapset: Keycapset) => <ImageCard {...{ keycapset }} key={keycapset._id} />)
+                {keycapsets.length > 0 ? (
+                    keycapsets.map((keycapset: Keycapset) => <ImageCard {...{ keycapset }} key={keycapset._id} />)
                 ) : (
                     <p>No keycapsets found...</p>
                 )}
