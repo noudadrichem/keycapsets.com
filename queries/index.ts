@@ -151,6 +151,8 @@ const GOOGLE_LOGIN = gql`
             token
             user {
                 name
+                avatar
+                locale
             }
             firstLogin
         }
@@ -171,6 +173,24 @@ const REDDIT_LOGIN = gql`
     }
 `;
 
+const ME = gql`
+    query {
+        me {
+            _id
+            name
+            email
+            googleId
+            redditId
+            locked
+            isVendor
+            geekhackUserName
+            redditUserName
+            avatar
+            locale
+        }
+    }
+`;
+
 export {
     FETCH_KEYCAPSET_QUERY,
     CREATE_KEYSET_MUTATION,
@@ -180,4 +200,5 @@ export {
     GET_SETS_BY_QUERY,
     GOOGLE_LOGIN,
     REDDIT_LOGIN,
+    ME
 };

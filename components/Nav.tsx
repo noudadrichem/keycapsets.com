@@ -37,7 +37,7 @@ function Nav(props: NavProps): JSX.Element {
                         <Link href="/about" as="/about">
                             <a>About</a>
                         </Link>
-                        {!state.isLoggedIn && (
+                        {!state.isLoggedIn ? (
                             <Button variant="primary" size="md" className="btn-sign-up medium-large">
                                 Sign up
                                 <div className="pop-over">
@@ -54,13 +54,14 @@ function Nav(props: NavProps): JSX.Element {
                                                 Sign up with Reddit
                                             </a>
                                         </Link>
-                                        {/* <GoogleAuth asLink />
-
-                                    <RedditAuth asLink /> */}
                                     </div>
                                 </div>
                             </Button>
-                        )}
+                        ) :  null
+                        // (
+                        //     <img src={state.user.avatar} alt=""/>
+                        // )
+                        }
                     </div>
                 </div>
             </div>

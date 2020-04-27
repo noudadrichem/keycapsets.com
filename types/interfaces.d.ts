@@ -61,6 +61,21 @@ declare module 'typings' {
         searchQuery: string;
         allKeycapsetsCount: number;
         isLoggedIn: boolean;
+        user?: User;
+    }
+
+    interface User {
+        _id: ID;
+        name: string;
+        email: string;
+        googleId: string;
+        redditId: string;
+        locked: boolean;
+        isVendor: boolean;
+        geekhackUserName: string;
+        redditUserName: string;
+        avatar: string;
+        locale: string;
     }
 
     interface Action {

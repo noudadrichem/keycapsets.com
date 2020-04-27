@@ -1,9 +1,11 @@
 import React, { createContext, useReducer } from 'react';
 import { InititalState, Action, Context, Keycapset, Filters } from 'typings';
+import { useApolloClient } from '@apollo/react-hooks';
 import moment from 'moment';
 
 import { INTEREST_CHECK, WAITING_FOR_GROUPBUY, IN_GROUP_BUY, ENDED } from './constants';
 import { getDayDifference } from './components/StatusLabel';
+import { ME } from './queries';
 
 function filterByAvailability(set: Keycapset, availabilityFilter: string): boolean {
     if (availabilityFilter === 'none') {
@@ -92,7 +94,6 @@ const StateProvider = ({ children }) => {
         isLoggedIn: isBrowser ? window.localStorage.getItem('TOKEN') !== null : false,
         filteredSets: state.keycapsets.filter((set: Keycapset) => handleFilters(set, state.filters)),
     };
-
     if (process.env.NODE_ENV === 'development') {
         console.log(moment().format('hh:mm:ss') + '_STATE...', state);
     }
