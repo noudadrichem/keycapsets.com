@@ -93,28 +93,29 @@ function Vendors(props: VendorProps): JSX.Element {
     }, {});
 
     return (
-        <>
-            <Meta />
-            <Nav />
-            <div className="container">
-                <Heading mainTitle="Vendors" subTitle="Available vendors." />
-                {Object.keys(sortedVendors).map((key) => (
-                    <div className="continent-section">
-                        <div className="continent-bar">
-                            <h2 className={'no-bold left'}> {sortedVendors[key].label} </h2>
-                        </div>
-
-                        <div className="images-container">
-                            {sortedVendors[key].map((vendor: Vendor) => (
-                                <VendorCard vendor={vendor} key={vendor._id} />
-                            ))}
-                        </div>
+        <div className="container">
+            <Heading mainTitle="Vendors" subTitle="Available vendors." />
+            {Object.keys(sortedVendors).map((key) => (
+                <div className="continent-section">
+                    <div className="continent-bar">
+                        <h2 className={'no-bold left'}> {sortedVendors[key].label} </h2>
                     </div>
-                ))}
-            </div>
-            <Footer />
-        </>
+
+                    <div className="images-container">
+                        {sortedVendors[key].map((vendor: Vendor) => (
+                            <VendorCard vendor={vendor} key={vendor._id} />
+                        ))}
+                    </div>
+                </div>
+            ))}
+        </div>
     );
 }
+
+Vendors.getInitialProps = () => {
+    return {
+        isLargeContainer: false,
+    };
+};
 
 export default withGA('UA-115865530-2', Router)(withData(Vendors));

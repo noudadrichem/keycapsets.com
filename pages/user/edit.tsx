@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import withGA from 'next-ga';
 import Router from 'next/router';
+import { useForm } from 'react-hook-form';
 
 import '../../assets/styles/main.scss';
 
@@ -15,9 +16,19 @@ import context from '../../context';
 
 interface UserEditProps {}
 
+type EditProfileInputs = {
+    example: string;
+    exampleRequired: string;
+};
+
 function UserEdit(props: UserEditProps) {
     const { state } = useContext<Context>(context);
     useMe();
+
+    const { register, handleSubmit, watch, errors } = useForm<EditProfileInputs>();
+    function onSubmit(data: any) {
+        console.log(data);
+    }
 
     return (
         <>
@@ -26,6 +37,14 @@ function UserEdit(props: UserEditProps) {
             <Nav />
             <div className="container">
                 <Heading mainTitle={`Edit my profile`} subTitle="" left />
+
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <input name="example" defaultValue="test" ref={register} />
+
+                    <input name="exampleRequired" ref={register({ required: true })} />
+
+                    <input className="btn primary sm" type="submit" />
+                </form>
 
                 <pre>{JSON.stringify(state.user, null, 4)}</pre>
             </div>

@@ -18,20 +18,17 @@ import Nav from '../../components/Nav';
 import LoadingKeyboard from '../../components/LoadingKeyboard';
 import ButtonLink from '../../components/ButtonLink';
 import Meta from '../../components/Meta';
-import useMe from '../../hooks/useMe';
 
 interface SetProps {}
 
-function SetPage(props: SetProps) {
+function SetPage() {
     const router = useRouter();
-    const { set: slug, type } = router.query;
+    const { set: slug } = router.query;
 
     const variables = { slug };
     const { loading, error, data } = useQuery(GET_SINGLE_SET_QUERY, {
         variables,
     });
-
-    useMe();
 
     if (loading) {
         return <LoadingKeyboard />;
@@ -58,10 +55,6 @@ function SetPage(props: SetProps) {
     return (
         set !== undefined && (
             <div className="set">
-                <Meta title={`${set.type.toUpperCase()} Keycapset ${set.name}`} metaImgUrl={set.coverImageUrl} />
-
-                <Nav />
-
                 <div className="container">
                     <Heading
                         left
@@ -118,8 +111,6 @@ function SetPage(props: SetProps) {
                         </div>
                     </div>
                 </div>
-
-                <Footer />
             </div>
         )
     );

@@ -10,16 +10,12 @@ import { context } from '../context';
 import { FETCH_KEYCAPSET_QUERY } from '../queries';
 
 import Heading from '../components/Heading';
-import Footer from '../components/Footer';
 import Images from '../components/Images';
-import Nav from '../components/Nav';
 import LoadingKeyboardIllustration from '../components/LoadingKeyboardIllustration';
 
 import '../assets/styles/main.scss';
-import Meta from '../components/Meta';
 import { Router } from 'next/router';
 import BackToTop from '../components/BackToTop';
-import useMe from '../hooks/useMe';
 
 interface HomeProps {
     url: any;
@@ -27,7 +23,7 @@ interface HomeProps {
     metaImg: string;
 }
 
-function Home(props: HomeProps) {
+function Home() {
     const LIMIT = 3;
     const isBrowser = typeof window !== `undefined`;
     const client = useApolloClient();
@@ -36,8 +32,6 @@ function Home(props: HomeProps) {
     const [isAtBottomOfPage, setIsAtBottomOfPage] = useState(false);
 
     const { state, dispatch } = useContext<Context>(context);
-
-    useMe(); // sets the user if it's logged in. Better approach is welcome.
 
     useEffect(function initializeView() {
         if (isBrowser) {
@@ -164,17 +158,12 @@ function Home(props: HomeProps) {
     }
 
     return (
-        <>
-            <Meta metaImgUrl={props.metaImg} />
-            <Nav isLargeContainer />
-            <div className="container large">
-                <Heading mainTitle="Find your favorite keycapset!" subTitle="keycapsets.com" isHome />
-                {initLoading ? <LoadingKeyboardIllustration /> : <Images />}
-                {loadingExtra && <LoadingKeyboardIllustration scale={0.3} />}
-                <BackToTop />
-            </div>
-            <Footer />
-        </>
+        <div className="container large">
+            <Heading mainTitle="Find your favorite keycapset!" subTitle="keycapsets.com" isHome />
+            {initLoading ? <LoadingKeyboardIllustration /> : <Images />}
+            {loadingExtra && <LoadingKeyboardIllustration scale={0.3} />}
+            <BackToTop />
+        </div>
     );
 }
 

@@ -45,6 +45,7 @@
         "react-apollo": "^3.1.5",
         "react-dom": "^16.13.1",
         "react-google-login": "^5.1.10",
+        "react-hook-form": "^5.6.0",
         "react-lazyload": "^2.6.7",
         "react-select": "^3.1.0",
         "react-slick": "^0.25.2",
