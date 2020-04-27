@@ -29,7 +29,7 @@ function ImageCard(props: ImageCardProps): JSX.Element {
 
     return (
         <LazyLoad offset={400} height={400}>
-            <Link href="/[type]/[set]" as={`/${type}/${slug}`}>
+            <Link href="/set/[set]" as={`/set/${slug}`}>
                 <div className={`image-card ${isTemplate ? 'disabled' : ''}`}>
                     <div className="image">
                         <img

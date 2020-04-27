@@ -70,6 +70,20 @@ export const INITITAL_STATE: InititalState = {
     searchQuery: '',
     allKeycapsetsCount: 0,
     isLoggedIn: false,
+    user: {
+        _id: null,
+        name: null,
+        email: null,
+        googleId: null,
+        redditId: null,
+        locked: true,
+        isVendor: false,
+        geekhackUserName: null,
+        redditUserName: null,
+        avatar: null,
+        locale: null,
+        slug: null,
+    },
 };
 
 const context = createContext<any>(INITITAL_STATE);

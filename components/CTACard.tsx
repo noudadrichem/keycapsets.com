@@ -33,12 +33,14 @@ function CTACard(props: CTACardProps): JSX.Element {
     const [visible, setVisible] = useState(false);
 
     useEffect(() => {
+        let timeout: NodeJS.Timeout;
         const CTADate = window.localStorage.getItem('CTA');
         if (!CTADate) {
-            setTimeout(() => {
+            timeout = setTimeout(() => {
                 setVisible(true);
             }, 1700);
         }
+        return () => clearTimeout(timeout);
     }, []);
 
     function close() {
@@ -52,16 +54,11 @@ function CTACard(props: CTACardProps): JSX.Element {
 
             <h4>Live and learn.</h4>
             <p className="light">
-                We're sad to announce we are temporarily closing the website for
-                uploads due to incidents that occurred by it.
+                We're sad to announce we are temporarily closing the website for uploads due to incidents that occurred
+                by it.
             </p>
 
-            <Button
-                onClick={() => router.push('/upload-statement')}
-                variant="primary"
-                size="md"
-                className="center"
-            >
+            <Button onClick={() => router.push('/upload-statement')} variant="primary" size="md" className="center">
                 More about it here
             </Button>
         </div>

@@ -6,7 +6,9 @@
 @import 'page';
 @import 'button';
 @import 'heading';
+@import 'user-profile-tag';
 @import 'tabs';
+@import 'popover';
 @import 'images';
 @import 'upload';
 @import 'image-card';
@@ -115,4 +117,8 @@ img {
 
 .clickable {
     cursor: pointer;
+}
+
+.relative {
+    position: relative;
 }

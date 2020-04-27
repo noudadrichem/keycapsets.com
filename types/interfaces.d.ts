@@ -61,7 +61,7 @@ declare module 'typings' {
         searchQuery: string;
         allKeycapsetsCount: number;
         isLoggedIn: boolean;
-        user?: User;
+        user: User;
     }
 
     interface User {
@@ -76,6 +76,7 @@ declare module 'typings' {
         redditUserName: string;
         avatar: string;
         locale: string;
+        slug: string;
     }
 
     interface Action {

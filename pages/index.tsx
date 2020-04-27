@@ -19,6 +19,7 @@ import '../assets/styles/main.scss';
 import Meta from '../components/Meta';
 import { Router } from 'next/router';
 import BackToTop from '../components/BackToTop';
+import useMe from '../hooks/useMe';
 
 interface HomeProps {
     url: any;
@@ -27,7 +28,7 @@ interface HomeProps {
 }
 
 function Home(props: HomeProps) {
-    const LIMIT = 12;
+    const LIMIT = 3;
     const isBrowser = typeof window !== `undefined`;
     const client = useApolloClient();
     const [initLoading, setInitLoading] = useState<boolean>(true);
@@ -35,6 +36,8 @@ function Home(props: HomeProps) {
     const [isAtBottomOfPage, setIsAtBottomOfPage] = useState(false);
 
     const { state, dispatch } = useContext<Context>(context);
+
+    useMe(); // sets the user if it's logged in. Better approach is welcome.
 
     useEffect(function initializeView() {
         if (isBrowser) {

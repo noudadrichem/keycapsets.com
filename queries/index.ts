@@ -92,8 +92,8 @@ const GET_VENDORS_QUERY = gql`
 `;
 
 const GET_SINGLE_SET_QUERY = gql`
-    query GET_SINGLE_SET_QUERY($type: String!, $slug: String!) {
-        keycapsetBySlug(type: $type, slug: $slug) {
+    query GET_SINGLE_SET_QUERY($slug: String!) {
+        keycapsetBySlug(slug: $slug) {
             _id
             name
             designerName
@@ -187,6 +187,7 @@ const ME = gql`
             redditUserName
             avatar
             locale
+            slug
         }
     }
 `;
@@ -200,5 +201,5 @@ export {
     GET_SETS_BY_QUERY,
     GOOGLE_LOGIN,
     REDDIT_LOGIN,
-    ME
+    ME,
 };

@@ -7,7 +7,7 @@ import { REDDIT_LOGIN } from '../queries';
 import withData from '../hooks/withData';
 
 import Button from './Button';
-import { loginUser } from '../utils/userLogin';
+import { loginUser } from '../utils/user';
 import RedditIcon from './RedditIcon';
 
 const CLIENT_ID = 'OGPS_JHNLNt2sA';
@@ -63,7 +63,7 @@ function RedditAuth(props: RedditAuthProps): JSX.Element {
             },
         });
         loginUser(redditLogin);
-        callback(true);
+        window.location.href = '/';
     }
 
     return asLink ? (

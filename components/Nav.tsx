@@ -6,6 +6,7 @@ import GoogleIcon from './GoogleIcon';
 import RedditIcon from './RedditIcon';
 import { InititalState, Context } from 'typings';
 import { context } from '../context';
+import UserProfileTag from './UserProfileTag';
 
 interface NavProps {
     isLargeContainer?: boolean;
@@ -32,24 +33,24 @@ function Nav(props: NavProps): JSX.Element {
 
                     <div className="nav-items">
                         <Link href="/vendors" as="/vendors">
-                            <a>Vendors</a>
+                            <a className="nav-item">Vendors</a>
                         </Link>
                         <Link href="/about" as="/about">
-                            <a>About</a>
+                            <a className="nav-item">About</a>
                         </Link>
                         {!state.isLoggedIn ? (
                             <Button variant="primary" size="md" className="btn-sign-up medium-large">
                                 Sign up
-                                <div className="pop-over">
-                                    <div className="pop-over-container">
+                                <div className="popover on-hover">
+                                    <div className="popover-container">
                                         <Link href="/sign-up/google">
-                                            <a>
+                                            <a className="item">
                                                 <GoogleIcon variant="dark" />
                                                 Sign up with Google
                                             </a>
                                         </Link>
                                         <Link href="/sign-up/reddit">
-                                            <a>
+                                            <a className="item">
                                                 <RedditIcon variant="dark" />
                                                 Sign up with Reddit
                                             </a>
@@ -57,11 +58,9 @@ function Nav(props: NavProps): JSX.Element {
                                     </div>
                                 </div>
                             </Button>
-                        ) :  null
-                        // (
-                        //     <img src={state.user.avatar} alt=""/>
-                        // )
-                        }
+                        ) : (
+                            <UserProfileTag />
+                        )}
                     </div>
                 </div>
             </div>
