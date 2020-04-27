@@ -23,8 +23,6 @@ type EditProfileInputs = {
 
 function UserEdit(props: UserEditProps) {
     const { state } = useContext<Context>(context);
-    useMe();
-
     const { register, handleSubmit, watch, errors } = useForm<EditProfileInputs>();
     function onSubmit(data: any) {
         console.log(data);

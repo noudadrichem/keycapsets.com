@@ -7,7 +7,6 @@ import Meta from '../components/Meta';
 
 function MyApp({ Component, pageProps }: AppProps) {
     useMe();
-    console.log({ pageProps });
 
     return (
         <div className="app">
