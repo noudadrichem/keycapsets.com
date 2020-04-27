@@ -32,13 +32,22 @@ export function useKeycapSets(queryFilters: KeycapSetsFilters) {
         if (data) {
             if (fetchingMore) {
                 setKeycapsets([...keycapsets, ...data.keycapsets]);
-                setFetchingMore(false);
-                setOffset(0);
             } else {
                 setKeycapsets(data.keycapsets);
             }
         }
+
+        if (fetchingMore) {
+            setFetchingMore(false);
+        }
     }, [data]);
+
+    useEffect(() => {
+        if (queryFilters) {
+            setOffset(0);
+            setFetchingMore(false);
+        }
+    }, [queryFilters.limit, queryFilters.filter]);
 
     let allKeycapsetsCount = 0;
     if (data) {
