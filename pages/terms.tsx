@@ -2,8 +2,6 @@ import React from 'react';
 import Router from 'next/router';
 import withGA from 'next-ga';
 
-import '../assets/styles/main.scss';
-
 import withData from '../hooks/withData';
 import Heading from '../components/Heading';
 import Footer from '../components/Footer';

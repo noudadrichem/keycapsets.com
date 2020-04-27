@@ -2,8 +2,6 @@ import React, { useEffect } from 'react';
 import Link from 'next/link';
 import withGA from 'next-ga';
 import Router from 'next/router';
-
-import '../../assets/styles/main.scss';
 import '../../assets/styles/upload.scss';
 
 import withData from '../../hooks/withData';
@@ -19,14 +17,9 @@ function Upload(props: UploadProps) {
     });
 
     return null;
-    <>
-        <Nav />
+    return (
         <div className="container upload">
-            <Heading
-                mainTitle="Upload a set or apply as a vendor!"
-                subTitle="Start shining out there!"
-                left
-            />
+            <Heading mainTitle="Upload a set or apply as a vendor!" subTitle="Start shining out there!" left />
 
             <div className="cards">
                 <div className="card">
@@ -38,9 +31,7 @@ function Upload(props: UploadProps) {
                 </div>
             </div>
         </div>
-
-        <Footer />
-    </>;
+    );
 }
 
 export default withGA('UA-115865530-2', Router)(withData(Upload));

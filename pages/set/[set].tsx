@@ -10,7 +10,6 @@ import withData from '../../hooks/withData';
 import { GET_SINGLE_SET_QUERY } from '../../queries';
 
 import 'slick-carousel/slick/slick.css';
-import '../../assets/styles/main.scss';
 
 import Footer from '../../components/Footer';
 import Heading from '../../components/Heading';

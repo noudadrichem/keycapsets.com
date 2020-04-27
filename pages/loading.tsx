@@ -4,8 +4,6 @@ import withGA from 'next-ga';
 
 import LoadingKeyboard from '../components/LoadingKeyboard';
 
-import '../assets/styles/main.scss';
-
 function Loading() {
     return <LoadingKeyboard />;
 }

@@ -8,7 +8,6 @@ import { ExecutionResult } from 'graphql';
 // import ColorPicker from 'rc-color-picker';
 
 import 'rc-color-picker/assets/index.css';
-import '../../assets/styles/main.scss';
 
 import { CREATE_KEYSET_MUTATION, GET_VENDORS_QUERY } from '../../queries';
 import { PROFILE_OPTIONS, BRAND_OPTIONS, MATERIAL_OPTIONS } from '../../constants';
@@ -183,108 +182,99 @@ function UploadSet(props: UploadSetProps): JSX.Element {
     }
     return null;
     return (
-        <>
-            <Meta />
-            <Nav />
-            <div className="container upload">
-                <Heading mainTitle="Upload a keycapset" subTitle="Make your set famous!" left />
+        <div className="container upload">
+            <Heading mainTitle="Upload a keycapset" subTitle="Make your set famous!" left />
 
-                <div className="grid two-column">
-                    <div className="column">
-                        <h4 className="form-sub-title">Basis keycapset info</h4>
-                        <Checkbox
-                            label="Is this an interest check?"
-                            checked={isInterestCheckValue}
-                            getVal={(isChecked) => setIsInterestCheckValue(isChecked)}
-                        />
+            <div className="grid two-column">
+                <div className="column">
+                    <h4 className="form-sub-title">Basis keycapset info</h4>
+                    <Checkbox
+                        label="Is this an interest check?"
+                        checked={isInterestCheckValue}
+                        getVal={(isChecked) => setIsInterestCheckValue(isChecked)}
+                    />
 
-                        {nameInput}
-                        {designerNameInput}
-                        {coverImageUrlInput}
-                        {websiteUrlInput}
+                    {nameInput}
+                    {designerNameInput}
+                    {coverImageUrlInput}
+                    {websiteUrlInput}
 
-                        {!isInterestCheckValue && (
-                            <>
-                                {startDateInput}
-                                {endDateInput}
-                                <Multiselect
-                                    label="Vendors"
-                                    value={vendors}
-                                    onChange={(selectedVendors: any[]) => setVendors(selectedVendors)}
-                                    options={vendorQueryResult.vendors.map((v: Vendor) => ({
-                                        value: v._id,
-                                        label: v.name,
-                                    }))}
-                                    isMulti
-                                />
-                            </>
-                        )}
+                    {!isInterestCheckValue && (
+                        <>
+                            {startDateInput}
+                            {endDateInput}
+                            <Multiselect
+                                label="Vendors"
+                                value={vendors}
+                                onChange={(selectedVendors: any[]) => setVendors(selectedVendors)}
+                                options={vendorQueryResult.vendors.map((v: Vendor) => ({
+                                    value: v._id,
+                                    label: v.name,
+                                }))}
+                                isMulti
+                            />
+                        </>
+                    )}
 
-                        <MultipleInputs
-                            label="Images"
-                            onChange={(values: string[]) => setImageUrls(values)}
-                            shouldReset={shouldReset}
-                        />
+                    <MultipleInputs
+                        label="Images"
+                        onChange={(values: string[]) => setImageUrls(values)}
+                        shouldReset={shouldReset}
+                    />
 
-                        <div className="form-ruler" />
+                    <div className="form-ruler" />
 
-                        <h4 className="form-sub-title">Detailed keycapset info</h4>
+                    <h4 className="form-sub-title">Detailed keycapset info</h4>
 
-                        <Multiselect
-                            label="Brand"
-                            onChange={(selectedbrand: any) => setBrand(selectedbrand)}
-                            options={BRAND_OPTIONS}
-                        />
-                        <Multiselect
-                            label="Profile"
-                            onChange={(selectedProfile: any) => setType(selectedProfile)}
-                            options={PROFILE_OPTIONS}
-                        />
-                        <Multiselect
-                            label="Material"
-                            onChange={(selectedMaterial: any) => setMaterial(selectedMaterial)}
-                            options={MATERIAL_OPTIONS}
-                        />
+                    <Multiselect
+                        label="Brand"
+                        onChange={(selectedbrand: any) => setBrand(selectedbrand)}
+                        options={BRAND_OPTIONS}
+                    />
+                    <Multiselect
+                        label="Profile"
+                        onChange={(selectedProfile: any) => setType(selectedProfile)}
+                        options={PROFILE_OPTIONS}
+                    />
+                    <Multiselect
+                        label="Material"
+                        onChange={(selectedMaterial: any) => setMaterial(selectedMaterial)}
+                        options={MATERIAL_OPTIONS}
+                    />
 
-                        <div className="form-ruler" />
+                    <div className="form-ruler" />
 
-                        <h4 className="form-sub-title">Keycapset kits (coming soon!)</h4>
+                    <h4 className="form-sub-title">Keycapset kits (coming soon!)</h4>
 
-                        <div className="form-ruler" />
+                    <div className="form-ruler" />
 
-                        <h4 className="form-sub-title">Single page details (Coming soon!)</h4>
-                        {/* <p className="small light">These values will make it possible to upload you own color accents to create a 'themed' single page for your keyset! </p> */}
-                        <ColorPicker
-                            label="Background color"
-                            defaultValue="#F8F9FB"
-                            onChange={(c) => setAccentColor1(c)}
-                        />
-                        <ColorPicker
-                            label="Call to action color"
-                            defaultValue="#539BFB"
-                            onChange={(c) => setAccentColor2(c)}
-                        />
-                        <ColorPicker label="Text color" defaultValue="#566073" onChange={(c) => setAccentColor3(c)} />
+                    <h4 className="form-sub-title">Single page details (Coming soon!)</h4>
+                    {/* <p className="small light">These values will make it possible to upload you own color accents to create a 'themed' single page for your keyset! </p> */}
+                    <ColorPicker label="Background color" defaultValue="#F8F9FB" onChange={(c) => setAccentColor1(c)} />
+                    <ColorPicker
+                        label="Call to action color"
+                        defaultValue="#539BFB"
+                        onChange={(c) => setAccentColor2(c)}
+                    />
+                    <ColorPicker label="Text color" defaultValue="#566073" onChange={(c) => setAccentColor3(c)} />
 
-                        <Button
-                            onClick={uploadKeycapset}
-                            variant="primary"
-                            size="sm"
-                            className="align-right"
-                            // isDisabled={!isFormValid}
-                        >
-                            {uploading ? 'Uploading...' : 'Start shining'}
-                        </Button>
-                    </div>
+                    <Button
+                        onClick={uploadKeycapset}
+                        variant="primary"
+                        size="sm"
+                        className="align-right"
+                        // isDisabled={!isFormValid}
+                    >
+                        {uploading ? 'Uploading...' : 'Start shining'}
+                    </Button>
+                </div>
 
-                    <div className="column">
-                        <h4>Your keyset will look like this.</h4>
-                        <ImageCard {...{ keycapset }} />
-                    </div>
+                <div className="column">
+                    <h4>Your keyset will look like this.</h4>
+                    <ImageCard {...{ keycapset }} />
                 </div>
             </div>
-            <Footer />
-        </>
+        </div>
     );
 }
 

@@ -3,14 +3,11 @@ import withGA from 'next-ga';
 import Router from 'next/router';
 import { useForm } from 'react-hook-form';
 
-import '../../assets/styles/main.scss';
-
 import Heading from '../../components/Heading';
 import Footer from '../../components/Footer';
 import Nav from '../../components/Nav';
 import Meta from '../../components/Meta';
 import withData from '../../hooks/withData';
-import useMe from '../../hooks/useMe';
 import { Context } from 'typings';
 import context from '../../context';
 
@@ -29,25 +26,19 @@ function UserEdit(props: UserEditProps) {
     }
 
     return (
-        <>
-            <Meta />
+        <div className="container">
+            <Heading mainTitle={`Edit my profile`} subTitle="" left />
 
-            <Nav />
-            <div className="container">
-                <Heading mainTitle={`Edit my profile`} subTitle="" left />
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <input name="example" defaultValue="test" ref={register} />
 
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <input name="example" defaultValue="test" ref={register} />
+                <input name="exampleRequired" ref={register({ required: true })} />
 
-                    <input name="exampleRequired" ref={register({ required: true })} />
+                <input className="btn primary sm" type="submit" />
+            </form>
 
-                    <input className="btn primary sm" type="submit" />
-                </form>
-
-                <pre>{JSON.stringify(state.user, null, 4)}</pre>
-            </div>
-            <Footer />
-        </>
+            <pre>{JSON.stringify(state.user, null, 4)}</pre>
+        </div>
     );
 }
 

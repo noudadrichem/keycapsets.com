@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect, useRef, Ref } from 'react';
 import { Context } from 'typings';
 import context from '../context';
 import Link from 'next/link';
@@ -7,9 +7,22 @@ import { logoutUser } from '../utils/user';
 function UserProfileTag() {
     const { state } = useContext<Context>(context);
     const [isPopoverShown, setIspopoverShown] = useState<Boolean>(false);
+    const popup: any = useRef();
+    console.log(popup);
 
     function logout() {
         logoutUser();
+    }
+
+    useEffect(() => {
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    });
+
+    function handleClickOutside(e) {
+        // if (popup && !popup.current.contains(e.target)) {
+        //     setIspopoverShown(false);
+        // }
     }
 
     return (

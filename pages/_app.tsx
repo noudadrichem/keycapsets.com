@@ -5,6 +5,8 @@ import withData from '../hooks/withData';
 import useMe from '../hooks/useMe';
 import Meta from '../components/Meta';
 
+import '../assets/styles/main.scss';
+
 function MyApp({ Component, pageProps }: AppProps) {
     useMe();
 

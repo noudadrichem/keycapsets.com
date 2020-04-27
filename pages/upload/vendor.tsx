@@ -5,8 +5,6 @@ import { useMutation } from '@apollo/react-hooks';
 import withGA from 'next-ga';
 import Router from 'next/router';
 import countries from '../../assets/countries';
-
-import '../../assets/styles/main.scss';
 import { CREATE_VENDOR_MUTATION } from '../../queries';
 
 import useInput from '../../hooks/useInput';
@@ -45,9 +43,7 @@ function UploadVendor(props: UploadVendorProps) {
     const [socials, setSocials] = useState<any[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [shouldReset, setShouldReset] = useState<boolean>(false);
-    const [addVendor, mutationResponse] = useMutation<string>(
-        CREATE_VENDOR_MUTATION
-    );
+    const [addVendor, mutationResponse] = useMutation<string>(CREATE_VENDOR_MUTATION);
 
     useEffect(() => {
         Router.push('/');
@@ -106,61 +102,43 @@ function UploadVendor(props: UploadVendorProps) {
 
     return null;
     return (
-        <>
-            <Meta />
-            <Nav />
-            <div className="container upload">
-                <Heading
-                    mainTitle="By adding yourself as a vendor"
-                    subTitle="Make yourself famous!"
-                    left
-                />
+        <div className="container upload">
+            <Heading mainTitle="By adding yourself as a vendor" subTitle="Make yourself famous!" left />
 
-                <div className="grid-container">
-                    <div className="column">
-                        {nameInput}
+            <div className="grid-container">
+                <div className="column">
+                    {nameInput}
 
-                        <Multiselect
-                            label="Continent"
-                            onChange={(selectedContinent: any) =>
-                                setContinent(selectedContinent)
-                            }
-                            options={continentsFormatted}
-                            defaultValue={{ label: 'Europe', value: 'EU' }}
-                        />
+                    <Multiselect
+                        label="Continent"
+                        onChange={(selectedContinent: any) => setContinent(selectedContinent)}
+                        options={continentsFormatted}
+                        defaultValue={{ label: 'Europe', value: 'EU' }}
+                    />
 
-                        <Multiselect
-                            label="Country"
-                            onChange={(selectedCountry: any) =>
-                                setCountry(selectedCountry)
-                            }
-                            options={countriesFormatted}
-                            defaultValue={{ label: 'Netherlands', value: 'NL' }}
-                        />
+                    <Multiselect
+                        label="Country"
+                        onChange={(selectedCountry: any) => setCountry(selectedCountry)}
+                        options={countriesFormatted}
+                        defaultValue={{ label: 'Netherlands', value: 'NL' }}
+                    />
 
-                        {logoUrlInput}
-                        {urlInput}
-                        <MultipleInputs
-                            label="Social links..."
-                            onChange={(socials: string[]) => {
-                                setSocials(socials);
-                            }}
-                            shouldReset={shouldReset}
-                        />
+                    {logoUrlInput}
+                    {urlInput}
+                    <MultipleInputs
+                        label="Social links..."
+                        onChange={(socials: string[]) => {
+                            setSocials(socials);
+                        }}
+                        shouldReset={shouldReset}
+                    />
 
-                        <Button
-                            onClick={uploadVendor}
-                            variant="primary"
-                            size="sm"
-                            className="align-right"
-                        >
-                            {loading ? 'Adding...' : 'Add vendor'}
-                        </Button>
-                    </div>
+                    <Button onClick={uploadVendor} variant="primary" size="sm" className="align-right">
+                        {loading ? 'Adding...' : 'Add vendor'}
+                    </Button>
                 </div>
             </div>
-            <Footer />
-        </>
+        </div>
     );
 }
 

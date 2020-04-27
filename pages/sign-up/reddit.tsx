@@ -2,8 +2,6 @@ import React from 'react';
 import { Router } from 'next/router';
 import withGA from 'next-ga';
 
-import '../../assets/styles/main.scss';
-
 import withData from '../../hooks/withData';
 
 import Nav from '../../components/Nav';
@@ -14,7 +12,6 @@ import RedditAuth from '../../components/RedditAuth';
 function SignUpReddit() {
     return (
         <div className="page google-sign-up">
-            <Nav />
             <div className="container">
                 <Heading
                     mainTitle="Sign up with your Reddit account"
@@ -24,7 +21,6 @@ function SignUpReddit() {
                     <RedditAuth text="Sign up with Reddit" />
                 </div>
             </div>
-            <Footer />
         </div>
     );
 }

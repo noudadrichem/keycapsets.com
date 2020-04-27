@@ -12,8 +12,6 @@ import { FETCH_KEYCAPSET_QUERY } from '../queries';
 import Heading from '../components/Heading';
 import Images from '../components/Images';
 import LoadingKeyboardIllustration from '../components/LoadingKeyboardIllustration';
-
-import '../assets/styles/main.scss';
 import { Router } from 'next/router';
 import BackToTop from '../components/BackToTop';
 
