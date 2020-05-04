@@ -6,6 +6,7 @@
     transform: translateX(-50%);
     padding-top: 16px;
     display: block;
+    font-family: 'Rubik', sans-serif;
 
     &.on-hover {
         display: none;
@@ -33,6 +34,7 @@
 
         .item {
             white-space: nowrap;
+            font-weight: 300;
 
             &:hover {
                 color: var(--text-color);

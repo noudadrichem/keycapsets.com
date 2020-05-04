@@ -180,7 +180,7 @@ function UploadSet(props: UploadSetProps): JSX.Element {
         console.error('error', error);
         return <p>'Error loading keycapsets.com... Please refresh this page'</p>;
     }
-    return null;
+    // return null;
     return (
         <div className="container upload">
             <Heading mainTitle="Upload a keycapset" subTitle="Make your set famous!" left />

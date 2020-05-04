@@ -19,7 +19,8 @@ function UserProfileTag() {
         return () => document.removeEventListener('mousedown', handleClickOutside);
     });
 
-    function handleClickOutside(e) {
+    function handleClickOutside(e: any) {
+        console.log('handle click outside...');
         // if (popup && !popup.current.contains(e.target)) {
         //     setIspopoverShown(false);
         // }
@@ -41,7 +42,7 @@ function UserProfileTag() {
             {isPopoverShown && (
                 <div className="popover account">
                     <div className="popover-container center">
-                        <Link href="/user/edit/">
+                        <Link href="/user/edit">
                             <a className="item clickable">Edit profile</a>
                         </Link>
                         {/* <Link href="/user/[usernam]" as={`/user/${state.user.slug}`}>

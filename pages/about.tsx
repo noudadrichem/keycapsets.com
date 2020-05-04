@@ -80,4 +80,4 @@ About.getInitialProps = () => {
     };
 };
 
-export default withGA('UA-115865530-2', Router)(withData(About));
+export default withGA('UA-115865530-2', Router)(About);

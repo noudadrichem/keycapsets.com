@@ -3,13 +3,9 @@ import withGA from 'next-ga';
 import Router from 'next/router';
 import { useForm } from 'react-hook-form';
 
-import Heading from '../../components/Heading';
-import Footer from '../../components/Footer';
-import Nav from '../../components/Nav';
-import Meta from '../../components/Meta';
-import withData from '../../hooks/withData';
+import Heading from '../../../components/Heading';
 import { Context } from 'typings';
-import context from '../../context';
+import context from '../../../context';
 
 interface UserEditProps {}
 
@@ -18,7 +14,7 @@ type EditProfileInputs = {
     exampleRequired: string;
 };
 
-function UserEdit(props: UserEditProps) {
+function UserEdit(props: UserEditProps): JSX.Element {
     const { state } = useContext<Context>(context);
     const { register, handleSubmit, watch, errors } = useForm<EditProfileInputs>();
     function onSubmit(data: any) {
@@ -28,7 +24,6 @@ function UserEdit(props: UserEditProps) {
     return (
         <div className="container">
             <Heading mainTitle={`Edit my profile`} subTitle="" left />
-
             <form onSubmit={handleSubmit(onSubmit)}>
                 <input name="example" defaultValue="test" ref={register} />
 
@@ -42,4 +37,4 @@ function UserEdit(props: UserEditProps) {
     );
 }
 
-export default withGA('UA-115865530-2', Router)(withData(UserEdit));
+export default withGA('UA-115865530-2', Router)(UserEdit);

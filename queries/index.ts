@@ -129,22 +129,6 @@ const GET_SINGLE_SET_QUERY = gql`
     }
 `;
 
-const GET_SETS_BY_QUERY = gql`
-    query getKeycapsetByQuery($query: String) {
-        keycapsetsByQuery(query: $query) {
-            _id
-            name
-            type
-            coverImageUrl
-            slug
-            groupbuyStartDate
-            groupbuyEndDate
-            updatedAt
-            createdAt
-        }
-    }
-`;
-
 const GOOGLE_LOGIN = gql`
     mutation GOOGLE_LOGIN($token: String!) {
         googleLogin(token: $token) {
@@ -182,7 +166,6 @@ const ME = gql`
             googleId
             redditId
             locked
-            isVendor
             geekhackUserName
             redditUserName
             avatar

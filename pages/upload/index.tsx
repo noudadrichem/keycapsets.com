@@ -12,11 +12,6 @@ import Nav from '../../components/Nav';
 interface UploadProps {}
 
 function Upload(props: UploadProps) {
-    useEffect(() => {
-        Router.push('/');
-    });
-
-    return null;
     return (
         <div className="container upload">
             <Heading mainTitle="Upload a set or apply as a vendor!" subTitle="Start shining out there!" left />

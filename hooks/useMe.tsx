@@ -8,7 +8,6 @@ import { ApolloClient } from 'apollo-boost';
 async function useMe() {
     const client: ApolloClient<any> = useApolloClient();
     const { state, dispatch } = useContext<Context>(context);
-
     if (state.user._id === null && state.isLoggedIn) {
         const {
             data: { me },
@@ -16,6 +15,7 @@ async function useMe() {
         } = await client.query({
             query: ME,
         });
+
         if (!loading) {
             dispatch({
                 type: 'set',

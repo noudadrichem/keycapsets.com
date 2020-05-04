@@ -45,9 +45,9 @@ function UploadVendor(props: UploadVendorProps) {
     const [shouldReset, setShouldReset] = useState<boolean>(false);
     const [addVendor, mutationResponse] = useMutation<string>(CREATE_VENDOR_MUTATION);
 
-    useEffect(() => {
-        Router.push('/');
-    });
+    // useEffect(() => {
+    //     Router.push('/');
+    // });
 
     const countriesFormatted: any[] = countries.map((country: any) => {
         return {
@@ -100,7 +100,7 @@ function UploadVendor(props: UploadVendorProps) {
         });
     }
 
-    return null;
+    // return null;
     return (
         <div className="container upload">
             <Heading mainTitle="By adding yourself as a vendor" subTitle="Make yourself famous!" left />
