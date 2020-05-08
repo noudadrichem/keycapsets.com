@@ -163,8 +163,6 @@ const ME = gql`
             _id
             name
             email
-            googleId
-            redditId
             locked
             geekhackUserName
             redditUserName
@@ -175,14 +173,40 @@ const ME = gql`
     }
 `;
 
+const TOGGLE_HAVE = gql`
+    mutation TOGGLE_HAVE($setId: String!, $have: Boolean) {
+        toggleHaveSet(setId: $setId, have: $have) {
+            message
+        }
+    }
+`;
+
+const WANT_SET = gql`
+    mutation WANT_SET($setId: String!) {
+        wantSet(setId: $setId) {
+            message
+        }
+    }
+`;
+
+const CLAIM_SET = gql`
+    mutation CLAIM_SET($setId: String!) {
+        claimSet(setId: $setId) {
+            message
+        }
+    }
+`;
+
 export {
     FETCH_KEYCAPSET_QUERY,
     CREATE_KEYSET_MUTATION,
     CREATE_VENDOR_MUTATION,
     GET_VENDORS_QUERY,
     GET_SINGLE_SET_QUERY,
-    GET_SETS_BY_QUERY,
     GOOGLE_LOGIN,
     REDDIT_LOGIN,
     ME,
+    TOGGLE_HAVE,
+    WANT_SET,
+    CLAIM_SET,
 };
