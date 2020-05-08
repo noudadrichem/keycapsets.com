@@ -197,6 +197,14 @@ const CLAIM_SET = gql`
     }
 `;
 
+const UPDATE_USER = gql`
+    mutation UPDATE_USER($input: UserInput!) {
+        updateUser(input: $input) {
+            name
+        }
+    }
+`;
+
 export {
     FETCH_KEYCAPSET_QUERY,
     CREATE_KEYSET_MUTATION,
@@ -209,4 +217,5 @@ export {
     TOGGLE_HAVE,
     WANT_SET,
     CLAIM_SET,
+    UPDATE_USER,
 };

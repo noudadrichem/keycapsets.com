@@ -17,6 +17,7 @@ interface RedditAuthProps {
     asLink?: boolean;
     text: string;
     callback?: Function;
+    disabled: boolean;
 }
 
 export function handleRedditAuth() {
@@ -25,7 +26,7 @@ export function handleRedditAuth() {
 }
 
 function RedditAuth(props: RedditAuthProps): JSX.Element {
-    const { text, callback, asLink = false } = props;
+    const { text, callback, disabled, asLink = false } = props;
     const router: NextRouter = useRouter();
     const client: ApolloClient<any> = useApolloClient();
 
@@ -72,7 +73,8 @@ function RedditAuth(props: RedditAuthProps): JSX.Element {
             {text}
         </a>
     ) : (
-        <Button variant="primary" size="md" onClick={handleRedditAuth}>
+        <Button variant="primary" size="md" onClick={handleRedditAuth} isDisabled={disabled}>
+            <RedditIcon variant="white" size={16} />
             {text}
         </Button>
     );

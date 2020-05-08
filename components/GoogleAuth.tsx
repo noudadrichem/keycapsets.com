@@ -19,10 +19,11 @@ interface GoogleAuthProps {
     text: string;
     callback?: Function;
     isLogginOut?: boolean;
+    disabled: boolean;
 }
 
 function GoogleAuth(props: GoogleAuthProps): JSX.Element {
-    const { text, asLink = false, isLogginOut = false } = props;
+    const { text, disabled, asLink = false, isLogginOut = false } = props;
     const client: ApolloClient<any> = useApolloClient();
     const router = useRouter();
     const { state, dispatch } = useContext<Context>(context);
@@ -64,6 +65,7 @@ function GoogleAuth(props: GoogleAuthProps): JSX.Element {
             onFailure={error}
             responseType="id_token"
             cookiePolicy={'single_host_origin'}
+            disabled={disabled}
             render={(renderProps) =>
                 asLink ? (
                     <a onClick={renderProps.onClick}>
@@ -71,8 +73,14 @@ function GoogleAuth(props: GoogleAuthProps): JSX.Element {
                         {text}
                     </a>
                 ) : (
-                    <Button onClick={renderProps.onClick} variant="primary" size="md" className="google-button">
-                        <GoogleIcon variant="white" />
+                    <Button
+                        onClick={renderProps.onClick}
+                        variant="primary"
+                        size="md"
+                        className="google-button"
+                        isDisabled={disabled}
+                    >
+                        <GoogleIcon variant="white" size={16} />
                         {text}
                     </Button>
                 )
