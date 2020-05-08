@@ -12,7 +12,7 @@ function SignUpReddit() {
     const [agreedTerms, setAgreedTerms] = useState<boolean>(false);
 
     return (
-        <div className="page google-sign-up">
+        <div className="page reddit-sign-up">
             <div className="container">
                 <Heading mainTitle="Sign up with Reddit" subTitle="Favorite your sets and stay up to date!" left />
 
