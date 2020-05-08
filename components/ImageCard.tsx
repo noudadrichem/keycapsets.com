@@ -4,8 +4,9 @@ import LazyLoad from 'react-lazyload';
 import Link from 'next/link';
 
 import ButtonLink from '../components/ButtonLink';
-import { Keycapset } from 'typings';
+import { Keycapset, Brand } from 'typings';
 import StatusLabel from './StatusLabel';
+import { BRAND_OPTIONS } from '../constants';
 
 interface ImageCardProps {
     keycapset: Keycapset;
@@ -19,13 +20,22 @@ function ImageCard(props: ImageCardProps): JSX.Element {
         name,
         coverImageUrl,
         type,
+        brand,
         slug,
         groupbuyStartDate,
         groupbuyEndDate,
         isInterestCheck,
+        material,
     }: Keycapset = keycapset;
-    const isInFuture: boolean = moment().diff(groupbuyStartDate, 'days') < 0;
+    const awaitingGroupBuy: boolean = moment().diff(groupbuyStartDate, 'days') < 0;
     const isTemplate: boolean = !keycapset.hasOwnProperty('_id');
+
+    function getLabelByBrand(brandValue): string {
+        const brand: Brand = BRAND_OPTIONS.find((brand: Brand) => brand.value === brandValue);
+        if (brand) {
+            return brand.label;
+        }
+    }
 
     return (
         <LazyLoad offset={400} height={400}>
@@ -33,61 +43,32 @@ function ImageCard(props: ImageCardProps): JSX.Element {
                 <div className={`image-card ${isTemplate ? 'disabled' : ''}`}>
                     <div className="image">
                         <img
+                            className="set"
                             src={
                                 coverImageUrl === undefined || coverImageUrl === ''
                                     ? '/images/empty-base-kit-illu.svg'
                                     : coverImageUrl
                             }
                         />
-                        <StatusLabel
-                            groupbuyStartDate={groupbuyStartDate}
-                            groupbuyEndDate={groupbuyEndDate}
-                            isIc={isInterestCheck}
-                        />
-                        ß
                     </div>
 
                     <div className="details">
                         <div className="top">
-                            <h4 className="set-title">
-                                <span className="small">{type}</span>
-                                {name || 'Title goes here'}
-                            </h4>
-                            <p className="light">{moment(groupbuyStartDate).format('YYYY')}</p>
+                            <h4 className="set-title">{name || 'Title goes here'}</h4>
+                            <StatusLabel
+                                groupbuyStartDate={groupbuyStartDate}
+                                groupbuyEndDate={groupbuyEndDate}
+                                isIc={isInterestCheck}
+                            />
                         </div>
 
                         <div className="bottom">
-                            <p className="light">
-                                {isInterestCheck ? (
-                                    <></>
-                                ) : (
-                                    <>
-                                        {isInFuture ? (
-                                            <>
-                                                Starting in{' '}
-                                                <span className="bold">{getDayDifference(groupbuyStartDate)}</span> days
-                                            </>
-                                        ) : (
-                                            <>
-                                                {getDayDifference(groupbuyEndDate) > 0 ? (
-                                                    <>
-                                                        Ending in{' '}
-                                                        <span className="bold">
-                                                            {getDayDifference(groupbuyEndDate)}
-                                                        </span>{' '}
-                                                        days
-                                                    </>
-                                                ) : (
-                                                    'Ended.'
-                                                )}
-                                            </>
-                                        )}
-                                    </>
-                                )}
-                            </p>
-                            <ButtonLink href="/[type]/[set]" as={`/${type}/${slug}`}>
-                                View this set
-                            </ButtonLink>
+                            <span className="bold">
+                                <span>
+                                    {getLabelByBrand(brand)} {material && material.toUpperCase()}
+                                </span>
+                                <span>{moment(groupbuyStartDate).format('YYYY')}</span>
+                            </span>
                         </div>
                     </div>
                 </div>

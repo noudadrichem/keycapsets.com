@@ -1,5 +1,5 @@
 .pill {
-    border-radius: 8px;
+    border-radius: 4px;
     font-size: 12px;
     padding: 6px 8px;
     display: block;
@@ -24,5 +24,10 @@
     &.gray {
         background: #d2d4d8;
         color: #3a4251;
+    }
+
+    &.blue {
+        background: var(--blue-lightest);
+        color: var(--blue);
     }
 }
