@@ -7,18 +7,24 @@
     display: inline-flex;
 
     &.green {
+        // background: #d5e7da;
+        // color: #60af73;
         background: #d5e7da;
-        color: #60af73;
+        color: #356c43;
     }
 
     &.orange {
-        background: #f2e4d3;
-        color: #d99b54;
+        // background: #f2e4d3;
+        // color: #d99b54;
+        background: #ffe9cd;
+        color: #99601f;
     }
 
     &.red {
-        background: #f2d3d8;
-        color: #d95468;
+        // background: #f2d3d8;
+        // color: #d95468;
+        background: #ffcdd5;
+        color: #c5394e;
     }
 
     &.gray {
