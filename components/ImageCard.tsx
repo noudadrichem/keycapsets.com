@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Profiler } from 'react';
 import moment from 'moment';
 import LazyLoad from 'react-lazyload';
 import Link from 'next/link';
@@ -65,7 +65,7 @@ function ImageCard(props: ImageCardProps): JSX.Element {
                         <div className="bottom">
                             <span className="bold">
                                 <span>
-                                    {getLabelByBrand(brand)} {material && material.toUpperCase()}
+                                    {getLabelByBrand(brand)} {type && type.toUpperCase()}
                                 </span>
                                 <span>{moment(groupbuyStartDate).format('YYYY')}</span>
                             </span>
