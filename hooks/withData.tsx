@@ -6,17 +6,17 @@ import { StateProvider } from '../context';
 export default withApollo(
     ({ initialState }) => {
         return new ApolloClient({
-            uri: 'http://localhost:4000/graphql',
-            // uri: 'https://api.keycapsets.com/graphql',
+            // uri: 'http://localhost:4000/graphql',
+            uri: 'https://api.keycapsets.com/graphql',
             cache: new InMemoryCache().restore(initialState || {}),
             request: (operation) => {
                 const token = localStorage.getItem('TOKEN');
                 operation.setContext({
                     headers: {
-                        authorization: token ? `Bearer ${token}` : null
-                    }
-                })
-            }
+                        authorization: token ? `Bearer ${token}` : null,
+                    },
+                });
+            },
         });
     },
     {

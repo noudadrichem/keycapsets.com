@@ -24,21 +24,25 @@
             height: 194px;
         }
 
-        .pill {
-            position: absolute;
-            bottom: 12px;
-            right: 12px;
-        }
-
-        img {
+        .set {
             height: 100%;
             width: 100%;
             object-fit: cover;
         }
+
+        .logo {
+            height: 90%;
+            width: 90%;
+            object-fit: contain;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 5%;
+        }
     }
 
     .details {
-        padding: 16px;
+        padding: 8px 24px 24px;
         display: flex;
         flex-direction: column;
         position: relative;
@@ -47,6 +51,19 @@
         .bottom {
             display: inline-flex;
             justify-content: space-between;
+            color: var(--text-color-lightest);
+            align-items: center;
+        }
+
+        .bottom {
+            font-size: 14px;
+            letter-spacing: 0.8px;
+
+            .bold {
+                span:first-child {
+                    margin-right: 12px;
+                }
+            }
         }
 
         .set-title {
