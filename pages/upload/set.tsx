@@ -90,9 +90,9 @@ function UploadSet(props: UploadSetProps): JSX.Element {
         imageUrls,
     };
 
-    // useEffect(() => {
-    //     Router.push('/');
-    // });
+    useEffect(() => {
+        Router.push('/');
+    });
 
     useEffect(() => {
         const oneMonthLater = moment(startDateValue).add(1, 'months').add(1, 'days').format('YYYY-MM-DD');
@@ -180,7 +180,7 @@ function UploadSet(props: UploadSetProps): JSX.Element {
         console.error('error', error);
         return <p>'Error loading keycapsets.com... Please refresh this page'</p>;
     }
-    // return null;
+    return null;
     return (
         <div className="container upload">
             <Heading mainTitle="Upload a keycapset" subTitle="Make your set famous!" left />

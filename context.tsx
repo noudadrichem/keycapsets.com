@@ -74,15 +74,14 @@ export const INITITAL_STATE: InititalState = {
         _id: null,
         name: null,
         email: null,
-        googleId: null,
-        redditId: null,
         locked: true,
-        isVendor: false,
         geekhackUserName: null,
         redditUserName: null,
         avatar: null,
         locale: null,
         slug: null,
+        isVendor: false,
+        isDesigner: false,
     },
 };
 

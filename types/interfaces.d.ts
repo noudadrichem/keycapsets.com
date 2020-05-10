@@ -68,8 +68,6 @@ declare module 'typings' {
         _id: ID;
         name: string;
         email: string;
-        googleId: string;
-        redditId: string;
         locked: boolean;
         isVendor: boolean;
         geekhackUserName: string;
@@ -77,6 +75,8 @@ declare module 'typings' {
         avatar: string;
         locale: string;
         slug: string;
+        isVendor: boolean;
+        isDesigner: boolean;
     }
 
     interface Action {

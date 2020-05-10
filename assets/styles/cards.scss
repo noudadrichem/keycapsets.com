@@ -2,11 +2,15 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 24px;
-    margin-top: 64px;
+    // margin-top: 64px;
 
     @media screen and (max-width: 556px) {
         grid-template-columns: 1fr;
         margin: 32px 0;
+    }
+
+    &.vertical {
+        grid-template-columns: 1fr;
     }
 
     .card {
@@ -21,9 +25,11 @@
             height: 144px;
         }
 
-        &:hover {
-            transform: scale(1.03);
-            box-shadow: 0px 2px 6px rgba(0, 16, 75, 0.2);
+        &.clickable {
+            &:hover {
+                transform: scale(1.03);
+                box-shadow: 0px 2px 6px rgba(0, 16, 75, 0.2);
+            }
         }
 
         &.center {
@@ -32,6 +38,7 @@
             width: 100%;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
         }
 
         &:first-child {

@@ -11,6 +11,7 @@
 @import 'popover';
 @import 'images';
 @import 'upload';
+@import 'user';
 @import 'cards';
 @import 'sign-up';
 @import 'image-card';
@@ -142,6 +143,24 @@ img {
             font-size: 18px;
             margin-bottom: 8px;
             list-style-image: url('/images/keycap-icon-8.svg');
+        }
+    }
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 24px;
+
+    @media screen and (min-width: 556px) {
+        // margin: 0 12px;
+    }
+
+    &.two-column {
+        grid-template-columns: 1fr;
+
+        @media screen and (min-width: 556px) {
+            grid-template-columns: 2fr 1fr;
         }
     }
 }

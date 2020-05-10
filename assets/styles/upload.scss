@@ -1,22 +1,4 @@
 .upload {
-    .grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-gap: 24px;
-
-        @media screen and (min-width: 556px) {
-            margin: 0 12px;
-        }
-
-        &.two-column {
-            grid-template-columns: 1fr;
-
-            @media screen and (min-width: 556px) {
-                grid-template-columns: 2fr 1fr;
-            }
-        }
-    }
-
     .form-ruler {
         margin: 24px 0 24px;
         width: 100%;

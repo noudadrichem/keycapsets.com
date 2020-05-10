@@ -169,6 +169,8 @@ const ME = gql`
             avatar
             locale
             slug
+            isDesigner
+            isVendor
         }
     }
 `;
@@ -201,6 +203,9 @@ const UPDATE_USER = gql`
     mutation UPDATE_USER($input: UserInput!) {
         updateUser(input: $input) {
             name
+            email
+            geekhackUserName
+            redditUserName
         }
     }
 `;
