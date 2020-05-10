@@ -53,7 +53,7 @@ function Logo(props: LogoPropsInterface): JSX.Element {
                     y="-3"
                     width="114"
                     height="50"
-                    color-interpolation-filters="sRGB"
+                    colorInterpolationFilters="sRGB"
                     filterUnits="userSpaceOnUse"
                 >
                     <feFlood floodOpacity="0" result="BackgroundImageFix" />
@@ -70,7 +70,7 @@ function Logo(props: LogoPropsInterface): JSX.Element {
                     y="-1"
                     width="40"
                     height="46"
-                    color-interpolation-filters="sRGB"
+                    colorInterpolationFilters="sRGB"
                     filterUnits="userSpaceOnUse"
                 >
                     <feFlood floodOpacity="0" result="BackgroundImageFix" />
@@ -87,7 +87,7 @@ function Logo(props: LogoPropsInterface): JSX.Element {
                     y="-1"
                     width="40"
                     height="46"
-                    color-interpolation-filters="sRGB"
+                    colorInterpolationFilters="sRGB"
                     filterUnits="userSpaceOnUse"
                 >
                     <feFlood floodOpacity="0" result="BackgroundImageFix" />
@@ -104,7 +104,7 @@ function Logo(props: LogoPropsInterface): JSX.Element {
                     y="-1"
                     width="40"
                     height="46"
-                    color-interpolation-filters="sRGB"
+                    colorInterpolationFilters="sRGB"
                     filterUnits="userSpaceOnUse"
                 >
                     <feFlood floodOpacity="0" result="BackgroundImageFix" />
@@ -121,7 +121,7 @@ function Logo(props: LogoPropsInterface): JSX.Element {
                     y="9.6"
                     width="18.688"
                     height="23.4"
-                    color-interpolation-filters="sRGB"
+                    colorInterpolationFilters="sRGB"
                     filterUnits="userSpaceOnUse"
                 >
                     <feFlood floodOpacity="0" result="BackgroundImageFix" />
@@ -137,7 +137,7 @@ function Logo(props: LogoPropsInterface): JSX.Element {
                     y="9.28"
                     width="19.844"
                     height="24.04"
-                    color-interpolation-filters="sRGB"
+                    colorInterpolationFilters="sRGB"
                     filterUnits="userSpaceOnUse"
                 >
                     <feFlood floodOpacity="0" result="BackgroundImageFix" />
@@ -153,7 +153,7 @@ function Logo(props: LogoPropsInterface): JSX.Element {
                     y="9.28"
                     width="19.328"
                     height="24.04"
-                    color-interpolation-filters="sRGB"
+                    colorInterpolationFilters="sRGB"
                     filterUnits="userSpaceOnUse"
                 >
                     <feFlood floodOpacity="0" result="BackgroundImageFix" />

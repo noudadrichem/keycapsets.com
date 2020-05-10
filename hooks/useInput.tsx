@@ -25,7 +25,10 @@ function useInput(props: InputProps): any[] {
 
     useEffect(() => {
         if (autoFocus) {
-            input.current.focus();
+            const isBrowser = typeof window !== `undefined`;
+            if (window.innerWidth > 768) {
+                input.current.focus();
+            }
         }
     });
 
