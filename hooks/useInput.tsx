@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import '../assets/styles/input.scss';
+import React, { useState, useRef, useEffect } from 'react';
 
 interface InputProps {
     placeholder?: string;
@@ -8,11 +7,13 @@ interface InputProps {
     id?: string;
     defaultValue?: string;
     onChange?: Function;
+    autoFocus?: boolean;
 }
 
 function useInput(props: InputProps): any[] {
-    const { type = 'text', label, placeholder, id, defaultValue = '' } = props;
+    const { type = 'text', label, placeholder, id, defaultValue = '', autoFocus } = props;
     const [value, setValue] = useState(defaultValue);
+    const input = useRef(null);
 
     function onInputChange(e) {
         if (type === 'checkbox') {
@@ -22,6 +23,12 @@ function useInput(props: InputProps): any[] {
         }
     }
 
+    useEffect(() => {
+        if (autoFocus) {
+            input.current.focus();
+        }
+    });
+
     const inputField: JSX.Element = (
         <div className={`input-wrapper ${type}`}>
             {label && (
@@ -30,6 +37,7 @@ function useInput(props: InputProps): any[] {
                 </label>
             )}
             <input
+                ref={input}
                 onChange={onInputChange}
                 defaultValue={value}
                 name={id}

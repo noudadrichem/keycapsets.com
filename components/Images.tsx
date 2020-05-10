@@ -4,7 +4,7 @@ import { Keycapset, Context } from 'typings';
 import context from '../context';
 import ImageCard from './ImageCard';
 
-import Tabs from './Filters';
+import Filters from './Filters';
 
 interface ImagesProps {}
 
@@ -18,7 +18,7 @@ function Images(props: ImagesProps): JSX.Element {
 
     return (
         <>
-            <Tabs />
+            <Filters />
             <div className="images-container">
                 {filteredSets.length > 0 ? (
                     filteredSets.map((keycapset: Keycapset) => <ImageCard {...{ keycapset }} key={keycapset._id} />)

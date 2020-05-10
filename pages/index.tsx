@@ -19,6 +19,7 @@ import '../assets/styles/main.scss';
 import Meta from '../components/Meta';
 import { Router } from 'next/router';
 import BackToTop from '../components/BackToTop';
+import CTACard from '../components/CTACard';
 
 interface HomeProps {
     url: any;
@@ -27,7 +28,7 @@ interface HomeProps {
 }
 
 function Home(props: HomeProps) {
-    const LIMIT = 300;
+    const LIMIT = 1000;
     const isBrowser = typeof window !== `undefined`;
     const client = useApolloClient();
     const [initLoading, setInitLoading] = useState<boolean>(true);
@@ -170,6 +171,7 @@ function Home(props: HomeProps) {
                 <BackToTop />
             </div>
             <Footer />
+            <CTACard />
         </>
     );
 }

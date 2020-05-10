@@ -3,8 +3,9 @@
 @import 'typography';
 @import 'set';
 @import 'button';
+@import 'button-link';
 @import 'heading';
-@import 'tabs';
+@import 'filters';
 @import 'images';
 @import 'upload';
 @import 'image-card';
@@ -14,6 +15,11 @@
 @import 'checkbox';
 @import 'footer';
 @import 'spacings';
+@import 'input';
+@import 'nav';
+@import 'pill';
+@import 'vendors';
+@import 'cta-card';
 
 * {
     box-sizing: border-box;
@@ -81,8 +87,8 @@ img {
     }
 
     @media screen and (max-width: 1441px) {
-        padding-left: 24px;
-        padding-right: 24px;
+        padding-left: 16px;
+        padding-right: 16px;
     }
 
     &.large {
