@@ -1,46 +1,42 @@
-import React, { ContextType } from 'react';
-import Head from 'next/head';
+import React from 'react';
 import Router from 'next/router';
 import withGA from 'next-ga';
 
-import withData from '../hooks/withData';
 import Heading from '../components/Heading';
-import Footer from '../components/Footer';
-import Nav from '../components/Nav';
 import ButtonLink from '../components/ButtonLink';
+import Meta from '../components/Meta';
+import Link from 'next/link';
 
 interface AboutProps {}
 
-function About(props: AboutProps) {
+function About() {
     const title = `About Keycapsets`;
-    const description = `Made for love of mechanical keyboard, and the trouble of finding a nice overview of keycapsets!`;
+    const description = `Made out of love for mechanical keyboard, and the trouble of finding an overview of existing keycapsets!`;
 
     return (
         <div className="about container">
-            <Heading
-                mainTitle="About keycapsets"
-                subTitle="Made for love of mech keebs, and the trouble of finding a suitable keycapset overview!"
-                left
-            />
+            <Meta title={title} description={description} />
+
+            <Heading mainTitle={title} subTitle={description} left />
 
             <div className="text-container">
                 <div style={{ margin: '0 0 64px 0' }}>
                     <ButtonLink isLarge href="https://github.com/noudadrichem/keycapsets.com/issues">
-                        Leave us some feedback!
+                        Report bugs or leave feedback here
                     </ButtonLink>
                 </div>
 
-                <h4>More about the upload incident</h4>
+                {/* <h4>More about the upload incident</h4>
                 <div style={{ margin: '0 0 64px 0' }}>
                     <ButtonLink isLarge href="/upload-statement">
                         We made a statement.
                     </ButtonLink>
-                </div>
+                </div> */}
 
-                <h4 className="alinea-title">Intro</h4>
+                <h4 className="alinea-title">The story</h4>
                 <p className="light alinea">
                     Friends came to me enthusiastic about mechanical keyboards. I'm always in to help them find their
-                    best keyboard. The second step is ofcource, a nice keyset!
+                    best keyboard. The second step is ofcource, a nice keycapset!
                 </p>
 
                 <p className="light alinea">
@@ -50,25 +46,44 @@ function About(props: AboutProps) {
                     a proxy to your vendor.
                 </p>
 
+                <h4 className="alinea-title">The goal</h4>
+                <p className="light alinea">
+                    The goal is to build and maintain a central place for keycapset related stuff. This site should be
+                    an overview of created sets and could also function as inspiration for next designs. But can also
+                    function as a 1 stop shop for information about current GBs and ICs. Users can favorite their
+                    keycapsets and maintain an overview of what they want and own. Also users are able to have a user
+                    profile to share and shill their sets and maybe in the future their builds.
+                </p>
+
                 <h4 className="alinea-title">For vendors</h4>
                 <p className="light alinea">
                     This site should be an advantage to your business. From overview to single I'll proxy the user to
-                    their vendor. There will be an overview page with vendors categorised by country and continent.
+                    their vendor.
                 </p>
 
-                <h4 className="alinea-title">The Future for set designers</h4>
+                <h4 className="alinea-title">For set designers</h4>
                 <p className="light alinea">
                     I want to make it easier for you as a designer to express yourself. <br /> My goal is to make it
                     possible for you to have a single webpage with all the information you need. Such as vendors,
                     renders, previews etc.
                 </p>
 
-                <h4 className="alinea-title">The Future for explorers</h4>
+                <h4 className="alinea-title">For explorers</h4>
                 <p className="light alinea">
-                    This should be your go-to website to look for keycap sets. I want you to be able to search based on
+                    This should be your go-to website to look for keycapsets. I want you to be able to search based on
                     name, type or even the color you like. I want to make it as easy as possible for you to decide what
-                    set you should go with on your next build.
+                    set you should go with on your next build. <br />
+                    Event tag your favorite sets and create a user profile.
                 </p>
+
+                <ButtonLink isLarge href="/sign-up">
+                    Enthusiastic? Create an account!
+                </ButtonLink>
+
+                {/* <h4>Are you liking this project and want to help me maintain this website?</h4>
+                <p className="light alinea">
+                    I'm not a begging person but folks asks me if they could help me out with the costs of running this project. I don't want to run ads on this site and therefore I'm open to recieve donations to maintain this project.
+                </p> */}
             </div>
         </div>
     );
