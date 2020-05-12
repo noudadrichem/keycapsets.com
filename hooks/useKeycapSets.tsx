@@ -16,9 +16,10 @@ export interface KeycapSetsFilters {
 
 export function useKeycapSets(queryFilters: KeycapSetsFilters) {
     const client = useApolloClient();
-    const [offset, setOffset] = useState(0);
+    const [offset, setOffset] = useState<number>(0);
     const [keycapsets, setKeycapsets] = useState<Keycapset[]>([]);
-    const [fetchingMore, setFetchingMore] = useState(false);
+    const [fetchingMore, setFetchingMore] = useState<boolean>(false);
+    const [allKeycapsetsCount, setKeycapsetCount] = useState<number>(0);
 
     const { data, loading, error } = useQuery(FETCH_KEYCAPSET_QUERY, {
         client,
@@ -30,6 +31,7 @@ export function useKeycapSets(queryFilters: KeycapSetsFilters) {
 
     useEffect(() => {
         if (data) {
+            setKeycapsetCount(data.allKeycapsetsCount);
             if (fetchingMore) {
                 setKeycapsets([...keycapsets, ...data.keycapsets]);
             } else {
@@ -48,11 +50,6 @@ export function useKeycapSets(queryFilters: KeycapSetsFilters) {
             setFetchingMore(false);
         }
     }, [queryFilters.limit, queryFilters.filter]);
-
-    let allKeycapsetsCount = 0;
-    if (data) {
-        allKeycapsetsCount = data.allKeycapsetsCount;
-    }
 
     function fetchMore() {
         setFetchingMore(true);

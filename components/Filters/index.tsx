@@ -128,7 +128,9 @@ function Tabs(props: TabsProps): JSX.Element {
 
                 <div className="counter">
                     <label className="label">Keycapsets:</label>
-                    <p className="light">{state.allKeycapsetsCount}</p>
+                    <p className="light">
+                        {state.fetchedKeycapsetsLength}/{state.allKeycapsetsCount}
+                    </p>
                 </div>
             </div>
         </>

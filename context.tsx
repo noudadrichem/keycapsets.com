@@ -10,7 +10,7 @@ export const INITITAL_STATE: InititalState = {
         materialFilter: [],
     },
     keycapsets: [],
-    filteredSets: [],
+    fetchedKeycapsetsLength: 0,
     searchQuery: '',
     allKeycapsetsCount: 0,
 };

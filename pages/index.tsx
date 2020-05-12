@@ -15,6 +15,7 @@ import Nav from '../components/Nav';
 import { context } from '../context';
 import { useKeycapSets } from '../hooks/useKeycapSets';
 import withData from '../hooks/withData';
+import Tabs from '../components/Filters';
 
 interface HomeProps {
     url: any;
@@ -22,14 +23,13 @@ interface HomeProps {
     metaImg: string;
 }
 
-const LIMIT = 10;
-
+const LIMIT = 24;
 function Home(props: HomeProps) {
     const isBrowser = typeof window !== `undefined`;
     const [loadingExtra, setLoadingExtra] = useState<boolean>(true);
     const [isAtBottomOfPage, setIsAtBottomOfPage] = useState(false);
 
-    const { state } = useContext<Context>(context);
+    const { state, dispatch } = useContext<Context>(context);
 
     // Update filters only when state changes
     const queryFilters = useMemo(
@@ -51,6 +51,7 @@ function Home(props: HomeProps) {
             state.filters.profileFilter,
         ]
     );
+
     const {
         keycapsets,
         allKeycapsetsCount,
@@ -64,10 +65,25 @@ function Home(props: HomeProps) {
     useEffect(function initializeView() {
         if (isBrowser) {
             window.addEventListener('scroll', checkIsBottomPage);
-
             return () => window.removeEventListener('scroll', checkIsBottomPage);
         }
     }, []);
+
+    useEffect(() => {
+        dispatch({
+            type: 'set',
+            payload: { allKeycapsetsCount },
+        });
+    }, [allKeycapsetsCount]);
+
+    useEffect(() => {
+        dispatch({
+            type: 'set',
+            payload: {
+                fetchedKeycapsetsLength: keycapsets.length,
+            },
+        });
+    }, [keycapsets]);
 
     useEffect(
         function handleRefetchingOnBottomOfPage() {
@@ -102,6 +118,7 @@ function Home(props: HomeProps) {
             <Nav isLargeContainer />
             <div className="container large">
                 <Heading mainTitle="Find your favorite keycapset!" subTitle="keycapsets.com" isHome />
+                <Tabs />
                 {initLoading ? <LoadingKeyboardIllustration /> : <Images keycapsets={keycapsets} />}
                 {loadingExtra && <LoadingKeyboardIllustration scale={0.3} />}
                 <BackToTop />
