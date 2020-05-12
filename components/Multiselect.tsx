@@ -35,6 +35,7 @@ function MultiSelect<T>(props: MultiSelectProps<T>): JSX.Element {
             <Select
                 isSearchable
                 id={label}
+                instanceId={label}
                 className="select-control"
                 styles={SELECT_STYLES}
                 value={value}
