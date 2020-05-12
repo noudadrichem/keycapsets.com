@@ -15,6 +15,16 @@
         }
     }
 
+    .maintenance-banner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px;
+        text-align: center;
+        background: #ffe9cd;
+        color: #99601f;
+    }
+
     .logo {
         cursor: pointer;
     }

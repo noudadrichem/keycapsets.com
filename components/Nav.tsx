@@ -15,6 +15,10 @@ function Nav(props: NavProps): JSX.Element {
             {/* <a className="discord-banner" href="https://discord.gg/dq8cyMS">
                 <img src="/images/discord.svg" /> Join the conversation on our discord!
             </a> */}
+            <div className="maintenance-banner">
+                In the weekend of 16th and 17th may I'll be doing some "big" maintenance, this could result in some
+                downtime. I'm sorry in advance. ❤️
+            </div>
 
             <div className={`container ${isLargeContainer ? 'large' : ''}`}>
                 <div className="nav-container">

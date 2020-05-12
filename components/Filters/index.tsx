@@ -77,6 +77,16 @@ function Filters(props: FiltersProps): JSX.Element {
         });
     }
 
+    function getLabelByAvailability(tab: string): string {
+        const labelOptions: any = {
+            ic: 'Interest Check',
+            gb: 'In Groupbuy',
+            waiting: 'Awaiting Groupbuy',
+            ended: 'Groupbuy Ended',
+        };
+        return labelOptions[tab];
+    }
+
     return (
         <>
             <div className="mobile-toggle" onClick={() => setIsOpen(!isOpen)}>
@@ -88,12 +98,17 @@ function Filters(props: FiltersProps): JSX.Element {
                     <div className="filter availability desktop-only">
                         <label className="label">Availability</label>
                         <div className="tabs">
-                            {AVAILABILITY_OPTIONS.map((tab: String, idx: number) => (
-                                <Tab type={AVAILABILITY_FILTER} id={tab} key={idx} />
+                            {AVAILABILITY_OPTIONS.map((tab: string, idx: number) => (
+                                <Tab
+                                    label={getLabelByAvailability(tab)}
+                                    type={AVAILABILITY_FILTER}
+                                    id={tab}
+                                    key={idx}
+                                />
                             ))}
                             <div>
                                 {state.filters.availabilityFilter !== 'none' && (
-                                    <p className="small light clickable" onClick={resetFilter}>
+                                    <p className="small light clickable" onClick={resetFilter} style={{ marginTop: 8 }}>
                                         reset
                                     </p>
                                 )}
@@ -118,7 +133,7 @@ function Filters(props: FiltersProps): JSX.Element {
                             }
                             values={AVAILABILITY_OPTIONS.map((t) => ({
                                 id: t,
-                                name: t,
+                                name: getLabelByAvailability(t),
                             }))}
                         />
                     </div>

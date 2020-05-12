@@ -61,7 +61,6 @@
 
         .bottom {
             font-size: 14px;
-            letter-spacing: 0.8px;
 
             .bold {
                 span:first-child {
@@ -69,7 +68,7 @@
                 }
 
                 @media screen and(max-width: 562px) {
-                    font-size: 11px;
+                    font-size: 12px;
                 }
             }
         }
