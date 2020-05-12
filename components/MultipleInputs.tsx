@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import '../assets/styles/input.scss';
 import Button from './Button';
 
 interface InputProps {

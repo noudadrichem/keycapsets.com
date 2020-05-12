@@ -3,11 +3,11 @@ import React from 'react';
 interface ArrowProps {
     size?: Number;
     color?: string;
-    direction?: string;
+    direction?: 'left' | 'right' | 'bottom' | 'top';
 }
 
 function Arrow(props: ArrowProps): JSX.Element {
-    const { size, color, direction } = props;
+    const { size = 24, color = '#539BFB', direction = 'right' } = props;
 
     return (
         <svg
@@ -26,11 +26,5 @@ function Arrow(props: ArrowProps): JSX.Element {
         </svg>
     );
 }
-
-Arrow.defaultProps = {
-    size: 24,
-    color: '#539BFB',
-    direction: 'right',
-};
 
 export default Arrow;

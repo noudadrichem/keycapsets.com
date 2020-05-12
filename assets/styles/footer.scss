@@ -47,11 +47,26 @@
         display: inline-flex;
         align-items: center;
 
-        > a {
+        a {
             margin-right: 16px;
 
             &:last-child {
                 margin-right: 0;
+            }
+        }
+
+        @media screen and(max-width: 562px) {
+            flex-direction: column;
+            margin-top: 24px;
+            a {
+                margin-top: 4px;
+                margin-bottom: 4px;
+            }
+
+            .social-icons {
+                display: flex;
+                padding: 8px 0;
+                justify-content: center;
             }
         }
     }

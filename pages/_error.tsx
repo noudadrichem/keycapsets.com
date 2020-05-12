@@ -39,9 +39,8 @@ function Error(props: ErrorProps) {
             <div className="container">
                 <Heading
                     mainTitle={statusCode ? `An error ${statusCode} occurred on server` : 'An error occurred on client'}
-                    subTitle="This page does not exist..."
+                    subTitle=""
                     backgroundColor="#f8abab"
-                    left
                 />
             </div>
             <Footer />

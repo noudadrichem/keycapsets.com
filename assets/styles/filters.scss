@@ -1,9 +1,24 @@
+.mobile-toggle {
+    display: none;
+
+    @media screen and(max-width: 562px) {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 0;
+    }
+}
+
 .filters {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 16px 0 24px;
     margin-top: 48px;
+
+    &.closed {
+        display: none;
+    }
 
     .counter {
         margin-left: 16px;
@@ -51,7 +66,8 @@
     }
 
     @media screen and (max-width: 556px) {
-        margin: 16px 0;
+        margin: 0;
+        padding: 0 0 24px 0;
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;

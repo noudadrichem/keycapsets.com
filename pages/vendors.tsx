@@ -16,7 +16,6 @@ import VendorCard from '../components/VendorCard';
 import Meta from '../components/Meta';
 
 import '../assets/styles/main.scss';
-import '../assets/styles/vendors.scss';
 
 import countryIsoList from '../assets/countries';
 

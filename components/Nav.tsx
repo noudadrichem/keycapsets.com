@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-import '../assets/styles/nav.scss';
+import Logo from './Logo';
 
 interface NavProps {
     isLargeContainer?: boolean;
@@ -12,15 +12,16 @@ function Nav(props: NavProps): JSX.Element {
 
     return (
         <nav className="nav">
-            <a className="discord-banner" href="https://discord.gg/dq8cyMS">
+            {/* <a className="discord-banner" href="https://discord.gg/dq8cyMS">
                 <img src="/images/discord.svg" /> Join the conversation on our discord!
-            </a>
+            </a> */}
+
             <div className={`container ${isLargeContainer ? 'large' : ''}`}>
                 <div className="nav-container">
                     <div className="logo">
                         <Link href="/" as="/">
-                            <a>
-                                <img src="/images/logo-dark.svg" />
+                            <a className="logo">
+                                <Logo width={106} />
                             </a>
                         </Link>
                     </div>

@@ -107,6 +107,7 @@ function Home(props: HomeProps) {
                 <BackToTop />
             </div>
             <Footer />
+            <CTACard />
         </>
     );
 }
