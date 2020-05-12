@@ -2,9 +2,14 @@ import { ApolloClient } from 'apollo-boost';
 import withGA from 'next-ga';
 import { Router } from 'next/router';
 import React, { useContext, useEffect, useMemo, useState } from 'react';
-import { forceCheck } from 'react-lazyload';
 import { Context } from 'typings';
+
 import '../assets/styles/main.scss';
+
+import { context } from '../context';
+import { useKeycapSets } from '../hooks/useKeycapSets';
+import withData from '../hooks/withData';
+
 import BackToTop from '../components/BackToTop';
 import Footer from '../components/Footer';
 import Heading from '../components/Heading';
@@ -12,10 +17,8 @@ import Images from '../components/Images';
 import LoadingKeyboardIllustration from '../components/LoadingKeyboardIllustration';
 import Meta from '../components/Meta';
 import Nav from '../components/Nav';
-import { context } from '../context';
-import { useKeycapSets } from '../hooks/useKeycapSets';
-import withData from '../hooks/withData';
 import Tabs from '../components/Filters';
+import CTACard from '../components/CTACard';
 
 interface HomeProps {
     url: any;
@@ -124,6 +127,7 @@ function Home(props: HomeProps) {
                 <BackToTop />
             </div>
             <Footer />
+            <CTACard />
         </>
     );
 }
