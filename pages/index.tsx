@@ -31,8 +31,35 @@ function Home(props: HomeProps) {
     const isBrowser = typeof window !== `undefined`;
     const [loadingExtra, setLoadingExtra] = useState<boolean>(true);
     const [isAtBottomOfPage, setIsAtBottomOfPage] = useState(false);
+    const { state } = useContext<Context>(context);
+    const queryFilters = useMemo(
+        () => ({
+            limit: LIMIT,
+            filter: {
+                brand: state.filters.brandFilter || [],
+                availability: state.filters.availabilityFilter === 'none' ? '' : state.filters.availabilityFilter,
+                material: state.filters.materialFilter || [],
+                type: state.filters.profileFilter,
+                name: state.searchQuery,
+            },
+        }),
+        [
+            state.searchQuery,
+            state.filters.availabilityFilter,
+            state.filters.brandFilter,
+            state.filters.materialFilter,
+            state.filters.profileFilter,
+        ]
+    );
+    const {
+        keycapsets,
+        allKeycapsetsCount,
+        loading: keycapsetsLoading,
+        error,
+        fetchMore: fetchMoreKeycapSets,
+    } = useKeycapSets(queryFilters);
 
-    const { state, dispatch } = useContext<Context>(context);
+    const initLoading = keycapsetsLoading && keycapsets.length < 1;
 
     // Update filters only when state changes
     const queryFilters = useMemo(
