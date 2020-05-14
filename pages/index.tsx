@@ -33,35 +33,25 @@ function Home(props: HomeProps) {
     const [isAtBottomOfPage, setIsAtBottomOfPage] = useState(false);
     const { state, dispatch } = useContext<Context>(context);
 
-    const queryFilters = {
-        limit: LIMIT,
-        filter: {
-            brand: state.filters.brandFilter || [],
-            availability: state.filters.availabilityFilter === 'none' ? '' : state.filters.availabilityFilter,
-            material: state.filters.materialFilter || [],
-            type: state.filters.profileFilter,
-            name: state.searchQuery,
-        },
-    };
-    // const queryFilters = useMemo(
-    //     () => ({
-    //         limit: LIMIT,
-    //         filter: {
-    //             brand: state.filters.brandFilter || [],
-    //             availability: state.filters.availabilityFilter === 'none' ? '' : state.filters.availabilityFilter,
-    //             material: state.filters.materialFilter || [],
-    //             type: state.filters.profileFilter,
-    //             name: state.searchQuery,
-    //         },
-    //     }),
-    //     [
-    //         state.searchQuery,
-    //         state.filters.availabilityFilter,
-    //         state.filters.brandFilter,
-    //         state.filters.materialFilter,
-    //         state.filters.profileFilter,
-    //     ]
-    // );
+    const queryFilters = useMemo(
+        () => ({
+            limit: LIMIT,
+            filter: {
+                brand: state.filters.brandFilter || [],
+                availability: state.filters.availabilityFilter === 'none' ? '' : state.filters.availabilityFilter,
+                material: state.filters.materialFilter || [],
+                type: state.filters.profileFilter,
+                name: state.searchQuery,
+            },
+        }),
+        [
+            state.searchQuery,
+            state.filters.availabilityFilter,
+            state.filters.brandFilter,
+            state.filters.materialFilter,
+            state.filters.profileFilter,
+        ]
+    );
 
     const {
         keycapsets,
