@@ -8,6 +8,7 @@ function SearchSets() {
     const router: NextRouter = useRouter();
     const [searchValue, searchInput, setSearchInputValue] = useInput({
         placeholder: 'E.g. Carbon',
+        autoFocus: true,
     });
     const { state, dispatch } = useContext<Context>(context);
 

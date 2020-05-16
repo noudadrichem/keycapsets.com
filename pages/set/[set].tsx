@@ -17,6 +17,7 @@ import Nav from '../../components/Nav';
 import LoadingKeyboard from '../../components/LoadingKeyboard';
 import ButtonLink from '../../components/ButtonLink';
 import Meta from '../../components/Meta';
+import CTACard from '../../components/CTACard';
 
 interface SetProps {}
 
@@ -38,8 +39,8 @@ function SetPage() {
     }
 
     const set: Keycapset = data.keycapsetBySlug;
-    const urlIsGeekHack: boolean = set.websiteUrl.includes('geekhack');
-    const sliderImages = [set.coverImageUrl, ...set.imageUrls];
+    const isGeekhackUrl: boolean = set.websiteUrl.includes('geekhack');
+    const sliderImages: string[] = [set.coverImageUrl, ...set.imageUrls];
 
     const slickSettings = {
         infinite: set.coverImageUrl.length > 1,
@@ -53,64 +54,73 @@ function SetPage() {
     console.log(set);
     return (
         set !== undefined && (
-            <div className="set">
-                <div className="container">
-                    <Heading
-                        left
-                        mainTitle={`${set.name} ${set.designerName ? `designed by ${set.designerName}` : ''}`}
-                        subTitle={`Good luck with sharing!`}
-                    />
+            <>
+                <div className="set">
+                    <Meta title={`${set.type.toUpperCase()} Keycapset ${set.name}`} metaImgUrl={set.coverImageUrl} />
 
-                    <div className="info-section">
-                        <div>
-                            {sliderImages.length > 0 && (
-                                <Slider {...slickSettings}>
-                                    {sliderImages.map((url: string) => (
-                                        <img src={url} key={url} />
-                                    ))}
-                                </Slider>
-                            )}
-                        </div>
+                    <Nav />
 
-                        <div>
-                            <h3>Info</h3>
-                            <p>Designer: {set.designerName || 'Unknown'}</p>
-                            <p>Profile: {set.type}</p>
-                            <p>Brand: {set.brand || 'Unknown'}</p>
-                            <p>Material: {set.material || 'Unknown'}</p>
-                            {!set.isInterestCheck && (
-                                <>
-                                    <p>Start date: {moment(set.groupbuyStartDate).format('dddd YYYY-MM-DD')}</p>
-                                    <p>End date: {moment(set.groupbuyEndDate).format('dddd YYYY-MM-DD')}</p>
-                                </>
-                            )}
+                    <div className="container">
+                        <Heading
+                            left
+                            mainTitle={`${set.name} ${set.designerName ? `designed by ${set.designerName}` : ''}`}
+                            subTitle={`Good luck with sharing!`}
+                        />
 
-                            {set.vendors.length > 0 && (
-                                <>
-                                    <br />
-                                    <p>Selling vendors: </p>
-                                    <ul>
-                                        {set.vendors.map((v: Vendor, idx) => (
-                                            <p key={idx}>
-                                                - <a href={v.url}>{v.name}</a>
-                                            </p>
+                        <div className="info-section">
+                            <div>
+                                {sliderImages.length > 0 && (
+                                    <Slider {...slickSettings}>
+                                        {sliderImages.map((url: string) => (
+                                            <img src={url} key={url} />
                                         ))}
-                                    </ul>
-                                </>
-                            )}
-                            {urlIsGeekHack ? (
-                                <ButtonLink isLarge href={set.websiteUrl}>
-                                    Go to Geekhack thread
-                                </ButtonLink>
-                            ) : (
-                                <ButtonLink isLarge href={set.websiteUrl}>
-                                    Visit the website
-                                </ButtonLink>
-                            )}
+                                    </Slider>
+                                )}
+                            </div>
+
+                            <div>
+                                <h3>Info</h3>
+                                <p>Designer: {set.designerName || 'Unknown'}</p>
+                                <p>Profile: {set.type}</p>
+                                <p>Brand: {set.brand || 'Unknown'}</p>
+                                <p>Material: {set.material || 'Unknown'}</p>
+                                {!set.isInterestCheck && (
+                                    <>
+                                        <p>Start date: {moment(set.groupbuyStartDate).format('dddd YYYY-MM-DD')}</p>
+                                        <p>End date: {moment(set.groupbuyEndDate).format('dddd YYYY-MM-DD')}</p>
+                                    </>
+                                )}
+
+                                {set.vendors.length > 0 && (
+                                    <>
+                                        <br />
+                                        <p>Selling vendors: </p>
+                                        <ul>
+                                            {set.vendors.map((v: Vendor, idx) => (
+                                                <p key={idx}>
+                                                    - <a href={v.url}>{v.name}</a>
+                                                </p>
+                                            ))}
+                                        </ul>
+                                    </>
+                                )}
+                                {isGeekhackUrl ? (
+                                    <ButtonLink isLarge href={set.websiteUrl}>
+                                        Go to Geekhack thread
+                                    </ButtonLink>
+                                ) : (
+                                    <ButtonLink isLarge href={set.websiteUrl}>
+                                        Visit the website
+                                    </ButtonLink>
+                                )}
+                            </div>
                         </div>
                     </div>
+
+                    <Footer />
                 </div>
-            </div>
+                <CTACard />
+            </>
         )
     );
 }

@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
 
-import '../assets/styles/cta-card.scss';
 import Button from './Button';
-import Link from 'next/link';
-import moment from 'moment';
+import moment, { Moment } from 'moment';
 
 const CrossIcon = ({ size = 16, color = '#566073', onClick }) => (
     <svg
@@ -28,23 +25,33 @@ const CrossIcon = ({ size = 16, color = '#566073', onClick }) => (
 interface CTACardProps {}
 
 function CTACard(props: CTACardProps): JSX.Element {
+    const KEY: string = 'CTA_ACC_BETA';
     const {} = props;
-    const router = useRouter();
     const [visible, setVisible] = useState(false);
 
     useEffect(() => {
-        let timeout: NodeJS.Timeout;
-        const CTADate = window.localStorage.getItem('CTA');
-        if (!CTADate) {
+        let timeout;
+        const KEYVALUE: string = window.localStorage.getItem(KEY);
+        const ctaDate: Moment = moment(KEYVALUE);
+        const isSixHoursPast: boolean = moment().diff(ctaDate, 'hours') > 6;
+        if (!KEYVALUE) {
+            show();
+            return;
+        }
+        if (isSixHoursPast) {
+            show();
+            return;
+        }
+        function show() {
             timeout = setTimeout(() => {
                 setVisible(true);
-            }, 1700);
+            }, 2700);
         }
         return () => clearTimeout(timeout);
     }, []);
 
     function close() {
-        window.localStorage.setItem('CTA', moment().toString());
+        window.localStorage.setItem(KEY, moment().toString());
         setVisible(false);
     }
 
@@ -52,14 +59,20 @@ function CTACard(props: CTACardProps): JSX.Element {
         <div className={`cta-card ${visible ? 'visible' : 'hidden'}`}>
             <CrossIcon onClick={() => close()} />
 
-            <h4>Live and learn.</h4>
+            <h4>We need your help!</h4>
             <p className="light">
-                We're sad to announce we are temporarily closing the website for uploads due to incidents that occurred
-                by it.
+                Want to test new features such as user accounts, favoriting sets and more. Sign up as beta user!
+                <br />
+                Do so by joining our Discord server.
             </p>
 
-            <Button onClick={() => router.push('/upload-statement')} variant="primary" size="md" className="center">
-                More about it here
+            <Button
+                onClick={() => (window.location.href = 'https://discord.gg/dq8cyMS')}
+                variant="primary"
+                size="md"
+                className="center"
+            >
+                Join our Discord
             </Button>
         </div>
     );

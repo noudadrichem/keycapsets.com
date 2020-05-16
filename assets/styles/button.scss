@@ -31,6 +31,11 @@
     &.sm {
         padding: 8px 16px;
         font-size: 14px;
+
+        &-x {
+            font-size: 11px;
+            padding: 12px;
+        }
     }
 
     &.md {

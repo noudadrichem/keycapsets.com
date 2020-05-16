@@ -9,19 +9,16 @@ import { GET_VENDORS_QUERY } from '../queries';
 import { Vendor } from 'typings';
 
 import Heading from '../components/Heading';
-import Footer from '../components/Footer';
-import Nav from '../components/Nav';
 import LoadingKeyboard from '../components/LoadingKeyboard';
 import VendorCard from '../components/VendorCard';
-import Meta from '../components/Meta';
 
-import '../assets/styles/vendors.scss';
+import '../assets/styles/main.scss';
 
 import countryIsoList from '../assets/countries';
 
 interface VendorProps {}
 
-function Vendors(props: VendorProps): JSX.Element {
+function Vendors(): JSX.Element {
     const { loading, error, data } = useQuery(GET_VENDORS_QUERY);
 
     if (loading) {
@@ -35,7 +32,7 @@ function Vendors(props: VendorProps): JSX.Element {
 
     const { vendors } = data;
 
-    function generateAccumArray(len) {
+    function generateAccumArray(len: number) {
         let arr = [];
         for (let i = 0; i < len; i++) {
             arr.push([]);
@@ -45,8 +42,8 @@ function Vendors(props: VendorProps): JSX.Element {
 
     // make list of unique present vendor continents
     const availableContinents = vendors
-        .map((v) => v.country)
-        .reduce((res, country) => {
+        .map((v: { country: any }) => v.country)
+        .reduce((res: any[], country: string) => {
             const continentCode = country.split('-')[0];
             // only take the first of the possibly 2 codes to prevent undefined key
             const con1 = continentCode.split(',')[0];
@@ -61,8 +58,8 @@ function Vendors(props: VendorProps): JSX.Element {
     const totalAcc = generateAccumArray(availableContinents.length);
 
     // filter all vendor objects by key 'country', push all vendors to dedicated continent array
-    const filteredVendorLists = vendors.reduce((accum, vendor) => {
-        availableContinents.map((continent, jdx) => {
+    const filteredVendorLists = vendors.reduce((accum: { [x: string]: any[] }, vendor: { country: string }) => {
+        availableContinents.map((continent: any, jdx: string | number) => {
             // if 2 continentcodes are listed, the vendor gets put in the section of the continentcode that's listed first
             const continentCode = vendor.country.split('-')[0];
             const con1 = continentCode.split(',')[0];
@@ -75,21 +72,24 @@ function Vendors(props: VendorProps): JSX.Element {
         return accum;
     }, totalAcc);
 
-    const sortedVendors = filteredVendorLists.reduce((sortedVendors, field, index) => {
-        sortedVendors[availableContinents[index]] = field;
+    const sortedVendors = filteredVendorLists.reduce(
+        (sortedVendors: { [x: string]: { label: string } }, field: any, index: string | number) => {
+            sortedVendors[availableContinents[index]] = field;
 
-        // add continent display label to vendor
-        countryIsoList.forEach((countryIso) => {
-            if (availableContinents[index] === 'ALL') {
-                sortedVendors[availableContinents[index]].label = 'Worldwide';
-            }
-            if (countryIso.continentCode === availableContinents[index]) {
-                sortedVendors[availableContinents[index]].label = countryIso.continentName;
-            }
-        });
+            // add continent display label to vendor
+            countryIsoList.forEach((countryIso) => {
+                if (availableContinents[index] === 'ALL') {
+                    sortedVendors[availableContinents[index]].label = 'Worldwide';
+                }
+                if (countryIso.continentCode === availableContinents[index]) {
+                    sortedVendors[availableContinents[index]].label = countryIso.continentName;
+                }
+            });
 
-        return sortedVendors;
-    }, {});
+            return sortedVendors;
+        },
+        {}
+    );
 
     return (
         <div className="container">

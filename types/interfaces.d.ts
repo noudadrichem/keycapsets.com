@@ -57,7 +57,7 @@ declare module 'typings' {
     interface InititalState {
         filters: Filters;
         keycapsets: Keycapset[];
-        filteredSets: Keycapset[];
+        fetchedKeycapsetsLength: number;
         searchQuery: string;
         allKeycapsetsCount: number;
         isLoggedIn: boolean;

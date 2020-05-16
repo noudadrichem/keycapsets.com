@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import '../assets/styles/input.scss';
+import React, { useState, useRef, useEffect } from 'react';
 
 interface InputProps {
     placeholder?: string;
@@ -10,6 +9,7 @@ interface InputProps {
     onChange?: Function | any;
     reference?: any;
     className?: string;
+    autoFocus?: boolean;
 }
 
 function Input(props: InputProps): JSX.Element {
@@ -35,8 +35,9 @@ function Input(props: InputProps): JSX.Element {
 }
 
 function useInput(props: InputProps): any[] {
-    const { type = 'text', label, placeholder, id, defaultValue = '' } = props;
+    const { type = 'text', label, placeholder, id, defaultValue = '', autoFocus } = props;
     const [value, setValue] = useState(defaultValue);
+    const input = useRef(null);
 
     function onInputChange(e) {
         if (type === 'checkbox') {
@@ -46,7 +47,15 @@ function useInput(props: InputProps): any[] {
         }
     }
 
-    // TODO refactor this to use upper compootje
+    useEffect(() => {
+        if (autoFocus) {
+            const isBrowser = typeof window !== `undefined`;
+            if (window.innerWidth > 768) {
+                input.current.focus();
+            }
+        }
+    });
+
     const inputField: JSX.Element = (
         <div className={`input-wrapper ${type}`}>
             {label && (
@@ -55,6 +64,7 @@ function useInput(props: InputProps): any[] {
                 </label>
             )}
             <input
+                ref={input}
                 onChange={onInputChange}
                 defaultValue={value}
                 name={id}

@@ -15,6 +15,14 @@
         padding: 88px 0px;
     }
 
+    .title {
+        &-sub {
+            @media screen and(max-width: 562px) {
+                display: none;
+            }
+        }
+    }
+
     &-cta {
         p {
             display: inline-flex;

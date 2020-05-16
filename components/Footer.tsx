@@ -11,9 +11,9 @@ const Twitter = ({ size = 16 }) => (
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
     >
         <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
     </svg>
@@ -38,36 +38,39 @@ function Footer(props: FooterProps): JSX.Element {
     return (
         <div className="footer">
             <div className="container large">
-                <div>
+                <div className="made-in">
                     <p>
                         &copy; Made with <a href="https://bunq.me/noudadrichem/3/I'm%20liking%20keycapsets!">☕</a>
                         in Utrecht.
                     </p>
                 </div>
 
-                {/* <div> */}
-                <a href="https://candykeys.com/" target="_blank" className="sponsored-by">
-                    <img
-                        src="https://webiz.ams3.cdn.digitaloceanspaces.com/ck/favicon/favicon-16x16.png"
-                        alt="Logo CandyKeys"
-                    />
-                    Sponsored by<b>&nbsp;CandyKeys</b>
-                </a>
-                {/* </div> */}
+                <div className="sponsored-by">
+                    <a href="https://candykeys.com/" target="_blank" className="sponsored-by">
+                        <img
+                            src="https://webiz.ams3.cdn.digitaloceanspaces.com/ck/favicon/favicon-16x16.png"
+                            alt="Logo CandyKeys"
+                        />
+                        Sponsored by<b>&nbsp;CandyKeys</b>
+                    </a>
+                </div>
 
                 <div className="socials-container">
                     {/* <a href="https://bunq.me/noudadrichem/2/">Buy me a cup of coffee</a> */}
                     <a href="/terms">Terms</a>
                     <a href="mailto:contact@keycapsets.com">contact@keycapsets.com</a>
-                    <a href="https://twitter.com/keycapsets">
-                        <Twitter />
-                    </a>
-                    <a href="https://www.instagram.com/keycapsets/">
-                        <Instagram />
-                    </a>
-                    <a href="https://discord.gg/dq8cyMS">
-                        <Discord />
-                    </a>
+
+                    <div className="social-icons">
+                        <a href="https://twitter.com/keycapsets">
+                            <Twitter />
+                        </a>
+                        <a href="https://www.instagram.com/keycapsets/">
+                            <Instagram />
+                        </a>
+                        <a href="https://discord.gg/dq8cyMS">
+                            <Discord />
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

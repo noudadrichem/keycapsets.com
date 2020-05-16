@@ -6,6 +6,7 @@ import { InititalState, Context } from 'typings';
 interface TabProps {
     id: String;
     type: 'cap' | 'availability';
+    label: string;
 }
 
 const stateFilterKeys = {
@@ -14,7 +15,7 @@ const stateFilterKeys = {
 };
 
 function Tab(props: TabProps): JSX.Element {
-    const { id, type } = props;
+    const { id, type, label } = props;
     const { state, dispatch } = useContext<Context>(context);
     const { filters }: InititalState = state;
     const typeKey = stateFilterKeys[type];
@@ -37,9 +38,9 @@ function Tab(props: TabProps): JSX.Element {
             onClick={() => handleUpdateFilters()}
             variant="primary"
             size="sm"
-            className={isActive ? 'primary' : 'inverted'}
+            className={`${isActive ? 'primary' : 'inverted'} sm-x`}
         >
-            {id}
+            {label}
         </Button>
     );
 }

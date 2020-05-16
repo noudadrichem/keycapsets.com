@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Brand, Profile, Material, Context } from 'typings';
 import {
     AVAILABILITY_FILTER,
@@ -11,12 +11,23 @@ import context from '../../context';
 import MultiSelect from '../Multiselect';
 import Select from '../Select';
 import Tab from './Tab';
+import Arrow from '../Arrow';
 
-interface TabsProps {}
+interface FiltersProps {}
 
-function Tabs(props: TabsProps): JSX.Element {
+function Filters(props: FiltersProps): JSX.Element {
     const {} = props;
     const { state, dispatch } = useContext<Context>(context);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+
+    useEffect(function handleToggleOnWindowSize() {
+        const isBrowser = typeof window !== `undefined`;
+        if (isBrowser) {
+            if (window.innerWidth > 562) {
+                setIsOpen(true);
+            }
+        }
+    }, []);
 
     function resetFilter() {
         dispatch({
@@ -66,19 +77,38 @@ function Tabs(props: TabsProps): JSX.Element {
         });
     }
 
+    function getLabelByAvailability(tab: string): string {
+        const labelOptions: any = {
+            ic: 'Interest Check',
+            gb: 'In Groupbuy',
+            waiting: 'Awaiting Groupbuy',
+            ended: 'Groupbuy Ended',
+        };
+        return labelOptions[tab];
+    }
+
     return (
         <>
-            <div className="filters">
+            <div className="mobile-toggle" onClick={() => setIsOpen(!isOpen)}>
+                <h5>{isOpen ? 'Close ' : 'Open '}search filters</h5>
+                <Arrow color="#566073" size={16} direction={isOpen ? 'top' : 'bottom'} />
+            </div>
+            <div className={`filters ${isOpen ? 'open' : 'closed'}`}>
                 <div className="left-side">
                     <div className="filter availability desktop-only">
                         <label className="label">Availability</label>
                         <div className="tabs">
-                            {AVAILABILITY_OPTIONS.map((tab: String, idx: number) => (
-                                <Tab type={AVAILABILITY_FILTER} id={tab} key={idx} />
+                            {AVAILABILITY_OPTIONS.map((tab: string, idx: number) => (
+                                <Tab
+                                    label={getLabelByAvailability(tab)}
+                                    type={AVAILABILITY_FILTER}
+                                    id={tab}
+                                    key={idx}
+                                />
                             ))}
                             <div>
                                 {state.filters.availabilityFilter !== 'none' && (
-                                    <p className="small light clickable" onClick={resetFilter}>
+                                    <p className="small light clickable" onClick={resetFilter} style={{ marginTop: 8 }}>
                                         reset
                                     </p>
                                 )}
@@ -103,7 +133,7 @@ function Tabs(props: TabsProps): JSX.Element {
                             }
                             values={AVAILABILITY_OPTIONS.map((t) => ({
                                 id: t,
-                                name: t,
+                                name: getLabelByAvailability(t),
                             }))}
                         />
                     </div>
@@ -128,11 +158,13 @@ function Tabs(props: TabsProps): JSX.Element {
 
                 <div className="counter">
                     <label className="label">Keycapsets:</label>
-                    <p className="light">{state.allKeycapsetsCount}</p>
+                    <p className="light">
+                        {state.fetchedKeycapsetsLength}/{state.allKeycapsetsCount}
+                    </p>
                 </div>
             </div>
         </>
     );
 }
 
-export default Tabs;
+export default Filters;

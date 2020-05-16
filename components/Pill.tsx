@@ -1,7 +1,5 @@
 import React, { ReactNode } from 'react';
 
-import '../assets/styles/pill.scss';
-
 interface PillProps {
     children?: ReactNode;
     className?: string;

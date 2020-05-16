@@ -21,7 +21,7 @@
         height: 264px;
 
         @media screen and(max-width: 562px) {
-            height: 194px;
+            height: 176px;
         }
 
         .set {
@@ -47,6 +47,10 @@
         flex-direction: column;
         position: relative;
 
+        @media screen and(max-width: 562px) {
+            padding: 2px 16px 12px 16px;
+        }
+
         .top,
         .bottom {
             display: inline-flex;
@@ -57,17 +61,24 @@
 
         .bottom {
             font-size: 14px;
-            letter-spacing: 0.8px;
 
             .bold {
                 span:first-child {
                     margin-right: 12px;
+                }
+
+                @media screen and(max-width: 562px) {
+                    font-size: 12px;
                 }
             }
         }
 
         .set-title {
             position: relative;
+
+            @media screen and(max-width: 562px) {
+                font-size: 18px;
+            }
 
             .small {
                 position: absolute;

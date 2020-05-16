@@ -1,7 +1,6 @@
 import React, { ReactNode } from 'react';
 import ArrowRight from './Arrow';
 
-import '../assets/styles/button-link.scss';
 import Link from 'next/link';
 
 interface LinkProps {
