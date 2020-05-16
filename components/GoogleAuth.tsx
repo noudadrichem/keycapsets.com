@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { ApolloClient } from 'apollo-boost';
 import { useApolloClient } from '@apollo/react-hooks';
-import { useRouter } from 'next/router';
+import { useRouter, Router } from 'next/router';
 import { Context } from 'typings';
 
 import { GOOGLE_LOGIN } from '../queries';
@@ -26,7 +26,7 @@ function GoogleAuth(props: GoogleAuthProps): JSX.Element {
     const { text, disabled, asLink = false, isLogginOut = false } = props;
     const client: ApolloClient<any> = useApolloClient();
     const router = useRouter();
-    const { state, dispatch } = useContext<Context>(context);
+    const { dispatch } = useContext<Context>(context);
 
     async function success(response: any) {
         try {
@@ -38,8 +38,14 @@ function GoogleAuth(props: GoogleAuthProps): JSX.Element {
                     token: response.tokenId,
                 },
             });
+            dispatch({
+                type: 'user',
+                payload: {
+                    user: googleLogin.user,
+                },
+            });
             loginUser(googleLogin);
-            window.location.href = '/';
+            router.push('/');
         } catch (err) {
             console.error(err);
         }

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import { useRouter, NextRouter } from 'next/router';
 import { useApolloClient } from '@apollo/react-hooks';
 import { ApolloClient } from 'apollo-boost';
@@ -9,6 +9,8 @@ import withData from '../hooks/withData';
 import Button from './Button';
 import { loginUser } from '../utils/user';
 import RedditIcon from './RedditIcon';
+import { Context } from 'typings';
+import context from '../context';
 
 const CLIENT_ID = 'OGPS_JHNLNt2sA';
 const REDIRECT_URI = 'http://localhost:3000/sign-up/reddit';
@@ -29,6 +31,7 @@ function RedditAuth(props: RedditAuthProps): JSX.Element {
     const { text, callback, disabled, asLink = false } = props;
     const router: NextRouter = useRouter();
     const client: ApolloClient<any> = useApolloClient();
+    const { dispatch } = useContext<Context>(context);
 
     useEffect(() => {
         const hash = window.location.hash;
@@ -63,8 +66,14 @@ function RedditAuth(props: RedditAuthProps): JSX.Element {
                 redditUserName: name,
             },
         });
+        dispatch({
+            type: 'user',
+            payload: {
+                user: redditLogin.user,
+            },
+        });
         loginUser(redditLogin);
-        window.location.href = '/';
+        router.push('/');
     }
 
     return asLink ? (

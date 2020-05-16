@@ -61,7 +61,8 @@ declare module 'typings' {
         searchQuery: string;
         allKeycapsetsCount: number;
         isLoggedIn: boolean;
-        user: User;
+        user?: User;
+        fetchedKeycapsetsLength: number;
     }
 
     interface User {

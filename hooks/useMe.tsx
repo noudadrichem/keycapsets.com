@@ -1,14 +1,18 @@
 import { useQuery, useApolloClient } from '@apollo/react-hooks';
 import { ME } from '../queries';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { Context } from 'typings';
 import context from '../context';
 import { ApolloClient } from 'apollo-boost';
+import user from '../pages/user';
 
 async function useMe() {
+    //! NOT USED ANYMORE
     const client: ApolloClient<any> = useApolloClient();
     const { state, dispatch } = useContext<Context>(context);
-    if (state.user._id === null && state.isLoggedIn) {
+
+    if (state.isLoggedIn) {
+        console.log('fetch me...');
         const {
             data: { me },
             loading,

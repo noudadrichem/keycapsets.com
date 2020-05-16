@@ -146,4 +146,10 @@ function UserEdit(props: UserEditProps): JSX.Element {
     );
 }
 
+UserEdit.getInitialProps = () => {
+    return {
+        isLargeContainer: false,
+    };
+};
+
 export default withGA('UA-115865530-2', Router)(UserEdit);

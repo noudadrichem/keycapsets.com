@@ -18,7 +18,7 @@ function SignUpReddit() {
 
                 <p className="light small-width alinea">
                     By creating an account via Reddit you're able to favorite your keycapsets, have an easy to go
-                    overview of what you like and might want to use for your next build. You could vote on ICS (coming
+                    overview of what you like and might want to use for your next build. You could vote on ICs (coming
                     soon) You could opt in on recieving weekly or monthly updates via email (coming soon).
                 </p>
 

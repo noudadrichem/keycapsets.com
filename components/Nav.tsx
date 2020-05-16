@@ -16,16 +16,18 @@ interface NavProps {
 function Nav(props: NavProps): JSX.Element {
     const { isLargeContainer } = props;
     const { state } = useContext<Context>(context);
+    const { isLoggedIn }: InititalState = state;
+    console.log('nav state...', state);
 
     return (
         <nav className="nav">
             {/* <a className="discord-banner" href="https://discord.gg/dq8cyMS">
                 <img src="/images/discord.svg" />Join the conversation on our discord!
             </a>*/}
-            <div className="maintenance-banner">
+            {/* <div className="maintenance-banner">
                 In the weekend of 16th and 17th may I'll be doing some "big" maintenance, this could result in some
                 downtime. I'm sorry in advance. ❤️
-            </div>
+        </div> */}
 
             <div className={`container ${isLargeContainer ? 'large' : ''}`}>
                 <div className="nav-container">
@@ -44,7 +46,7 @@ function Nav(props: NavProps): JSX.Element {
                         <Link href="/about" as="/about">
                             <a className="nav-item">About</a>
                         </Link>
-                        {!state.isLoggedIn ? (
+                        {!isLoggedIn ? (
                             <Button variant="primary" size="md" className="btn-sign-up medium-large">
                                 Sign up
                                 <div className="popover on-hover">

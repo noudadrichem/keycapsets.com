@@ -102,7 +102,6 @@ const GET_SINGLE_SET_QUERY = gql`
             coverImageUrl
             groupbuyStartDate
             groupbuyEndDate
-            active
             coverImageUrl
             imageUrls
             websiteUrl

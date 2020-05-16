@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import moment from 'moment';
 import { useRouter, Router } from 'next/router';
 import Slider from 'react-slick';
 import { useQuery } from '@apollo/react-hooks';
-import { Keycapset, Vendor } from 'typings';
+import { Keycapset, Vendor, Context } from 'typings';
 import withGA from 'next-ga';
 
 import withData from '../../hooks/withData';
@@ -18,6 +18,8 @@ import LoadingKeyboard from '../../components/LoadingKeyboard';
 import ButtonLink from '../../components/ButtonLink';
 import Meta from '../../components/Meta';
 import CTACard from '../../components/CTACard';
+import Button from '../../components/Button';
+import context from '../../context';
 
 interface SetProps {}
 
@@ -29,6 +31,7 @@ function SetPage() {
     const { loading, error, data } = useQuery(GET_SINGLE_SET_QUERY, {
         variables,
     });
+    const { state } = useContext<Context>(context);
 
     if (loading) {
         return <LoadingKeyboard />;
@@ -56,9 +59,10 @@ function SetPage() {
         set !== undefined && (
             <>
                 <div className="set">
-                    <Meta title={`${set.type.toUpperCase()} Keycapset ${set.name}`} metaImgUrl={set.coverImageUrl} />
-
-                    <Nav />
+                    <Meta
+                        title={`${set.name} ${set.designerName ? `designed by ${set.designerName}` : ''}`}
+                        metaImgUrl={set.coverImageUrl}
+                    />
 
                     <div className="container">
                         <Heading
@@ -113,6 +117,18 @@ function SetPage() {
                                         Visit the website
                                     </ButtonLink>
                                 )}
+
+                                <pre>{JSON.stringify(state.user, null, 4)}</pre>
+                                {/* {
+                                    state.user?.isDesigner && (
+                                        <Button
+                                            size="sm"
+                                            variant="secondary"
+                                        >
+                                            Did you design this set? Claim it!
+                                        </Button>
+                                    )
+                                } */}
                             </div>
                         </div>
                     </div>
@@ -124,5 +140,11 @@ function SetPage() {
         )
     );
 }
+
+SetPage.getInitialProps = () => {
+    return {
+        isLargeContainer: false,
+    };
+};
 
 export default withGA('UA-115865530-2', Router)(withData(SetPage));

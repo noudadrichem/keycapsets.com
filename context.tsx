@@ -15,37 +15,33 @@ export const INITITAL_STATE: InititalState = {
     searchQuery: '',
     allKeycapsetsCount: 0,
     isLoggedIn: false,
-    user: {
-        _id: null,
-        name: null,
-        email: null,
-        locked: true,
-        geekhackUserName: null,
-        redditUserName: null,
-        avatar: null,
-        locale: null,
-        slug: null,
-        isVendor: false,
-        isDesigner: false,
-    },
 };
-
 const context = createContext<any>(INITITAL_STATE);
 const StateProvider = ({ children }) => {
     const isBrowser: boolean = typeof window !== `undefined`;
-    let [state, dispatch]: any[] = useReducer((state: InititalState, action: Action) => {
+    const [state, dispatch]: any[] = useReducer((state: InititalState, action: Action) => {
         switch (action.type) {
             case 'set':
+                // console.log('set...', action.payload)
                 const newState: InititalState = {
                     ...state,
                     ...action.payload,
                 };
                 return newState;
+            case 'user':
+                state.isLoggedIn = true;
+                state.user = action.payload.user;
+                return state;
             default:
                 return state;
         }
     }, INITITAL_STATE);
 
+    // if (isBrowser) {
+    //     if (process.env.NODE_ENV === 'development') {
+    //         console.log(moment().format('hh:mm:ss') + '_STATE...', state);
+    //     }
+    // }
     return <context.Provider value={{ state, dispatch }}>{children}</context.Provider>;
 };
 
