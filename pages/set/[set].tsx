@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import moment from 'moment';
 import { useRouter, Router } from 'next/router';
 import Slider from 'react-slick';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery, useApolloClient, useMutation } from '@apollo/react-hooks';
 import { Keycapset, Vendor, Context } from 'typings';
 import withGA from 'next-ga';
 
 import withData from '../../hooks/withData';
-import { GET_SINGLE_SET_QUERY } from '../../queries';
+import { GET_SINGLE_SET_QUERY, CLAIM_SET } from '../../queries';
 
 import 'slick-carousel/slick/slick.css';
 
@@ -20,58 +20,73 @@ import Meta from '../../components/Meta';
 import CTACard from '../../components/CTACard';
 import Button from '../../components/Button';
 import context from '../../context';
+import { ApolloClient } from 'apollo-boost';
+import ClaimSet from '../../components/ClaimSet';
 
-interface SetProps {}
+interface SetPageProps {}
 
-function SetPage() {
+function SetPage(props: SetPageProps) {
     const router = useRouter();
     const { set: slug } = router.query;
 
+    const [keycapset, setKeycapset] = useState<Keycapset>(null);
+
     const variables = { slug };
-    const { loading, error, data } = useQuery(GET_SINGLE_SET_QUERY, {
+    const { loading: setLoading, error: setError, data: setByQuery } = useQuery(GET_SINGLE_SET_QUERY, {
         variables,
     });
     const { state } = useContext<Context>(context);
 
-    if (loading) {
+    useEffect(() => {
+        if (!setLoading && setByQuery.keycapsetBySlug) {
+            setKeycapset(setByQuery.keycapsetBySlug);
+        }
+    }, [setByQuery]);
+
+    function setClaimed() {
+        setKeycapset({
+            ...keycapset,
+            designedBy: [...keycapset.designedBy, state.user._id],
+        });
+    }
+
+    if (setLoading) {
         return <LoadingKeyboard />;
     }
 
-    if (error) {
+    if (setError) {
         return <p>'Error loading keycapsets.com... Please refresh this page'</p>;
     }
 
-    const set: Keycapset = data.keycapsetBySlug;
-    const isGeekhackUrl: boolean = set.websiteUrl.includes('geekhack');
-    const sliderImages: string[] = [set.coverImageUrl, ...set.imageUrls];
-
-    const slickSettings = {
-        infinite: set.coverImageUrl.length > 1,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        arrows: false,
-        autoplay: set.coverImageUrl.length > 1,
-        autoPlaySpeed: 1600,
-    };
-
-    function designerClaimsSet() {
-        console.log('designer claims set.');
-    }
-
-    return (
-        set !== undefined && (
+    if (keycapset !== null) {
+        const isLoggedInAndIsDesigner: boolean = state.isLoggedIn && state.user.isDesigner;
+        const isGeekhackUrl: boolean = keycapset?.websiteUrl.includes('geekhack');
+        const sliderImages: string[] = [keycapset.coverImageUrl, ...keycapset.imageUrls];
+        const slickSettings = {
+            infinite: keycapset.coverImageUrl.length > 1,
+            speed: 500,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            autoplay: keycapset.coverImageUrl.length > 1,
+            autoPlaySpeed: 1600,
+        };
+        return (
             <>
                 <div className="set">
                     <Meta
-                        title={`${set.name} ${set.designerName ? `designed by ${set.designerName}` : ''}`}
-                        metaImgUrl={set.coverImageUrl}
+                        title={`${keycapset.name} ${
+                            keycapset.designerName ? `designed by ${keycapset.designerName}` : ''
+                        }`}
+                        metaImgUrl={keycapset.coverImageUrl}
                     />
 
                     <div className="container">
                         <Heading
                             left
-                            mainTitle={`${set.name} ${set.designerName ? `designed by ${set.designerName}` : ''}`}
+                            mainTitle={`${keycapset.name} ${
+                                keycapset.designerName ? `designed by ${keycapset.designerName}` : ''
+                            }`}
                             subTitle={`Good luck with sharing!`}
                         />
 
@@ -87,24 +102,28 @@ function SetPage() {
                             </div>
 
                             <div>
+                                {isLoggedInAndIsDesigner && <ClaimSet keycapset={keycapset} callback={setClaimed} />}
+
                                 <h3>Info</h3>
-                                <p>Designer: {set.designerName || 'Unknown'}</p>
-                                <p>Profile: {set.type}</p>
-                                <p>Brand: {set.brand || 'Unknown'}</p>
-                                <p>Material: {set.material || 'Unknown'}</p>
-                                {!set.isInterestCheck && (
+                                <p>Designer: {keycapset.designerName || 'Unknown'}</p>
+                                <p>Profile: {keycapset.type}</p>
+                                <p>Brand: {keycapset.brand || 'Unknown'}</p>
+                                <p>Material: {keycapset.material || 'Unknown'}</p>
+                                {!keycapset.isInterestCheck && (
                                     <>
-                                        <p>Start date: {moment(set.groupbuyStartDate).format('dddd YYYY-MM-DD')}</p>
-                                        <p>End date: {moment(set.groupbuyEndDate).format('dddd YYYY-MM-DD')}</p>
+                                        <p>
+                                            Start date: {moment(keycapset.groupbuyStartDate).format('dddd YYYY-MM-DD')}
+                                        </p>
+                                        <p>End date: {moment(keycapset.groupbuyEndDate).format('dddd YYYY-MM-DD')}</p>
                                     </>
                                 )}
 
-                                {set.vendors.length > 0 && (
+                                {keycapset.vendors.length > 0 && (
                                     <>
                                         <br />
                                         <p>Selling vendors: </p>
                                         <ul>
-                                            {set.vendors.map((v: Vendor, idx) => (
+                                            {keycapset.vendors.map((v: Vendor, idx) => (
                                                 <p key={idx}>
                                                     - <a href={v.url}>{v.name}</a>
                                                 </p>
@@ -113,20 +132,13 @@ function SetPage() {
                                     </>
                                 )}
                                 {isGeekhackUrl ? (
-                                    <ButtonLink isLarge href={set.websiteUrl}>
+                                    <ButtonLink isLarge href={keycapset.websiteUrl}>
                                         Go to Geekhack thread
                                     </ButtonLink>
                                 ) : (
-                                    <ButtonLink isLarge href={set.websiteUrl}>
+                                    <ButtonLink isLarge href={keycapset.websiteUrl}>
                                         Visit the website
                                     </ButtonLink>
-                                )}
-
-                                {/* <pre>{JSON.stringify(state, null, 4)}</pre> */}
-                                {state.isLoggedIn && state.user.isDesigner && (
-                                    <Button size="sm" variant="secondary" onClick={designerClaimsSet}>
-                                        Did you design this set? Claim it!
-                                    </Button>
                                 )}
                             </div>
                         </div>
@@ -136,8 +148,10 @@ function SetPage() {
                 </div>
                 <CTACard />
             </>
-        )
-    );
+        );
+    }
+
+    return null;
 }
 
 SetPage.getInitialProps = () => {

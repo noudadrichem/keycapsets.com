@@ -125,6 +125,7 @@ const GET_SINGLE_SET_QUERY = gql`
             brand
             material
             isInterestCheck
+            designedBy
         }
     }
 `;
