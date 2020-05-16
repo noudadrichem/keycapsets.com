@@ -16,6 +16,7 @@ export const INITITAL_STATE: InititalState = {
     allKeycapsetsCount: 0,
     isLoggedIn: false,
 };
+
 const context = createContext<any>(INITITAL_STATE);
 const StateProvider = ({ children }) => {
     const isBrowser: boolean = typeof window !== `undefined`;
@@ -23,15 +24,19 @@ const StateProvider = ({ children }) => {
         switch (action.type) {
             case 'set':
                 // console.log('set...', action.payload)
-                const newState: InititalState = {
+                const setNewState: InititalState = {
                     ...state,
                     ...action.payload,
                 };
-                return newState;
+                return setNewState;
             case 'user':
-                state.isLoggedIn = true;
-                state.user = action.payload.user;
-                return state;
+                const withUserState: InititalState = {
+                    ...state,
+                    isLoggedIn: true,
+                    user: action.payload.user,
+                };
+                console.log('trigger user actions');
+                return withUserState;
             default:
                 return state;
         }

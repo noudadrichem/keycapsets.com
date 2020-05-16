@@ -45,7 +45,8 @@ function GoogleAuth(props: GoogleAuthProps): JSX.Element {
                 },
             });
             loginUser(googleLogin);
-            router.push('/');
+            // router.push('/');
+            window.location.href = '/';
         } catch (err) {
             console.error(err);
         }

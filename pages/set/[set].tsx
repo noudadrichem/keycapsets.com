@@ -54,7 +54,11 @@ function SetPage() {
         autoplay: set.coverImageUrl.length > 1,
         autoPlaySpeed: 1600,
     };
-    console.log(set);
+
+    function designerClaimsSet() {
+        console.log('designer claims set.');
+    }
+
     return (
         set !== undefined && (
             <>
@@ -118,17 +122,12 @@ function SetPage() {
                                     </ButtonLink>
                                 )}
 
-                                <pre>{JSON.stringify(state.user, null, 4)}</pre>
-                                {/* {
-                                    state.user?.isDesigner && (
-                                        <Button
-                                            size="sm"
-                                            variant="secondary"
-                                        >
-                                            Did you design this set? Claim it!
-                                        </Button>
-                                    )
-                                } */}
+                                {/* <pre>{JSON.stringify(state, null, 4)}</pre> */}
+                                {state.isLoggedIn && state.user.isDesigner && (
+                                    <Button size="sm" variant="secondary" onClick={designerClaimsSet}>
+                                        Did you design this set? Claim it!
+                                    </Button>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -147,4 +146,4 @@ SetPage.getInitialProps = () => {
     };
 };
 
-export default withGA('UA-115865530-2', Router)(withData(SetPage));
+export default withGA('UA-115865530-2', Router)(SetPage);

@@ -73,7 +73,8 @@ function RedditAuth(props: RedditAuthProps): JSX.Element {
             },
         });
         loginUser(redditLogin);
-        router.push('/');
+        // router.push('/');
+        window.location.href = '/';
     }
 
     return asLink ? (

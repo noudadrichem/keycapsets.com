@@ -1,4 +1,4 @@
-import React, { ReactNode, useContext } from 'react';
+import React, { ReactNode, useContext, useEffect } from 'react';
 import Link from 'next/link';
 
 import Button from './Button';
@@ -17,8 +17,6 @@ function Nav(props: NavProps): JSX.Element {
     const { isLargeContainer } = props;
     const { state } = useContext<Context>(context);
     const { isLoggedIn }: InititalState = state;
-    console.log('nav state...', state);
-
     return (
         <nav className="nav">
             {/* <a className="discord-banner" href="https://discord.gg/dq8cyMS">
