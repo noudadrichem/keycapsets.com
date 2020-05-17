@@ -25,6 +25,12 @@
 
     .logo {
         cursor: pointer;
+        display: flex;
+        align-items: center;
+
+        .pill {
+            margin-left: 12px;
+        }
     }
 
     .container {

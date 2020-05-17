@@ -8,6 +8,7 @@ import { InititalState, Context } from 'typings';
 import { context } from '../context';
 import UserProfileTag from './UserProfileTag';
 import Logo from './Logo';
+import Pill from './Pill';
 
 interface NavProps {
     isLargeContainer?: boolean;
@@ -31,10 +32,11 @@ function Nav(props: NavProps): JSX.Element {
                 <div className="nav-container">
                     <div className="logo">
                         <Link href="/" as="/">
-                            <a className="logo">
+                            <a className="">
                                 <Logo width={106} />
                             </a>
                         </Link>
+                        <Pill color="gray" text="BETA" />
                     </div>
 
                     <div className="nav-items">
