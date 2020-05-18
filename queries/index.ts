@@ -188,6 +188,7 @@ const WANT_SET = gql`
     mutation WANT_SET($setId: String!) {
         wantSet(setId: $setId) {
             message
+            setId
         }
     }
 `;
@@ -211,6 +212,14 @@ const UPDATE_USER = gql`
     }
 `;
 
+const USER_WANTS = gql`
+    {
+        userWants {
+            set
+        }
+    }
+`;
+
 export {
     FETCH_KEYCAPSET_QUERY,
     CREATE_KEYSET_MUTATION,
@@ -224,4 +233,5 @@ export {
     WANT_SET,
     CLAIM_SET,
     UPDATE_USER,
+    USER_WANTS,
 };

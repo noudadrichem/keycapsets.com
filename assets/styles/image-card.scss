@@ -71,6 +71,23 @@
                     font-size: 12px;
                 }
             }
+
+            .heart-icon {
+                display: inline-flex;
+
+                .heart-fill {
+                    visibility: hidden;
+                    &.show {
+                        visibility: visible;
+                    }
+                }
+
+                &:hover {
+                    .heart-fill {
+                        visibility: visible;
+                    }
+                }
+            }
         }
 
         .set-title {

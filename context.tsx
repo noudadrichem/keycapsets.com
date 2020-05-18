@@ -15,6 +15,7 @@ export const INITITAL_STATE: InititalState = {
     searchQuery: '',
     allKeycapsetsCount: 0,
     isLoggedIn: false,
+    userWants: [],
 };
 
 const context = createContext<any>(INITITAL_STATE);

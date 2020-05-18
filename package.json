@@ -49,12 +49,14 @@
         "react-lazyload": "^2.6.7",
         "react-select": "^3.1.0",
         "react-slick": "^0.25.2",
+        "react-tooltip": "^4.2.6",
         "slick-carousel": "^1.8.1",
         "url-loader": "^3.0.0"
     },
     "devDependencies": {
         "@types/node": "^13.13.2",
         "@types/react": "^16.9.34",
+        "@types/react-tooltip": "^4.2.4",
         "husky": "^4.2.5",
         "json-loader": "^0.5.7",
         "prettier": "^2.0.5",

@@ -19,6 +19,8 @@ import Meta from '../components/Meta';
 import Nav from '../components/Nav';
 import Tabs from '../components/Filters';
 import CTACard from '../components/CTACard';
+import { useQuery } from '@apollo/react-hooks';
+import { USER_WANTS } from '../queries';
 
 interface HomeProps {
     url: any;
@@ -32,6 +34,19 @@ function Home(props: HomeProps) {
     const [loadingExtra, setLoadingExtra] = useState<boolean>(true);
     const [isAtBottomOfPage, setIsAtBottomOfPage] = useState(false);
     const { state, dispatch } = useContext<Context>(context);
+
+    const { data: userWantSetsResponse, loading: userWantsLoading, error: userWantsError } = useQuery(USER_WANTS);
+
+    useEffect(() => {
+        if (!userWantsLoading) {
+            dispatch({
+                type: 'set',
+                payload: {
+                    userWants: userWantSetsResponse.userWants.map(({ set }) => set),
+                },
+            });
+        }
+    }, [userWantSetsResponse]);
 
     const queryFilters = useMemo(
         () => ({
@@ -117,7 +132,7 @@ function Home(props: HomeProps) {
         <>
             <Meta metaImgUrl={props.metaImg} />
             <div className="container large">
-                <Heading mainTitle="Find your favorite keycapset!" subTitle="keycapsets.com" isHome />
+                <Heading mainTitle="Find your favorite keycapset!" subTitle="" isHome />
                 <Tabs />
                 {initLoading ? <LoadingKeyboardIllustration /> : <Images keycapsets={keycapsets} />}
                 {loadingExtra && <LoadingKeyboardIllustration scale={0.3} />}
@@ -129,4 +144,4 @@ function Home(props: HomeProps) {
     );
 }
 
-export default withGA('UA-115865530-2', Router)(withData(Home));
+export default withGA('UA-115865530-2', Router)(Home);

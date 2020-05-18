@@ -14,7 +14,7 @@ import RedditAuth from '../components/RedditAuth';
 function Login() {
     return (
         <div className="container sign-up">
-            <Heading mainTitle="Login on keycapsets" subTitle="Welcome back, enjoy the ride!" left />
+            <Heading mainTitle="Login on keycapsets" subTitle="Welcome back, enjoy the platform!" left />
 
             <div className="cards">
                 <div className="card center">
