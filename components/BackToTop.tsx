@@ -13,6 +13,7 @@ function BackToTop(): JSX.Element {
             const innerHeight = window.innerHeight;
             setIsPastOffset(y > innerHeight / 2);
         }
+        return () => {};
     });
 
     function scrollToTop() {

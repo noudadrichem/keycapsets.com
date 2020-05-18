@@ -13,7 +13,6 @@ function Images({ keycapsets }: ImagesProps): JSX.Element {
     });
 
     return (
-
         <div className="images-container">
             {keycapsets.length > 0 ? (
                 keycapsets.map((keycapset: Keycapset) => <ImageCard {...{ keycapset }} key={keycapset._id} />)

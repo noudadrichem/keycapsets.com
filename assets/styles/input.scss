@@ -8,6 +8,12 @@
     position: relative;
     -webkit-appearance: none;
 
+    &.invalid {
+        input {
+            border: 1px solid var(--red);
+        }
+    }
+
     .icon {
         height: 12px;
         display: inline-flex;
