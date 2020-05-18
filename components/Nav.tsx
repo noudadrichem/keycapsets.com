@@ -40,10 +40,10 @@ function Nav(props: NavProps): JSX.Element {
                     </div>
 
                     <div className="nav-items">
-                        <Link href="/vendors" as="/vendors">
+                        <Link href="/vendors" as="/vendors" prefetch>
                             <a className="nav-item">Vendors</a>
                         </Link>
-                        <Link href="/about" as="/about">
+                        <Link href="/about" as="/about" prefetch>
                             <a className="nav-item">About</a>
                         </Link>
                         {!isLoggedIn ? (
