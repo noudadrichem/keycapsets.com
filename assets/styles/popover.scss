@@ -1,0 +1,86 @@
+.popover {
+    // width: calc(100% + 64px);
+    position: absolute;
+    top: calc(100%);
+    left: 50%;
+    transform: translateX(-50%);
+    padding-top: 16px;
+    display: block;
+    font-family: 'Rubik', sans-serif;
+
+    &.on-hover {
+        display: none;
+
+        // ? ADD THIS TO COMPONENT:
+        // &:hover {
+        //     .popover {
+        //         display: block;
+        //     }
+        // }
+    }
+
+    &-container {
+        background: var(--white);
+        box-shadow: 0px 1px 2px rgba(0, 16, 75, 0.2);
+        border-radius: 6px;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        color: var(--text-color-light);
+
+        &.center {
+            align-items: center;
+        }
+
+        .item {
+            white-space: nowrap;
+            font-weight: 300;
+
+            &:hover {
+                color: var(--text-color);
+            }
+        }
+
+        &:after {
+            content: '';
+            position: absolute;
+            top: 6px;
+            left: calc(50% - 12px);
+            width: 0;
+            height: 0;
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-bottom: 12px solid var(--white);
+        }
+
+        a {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            margin-bottom: 24px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+.tooltip {
+    background: var(--white) !important;
+    box-shadow: 0px 1px 12px -6px rgba(0, 16, 75, 0.1) !important;
+    border-radius: 6px !important;
+    // padding: 16px !important;
+    // display: flex !important;
+    // flex-direction: column !important;
+    border: 0 !important;
+    color: var(--text-color-light) !important;
+
+    &.place-top {
+        &:after {
+            border-top-color: var(--white) !important;
+            border-top-style: solid !important;
+            border-top-width: 6px !important;
+        }
+    }
+}

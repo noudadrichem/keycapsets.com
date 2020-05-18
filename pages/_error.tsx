@@ -8,6 +8,7 @@ import '../assets/styles/main.scss';
 import Heading from '../components/Heading';
 import Footer from '../components/Footer';
 import Nav from '../components/Nav';
+import Meta from '../components/Meta';
 
 interface ErrorProps {
     statusCode?: string;
@@ -19,32 +20,14 @@ function Error(props: ErrorProps) {
     const description = `This page doesn't exist...`;
 
     return (
-        <>
-            <Head>
-                <title>{title}</title>
-                <meta
-                    name="viewport"
-                    key="viewport"
-                    content="width=device-width, initial-scale=1.0, maximum-scale=1.00, minimum-scale=1.00"
-                />
-                <meta name="author" content="noudadrichem" />
-                <meta property="og:title" content={title} />
-                <meta name="twitter:title" content={title} />
-
-                <meta name="description" content={description} />
-                <meta property="og:description" content={description} />
-                <meta name="twitter:description" content={description} />
-            </Head>
-            <Nav />
-            <div className="container">
-                <Heading
-                    mainTitle={statusCode ? `An error ${statusCode} occurred on server` : 'An error occurred on client'}
-                    subTitle=""
-                    backgroundColor="#f8abab"
-                />
-            </div>
-            <Footer />
-        </>
+        <div className="container">
+            <Heading
+                mainTitle={statusCode ? `An error ${statusCode} occurred on server` : 'An error occurred on client'}
+                subTitle="This page does not exist..."
+                backgroundColor="#f8abab"
+                left
+            />
+        </div>
     );
 }
 

@@ -1,13 +1,20 @@
 @import url('https://fonts.googleapis.com/css?family=Rubik:400,400i,500&display=swap');
 @import 'variables';
 @import 'typography';
+@import 'nav';
 @import 'set';
+@import 'page';
 @import 'button';
 @import 'button-link';
 @import 'heading';
+@import 'user-profile-tag';
+@import 'popover';
 @import 'filters';
 @import 'images';
 @import 'upload';
+@import 'user';
+@import 'cards';
+@import 'sign-up';
 @import 'image-card';
 @import 'vendor-card';
 @import 'arrow';
@@ -116,8 +123,57 @@ img {
 
 .text-container {
     max-width: 900px;
+    padding-bottom: 56px;
 }
 
 .clickable {
     cursor: pointer;
+}
+
+.relative {
+    position: relative;
+}
+
+.features-container {
+    margin: 32px 0;
+
+    h3 {
+        margin-bottom: 8px;
+    }
+
+    .features {
+        color: var(--text-color-light);
+        padding-left: 24px;
+
+        li {
+            color: inherit;
+            font-size: 18px;
+            margin-bottom: 8px;
+            list-style-image: url('/images/keycap-icon-8.svg');
+        }
+    }
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 24px;
+
+    @media screen and (min-width: 556px) {
+        // margin: 0 12px;
+    }
+
+    &.two-column {
+        grid-template-columns: 1fr;
+
+        @media screen and (min-width: 556px) {
+            grid-template-columns: 2fr 1fr;
+        }
+    }
+}
+
+.disabled {
+    cursor: auto;
+    pointer-events: none;
+    opacity: 0.5;
 }

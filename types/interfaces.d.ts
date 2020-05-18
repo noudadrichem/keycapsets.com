@@ -20,6 +20,7 @@ declare module 'typings' {
         accentColor2: string;
         accentColor3: string;
         isInterestCheck: boolean;
+        designedBy: string[];
     }
 
     interface Brand {
@@ -60,6 +61,25 @@ declare module 'typings' {
         fetchedKeycapsetsLength: number;
         searchQuery: string;
         allKeycapsetsCount: number;
+        isLoggedIn: boolean;
+        user?: User;
+        fetchedKeycapsetsLength: number;
+        userWants: string[];
+    }
+
+    interface User {
+        _id: ID;
+        name: string;
+        email: string;
+        locked: boolean;
+        isVendor: boolean;
+        geekhackUserName: string;
+        redditUserName: string;
+        avatar: string;
+        locale: string;
+        slug: string;
+        isVendor: boolean;
+        isDesigner: boolean;
     }
 
     interface Action {

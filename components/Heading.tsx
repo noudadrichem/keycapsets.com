@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import Pill from './Pill';
+
 import SearchSets from './SearchSets';
 
 interface HeadingProps {
@@ -17,7 +17,6 @@ function Heading(props: HeadingProps): JSX.Element {
 
     return (
         <header className={`heading ${left ? 'left' : 'center'}`} style={{ background: backgroundColor }}>
-            <Pill color="gray" text="BETA" />
             <h4 className={`title-sub italic ${left ? 'left' : 'center'}`}>{subTitle}</h4>
             <h1 className={`title no-bold ${left ? 'left' : 'center'}`}>{mainTitle}</h1>
 

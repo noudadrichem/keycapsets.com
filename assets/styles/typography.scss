@@ -98,6 +98,10 @@ p {
     &.large {
         font-size: 24px;
     }
+
+    &.small-width {
+        max-width: 800px;
+    }
 }
 
 .no-margin {

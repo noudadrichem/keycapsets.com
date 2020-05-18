@@ -8,6 +8,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    font-weight: 700;
 
     &:disabled {
         opacity: 0.5;
@@ -40,6 +41,11 @@
     &.md {
         padding: 12px 16px;
         font-size: 16px;
+
+        &.medium-large {
+            font-size: 18px;
+            padding: 14px 28px;
+        }
     }
 
     &.lg {
@@ -106,7 +112,8 @@
         }
     }
 
-    .google-icon {
+    .google-icon,
+    .reddit-icon {
         margin-right: 8px;
     }
 }
