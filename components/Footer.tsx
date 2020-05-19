@@ -1,6 +1,8 @@
 import React from 'react';
 
-interface FooterProps {}
+interface FooterProps {
+    noSponsor?: boolean;
+}
 
 // TODO: Move icons to own component
 const Twitter = ({ size = 24 }) => (
@@ -23,7 +25,7 @@ const Discord = ({ size = 24 }) => (
 );
 
 function Footer(props: FooterProps): JSX.Element {
-    const {} = props;
+    const { noSponsor = false } = props;
 
     return (
         <div className="footer">
@@ -34,16 +36,17 @@ function Footer(props: FooterProps): JSX.Element {
                         in Utrecht.
                     </p>
                 </div>
-
-                <div className="sponsored-by">
-                    <a href="https://candykeys.com/" target="_blank" className="sponsored-by">
-                        <img
-                            src="https://webiz.ams3.cdn.digitaloceanspaces.com/ck/favicon/favicon-16x16.png"
-                            alt="Logo CandyKeys"
-                        />
-                        Sponsored by<b>&nbsp;CandyKeys</b>
-                    </a>
-                </div>
+                {!noSponsor && (
+                    <div className="sponsored-by">
+                        <a href="https://candykeys.com/" target="_blank" className="sponsored-by">
+                            <img
+                                src="https://webiz.ams3.cdn.digitaloceanspaces.com/ck/favicon/favicon-16x16.png"
+                                alt="Logo CandyKeys"
+                            />
+                            Sponsored by<b>&nbsp;CandyKeys</b>
+                        </a>
+                    </div>
+                )}
 
                 <div className="socials-container">
                     {/* <a href="https://bunq.me/noudadrichem/2/">Buy me a cup of coffee</a> */}
