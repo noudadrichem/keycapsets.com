@@ -7,6 +7,7 @@ import { Keycapset, Vendor } from 'typings';
 import withGA from 'next-ga';
 import withData from '../../hooks/withData';
 import countryIsoList from '../../assets/countries';
+import continentIsoList from '../../assets/continents';
 import { GET_SINGLE_VENDOR_QUERY, GET_SETS_BY_VENDOR } from '../../queries';
 
 import Footer from '../../components/Footer';
@@ -57,17 +58,19 @@ function VendorPage(props: SetProps) {
 
     const vendor: Vendor = data.vendorBySlug;
 
-    console.log(vendor);
-
-    const vendorRegion = countryIsoList.find((country) => {
+    const vendorRegion = () => {
         const [vendorContinent, vendorCountry] = vendor.country.split('-');
 
-        if (typeof vendorCountry === undefined) {
-            return country.continentCode === vendorContinent;
+        if (typeof vendorCountry === 'undefined') {
+            return continentIsoList.find((continent) => {
+                return continent.continentCode === vendorContinent;
+            });
         }
 
-        return country.continentCode === vendorContinent && country.twoLetterCountryCode === vendorCountry;
-    });
+        return countryIsoList.find((country) => {
+            return country.continentCode === vendorContinent && country.twoLetterCountryCode === vendorCountry;
+        });
+    };
 
     return (
         vendor !== undefined && (
@@ -85,8 +88,8 @@ function VendorPage(props: SetProps) {
                         <div>
                             <h3>Info</h3>
                             <p>Name: {vendor.name}</p>
-                            <p>Continent: {vendorRegion?.continentName || '-'}</p>
-                            <p>Country: {vendorRegion?.countryName || '-'}</p>
+                            {vendorRegion().continentName ? <p>Continent: {vendorRegion().continentName}</p> : null}
+                            {vendorRegion().countryName ? <p>Country: {vendorRegion().countryName}</p> : null}
 
                             <Socials socials={vendor.socials} />
 
