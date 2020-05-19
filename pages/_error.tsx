@@ -8,7 +8,6 @@ import '../assets/styles/main.scss';
 import Heading from '../components/Heading';
 import Footer from '../components/Footer';
 import Nav from '../components/Nav';
-import CTACard from '../components/CTACard';
 
 interface ErrorProps {
     statusCode?: string;
@@ -40,9 +39,8 @@ function Error(props: ErrorProps) {
             <div className="container">
                 <Heading
                     mainTitle={statusCode ? `An error ${statusCode} occurred on server` : 'An error occurred on client'}
-                    subTitle="This page does not exist..."
+                    subTitle=""
                     backgroundColor="#f8abab"
-                    left
                 />
             </div>
             <Footer />

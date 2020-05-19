@@ -1,26 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import Head from 'next/head';
-import { useApolloClient } from '@apollo/react-hooks';
 import { ApolloClient } from 'apollo-boost';
-import { InititalState, Keycapset } from 'typings';
 import withGA from 'next-ga';
-import { forceCheck } from 'react-lazyload';
-
-import withData from '../hooks/withData';
-import Context, { INITITAL_STATE, reduceState } from '../context';
-import { FETCH_KEYCAPSET_QUERY } from '../queries';
-
-import Heading from '../components/Heading';
-import Footer from '../components/Footer';
-import Images from '../components/Images';
-import Nav from '../components/Nav';
-import LoadingKeyboardIllustration from '../components/LoadingKeyboardIllustration';
-import CTACard from '../components/CTACard';
-import BackToTop from '../components/BackToTop';
+import { Router } from 'next/router';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
+import { Context } from 'typings';
 
 import '../assets/styles/main.scss';
+
+import { context } from '../context';
+import { useKeycapSets, KeycapSetsFilters } from '../hooks/useKeycapSets';
+import withData from '../hooks/withData';
+
+import BackToTop from '../components/BackToTop';
+import Footer from '../components/Footer';
+import Heading from '../components/Heading';
+import Images from '../components/Images';
+import LoadingKeyboardIllustration from '../components/LoadingKeyboardIllustration';
 import Meta from '../components/Meta';
-import { Router } from 'next/router';
+import Nav from '../components/Nav';
+import Tabs from '../components/Filters';
+import CTACard from '../components/CTACard';
 
 interface HomeProps {
     url: any;
@@ -28,15 +26,42 @@ interface HomeProps {
     metaImg: string;
 }
 
+const LIMIT = 24;
 function Home(props: HomeProps) {
-    const LIMIT = 282;
     const isBrowser = typeof window !== `undefined`;
-    const client = useApolloClient();
-
-    const [state, setState] = useState<InititalState>(INITITAL_STATE);
-    const [initLoading, setInitLoading] = useState<boolean>(true);
     const [loadingExtra, setLoadingExtra] = useState<boolean>(true);
     const [isAtBottomOfPage, setIsAtBottomOfPage] = useState(false);
+    const { state, dispatch } = useContext<Context>(context);
+
+    const queryFilters = useMemo(
+        () => ({
+            limit: LIMIT,
+            filter: {
+                brand: state.filters.brandFilter || [],
+                availability: state.filters.availabilityFilter === 'none' ? '' : state.filters.availabilityFilter,
+                material: state.filters.materialFilter || [],
+                type: state.filters.profileFilter,
+                name: state.searchQuery,
+            },
+        }),
+        [
+            state.searchQuery,
+            state.filters.availabilityFilter,
+            state.filters.brandFilter,
+            state.filters.materialFilter,
+            state.filters.profileFilter,
+        ]
+    );
+
+    const {
+        keycapsets,
+        allKeycapsetsCount,
+        loading: keycapsetsLoading,
+        error,
+        fetchMore: fetchMoreKeycapSets,
+    } = useKeycapSets(queryFilters);
+
+    const initLoading = keycapsetsLoading && keycapsets.length < 1;
 
     useEffect(function initializeView() {
         if (isBrowser) {
@@ -45,16 +70,25 @@ function Home(props: HomeProps) {
         }
     }, []);
 
-    useEffect(
-        function handleTabChange() {
-            fetchMoreWhenSearched();
-        },
-        [state.filters.activeTab, state.filters.availabilityFilter]
-    );
+    useEffect(() => {
+        dispatch({
+            type: 'set',
+            payload: { allKeycapsetsCount },
+        });
+    }, [allKeycapsetsCount]);
+
+    useEffect(() => {
+        dispatch({
+            type: 'set',
+            payload: {
+                fetchedKeycapsetsLength: keycapsets.length,
+            },
+        });
+    }, [keycapsets]);
 
     useEffect(
         function handleRefetchingOnBottomOfPage() {
-            const isEndReached = state.keycapsets.length === state.allKeycapsetsCount;
+            const isEndReached = keycapsets.length === allKeycapsetsCount;
 
             if (isEndReached) {
                 setLoadingExtra(false);
@@ -62,24 +96,12 @@ function Home(props: HomeProps) {
             }
             if (isAtBottomOfPage) {
                 setLoadingExtra(true);
-                fetchMoreWhenBottomOfPage();
+                fetchMoreKeycapSets();
                 setIsAtBottomOfPage(false);
                 return;
             }
         },
         [isAtBottomOfPage]
-    );
-
-    useEffect(
-        function handleSearch() {
-            if (state.searchQuery !== '' || state.searchQuery !== undefined) {
-                fetchMoreWhenSearched();
-            } else {
-                initSets();
-            }
-            forceCheck();
-        },
-        [state.searchQuery]
     );
 
     function checkIsBottomPage() {
@@ -91,79 +113,20 @@ function Home(props: HomeProps) {
         setIsAtBottomOfPage(atBottom);
     }
 
-    async function fetchMoreWhenSearched(): Promise<void> {
-        const offsetFetch: number = 0;
-        const { data } = await fetchMoreSets(offsetFetch, LIMIT);
-        const { keycapsets, allKeycapsetsCount } = data;
-
-        setGlobalState({
-            keycapsets,
-            allKeycapsetsCount,
-        });
-        setInitLoading(false);
-    }
-
-    async function fetchMoreWhenBottomOfPage(): Promise<void> {
-        if (state.searchQuery === '' || state.searchQuery === undefined) {
-            const offsetFetch: number = state.keycapsets.length;
-            const { data } = await fetchMoreSets(offsetFetch, LIMIT);
-            const { keycapsets } = data;
-
-            if (keycapsets.length > 1) {
-                if (state.searchQuery === '') {
-                    setGlobalState({
-                        keycapsets: [...state.keycapsets, ...keycapsets],
-                    });
-                } else {
-                    setGlobalState({
-                        keycapsets,
-                    });
-                }
-            } else {
-                window.removeEventListener('scroll', checkIsBottomPage);
-            }
-        }
-    }
-
-    async function initSets() {
-        const { data } = await fetchMoreSets(0, LIMIT);
-        const { keycapsets, allKeycapsetsCount } = data;
-
-        setGlobalState({
-            allKeycapsetsCount,
-            keycapsets,
-        });
-    }
-
-    async function fetchMoreSets(offset: number, limit?: number): Promise<any> {
-        const fetchSetQueryResult = await client.query({
-            query: FETCH_KEYCAPSET_QUERY,
-            variables: {
-                offset,
-                limit: limit,
-                type: state.filters.activeTab,
-                query: state.searchQuery,
-            },
-        });
-        return fetchSetQueryResult;
-    }
-
-    function setGlobalState(obj: any) {
-        setState(reduceState(state, obj));
-    }
-
     return (
-        <Context.Provider value={{ ...state, setGlobalState }}>
+        <>
             <Meta metaImgUrl={props.metaImg} />
             <Nav isLargeContainer />
             <div className="container large">
                 <Heading mainTitle="Find your favorite keycapset!" subTitle="keycapsets.com" isHome />
-                {initLoading ? <LoadingKeyboardIllustration /> : <Images />}
+                <Tabs />
+                {initLoading ? <LoadingKeyboardIllustration /> : <Images keycapsets={keycapsets} />}
                 {loadingExtra && <LoadingKeyboardIllustration scale={0.3} />}
                 <BackToTop />
             </div>
             <Footer />
-        </Context.Provider>
+            <CTACard />
+        </>
     );
 }
 

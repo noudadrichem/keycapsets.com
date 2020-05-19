@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React from 'react';
 import Error from 'next/error';
 import { useQuery } from '@apollo/react-hooks';
 import withGA from 'next-ga';
 import Router from 'next/router';
 
 import withData from '../hooks/withData';
-import Context from '../context';
 import { GET_VENDORS_QUERY } from '../queries';
 import { Vendor } from 'typings';
 
@@ -15,12 +14,10 @@ import Nav from '../components/Nav';
 import LoadingKeyboard from '../components/LoadingKeyboard';
 import VendorCard from '../components/VendorCard';
 import Meta from '../components/Meta';
-import CTACard from '../components/CTACard';
 
 import '../assets/styles/main.scss';
-import '../assets/styles/vendors.scss';
+
 import countryIsoList from '../assets/countries';
-import Head from 'next/head';
 
 interface VendorProps {}
 

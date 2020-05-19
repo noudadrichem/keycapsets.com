@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
-import Context from '../../context';
+import context from '../../context';
 import Button from '../Button';
+import { InititalState, Context } from 'typings';
 
 interface TabProps {
     id: String;
     type: 'cap' | 'availability';
+    label: string;
 }
 
 const stateFilterKeys = {
@@ -13,13 +15,20 @@ const stateFilterKeys = {
 };
 
 function Tab(props: TabProps): JSX.Element {
-    const { id, type } = props;
-    const { setGlobalState, filters } = useContext(Context);
+    const { id, type, label } = props;
+    const { state, dispatch } = useContext<Context>(context);
+    const { filters }: InititalState = state;
     const typeKey = stateFilterKeys[type];
 
     function handleUpdateFilters(): void {
-        setGlobalState({
-            filters: { ...filters, [typeKey]: id === filters[typeKey] ? 'none' : id },
+        dispatch({
+            type: 'set',
+            payload: {
+                filters: {
+                    ...filters,
+                    [typeKey]: id === filters[typeKey] ? 'none' : id,
+                },
+            },
         });
     }
 
@@ -29,9 +38,9 @@ function Tab(props: TabProps): JSX.Element {
             onClick={() => handleUpdateFilters()}
             variant="primary"
             size="sm"
-            className={isActive ? 'primary' : 'inverted'}
+            className={`${isActive ? 'primary' : 'inverted'} sm-x`}
         >
-            {id}
+            {label}
         </Button>
     );
 }

@@ -1,9 +1,9 @@
 import { gql } from 'apollo-boost';
 
 const FETCH_KEYCAPSET_QUERY = gql`
-    query FETCH_KEYCAPSET_QUERY($limit: Int, $offset: Int, $type: String, $query: String) {
+    query FETCH_KEYCAPSET_QUERY($limit: Int, $offset: Int, $filter: KeycapsetFilter) {
         allKeycapsetsCount
-        keycapsets(limit: $limit, offset: $offset, type: $type, query: $query) {
+        keycapsets(limit: $limit, offset: $offset, filter: $filter) {
             _id
             name
             type
@@ -14,6 +14,7 @@ const FETCH_KEYCAPSET_QUERY = gql`
             groupbuyEndDate
             isInterestCheck
             material
+            availability
         }
     }
 `;

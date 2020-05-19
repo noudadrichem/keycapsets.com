@@ -1,7 +1,5 @@
 import React, { ReactNode } from 'react';
 
-import '../assets/styles/pill.scss';
-
 interface PillProps {
     children?: ReactNode;
     className?: string;
@@ -14,11 +12,8 @@ function Pill(props: PillProps): JSX.Element {
 
     return (
         <div className={`pill ${color}`}>
-            {text
-                ? text
-                : color === 'green'
-                ? 'Available for purchase!'
-                : 'Not available for purchase'}
+            {children}
+            <span className="bold">{text}</span>
         </div>
     );
 }

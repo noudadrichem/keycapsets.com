@@ -48,7 +48,6 @@ declare module 'typings' {
     }
 
     interface Filters {
-        activeTab: string;
         availabilityFilter: string;
         brandFilter: string[];
         profileFilter: string[];
@@ -57,14 +56,19 @@ declare module 'typings' {
 
     interface InititalState {
         filters: Filters;
-        availability: string[];
-        brands: Brand[];
-        profiles: Profile[];
-        materials: Material[];
         keycapsets: Keycapset[];
-        filteredSets: Keycapset[];
+        fetchedKeycapsetsLength: number;
         searchQuery: string;
         allKeycapsetsCount: number;
-        setGlobalState?: Function;
+    }
+
+    interface Action {
+        type: string;
+        payload: any;
+    }
+
+    interface Context {
+        state: InititalState;
+        dispatch(action: Action): Function;
     }
 }

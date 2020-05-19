@@ -1,13 +1,12 @@
-import React, { useEffect, useContext } from 'react';
+import React, { Profiler } from 'react';
 import moment from 'moment';
-import LazyLoad, { forceCheck } from 'react-lazyload';
+import LazyLoad from 'react-lazyload';
 import Link from 'next/link';
 
 import ButtonLink from '../components/ButtonLink';
-import Pill from '../components/Pill';
-import { Keycapset, InititalState } from 'typings';
-import Context from '../context';
+import { Keycapset, Brand } from 'typings';
 import StatusLabel from './StatusLabel';
+import { BRAND_OPTIONS } from '../constants';
 
 interface ImageCardProps {
     keycapset: Keycapset;
@@ -17,79 +16,59 @@ const getDayDifference = (date: any) => moment(date).diff(moment(), 'days');
 
 function ImageCard(props: ImageCardProps): JSX.Element {
     const { keycapset } = props;
-    const { name, coverImageUrl, type, slug, groupbuyStartDate, groupbuyEndDate, isInterestCheck } = keycapset;
+    const {
+        name,
+        coverImageUrl,
+        type,
+        brand,
+        slug,
+        groupbuyStartDate,
+        groupbuyEndDate,
+        isInterestCheck,
+        material,
+    }: Keycapset = keycapset;
+    const awaitingGroupBuy: boolean = moment().diff(groupbuyStartDate, 'days') < 0;
+    const isTemplate: boolean = !keycapset.hasOwnProperty('_id');
 
-    const context = useContext<InititalState>(Context);
-    const isInFuture: boolean = moment().diff(groupbuyStartDate, 'days') < 0;
-    const isTemplate = !keycapset.hasOwnProperty('_id');
-
-    useEffect(() => {
-        if (!isTemplate) {
-            setTimeout(forceCheck);
+    function getLabelByBrand(brandValue): string {
+        const brand: Brand = BRAND_OPTIONS.find((brand: Brand) => brand.value === brandValue);
+        if (brand) {
+            return brand.label;
         }
-    }, [context.searchQuery]);
+    }
 
     return (
-        <LazyLoad offset={400} height={400} once>
+        <LazyLoad offset={400} height={400}>
             <Link href="/[type]/[set]" as={`/${type}/${slug}`}>
                 <div className={`image-card ${isTemplate ? 'disabled' : ''}`}>
                     <div className="image">
                         <img
+                            className="set"
                             src={
                                 coverImageUrl === undefined || coverImageUrl === ''
                                     ? '/images/empty-base-kit-illu.svg'
                                     : coverImageUrl
                             }
                         />
-                        <StatusLabel
-                            groupbuyStartDate={groupbuyStartDate}
-                            groupbuyEndDate={groupbuyEndDate}
-                            isIc={isInterestCheck}
-                        />
-                        ß
                     </div>
 
                     <div className="details">
                         <div className="top">
-                            <h4 className="set-title">
-                                <span className="small">{type}</span>
-                                {name || 'Title goes here'}
-                            </h4>
-                            <p className="light">{moment(groupbuyStartDate).format('YYYY')}</p>
+                            <h4 className="set-title">{name || 'Title goes here'}</h4>
+                            <StatusLabel
+                                groupbuyStartDate={groupbuyStartDate}
+                                groupbuyEndDate={groupbuyEndDate}
+                                isIc={isInterestCheck}
+                            />
                         </div>
 
                         <div className="bottom">
-                            <p className="light">
-                                {isInterestCheck ? (
-                                    <></>
-                                ) : (
-                                    <>
-                                        {isInFuture ? (
-                                            <>
-                                                Starting in{' '}
-                                                <span className="bold">{getDayDifference(groupbuyStartDate)}</span> days
-                                            </>
-                                        ) : (
-                                            <>
-                                                {getDayDifference(groupbuyEndDate) > 0 ? (
-                                                    <>
-                                                        Ending in{' '}
-                                                        <span className="bold">
-                                                            {getDayDifference(groupbuyEndDate)}
-                                                        </span>{' '}
-                                                        days
-                                                    </>
-                                                ) : (
-                                                    'Ended.'
-                                                )}
-                                            </>
-                                        )}
-                                    </>
-                                )}
-                            </p>
-                            <ButtonLink href="/[type]/[set]" as={`/${type}/${slug}`}>
-                                View this set
-                            </ButtonLink>
+                            <span className="bold">
+                                <span>
+                                    {getLabelByBrand(brand)} {type && type.toUpperCase()}
+                                </span>
+                                <span>{moment(groupbuyStartDate).format('YYYY')}</span>
+                            </span>
                         </div>
                     </div>
                 </div>

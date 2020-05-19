@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import '../assets/styles/input.scss';
-import useInput from '../hooks/useInput';
 import Button from './Button';
 
 interface InputProps {
@@ -32,11 +30,9 @@ function multipleInputsHook(props: InputProps): JSX.Element {
 
     function getAllInputValues(id, e) {
         const tempValues: string[] = [];
-        document
-            .querySelectorAll('.multiple-inputs-input')
-            .forEach((input: any) => {
-                tempValues.push(input.value);
-            });
+        document.querySelectorAll('.multiple-inputs-input').forEach((input: any) => {
+            tempValues.push(input.value);
+        });
         setInputValues(tempValues);
         onChange(inputValues);
     }
@@ -61,12 +57,7 @@ function multipleInputsHook(props: InputProps): JSX.Element {
                 />
             ))}
             {inputs.length < 11 && (
-                <Button
-                    onClick={addInput}
-                    variant="primary"
-                    size="sm"
-                    className="primary"
-                >
+                <Button onClick={addInput} variant="primary" size="sm" className="primary">
                     +
                 </Button>
             )}

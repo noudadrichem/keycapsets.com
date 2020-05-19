@@ -36,7 +36,7 @@ export const INTEREST_CHECK: 'ic' = 'ic';
 export const WAITING_FOR_GROUPBUY: 'waiting' = 'waiting';
 export const IN_GROUP_BUY: 'gb' = 'gb';
 export const ENDED: 'ended' = 'ended';
-export const AVAILABILITY: string[] = [INTEREST_CHECK, WAITING_FOR_GROUPBUY, IN_GROUP_BUY, ENDED];
+export const AVAILABILITY_OPTIONS: string[] = [INTEREST_CHECK, WAITING_FOR_GROUPBUY, IN_GROUP_BUY, ENDED];
 
 export const AVAILABILITY_FILTER: 'availability' = 'availability';
 export const BRAND_FILTER: 'brand' = 'brand';
