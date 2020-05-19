@@ -34,7 +34,7 @@ function VendorCard(props: VendorCardProps): JSX.Element {
 
                         <div className="right">
                             <ButtonLink href="/vendors/[vendor]" as={`/vendors/${slug}`}>
-                                Go to vendor
+                                More info
                             </ButtonLink>
                         </div>
                     </div>
