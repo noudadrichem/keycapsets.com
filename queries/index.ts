@@ -148,11 +148,6 @@ const REDDIT_LOGIN = gql`
     mutation REDDIT_LOGIN($redditUserName: String!, $redditId: String!) {
         redditLogin(redditUserName: $redditUserName, redditId: $redditId) {
             token
-            user {
-                name
-                googleId
-                _id
-            }
             firstLogin
         }
     }
@@ -238,6 +233,22 @@ const USER_WANTS_SETS = gql`
     }
 `;
 
+const REQUEST_DESIGNER_ROLE = gql`
+    mutation REQUEST_DESIGNER_ROLE {
+        requestDesignerRole {
+            message
+        }
+    }
+`;
+
+const REQUEST_VENDOR_ROLE = gql`
+    mutation REQUEST_VENDOR_ROLE {
+        requestVendorRole {
+            message
+        }
+    }
+`;
+
 export {
     FETCH_KEYCAPSET_QUERY,
     CREATE_KEYSET_MUTATION,
@@ -253,4 +264,6 @@ export {
     UPDATE_USER,
     USER_WANTS,
     USER_WANTS_SETS,
+    REQUEST_DESIGNER_ROLE,
+    REQUEST_VENDOR_ROLE,
 };

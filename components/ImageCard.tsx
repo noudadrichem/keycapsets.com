@@ -11,7 +11,7 @@ import HeartIcon from './HeartIcon';
 import { useMutation } from '@apollo/react-hooks';
 import { WANT_SET } from '../queries';
 import context from '../context';
-import { Router, useRouter, NextRouter } from 'next/router';
+import { useRouter, NextRouter } from 'next/router';
 
 interface ImageCardProps {
     keycapset: Keycapset;
@@ -33,7 +33,7 @@ function ImageCard(props: ImageCardProps): JSX.Element {
     const { state, dispatch } = useContext<Context>(context);
     const router: NextRouter = useRouter();
 
-    const [addWantToUser, addWantResponse] = useMutation<any>(WANT_SET);
+    const [addWantToUser] = useMutation<any>(WANT_SET);
 
     function getLabelByBrand(brandValue: string): string {
         const brand: Brand = BRAND_OPTIONS.find((brand: Brand) => brand.value === brandValue);
@@ -111,7 +111,7 @@ function ImageCard(props: ImageCardProps): JSX.Element {
                                         isDisabled={!state.isLoggedIn}
                                     />
                                     {!state.isLoggedIn && (
-                                        <ReactTooltip delayHide={1000000} className="tooltip" effect="solid" />
+                                        <ReactTooltip delayHide={500} className="tooltip" effect="solid" />
                                     )}
                                 </span>
                             </span>

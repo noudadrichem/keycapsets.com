@@ -2,18 +2,16 @@ import React, { useContext, useState, useEffect } from 'react';
 import withGA from 'next-ga';
 import Router from 'next/router';
 import { useForm } from 'react-hook-form';
-import { ApolloClient } from 'apollo-boost';
 import { Context } from 'typings';
+import { useMutation } from '@apollo/react-hooks';
+import ReactTooltip from 'react-tooltip';
 
 import context from '../../../context';
 import { Input } from '../../../hooks/useInput';
-// import countries from '../../../assets/countries';
 
 import Heading from '../../../components/Heading';
-// import Multiselect from '../../../components/Multiselect';
 import Button from '../../../components/Button';
-import { useMutation } from '@apollo/react-hooks';
-import { UPDATE_USER } from '../../../queries';
+import { UPDATE_USER, REQUEST_DESIGNER_ROLE, REQUEST_VENDOR_ROLE } from '../../../queries';
 
 interface UserEditProps {}
 
@@ -24,36 +22,48 @@ type EditProfileInputs = {
     redditUserName: string;
 };
 
-// const countriesFormatted: any[] = countries.map((country: any) => {
-//     return {
-//         label: country.countryName,
-//         value: country.twoLetterCountryCode,
-//     };
-// });
-
 function UserEdit(props: UserEditProps): JSX.Element {
-    const { state } = useContext<Context>(context);
-    // const [country, setCountry] = useState<any>();
+    const { state, dispatch } = useContext<Context>(context);
     const { register, handleSubmit, errors } = useForm<EditProfileInputs>();
     const [updateUserMutation] = useMutation(UPDATE_USER);
+    const [requestDesignerRole] = useMutation<any>(REQUEST_DESIGNER_ROLE);
 
     async function updateUser(formValues: any) {
-        const response = await updateUserMutation({
-            variables: {
-                input: {
-                    _id: state.user._id,
-                    ...formValues,
-                    /**
-                     *  _id: ID!
-                        name: String
-                        email: String
-                        geekhackUserName: String
-                        redditUserName: String
-                     */
+        try {
+            const response = await updateUserMutation({
+                variables: {
+                    input: {
+                        _id: state.user._id,
+                        ...formValues,
+                    },
                 },
-            },
-        });
-        console.log('response...', response);
+            });
+            console.log('response...', response);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    async function signUpAsDesigner() {
+        try {
+            const response = await requestDesignerRole();
+            console.log('sign up as designer...', response.data);
+            dispatch({
+                type: 'set',
+                payload: {
+                    user: {
+                        ...state.user,
+                        isDesigner: true,
+                    },
+                },
+            });
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    async function signUpAsVendor() {
+        console.log('email me for info...');
     }
 
     useEffect(function initialRender() {}, []);
@@ -114,13 +124,6 @@ function UserEdit(props: UserEditProps): JSX.Element {
                                 defaultValue={state.user.redditUserName}
                             />
 
-                            {/* <Multiselect
-                            label="Country"
-                            onChange={(selectedCountry: any) => setCountry(selectedCountry)}
-                            options={countriesFormatted}
-                            defaultValue={{ label: 'Netherlands', value: 'NL' }}
-                        /> */}
-
                             <button className="btn secondary md" type="submit">
                                 Update profile
                             </button>
@@ -130,21 +133,23 @@ function UserEdit(props: UserEditProps): JSX.Element {
                     <div className="column cards vertical">
                         <div className="card center">
                             <h4>Are you a keycapset designer?</h4>
-                            <Button onClick={() => console.log('sign up as designer')} variant="primary" size="sm">
-                                Get the designer role
+                            <Button
+                                onClick={signUpAsDesigner}
+                                variant="primary"
+                                size="sm"
+                                isDisabled={state.user.isDesigner}
+                            >
+                                {state.user.isDesigner ? 'You already are' : 'Get the designer role'}
                             </Button>
                         </div>
 
                         <div className="card center">
                             <h4>Are you a vendor?</h4>
-                            <Button
-                                onClick={() => console.log('sign up as vendordesigner')}
-                                variant="primary"
-                                size="sm"
-                            >
-                                Get the vendor role
+                            <Button onClick={signUpAsVendor} variant="primary" size="sm" isDisabled>
+                                <span data-tip="Email me for more info">Get the vendor role(coming soon)</span>
                             </Button>
                         </div>
+                        <ReactTooltip place="bottom" delayHide={500} className="tooltip" effect="solid" />
                     </div>
                 </div>
             </div>
