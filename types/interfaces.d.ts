@@ -20,7 +20,7 @@ declare module 'typings' {
         accentColor2: string;
         accentColor3: string;
         isInterestCheck: boolean;
-        designedBy: string[];
+        designedBy?: string[];
     }
 
     interface Brand {

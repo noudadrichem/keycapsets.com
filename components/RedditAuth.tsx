@@ -73,7 +73,10 @@ function RedditAuth(props: RedditAuthProps): JSX.Element {
             },
         });
         loginUser(redditLogin);
-        // router.push('/');
+        if (redditLogin.firstLogin) {
+            window.location.href = '/user/edit';
+            return;
+        }
         window.location.href = '/';
     }
 

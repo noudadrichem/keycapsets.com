@@ -33,6 +33,12 @@
         }
     }
 
+    .hamburger-icon {
+        position: absolute;
+        top: 36px;
+        right: 24px;
+    }
+
     .container {
         padding-top: 80px;
         padding-bottom: 64px;
@@ -70,6 +76,10 @@
                 justify-content: flex-end;
                 align-items: center;
                 flex: 1;
+
+                &.mobile {
+                    display: none;
+                }
 
                 .btn-sign-up {
                     position: relative;

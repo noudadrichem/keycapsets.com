@@ -91,10 +91,6 @@ function UploadSet(props: UploadSetProps): JSX.Element {
     };
 
     useEffect(() => {
-        Router.push('/');
-    });
-
-    useEffect(() => {
         const oneMonthLater = moment(startDateValue).add(1, 'months').add(1, 'days').format('YYYY-MM-DD');
         setEndDateValue(oneMonthLater);
     }, [startDateValue]);
@@ -180,7 +176,7 @@ function UploadSet(props: UploadSetProps): JSX.Element {
         console.error('error', error);
         return <p>'Error loading keycapsets.com... Please refresh this page'</p>;
     }
-    return null;
+
     return (
         <div className="container upload">
             <Heading mainTitle="Upload a keycapset" subTitle="Make your set famous!" left />
@@ -191,7 +187,7 @@ function UploadSet(props: UploadSetProps): JSX.Element {
                     <Checkbox
                         label="Is this an interest check?"
                         checked={isInterestCheckValue}
-                        getVal={(isChecked) => setIsInterestCheckValue(isChecked)}
+                        getVal={(isChecked: boolean) => setIsInterestCheckValue(isChecked)}
                     />
 
                     {nameInput}

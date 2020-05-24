@@ -12,6 +12,8 @@ import MultiSelect from '../Multiselect';
 import Select from '../Select';
 import Tab from './Tab';
 import Arrow from '../Arrow';
+import Link from 'next/link';
+import ButtonLink from '../ButtonLink';
 
 interface FiltersProps {}
 
@@ -153,6 +155,10 @@ function Filters(props: FiltersProps): JSX.Element {
                             options={MATERIAL_OPTIONS}
                             onChange={handleMaterialFilter}
                         />
+                    </div>
+
+                    <div className="filter favorites">
+                        <ButtonLink href="/user">My favorites</ButtonLink>
                     </div>
                 </div>
 

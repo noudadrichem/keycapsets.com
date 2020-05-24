@@ -56,7 +56,7 @@ function ImageCard(props: ImageCardProps): JSX.Element {
                 dispatch({
                     type: 'set',
                     payload: {
-                        userWants: [...state.userWants, response.data.wantSet.setId],
+                        userWants: [...state.userWants, keycapset._id],
                     },
                 });
             } catch (err) {

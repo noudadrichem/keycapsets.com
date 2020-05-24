@@ -45,7 +45,11 @@ function GoogleAuth(props: GoogleAuthProps): JSX.Element {
                 },
             });
             loginUser(googleLogin);
-            // router.push('/');
+
+            if (googleLogin.firstLogin) {
+                window.location.href = '/user/edit';
+                return;
+            }
             window.location.href = '/';
         } catch (err) {
             console.error(err);

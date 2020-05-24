@@ -62,6 +62,14 @@
             .input-wrapper {
                 min-width: 216px;
             }
+
+            &.favorites {
+                justify-content: center;
+
+                .button-link {
+                    margin-top: 16px;
+                }
+            }
         }
     }
 

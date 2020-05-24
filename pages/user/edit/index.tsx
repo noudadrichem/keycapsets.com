@@ -27,6 +27,7 @@ type EditProfileInputs = {
 function UserEdit(props: UserEditProps): JSX.Element {
     const { state, dispatch } = useContext<Context>(context);
     const { register, handleSubmit, errors } = useForm<EditProfileInputs>();
+    const [isUpdated, setIsUpdated] = useState<boolean>(false);
     const [updateUserMutation] = useMutation(UPDATE_USER);
     const [requestDesignerRole] = useMutation<any>(REQUEST_DESIGNER_ROLE);
 
@@ -41,6 +42,10 @@ function UserEdit(props: UserEditProps): JSX.Element {
                 },
             });
             console.log('response...', response);
+            setIsUpdated(true);
+            setTimeout(() => {
+                setIsUpdated(false);
+            }, 2000);
         } catch (err) {
             console.log(err);
         }
@@ -67,8 +72,6 @@ function UserEdit(props: UserEditProps): JSX.Element {
     async function signUpAsVendor() {
         console.log('email me for info...');
     }
-
-    useEffect(function initialRender() {}, []);
 
     useEffect(
         function handleFormErrors() {
@@ -127,7 +130,7 @@ function UserEdit(props: UserEditProps): JSX.Element {
                                 />
 
                                 <button className="btn secondary md" type="submit">
-                                    Update profile
+                                    {isUpdated ? 'Succesfully updated' : 'Update profile'}
                                 </button>
                             </form>
                         </div>

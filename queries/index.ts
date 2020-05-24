@@ -183,7 +183,6 @@ const WANT_SET = gql`
     mutation WANT_SET($setId: String!) {
         wantSet(setId: $setId) {
             message
-            setId
         }
     }
 `;
