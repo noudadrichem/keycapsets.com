@@ -3,27 +3,21 @@ import { Context } from 'typings';
 import context from '../context';
 import Link from 'next/link';
 import { logoutUser } from '../utils/user';
+import useClickOutside from '../hooks/useClickOutside';
 
 function UserProfileTag() {
     const { state } = useContext<Context>(context);
     const [isPopoverShown, setIspopoverShown] = useState<Boolean>(false);
     const popup: any = useRef();
-    console.log(popup);
+
+    useClickOutside(popup, handleClickOutside);
 
     function logout() {
         logoutUser();
     }
 
-    useEffect(() => {
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => document.removeEventListener('mousedown', handleClickOutside);
-    });
-
     function handleClickOutside(e: any) {
-        console.log('handle click outside...');
-        // if (popup && !popup.current.contains(e.target)) {
-        //     setIspopoverShown(false);
-        // }
+        setIspopoverShown(false);
     }
 
     return (
@@ -42,7 +36,7 @@ function UserProfileTag() {
                     </div>
                 }
                 {isPopoverShown && (
-                    <div className="popover account">
+                    <div className="popover account" ref={popup}>
                         <div className="popover-container center">
                             <Link href="/user/edit">
                                 <a className="item clickable">Edit profile</a>

@@ -46,6 +46,11 @@ function Nav(props: NavProps): JSX.Element {
                         <Link href="/about" as="/about" prefetch>
                             <a className="nav-item">About</a>
                         </Link>
+                        {!isLoggedIn && (
+                            <Link href="/login" as="/login" prefetch>
+                                <a className="nav-item">Login</a>
+                            </Link>
+                        )}
                         {!isLoggedIn ? (
                             <Button variant="primary" size="md" className="btn-sign-up medium-large">
                                 Sign up

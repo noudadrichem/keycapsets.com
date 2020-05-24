@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { Router } from 'next/router';
 import withGA from 'next-ga';
 
-import withData from '../../hooks/withData';
-
 import Heading from '../../components/Heading';
 import GoogleAuth from '../../components/GoogleAuth';
 import Checkbox from '../../components/Checkbox';
@@ -45,4 +43,4 @@ function SignUpGoogle() {
     );
 }
 
-export default withGA('UA-115865530-2', Router)(withData(SignUpGoogle));
+export default withGA('UA-115865530-2', Router)(SignUpGoogle);
