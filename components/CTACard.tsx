@@ -30,7 +30,7 @@ function CTACard(props: CTACardProps): JSX.Element {
     const [visible, setVisible] = useState(false);
 
     useEffect(() => {
-        let timeout;
+        let timeout: any;
         const KEYVALUE: string = window.localStorage.getItem(KEY);
         const ctaDate: Moment = moment(KEYVALUE);
         const isSixHoursPast: boolean = moment().diff(ctaDate, 'hours') > 6;

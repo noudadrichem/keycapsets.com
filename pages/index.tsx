@@ -138,7 +138,6 @@ function Home(props: HomeProps) {
                 {loadingExtra && <LoadingKeyboardIllustration scale={0.3} />}
                 <BackToTop />
             </div>
-            <Footer />
             <CTACard />
         </>
     );

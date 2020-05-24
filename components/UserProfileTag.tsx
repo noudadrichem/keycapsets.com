@@ -41,9 +41,9 @@ function UserProfileTag() {
                             <Link href="/user/edit">
                                 <a className="item clickable">Edit profile</a>
                             </Link>
-                            {/* <Link href="/user/[usernam]" as={`/user/${state.user.slug}`}>
-                                <a className="item clickable">See profile</a>
-                            </Link> */}
+                            <Link href="/user/" as={`/user/`}>
+                                <a className="item clickable">My favorites</a>
+                            </Link>
                             <a className="item clickable" onClick={logout}>
                                 Logout
                             </a>

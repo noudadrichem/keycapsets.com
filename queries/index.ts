@@ -220,6 +220,24 @@ const USER_WANTS = gql`
     }
 `;
 
+const USER_WANTS_SETS = gql`
+    {
+        userWantsSets {
+            _id
+            name
+            type
+            brand
+            coverImageUrl
+            slug
+            groupbuyStartDate
+            groupbuyEndDate
+            isInterestCheck
+            material
+            availability
+        }
+    }
+`;
+
 export {
     FETCH_KEYCAPSET_QUERY,
     CREATE_KEYSET_MUTATION,
@@ -234,4 +252,5 @@ export {
     CLAIM_SET,
     UPDATE_USER,
     USER_WANTS,
+    USER_WANTS_SETS,
 };

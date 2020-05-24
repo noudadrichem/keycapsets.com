@@ -66,83 +66,89 @@ function UserEdit(props: UserEditProps): JSX.Element {
     );
 
     return (
-        <div className="container user edit">
-            <Heading
-                mainTitle={`Setup your profile...`}
-                subTitle={`Hee, ${state.user.isVendor ? 'Vendor' : state.user.isDesigner ? 'Designer' : ''} ${
-                    state.user.name
-                }`}
-                left
-            />
+        state.user !== undefined && (
+            <div className="container user edit">
+                <Heading
+                    mainTitle={`Setup your profile...`}
+                    subTitle={`Hee, ${state.user.isVendor ? 'Vendor' : state.user.isDesigner ? 'Designer' : ''} ${
+                        state.user.name
+                    }`}
+                    left
+                />
 
-            <div className="grid two-column">
-                <div className="column">
-                    <form onSubmit={handleSubmit(updateUser)}>
-                        <Input
-                            id="name"
-                            label="Full name"
-                            reference={register({ required: true })}
-                            defaultValue={state.user.name}
-                            className={errors.name ? 'invalid' : ''}
-                        />
+                <div className="grid two-column">
+                    <div className="column">
+                        <form onSubmit={handleSubmit(updateUser)}>
+                            <Input
+                                id="name"
+                                label="Full name"
+                                reference={register({ required: true })}
+                                defaultValue={state.user.name}
+                                className={errors.name ? 'invalid' : ''}
+                            />
 
-                        <Input
-                            id="email"
-                            label="Email address"
-                            reference={register({
-                                required: true,
-                                pattern: {
-                                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                                    message: 'Email address is invalid',
-                                },
-                            })}
-                            defaultValue={state.user.email}
-                            className={errors.email ? 'invalid' : ''}
-                        />
+                            <Input
+                                id="email"
+                                label="Email address"
+                                reference={register({
+                                    required: true,
+                                    pattern: {
+                                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                                        message: 'Email address is invalid',
+                                    },
+                                })}
+                                defaultValue={state.user.email}
+                                className={errors.email ? 'invalid' : ''}
+                            />
 
-                        <Input
-                            id="geekhackUserName"
-                            label="Your Geekhack username"
-                            reference={register}
-                            defaultValue={state.user.geekhackUserName}
-                        />
-                        <Input
-                            id="redditUserName"
-                            label="Your Reddit username"
-                            reference={register}
-                            defaultValue={state.user.redditUserName}
-                        />
+                            <Input
+                                id="geekhackUserName"
+                                label="Your Geekhack username"
+                                reference={register}
+                                defaultValue={state.user.geekhackUserName}
+                            />
+                            <Input
+                                id="redditUserName"
+                                label="Your Reddit username"
+                                reference={register}
+                                defaultValue={state.user.redditUserName}
+                            />
 
-                        {/* <Multiselect
+                            {/* <Multiselect
                             label="Country"
                             onChange={(selectedCountry: any) => setCountry(selectedCountry)}
                             options={countriesFormatted}
                             defaultValue={{ label: 'Netherlands', value: 'NL' }}
                         /> */}
 
-                        <button className="btn secondary md" type="submit">
-                            Update profile
-                        </button>
-                    </form>
-                </div>
-
-                <div className="column cards vertical">
-                    <div className="card center">
-                        <h4>Are you a keycapset designer?</h4>
-                        <Button onClick={() => console.log('sign up as designer')} variant="primary" size="sm">
-                            Get the designer role
-                        </Button>
+                            <button className="btn secondary md" type="submit">
+                                Update profile
+                            </button>
+                        </form>
                     </div>
 
-                    <div className="card center">
-                        <h4>Are you a vendor?</h4>
-                        <Button onClick={() => console.log('sign up as vendordesigner')} variant="primary" size="sm">
-                            Get the vendor role
-                        </Button>
+                    <div className="column cards vertical">
+                        <div className="card center">
+                            <h4>Are you a keycapset designer?</h4>
+                            <Button onClick={() => console.log('sign up as designer')} variant="primary" size="sm">
+                                Get the designer role
+                            </Button>
+                        </div>
+
+                        <div className="card center">
+                            <h4>Are you a vendor?</h4>
+                            <Button
+                                onClick={() => console.log('sign up as vendordesigner')}
+                                variant="primary"
+                                size="sm"
+                            >
+                                Get the vendor role
+                            </Button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        )
     );
 }
 
