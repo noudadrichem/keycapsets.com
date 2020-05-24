@@ -117,4 +117,4 @@ Vendors.getInitialProps = () => {
     };
 };
 
-export default withGA('UA-115865530-2', Router)(withData(Vendors));
+export default withGA('UA-115865530-2', Router)(Vendors);

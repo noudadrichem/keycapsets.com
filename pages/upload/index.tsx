@@ -29,4 +29,4 @@ function Upload(props: UploadProps) {
     );
 }
 
-export default withGA('UA-115865530-2', Router)(withData(Upload));
+export default withGA('UA-115865530-2', Router)(Upload);

@@ -155,4 +155,4 @@ function UploadVendor(props: UploadVendorProps) {
 //     }
 // }
 
-export default withGA('UA-115865530-2', Router)(withData(UploadVendor));
+export default withGA('UA-115865530-2', Router)(UploadVendor);

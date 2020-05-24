@@ -1,4 +1,4 @@
-import React, { ReactNode, useContext, useEffect } from 'react';
+import React, { ReactNode, useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
 
 import Button from './Button';
@@ -9,13 +9,15 @@ import { context } from '../context';
 import UserProfileTag from './UserProfileTag';
 import Logo from './Logo';
 import Pill from './Pill';
+import { NextRouter, useRouter } from 'next/router';
 
 interface NavProps {
     isLargeContainer?: boolean;
 }
 
-const HamburgerIcon = ({ size = 24, color = '#232323' }) => (
+const HamburgerIcon = ({ size = 24, color = '#232323', onClick }) => (
     <svg
+        onClick={onClick}
         xmlns="http://www.w3.org/2000/svg"
         className="hamburger-icon"
         width={size}
@@ -35,10 +37,22 @@ const HamburgerIcon = ({ size = 24, color = '#232323' }) => (
 
 function Nav(props: NavProps): JSX.Element {
     const { isLargeContainer } = props;
-    const isBrowser: boolean = typeof window !== `undefined`;
-    const isMobile: boolean = isBrowser && window.innerWidth < 768;
     const { state } = useContext<Context>(context);
     const { isLoggedIn }: InititalState = state;
+    const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
+    const router: NextRouter = useRouter();
+
+    useEffect(
+        function listenToRouteChange() {
+            setIsNavOpen(false);
+        },
+        [router.route]
+    );
+
+    useEffect(() => {
+        document.body.style.overflow = isNavOpen ? 'hidden' : '';
+    }, [isNavOpen]);
+
     return (
         <nav className="nav">
             {/* <a className="discord-banner" href="https://discord.gg/dq8cyMS">
@@ -49,7 +63,11 @@ function Nav(props: NavProps): JSX.Element {
                 downtime. I'm sorry in advance. ❤️
         </div> */}
 
-            {isMobile && <HamburgerIcon />}
+            <HamburgerIcon
+                onClick={() => {
+                    setIsNavOpen(!isNavOpen);
+                }}
+            />
 
             <div className={`container ${isLargeContainer ? 'large' : ''}`}>
                 <div className="nav-container">
@@ -62,7 +80,7 @@ function Nav(props: NavProps): JSX.Element {
                         <Pill color="gray" text="BETA" />
                     </div>
 
-                    <div className={`nav-items ${isMobile ? 'mobile' : 'desktop'}`}>
+                    <div className={`nav-items ${isNavOpen ? 'open' : 'closed'}`}>
                         <Link href="/vendors" as="/vendors" prefetch>
                             <a className="nav-item">Vendors</a>
                         </Link>

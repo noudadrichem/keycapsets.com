@@ -68,4 +68,4 @@ function Terms() {
     );
 }
 
-export default withGA('UA-115865530-2', Router)(withData(Terms));
+export default withGA('UA-115865530-2', Router)(Terms);

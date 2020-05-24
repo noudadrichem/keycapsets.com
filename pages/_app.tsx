@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { AppProps } from 'next/app';
+import App, { AppProps } from 'next/app';
 import { Context } from 'typings';
 import { useQuery } from '@apollo/react-hooks';
 
@@ -18,6 +18,10 @@ function MyApp({ Component, pageProps }: AppProps) {
     const { data: me, loading, error } = useQuery(ME);
     const [toggle, setToggle] = useState<boolean>(false);
 
+    const allProps: any = {
+        ...pageProps,
+    };
+
     useEffect(() => {
         if (!loading) {
             dispatch({
@@ -30,13 +34,15 @@ function MyApp({ Component, pageProps }: AppProps) {
         }
     }, [me]);
 
+    const isLargeContainer: boolean = pageProps.isLargeContainer !== undefined ? pageProps.isLargeContainer : true;
+
     return (
         <div className="app">
             <Meta />
             <div className="page-layout">
-                <Nav isLargeContainer={pageProps.isLargeContainer !== undefined ? pageProps.isLargeContainer : true} />
-                <Component {...pageProps} />
-                <Footer />
+                <Nav isLargeContainer={isLargeContainer} />
+                <Component {...allProps} />
+                <Footer isLargeContainer={isLargeContainer} />
             </div>
         </div>
     );

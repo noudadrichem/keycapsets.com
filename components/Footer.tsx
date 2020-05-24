@@ -1,6 +1,8 @@
 import React from 'react';
 
-interface FooterProps {}
+interface FooterProps {
+    isLargeContainer: boolean;
+}
 
 // TODO: Move icons to own component
 const Twitter = ({ size = 16 }) => (
@@ -33,11 +35,11 @@ const Discord = ({ size = 24 }) => (
 );
 
 function Footer(props: FooterProps): JSX.Element {
-    const {} = props;
+    const { isLargeContainer = false } = props;
 
     return (
         <div className="footer">
-            <div className="container large">
+            <div className={`container ${isLargeContainer ? 'large' : ''}`}>
                 <div className="made-in">
                     <p>
                         &copy; Made with <a href="https://bunq.me/noudadrichem/3/I'm%20liking%20keycapsets!">☕</a>

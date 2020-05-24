@@ -274,4 +274,4 @@ function UploadSet(props: UploadSetProps): JSX.Element {
     );
 }
 
-export default withGA('UA-115865530-2', Router)(withData(UploadSet));
+export default withGA('UA-115865530-2', Router)(UploadSet);

@@ -143,8 +143,6 @@ function SetPage(props: SetPageProps) {
                             </div>
                         </div>
                     </div>
-
-                    <Footer />
                 </div>
                 <CTACard />
             </>

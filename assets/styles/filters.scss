@@ -33,15 +33,6 @@
             flex-direction: column;
             margin-right: 16px;
 
-            &.mobile-only {
-                display: none;
-
-                @media screen and (max-width: 556px) {
-                    display: flex !important;
-                    flex: 1;
-                }
-            }
-
             &.desktop-only {
                 display: inline-flex;
 

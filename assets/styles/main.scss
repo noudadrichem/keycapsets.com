@@ -150,6 +150,10 @@ img {
             font-size: 18px;
             margin-bottom: 8px;
             list-style-image: url('/images/keycap-icon-8.svg');
+
+            @media screen and (max-width: 768px) {
+                font-size: 14px;
+            }
         }
     }
 }
@@ -176,4 +180,13 @@ img {
     cursor: auto;
     pointer-events: none;
     opacity: 0.5;
+}
+
+.mobile-only {
+    display: none !important;
+
+    @media screen and (max-width: 768px) {
+        display: flex !important;
+        flex: 1;
+    }
 }

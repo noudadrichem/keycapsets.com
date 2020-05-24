@@ -73,4 +73,4 @@ function UploadStatement() {
     );
 }
 
-export default withGA('UA-115865530-2', Router)(withData(UploadStatement));
+export default withGA('UA-115865530-2', Router)(UploadStatement);

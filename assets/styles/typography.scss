@@ -83,6 +83,10 @@ p {
     line-height: 1.8;
     color: var(--text-color);
 
+    @media screen and (max-width: 768px) {
+        font-size: 14px;
+    }
+
     &.light {
         color: var(--text-color-light);
     }

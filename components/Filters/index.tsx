@@ -157,9 +157,11 @@ function Filters(props: FiltersProps): JSX.Element {
                         />
                     </div>
 
-                    <div className="filter favorites">
-                        <ButtonLink href="/user">My favorites</ButtonLink>
-                    </div>
+                    {state.isLoggedIn && (
+                        <div className="filter favorites">
+                            <ButtonLink href="/user">My favorites</ButtonLink>
+                        </div>
+                    )}
                 </div>
 
                 <div className="counter">

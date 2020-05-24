@@ -39,4 +39,10 @@ function Login() {
     );
 }
 
-export default withGA('UA-115865530-2', Router)(withData(Login));
+Login.getInitialProps = () => {
+    return {
+        isLargeContainer: false,
+    };
+};
+
+export default withGA('UA-115865530-2', Router)(Login);

@@ -17,10 +17,14 @@ function SignUp() {
             <div className="features-container">
                 <h3>Features</h3>
                 <ul className="features">
-                    <li>Favorite sets</li>
-                    <li>Opt into groupbuy updates via mail (coming soon)</li>
-                    <li>Express yourself as a designer</li>
-                    <li>Promote yourself as a vendor</li>
+                    <li>Favorite sets, see your collection. </li>
+                    <li>Create your own collections for e.g. your board.(Coming)</li>
+                    <li>Opt into groupbuy updates via mail (Coming)</li>
+                    <li>Upload a keycapset(Coming (again))</li>
+                    <li>Collect IC votes.(Coming)</li>
+                    <li>Get a full fledged designed page for your set.(Coming)</li>
+                    <li>Sign up to a calender feed.(Coming)</li>
+                    <li>Hook up to vendors to get your MOQ data in 1 place.(Coming)</li>
                 </ul>
             </div>
 
@@ -51,13 +55,14 @@ function SignUp() {
             <h3>Details</h3>
             <p className="light small-width alinea">
                 By creating an account on keycapsets.com you're able to favorite your keycapsets, have an easy to go
-                overview of what you like and might want to use for your next build. You could vote on ICS (coming soon)
-                You could opt in on recieving weekly or monthly updates via email (coming soon).
+                overview of what you like and might want to use for your next build. You could vote on ICS (Coming) You
+                could opt in on recieving weekly or monthly updates via email (Coming).
             </p>
 
             <p className="light small-width alinea">
-                Are you a designer? Sign up and upload your sets. Collect IC votes and get a beautiful partly self
-                designed page to promote your sets on various platforms!
+                Are you a designer? Sign up and upload your keycapsets. Collect IC votes and get a beautiful partly self
+                designed page to promote your sets on various platforms! Hook up your set to your vendors and get
+                insights to your MOQ data.(Coming)
             </p>
 
             <p className="light small-width alinea">
@@ -68,4 +73,10 @@ function SignUp() {
     );
 }
 
-export default withGA('UA-115865530-2', Router)(withData(SignUp));
+SignUp.getInitialProps = () => {
+    return {
+        isLargeContainer: false,
+    };
+};
+
+export default withGA('UA-115865530-2', Router)(SignUp);

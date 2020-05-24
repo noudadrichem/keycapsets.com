@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useRouter } from 'next/router';
 
 import SearchSets from './SearchSets';
+import Button from './Button';
+import context from '../context';
+import { Context } from 'typings';
 
 interface HeadingProps {
     mainTitle: string;
@@ -13,7 +16,7 @@ interface HeadingProps {
 
 function Heading(props: HeadingProps): JSX.Element {
     const { mainTitle, subTitle, isHome = false, left = false, backgroundColor } = props;
-    const router = useRouter();
+    const { state } = useContext<Context>(context);
 
     return (
         <header className={`heading ${left ? 'left' : 'center'}`} style={{ background: backgroundColor }}>
@@ -23,6 +26,13 @@ function Heading(props: HeadingProps): JSX.Element {
             {isHome && (
                 <>
                     <SearchSets />
+                    {!state.isLoggedIn && (
+                        <div className="mobile-only">
+                            <Button variant="primary" size="md" className="btn-sign-up medium-large">
+                                Sign up
+                            </Button>
+                        </div>
+                    )}
 
                     {/* <div className="heading-cta">
                             <Button
