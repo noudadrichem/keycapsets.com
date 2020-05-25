@@ -12,8 +12,8 @@ import RedditIcon from './RedditIcon';
 import { Context } from 'typings';
 import context from '../context';
 
-const CLIENT_ID = 'OGPS_JHNLNt2sA';
-const REDIRECT_URI = 'https://testing.keycapsets.com/sign-up/reddit';
+const CLIENT_ID: string = 'OGPS_JHNLNt2sA';
+const REDIRECT_URI: string = 'https://testing.keycapsets.com/sign-up/reddit';
 
 interface RedditAuthProps {
     asLink?: boolean;

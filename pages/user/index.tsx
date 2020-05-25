@@ -40,7 +40,7 @@ function User() {
 
 User.getInitialProps = () => {
     return {
-        isLargeContainer: false,
+        isLargeContainer: true,
     };
 };
 export default withGA('UA-115865530-2', Router)(User);
