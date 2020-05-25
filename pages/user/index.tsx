@@ -26,7 +26,7 @@ function User() {
 
     return (
         state.user !== undefined && (
-            <div className="container">
+            <div className="container large">
                 <Heading
                     mainTitle="Your overview of your favorite keycapsets"
                     subTitle={`Hee, ${state.user.name}.`}
