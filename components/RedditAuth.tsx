@@ -13,7 +13,7 @@ import { Context } from 'typings';
 import context from '../context';
 
 const CLIENT_ID = 'OGPS_JHNLNt2sA';
-const REDIRECT_URI = 'http://localhost:3000/sign-up/reddit';
+const REDIRECT_URI = 'https://testing.keycapsets.com/sign-up/reddit';
 
 interface RedditAuthProps {
     asLink?: boolean;
