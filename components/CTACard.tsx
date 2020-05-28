@@ -59,7 +59,7 @@ function CTACard(props: CTACardProps): JSX.Element {
 
             <h4>We need your help!</h4>
             <p className="light">
-                Want to test new features such as user accounts, favoriting sets and more. Sign up as beta user!
+                We want to test new features such as user accounts, favoriting sets and more. Sign up as beta user!
                 <br />
                 Do so by joining our Discord server.
             </p>
