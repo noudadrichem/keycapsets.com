@@ -41,30 +41,30 @@ function About(props: AboutProps) {
                     <h4 className="alinea-title">The story</h4>
                     <p className="light alinea">
                         Excited friends came to me with questions about mechanical keyboards. I'm always in to help them
-                        find a keyboard that suits them best. The second step is a nice keycapset ofcourse!
+                        find a keyboard that suits them best. The second step is ofcourse... a nice keycapset!
                     </p>
 
                     <p className="light alinea">
                         We were browsing through several vendors and other websites like Geekhack. At that moment the
                         idea came to mind. One website to rule them all. Just one website with an overview of keycapsets
-                        that are available or will be available soon. KCS will never be a vendor. See this site as a
-                        proxy to all the vendors out there.
+                        that are available or will be available soon. See this site as a proxy to all the vendors out
+                        there.
                     </p>
 
                     <h4 className="alinea-title">The goal</h4>
                     <p className="light alinea">
-                        The goal is to be a hub for keycapset related stuff. This site should function as an overview of
-                        created sets and potentially also as an inspiration for new designs. KCS can also be a
-                        1-stop-shop for information about current GBs and ICs. Users will be able to add keycapsets they
-                        like to their favorites and maintain an overview of what they want and/or own. Also they will be
-                        able to have a user profile to share and shill their sets. (And maybe in the future their
-                        complete builds!)
+                        The goal is to be a hub for keycapset related knowledge. This site should function as an
+                        overview of created sets and can also act as an inspiration for new designs. KCS is a
+                        1-stop-shop for information about current GBs and ICs. Users are able to add keycapsets they
+                        like to their favorites and maintain an overview of what they want and/or own. They'll be able
+                        to have a user profile to share and shill out their keycapsets. And in the future their complete
+                        builds!
                     </p>
 
                     <h4 className="alinea-title">For vendors</h4>
                     <p className="light alinea">
                         This site could be an advantage to your business. From both the overview and the page with the
-                        single set I'll proxy the user to you!
+                        single set I'll proxy the user to your shop!
                     </p>
 
                     <h4 className="alinea-title">For set designers</h4>
@@ -79,7 +79,7 @@ function About(props: AboutProps) {
                         This could be your go-to website to look for keycapsets. I want you to be able to search based
                         on name, type or even the color you like. I want to make it as easy as possible for you to
                         decide what set you should go with on your next build. <br />
-                        You'll be able tag your favorite sets and create a user profile very soon!
+                        You'll be able to add your favorite sets to collections and create a user profile very soon!
                     </p>
 
                     {/* <ButtonLink isLarge href="/sign-up">
