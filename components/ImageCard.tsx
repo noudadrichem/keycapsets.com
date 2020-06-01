@@ -69,9 +69,9 @@ function ImageCard(props: ImageCardProps): JSX.Element {
 
     return (
         <LazyLoad offset={400} height={400}>
-            <Link href="/set/[set]" as={`/set/${slug}`} prefetch>
-                <div className={`image-card ${isTemplate ? 'disabled' : ''}`}>
-                    <div className="image">
+            <div className={`image-card ${isTemplate ? 'disabled' : ''}`}>
+                <div className="image">
+                    <Link href="/set/[set]" as={`/set/${slug}`} prefetch>
                         <img
                             className="set"
                             src={
@@ -80,45 +80,45 @@ function ImageCard(props: ImageCardProps): JSX.Element {
                                     : coverImageUrl
                             }
                         />
+                    </Link>
+                </div>
+
+                <div className="details">
+                    <div className="top">
+                        <h4 className="set-title">
+                            <Link href="/set/[set]" as={`/set/${slug}`} prefetch>
+                                {name || 'Title goes here'}
+                            </Link>
+                        </h4>
+                        <StatusLabel
+                            groupbuyStartDate={groupbuyStartDate}
+                            groupbuyEndDate={groupbuyEndDate}
+                            isIc={isInterestCheck}
+                        />
                     </div>
 
-                    <div className="details">
-                        <div className="top">
-                            <h4 className="set-title">{name || 'Title goes here'}</h4>
-                            <StatusLabel
-                                groupbuyStartDate={groupbuyStartDate}
-                                groupbuyEndDate={groupbuyEndDate}
-                                isIc={isInterestCheck}
-                            />
-                        </div>
-
-                        <div className="bottom">
-                            <span className="bold">
-                                <span>
-                                    {getLabelByBrand(brand)} {type && type.toUpperCase()}
-                                </span>
-                                <span>{moment(groupbuyStartDate).format('YYYY')}</span>
-                            </span>
-
+                    <div className="bottom">
+                        <span className="bold">
                             <span>
-                                <span
-                                    data-tip="Sign up to create collections"
-                                    onClick={userWantSet}
-                                    className="heart-icon"
-                                >
-                                    <HeartIcon
-                                        filled={state.userWants.includes(keycapset._id)}
-                                        isDisabled={!state.isLoggedIn}
-                                    />
-                                    {!state.isLoggedIn && (
-                                        <ReactTooltip delayHide={500} className="tooltip" effect="solid" />
-                                    )}
-                                </span>
+                                {getLabelByBrand(brand)} {type && type.toUpperCase()}
                             </span>
-                        </div>
+                            <span>{moment(groupbuyStartDate).format('YYYY')}</span>
+                        </span>
+
+                        <span>
+                            <span data-tip="Sign up to create collections" onClick={userWantSet} className="heart-icon">
+                                <HeartIcon
+                                    filled={state.userWants.includes(keycapset._id)}
+                                    isDisabled={!state.isLoggedIn}
+                                />
+                                {!state.isLoggedIn && (
+                                    <ReactTooltip delayHide={500} className="tooltip" effect="solid" />
+                                )}
+                            </span>
+                        </span>
                     </div>
                 </div>
-            </Link>
+            </div>
         </LazyLoad>
     );
 }
