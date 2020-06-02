@@ -1,0 +1,17 @@
+# Used for generating types based on the API
+schema: http://localhost:3001/graphql
+generates:
+    ./src/schemaTypes.tsx:
+        - typescript
+        - typescript-operations
+        - typescript-react-apollo
+    ./src/fragmentTypes.json:
+        plugins:
+            - fragment-matcher
+config:
+    withMutationFn: true
+    scalars:
+        Date: Date
+        DateTime: Date
+        EmailAddress: string
+        URL: string
