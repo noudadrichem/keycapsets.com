@@ -75,7 +75,7 @@ function About() {
                     </p>
 
                     {/* <ButtonLink isLarge href="/sign-up">
-                        Enthusiastic? Create an account!
+                        Excited? Create an account!
                 </ButtonLink> */}
 
                     {/* <h4>Are you liking this project and want to help me maintain this website?</h4>
@@ -92,7 +92,7 @@ function About() {
                 </div> */}
 
                 <ButtonLink isLarge href="/sign-up">
-                    Enthusiastic? Create an account!
+                    Excited? Create an account!
                 </ButtonLink>
 
                 {/* <h4>Are you liking this project and want to help me maintain this website?</h4>
