@@ -8,7 +8,7 @@
 
 <h2 className="alinea-title">Intro</h2>
 <p className="light alinea">
-    Friends came to me enthusiastic about mechanical keyboards. I'm always in to help them find their best keyboard. The second step is ofcource, a nice keyset!
+    Friends came to me enthusiastic about mechanical keyboards. I'm always in to help them find their best keyboard. The second step is of course, a nice keyset!
 </p>
 
 <p className="light alinea">

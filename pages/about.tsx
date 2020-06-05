@@ -41,7 +41,7 @@ function About(props: AboutProps) {
                     <h4 className="alinea-title">The story</h4>
                     <p className="light alinea">
                         Excited friends came to me with questions about mechanical keyboards. I'm always in to help them
-                        find a keyboard that suits them best. The second step is ofcourse... a nice keycapset!
+                        find a keyboard that suits them best. The second step is of course... a nice keycapset!
                     </p>
 
                     <p className="light alinea">
