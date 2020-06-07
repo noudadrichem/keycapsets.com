@@ -19,6 +19,7 @@ import LoadingKeyboard from '../../components/LoadingKeyboard';
 import ButtonLink from '../../components/ButtonLink';
 import Meta from '../../components/Meta';
 import CTACard from '../../components/CTACard';
+import StatusLabel from '../../components/StatusLabel';
 
 interface SetProps {}
 
@@ -52,7 +53,7 @@ function SetPage(props: SetProps) {
         autoplay: set.coverImageUrl.length > 1,
         autoPlaySpeed: 1600,
     };
-    console.log(set);
+
     return (
         set !== undefined && (
             <>
@@ -80,6 +81,12 @@ function SetPage(props: SetProps) {
                             </div>
 
                             <div>
+                                <StatusLabel
+                                    groupbuyStartDate={set.groupbuyStartDate}
+                                    groupbuyEndDate={set.groupbuyEndDate}
+                                    isIc={set.isInterestCheck}
+                                />
+                                <br />
                                 <h3>Info</h3>
                                 <p>Designer: {set.designerName || 'Unknown'}</p>
                                 <p>Profile: {set.type}</p>
