@@ -55,6 +55,15 @@ function Terms() {
                         content.
                     </p>
 
+                    <h4>Sponsorship or donations</h4>
+                    <p className="light alinea">
+                        The keycapsets team is happy to recieve sponsorships or donations to maintain this project.
+                        Before donating make sure you're able to mis it!! To be sure you're really behind this project
+                        and your donation, donations above €20 are refundable 24 hours after the donation is made. The
+                        terms for sponsorship deals are made with the sponsor. Keycapsets can for all time seal up the
+                        sponsor deal if the sponsorship is below €100.
+                    </p>
+
                     <br />
 
                     <ButtonLink isLarge href="https://github.com/noudadrichem/keycapsets.com/issues">

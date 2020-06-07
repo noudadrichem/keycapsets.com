@@ -1,9 +1,9 @@
 .footer {
-    font-size: 16px;
-    @media screen and(max-width: 562px) {
-        font-size: 13px;
-    }
-    padding: 24px 0px;
+    font-size: 13px;
+    // @media screen and(max-width: 562px) {
+    //     font-size: 13px;
+    // }
+    padding: 12px 0px;
     color: var(--text-color-light);
     background: var(--darker-white);
     // background: linear-gradient(180deg, rgba(248, 249, 251, 1) 20%, #F8F9FB 100%);
@@ -23,7 +23,7 @@
         align-items: center;
 
         img {
-            margin-right: 4px;
+            // margin-right: 4px;
         }
     }
 

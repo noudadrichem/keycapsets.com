@@ -24,6 +24,11 @@
             @media screen and(max-width: 562px) {
                 display: none;
             }
+
+            &-home {
+                max-width: 616px;
+                margin: 0 auto 32px;
+            }
         }
     }
 
@@ -68,6 +73,6 @@
     }
 
     h1 {
-        margin-bottom: 24px;
+        margin-bottom: 12px;
     }
 }

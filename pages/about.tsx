@@ -61,6 +61,14 @@ function About(props: AboutProps) {
                         builds!
                     </p>
 
+                    <h4 className="alinea-title">For explorers</h4>
+                    <p className="light alinea">
+                        This could be your go-to website to look for keycapsets. I want you to be able to search based
+                        on name, type or even the color you like. I want to make it as easy as possible for you to
+                        decide what set you should go with on your next build. <br />
+                        You'll be able to add your favorite sets to collections and create a user profile very soon!
+                    </p>
+
                     <h4 className="alinea-title">For vendors</h4>
                     <p className="light alinea">
                         This site could be an advantage to your business. From both the overview and the page with the
@@ -74,22 +82,24 @@ function About(props: AboutProps) {
                         renders, previews etc.
                     </p>
 
-                    <h4 className="alinea-title">For explorers</h4>
-                    <p className="light alinea">
-                        This could be your go-to website to look for keycapsets. I want you to be able to search based
-                        on name, type or even the color you like. I want to make it as easy as possible for you to
-                        decide what set you should go with on your next build. <br />
-                        You'll be able to add your favorite sets to collections and create a user profile very soon!
-                    </p>
-
                     {/* <ButtonLink isLarge href="/sign-up">
                         Excited? Create an account!
                 </ButtonLink> */}
 
-                    {/* <h4>Are you liking this project and want to help me maintain this website?</h4>
-                <p className="light alinea">
-                    I'm not a begging person but folks asked me if they could help me out with the costs of running this project. I don't want to run ads on this site and therefore I'm open to recieve donations to maintain this project.
-                </p> */}
+                    <h4>Are you liking this project and want to help me maintain this website?</h4>
+                    <p className="light alinea">
+                        People asked me if they could help me out with the costs of running this project.
+                        <br />I don't want to run ads on this site or beg for money in any way. Therefore I'm open to
+                        recieve a{' '}
+                        <a className="link" href="https://bunq.me/noudadrichem/3/I'm%20liking%20keycapsets!">
+                            small donation
+                        </a>{' '}
+                        to maintain this project. Be sure you can mis it and read some of the{' '}
+                        <a className="link" href="/terms">
+                            terms
+                        </a>
+                        !
+                    </p>
                 </div>
             </div>
             <Footer />

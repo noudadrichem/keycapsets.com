@@ -22,6 +22,7 @@ function Heading(props: HeadingProps): JSX.Element {
 
             {isHome && (
                 <>
+                    {/* <h5 className="title-sub-home">The place for everything keycapset related. Get an overview of created sets and be inspired.</h5> */}
                     <SearchSets />
 
                     {/* <div className="heading-cta">
