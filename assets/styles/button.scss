@@ -56,7 +56,7 @@
     &.primary {
         background-color: var(--blue);
         border: 1px solid var(--blue);
-        color: white;
+        color: var(--white);
         font-weight: 600;
 
         &:active {
@@ -88,7 +88,7 @@
         &:hover {
             background-color: var(--blue-darker);
             border: 1px solid var(--blue-darker);
-            color: white;
+            color: var(--white);
 
             &:disabled {
                 opacity: 0.5;
@@ -97,14 +97,14 @@
     }
 
     &.inverted {
-        background-color: white;
+        background-color: var(--white);
         color: var(--blue);
         border: 1px solid var(--blue);
 
         &:hover {
             background-color: var(--blue);
             border: 1px solid var(--blue);
-            color: white;
+            color: var(--white);
 
             &:disabled {
                 opacity: 0.5;

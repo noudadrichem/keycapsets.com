@@ -75,6 +75,7 @@
 
             .heart-icon {
                 display: inline-flex;
+                color: var(--blue);
 
                 .heart-fill {
                     visibility: hidden;
@@ -110,7 +111,7 @@
         .details {
             .bottom {
                 .button-link {
-                    border-bottom: 2px solid #539bfb;
+                    border-bottom: 2px solid var(--blue);
 
                     .arrow {
                         transform: translateX(4px);
