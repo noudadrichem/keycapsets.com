@@ -35,7 +35,7 @@ const Instagram = ({ size = 16 }) => (
     </svg>
 );
 
-const Discord = ({ size = 24 }) => (
+const Discord = ({ size = 16 }) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
         width={size}
