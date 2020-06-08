@@ -6,6 +6,10 @@
     font-weight: 500;
     display: inline-flex;
 
+    @media screen and (max-width: $bp-laptop-md) {
+        font-size: 11px;
+    }
+
     &.green {
         // background: #d5e7da;
         // color: #60af73;

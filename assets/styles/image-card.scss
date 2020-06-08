@@ -63,6 +63,10 @@
         .bottom {
             font-size: 14px;
 
+            @media screen and (max-width: $bp-laptop-md) {
+                font-size: 12px;
+            }
+
             .bold {
                 span:first-child {
                     margin-right: 12px;
