@@ -1,27 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Toggle from 'react-toggle';
+import useDarkMode from 'use-dark-mode';
 import SunIcon from './SunIcon';
 import MoonIcon from './MoonIcon';
 
-interface DarkModeSwitchProps {
-    enableDarkMode?: () => void;
-    disableDarkMode?: () => void;
-    toggleDarkMode?: () => void;
-    isDarkModeEnabled: boolean;
-}
+const DarkModeSwitch = () => {
+    const storageKey = 'darkMode';
+    let isDarkModeEnabled = true;
+    try {
+        isDarkModeEnabled = localStorage.getItem(storageKey) === 'true';
+    } catch (err) {}
 
-const DarkModeSwitch = (props: DarkModeSwitchProps) => {
-    const { enableDarkMode, disableDarkMode, toggleDarkMode, isDarkModeEnabled } = props;
+    const darkmodeChanged = (darkModeEnabled: boolean): void => {
+        document.documentElement.setAttribute('data-theme', darkModeEnabled ? 'dark' : 'light');
+    };
 
-    console.log({ isDarkModeEnabled });
+    const darkMode = useDarkMode(isDarkModeEnabled, { onChange: darkmodeChanged });
     return (
         <div>
-            <span onClick={disableDarkMode}>
-                <SunIcon isSelected={!isDarkModeEnabled} />
+            <span onClick={darkMode.disable}>
+                <SunIcon isSelected={!darkMode.value} />
             </span>
-            <Toggle checked={isDarkModeEnabled} icons={false} onChange={toggleDarkMode} />
-            <span onClick={enableDarkMode}>
-                <MoonIcon isSelected={isDarkModeEnabled} />
+            <Toggle checked={darkMode.value} icons={false} onChange={darkMode.toggle} />
+            <span onClick={darkMode.enable}>
+                <MoonIcon isSelected={darkMode.value} />
             </span>
         </div>
     );

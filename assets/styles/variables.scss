@@ -18,6 +18,22 @@
     --red: #f8abab;
 }
 
+[data-theme='dark'] {
+    --text-color: #f8f9fb;
+    --text-color-light: #4e4e4e;
+    --text-color-lightest: #646464;
+    --text-color-disabled: #848484;
+    --panel-background: #232323;
+    --blue-darker: #d4e4fa;
+    --blue: #abccf8;
+    --blue-lighter: #539bfb;
+    --blue-lightest: #306ab0;
+    --darker-white: #848484;
+    --darkest-gray: #646464;
+    --darker-gray: #4e4e4e;
+    --light-gray: #f8f9fb;
+}
+
 // Breakpoints
 $bp-mobile-sm: 321px;
 $bp-mobile-md: 376px;

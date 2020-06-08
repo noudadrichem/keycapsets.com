@@ -1,6 +1,4 @@
 import React from 'react';
-import useDarkMode from 'use-dark-mode';
-
 import DarkModeSwitch from './DarkModeSwitch';
 
 interface FooterProps {
@@ -52,41 +50,7 @@ const Discord = ({ size = 24 }) => (
 );
 
 function Footer(props: FooterProps): JSX.Element {
-    const storageKey = 'darkMode';
-    let isDarkModeEnabled = true;
-    try {
-        isDarkModeEnabled = localStorage.getItem(storageKey) === 'true';
-        console.log({ isDarkModeEnabled });
-    } catch (err) {}
-
     const { isLargeContainer = false } = props;
-    const setColour = (variable: string, colour: string): void => {
-        document.documentElement.style.setProperty(`--${variable}`, colour);
-    };
-
-    const darkmodeChanged = (darkModeEnabled: boolean): void => {
-        // debugger;
-        console.log('toggling darkmode', { darkModeEnabled });
-        setColour('text-color', darkModeEnabled ? '#f8f9fb' : '#232323');
-        setColour('text-color-light', darkModeEnabled ? '#4e4e4e' : '#566073');
-        setColour('text-color-lightest', darkModeEnabled ? '#646464' : '#a9a9a9');
-        setColour('text-color-disabled', darkModeEnabled ? '#848484' : '#bbc0c9');
-        setColour('panel-background', darkModeEnabled ? '#232323' : '#f2f2f2');
-        setColour('blue-darker', darkModeEnabled ? '#d4e4fa' : '#306ab0');
-        setColour('blue', darkModeEnabled ? '#abccf8' : '#539bfb');
-        setColour('blue-lighter', darkModeEnabled ? '#539bfb' : '#abccf8');
-        setColour('blue-lightest', darkModeEnabled ? '#306ab0' : '#d4e4fa');
-        setColour('white', darkModeEnabled ? '#fff' : '#fff');
-        setColour('darker-white', darkModeEnabled ? '#848484' : '#f8f9fb');
-        setColour('darkest-gray', darkModeEnabled ? '#646464' : '#4e4e4e');
-        setColour('darker-gray', darkModeEnabled ? '#4e4e4e' : '#646464');
-        setColour('light-gray', darkModeEnabled ? '#f8f9fb' : '#848484');
-        setColour('red', darkModeEnabled ? '#f8abab' : '#f8abab');
-    };
-    console.log('setting up darkmode');
-    const darkMode = useDarkMode(isDarkModeEnabled, { onChange: darkmodeChanged });
-    console.log('set up darkmode');
-
     return (
         <div className="footer">
             <div className={`container ${isLargeContainer ? 'large' : ''}`}>
@@ -97,12 +61,7 @@ function Footer(props: FooterProps): JSX.Element {
                     </p>
                 </div>
 
-                <DarkModeSwitch
-                    isDarkModeEnabled={darkMode.value}
-                    enableDarkMode={darkMode.enable}
-                    disableDarkMode={darkMode.disable}
-                    toggleDarkMode={darkMode.toggle}
-                />
+                <DarkModeSwitch />
 
                 <div className="sponsored-by">
                     <a href="https://candykeys.com/" target="_blank" className="sponsored-by">
