@@ -54,6 +54,7 @@ function ImageCard(props: ImageCardProps): JSX.Element {
                     },
                 });
                 dispatch({
+                    // ! this dispatch makes it go to the top because of re-render
                     type: 'set',
                     payload: {
                         userWants: [...state.userWants, keycapset._id],
