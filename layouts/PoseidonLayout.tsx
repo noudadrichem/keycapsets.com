@@ -4,12 +4,9 @@ import Footer from '../components/Footer';
 
 function PoseidonLayout(props: any) {
     return (
-        <div id="layout poseidon">
+        <div id="layout" className="poseidon">
             <Nav />
-
-            <h1>poseidon</h1>
             {props.children}
-
             <Footer noSponsor />
         </div>
     );
