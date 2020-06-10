@@ -1,0 +1,120 @@
+$poseidon-main: #00627a;
+$poseidon-accent: #00a4a9;
+
+@font-face {
+    font-family: 'DayRoman';
+    src: url('/fonts/DayRoman/DayRoman.eot?#iefix') format('embedded-opentype'),
+        url('/fonts/DayRoman/DayRoman.woff') format('woff'), url('/fonts/DayRoman/DayRoman.ttf') format('truetype'),
+        url('/fonts/DayRoman/DayRoman.svg#DayRoman') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.poseidon {
+    font-family: 'DayRoman';
+    background: $poseidon-main;
+
+    &--hero {
+        display: flex;
+        height: 740px;
+        width: 100%;
+        background-color: $poseidon-main;
+        background: url('/images/poseidon/hero-background.png') center center;
+
+        &__inner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo {
+            display: block;
+            width: 650px;
+            fill: $poseidon-accent;
+        }
+    }
+
+    .section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &-title {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 90px;
+            margin: 100px 0;
+            z-index: 2;
+            color: $poseidon-accent;
+
+            &:after {
+                content: attr(data-title);
+                width: 100vw;
+                left: 50%;
+                transform: translateX(-50%);
+                top: 0;
+                z-index: -1;
+                font-size: 230px;
+                position: absolute;
+                color: #000;
+                opacity: 0.1;
+            }
+        }
+
+        &-description {
+            width: 700px;
+            color: $poseidon-accent;
+        }
+    }
+
+    .kit {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+
+        &:not(:first-child) {
+            margin-top: 100px;
+        }
+
+        &__cover {
+            flex: 50%;
+            height: auto;
+        }
+
+        &__info {
+            flex: 50%;
+            padding: 100px;
+
+            &-name {
+                font-size: 49px;
+                margin-bottom: 20px;
+                color: $poseidon-accent;
+            }
+
+            &-description {
+                font-size: 20px;
+                line-height: 1.2;
+                color: $poseidon-accent;
+            }
+        }
+    }
+
+    .renders {
+        display: flex;
+        flex-wrap: wrap;
+
+        img {
+            flex: 25%;
+            width: 21%;
+            height: auto;
+            align-self: center;
+        }
+    }
+}
