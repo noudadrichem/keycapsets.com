@@ -1,5 +1,9 @@
 import React from 'react';
-import DarkModeSwitch from './DarkModeSwitch';
+import dynamic from 'next/dynamic';
+
+const DarkModeSwitch = dynamic(() => import('./DarkModeSwitch'), {
+    ssr: false,
+});
 
 interface FooterProps {
     isLargeContainer: boolean;
