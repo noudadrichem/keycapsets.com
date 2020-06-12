@@ -6,10 +6,10 @@ import MoonIcon from './MoonIcon';
 
 const DarkModeSwitch = () => {
     const storageKey = 'darkMode';
-    let isDarkModeEnabled = true;
-    try {
-        isDarkModeEnabled = localStorage.getItem(storageKey) === 'true';
-    } catch (err) {}
+const hasPersistedDarkMode: boolean = window.localStorage.getItem('DARK_MODE') !== undefined;
+const isDarkModeEnabled = (hasPersistedDarkMode && localStorage.getItem('darkMode') === 'true') 
+    || window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches 
+    || false;
 
     const darkmodeChanged = (darkModeEnabled: boolean): void => {
         document.documentElement.setAttribute('data-theme', darkModeEnabled ? 'dark' : 'light');
