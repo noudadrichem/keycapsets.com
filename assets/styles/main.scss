@@ -112,6 +112,10 @@ img {
     letter-spacing: 0.2px;
     font-weight: 400;
     color: var(--text-color-light);
+
+    @media screen and (max-width: $bp-laptop-md) {
+        font-size: 10px;
+    }
 }
 
 .about {

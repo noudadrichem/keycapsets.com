@@ -32,9 +32,17 @@
         padding: 8px 16px;
         font-size: 14px;
 
+        @media screen and (max-width: $bp-laptop-md) {
+            font-size: 12px;
+        }
+
         &-x {
             font-size: 11px;
             padding: 12px;
+
+            @media screen and (max-width: $bp-laptop-md) {
+                font-size: 10px;
+            }
         }
     }
 
@@ -46,11 +54,19 @@
             font-size: 18px;
             padding: 14px 28px;
         }
+
+        @media screen and (max-width: $bp-laptop-md) {
+            font-size: 14px;
+        }
     }
 
     &.lg {
         padding: 16px 32px;
         font-size: 20px;
+
+        @media screen and (max-width: $bp-laptop-md) {
+            font-size: 16px;
+        }
     }
 
     &.primary {

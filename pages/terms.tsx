@@ -13,7 +13,7 @@ import Meta from '../components/Meta';
 
 function Terms() {
     const title = `Terms and Conditions`;
-    const description = `These are the terms and conditions that apply when using keycapsets.com`;
+    const description = `These are the terms and conditions for using keycapsets.com`;
 
     return (
         <>
@@ -26,19 +26,19 @@ function Terms() {
                     <h4>Use of the Service</h4>
                     <p className="light alinea">
                         This site tracks analytics via Google Analytics. By using this platform you agree that we track
-                        views of this site.
+                        your views of this site.
                     </p>
 
                     <h4>User information</h4>
                     <p className="light alinea">
                         Customer and its Authorized Users are able to establish a user account (an “Account”) for the
-                        Service. (Coming soon)
+                        Service. (coming soon)
                         <br />
                         Keycapsets has the right to block, cancel or remove your Account, whether chosen by you or
                         allocated by us, at any time. This is when a user violates normal behavior or any other ethical
-                        code of conduct. Keycapsets only saves the necessary data required to run the platform. You can
-                        delete your account at any time. Your user account will then be permanently deleted from our
-                        servers.
+                        code of conduct. Keycapsets only saves the data that is required to run the platform. You can
+                        delete your account at any time. If you do so your user account will be permanently deleted from
+                        our servers.
                     </p>
 
                     <h4>The content</h4>
@@ -52,6 +52,15 @@ function Terms() {
                         any User Content you upload or post to the Service. This will be done when a user violates
                         normal behavior or any other ethical code of conduct by using strong language or posting NSFW
                         content.
+                    </p>
+
+                    <h4>Sponsorship or donations</h4>
+                    <p className="light alinea">
+                        The keycapsets team is happy to recieve sponsorships or donations to maintain this project.
+                        Before donating make sure you're able to mis it!! To be sure you're really behind this project
+                        and your donation, donations above €20 are refundable 24 hours after the donation is made. The
+                        terms for sponsorship deals are made with the sponsor. Keycapsets can for all time seal up the
+                        sponsor deal if the sponsorship is below €100.
                     </p>
 
                     <br />

@@ -115,12 +115,6 @@ const GET_SINGLE_SET_QUERY = gql`
             accentColor1
             accentColor2
             accentColor3
-            kits {
-                name
-                description
-                price
-                type
-            }
             designerName
             brand
             material

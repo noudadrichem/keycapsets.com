@@ -20,7 +20,7 @@ function StatusLabel(props: StatusLabelProps): JSX.Element {
 
     const awaitingGroupbuy: boolean = moment().diff(groupbuyStartDate, 'days') < 0;
     const inGroupbuy: boolean = getDayDifference(groupbuyEndDate) > 0;
-    const isEnded: boolean = getDayDifference(groupbuyEndDate) <= 0;
+    const isEnded: boolean = getDayDifference(groupbuyEndDate) < 0;
 
     if (isIc) {
         return <Pill color="orange" text={Labels.IC} />;
