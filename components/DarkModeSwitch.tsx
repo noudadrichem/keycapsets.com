@@ -7,11 +7,6 @@ import MoonIcon from './MoonIcon';
 const STORAGE_KEY = 'DARK_MODE';
 
 const DarkModeSwitch = () => {
-    // if (typeof window === 'undefined') {
-    //     // Prevent the rendering of this component until it is in the browser
-    //     return <></>;
-    // }
-
     const hasPersistedDarkMode: boolean = window.localStorage.getItem(STORAGE_KEY) !== undefined;
     const isDarkModeEnabled =
         (hasPersistedDarkMode && window.localStorage.getItem('darkMode') === 'true') ||
