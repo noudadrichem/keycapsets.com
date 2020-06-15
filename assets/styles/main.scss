@@ -27,6 +27,7 @@
 @import 'pill';
 @import 'vendors';
 @import 'cta-card';
+@import 'dark-mode-switch';
 
 * {
     box-sizing: border-box;
@@ -36,12 +37,12 @@
 
 body {
     font-family: 'Rubik', sans-serif;
-    background: #f8f9fb;
-    // background: #f2f2f2;
+    background: var(--darker-white);
     min-height: 100.1vh;
     max-width: 100vw;
     overflow-x: hidden;
     padding-bottom: 96px;
+    transition: background-color 0.5s ease;
 }
 
 ul {
