@@ -42,23 +42,42 @@ function ImageCard(props: ImageCardProps): JSX.Element {
         }
     }
 
+    function removeUserWants(id: string): string[] {
+        const wantsClone = [...state.userWants];
+        const indexOfSetInWants = state.userWants.indexOf(keycapset._id);
+        wantsClone.splice(indexOfSetInWants, 1);
+        return wantsClone;
+    }
+
+    function adduserWants(id: string): string[] {
+        return [...state.userWants, keycapset._id];
+    }
+
     async function userWantSet(evt: any) {
         evt.preventDefault();
         evt.stopPropagation();
 
         if (state.isLoggedIn) {
             try {
-                const response = await addWantToUser({
+                const { data: response } = await addWantToUser({
                     variables: {
                         setId: keycapset._id,
                     },
                 });
+                const isLiking: boolean = response.wantSet.message === 'liked';
+                const currentScrollPosition: number = window.scrollY;
+                console.log('Is liking...', isLiking);
+                const payload: any = {
+                    userWants: isLiking ? adduserWants(keycapset._id) : removeUserWants(keycapset._id),
+                };
+
                 dispatch({
                     // ! this dispatch makes it go to the top because of re-render
                     type: 'set',
-                    payload: {
-                        userWants: [...state.userWants, keycapset._id],
-                    },
+                    payload,
+                });
+                setTimeout(() => {
+                    window.scrollTo(0, currentScrollPosition);
                 });
             } catch (err) {
                 console.error('want set err', { err });
