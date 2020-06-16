@@ -28,7 +28,7 @@ function UserProfileTag() {
                     <div className="profile-tag-wrapper" onClick={() => setIspopoverShown(!isPopoverShown)}>
                         {state.user.avatar !== null ? (
                             <div className="profile-image">
-                                <img src={state.user.avatar} alt={state.user.name} referrerPolicy="no-referrer" />
+                                <img src={state.user.avatar} alt={state.user.name} />
                             </div>
                         ) : (
                             <div className="profile-tag">{state.user.name !== null && state.user.name.slice(0, 2)}</div>
