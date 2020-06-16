@@ -6,10 +6,11 @@ import Button from './Button';
 
 interface NavProps {
     isLargeContainer?: boolean;
+    smallPadding?: boolean;
 }
 
 function Nav(props: NavProps): JSX.Element {
-    const { isLargeContainer } = props;
+    const { isLargeContainer, smallPadding = false } = props;
     const isBrowser = typeof window !== `undefined`;
 
     return (
@@ -22,7 +23,7 @@ function Nav(props: NavProps): JSX.Element {
                 downtime. I'm sorry in advance. ❤️
             </div> */}
 
-            <div className={`container ${isLargeContainer ? 'large' : ''}`}>
+            <div className={`container ${isLargeContainer ? 'large' : ''} ${smallPadding ? '' : 'with-padding'}`}>
                 <div className="nav-container">
                     <div className="logo">
                         <Link href="/" as="/">

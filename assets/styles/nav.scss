@@ -1,5 +1,6 @@
 .nav {
     // background-color: var(--white);
+    font-family: 'Rubik', sans-serif;
 
     .discord-banner {
         display: flex;
@@ -30,8 +31,13 @@
     }
 
     .container {
-        padding-top: 80px;
-        padding-bottom: 64px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+
+        &.with-padding {
+            padding-top: 80px;
+            padding-bottom: 64px;
+        }
 
         @media screen and (max-width: 1280px) {
             padding-top: 64px;

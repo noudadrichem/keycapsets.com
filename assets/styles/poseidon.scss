@@ -14,6 +14,10 @@ $poseidon-accent: #00a4a9;
     font-family: 'DayRoman';
     background: $poseidon-main;
 
+    .nav .container .nav-container a {
+        color: var(--white);
+    }
+
     &--hero {
         display: flex;
         height: 740px;
@@ -59,8 +63,10 @@ $poseidon-accent: #00a4a9;
                 z-index: -1;
                 font-size: 230px;
                 position: absolute;
-                color: #000;
-                opacity: 0.1;
+                // color: #000;
+                // opacity: 0.1;
+                color: #004b5f; // ? beter kleur G.
+                // ! hier even naar kijken: https://hihayk.github.io/scale/#2/2/50/80/0/-17/30/14/00627a/0/98/122/white
             }
         }
 
@@ -109,6 +115,7 @@ $poseidon-accent: #00a4a9;
     .renders {
         display: flex;
         flex-wrap: wrap;
+        padding-bottom: 94px;
 
         img {
             flex: 25%;
@@ -116,5 +123,10 @@ $poseidon-accent: #00a4a9;
             height: auto;
             align-self: center;
         }
+    }
+
+    .footer {
+        background-color: #003441;
+        color: var(--white);
     }
 }

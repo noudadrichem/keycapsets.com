@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 interface FooterProps {
     noSponsor?: boolean;
@@ -37,16 +38,24 @@ function Footer(props: FooterProps): JSX.Element {
                     </p>
                 </div>
 
-                <div className="sponsored-by">
-                    <a href="https://candykeys.com/" target="_blank" className="sponsored-by">
-                        Hosting sponsored by &nbsp;
-                        <img
-                            src="https://webiz.ams3.cdn.digitaloceanspaces.com/ck/favicon/favicon-16x16.png"
-                            alt="Logo CandyKeys"
-                        />
-                        CandyKeys
-                    </a>
-                </div>
+                {!noSponsor ? (
+                    <div className="sponsored-by">
+                        <a href="https://candykeys.com/" target="_blank" className="sponsored-by">
+                            Hosting sponsored by &nbsp;
+                            <img
+                                src="https://webiz.ams3.cdn.digitaloceanspaces.com/ck/favicon/favicon-16x16.png"
+                                alt="Logo CandyKeys"
+                            />
+                            CandyKeys
+                        </a>
+                    </div>
+                ) : (
+                    <div className="sponsored-by">
+                        <Link href="/">
+                            <a>Powered by keycapsets.com</a>
+                        </Link>
+                    </div>
+                )}
 
                 <div className="socials-container">
                     {/* <a href="https://bunq.me/noudadrichem/2/">Buy me a cup of coffee</a> */}
