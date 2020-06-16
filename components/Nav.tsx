@@ -10,6 +10,11 @@ import UserProfileTag from './UserProfileTag';
 import Logo from './Logo';
 import Pill from './Pill';
 import { NextRouter, useRouter } from 'next/router';
+import dynamic from 'next/dynamic';
+
+const DarkModeSwitch = dynamic(() => import('./DarkModeSwitch'), {
+    ssr: false,
+});
 
 interface NavProps {
     isLargeContainer?: boolean;
@@ -115,6 +120,8 @@ function Nav(props: NavProps): JSX.Element {
                         ) : (
                             <UserProfileTag />
                         )}
+
+                        <DarkModeSwitch />
                     </div>
                 </div>
             </div>
