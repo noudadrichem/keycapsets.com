@@ -20,6 +20,7 @@
         padding: 16px;
         display: flex;
         flex-direction: column;
+        align-items: flex-start;
         color: var(--text-color-light);
 
         &.center {

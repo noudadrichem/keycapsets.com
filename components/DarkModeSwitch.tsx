@@ -18,17 +18,24 @@ const DarkModeSwitch = () => {
     };
 
     const darkMode = useDarkMode(isDarkModeEnabled, { onChange: darkmodeChanged, storageKey: STORAGE_KEY });
+
     return (
-        <div>
-            <span onClick={darkMode.disable}>
-                <SunIcon isSelected={!darkMode.value} />
-            </span>
-            <Toggle checked={darkMode.value} icons={false} onChange={darkMode.toggle} />
-            <span onClick={darkMode.enable}>
-                <MoonIcon isSelected={darkMode.value} />
-            </span>
+        <div onClick={darkMode.toggle} className="dark-mode-toggle">
+            {darkMode.value ? <SunIcon /> : <MoonIcon />}
         </div>
     );
+
+    // return (
+    //     <div>
+    //         <span onClick={darkMode.disable}>
+    //             <SunIcon isSelected={!darkMode.value} />
+    //         </span>
+    //         <Toggle checked={darkMode.value} icons={false} onChange={darkMode.toggle} />
+    //         <span onClick={darkMode.enable}>
+    //             <MoonIcon isSelected={darkMode.value} />
+    //         </span>
+    //     </div>
+    // );
 };
 
 export default DarkModeSwitch;

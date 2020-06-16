@@ -1,9 +1,4 @@
 import React from 'react';
-import dynamic from 'next/dynamic';
-
-const DarkModeSwitch = dynamic(() => import('./DarkModeSwitch'), {
-    ssr: false,
-});
 
 interface FooterProps {
     isLargeContainer: boolean;
@@ -54,8 +49,6 @@ function Footer(props: FooterProps): JSX.Element {
                         in Utrecht.
                     </p>
                 </div>
-
-                <DarkModeSwitch />
 
                 <div className="sponsored-by">
                     <a href="https://candykeys.com/" target="_blank" className="sponsored-by">

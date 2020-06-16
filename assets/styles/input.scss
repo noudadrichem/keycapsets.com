@@ -1,5 +1,5 @@
-.input-wrapper,
 .input-wrapper-multiple,
+.input-wrapper,
 .input-wrapper-select {
     display: flex;
     flex-direction: column;
@@ -62,4 +62,13 @@
 
 .input-wrapper-select {
     -webkit-appearance: none !important;
+}
+
+[data-theme='dark'] {
+    .select-control {
+        background-color: inherit !important;
+        * {
+            background-color: inherit !important;
+        }
+    }
 }
