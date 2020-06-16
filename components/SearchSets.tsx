@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useCallback } from 'react';
 import useInput from '../hooks/useInput';
 import context from '../context';
 import { useRouter, NextRouter } from 'next/router';
@@ -6,8 +6,10 @@ import { Context } from 'typings';
 
 function SearchSets() {
     const router: NextRouter = useRouter();
+    const randomSetNames: string[] = ['Carbon', 'Minimal', 'Hyperfuse', 'Sumi', 'Nautilus'];
+    const randomSetName: string = randomSetNames[Math.floor(Math.random() * randomSetNames.length)];
     const [searchValue, searchInput, setSearchInputValue] = useInput({
-        placeholder: 'E.g. Carbon',
+        placeholder: 'E.g. Nautilus',
         autoFocus: true,
     });
     const { state, dispatch } = useContext<Context>(context);

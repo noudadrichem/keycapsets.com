@@ -1,5 +1,9 @@
 .heading {
     padding: 88px 42px 88px;
+
+    @media screen and (max-width: 1441px) {
+        padding: 40px 42px 64px;
+    }
     // background: linear-gradient(54.97deg, #D4E4FA -12.28%, #ABCCF8 112.82%, #ABCCF8 112.82%);
     border-radius: 8px;
 
@@ -19,6 +23,11 @@
         &-sub {
             @media screen and(max-width: 562px) {
                 display: none;
+            }
+
+            &-home {
+                max-width: 616px;
+                margin: 0 auto 32px;
             }
         }
     }
@@ -64,6 +73,6 @@
     }
 
     h1 {
-        margin-bottom: 24px;
+        margin-bottom: 12px;
     }
 }

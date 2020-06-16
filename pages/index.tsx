@@ -118,7 +118,7 @@ function Home(props: HomeProps) {
             <Meta metaImgUrl={props.metaImg} />
             <Nav isLargeContainer />
             <div className="container large">
-                <Heading mainTitle="Find your favorite keycapset!" subTitle="keycapsets.com" isHome />
+                <Heading mainTitle="Find your favorite keycapset!" subTitle="" isHome />
                 <Tabs />
                 {initLoading ? <LoadingKeyboardIllustration /> : <Images keycapsets={keycapsets} />}
                 {loadingExtra && <LoadingKeyboardIllustration scale={0.3} />}

@@ -17,12 +17,12 @@ function Heading(props: HeadingProps): JSX.Element {
 
     return (
         <header className={`heading ${left ? 'left' : 'center'}`} style={{ background: backgroundColor }}>
-            <Pill color="gray" text="BETA" />
             <h4 className={`title-sub italic ${left ? 'left' : 'center'}`}>{subTitle}</h4>
             <h1 className={`title no-bold ${left ? 'left' : 'center'}`}>{mainTitle}</h1>
 
             {isHome && (
                 <>
+                    {/* <h5 className="title-sub-home">The place for everything keycapset related. Get an overview of created sets and be inspired.</h5> */}
                     <SearchSets />
 
                     {/* <div className="heading-cta">
