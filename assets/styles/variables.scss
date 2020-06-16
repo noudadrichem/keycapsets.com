@@ -1,3 +1,14 @@
+// Breakpoints
+$bp-mobile-sm: 321px;
+$bp-mobile-md: 376px;
+$bp-mobile-lg: 414px;
+$bp-tablet-sm: 562px;
+$bp-tablet-md: 768px;
+$bp-desktop-sm: 1120px;
+$bp-desktop-md: 1280px;
+$bp-laptop-md: 1441px;
+$bp-desktop-lg: 1536px;
+
 :root {
     --text-color: #232323;
     --text-color-light: #566073;
@@ -36,7 +47,7 @@
     --blue: #539bfb;
     --blue-lighter: #abccf8;
     --blue-lightest: #306ab0;
-    --darker-white: #323232;
+    --darker-white: #121212;
     --darkest-gray: #646464;
     --darker-gray: #4e4e4e;
     --light-gray: #f8f9fb;
@@ -49,15 +60,9 @@
 
     --orange-light: #99601f;
     --orange: #ffe9cd;
-}
 
-// Breakpoints
-$bp-mobile-sm: 321px;
-$bp-mobile-md: 376px;
-$bp-mobile-lg: 414px;
-$bp-tablet-sm: 562px;
-$bp-tablet-md: 768px;
-$bp-desktop-sm: 1120px;
-$bp-desktop-md: 1280px;
-$bp-laptop-md: 1441px;
-$bp-desktop-lg: 1536px;
+    @media screen and (max-width: $bp-tablet-sm) {
+        --darker-white: #000;
+        --white: #232323;
+    }
+}
