@@ -40,38 +40,40 @@ function ImageCard(props: ImageCardProps): JSX.Element {
     return (
         <LazyLoad offset={400} height={400}>
             <Link href="/[type]/[set]" as={`/${type}/${slug}`}>
-                <div className={`image-card ${isTemplate ? 'disabled' : ''}`}>
-                    <div className="image">
-                        <img
-                            className="set"
-                            src={
-                                coverImageUrl === undefined || coverImageUrl === ''
-                                    ? '/images/empty-base-kit-illu.svg'
-                                    : coverImageUrl
-                            }
-                        />
-                    </div>
-
-                    <div className="details">
-                        <div className="top">
-                            <h4 className="set-title">{name || 'Title goes here'}</h4>
-                            <StatusLabel
-                                groupbuyStartDate={groupbuyStartDate}
-                                groupbuyEndDate={groupbuyEndDate}
-                                isIc={isInterestCheck}
+                <a>
+                    <div className={`image-card ${isTemplate ? 'disabled' : ''}`}>
+                        <div className="image">
+                            <img
+                                className="set"
+                                src={
+                                    coverImageUrl === undefined || coverImageUrl === ''
+                                        ? '/images/empty-base-kit-illu.svg'
+                                        : coverImageUrl
+                                }
                             />
                         </div>
 
-                        <div className="bottom">
-                            <span className="bold">
-                                <span>
-                                    {getLabelByBrand(brand)} {type && type.toUpperCase()}
+                        <div className="details">
+                            <div className="top">
+                                <h4 className="set-title">{name || 'Title goes here'}</h4>
+                                <StatusLabel
+                                    groupbuyStartDate={groupbuyStartDate}
+                                    groupbuyEndDate={groupbuyEndDate}
+                                    isIc={isInterestCheck}
+                                />
+                            </div>
+
+                            <div className="bottom">
+                                <span className="bold">
+                                    <span>
+                                        {getLabelByBrand(brand)} {type && type.toUpperCase()}
+                                    </span>
+                                    <span>{moment(groupbuyStartDate).format('YYYY')}</span>
                                 </span>
-                                <span>{moment(groupbuyStartDate).format('YYYY')}</span>
-                            </span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </Link>
         </LazyLoad>
     );
