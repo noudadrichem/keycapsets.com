@@ -86,14 +86,14 @@ function Nav(props: NavProps): JSX.Element {
                     </div>
 
                     <div className={`nav-items ${isNavOpen ? 'open' : 'closed'}`}>
-                        <Link href="/vendors" as="/vendors" prefetch>
+                        <Link href="/vendors" as="/vendors">
                             <a className="nav-item">Vendors</a>
                         </Link>
-                        <Link href="/about" as="/about" prefetch>
+                        <Link href="/about" as="/about">
                             <a className="nav-item">About</a>
                         </Link>
                         {!isLoggedIn && (
-                            <Link href="/login" as="/login" prefetch>
+                            <Link href="/login" as="/login">
                                 <a className="nav-item">Login</a>
                             </Link>
                         )}
