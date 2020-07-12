@@ -1,14 +1,14 @@
 .btn {
     outline: none;
     text-align: center;
-    border: none;
+    border: 1px solid transparent;
     transition: 120ms;
     cursor: pointer;
     border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 700;
+    font-family: inherit;
 
     &:disabled {
         opacity: 0.5;
@@ -91,20 +91,17 @@
     }
 
     &.secondary {
-        background-color: var(--blue-lightest);
+        background-color: var(--white);
         border: 1px solid var(--blue-lightest);
-        color: var(--blue);
-        font-weight: 600;
+        color: var(--text-color-light);
+        font-weight: 500;
 
-        &:active {
-            background-color: var(--blue-darker);
-            border: 1px solid var(--blue-darker);
+        &.active {
+            background-color: var(--blue-lightest);
         }
 
         &:hover {
-            background-color: var(--blue-darker);
-            border: 1px solid var(--blue-darker);
-            color: #fff;
+            background-color: var(--blue-lightest);
 
             &:disabled {
                 opacity: 0.5;
@@ -125,6 +122,21 @@
             &:disabled {
                 opacity: 0.5;
             }
+        }
+    }
+
+    &.tab {
+        color: var(--text-color-light);
+        background: transparent;
+        font-weight: 400;
+
+        &:hover {
+            background-color: var(--white);
+        }
+
+        &.active {
+            background-color: var(--blue-lightest);
+            font-weight: 600;
         }
     }
 

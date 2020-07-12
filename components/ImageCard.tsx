@@ -3,6 +3,8 @@ import moment from 'moment';
 import LazyLoad from 'react-lazyload';
 import Link from 'next/link';
 import ReactTooltip from 'react-tooltip';
+import useIsInViewport from 'use-is-in-viewport';
+import { AnimatePresence, motion } from 'framer-motion';
 
 import { Keycapset, Brand, Context } from 'typings';
 import StatusLabel from './StatusLabel';
@@ -35,7 +37,10 @@ function ImageCard(props: ImageCardProps): JSX.Element {
 
     const [addWantToUser] = useMutation<any>(WANT_SET);
 
-    function getLabelByBrand(brandValue: string): string {
+    const [wasInViewport, setWasInViewport] = useState(false);
+    const [isInViewport, containerRef] = useIsInViewport({ threshold: 1 });
+
+    function getLabelByBrand(brandValue: any): string {
         const brand: Brand = BRAND_OPTIONS.find((brand: Brand) => brand.value === brandValue);
         if (brand) {
             return brand.label;
@@ -87,59 +92,78 @@ function ImageCard(props: ImageCardProps): JSX.Element {
         }
     }
 
+    useEffect(() => {
+        if (isInViewport) {
+            setWasInViewport(true);
+        }
+    }, [isInViewport]);
+
     return (
-        <LazyLoad offset={400} height={400}>
-            <Link href="/set/[set]" as={`/set/${slug}`} prefetch>
-                <div className={`image-card ${isTemplate ? 'disabled' : ''}`}>
-                    <div className="image">
-                        <img
-                            className="set"
-                            src={
-                                coverImageUrl === undefined || coverImageUrl === ''
-                                    ? '/images/empty-base-kit-illu.svg'
-                                    : coverImageUrl
-                            }
-                        />
-                    </div>
-
-                    <div className="details">
-                        <div className="top">
-                            <h4 className="set-title">{name || 'Title goes here'}</h4>
-                            <StatusLabel
-                                groupbuyStartDate={groupbuyStartDate}
-                                groupbuyEndDate={groupbuyEndDate}
-                                isIc={isInterestCheck}
-                            />
-                        </div>
-
-                        <div className="bottom">
-                            <span className="bold">
-                                <span>
-                                    {getLabelByBrand(brand)} {type && type.toUpperCase()}
-                                </span>
-                                <span>{moment(groupbuyStartDate).format('YYYY')}</span>
-                            </span>
-
-                            <span>
-                                <span
-                                    data-tip="Sign up to create collections"
-                                    onClick={userWantSet}
-                                    className="heart-icon"
-                                >
-                                    <HeartIcon
-                                        filled={state.userWants.includes(keycapset._id)}
-                                        isDisabled={!state.isLoggedIn}
+        <AnimatePresence>
+            <LazyLoad offset={400} height={400} once>
+                <Link href="/set/[set]" as={`/set/${slug}`}>
+                    <a ref={containerRef}>
+                        {wasInViewport && (
+                            <motion.div
+                                initial={{
+                                    opacity: 0,
+                                }}
+                                animate={{
+                                    opacity: 1,
+                                }}
+                                className={`image-card ${isTemplate ? 'disabled' : ''}`}
+                            >
+                                <div className="image">
+                                    <img
+                                        className="set"
+                                        src={
+                                            coverImageUrl === undefined || coverImageUrl === ''
+                                                ? '/images/empty-base-kit-illu.svg'
+                                                : coverImageUrl
+                                        }
                                     />
-                                    {!state.isLoggedIn && (
-                                        <ReactTooltip delayHide={500} className="tooltip" effect="solid" />
-                                    )}
-                                </span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </Link>
-        </LazyLoad>
+                                </div>
+                                <div className="details">
+                                    <div className="top">
+                                        <h4 className="set-title">{name || 'Title goes here'}</h4>
+                                        <StatusLabel
+                                            groupbuyStartDate={groupbuyStartDate}
+                                            groupbuyEndDate={groupbuyEndDate}
+                                            isIc={isInterestCheck}
+                                        />
+                                    </div>
+
+                                    <div className="bottom">
+                                        <span className="bold">
+                                            <span>
+                                                {getLabelByBrand(brand)} {type && type.toUpperCase()}
+                                            </span>
+                                            <span>{moment(groupbuyStartDate).format('YYYY')}</span>
+                                        </span>
+
+                                        <span>
+                                            <span
+                                                data-tip="Sign up to create collections"
+                                                onClick={userWantSet}
+                                                className="heart-icon"
+                                            >
+                                                <HeartIcon
+                                                    filled={state.userWants.includes(keycapset._id)}
+                                                    isDisabled={!state.isLoggedIn}
+                                                />
+                                                {!state.isLoggedIn && (
+                                                    <ReactTooltip delayHide={500} className="tooltip" effect="solid" />
+                                                )}
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        )}
+                    </a>
+                </Link>
+            </LazyLoad>
+        </AnimatePresence>
     );
 }
 

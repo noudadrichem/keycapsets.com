@@ -86,19 +86,19 @@ function Nav(props: NavProps): JSX.Element {
                     </div>
 
                     <div className={`nav-items ${isNavOpen ? 'open' : 'closed'}`}>
-                        <Link href="/vendors" as="/vendors" prefetch>
+                        <Link href="/vendors" as="/vendors">
                             <a className="nav-item">Vendors</a>
                         </Link>
-                        <Link href="/about" as="/about" prefetch>
+                        <Link href="/about" as="/about">
                             <a className="nav-item">About</a>
                         </Link>
                         {!isLoggedIn && (
-                            <Link href="/login" as="/login" prefetch>
+                            <Link href="/login" as="/login">
                                 <a className="nav-item">Login</a>
                             </Link>
                         )}
                         {!isLoggedIn ? (
-                            <Button variant="primary" size="md" className="btn-sign-up medium-large">
+                            <Button variant="primary" size="md" className="btn-sign-up">
                                 Sign up
                                 <div className="popover on-hover">
                                     <div className="popover-container">
@@ -121,7 +121,7 @@ function Nav(props: NavProps): JSX.Element {
                             <UserProfileTag />
                         )}
 
-                        <DarkModeSwitch />
+                        {/* <DarkModeSwitch /> */}
                     </div>
                 </div>
             </div>

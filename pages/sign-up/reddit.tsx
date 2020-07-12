@@ -43,7 +43,7 @@ function SignUpReddit() {
 
                 <p className="light small-width alinea">
                     Are you a vendor? Sign up and let users know you exist! Are you a vendor designing sets? Obviously
-                    all the above apply for you aswell! *
+                    all the above apply for you as well! *
                 </p>
 
                 <p className="light small-width alinea">* Feature coming soon!</p>

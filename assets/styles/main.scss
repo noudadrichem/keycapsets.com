@@ -190,7 +190,7 @@ img {
 .mobile-only {
     display: none !important;
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 826px) {
         display: flex !important;
         flex: 1;
     }
