@@ -98,7 +98,7 @@ function Nav(props: NavProps): JSX.Element {
                             </Link>
                         )}
                         {!isLoggedIn ? (
-                            <Button variant="primary" size="md" className="btn-sign-up medium-large">
+                            <Button variant="primary" size="md" className="btn-sign-up">
                                 Sign up
                                 <div className="popover on-hover">
                                     <div className="popover-container">
@@ -121,7 +121,7 @@ function Nav(props: NavProps): JSX.Element {
                             <UserProfileTag />
                         )}
 
-                        <DarkModeSwitch />
+                        {/* <DarkModeSwitch /> */}
                     </div>
                 </div>
             </div>

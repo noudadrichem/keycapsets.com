@@ -20,12 +20,12 @@ function Heading(props: HeadingProps): JSX.Element {
 
     return (
         <header className={`heading ${left ? 'left' : 'center'}`} style={{ background: backgroundColor }}>
-            <h4 className={`title-sub italic ${left ? 'left' : 'center'}`}>{subTitle}</h4>
+            {subTitle && <h4 className={`title-sub italic ${left ? 'left' : 'center'}`}>{subTitle}</h4>}
             <h1 className={`title no-bold ${left ? 'left' : 'center'}`}>{mainTitle}</h1>
 
             {isHome && (
                 <>
-                    {/* <h5 className="title-sub-home">The place for everything keycapset related. Get an overview of created sets and be inspired.</h5> */}
+                    {/* <h5 className="title-sub-home">Pimp your mechanical keyboard with 300+ community designed keycapsets. Create your account an stay up to date!</h5> */}
                     <SearchSets />
                     {!state.isLoggedIn && (
                         <div className="mobile-only">

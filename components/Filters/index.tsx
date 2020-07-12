@@ -14,6 +14,9 @@ import Tab from './Tab';
 import Arrow from '../Arrow';
 import Link from 'next/link';
 import ButtonLink from '../ButtonLink';
+import Button from '../Button';
+import FilterIcon from '../FilterIcon';
+import { motion } from 'framer-motion';
 
 interface FiltersProps {}
 
@@ -21,6 +24,7 @@ function Filters(props: FiltersProps): JSX.Element {
     const {} = props;
     const { state, dispatch } = useContext<Context>(context);
     const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [isExtraFiltersOpen, setIsExtraFilterOpen] = useState<boolean>(false);
 
     useEffect(function handleToggleOnWindowSize() {
         const isBrowser = typeof window !== `undefined`;
@@ -30,19 +34,6 @@ function Filters(props: FiltersProps): JSX.Element {
             }
         }
     }, []);
-
-    function resetFilter() {
-        dispatch({
-            type: 'set',
-            payload: {
-                filters: {
-                    ...state.filters,
-                    availabilityFilter: 'none',
-                    brandFilter: [],
-                },
-            },
-        });
-    }
 
     // TODO: This needs refactoring...
     function handleBrandFilter(values: Brand[]) {
@@ -78,9 +69,9 @@ function Filters(props: FiltersProps): JSX.Element {
             },
         });
     }
-
     function getLabelByAvailability(tab: string): string {
         const labelOptions: any = {
+            none: 'All',
             ic: 'Interest Check',
             gb: 'In Groupbuy',
             waiting: 'Awaiting Groupbuy',
@@ -89,33 +80,30 @@ function Filters(props: FiltersProps): JSX.Element {
         return labelOptions[tab];
     }
 
+    const extraFilterAnimationVariants = {
+        open: { height: 'auto' },
+        closed: { height: 0 },
+    };
+
     return (
         <>
             <div className="mobile-toggle" onClick={() => setIsOpen(!isOpen)}>
                 <h5>{isOpen ? 'Close ' : 'Open '}search filters</h5>
                 <Arrow color="#566073" size={16} direction={isOpen ? 'top' : 'bottom'} />
             </div>
+
             <div className={`filters ${isOpen ? 'open' : 'closed'}`}>
                 <div className="left-side">
-                    <div className="filter availability desktop-only">
-                        <label className="label">Availability</label>
-                        <div className="tabs">
-                            {AVAILABILITY_OPTIONS.map((tab: string, idx: number) => (
-                                <Tab
-                                    label={getLabelByAvailability(tab)}
-                                    type={AVAILABILITY_FILTER}
-                                    id={tab}
-                                    key={idx}
-                                />
-                            ))}
-                            <div>
-                                {state.filters.availabilityFilter !== 'none' && (
-                                    <p className="small light clickable" onClick={resetFilter} style={{ marginTop: 8 }}>
-                                        reset
-                                    </p>
-                                )}
-                            </div>
-                        </div>
+                    <div className="more-filters open">
+                        <Button
+                            variant="secondary"
+                            size="sm"
+                            onClick={() => setIsExtraFilterOpen(!isExtraFiltersOpen)}
+                            className={`${isExtraFiltersOpen ? 'active' : ''}`}
+                        >
+                            <FilterIcon />
+                            Filters
+                        </Button>
                     </div>
 
                     <div className="filter availability mobile-only">
@@ -139,38 +127,49 @@ function Filters(props: FiltersProps): JSX.Element {
                             }))}
                         />
                     </div>
-
-                    <div className="filter brand">
-                        <MultiSelect isMulti label="Brand" options={BRAND_OPTIONS} onChange={handleBrandFilter} />
-                    </div>
-
-                    <div className="filter profile">
-                        <MultiSelect isMulti label="Profile" options={PROFILE_OPTIONS} onChange={handleProfileFilter} />
-                    </div>
-
-                    <div className="filter material">
-                        <MultiSelect
-                            isMulti
-                            label="Material"
-                            options={MATERIAL_OPTIONS}
-                            onChange={handleMaterialFilter}
-                        />
-                    </div>
-
-                    {state.isLoggedIn && (
-                        <div className="filter favorites">
-                            <ButtonLink href="/user">My favorites</ButtonLink>
-                        </div>
-                    )}
                 </div>
 
-                <div className="counter">
-                    <label className="label">Keycapsets:</label>
-                    <p className="light">
-                        {state.fetchedKeycapsetsLength}/{state.allKeycapsetsCount}
-                    </p>
+                <div className="centered-side">
+                    <div className="filter availability desktop-only">
+                        <div className="tabs">
+                            {AVAILABILITY_OPTIONS.map((tab: string, idx: number) => (
+                                <Tab
+                                    label={getLabelByAvailability(tab)}
+                                    type={AVAILABILITY_FILTER}
+                                    id={tab}
+                                    key={idx}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                </div>
+                <div className="right-side">
+                    <div className="counter">
+                        <label className="label">Keycapsets:</label>
+                        <p className="light">{state.allKeycapsetsCount}</p>
+                    </div>
                 </div>
             </div>
+
+            {/* {isExtraFiltersOpen && ( */}
+            <motion.div
+                animate={isExtraFiltersOpen ? 'open' : 'closed'}
+                variants={extraFilterAnimationVariants}
+                className="extra-filters"
+            >
+                <div className="filter brand">
+                    <MultiSelect isMulti label="Brand" options={BRAND_OPTIONS} onChange={handleBrandFilter} />
+                </div>
+
+                <div className="filter profile">
+                    <MultiSelect isMulti label="Profile" options={PROFILE_OPTIONS} onChange={handleProfileFilter} />
+                </div>
+
+                <div className="filter material">
+                    <MultiSelect isMulti label="Material" options={MATERIAL_OPTIONS} onChange={handleMaterialFilter} />
+                </div>
+            </motion.div>
+            {/* )} */}
         </>
     );
 }

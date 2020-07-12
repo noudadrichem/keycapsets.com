@@ -3,7 +3,7 @@ import React, { ReactNode } from 'react';
 interface ButtonProps {
     size?: 'sm' | 'md' | 'lg';
     type: String;
-    variant: 'primary' | 'secondary' | 'inverted';
+    variant: 'primary' | 'secondary' | 'inverted' | 'tab';
     className?: String;
     isDisabled?: boolean;
     isFullWidth?: boolean;

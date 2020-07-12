@@ -13,8 +13,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 16px 0 24px;
-    margin-top: 48px;
+    padding: 16px 0 16px;
+    // margin-top: 48px;
 
     &.closed {
         display: none;
@@ -25,41 +25,46 @@
         text-align: right;
     }
 
+    .btn {
+        .filter-icon {
+            margin-right: 4px;
+        }
+    }
+
     .left-side {
         display: inline-flex;
+    }
 
-        .filter {
+    .filter {
+        display: flex;
+        flex-direction: column;
+        margin-right: 16px;
+
+        &.desktop-only {
+            display: inline-flex;
+
+            @media screen and (max-width: 556px) {
+                display: none;
+            }
+        }
+
+        .tabs {
             display: flex;
-            flex-direction: column;
-            margin-right: 16px;
 
-            &.desktop-only {
-                display: inline-flex;
-
-                @media screen and (max-width: 556px) {
-                    display: none;
-                }
+            .btn {
+                margin-right: 8px;
             }
+        }
 
-            .tabs {
-                display: flex;
+        .input-wrapper {
+            min-width: 216px;
+        }
 
-                .btn {
-                    min-width: 80px;
-                    margin-right: 8px;
-                }
-            }
+        &.favorites {
+            justify-content: center;
 
-            .input-wrapper {
-                min-width: 216px;
-            }
-
-            &.favorites {
-                justify-content: center;
-
-                .button-link {
-                    margin-top: 16px;
-                }
+            .button-link {
+                margin-top: 16px;
             }
         }
     }
@@ -83,6 +88,22 @@
 
         .counter {
             display: none;
+        }
+    }
+}
+
+.extra-filters {
+    overflow: hidden;
+    margin: 0 0 24px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .filter {
+        flex: 1;
+
+        &:nth-child(2) {
+            padding: 0 24px;
         }
     }
 }

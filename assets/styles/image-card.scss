@@ -79,7 +79,7 @@
 
             .heart-icon {
                 display: inline-flex;
-                color: var(--blue);
+                color: #787c83;
 
                 .heart-fill {
                     visibility: hidden;
@@ -92,6 +92,10 @@
                     .heart-fill {
                         visibility: visible;
                     }
+                }
+
+                &:active {
+                    color: var(--blue);
                 }
             }
         }
