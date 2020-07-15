@@ -81,6 +81,13 @@
                 display: inline-flex;
                 color: #787c83;
 
+                .want {
+                    color: var(--blue);
+                    .heart-fill {
+                        color: var(--blue);
+                    }
+                }
+
                 .heart-fill {
                     visibility: hidden;
                     &.show {

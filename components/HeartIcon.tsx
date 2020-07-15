@@ -8,10 +8,10 @@ interface HeartIconProps {
 }
 
 function HeartIcon(props: HeartIconProps): JSX.Element {
-    const { width = 28, height = 24, filled = false, isDisabled } = props;
+    const { width = 18, height = 16, filled = false, isDisabled } = props;
     return (
         <svg
-            className={isDisabled ? 'disabled' : ''}
+            className={`${isDisabled ? 'disabled' : ''} ${filled ? 'want' : ''}`}
             width={width}
             height={height}
             viewBox="0 0 28 24"
