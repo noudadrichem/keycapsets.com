@@ -23,6 +23,20 @@
         color: #99601f;
     }
 
+    .info-banner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px;
+        text-align: center;
+        background: var(--blue-lighter);
+        color: var(--text-color);
+
+        @media screen and (max-width: 768px) {
+            font-size: 11px;
+        }
+    }
+
     .logo {
         cursor: pointer;
         display: flex;
@@ -37,7 +51,7 @@
 
     .hamburger-icon {
         position: absolute;
-        top: 36px;
+        top: 87px;
         right: 24px;
         display: none;
         z-index: 11;
@@ -90,6 +104,7 @@
                 }
 
                 .btn-sign-up {
+                    user-select: all;
                     position: relative;
                     padding-left: 32px;
                     padding-right: 32px;

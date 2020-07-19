@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter, NextRouter } from 'next/router';
 
 import SearchSets from './SearchSets';
 import Button from './Button';
@@ -17,6 +17,13 @@ interface HeadingProps {
 function Heading(props: HeadingProps): JSX.Element {
     const { mainTitle, subTitle, isHome = false, left = false, backgroundColor } = props;
     const { state } = useContext<Context>(context);
+    const router: NextRouter = useRouter();
+
+    function pushSignup(e) {
+        e.preventDefault();
+        console.log('push signup');
+        router.push('/sign-up');
+    }
 
     return (
         <header className={`heading ${left ? 'left' : 'center'}`} style={{ background: backgroundColor }}>
@@ -29,7 +36,12 @@ function Heading(props: HeadingProps): JSX.Element {
                     <SearchSets />
                     {!state.isLoggedIn && (
                         <div className="mobile-only">
-                            <Button variant="primary" size="md" className="btn-sign-up medium-large">
+                            <Button
+                                variant="primary"
+                                size="md"
+                                className="btn-sign-up medium-large"
+                                onClick={pushSignup}
+                            >
                                 Sign up
                             </Button>
                         </div>

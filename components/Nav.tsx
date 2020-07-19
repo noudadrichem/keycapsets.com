@@ -8,8 +8,7 @@ import { InititalState, Context } from 'typings';
 import { context } from '../context';
 import UserProfileTag from './UserProfileTag';
 import Logo from './Logo';
-import Pill from './Pill';
-import { NextRouter, useRouter } from 'next/router';
+import { NextRouter, useRouter, Router } from 'next/router';
 import dynamic from 'next/dynamic';
 
 const DarkModeSwitch = dynamic(() => import('./DarkModeSwitch'), {
@@ -58,15 +57,21 @@ function Nav(props: NavProps): JSX.Element {
         document.body.style.overflow = isNavOpen ? 'hidden' : '';
     }, [isNavOpen]);
 
+    function pushSignup(e) {
+        e.preventDefault();
+        console.log('push signup');
+        router.push('/sign-up');
+    }
+
     return (
         <nav className="nav">
             {/* <a className="discord-banner" href="https://discord.gg/dq8cyMS">
                 <img src="/images/discord.svg" />Join the conversation on our discord!
             </a>*/}
-            {/* <div className="maintenance-banner">
-                In the weekend of 16th and 17th may I'll be doing some "big" maintenance, this could result in some
-                downtime. I'm sorry in advance. ❤️
-        </div> */}
+            <div className="info-banner">
+                This is a new release of Keycapsets.com. We're excited to share a new feature, accounts! A version we
+                could build upon with amazing new features coming ahead!
+            </div>
 
             <HamburgerIcon
                 onClick={() => {
@@ -98,7 +103,7 @@ function Nav(props: NavProps): JSX.Element {
                             </Link>
                         )}
                         {!isLoggedIn ? (
-                            <Button variant="primary" size="md" className="btn-sign-up">
+                            <Button variant="primary" size="md" className="btn-sign-up desktop" onClick={pushSignup}>
                                 Sign up
                                 <div className="popover on-hover">
                                     <div className="popover-container">
