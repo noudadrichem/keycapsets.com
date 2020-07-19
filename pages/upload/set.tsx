@@ -87,6 +87,7 @@ function UploadSet(props: UploadSetProps): JSX.Element {
         accentColor2: accentColor2Value,
         accentColor3: accentColor3Value,
         isInterestCheck: isInterestCheckValue || false, // update input hook
+        kits: [],
         imageUrls,
     };
 
