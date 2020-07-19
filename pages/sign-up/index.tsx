@@ -23,7 +23,6 @@ function SignUp() {
                     <li>Upload a keycapset. *</li>
                     <li>Collect IC votes. *</li>
                     <li>Get a full fledged designed page for your set. *</li>
-                    <li>Sign up to a calender feed. *</li>
                     <li>Hook up to vendors to get your MOQ data in one place. *</li>
                 </ul>
             </div>
@@ -69,7 +68,7 @@ function SignUp() {
                 the above apply for you aswell! *
             </p>
 
-            <p className="light small-width alinea">* Feature coming soon!</p>
+            <p className="light small-width alinea">* Feature coming!</p>
         </div>
     );
 }

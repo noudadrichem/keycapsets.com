@@ -1,20 +1,15 @@
 import React, { useEffect, useState, useContext } from 'react';
 import moment from 'moment';
 import Link from 'next/link';
-import ReactTooltip from 'react-tooltip';
 import useIsInViewport from 'use-is-in-viewport';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import { Keycapset, Brand, Context } from 'typings';
 import StatusLabel from './StatusLabel';
 import { BRAND_OPTIONS } from '../constants';
-import HeartIcon from './HeartIcon';
-import { useMutation } from '@apollo/react-hooks';
-import { WANT_SET } from '../queries';
-import context from '../context';
-import { useRouter, NextRouter } from 'next/router';
+import LikeSet from './LikeSet';
 
-interface ImageCardProps {
+export interface ImageCardProps {
     keycapset: Keycapset;
 }
 
@@ -31,10 +26,6 @@ function ImageCard(props: ImageCardProps): JSX.Element {
         isInterestCheck,
     }: Keycapset = keycapset;
     const isTemplate: boolean = !keycapset.hasOwnProperty('_id');
-    const { state, dispatch } = useContext<Context>(context);
-    const router: NextRouter = useRouter();
-
-    const [addWantToUser] = useMutation<any>(WANT_SET);
 
     const [wasInViewport, setWasInViewport] = useState(false);
     const [isInViewport, containerRef] = useIsInViewport({ threshold: 5 });
@@ -43,51 +34,6 @@ function ImageCard(props: ImageCardProps): JSX.Element {
         const brand: Brand = BRAND_OPTIONS.find((brand: Brand) => brand.value === brandValue);
         if (brand) {
             return brand.label;
-        }
-    }
-
-    function removeUserWants(id: string): string[] {
-        const wantsClone = [...state.userWants];
-        const indexOfSetInWants = state.userWants.indexOf(keycapset._id);
-        wantsClone.splice(indexOfSetInWants, 1);
-        return wantsClone;
-    }
-
-    function adduserWants(id: string): string[] {
-        return [...state.userWants, keycapset._id];
-    }
-
-    async function userWantSet(evt: any) {
-        evt.preventDefault();
-        evt.stopPropagation();
-
-        if (state.isLoggedIn) {
-            try {
-                const { data: response } = await addWantToUser({
-                    variables: {
-                        setId: keycapset._id,
-                    },
-                });
-                const isLiking: boolean = response.wantSet.message === 'liked';
-                const currentScrollPosition: number = window.scrollY;
-                console.log('Is liking...', isLiking);
-                const payload: any = {
-                    userWants: isLiking ? adduserWants(keycapset._id) : removeUserWants(keycapset._id),
-                };
-
-                dispatch({
-                    // ! this dispatch makes it go to the top because of re-render
-                    type: 'set',
-                    payload,
-                });
-                setTimeout(() => {
-                    window.scrollTo(0, currentScrollPosition);
-                });
-            } catch (err) {
-                console.error('want set err', { err });
-            }
-        } else {
-            router.push('/sign-up');
         }
     }
 
@@ -140,19 +86,7 @@ function ImageCard(props: ImageCardProps): JSX.Element {
                                     </span>
 
                                     <span>
-                                        <span
-                                            data-tip="Sign up to create collections"
-                                            onClick={userWantSet}
-                                            className="heart-icon"
-                                        >
-                                            <HeartIcon
-                                                filled={state.userWants.includes(keycapset._id)}
-                                                isDisabled={!state.isLoggedIn}
-                                            />
-                                            {!state.isLoggedIn && (
-                                                <ReactTooltip delayHide={500} className="tooltip" effect="solid" />
-                                            )}
-                                        </span>
+                                        <LikeSet keycapset={keycapset} />
                                     </span>
                                 </div>
                             </div>

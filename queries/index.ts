@@ -206,13 +206,13 @@ const UPDATE_USER = gql`
     }
 `;
 
-const USER_WANTS = gql`
-    {
-        userWants {
-            set
-        }
-    }
-`;
+// const USER_WANTS = gql`
+//     {
+//         userWants {
+//             set
+//         }
+//     }
+// `;
 
 const USER_WANTS_SETS = gql`
     {
@@ -261,7 +261,6 @@ export {
     WANT_SET,
     CLAIM_SET,
     UPDATE_USER,
-    USER_WANTS,
     USER_WANTS_SETS,
     REQUEST_DESIGNER_ROLE,
     REQUEST_VENDOR_ROLE,

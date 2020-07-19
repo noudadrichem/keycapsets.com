@@ -20,7 +20,7 @@ import Nav from '../components/Nav';
 import Tabs from '../components/Filters';
 import CTACard from '../components/CTACard';
 import { useQuery } from '@apollo/react-hooks';
-import { USER_WANTS } from '../queries';
+import { USER_WANTS_SETS } from '../queries';
 
 interface HomeProps {
     url: any;
@@ -35,14 +35,14 @@ function Home(props: HomeProps) {
     const [isAtBottomOfPage, setIsAtBottomOfPage] = useState(false);
     const { state, dispatch } = useContext<Context>(context);
 
-    const { data: userWantSetsResponse, loading: userWantsLoading, error: userWantsError } = useQuery(USER_WANTS);
+    const { data: userWantSetsResponse, loading: userWantsLoading, error: userWantsError } = useQuery(USER_WANTS_SETS);
 
     useEffect(() => {
         if (!userWantsLoading) {
             dispatch({
                 type: 'set',
                 payload: {
-                    userWants: userWantSetsResponse.userWants.map(({ set }) => set),
+                    userWants: userWantSetsResponse.userWantsSets,
                 },
             });
         }

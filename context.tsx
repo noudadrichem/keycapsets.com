@@ -20,7 +20,6 @@ export const INITITAL_STATE: InititalState = {
 
 const context = createContext<any>(INITITAL_STATE);
 const StateProvider = ({ children }) => {
-    const isBrowser: boolean = typeof window !== `undefined`;
     const [state, dispatch]: any[] = useReducer((state: InititalState, action: Action) => {
         switch (action.type) {
             case 'set':

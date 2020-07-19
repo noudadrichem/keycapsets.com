@@ -144,7 +144,7 @@ function UserEdit(props: UserEditProps): JSX.Element {
                                     size="sm"
                                     isDisabled={state.user.isDesigner}
                                 >
-                                    {state.user.isDesigner ? 'You already are' : 'Get the designer role'}
+                                    {state.user.isDesigner ? 'You are' : 'Get the designer role'}
                                 </Button>
                             </div>
 

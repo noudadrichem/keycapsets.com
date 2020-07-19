@@ -81,35 +81,6 @@
                     font-size: 12px;
                 }
             }
-
-            .heart-icon {
-                display: inline-flex;
-                color: #787c83;
-
-                .want {
-                    color: var(--blue);
-                    .heart-fill {
-                        color: var(--blue);
-                    }
-                }
-
-                .heart-fill {
-                    visibility: hidden;
-                    &.show {
-                        visibility: visible;
-                    }
-                }
-
-                &:hover {
-                    .heart-fill {
-                        visibility: visible;
-                    }
-                }
-
-                &:active {
-                    color: var(--blue);
-                }
-            }
         }
 
         .set-title {

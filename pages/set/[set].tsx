@@ -2,26 +2,21 @@ import React, { useContext, useEffect, useState } from 'react';
 import moment from 'moment';
 import { useRouter, Router } from 'next/router';
 import Slider from 'react-slick';
-import { useQuery, useApolloClient, useMutation } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/react-hooks';
 import { Keycapset, Vendor, Context } from 'typings';
 import withGA from 'next-ga';
 
-import withData from '../../hooks/withData';
 import { GET_SINGLE_SET_QUERY, CLAIM_SET } from '../../queries';
 
 import 'slick-carousel/slick/slick.css';
+import '../../assets/styles/main.scss';
 
-import Footer from '../../components/Footer';
 import Heading from '../../components/Heading';
-import Nav from '../../components/Nav';
 import LoadingKeyboard from '../../components/LoadingKeyboard';
 import ButtonLink from '../../components/ButtonLink';
 import Meta from '../../components/Meta';
-import CTACard from '../../components/CTACard';
-import Button from '../../components/Button';
 import context from '../../context';
-import { ApolloClient } from 'apollo-boost';
-import ClaimSet from '../../components/ClaimSet';
+import LikeSet from '../../components/LikeSet';
 
 interface SetPageProps {}
 
@@ -105,8 +100,8 @@ function SetPage(props: SetPageProps) {
                             </div>
 
                             <div>
-                                {isLoggedInAndIsDesigner && <ClaimSet keycapset={keycapset} callback={setClaimed} />}
-
+                                {/* {isLoggedInAndIsDesigner && <ClaimSet keycapset={keycapset} callback={setClaimed} />} */}
+                                <LikeSet keycapset={keycapset} />
                                 <h3>Info</h3>
                                 <p>Designer: {keycapset.designerName || 'Unknown'}</p>
                                 <p>Profile: {keycapset.type}</p>
@@ -170,7 +165,7 @@ function SetPage(props: SetPageProps) {
                         )}
                     </div>
                 </div>
-                <CTACard />
+                {/* <CTACard /> */}
             </>
         );
     }
