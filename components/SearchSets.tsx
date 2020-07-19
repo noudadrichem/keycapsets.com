@@ -9,7 +9,7 @@ function SearchSets() {
     const randomSetNames: string[] = ['Carbon', 'Minimal', 'Hyperfuse', 'Sumi', 'Nautilus'];
     const randomSetName: string = randomSetNames[Math.floor(Math.random() * randomSetNames.length)];
     const [searchValue, searchInput, setSearchInputValue] = useInput({
-        placeholder: 'E.g. Nautilus',
+        placeholder: 'E.g. Space cadet',
         autoFocus: true,
     });
     const { state, dispatch } = useContext<Context>(context);

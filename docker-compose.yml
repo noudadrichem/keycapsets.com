@@ -1,18 +1,18 @@
 version: '3'
 services:
-    keycapsets:
-        build: .
-        networks:
-            - traefik
-        ports:
-            - '3000:3000'
-        labels:
-            - 'traefik.enable=true'
-            - 'traefik.backend=keycapsets'
-            - 'traefik.frontend.rule=Host:keycapsets.com,www.keycapsets.com'
-            - 'traefik.port=3000'
+  alpha_keycapsets:
+    build: .
+    networks:
+      - traefik
+    ports:
+      - '3001:3001'
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.backend=alpha_keycapsets'
+      - 'traefik.frontend.rule=Host:testing.keycapsets.com'
+      - 'traefik.port=3001'
 
 networks:
-    traefik:
-        external:
-            name: docker_default
+  traefik:
+    external:
+      name: docker_default

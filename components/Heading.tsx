@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useRouter } from 'next/router';
-import Pill from './Pill';
+
 import SearchSets from './SearchSets';
+import Button from './Button';
+import context from '../context';
+import { Context } from 'typings';
 
 interface HeadingProps {
     mainTitle: string;
@@ -13,17 +16,24 @@ interface HeadingProps {
 
 function Heading(props: HeadingProps): JSX.Element {
     const { mainTitle, subTitle, isHome = false, left = false, backgroundColor } = props;
-    const router = useRouter();
+    const { state } = useContext<Context>(context);
 
     return (
         <header className={`heading ${left ? 'left' : 'center'}`} style={{ background: backgroundColor }}>
-            <h4 className={`title-sub italic ${left ? 'left' : 'center'}`}>{subTitle}</h4>
+            {subTitle && <h4 className={`title-sub italic ${left ? 'left' : 'center'}`}>{subTitle}</h4>}
             <h1 className={`title no-bold ${left ? 'left' : 'center'}`}>{mainTitle}</h1>
 
             {isHome && (
                 <>
-                    {/* <h5 className="title-sub-home">The place for everything keycapset related. Get an overview of created sets and be inspired.</h5> */}
+                    {/* <h5 className="title-sub-home">Pimp your mechanical keyboard with 300+ community designed keycapsets. Create your account an stay up to date!</h5> */}
                     <SearchSets />
+                    {!state.isLoggedIn && (
+                        <div className="mobile-only">
+                            <Button variant="primary" size="md" className="btn-sign-up medium-large">
+                                Sign up
+                            </Button>
+                        </div>
+                    )}
 
                     {/* <div className="heading-cta">
                             <Button

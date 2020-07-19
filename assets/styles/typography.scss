@@ -1,8 +1,7 @@
 // @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap');
 
 h1 {
-    font-size: 44px;
-    font-weight: 700;
+    font-size: 56px;
     line-height: 140%;
     font-weight: 500;
     color: var(--text-color);
@@ -18,7 +17,7 @@ h1 {
 
 h2 {
     font-size: 40px;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 140%;
     color: var(--text-color);
 
@@ -86,6 +85,10 @@ p {
     line-height: 1.8;
     color: var(--text-color);
 
+    @media screen and (max-width: 768px) {
+        font-size: 14px;
+    }
+
     &.light {
         color: var(--text-color-light);
     }
@@ -100,6 +103,10 @@ p {
 
     &.large {
         font-size: 24px;
+    }
+
+    &.small-width {
+        max-width: 800px;
     }
 
     @media screen and (max-width: $bp-laptop-md) {
@@ -138,6 +145,7 @@ a {
 
         &.small {
             font-size: 14px;
+
             @media screen and (max-width: $bp-laptop-md) {
                 font-size: 12px;
             }

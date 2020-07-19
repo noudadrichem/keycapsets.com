@@ -1,26 +1,19 @@
 import React from 'react';
-import Head from 'next/head';
 import Router from 'next/router';
 import withGA from 'next-ga';
 
-import '../assets/styles/main.scss';
-
-import withData from '../hooks/withData';
 import Heading from '../components/Heading';
-import Footer from '../components/Footer';
-import Nav from '../components/Nav';
 import ButtonLink from '../components/ButtonLink';
 import Meta from '../components/Meta';
 
 interface AboutProps {}
 
-function About(props: AboutProps) {
+function About() {
     const title = `About Keycapsets`;
     const description = `Made out of love for mechanical keyboards, and the lack of a nice overview of existing keycapsets!`;
     return (
         <>
             <Meta title={title} description={description} />
-            <Nav />
             <div className="about container">
                 <Heading mainTitle={title} subTitle={description} left />
 
@@ -101,10 +94,31 @@ function About(props: AboutProps) {
                         !
                     </p>
                 </div>
+
+                {/* <h4>More about the upload incident</h4>
+                <div style={{ margin: '0 0 64px 0' }}>
+                    <ButtonLink isLarge href="/upload-statement">
+                        We made a statement.
+                    </ButtonLink>
+                </div> */}
+
+                <ButtonLink isLarge href="/sign-up">
+                    Excited? Create an account!
+                </ButtonLink>
+
+                {/* <h4>Are you liking this project and want to help me maintain this website?</h4>
+                <p className="light alinea">
+                    I'm not a begging person but folks asks me if they could help me out with the costs of running this project. I don't want to run ads on this site and therefore I'm open to recieve donations to maintain this project.
+                </p> */}
             </div>
-            <Footer />
         </>
     );
 }
 
-export default withGA('UA-115865530-2', Router)(withData(About));
+About.getInitialProps = () => {
+    return {
+        isLargeContainer: false,
+    };
+};
+
+export default withGA('UA-115865530-2', Router)(About);

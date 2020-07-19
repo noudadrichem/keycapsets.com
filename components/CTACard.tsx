@@ -30,22 +30,24 @@ function CTACard(props: CTACardProps): JSX.Element {
     const [visible, setVisible] = useState(false);
 
     useEffect(() => {
+        let timeout: any;
         const KEYVALUE: string = window.localStorage.getItem(KEY);
         const ctaDate: Moment = moment(KEYVALUE);
-        const isSixHoursPast: boolean = moment().diff(ctaDate, 'hours') > 6;
+        const isPast: boolean = moment().diff(ctaDate, 'hours') > 12;
         if (!KEYVALUE) {
             show();
             return;
         }
-        if (isSixHoursPast) {
+        if (isPast) {
             show();
             return;
         }
         function show() {
-            setTimeout(() => {
+            timeout = setTimeout(() => {
                 setVisible(true);
             }, 2700);
         }
+        return () => clearTimeout(timeout);
     }, []);
 
     function close() {
@@ -57,20 +59,19 @@ function CTACard(props: CTACardProps): JSX.Element {
         <div className={`cta-card ${visible ? 'visible' : 'hidden'}`}>
             <CrossIcon onClick={() => close()} />
 
-            <h4>We need your help!</h4>
+            <h4>This is the beta for accounts!</h4>
             <p className="light">
-                Do you want to test new features such as user accounts, favoriting sets and more? Sign up as beta user!
-                <br />
-                Do so by joining our Discord server.
+                Please report issues and bugs via link below (Github). Check if the issue isn't already reported and if
+                it is vote the issue up.
             </p>
 
             <Button
-                onClick={() => (window.location.href = 'https://discord.gg/dq8cyMS')}
+                onClick={() => (window.location.href = 'https://github.com/noudadrichem/keycapsets.com/issues')}
                 variant="primary"
                 size="md"
                 className="center"
             >
-                Join our Discord
+                Report bug
             </Button>
         </div>
     );

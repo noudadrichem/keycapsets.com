@@ -93,8 +93,8 @@ const GET_VENDORS_QUERY = gql`
 `;
 
 const GET_SINGLE_SET_QUERY = gql`
-    query GET_SINGLE_SET_QUERY($type: String!, $slug: String!) {
-        keycapsetBySlug(type: $type, slug: $slug) {
+    query GET_SINGLE_SET_QUERY($slug: String!) {
+        keycapsetBySlug(slug: $slug) {
             _id
             name
             designerName
@@ -102,7 +102,6 @@ const GET_SINGLE_SET_QUERY = gql`
             coverImageUrl
             groupbuyStartDate
             groupbuyEndDate
-            active
             coverImageUrl
             imageUrls
             websiteUrl
@@ -111,6 +110,12 @@ const GET_SINGLE_SET_QUERY = gql`
                 url
                 socials
                 logoUrl
+                country
+            }
+            kits {
+                name
+                description
+                imgUrl
             }
             slug
             accentColor1
@@ -120,22 +125,7 @@ const GET_SINGLE_SET_QUERY = gql`
             brand
             material
             isInterestCheck
-        }
-    }
-`;
-
-const GET_SETS_BY_QUERY = gql`
-    query getKeycapsetByQuery($query: String) {
-        keycapsetsByQuery(query: $query) {
-            _id
-            name
-            type
-            coverImageUrl
-            slug
-            groupbuyStartDate
-            groupbuyEndDate
-            updatedAt
-            createdAt
+            designedBy
         }
     }
 `;
@@ -146,8 +136,114 @@ const GOOGLE_LOGIN = gql`
             token
             user {
                 name
+                avatar
+                locale
             }
             firstLogin
+        }
+    }
+`;
+
+const REDDIT_LOGIN = gql`
+    mutation REDDIT_LOGIN($redditUserName: String!, $redditId: String!) {
+        redditLogin(redditUserName: $redditUserName, redditId: $redditId) {
+            token
+            firstLogin
+        }
+    }
+`;
+
+const ME = gql`
+    query {
+        me {
+            _id
+            name
+            email
+            locked
+            geekhackUserName
+            redditUserName
+            avatar
+            locale
+            slug
+            isDesigner
+            isVendor
+        }
+    }
+`;
+
+const TOGGLE_HAVE = gql`
+    mutation TOGGLE_HAVE($setId: String!, $have: Boolean) {
+        toggleHaveSet(setId: $setId, have: $have) {
+            message
+        }
+    }
+`;
+
+const WANT_SET = gql`
+    mutation WANT_SET($setId: String!) {
+        wantSet(setId: $setId) {
+            message
+        }
+    }
+`;
+
+const CLAIM_SET = gql`
+    mutation CLAIM_SET($setId: String!) {
+        claimSet(setId: $setId) {
+            message
+        }
+    }
+`;
+
+const UPDATE_USER = gql`
+    mutation UPDATE_USER($input: UserInput!) {
+        updateUser(input: $input) {
+            name
+            email
+            geekhackUserName
+            redditUserName
+        }
+    }
+`;
+
+// const USER_WANTS = gql`
+//     {
+//         userWants {
+//             set
+//         }
+//     }
+// `;
+
+const USER_WANTS_SETS = gql`
+    {
+        userWantsSets {
+            _id
+            name
+            type
+            brand
+            coverImageUrl
+            slug
+            groupbuyStartDate
+            groupbuyEndDate
+            isInterestCheck
+            material
+            availability
+        }
+    }
+`;
+
+const REQUEST_DESIGNER_ROLE = gql`
+    mutation REQUEST_DESIGNER_ROLE {
+        requestDesignerRole {
+            message
+        }
+    }
+`;
+
+const REQUEST_VENDOR_ROLE = gql`
+    mutation REQUEST_VENDOR_ROLE {
+        requestVendorRole {
+            message
         }
     }
 `;
@@ -158,6 +254,14 @@ export {
     CREATE_VENDOR_MUTATION,
     GET_VENDORS_QUERY,
     GET_SINGLE_SET_QUERY,
-    GET_SETS_BY_QUERY,
     GOOGLE_LOGIN,
+    REDDIT_LOGIN,
+    ME,
+    TOGGLE_HAVE,
+    WANT_SET,
+    CLAIM_SET,
+    UPDATE_USER,
+    USER_WANTS_SETS,
+    REQUEST_DESIGNER_ROLE,
+    REQUEST_VENDOR_ROLE,
 };

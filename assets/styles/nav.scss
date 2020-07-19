@@ -1,13 +1,11 @@
 .nav {
-    // background-color: var(--white);
-
     .discord-banner {
         display: flex;
         align-items: center;
         justify-content: center;
         height: 40px;
         background: #7289da;
-        color: #fff;
+        color: var(--white);
 
         img {
             height: 20px;
@@ -27,18 +25,38 @@
 
     .logo {
         cursor: pointer;
+        display: flex;
+        align-items: center;
+        position: relative;
+        z-index: 11;
+
+        .pill {
+            margin-left: 12px;
+        }
+    }
+
+    .hamburger-icon {
+        position: absolute;
+        top: 36px;
+        right: 24px;
+        display: none;
+        z-index: 11;
+
+        @media screen and (max-width: 768px) {
+            display: block;
+        }
     }
 
     .container {
-        padding-top: 80px;
-        padding-bottom: 64px;
+        padding-top: 32px;
+        padding-bottom: 32px;
 
         @media screen and (max-width: 1280px) {
             padding-top: 64px;
             padding-bottom: 32px;
         }
 
-        @media screen and (max-width: 562px) {
+        @media screen and (max-width: 768px) {
             padding: 24px 12px 0;
         }
 
@@ -47,7 +65,7 @@
             justify-content: space-between;
             align-items: center;
 
-            a {
+            a.nav-item {
                 color: var(--text-color-light);
                 margin-right: 24px;
                 transition: 220ms;
@@ -66,6 +84,65 @@
                 justify-content: flex-end;
                 align-items: center;
                 flex: 1;
+
+                &.mobile {
+                    display: none;
+                }
+
+                .btn-sign-up {
+                    position: relative;
+                    padding-left: 32px;
+                    padding-right: 32px;
+
+                    .popover {
+                        width: calc(100% + 80px);
+                        position: absolute;
+                        top: calc(100%);
+                        padding-top: 16px;
+                        display: none;
+                    }
+                    @media (hover: hover) {
+                        &:hover {
+                            .popover {
+                                display: block;
+                            }
+                        }
+                    }
+                }
+
+                @media screen and (max-width: 768px) {
+                    display: none;
+                    flex-direction: column;
+                    justify-content: center;
+                    width: 100%;
+                    height: 100vh;
+                    position: fixed;
+                    z-index: 10;
+                    top: 0;
+                    left: 0;
+                    background: var(--white);
+
+                    &.open {
+                        display: flex;
+                    }
+
+                    .nav-item {
+                        font-size: 18px;
+                        margin: 0 0 32px 0;
+                    }
+
+                    .btn-sign-up {
+                        font-size: 20px;
+                        .popover {
+                            &-container a {
+                                font-size: 16px;
+                            }
+                            &.on-hover {
+                                display: block;
+                            }
+                        }
+                    }
+                }
             }
         }
     }
