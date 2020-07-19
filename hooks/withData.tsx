@@ -6,8 +6,8 @@ import { StateProvider } from '../context';
 export default withApollo(
     ({ initialState }) => {
         return new ApolloClient({
-            // uri: 'https://testing-api.keycapsets.com/graphql',
-            uri: 'http://localhost:4000/graphql',
+            uri: 'https://testing-api.keycapsets.com/graphql',
+            // uri: 'http://localhost:4000/graphql',
             // uri: 'https://api.keycapsets.com/graphql',
             cache: new InMemoryCache().restore(initialState || {}),
             request: (operation) => {
