@@ -35,21 +35,19 @@ function UserProfileTag() {
                         )}
                     </div>
                 }
-                {isPopoverShown && (
-                    <div className="popover account" ref={popup}>
-                        <div className="popover-container center">
-                            <Link href="/user/edit">
-                                <a className="item clickable">Edit profile</a>
-                            </Link>
-                            <Link href="/user" as={`/user`}>
-                                <a className="item clickable">My favorites</a>
-                            </Link>
-                            <a className="item clickable" onClick={logout}>
-                                Logout
-                            </a>
-                        </div>
+                <div className={`popover account ${isPopoverShown ? 'shown' : 'hidden'}`} ref={popup}>
+                    <div className="popover-container center">
+                        <Link href="/user/edit">
+                            <a className="item clickable">Edit profile</a>
+                        </Link>
+                        <Link href="/user" as={`/user`}>
+                            <a className="item clickable">My favorites</a>
+                        </Link>
+                        <a className="item clickable" onClick={logout}>
+                            Logout
+                        </a>
                     </div>
-                )}
+                </div>
             </div>
         )
     );

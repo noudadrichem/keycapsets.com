@@ -27,11 +27,7 @@ function User() {
     return (
         state.user !== undefined && (
             <div className="container large">
-                <Heading
-                    mainTitle="Your overview of your favorite keycapsets"
-                    subTitle={`Hee, ${state.user.name}.`}
-                    left
-                />
+                <Heading mainTitle="These are your favorite keycapsets." subTitle={`Hi, ${state.user.name}.`} left />
                 {loading ? <LoadingKeyboardIllustration /> : <Images keycapsets={data.userWantsSets} />}
             </div>
         )

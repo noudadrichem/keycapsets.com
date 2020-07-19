@@ -130,14 +130,14 @@ function Filters(props: FiltersProps): JSX.Element {
                                         payload: {
                                             filters: {
                                                 ...state.filters,
-                                                availabilityFilter: selectedFilterValue,
+                                                availabilityFilter: selectedFilterValue.value,
                                             },
                                         },
                                     })
                                 }
                                 values={AVAILABILITY_OPTIONS.map((t) => ({
-                                    id: t,
-                                    name: getLabelByAvailability(t),
+                                    value: t,
+                                    label: getLabelByAvailability(t),
                                 }))}
                             />
                         </div>

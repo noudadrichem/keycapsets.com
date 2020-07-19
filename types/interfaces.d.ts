@@ -21,6 +21,7 @@ declare module 'typings' {
         accentColor3: string;
         isInterestCheck: boolean;
         designedBy?: string[];
+        kits: any[];
     }
 
     interface Brand {

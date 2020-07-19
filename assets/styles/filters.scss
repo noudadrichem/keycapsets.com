@@ -100,9 +100,22 @@
 
     .filter {
         flex: 1;
+        margin-bottom: 12px;
 
         &:nth-child(2) {
             padding: 0 24px;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+
+        .filter {
+            width: 100%;
+
+            &:nth-child(2) {
+                padding: 0;
+            }
         }
     }
 }

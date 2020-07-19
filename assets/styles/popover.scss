@@ -7,6 +7,16 @@
     display: block;
     font-family: 'Rubik', sans-serif;
 
+    &.shown {
+        display: block;
+    }
+    &.hidden {
+        display: none;
+        @media screen and (max-width: 768px) {
+            display: block !important;
+        }
+    }
+
     @media (hover: hover) {
         &.on-hover {
             display: none;

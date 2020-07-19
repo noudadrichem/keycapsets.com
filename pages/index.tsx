@@ -120,7 +120,7 @@ function Home(props: HomeProps) {
     );
 
     function checkIsBottomPage() {
-        const DELIMITER: number = 5;
+        const DELIMITER: number = 10;
         const currentY: number = window.scrollY;
         const docHeight: number = document.body.clientHeight;
         const alreadyScrolled = currentY + window.innerHeight;

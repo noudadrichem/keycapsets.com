@@ -110,6 +110,12 @@ const GET_SINGLE_SET_QUERY = gql`
                 url
                 socials
                 logoUrl
+                country
+            }
+            kits {
+                name
+                description
+                imgUrl
             }
             slug
             accentColor1

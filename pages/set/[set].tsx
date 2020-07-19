@@ -39,6 +39,7 @@ function SetPage(props: SetPageProps) {
 
     useEffect(() => {
         if (!setLoading && setByQuery.keycapsetBySlug) {
+            console.log('setByQuery', setByQuery.keycapsetBySlug);
             setKeycapset(setByQuery.keycapsetBySlug);
         }
     }, [setByQuery]);
@@ -71,6 +72,8 @@ function SetPage(props: SetPageProps) {
             autoplay: keycapset.coverImageUrl.length > 1,
             autoPlaySpeed: 1600,
         };
+
+        console.log('kits..??', keycapset.kits.length > 0);
         return (
             <>
                 <div className="set">
@@ -91,7 +94,7 @@ function SetPage(props: SetPageProps) {
                         />
 
                         <div className="info-section">
-                            <div>
+                            <div className="set-slick-container">
                                 {sliderImages.length > 0 && (
                                     <Slider {...slickSettings}>
                                         {sliderImages.map((url: string) => (
@@ -125,7 +128,10 @@ function SetPage(props: SetPageProps) {
                                         <ul>
                                             {keycapset.vendors.map((v: Vendor, idx) => (
                                                 <p key={idx}>
-                                                    - <a href={v.url}>{v.name}</a>
+                                                    -{' '}
+                                                    <a href={v.url}>
+                                                        {v.country} — {v.name}
+                                                    </a>
                                                 </p>
                                             ))}
                                         </ul>
@@ -142,6 +148,26 @@ function SetPage(props: SetPageProps) {
                                 )}
                             </div>
                         </div>
+
+                        {keycapset.kits.length > 0 && (
+                            <div className="set-kits">
+                                <h2>Kits</h2>
+                                <p className="light">
+                                    If the set entry contains kits they'll be shown up here. (soon with an account
+                                    you'll be able to contribute changes if something is missing.)
+                                </p>
+                                <div className="set-kits-grid-container">
+                                    {keycapset.kits.map((kit: any) => {
+                                        return (
+                                            <div>
+                                                <h3>{kit.name}</h3>
+                                                <img src={kit.imgUrl} alt={kit.name + '- image'} />
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
                 <CTACard />

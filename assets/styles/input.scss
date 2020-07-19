@@ -29,11 +29,11 @@
     .input,
     input {
         border: 1px solid var(--text-color-secondary);
-        font-size: 12px;
+        font-size: 14px;
         color: var(--text-color-secondary);
         width: 100%;
         background-color: var(--white);
-        padding: 8px 16px;
+        padding: 12px 16px;
         font-weight: 400;
         color: #2b3548;
         border: 1px solid #e2e5eb;
@@ -47,6 +47,11 @@
 
         &::placeholder {
             color: var(--text-color-disabled);
+        }
+
+        @media screen and (max-width: 768px) {
+            font-size: 12px;
+            padding: 8px 12px;
         }
     }
 }

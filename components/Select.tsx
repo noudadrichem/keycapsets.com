@@ -1,8 +1,9 @@
 import React from 'react';
+import MultiSelect from './Multiselect';
 
 interface HeadingProps {
     onSelectChange?: Function;
-    values: { id; name }[];
+    values: { value; label }[];
     label?: string;
     name?: string;
 }
@@ -12,8 +13,8 @@ function Heading(props: HeadingProps): JSX.Element {
 
     return (
         <div className="input-wrapper-select">
-            {!!label && <label className="label">{label}</label>}
-            <select className="input" onChange={(e: any) => onSelectChange(e.target.value)}>
+            <MultiSelect label={label} options={values} onChange={onSelectChange} />
+            {/* <select className="input" onChange={(e: any) => onSelectChange(e.target.value)}>
                 <option value="">{name}</option>
                 {!!values &&
                     values.map((value: any) => (
@@ -21,7 +22,7 @@ function Heading(props: HeadingProps): JSX.Element {
                             {value.name}
                         </option>
                     ))}
-            </select>
+            </select> */}
         </div>
     );
 }
