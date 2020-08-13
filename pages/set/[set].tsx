@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import Error from '../_error';
 import moment from 'moment';
 import { useRouter, Router } from 'next/router';
 import Slider from 'react-slick';
@@ -51,7 +52,11 @@ function SetPage(props: SetPageProps) {
     }
 
     if (setError) {
-        return <p>'Error loading keycapsets.com... Please refresh this page'</p>;
+        return (
+            <>
+                <Error statusCode={404} />
+            </>
+        );
     }
 
     if (keycapset !== null) {
