@@ -1,0 +1,14 @@
+.error-page {
+    .rebound-search-error {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        // background-color: #F9D6D6;
+        border-radius: 8px;
+        padding: 64px 42px 88px;
+
+        @media screen and (max-width: 1441px) {
+            padding: 56px 0 48px;
+        }
+    }
+}
