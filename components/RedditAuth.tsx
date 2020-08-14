@@ -1,10 +1,8 @@
 import { useEffect, useContext } from 'react';
 import { useRouter, NextRouter } from 'next/router';
 import { useApolloClient } from '@apollo/react-hooks';
-import { ApolloClient } from 'apollo-boost';
 
 import { REDDIT_LOGIN } from '../queries';
-import withData from '../hooks/withData';
 
 import Button from './Button';
 import { loginUser } from '../utils/user';
@@ -30,7 +28,7 @@ export function handleRedditAuth() {
 function RedditAuth(props: RedditAuthProps): JSX.Element {
     const { text, callback, disabled, asLink = false } = props;
     const router: NextRouter = useRouter();
-    const client: ApolloClient<any> = useApolloClient();
+    const client: any = useApolloClient();
     const { dispatch } = useContext<Context>(context);
 
     useEffect(() => {

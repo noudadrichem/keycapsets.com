@@ -1,7 +1,5 @@
 import React, { createContext, useReducer } from 'react';
 import { InititalState, Action, Context, Keycapset, Filters } from 'typings';
-import { useApolloClient } from '@apollo/react-hooks';
-import moment from 'moment';
 
 export const INITITAL_STATE: InititalState = {
     filters: {
@@ -18,14 +16,16 @@ export const INITITAL_STATE: InititalState = {
     userWants: [],
 };
 
-const context = createContext<any>(INITITAL_STATE);
-const StateProvider = ({ children }) => {
+const context = createContext<Context>({ state: null, dispatch: null });
+const StateProvider = ({ me, children }) => {
+    console.log('hello from state prov', { user: me !== null ? me : {} });
     const [state, dispatch]: any[] = useReducer((state: InititalState, action: Action) => {
         switch (action.type) {
             case 'set':
-                // console.log('set...', action.payload)
                 const setNewState: InititalState = {
                     ...state,
+                    user: me !== null ? me : {},
+                    isLoggedIn: me !== null,
                     ...action.payload,
                 };
                 return setNewState;
@@ -35,18 +35,12 @@ const StateProvider = ({ children }) => {
                     isLoggedIn: true,
                     user: action.payload.user,
                 };
-                console.log('trigger user actions');
                 return withUserState;
             default:
                 return state;
         }
     }, INITITAL_STATE);
 
-    // if (isBrowser) {
-    //     if (process.env.NODE_ENV === 'development') {
-    //         console.log(moment().format('hh:mm:ss') + '_STATE...', state);
-    //     }
-    // }
     return <context.Provider value={{ state, dispatch }}>{children}</context.Provider>;
 };
 

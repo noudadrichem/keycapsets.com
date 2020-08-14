@@ -1,38 +1,35 @@
-import { useContext, useEffect, useState } from 'react';
-import App, { AppProps } from 'next/app';
-import { Context } from 'typings';
-import { useQuery } from '@apollo/react-hooks';
+import { useEffect, useState } from 'react';
+import { AppProps } from 'next/app';
+import { User } from 'typings';
+import { ApolloClient, ApolloProvider } from '@apollo/client';
 
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
-import withData from '../hooks/withData';
 import Meta from '../components/Meta';
 
 import '../assets/styles/main.scss';
 
-import context from '../context';
+import { useApollo } from '../hooks/withData';
+import { StateProvider } from '../context';
 import { ME } from '../queries';
 
 function MyApp({ Component, pageProps }: AppProps) {
-    const { state, dispatch } = useContext<Context>(context);
-    const { data: me, loading, error } = useQuery(ME);
-    const [toggle, setToggle] = useState<boolean>(false);
+    const [me, setMe] = useState<User>(null);
+    const apolloClient: ApolloClient<any> = useApollo(pageProps.initialApolloState);
 
     const allProps: any = {
         ...pageProps,
     };
 
-    useEffect(() => {
-        if (!loading) {
-            dispatch({
-                type: 'user',
-                payload: {
-                    user: me.me,
-                },
-            });
-            console.log('app user...', me.me);
-        }
-    }, [me]);
+    async function fetchMe() {
+        const { data: me } = await apolloClient.query({ query: ME });
+        setMe(me.me);
+        console.log('app user...', me.me);
+    }
+
+    useEffect(function handleUserSession() {
+        fetchMe();
+    });
 
     const isLargeContainer: boolean = pageProps.isLargeContainer !== undefined ? pageProps.isLargeContainer : true;
 
@@ -40,12 +37,16 @@ function MyApp({ Component, pageProps }: AppProps) {
         <div className="app">
             <Meta />
             <div className="page-layout">
-                <Nav isLargeContainer={isLargeContainer} />
-                <Component {...allProps} />
-                <Footer isLargeContainer={isLargeContainer} />
+                <StateProvider me={me}>
+                    <ApolloProvider client={apolloClient}>
+                        <Nav isLargeContainer={isLargeContainer} />
+                        <Component {...allProps} />
+                        <Footer isLargeContainer={isLargeContainer} />
+                    </ApolloProvider>
+                </StateProvider>
             </div>
         </div>
     );
 }
 
-export default withData(MyApp);
+export default MyApp;
