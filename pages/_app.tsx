@@ -19,7 +19,10 @@ function MyApp({ Component, pageProps }: AppProps) {
     const isBrowser = typeof window !== `undefined`;
 
     async function fetchMe() {
-        const { data: me } = await apolloClient.query({ query: ME });
+        const { data: me } = await apolloClient.query({
+            query: ME,
+            fetchPolicy: 'network-only',
+        });
         if (me) {
             setMe(me.me);
             console.log('user...', me.me);

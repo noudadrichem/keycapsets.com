@@ -1,10 +1,9 @@
 import { useMemo } from 'react';
-import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
+import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { createUploadLink } from 'apollo-upload-client';
-import { concatPagination } from '@apollo/client/utilities';
 import { setContext } from '@apollo/client/link/context';
 
-let apolloClient;
+let apolloClient: any;
 
 const authLink = setContext((_, { headers }) => {
     const token = localStorage.getItem('TOKEN');
@@ -18,7 +17,6 @@ const authLink = setContext((_, { headers }) => {
 
 function createApolloClient() {
     const isBrowser: boolean = typeof window === 'undefined';
-    // const token: string = isBrowser ? window.localStorage.getItem('TOKEN') : '';
     return new ApolloClient({
         ssrMode: isBrowser,
         link: authLink.concat(

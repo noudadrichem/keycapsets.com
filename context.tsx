@@ -18,7 +18,6 @@ export const INITITAL_STATE: InititalState = {
 
 const context = createContext<Context>({ state: null, dispatch: null });
 const StateProvider = ({ me, children }) => {
-    console.log('hello from state prov', { user: me !== null ? me : {} });
     const [state, dispatch]: any[] = useReducer((state: InititalState, action: Action) => {
         switch (action.type) {
             case 'set':
