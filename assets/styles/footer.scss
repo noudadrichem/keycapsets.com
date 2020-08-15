@@ -32,6 +32,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        margin-bottom: 0;
 
         @media screen and(max-width: 562px) {
             flex-direction: column;

@@ -21,7 +21,6 @@ export function useKeycapSets(queryFilters: KeycapSetsFilters) {
     const [fetchingMore, setFetchingMore] = useState<boolean>(false);
     const [allKeycapsetsCount, setKeycapsetCount] = useState<number>(0);
 
-
     const { data, loading, error } = useQuery(FETCH_KEYCAPSET_QUERY, {
         client,
         variables: {

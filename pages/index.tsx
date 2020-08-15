@@ -19,6 +19,8 @@ import Meta from '../components/Meta';
 import Nav from '../components/Nav';
 import Tabs from '../components/Filters';
 import CTACard from '../components/CTACard';
+import { useQuery } from '@apollo/react-hooks';
+import { USER_WANTS_SETS } from '../queries';
 
 interface HomeProps {
     url: any;
@@ -32,6 +34,19 @@ function Home(props: HomeProps) {
     const [loadingExtra, setLoadingExtra] = useState<boolean>(true);
     const [isAtBottomOfPage, setIsAtBottomOfPage] = useState(false);
     const { state, dispatch } = useContext<Context>(context);
+
+    const { data: userWantSetsResponse, loading: userWantsLoading, error: userWantsError } = useQuery(USER_WANTS_SETS);
+
+    useEffect(() => {
+        if (!userWantsLoading) {
+            dispatch({
+                type: 'set',
+                payload: {
+                    userWants: userWantSetsResponse.userWantsSets,
+                },
+            });
+        }
+    }, [userWantSetsResponse]);
 
     const queryFilters = useMemo(
         () => ({
@@ -105,7 +120,7 @@ function Home(props: HomeProps) {
     );
 
     function checkIsBottomPage() {
-        const DELIMITER: number = 5;
+        const DELIMITER: number = 10;
         const currentY: number = window.scrollY;
         const docHeight: number = document.body.clientHeight;
         const alreadyScrolled = currentY + window.innerHeight;
@@ -116,7 +131,6 @@ function Home(props: HomeProps) {
     return (
         <>
             <Meta metaImgUrl={props.metaImg} />
-            <Nav isLargeContainer />
             <div className="container large">
                 <Heading mainTitle="Find your favorite keycapset!" subTitle="" isHome />
                 <Tabs />
@@ -124,10 +138,9 @@ function Home(props: HomeProps) {
                 {loadingExtra && <LoadingKeyboardIllustration scale={0.3} />}
                 <BackToTop />
             </div>
-            <Footer />
-            <CTACard />
+            {/* <CTACard /> */}
         </>
     );
 }
 
-export default withGA('UA-115865530-2', Router)(withData(Home));
+export default withGA('UA-115865530-2', Router)(Home);

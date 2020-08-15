@@ -19,7 +19,6 @@ function Terms() {
         <>
             <Meta title={title} description={description} />
 
-            <Nav />
             <div className="terms container">
                 <Heading mainTitle={title} subTitle={description} left />
 
@@ -74,9 +73,8 @@ function Terms() {
                     <p className="light alinea">Or contact us on contact@keycapsets.com</p>
                 </div>
             </div>
-            <Footer />
         </>
     );
 }
 
-export default withGA('UA-115865530-2', Router)(withData(Terms));
+export default withGA('UA-115865530-2', Router)(Terms);

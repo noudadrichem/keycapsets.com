@@ -9,13 +9,14 @@ interface LinkProps {
     href: string;
     as?: string;
     isLarge?: boolean;
+    center?: boolean;
 }
 
 function ButtonLink(props: LinkProps): JSX.Element {
-    const { children, href, as, isLarge = false } = props;
+    const { children, href, as, isLarge = false, center = false } = props;
 
     return (
-        <div className={`button-link arrow-right ${isLarge ? 'large' : ''}`}>
+        <div className={`button-link arrow-right ${isLarge ? 'large' : ''} ${center ? 'center' : ''}`}>
             {href.startsWith('http') ? (
                 <a href={href} target="_blank">
                     {children}

@@ -13,6 +13,7 @@
     &.disabled {
         cursor: auto;
         pointer-events: none;
+        opacity: 1 !important;
     }
 
     .image {
@@ -42,13 +43,13 @@
     }
 
     .details {
-        padding: 8px 24px 24px;
+        padding: 18px 24px;
         display: flex;
         flex-direction: column;
         position: relative;
 
         @media screen and(max-width: 562px) {
-            padding: 2px 16px 12px 16px;
+            padding: 16px;
         }
 
         .top,
@@ -59,6 +60,10 @@
             align-items: center;
         }
 
+        .top {
+            margin-bottom: 12px;
+        }
+
         .bottom {
             font-size: 14px;
 
@@ -67,6 +72,7 @@
             }
 
             .bold {
+                font-weight: 500;
                 span:first-child {
                     margin-right: 12px;
                 }
@@ -78,6 +84,7 @@
         }
 
         .set-title {
+            margin: 0;
             position: relative;
 
             @media screen and(max-width: 562px) {
@@ -96,7 +103,7 @@
         .details {
             .bottom {
                 .button-link {
-                    border-bottom: 2px solid #539bfb;
+                    border-bottom: 2px solid var(--blue);
 
                     .arrow {
                         transform: translateX(4px);

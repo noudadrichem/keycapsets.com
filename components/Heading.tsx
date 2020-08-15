@@ -1,7 +1,10 @@
-import React from 'react';
-import { useRouter } from 'next/router';
-import Pill from './Pill';
+import React, { useContext } from 'react';
+import { useRouter, NextRouter } from 'next/router';
+
 import SearchSets from './SearchSets';
+import Button from './Button';
+import context from '../context';
+import { Context } from 'typings';
 
 interface HeadingProps {
     mainTitle: string;
@@ -13,17 +16,36 @@ interface HeadingProps {
 
 function Heading(props: HeadingProps): JSX.Element {
     const { mainTitle, subTitle, isHome = false, left = false, backgroundColor } = props;
-    const router = useRouter();
+    const { state } = useContext<Context>(context);
+    const router: NextRouter = useRouter();
+
+    function pushSignup(e) {
+        e.preventDefault();
+        console.log('push signup');
+        router.push('/sign-up');
+    }
 
     return (
         <header className={`heading ${left ? 'left' : 'center'}`} style={{ background: backgroundColor }}>
-            <h4 className={`title-sub italic ${left ? 'left' : 'center'}`}>{subTitle}</h4>
+            {subTitle && <h4 className={`title-sub italic ${left ? 'left' : 'center'}`}>{subTitle}</h4>}
             <h1 className={`title no-bold ${left ? 'left' : 'center'}`}>{mainTitle}</h1>
 
             {isHome && (
                 <>
-                    {/* <h5 className="title-sub-home">The place for everything keycapset related. Get an overview of created sets and be inspired.</h5> */}
+                    {/* <h5 className="title-sub-home">Pimp your mechanical keyboard with 300+ community designed keycapsets. Create your account an stay up to date!</h5> */}
                     <SearchSets />
+                    {!state.isLoggedIn && (
+                        <div className="mobile-only">
+                            <Button
+                                variant="primary"
+                                size="md"
+                                className="btn-sign-up medium-large"
+                                onClick={pushSignup}
+                            >
+                                Sign up
+                            </Button>
+                        </div>
+                    )}
 
                     {/* <div className="heading-cta">
                             <Button
