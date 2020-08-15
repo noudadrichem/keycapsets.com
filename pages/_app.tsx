@@ -16,19 +16,23 @@ import { ME } from '../queries';
 function MyApp({ Component, pageProps }: AppProps) {
     const [me, setMe] = useState<User>(null);
     const apolloClient: ApolloClient<any> = useApollo(pageProps.initialApolloState);
-
-    const allProps: any = {
-        ...pageProps,
-    };
+    const isBrowser = typeof window !== `undefined`;
 
     async function fetchMe() {
         const { data: me } = await apolloClient.query({ query: ME });
-        setMe(me.me);
-        console.log('app user...', me.me);
+        if (me) {
+            setMe(me.me);
+            console.log('user...', me.me);
+        }
     }
 
     useEffect(function handleUserSession() {
-        fetchMe();
+        if (isBrowser) {
+            const token = window.localStorage.getItem('TOKEN');
+            if (token !== null) {
+                fetchMe();
+            }
+        }
     });
 
     const isLargeContainer: boolean = pageProps.isLargeContainer !== undefined ? pageProps.isLargeContainer : true;
@@ -40,7 +44,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                 <StateProvider me={me}>
                     <ApolloProvider client={apolloClient}>
                         <Nav isLargeContainer={isLargeContainer} />
-                        <Component {...allProps} />
+                        <Component {...pageProps} />
                         <Footer isLargeContainer={isLargeContainer} />
                     </ApolloProvider>
                 </StateProvider>
