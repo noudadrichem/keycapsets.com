@@ -8,7 +8,6 @@ import countries from '../../assets/countries';
 import { CREATE_VENDOR_MUTATION } from '../../queries';
 
 import useInput from '../../hooks/useInput';
-import withData from '../../hooks/withData';
 
 import MultipleInputs from '../../components/MultipleInputs';
 import Button from '../../components/Button';

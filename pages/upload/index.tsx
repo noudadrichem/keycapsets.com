@@ -4,19 +4,31 @@ import withGA from 'next-ga';
 import Router from 'next/router';
 import '../../assets/styles/upload.scss';
 
-import withData from '../../hooks/withData';
 import Heading from '../../components/Heading';
-import Footer from '../../components/Footer';
-import Nav from '../../components/Nav';
+import { useMutation } from '@apollo/react-hooks';
+import { IMG_UPLOAD_FORM_DATA } from '../../queries';
 
 interface UploadProps {}
 
 function Upload(props: UploadProps) {
+    const [uploadFile] = useMutation<any>(IMG_UPLOAD_FORM_DATA);
+
+    async function moetje(evt) {
+        const file = evt.target.files[0];
+        try {
+            const response = await uploadFile({ variables: { file } });
+            console.log('file upload response', response);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <div className="container upload">
-            <Heading mainTitle="Upload a set or apply as a vendor!" subTitle="Start shining out there!" left />
+            {/* <Heading mainTitle="Upload a set or apply as a vendor!" subTitle="Start shining out there!" left /> */}
 
-            <div className="cards">
+            <input type="file" onChange={moetje} />
+            {/* <div className="cards">
                 <div className="card">
                     <Link href="/upload/set">Add a set!</Link>
                 </div>
@@ -24,7 +36,7 @@ function Upload(props: UploadProps) {
                 <div className="card">
                     <Link href="/upload/vendor">Are you a vendor?</Link>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 }

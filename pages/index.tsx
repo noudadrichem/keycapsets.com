@@ -1,4 +1,3 @@
-import { ApolloClient } from 'apollo-boost';
 import withGA from 'next-ga';
 import { Router } from 'next/router';
 import React, { useContext, useEffect, useMemo, useState } from 'react';
@@ -8,7 +7,6 @@ import '../assets/styles/main.scss';
 
 import { context } from '../context';
 import { useKeycapSets, KeycapSetsFilters } from '../hooks/useKeycapSets';
-import withData from '../hooks/withData';
 
 import BackToTop from '../components/BackToTop';
 import Footer from '../components/Footer';
@@ -24,7 +22,7 @@ import { USER_WANTS_SETS } from '../queries';
 
 interface HomeProps {
     url: any;
-    apollo: ApolloClient<any>;
+    apollo: any;
     metaImg: string;
 }
 

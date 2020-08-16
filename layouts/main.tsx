@@ -2,8 +2,6 @@ import { useContext, useEffect } from 'react';
 import { Context } from 'typings';
 import { useQuery } from '@apollo/react-hooks';
 
-import withData from '../hooks/withData';
-
 import context from '../context';
 import { ME } from '../queries';
 
@@ -38,4 +36,4 @@ function MainLayout(props: MainLayoutProps) {
     );
 }
 
-export default withData(MainLayout);
+export default MainLayout;

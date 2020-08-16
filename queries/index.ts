@@ -1,4 +1,4 @@
-import { gql } from 'apollo-boost';
+import { gql } from '@apollo/client';
 
 const FETCH_KEYCAPSET_QUERY = gql`
     query FETCH_KEYCAPSET_QUERY($limit: Int, $offset: Int, $filter: KeycapsetFilter) {
@@ -248,6 +248,16 @@ const REQUEST_VENDOR_ROLE = gql`
     }
 `;
 
+const IMG_UPLOAD_FORM_DATA = gql`
+    mutation IMG_UPLOAD_FORM_DATA($file: Upload!) {
+        imgUploadFormData(file: $file) {
+            name
+            url
+            thumb
+        }
+    }
+`;
+
 export {
     FETCH_KEYCAPSET_QUERY,
     CREATE_KEYSET_MUTATION,
@@ -264,4 +274,5 @@ export {
     USER_WANTS_SETS,
     REQUEST_DESIGNER_ROLE,
     REQUEST_VENDOR_ROLE,
+    IMG_UPLOAD_FORM_DATA,
 };

@@ -2,7 +2,6 @@ import React from 'react';
 import Router from 'next/router';
 import withGA from 'next-ga';
 
-import withData from '../hooks/withData';
 import Heading from '../components/Heading';
 import Footer from '../components/Footer';
 import Nav from '../components/Nav';
