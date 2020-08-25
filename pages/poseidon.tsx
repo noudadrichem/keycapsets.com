@@ -3,8 +3,6 @@ import { Router } from 'next/router';
 import { Keycapset } from 'typings';
 import withGA from 'next-ga';
 
-import withData from '../hooks/withData';
-
 import 'slick-carousel/slick/slick.css';
 import '../assets/styles/main.scss';
 
@@ -12,6 +10,8 @@ import Meta from '../components/Meta';
 import Hero from '../components/poseidon/Hero';
 import Kit from '../components/poseidon/Kit';
 import Renders from '../components/poseidon/Renders';
+import Vendors from '../components/poseidon/Vendors';
+import Updates from '../components/poseidon/Updates';
 import Section from '../components/poseidon/Section';
 import { ApolloClient } from 'apollo-boost';
 import PoseidonLayout from '../layouts/PoseidonLayout';
@@ -27,6 +27,8 @@ function PoseidonPage(props: PoseidonPageProps) {
     const Layout = {
         poseidon: PoseidonLayout,
     }[layout];
+
+    console.log(keycapset);
 
     return (
         <>
@@ -61,6 +63,14 @@ function PoseidonPage(props: PoseidonPageProps) {
                     <Section title="Renders">
                         <Renders renders={keycapset.imageUrls} />
                     </Section>
+
+                    <Section title="Updates">
+                        <Updates />
+                    </Section>
+
+                    <Section title="Vendors">
+                        <Vendors />
+                    </Section>
                 </Layout>
             </div>
         </>
@@ -76,6 +86,7 @@ PoseidonPage.getInitialProps = () => {
             coverImageUrl: 'cover IMG hier',
             vendors: [],
             imageUrls: [
+                'https://i.imgur.com/OLhtOUv.jpg',
                 'https://i.imgur.com/dCaIcDa.jpg',
                 'https://i.imgur.com/ipirs43.jpg',
                 'https://i.imgur.com/Cot5qNY.jpg',
@@ -137,4 +148,4 @@ PoseidonPage.getInitialProps = () => {
     };
 };
 
-export default withGA('UA-115865530-2', Router)(withData(PoseidonPage));
+export default withGA('UA-115865530-2', Router)(PoseidonPage);

@@ -160,7 +160,9 @@ function Hero(props: HeroProps): JSX.Element {
                     <Button className="btn--poseidon" size="lg">
                         Fill in IC
                     </Button>
-                    <ButtonLink href="http://google.nl">Go to Geeknack</ButtonLink>
+                    <ButtonLink isLarge={true} href="http://google.nl">
+                        Go to Geeknack
+                    </ButtonLink>
                 </div>
 
                 <Button onClick={onPlayClick} className="btn--video" size="md">

@@ -6,7 +6,6 @@ function PoseidonLayout(props: any) {
     return (
         <div id="layout" className="poseidon">
             {props.children}
-            <Footer noSponsor />
         </div>
     );
 }
