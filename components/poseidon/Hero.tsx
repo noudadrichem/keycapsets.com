@@ -1,10 +1,61 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useRef } from 'react';
+import Button from '../../components/Button';
+import ButtonLink from '../../components/ButtonLink';
 
 interface HeroProps {}
 
 function Hero(props: HeroProps): JSX.Element {
+    const heroRef = useRef(null);
+    const videoRef = useRef(null);
+    const fullSource = 'https://www.w3schools.com/css/mov_bbb.mp4';
+
+    const onVideoPasuse = () => {
+        heroRef.current.classList.remove('video-playing');
+
+        if (document.fullscreen) {
+            document.exitFullscreen();
+        }
+
+        videoRef.current.removeEventListener('ended', onVideoPasuse);
+        videoRef.current.removeEventListener('pause', onVideoPasuse);
+    };
+
+    const onPlayClick = () => {
+        const videoBreakpoint = window.getComputedStyle(document.documentElement).getPropertyValue('--bp-desktop-sm');
+        const clientWidth = document.documentElement.clientWidth;
+
+        videoRef.current.muted = false;
+        videoRef.current.controls = true;
+
+        if (videoRef.current.firstChild.src !== fullSource) {
+            videoRef.current.firstChild.src = fullSource;
+            videoRef.current.load();
+        }
+
+        heroRef.current.classList.add('video-playing');
+        videoRef.current.addEventListener('ended', onVideoPasuse);
+        videoRef.current.addEventListener('pause', onVideoPasuse);
+
+        document.addEventListener('fullscreenchange', () => {
+            if (!document.fullscreenElement) {
+                videoRef.current.pause();
+            }
+        });
+
+        if (clientWidth <= videoBreakpoint) {
+            videoRef.current.requestFullscreen();
+        }
+
+        videoRef.current.play();
+    };
+
     return (
-        <div className="poseidon--hero">
+        <div ref={heroRef} className="poseidon--hero">
+            <div className="poseidon--hero__video">
+                <video muted autoPlay ref={videoRef}>
+                    <source src="https://www.w3schools.com/css/mov_bbb.mp4#t=0,5" type="video/mp4" />
+                </video>
+            </div>
             <div className="container poseidon--hero__inner">
                 <svg className="logo" version="1.1" x="0px" y="0px" viewBox="0 0 817.4 178.8">
                     <g>
@@ -105,6 +156,16 @@ function Hero(props: HeroProps): JSX.Element {
                         />
                     </g>
                 </svg>
+                <div className="button-wrapper">
+                    <Button className="btn--poseidon" size="lg">
+                        Fill in IC
+                    </Button>
+                    <ButtonLink href="http://google.nl">Go to Geeknack</ButtonLink>
+                </div>
+
+                <Button onClick={onPlayClick} className="btn--video" size="md">
+                    <div className="play-icon"></div>
+                </Button>
             </div>
         </div>
     );
