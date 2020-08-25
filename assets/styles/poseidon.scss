@@ -1,6 +1,23 @@
 $poseidon-main: #00627a;
 $poseidon-accent: #00a4a9;
 
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(0, 164, 169, 0.7);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 25px rgba(0, 164, 169, 0);
+    }
+
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(0, 164, 169, 0);
+    }
+}
+
 @font-face {
     font-family: 'DayRoman';
     src: url('/fonts/DayRoman/DayRoman.eot?#iefix') format('embedded-opentype'),
@@ -19,70 +36,217 @@ $poseidon-accent: #00a4a9;
     }
 
     &--hero {
+        position: relative;
         display: flex;
         height: 740px;
         width: 100%;
-        background-color: $poseidon-main;
-        background: url('/images/poseidon/hero-background.png') center center;
+        // background: url('/images/poseidon/hero-background.png') center center;
+
+        @media screen and (min-width: $bp-desktop-sm) {
+            background: $poseidon-main;
+        }
+
+        &.video-playing {
+            &:after {
+                opacity: 0;
+            }
+        }
+
+        &:after {
+            transition: all 0.4s ease;
+            position: absolute;
+            content: '';
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 98, 122, 1) 100%);
+            pointer-events: none;
+            // opacity: 0.9;
+        }
+
+        &__video {
+            position: absolute;
+            opacity: 0;
+            left: 0;
+            top: 0;
+            width: 0px;
+            height: 0px;
+            margin: 0;
+
+            // @media screen and (min-width: $bp-desktop-sm) {
+            opacity: 1;
+            width: 100%;
+            height: 100%;
+
+            video {
+                height: 100%;
+                object-fit: cover;
+                width: 100%;
+
+                .video-playing & {
+                    object-fit: contain;
+                }
+            }
+        }
 
         &__inner {
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 2;
             display: flex;
+            flex-direction: column;
             align-items: center;
+            padding-top: 120px;
+
+            @media screen and (min-width: $bp-tablet-md) {
+                padding-top: 240px;
+            }
+
+            .video-playing & {
+                pointer-events: none;
+                transform: translateY(100px);
+                opacity: 0;
+            }
+        }
+
+        .button-wrapper {
+            display: flex;
             justify-content: center;
+            width: 100%;
+            margin: 24px;
+
+            > * + * {
+                margin-left: 12px;
+            }
+
+            .btn--poseidon {
+                width: 50%;
+                background-color: $poseidon-main;
+                color: $poseidon-accent;
+
+                @media screen and (min-width: $bp-tablet-md) {
+                    width: auto;
+                }
+            }
+
+            .button-link {
+                border: none;
+                color: $poseidon-accent;
+                opacity: 0.7;
+
+                svg {
+                    stroke: $poseidon-accent;
+                }
+            }
+        }
+
+        .btn--video {
+            display: flex;
+            flex: none;
+            justify-content: center;
+            align-items: center;
+            margin-top: 100px;
+            width: 100px;
+            height: 100px;
+            border-radius: 100px;
+            background: $poseidon-main;
+            box-shadow: 0 0 0 0 rgba(0, 164, 169, 1);
+            animation: pulse 2s infinite;
+
+            .play-icon {
+                width: 0;
+                height: 0;
+                margin-left: 10px;
+                border-style: solid;
+                border-width: 20px 0 20px 30px;
+                border-color: transparent transparent transparent $poseidon-accent;
+            }
         }
 
         .logo {
             display: block;
-            width: 650px;
+            width: 100%;
             fill: $poseidon-accent;
+            overflow: visible;
+            box-shadow: 0px -0px 10000px transparent /*trick for chrome*/;
+
+            @media screen and (min-width: $bp-tablet-md) {
+                min-width: 650px;
+            }
+
+            path {
+                @for $i from 1 through 8 {
+                    &:nth-of-type(#{$i}) {
+                        animation: fadeInLeft 0.4s ease both;
+                        animation-delay: 0.1s * $i;
+                    }
+                }
+            }
         }
     }
 
     .section {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        padding-top: 50px;
+        padding-bottom: 50px;
 
         &-title {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             text-align: center;
-            font-size: 90px;
-            margin: 100px 0;
+            font-size: 50px;
+            padding: 50px 0 50px;
             z-index: 2;
             color: $poseidon-accent;
+            border-top: 4px solid rgba(0, 164, 169, 0.5);
 
-            &:after {
-                content: attr(data-title);
-                width: 100vw;
-                left: 50%;
-                transform: translateX(-50%);
-                top: 0;
-                z-index: -1;
-                font-size: 230px;
-                position: absolute;
-                // color: #000;
-                // opacity: 0.1;
-                color: #004b5f; // ? beter kleur G.
-                // ! hier even naar kijken: https://hihayk.github.io/scale/#2/2/50/80/0/-17/30/14/00627a/0/98/122/white
+            @media screen and (min-width: $bp-tablet-md) {
+                position: relative;
+                font-size: 75px;
+
+                &:after {
+                    content: attr(data-title);
+                    width: 100vw;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    top: 50%;
+                    z-index: -1;
+                    font-size: 200px;
+                    position: absolute;
+                    opacity: 0.1;
+                    color: #003441;
+                }
             }
         }
 
         &-description {
-            width: 700px;
+            width: 100%;
+            font-size: 20px;
+            text-align: justify;
+            line-height: 1.5;
             color: $poseidon-accent;
+
+            @media screen and (min-width: $bp-tablet-md) {
+                width: 600px;
+                margin: 0 auto;
+            }
         }
     }
 
     .kit {
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: space-between;
+        padding: 0;
 
-        &:nth-child(odd) {
-            flex-direction: row-reverse;
+        @media screen and (min-width: $bp-tablet-md) {
+            flex-direction: row;
+
+            &:nth-child(odd) {
+                flex-direction: row-reverse;
+            }
         }
 
         &:not(:first-child) {
@@ -96,10 +260,13 @@ $poseidon-accent: #00a4a9;
 
         &__info {
             flex: 50%;
-            padding: 100px;
+
+            @media screen and (min-width: $bp-tablet-md) {
+                padding: 50px;
+            }
 
             &-name {
-                font-size: 49px;
+                font-size: 30px;
                 margin-bottom: 20px;
                 color: $poseidon-accent;
             }
@@ -118,10 +285,20 @@ $poseidon-accent: #00a4a9;
         padding-bottom: 94px;
 
         img {
-            flex: 25%;
-            width: 21%;
             height: auto;
             align-self: center;
+
+            @media screen and (min-width: $bp-tablet-md) {
+                width: calc(50% - 16px);
+
+                &:nth-of-type(even) {
+                    margin-left: 16px;
+                }
+            }
+
+            + img {
+                margin-top: 16px;
+            }
         }
     }
 
