@@ -35,28 +35,27 @@ function PoseidonPage(props: PoseidonPageProps) {
                 <Layout>
                     <Hero />
 
-                    <Section title="Kits">
-                        {keycapset.kits.map((kit) => (
-                            <Kit {...kit} />
-                        ))}
-                    </Section>
-
-                    <Section title="Design & Colors">
+                    <Section title="Origins">
                         <p className="section-description">
                             This set originates from my love mythology in partially Ancient greek and the ocean, I
                             started working on this set back in August of 2018, It’s original concept was to run in the
                             back then the new KAT profile from Keyreative with reserved dyesub, sadly back then reverse
                             dyesub was still something they were working on and decided to hold off and wait for further
                             details. After awhile I started rethinking the concept for a different profile and together
-                            with the help of u/Janglad(belgium homo) which who I have worked in the past on project like
-                            Minimal and Equinox BT, we came with the decision to run Poseidon on the beloved Cherry
-                            profile from GMK. as the barebones were already set there was still a lot to do with
-                            researching the possibilities within the GMK profile. Here we chose to go with the more
-                            traditional Icon+Text modifier legends as they were also used on the vintage Greek cherry
-                            keyboards. For the colors we decided to go with GMK stock colors TU1 which is a deep calm
-                            and navy blue and TU2 which is a bright cyan that helps with the contrast for more readable
-                            legends.
+                            with the help of u/Janglad which who I have worked in the past on project like Minimal and
+                            Equinox BT, we came with the decision to run Poseidon on the beloved Cherry profile from
+                            GMK. as the barebones were already set there was still a lot to do with researching the
+                            possibilities within the GMK profile. Here we chose to go with the more traditional
+                            Icon+Text modifier legends as they were also used on the vintage Greek cherry keyboards. For
+                            the colors we decided to go with GMK stock colors TU1 which is a deep calm and navy blue and
+                            TU2 which is a bright cyan that helps with the contrast for more readable legends.
                         </p>
+                    </Section>
+
+                    <Section title="Kits">
+                        {keycapset.kits.map((kit) => (
+                            <Kit {...kit} />
+                        ))}
                     </Section>
 
                     <Section title="Renders">
