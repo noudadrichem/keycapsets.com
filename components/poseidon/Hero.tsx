@@ -12,6 +12,9 @@ function Hero(props: HeroProps): JSX.Element {
     const onVideoPasuse = () => {
         heroRef.current.classList.remove('video-playing');
 
+        videoRef.current.muted = true;
+        videoRef.current.controls = false;
+
         if (document.fullscreen) {
             document.exitFullscreen();
         }
