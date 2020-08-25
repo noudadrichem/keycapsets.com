@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { Router } from 'next/router';
 import withGA from 'next-ga';
 
-import withData from '../../hooks/withData';
-
 import Heading from '../../components/Heading';
 import RedditAuth from '../../components/RedditAuth';
 import Checkbox from '../../components/Checkbox';
@@ -61,4 +59,4 @@ function SignUpReddit() {
     );
 }
 
-export default withGA('UA-115865530-2', Router)(withData(SignUpReddit));
+export default withGA('UA-115865530-2', Router)(SignUpReddit);

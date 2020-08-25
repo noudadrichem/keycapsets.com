@@ -8,7 +8,6 @@ import countries from '../../assets/countries';
 import { CREATE_VENDOR_MUTATION } from '../../queries';
 
 import useInput from '../../hooks/useInput';
-import withData from '../../hooks/withData';
 
 import MultipleInputs from '../../components/MultipleInputs';
 import Button from '../../components/Button';
@@ -82,8 +81,9 @@ function UploadVendor(props: UploadVendorProps) {
             url: urlValue,
             socials,
         };
-        const result = await addVendor({ variables });
-        console.log({ result });
+        console.log('new vendor...', variables);
+        // const result = await addVendor({ variables });
+        // console.log({ result });
         reset();
     }
 

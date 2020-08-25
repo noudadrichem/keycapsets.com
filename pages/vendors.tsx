@@ -4,7 +4,6 @@ import { useQuery } from '@apollo/react-hooks';
 import withGA from 'next-ga';
 import Router from 'next/router';
 
-import withData from '../hooks/withData';
 import { GET_VENDORS_QUERY } from '../queries';
 import { Vendor } from 'typings';
 

@@ -13,25 +13,21 @@ import { CREATE_KEYSET_MUTATION, GET_VENDORS_QUERY } from '../../queries';
 import { PROFILE_OPTIONS, BRAND_OPTIONS, MATERIAL_OPTIONS } from '../../constants';
 
 import useInput from '../../hooks/useInput';
-import withData from '../../hooks/withData';
 
 import Heading from '../../components/Heading';
 import MultipleInputs from '../../components/MultipleInputs';
 import Button from '../../components/Button';
-import Footer from '../../components/Footer';
 import Multiselect from '../../components/Multiselect';
-import Nav from '../../components/Nav';
-import ImageCard from '../../components/ImageCard';
 import LoadingKeyboard from '../../components/LoadingKeyboard';
-import Meta from '../../components/Meta';
 import ColorPicker from '../../components/ColorPicker';
 import Checkbox from '../../components/Checkbox';
+import ImageCard from '../../components/ImageCard';
 
 interface UploadSetProps {}
 
-function UploadSet(props: UploadSetProps): JSX.Element {
+function UploadSet(): JSX.Element {
     const [nameValue, nameInput, setName] = useInput({ label: 'Name:' });
-    const [designerNameValue, designerNameInput, setDesignerName] = useInput({
+    const [designerNameValue, designerNameInput] = useInput({
         label: 'Designer name:',
     });
     const [coverImageUrlValue, coverImageUrlInput, setCoverImg] = useInput({
@@ -51,13 +47,13 @@ function UploadSet(props: UploadSetProps): JSX.Element {
         defaultValue: moment().add('1', 'months').format('YYYY-MM-DD'),
     });
 
-    const [accentColor1Value, accentColor1Input, setAccentColor1] = useInput({
+    const [accentColor1Value, , setAccentColor1] = useInput({
         label: 'Page accent color 1:',
     });
-    const [accentColor2Value, accentColor2Input, setAccentColor2] = useInput({
+    const [accentColor2Value, , setAccentColor2] = useInput({
         label: 'Page accent color 2:',
     });
-    const [accentColor3Value, accentColor3Input, setAccentColor3] = useInput({
+    const [accentColor3Value, , setAccentColor3] = useInput({
         label: 'Page accent color 3:',
     });
     // const [isInterestCheckValue, isInterestCheckInput] = useInput({ label: 'Is this an interest check?', type: 'checkbox'})
@@ -70,7 +66,7 @@ function UploadSet(props: UploadSetProps): JSX.Element {
     const [uploading, setUploading] = useState(false);
     const [shouldReset, setShouldReset] = useState(false);
     const [isFormValid, setFormValid] = useState(true);
-    const [errors, setErrors] = useState([]);
+    const [] = useState([]);
     const [isInterestCheckValue, setIsInterestCheckValue] = useState<boolean>(false);
 
     const [addKeyset] = useMutation(CREATE_KEYSET_MUTATION);
@@ -96,7 +92,7 @@ function UploadSet(props: UploadSetProps): JSX.Element {
         setEndDateValue(oneMonthLater);
     }, [startDateValue]);
 
-    async function uploadKeycapset(e) {
+    async function uploadKeycapset() {
         const multiSelectedValues = {
             type: type.value,
             brand: brand.value,
@@ -113,9 +109,6 @@ function UploadSet(props: UploadSetProps): JSX.Element {
         if (isFormValid) {
             setUploading(true);
             console.log('newKeycapset...', newKeycapset);
-            const result: ExecutionResult<Keycapset> = await addKeyset({
-                variables: newKeycapset,
-            });
             setUploading(false);
             setFormValid(true);
             reset();
@@ -130,25 +123,6 @@ function UploadSet(props: UploadSetProps): JSX.Element {
         const isEmpty = val === '' || val === undefined || val === null || val === [];
 
         return isEmpty;
-    }
-
-    function handleFormValidation() {
-        console.log('isEmptyValue(vendors)...', isEmptyValue(vendors));
-        if (isEmptyValue(nameValue)) {
-            console.log('nameValue is empty');
-        } else if (isEmptyValue(coverImageUrlValue)) {
-            console.log('coverImageUrlValue is empty');
-        } else if (isEmptyValue(websiteUrlValue)) {
-            console.log('websiteUrlValue is empty');
-        } else if (isEmptyValue(vendors)) {
-            console.log('vendors is empty');
-        } else if (isEmptyValue(imageUrls)) {
-            console.log('imageUrls is empty');
-        } else if (isEmptyValue(startDateValue)) {
-            console.log('startDateValue is empty');
-        } else if (isEmptyValue(endDateValue)) {
-            console.log('endDateValue is empty');
-        }
     }
 
     function reset() {
