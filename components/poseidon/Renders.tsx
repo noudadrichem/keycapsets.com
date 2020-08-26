@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+import ImageModal from '../ImageModal';
 
 interface Renders {
     renders: string[];
@@ -10,7 +11,7 @@ function Renders(props: Renders): JSX.Element {
     return (
         <div className="renders">
             {renders.map((render) => (
-                <img src={render} />
+                <ImageModal src={render} />
             ))}
         </div>
     );
