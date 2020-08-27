@@ -30,11 +30,6 @@
     This should be your go-to website to look for keycap sets. I want you to be able to search based on name, type or even the color you like. I want to make it as easy as possible for you to decide what set you should go with on your next build.
 </p>
 
-<h2 className="alinea-title">The person behind</h2>
-<p className="light alinea">
-    I'm Noud Adrichem, a 21 year old mechanical keyboard enthusiast. Stu-dying Software Engineering at Hogeschool Utrecht and working as a Software Engineer at <a href="https://bannerwise.io">Bannerwise.io</a>.
-</p>
-
 # Development
 
 ## Running locally in development mode
@@ -45,16 +40,4 @@ To get started, just clone the repository and run `npm install && npm run dev`:
     npm install
     npm run dev
 
-Note: If you are running on Windows run install --noptional flag (i.e. `npm install`) which will skip installing fsevents.
-
-## Building and deploying in production
-
-If you wanted to run this site in production, you should install modules then build the site with `yarn build` and run it with `npm start`:
-
-    npm install
-    npm run build
-    npm start
-
-You should run `npm run build` again any time you make changes to the site.
-
-Note: If you are already running a webserver on port 80 (e.g. Macs usually have the Apache webserver running on port 80) you can still start the example in production mode by passing a different port as an Environment Variable when starting (e.g. `PORT=3000 yarn start`).
+Note: If you are running on Windows run install --optional flag (i.e. `npm install`) which will skip installing fsevents.
