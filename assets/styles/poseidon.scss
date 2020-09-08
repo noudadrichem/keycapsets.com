@@ -40,7 +40,6 @@ $poseidon-accent: #00a4a9;
         display: flex;
         height: 740px;
         width: 100%;
-        // background: url('/images/poseidon/hero-background.png') center center;
 
         @media screen and (min-width: $bp-desktop-sm) {
             background: $poseidon-main;
@@ -278,7 +277,7 @@ $poseidon-accent: #00a4a9;
         flex-wrap: wrap;
         padding-bottom: 94px;
 
-        img {
+        > div {
             height: auto;
             align-self: center;
 

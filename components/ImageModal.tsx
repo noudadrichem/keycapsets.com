@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import LoadingKeyboard from './LoadingKeyboardIllustration';
 
 interface ImageModalProps {
     src?: string;
@@ -10,44 +11,54 @@ interface ImageModalProps {
 
 function ImageModal(props: ImageModalProps): JSX.Element {
     const [open, setOpen] = useState(false);
+    const [loaded, setLoading] = useState(false);
     const modalRef = useRef(null);
     const imageRef = useRef(null);
     const { src } = props;
 
     const getStylingData = ({ current }) => ({
-        position: current.getBoundingClientRect(),
+        left: current.offsetLeft - current.parentElement.offsetLeft,
+        top: current.offsetTop,
         height: current.clientHeight,
         width: current.clientWidth,
+        rect: current.getBoundingClientRect(),
+        scrollLeft: window.pageXOffset || document.documentElement.scrollLeft,
+        scrollTop: window.pageYOffset || document.documentElement.scrollTop,
     });
 
     useEffect(() => {
-        if (open) {
-            const { height, width, position } = getStylingData(imageRef);
+        if (open && loaded) {
+            const { height, width, left, top, rect, scrollTop, scrollLeft } = getStylingData(imageRef);
             const { current: modalImage } = modalRef;
+
+            document.body.style.position = 'relative';
 
             modalImage.style.transitionDuration = '0s';
             modalImage.style.width = width + 'px';
-            modalImage.style.top = position.y + 'px';
-            modalImage.style.left = position.x + 'px';
+            modalImage.style.top = rect.top + scrollTop + 'px';
+            modalImage.style.left = left + 'px';
 
             window.setTimeout(() => {
                 modalImage.style.opacity = '1';
                 modalImage.style.transitionDuration = '';
+                modalRef.current.style.position = '';
                 modalImage.style.width = '';
                 modalImage.style.height = '';
                 modalImage.style.left = '';
-                modalImage.style.top = '';
+                modalImage.style.top = window.scrollY + 50 + 'px';
             }, 100);
         }
-    }, [open]);
+    }, [open, loaded]);
 
     const onClose = () => {
-        const { height, width, position } = getStylingData(imageRef);
+        const { height, width, left, top, rect, scrollLeft, scrollTop } = getStylingData(imageRef);
         const { current: modalImage } = modalRef;
 
         modalRef.current.style.width = width + 'px';
-        modalRef.current.style.top = position.y + 'px';
-        modalRef.current.style.left = position.x + 'px';
+        modalRef.current.style.top = rect.top + scrollTop + 'px';
+        modalRef.current.style.left = left + 'px';
+        modalRef.current.style.position = 'absolute';
+        document.body.style.position = 'relative';
 
         modalImage.addEventListener('transitionend', function transitionEnd() {
             if (!open) {
@@ -55,22 +66,32 @@ function ImageModal(props: ImageModalProps): JSX.Element {
             }
 
             setOpen(false);
+            setLoading(false);
             modalImage.removeEventListener('transitionend', transitionEnd);
         });
     };
 
     return (
-        <React.Fragment>
+        <div ref={imageRef} className="image-wrapper">
             {open
                 ? createPortal(
                       <div className="image-modal" onClick={() => onClose()}>
-                          <img src={src} ref={modalRef} />
+                          {loaded ? <div className="image-modal__overlay" /> : null}
+                          <div className="image-modal__container">
+                              <img onLoad={() => setLoading(true)} src={src} ref={modalRef} />
+                          </div>
                       </div>,
                       document.body
                   )
                 : null}
-            <img ref={imageRef} onClick={() => setOpen(true)} src={src} />
-        </React.Fragment>
+            <img onClick={() => setOpen(true)} src={src} />
+            {!loaded && open ? (
+                <div className="image-wrapper--loading">
+                    <LoadingKeyboard />
+                </div>
+            ) : null}
+            }
+        </div>
     );
 }
 
