@@ -3,8 +3,8 @@ import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 interface ImageModalProps {
-    src?: String;
-    className?: String;
+    src?: string;
+    className?: string;
     isFullWidth?: boolean;
 }
 
