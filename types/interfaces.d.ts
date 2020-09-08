@@ -22,6 +22,7 @@ declare module 'typings' {
         isInterestCheck: boolean;
         designedBy?: string[];
         kits: any[];
+        metaUrl?: string;
     }
 
     interface Brand {

@@ -81,7 +81,7 @@ function SetPage(props: SetPageProps) {
                         title={`${keycapset.name} ${
                             keycapset.designerName ? `designed by ${keycapset.designerName}` : ''
                         }`}
-                        metaImgUrl={keycapset.coverImageUrl}
+                        metaImgUrl={keycapset.metaUrl}
                     />
 
                     <div className="container">
