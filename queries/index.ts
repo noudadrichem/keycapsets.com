@@ -126,6 +126,7 @@ const GET_SINGLE_SET_QUERY = gql`
             material
             isInterestCheck
             designedBy
+            metaUrl
         }
     }
 `;
