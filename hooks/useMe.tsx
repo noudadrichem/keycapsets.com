@@ -1,9 +1,8 @@
-import { useQuery, useApolloClient } from '@apollo/react-hooks';
+import { useQuery, useApolloClient, ApolloClient } from '@apollo/react-hooks';
 import { ME } from '../queries';
 import { useContext, useEffect } from 'react';
 import { Context } from 'typings';
 import context from '../context';
-import { ApolloClient } from 'apollo-boost';
 import user from '../pages/user';
 
 async function useMe() {

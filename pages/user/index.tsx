@@ -8,7 +8,6 @@ import Images from '../../components/Images';
 import { useContext, useEffect, useState } from 'react';
 import { Context } from 'typings';
 import context from '../../context';
-import { ApolloClient } from 'apollo-boost';
 import ButtonLink from '../../components/ButtonLink';
 import Link from 'next/link';
 import GoogleIcon from '../../components/GoogleIcon';
