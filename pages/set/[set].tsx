@@ -19,40 +19,46 @@ import Meta from '../../components/Meta';
 import context from '../../context';
 import LikeSet from '../../components/LikeSet';
 import StatusLabel from '../../components/StatusLabel';
+import { initializeApollo } from '../../hooks/withData';
 
-interface SetPageProps {}
+interface SetPageProps {
+    keycapset: Keycapset;
+    isLargeContainer: boolean;
+}
 
 function SetPage(props: SetPageProps) {
+    console.log('page props...', props);
     const router = useRouter();
     const { set: slug } = router.query;
+    const { keycapset } = props;
 
-    const [keycapset, setKeycapset] = useState<Keycapset>(null);
+    // const [keycapset, setKeycapset] = useState<Keycapset>(null);
 
-    const variables = { slug };
-    const { loading: setLoading, error: setError, data: setByQuery } = useQuery(GET_SINGLE_SET_QUERY, {
-        variables,
-    });
+    // const variables = { slug };
+    // const { loading: setLoading, error: setError, data: setByQuery } = useQuery(GET_SINGLE_SET_QUERY, {
+    //     variables,
+    // });
     const { state } = useContext<Context>(context);
 
-    useEffect(() => {
-        if (!setLoading && setByQuery.keycapsetBySlug) {
-            console.log('setByQuery', setByQuery.keycapsetBySlug);
-            setKeycapset(setByQuery.keycapsetBySlug);
-        }
-    }, [setByQuery]);
+    // useEffect(() => {
+    //     if (!setLoading && setByQuery.keycapsetBySlug) {
+    //         console.log('setByQuery', setByQuery.keycapsetBySlug);
+    //         setKeycapset(setByQuery.keycapsetBySlug);
+    //     }
+    // }, [setByQuery]);
 
-    function setClaimed() {
-        setKeycapset({
-            ...keycapset,
-            designedBy: [...keycapset.designedBy, state.user._id],
-        });
-    }
+    // function setClaimed() {
+    //     setKeycapset({
+    //         ...keycapset,
+    //         designedBy: [...keycapset.designedBy, state.user._id],
+    //     });
+    // }
 
-    if (setLoading) {
-        return <LoadingKeyboard />;
-    }
+    // if (setLoading) {
+    //     return <LoadingKeyboard />;
+    // }
 
-    if (setError) {
+    if (keycapset === undefined) {
         return (
             <>
                 <Error statusCode={404} />
@@ -180,10 +186,30 @@ function SetPage(props: SetPageProps) {
     return null;
 }
 
-SetPage.getInitialProps = () => {
+export async function getServerSideProps(context) {
+    try {
+        const client = initializeApollo();
+        const { data, error } = await client.query({
+            query: GET_SINGLE_SET_QUERY,
+            variables: {
+                slug: context.query.set,
+            },
+        });
+
+        console.log(JSON.stringify(data, null, 2));
+        return {
+            props: {
+                isLargeContainer: false,
+                keycapset: data.keycapsetBySlug,
+            },
+        };
+    } catch (err) {
+        console.log('SSR props err', err);
+    }
+
     return {
-        isLargeContainer: false,
+        props: { isLargeContainer: false },
     };
-};
+}
 
 export default withGA('UA-115865530-2', Router)(SetPage);

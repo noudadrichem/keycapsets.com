@@ -4,9 +4,13 @@ import { createUploadLink } from 'apollo-upload-client';
 import { setContext } from '@apollo/client/link/context';
 
 let apolloClient: any;
+let token: string;
 
 const authLink = setContext((_, { headers }) => {
-    const token = localStorage.getItem('TOKEN');
+    if (typeof window !== 'undefined') {
+        token = localStorage.getItem('TOKEN');
+    }
+
     return {
         headers: {
             ...headers,
@@ -30,7 +34,7 @@ function createApolloClient() {
     });
 }
 
-export function initializeApollo(initialState = null) {
+export function initializeApollo(initialState = null): ApolloClient<any> {
     const _apolloClient = apolloClient ?? createApolloClient();
     if (initialState) {
         const existingCache = _apolloClient.extract();
