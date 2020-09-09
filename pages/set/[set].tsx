@@ -107,6 +107,7 @@ function SetPage(props: SetPageProps) {
                             <div>
                                 {/* {isLoggedInAndIsDesigner && <ClaimSet keycapset={keycapset} callback={setClaimed} />} */}
                                 <LikeSet keycapset={keycapset} />
+                                <br />
                                 <StatusLabel
                                     groupbuyStartDate={keycapset.groupbuyStartDate}
                                     groupbuyEndDate={keycapset.groupbuyEndDate}
