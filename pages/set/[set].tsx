@@ -73,7 +73,6 @@ function SetPage(props: SetPageProps) {
             autoPlaySpeed: 1600,
         };
 
-        console.log('kits..??', keycapset.kits.length > 0);
         return (
             <>
                 <div className="set">
@@ -149,13 +148,9 @@ function SetPage(props: SetPageProps) {
                             </div>
                         </div>
 
-                        {keycapset.kits.length > 0 && (
+                        {keycapset.kits !== null && keycapset.kits.length > 0 && (
                             <div className="set-kits">
                                 <h2>Kits</h2>
-                                <p className="light">
-                                    If the set entry contains kits they'll be shown up here. (soon with an account
-                                    you'll be able to contribute changes if something is missing.)
-                                </p>
                                 <div className="set-kits-grid-container">
                                     {keycapset.kits.map((kit: any) => {
                                         return (
