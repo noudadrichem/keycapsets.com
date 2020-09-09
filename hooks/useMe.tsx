@@ -7,7 +7,7 @@ import user from '../pages/user';
 
 async function useMe() {
     //! NOT USED ANYMORE
-    const client: ApolloClient<any> = useApolloClient();
+    const client = useApolloClient();
     const { state, dispatch } = useContext<Context>(context);
 
     if (state.isLoggedIn) {

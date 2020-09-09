@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
-import { useApolloClient, ApolloClient } from '@apollo/react-hooks';
+import { useApolloClient } from '@apollo/react-hooks';
 import { useRouter, Router } from 'next/router';
 import { Context } from 'typings';
 
@@ -23,7 +23,7 @@ interface GoogleAuthProps {
 
 function GoogleAuth(props: GoogleAuthProps): JSX.Element {
     const { text, disabled, asLink = false, isLogginOut = false } = props;
-    const client: ApolloClient<any> = useApolloClient();
+    const client = useApolloClient();
     const router = useRouter();
     const { dispatch } = useContext<Context>(context);
 

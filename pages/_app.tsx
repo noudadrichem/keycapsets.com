@@ -15,7 +15,7 @@ import { ME } from '../queries';
 
 function MyApp({ Component, pageProps }: AppProps) {
     const [me, setMe] = useState<User>(null);
-    const apolloClient: ApolloClient<any> = useApollo(pageProps.initialApolloState);
+    const apolloClient = useApollo(pageProps.initialApolloState);
     const isBrowser = typeof window !== `undefined`;
 
     async function fetchMe() {
