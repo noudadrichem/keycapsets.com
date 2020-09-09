@@ -44,57 +44,58 @@ function ImageCard(props: ImageCardProps): JSX.Element {
     }, [isInViewport]);
 
     return (
-        <AnimatePresence>
-            <Link href="/set/[set]" as={`/set/${slug}`}>
-                <a ref={containerRef}>
-                    {wasInViewport && (
-                        <motion.div
-                            initial={{
-                                opacity: 0,
-                            }}
-                            animate={{
-                                opacity: 1,
-                            }}
-                            className={`image-card ${isTemplate ? 'disabled' : ''}`}
-                        >
-                            <div className="image">
-                                <img
-                                    className="set"
-                                    src={
-                                        coverImageUrl === undefined || coverImageUrl === ''
-                                            ? '/images/empty-base-kit-illu.svg'
-                                            : coverImageUrl
-                                    }
+        // <AnimatePresence>
+        <Link href="/set/[set]" as={`/set/${slug}`}>
+            <a ref={containerRef}>
+                {wasInViewport && (
+                    // <motion.div
+                    //     initial={{
+                    //         opacity: 0,
+                    //     }}
+                    //     animate={{
+                    //         opacity: 1,
+                    //     }}
+                    //     className={`image-card ${isTemplate ? 'disabled' : ''}`}
+                    // >
+                    <div className={`image-card ${isTemplate ? 'disabled' : ''}`}>
+                        <div className="image">
+                            <img
+                                className="set"
+                                src={
+                                    coverImageUrl === undefined || coverImageUrl === ''
+                                        ? '/images/empty-base-kit-illu.svg'
+                                        : coverImageUrl
+                                }
+                            />
+                        </div>
+                        <div className="details">
+                            <div className="top">
+                                <h4 className="set-title">{name || 'Title goes here'}</h4>
+                                <StatusLabel
+                                    groupbuyStartDate={groupbuyStartDate}
+                                    groupbuyEndDate={groupbuyEndDate}
+                                    isIc={isInterestCheck}
                                 />
                             </div>
-                            <div className="details">
-                                <div className="top">
-                                    <h4 className="set-title">{name || 'Title goes here'}</h4>
-                                    <StatusLabel
-                                        groupbuyStartDate={groupbuyStartDate}
-                                        groupbuyEndDate={groupbuyEndDate}
-                                        isIc={isInterestCheck}
-                                    />
-                                </div>
 
-                                <div className="bottom">
-                                    <span className="bold">
-                                        <span>
-                                            {getLabelByBrand(brand)} {type && type.toUpperCase()}
-                                        </span>
-                                        <span>{moment(groupbuyStartDate).format('YYYY')}</span>
-                                    </span>
-
+                            <div className="bottom">
+                                <span className="bold">
                                     <span>
-                                        <LikeSet keycapset={keycapset} />
+                                        {getLabelByBrand(brand)} {type && type.toUpperCase()}
                                     </span>
-                                </div>
+                                    <span>{moment(groupbuyStartDate).format('YYYY')}</span>
+                                </span>
+
+                                <span>
+                                    <LikeSet keycapset={keycapset} />
+                                </span>
                             </div>
-                        </motion.div>
-                    )}
-                </a>
-            </Link>
-        </AnimatePresence>
+                        </div>
+                    </div>
+                )}
+            </a>
+        </Link>
+        // </AnimatePresence>
     );
 }
 
