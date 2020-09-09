@@ -18,6 +18,7 @@ import ButtonLink from '../../components/ButtonLink';
 import Meta from '../../components/Meta';
 import context from '../../context';
 import LikeSet from '../../components/LikeSet';
+import StatusLabel from '../../components/StatusLabel';
 
 interface SetPageProps {}
 
@@ -106,6 +107,11 @@ function SetPage(props: SetPageProps) {
                             <div>
                                 {/* {isLoggedInAndIsDesigner && <ClaimSet keycapset={keycapset} callback={setClaimed} />} */}
                                 <LikeSet keycapset={keycapset} />
+                                <StatusLabel
+                                    groupbuyStartDate={keycapset.groupbuyStartDate}
+                                    groupbuyEndDate={keycapset.groupbuyEndDate}
+                                    isIc={keycapset.isInterestCheck}
+                                />
                                 <h3>Info</h3>
                                 <p>Designer: {keycapset.designerName || 'Unknown'}</p>
                                 <p>Profile: {keycapset.type}</p>

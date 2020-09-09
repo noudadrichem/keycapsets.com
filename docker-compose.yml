@@ -2,8 +2,8 @@ version: '3'
 services:
     testing_keycapsets:
         build: .
-        # networks:
-        #     - traefik
+        networks:
+            - traefik
         ports:
             - '3001:3001'
         labels:
@@ -11,7 +11,7 @@ services:
             - 'traefik.backend=testing_keycapsets'
             - 'traefik.frontend.rule=Host:testing.keycapsets.com'
             - 'traefik.port=3001'
-              #networks:
-              # traefik:
-              #external:
-              #name: docker_default
+networks:
+    traefik:
+        external:
+            name: docker_default

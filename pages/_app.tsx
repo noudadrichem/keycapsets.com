@@ -42,7 +42,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 
     return (
         <div className="app">
-            <Meta />
             <div className="page-layout">
                 <StateProvider me={me}>
                     <ApolloProvider client={apolloClient}>

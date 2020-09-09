@@ -128,7 +128,7 @@ function Home(props: HomeProps) {
 
     return (
         <>
-            <Meta metaImgUrl={props.metaImg} />
+            <Meta />
             <div className="container large">
                 <Heading mainTitle="Find your favorite keycapset!" subTitle="" isHome />
                 <Tabs />
