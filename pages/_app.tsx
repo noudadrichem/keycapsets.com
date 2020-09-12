@@ -18,38 +18,36 @@ function MyApp({ Component, pageProps }: AppProps) {
     const apolloClient = useApollo(pageProps.initialApolloState);
     const isBrowser = typeof window !== `undefined`;
 
-    async function fetchMe() {
-        const { data: me } = await apolloClient.query({
-            query: ME,
-            fetchPolicy: 'network-only',
-        });
-        if (me) {
-            setMe(me.me);
-            console.log('user...', me.me);
-        }
-    }
+    // async function fetchMe() {
+    //     const { data: me } = await apolloClient.query({
+    //         query: ME,
+    //         fetchPolicy: 'network-only',
+    //     });
+    //     if (me) {
+    //         setMe(me.me);
+    //         console.log('user...', me.me);
+    //     }
+    // }
 
-    useEffect(function handleUserSession() {
-        if (isBrowser) {
-            const token = window.localStorage.getItem('TOKEN');
-            if (token !== null) {
-                fetchMe();
-            }
-        }
-    });
+    // useEffect(function handleUserSession() {
+    //     if (isBrowser) {
+    //         const token = window.localStorage.getItem('TOKEN');
+    //         if (token !== null) {
+    //             fetchMe();
+    //         }
+    //     }
+    // });
 
     const isLargeContainer: boolean = pageProps.isLargeContainer !== undefined ? pageProps.isLargeContainer : true;
 
     return (
         <div className="app">
             <div className="page-layout">
-                <StateProvider me={me}>
-                    <ApolloProvider client={apolloClient}>
-                        <Nav isLargeContainer={isLargeContainer} />
-                        <Component {...pageProps} />
-                        <Footer isLargeContainer={isLargeContainer} />
-                    </ApolloProvider>
-                </StateProvider>
+                <ApolloProvider client={apolloClient}>
+                    <Nav isLargeContainer={isLargeContainer} />
+                    <Component {...pageProps} />
+                    <Footer isLargeContainer={isLargeContainer} />
+                </ApolloProvider>
             </div>
         </div>
     );

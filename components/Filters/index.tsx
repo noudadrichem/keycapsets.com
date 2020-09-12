@@ -20,7 +20,7 @@ interface FiltersProps {}
 
 function Filters(props: FiltersProps): JSX.Element {
     const {} = props;
-    const { state, dispatch } = useContext<Context>(context);
+    // const { state, dispatch } = useContext<Context>(context);
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [isExtraFiltersOpen, setIsExtraFilterOpen] = useState<boolean>(false);
 
@@ -36,37 +36,40 @@ function Filters(props: FiltersProps): JSX.Element {
 
     // TODO: This needs refactoring...
     function handleBrandFilter(values: Brand[]) {
-        dispatch({
-            type: 'set',
-            payload: {
-                filters: {
-                    ...state.filters,
-                    brandFilter: values.map((b: Brand) => b.value),
-                },
-            },
-        });
+        console.log('handleBrandFilter');
+        // dispatch({
+        //     type: 'set',
+        //     payload: {
+        //         filters: {
+        //             ...state.filters,
+        //             brandFilter: values.map((b: Brand) => b.value),
+        //         },
+        //     },
+        // });
     }
     function handleProfileFilter(values: Profile[]) {
-        dispatch({
-            type: 'set',
-            payload: {
-                filters: {
-                    ...state.filters,
-                    profileFilter: values.map((b: Profile) => b.value),
-                },
-            },
-        });
+        console.log('handleProfileFilter');
+        // dispatch({
+        //     type: 'set',
+        //     payload: {
+        //         filters: {
+        //             ...state.filters,
+        //             profileFilter: values.map((b: Profile) => b.value),
+        //         },
+        //     },
+        // });
     }
     function handleMaterialFilter(values: Material[]) {
-        dispatch({
-            type: 'set',
-            payload: {
-                filters: {
-                    ...state.filters,
-                    materialFilter: values.map((b: Material) => b.value),
-                },
-            },
-        });
+        console.log('handleMaterialFilter');
+        // dispatch({
+        //     type: 'set',
+        //     payload: {
+        //         filters: {
+        //             ...state.filters,
+        //             materialFilter: values.map((b: Material) => b.value),
+        //         },
+        //     },
+        // });
     }
     function getLabelByAvailability(tab: string): string {
         const labelOptions: any = {
@@ -124,16 +127,19 @@ function Filters(props: FiltersProps): JSX.Element {
                             <Select
                                 label="Availability"
                                 name="Choose availability"
-                                onSelectChange={(selectedFilterValue) =>
-                                    dispatch({
-                                        type: 'set',
-                                        payload: {
-                                            filters: {
-                                                ...state.filters,
-                                                availabilityFilter: selectedFilterValue.value,
-                                            },
-                                        },
-                                    })
+                                onSelectChange={
+                                    (selectedFilterValue) => {
+                                        console.log('availaiblility');
+                                    }
+                                    // dispatch({
+                                    //     type: 'set',
+                                    //     payload: {
+                                    //         filters: {
+                                    //             ...state.filters,
+                                    //             availabilityFilter: selectedFilterValue.value,
+                                    //         },
+                                    //     },
+                                    // })
                                 }
                                 values={AVAILABILITY_OPTIONS.map((t) => ({
                                     value: t,
@@ -160,7 +166,7 @@ function Filters(props: FiltersProps): JSX.Element {
                     <div className="right-side">
                         <div className="counter">
                             <label className="label">Keycapsets:</label>
-                            <p className="light">{state.allKeycapsetsCount}</p>
+                            <p className="light">count here</p>
                         </div>
                     </div>
                 </div>

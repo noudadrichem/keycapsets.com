@@ -41,8 +41,8 @@ const HamburgerIcon = ({ size = 24, color = '#232323', onClick }) => (
 
 function Nav(props: NavProps): JSX.Element {
     const { isLargeContainer } = props;
-    const { state } = useContext<Context>(context);
-    const { isLoggedIn }: InititalState = state;
+    // const { state } = useContext<Context>(context);
+    // const { isLoggedIn }: InititalState = state;
     const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
     const router: NextRouter = useRouter();
 
@@ -63,6 +63,7 @@ function Nav(props: NavProps): JSX.Element {
         router.push('/sign-up');
     }
 
+    const isLoggedIn = false;
     return (
         <nav className="nav">
             {/* <a className="discord-banner" href="https://discord.gg/dq8cyMS">

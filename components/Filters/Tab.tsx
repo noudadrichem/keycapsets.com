@@ -16,23 +16,23 @@ const stateFilterKeys = {
 
 function Tab(props: TabProps): JSX.Element {
     const { id, type, label } = props;
-    const { state, dispatch } = useContext<Context>(context);
-    const { filters }: InititalState = state;
+    // const { state, dispatch } = useContext<Context>(context);
+    // const { filters }: InititalState = state;
     const typeKey = stateFilterKeys[type];
 
     function handleUpdateFilters(): void {
-        dispatch({
-            type: 'set',
-            payload: {
-                filters: {
-                    ...filters,
-                    [typeKey]: id === filters[typeKey] ? 'none' : id,
-                },
-            },
-        });
+        // dispatch({
+        //     type: 'set',
+        //     payload: {
+        //         filters: {
+        //             ...filters,
+        //             [typeKey]: id === filters[typeKey] ? 'none' : id,
+        //         },
+        //     },
+        // });
     }
 
-    const isActive = id === filters[typeKey];
+    const isActive = 'all'; // id === filters[typeKey];
     return (
         <Button onClick={() => handleUpdateFilters()} variant="tab" size="sm" className={`${isActive ? 'active' : ''}`}>
             {label}

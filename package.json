@@ -56,7 +56,8 @@
         "slick-carousel": "^1.8.1",
         "url-loader": "^3.0.0",
         "use-dark-mode": "^2.3.1",
-        "use-is-in-viewport": "^1.0.9"
+        "use-is-in-viewport": "^1.0.9",
+        "zustand": "^3.1.2"
     },
     "devDependencies": {
         "@types/node": "^13.13.17",

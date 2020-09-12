@@ -12,12 +12,6 @@ interface MetaProps {
 
 function Meta(props: MetaProps) {
     const { title, description, metaImgUrl }: MetaProps = props;
-    console.log({
-        title,
-        description,
-        metaImgUrl,
-    });
-
     function setGoogleTags() {
         return {
             __html: `

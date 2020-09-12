@@ -6,23 +6,21 @@ import { Context } from 'typings';
 
 function SearchSets() {
     const router: NextRouter = useRouter();
-    const randomSetNames: string[] = ['Carbon', 'Minimal', 'Hyperfuse', 'Sumi', 'Nautilus'];
-    const randomSetName: string = randomSetNames[Math.floor(Math.random() * randomSetNames.length)];
     const [searchValue, searchInput, setSearchInputValue] = useInput({
         placeholder: 'E.g. Space cadet',
-        autoFocus: true,
+        autoFocus: false,
     });
-    const { state, dispatch } = useContext<Context>(context);
+    // const { state, dispatch } = useContext<Context>(context);
 
     // TODO: this supported the use of search?= query in URL...
     useEffect(() => {
         const searchQuery = router.query.search;
         if (searchQuery !== undefined) {
             setSearchInputValue(searchQuery);
-            dispatch({
-                type: 'set',
-                payload: { searchQuery: searchValue },
-            });
+            // dispatch({
+            //     type: 'set',
+            //     payload: { searchQuery: searchValue },
+            // });
         }
     }, [router.query.search]);
 
@@ -32,10 +30,10 @@ function SearchSets() {
 
         timeout = setTimeout(() => {
             if (searchValue !== '' || searchValue !== undefined) {
-                dispatch({
-                    type: 'set',
-                    payload: { searchQuery: searchValue },
-                });
+                // dispatch({
+                //     type: 'set',
+                //     payload: { searchQuery: searchValue },
+                // });
             }
         }, 300);
 

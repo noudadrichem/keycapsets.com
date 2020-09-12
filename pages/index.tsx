@@ -29,111 +29,119 @@ interface HomeProps {
 const LIMIT = 24;
 function Home(props: HomeProps) {
     const isBrowser = typeof window !== `undefined`;
-    const [loadingExtra, setLoadingExtra] = useState<boolean>(true);
-    const [isAtBottomOfPage, setIsAtBottomOfPage] = useState(false);
-    const { state, dispatch } = useContext<Context>(context);
 
-    const { data: userWantSetsResponse, loading: userWantsLoading, error: userWantsError } = useQuery(USER_WANTS_SETS);
+    console.log('home props...', props);
+    // const [loadingExtra, setLoadingExtra] = useState<boolean>(true);
+    // const [isAtBottomOfPage, setIsAtBottomOfPage] = useState(false);
+    // const { state, dispatch } = useContext<Context>(context);
 
-    useEffect(() => {
-        if (!userWantsLoading) {
-            dispatch({
-                type: 'set',
-                payload: {
-                    userWants: userWantSetsResponse.userWantsSets,
-                },
-            });
-        }
-    }, [userWantSetsResponse]);
+    // const { data: userWantSetsResponse, loading: userWantsLoading, error: userWantsError } = useQuery(USER_WANTS_SETS);
+    // useEffect(() => {
+    //     if (!userWantsLoading) {
+    //         dispatch({
+    //             type: 'set',
+    //             payload: {
+    //                 userWants: userWantSetsResponse.userWantsSets,
+    //             },
+    //         });
+    //     }
+    // }, [userWantSetsResponse]);
 
-    const queryFilters = useMemo(
-        () => ({
-            limit: LIMIT,
-            filter: {
-                brand: state.filters.brandFilter || [],
-                availability: state.filters.availabilityFilter === 'none' ? '' : state.filters.availabilityFilter,
-                material: state.filters.materialFilter || [],
-                type: state.filters.profileFilter,
-                name: state.searchQuery,
-            },
-        }),
-        [
-            state.searchQuery,
-            state.filters.availabilityFilter,
-            state.filters.brandFilter,
-            state.filters.materialFilter,
-            state.filters.profileFilter,
-        ]
-    );
+    // const queryFilters = useMemo(
+    //     () => ({
+    //         limit: LIMIT,
+    //         filter: {
+    //             brand: state.filters.brandFilter || [],
+    //             availability: state.filters.availabilityFilter === 'none' ? '' : state.filters.availabilityFilter,
+    //             material: state.filters.materialFilter || [],
+    //             type: state.filters.profileFilter,
+    //             name: state.searchQuery,
+    //         },
+    //     }),
+    //     [
+    //         state.searchQuery,
+    //         state.filters.availabilityFilter,
+    //         state.filters.brandFilter,
+    //         state.filters.materialFilter,
+    //         state.filters.profileFilter,
+    //     ]
+    // );
 
-    const {
-        keycapsets,
-        allKeycapsetsCount,
-        loading: keycapsetsLoading,
-        error,
-        fetchMore: fetchMoreKeycapSets,
-    } = useKeycapSets(queryFilters);
+    // const {
+    //     keycapsets,
+    //     allKeycapsetsCount,
+    //     loading: keycapsetsLoading,
+    //     error,
+    //     fetchMore: fetchMoreKeycapSets,
+    // } = useKeycapSets(queryFilters);
 
-    const initLoading = keycapsetsLoading && keycapsets.length < 1;
+    // const initLoading = keycapsetsLoading && keycapsets.length < 1;
 
-    useEffect(function initializeView() {
-        if (isBrowser) {
-            window.addEventListener('scroll', checkIsBottomPage);
-            return () => window.removeEventListener('scroll', checkIsBottomPage);
-        }
-    }, []);
+    // console.log('keycapsets...', keycapsets)
 
-    useEffect(() => {
-        dispatch({
-            type: 'set',
-            payload: { allKeycapsetsCount },
-        });
-    }, [allKeycapsetsCount]);
+    // useEffect(function initializeView() {
+    //     if (isBrowser) {
+    //         window.addEventListener('scroll', checkIsBottomPage);
+    //         return () => window.removeEventListener('scroll', checkIsBottomPage);
+    //     }
+    // }, []);
 
-    useEffect(() => {
-        dispatch({
-            type: 'set',
-            payload: {
-                fetchedKeycapsetsLength: keycapsets.length,
-            },
-        });
-    }, [keycapsets]);
+    // useEffect(() => {
+    //     dispatch({
+    //         type: 'set',
+    //         payload: { allKeycapsetsCount },
+    //     });
+    // }, [allKeycapsetsCount]);
 
-    useEffect(
-        function handleRefetchingOnBottomOfPage() {
-            const isEndReached = keycapsets.length === allKeycapsetsCount;
+    // useEffect(() => {
+    //     dispatch({
+    //         type: 'set',
+    //         payload: {
+    //             fetchedKeycapsetsLength: keycapsets.length,
+    //         },
+    //     });
+    // }, [keycapsets]);
 
-            if (isEndReached) {
-                setLoadingExtra(false);
-                return;
-            }
-            if (isAtBottomOfPage) {
-                setLoadingExtra(true);
-                fetchMoreKeycapSets();
-                setIsAtBottomOfPage(false);
-                return;
-            }
-        },
-        [isAtBottomOfPage]
-    );
+    // useEffect(
+    // function handleRefetchingOnBottomOfPage() {
+    //     const isEndReached = keycapsets.length >= allKeycapsetsCount;
 
-    function checkIsBottomPage() {
-        const DELIMITER: number = 10;
-        const currentY: number = window.scrollY;
-        const docHeight: number = document.body.clientHeight;
-        const alreadyScrolled = currentY + window.innerHeight;
-        const atBottom: boolean = alreadyScrolled > docHeight - DELIMITER;
-        setIsAtBottomOfPage(atBottom);
-    }
+    //     if (isEndReached) {
+    //         setLoadingExtra(false);
+    //         return;
+    //     }
+    //     if (isAtBottomOfPage) {
+    //         setLoadingExtra(true);
+    //         fetchMoreKeycapSets();
+    //         setIsAtBottomOfPage(false);
+    //         return;
+    //     }
+    // }
+    //     ,
+    //     [isAtBottomOfPage]
+    // );
+
+    // function checkIsBottomPage() {
+    //     const DELIMITER: number = 10;
+    //     const currentY: number = window.scrollY;
+    //     const docHeight: number = document.body.clientHeight;
+    //     const alreadyScrolled = currentY + window.innerHeight;
+    //     const atBottom: boolean = alreadyScrolled > docHeight - DELIMITER;
+    //     setIsAtBottomOfPage(atBottom);
+    // }
+
+    const initLoading = false;
+    const keycapsets = [];
 
     return (
         <>
             <Meta />
             <div className="container large">
                 <Heading mainTitle="Find your favorite keycapset!" subTitle="" isHome />
-                <Tabs />
-                {initLoading ? <LoadingKeyboardIllustration /> : <Images keycapsets={keycapsets} />}
-                {loadingExtra && <LoadingKeyboardIllustration scale={0.3} />}
+                {/* <Tabs /> */}
+                <Images keycapsets={keycapsets} />
+                {/* {loadingExtra && <LoadingKeyboardIllustration scale={0.3} />} */}
+                {/* <a onClick={handleRefetchingOnBottomOfPage}>See more keycapsets</a> */}
                 <BackToTop />
             </div>
             {/* <CTACard /> */}

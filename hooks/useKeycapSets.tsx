@@ -27,11 +27,13 @@ export function useKeycapSets(queryFilters: KeycapSetsFilters) {
             ...queryFilters,
             offset,
         },
+        fetchPolicy: 'network-only',
     });
 
     useEffect(() => {
         if (data) {
             setKeycapsetCount(data.allKeycapsetsCount);
+            console.log('data...', fetchingMore);
             if (fetchingMore) {
                 setKeycapsets([...keycapsets, ...data.keycapsets]);
             } else {
@@ -52,6 +54,7 @@ export function useKeycapSets(queryFilters: KeycapSetsFilters) {
     }, [queryFilters.limit, queryFilters.filter]);
 
     function fetchMore() {
+        console.log('fetch moree...');
         setFetchingMore(true);
         setOffset(keycapsets.length);
     }

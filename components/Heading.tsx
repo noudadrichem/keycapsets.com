@@ -16,7 +16,6 @@ interface HeadingProps {
 
 function Heading(props: HeadingProps): JSX.Element {
     const { mainTitle, subTitle, isHome = false, left = false, backgroundColor } = props;
-    const { state } = useContext<Context>(context);
     const router: NextRouter = useRouter();
 
     function pushSignup(e) {
@@ -25,6 +24,7 @@ function Heading(props: HeadingProps): JSX.Element {
         router.push('/sign-up');
     }
 
+    const isLoggedIn = false;
     return (
         <header className={`heading ${left ? 'left' : 'center'}`} style={{ background: backgroundColor }}>
             {subTitle && <h4 className={`title-sub italic ${left ? 'left' : 'center'}`}>{subTitle}</h4>}
@@ -34,7 +34,7 @@ function Heading(props: HeadingProps): JSX.Element {
                 <>
                     {/* <h5 className="title-sub-home">Pimp your mechanical keyboard with 300+ community designed keycapsets. Create your account an stay up to date!</h5> */}
                     <SearchSets />
-                    {!state.isLoggedIn && (
+                    {!isLoggedIn && (
                         <div className="mobile-only">
                             <Button
                                 variant="primary"
