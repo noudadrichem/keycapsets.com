@@ -39,7 +39,7 @@
         "next-ga": "^2.3.4",
         "next-images": "^1.4.0",
         "next-with-apollo": "^5.0.1",
-        "node-fetch": "^2.6.0",
+        "node-fetch": "^2.6.1",
         "node-sass": "^4.14.0",
         "rc-color-picker": "^1.2.6",
         "react": "^16.13.1",
