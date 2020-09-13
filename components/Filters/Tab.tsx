@@ -32,7 +32,7 @@ function Tab(props: TabProps): JSX.Element {
         // });
     }
 
-    const isActive = 'all'; // id === filters[typeKey];
+    const isActive = id === 'none'; // id === filters[typeKey];
     return (
         <Button onClick={() => handleUpdateFilters()} variant="tab" size="sm" className={`${isActive ? 'active' : ''}`}>
             {label}

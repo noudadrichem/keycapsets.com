@@ -53,6 +53,7 @@
         "react-slick": "^0.25.2",
         "react-toggle": "^4.1.1",
         "react-tooltip": "^4.2.9",
+        "react-waypoint": "^9.0.3",
         "slick-carousel": "^1.8.1",
         "url-loader": "^3.0.0",
         "use-dark-mode": "^2.3.1",

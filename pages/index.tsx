@@ -11,7 +11,7 @@ import { useKeycapSets, KeycapSetsFilters } from '../hooks/useKeycapSets';
 import BackToTop from '../components/BackToTop';
 import Footer from '../components/Footer';
 import Heading from '../components/Heading';
-import Images from '../components/Images';
+import Overview from '../components/Overview';
 import LoadingKeyboardIllustration from '../components/LoadingKeyboardIllustration';
 import Meta from '../components/Meta';
 import Nav from '../components/Nav';
@@ -26,11 +26,9 @@ interface HomeProps {
     metaImg: string;
 }
 
-const LIMIT = 24;
+const LIMIT = 12;
 function Home(props: HomeProps) {
     const isBrowser = typeof window !== `undefined`;
-
-    console.log('home props...', props);
     // const [loadingExtra, setLoadingExtra] = useState<boolean>(true);
     // const [isAtBottomOfPage, setIsAtBottomOfPage] = useState(false);
     // const { state, dispatch } = useContext<Context>(context);
@@ -69,22 +67,13 @@ function Home(props: HomeProps) {
 
     // const {
     //     keycapsets,
-    //     allKeycapsetsCount,
     //     loading: keycapsetsLoading,
-    //     error,
-    //     fetchMore: fetchMoreKeycapSets,
+    //     more: fetchMoreKeycapSets,
     // } = useKeycapSets(queryFilters);
 
     // const initLoading = keycapsetsLoading && keycapsets.length < 1;
 
     // console.log('keycapsets...', keycapsets)
-
-    // useEffect(function initializeView() {
-    //     if (isBrowser) {
-    //         window.addEventListener('scroll', checkIsBottomPage);
-    //         return () => window.removeEventListener('scroll', checkIsBottomPage);
-    //     }
-    // }, []);
 
     // useEffect(() => {
     //     dispatch({
@@ -131,17 +120,13 @@ function Home(props: HomeProps) {
     // }
 
     const initLoading = false;
-    const keycapsets = [];
-
     return (
         <>
             <Meta />
             <div className="container large">
                 <Heading mainTitle="Find your favorite keycapset!" subTitle="" isHome />
                 {/* <Tabs /> */}
-                <Images keycapsets={keycapsets} />
-                {/* {loadingExtra && <LoadingKeyboardIllustration scale={0.3} />} */}
-                {/* <a onClick={handleRefetchingOnBottomOfPage}>See more keycapsets</a> */}
+                <Overview />
                 <BackToTop />
             </div>
             {/* <CTACard /> */}

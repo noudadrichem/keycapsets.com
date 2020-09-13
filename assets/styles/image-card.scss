@@ -65,11 +65,11 @@
         }
 
         .bottom {
-            font-size: 14px;
+            font-size: 12px;
 
-            @media screen and (max-width: $bp-laptop-md) {
-                font-size: 12px;
-            }
+            // @media screen and (max-width: $bp-laptop-md) {
+            //     font-size: 12px;
+            // }
 
             .bold {
                 font-weight: 500;
@@ -86,10 +86,7 @@
         .set-title {
             margin: 0;
             position: relative;
-
-            @media screen and(max-width: 562px) {
-                font-size: 18px;
-            }
+            font-size: 18px;
 
             .small {
                 position: absolute;

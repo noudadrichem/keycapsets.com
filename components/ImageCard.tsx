@@ -85,10 +85,10 @@ function ImageCard(props: ImageCardProps): JSX.Element {
                                     </span>
                                     <span>{moment(groupbuyStartDate).format('YYYY')}</span>
                                 </span>
-
+                                {/*
                                 <span>
                                     <LikeSet keycapset={keycapset} />
-                                </span>
+                                </span> */}
                             </div>
                         </div>
                     </div>

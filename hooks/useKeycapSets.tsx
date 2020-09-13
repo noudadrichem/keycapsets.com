@@ -19,9 +19,8 @@ export function useKeycapSets(queryFilters: KeycapSetsFilters) {
     const [offset, setOffset] = useState<number>(0);
     const [keycapsets, setKeycapsets] = useState<Keycapset[]>([]);
     const [fetchingMore, setFetchingMore] = useState<boolean>(false);
-    const [allKeycapsetsCount, setKeycapsetCount] = useState<number>(0);
 
-    const { data, loading, error } = useQuery(FETCH_KEYCAPSET_QUERY, {
+    const { data, loading, error, fetchMore } = useQuery(FETCH_KEYCAPSET_QUERY, {
         client,
         variables: {
             ...queryFilters,
@@ -30,21 +29,26 @@ export function useKeycapSets(queryFilters: KeycapSetsFilters) {
         fetchPolicy: 'network-only',
     });
 
-    useEffect(() => {
-        if (data) {
-            setKeycapsetCount(data.allKeycapsetsCount);
-            console.log('data...', fetchingMore);
-            if (fetchingMore) {
-                setKeycapsets([...keycapsets, ...data.keycapsets]);
-            } else {
-                setKeycapsets(data.keycapsets);
+    useEffect(
+        function handleSetQuery() {
+            if (data) {
+                console.log(
+                    'data...',
+                    data.keycapsets.map(({ name }) => name)
+                );
+                if (fetchingMore) {
+                    setKeycapsets([...keycapsets, ...data.keycapsets]);
+                } else {
+                    setKeycapsets(data.keycapsets);
+                }
             }
-        }
 
-        if (fetchingMore) {
-            setFetchingMore(false);
-        }
-    }, [data]);
+            if (fetchingMore) {
+                setFetchingMore(false);
+            }
+        },
+        [data]
+    );
 
     useEffect(() => {
         if (queryFilters) {
@@ -53,17 +57,30 @@ export function useKeycapSets(queryFilters: KeycapSetsFilters) {
         }
     }, [queryFilters.limit, queryFilters.filter]);
 
-    function fetchMore() {
-        console.log('fetch moree...');
-        setFetchingMore(true);
-        setOffset(keycapsets.length);
+    function more() {
+        console.log('fetch moree...', keycapsets.length, offset, keycapsets);
+        fetchMore({
+            variables: {
+                ...queryFilters,
+                offset: keycapsets.length,
+            },
+            updateQuery: (prev, { fetchMoreResult }) => {
+                console.log('update query...', { prev, fetchMore });
+                if (!fetchMoreResult) return prev;
+                setKeycapsets([...prev.keycapsets, ...fetchMoreResult.keycapsets]);
+                // return Object.assign({}, prev, {
+                //     feed: [...prev.feed, ...fetchMoreResult.feed]
+                // });
+            },
+        });
+        // setFetchingMore(true);
+        // setOffset(keycapsets.length);
     }
 
     return {
         keycapsets,
-        allKeycapsetsCount,
         loading,
         error,
-        fetchMore,
+        more,
     };
 }
