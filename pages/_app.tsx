@@ -10,43 +10,45 @@ import Meta from '../components/Meta';
 import '../assets/styles/main.scss';
 
 import { useApollo } from '../hooks/withData';
-import { StateProvider } from '../context';
 import { ME } from '../queries';
+import useStore from '../context';
 
 function MyApp({ Component, pageProps }: AppProps) {
-    const [me, setMe] = useState<User>(null);
     const apolloClient = useApollo(pageProps.initialApolloState);
     const isBrowser = typeof window !== `undefined`;
+    const setUser = useStore<any>((state) => state.setUser);
 
-    // async function fetchMe() {
-    //     const { data: me } = await apolloClient.query({
-    //         query: ME,
-    //         fetchPolicy: 'network-only',
-    //     });
-    //     if (me) {
-    //         setMe(me.me);
-    //         console.log('user...', me.me);
-    //     }
-    // }
+    async function fetchMe() {
+        const { data } = await apolloClient.query({
+            query: ME,
+            fetchPolicy: 'network-only',
+        });
+        if (data) {
+            setUser(data.me);
+            console.log('user...', data.me);
+        }
+    }
 
-    // useEffect(function handleUserSession() {
-    //     if (isBrowser) {
-    //         const token = window.localStorage.getItem('TOKEN');
-    //         if (token !== null) {
-    //             fetchMe();
-    //         }
-    //     }
-    // });
+    useEffect(function handleUserSession() {
+        if (isBrowser) {
+            const token = window.localStorage.getItem('TOKEN');
+            if (token !== null) {
+                fetchMe();
+            }
+        }
+    });
 
     const isLargeContainer: boolean = pageProps.isLargeContainer !== undefined ? pageProps.isLargeContainer : true;
+    const isNavShown: boolean = pageProps.isNavShown !== undefined ? pageProps.isNavShown : true;
+    const isFooterShown: boolean = pageProps.isFooterShown !== undefined ? pageProps.isFooterShown : true;
 
     return (
         <div className="app">
             <div className="page-layout">
                 <ApolloProvider client={apolloClient}>
-                    <Nav isLargeContainer={isLargeContainer} />
+                    {isNavShown && <Nav isLargeContainer={isLargeContainer} />}
                     <Component {...pageProps} />
-                    <Footer isLargeContainer={isLargeContainer} />
+                    {isFooterShown && <Footer isLargeContainer={isLargeContainer} />}
                 </ApolloProvider>
             </div>
         </div>

@@ -136,9 +136,17 @@ const GOOGLE_LOGIN = gql`
         googleLogin(token: $token) {
             token
             user {
+                _id
                 name
+                email
+                locked
+                geekhackUserName
+                redditUserName
                 avatar
                 locale
+                slug
+                isDesigner
+                isVendor
             }
             firstLogin
         }

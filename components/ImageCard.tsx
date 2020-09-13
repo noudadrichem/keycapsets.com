@@ -1,10 +1,9 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import Link from 'next/link';
 import useIsInViewport from 'use-is-in-viewport';
-import { AnimatePresence, motion } from 'framer-motion';
 
-import { Keycapset, Brand, Context } from 'typings';
+import { Keycapset, Brand } from 'typings';
 import StatusLabel from './StatusLabel';
 import { BRAND_OPTIONS } from '../constants';
 import LikeSet from './LikeSet';
@@ -44,19 +43,9 @@ function ImageCard(props: ImageCardProps): JSX.Element {
     }, [isInViewport]);
 
     return (
-        // <AnimatePresence>
         <Link href="/set/[set]" as={`/set/${slug}`}>
             <a ref={containerRef}>
                 {wasInViewport && (
-                    // <motion.div
-                    //     initial={{
-                    //         opacity: 0,
-                    //     }}
-                    //     animate={{
-                    //         opacity: 1,
-                    //     }}
-                    //     className={`image-card ${isTemplate ? 'disabled' : ''}`}
-                    // >
                     <div className={`image-card ${isTemplate ? 'disabled' : ''}`}>
                         <div className="image">
                             <img
@@ -85,17 +74,15 @@ function ImageCard(props: ImageCardProps): JSX.Element {
                                     </span>
                                     <span>{moment(groupbuyStartDate).format('YYYY')}</span>
                                 </span>
-                                {/*
                                 <span>
                                     <LikeSet keycapset={keycapset} />
-                                </span> */}
+                                </span>
                             </div>
                         </div>
                     </div>
                 )}
             </a>
         </Link>
-        // </AnimatePresence>
     );
 }
 

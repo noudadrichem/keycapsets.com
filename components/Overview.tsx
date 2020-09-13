@@ -5,19 +5,18 @@ import { Waypoint } from 'react-waypoint';
 
 import ImageCard from './ImageCard';
 import { useQuery, NetworkStatus } from '@apollo/client';
-import { FETCH_KEYCAPSET_QUERY } from '../queries';
+import { FETCH_KEYCAPSET_QUERY, USER_WANTS_SETS } from '../queries';
 import LoadingKeyboardIllustration from './LoadingKeyboardIllustration';
+import Cards from './Cards';
+import useStore from '../context';
 
 interface ImagesProps {
     keycapsets?: Keycapset[];
 }
 
 function Images(props?: ImagesProps): JSX.Element {
-    // useEffect(() => {
-    //     forceCheck();
-    // });
-
     const [atBottom, setIsAtBottom] = useState<boolean>(false);
+    const setUserWants = useStore<any>((state) => state.setUserWants);
 
     const queryFilters = {
         limit: 12,
@@ -37,6 +36,15 @@ function Images(props?: ImagesProps): JSX.Element {
         },
         notifyOnNetworkStatusChange: true,
     });
+    // TODO find way to implement this on cache
+    const { data: userWantSetsResponse, loading: userWantsLoading } = useQuery(USER_WANTS_SETS, {
+        fetchPolicy: 'network-only',
+    });
+    useEffect(() => {
+        if (!userWantsLoading) {
+            setUserWants(userWantSetsResponse.userWantsSets);
+        }
+    }, [userWantSetsResponse]);
 
     useEffect(function initializeView() {
         const isBrowser = typeof window !== `undefined`;
@@ -48,7 +56,6 @@ function Images(props?: ImagesProps): JSX.Element {
 
     useEffect(
         function handleLoadMore() {
-            console.log('at bottom...', atBottom);
             if (atBottom) {
                 if (!loading) {
                     console.log('load more...');
@@ -69,7 +76,6 @@ function Images(props?: ImagesProps): JSX.Element {
     }
 
     function loadMore(offset: number) {
-        console.log('load more');
         setIsAtBottom(false);
         return fetchMore({
             variables: {
@@ -77,7 +83,6 @@ function Images(props?: ImagesProps): JSX.Element {
                 offset,
             },
             updateQuery: (prev: any, { fetchMoreResult }: any) => {
-                console.log('update queyr...', fetchMoreResult);
                 if (!fetchMoreResult && !fetchMoreResult.keycapsets) return prev;
                 return Object.assign({}, prev, {
                     keycapsets: [...prev.keycapsets, ...fetchMoreResult.keycapsets],
@@ -87,15 +92,8 @@ function Images(props?: ImagesProps): JSX.Element {
     }
 
     return (
-        <div className="images-container">
-            {data && data.keycapsets.length > 0 ? (
-                data.keycapsets.map((keycapset: Keycapset, idx: number) => {
-                    return <ImageCard {...{ keycapset }} key={keycapset._id} />;
-                })
-            ) : (
-                <p>No keycapsets found...</p> // TODO cool illustration here
-            )}
-
+        <div className="overview">
+            {data && <Cards keycapsets={data.keycapsets} />}
             {networkStatus === NetworkStatus.fetchMore && <LoadingKeyboardIllustration scale={0.4} />}
         </div>
     );

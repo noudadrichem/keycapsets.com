@@ -3,7 +3,7 @@ import { useRouter, NextRouter } from 'next/router';
 
 import SearchSets from './SearchSets';
 import Button from './Button';
-import context from '../context';
+// import context from '../context';
 import { Context } from 'typings';
 
 interface HeadingProps {

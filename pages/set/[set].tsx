@@ -20,6 +20,7 @@ import context from '../../context';
 import LikeSet from '../../components/LikeSet';
 import StatusLabel from '../../components/StatusLabel';
 import { initializeApollo } from '../../hooks/withData';
+import useStore from '../../context';
 
 interface SetPageProps {
     keycapset: Keycapset;
@@ -27,36 +28,11 @@ interface SetPageProps {
 }
 
 function SetPage(props: SetPageProps) {
-    console.log('page props...', props);
     const router = useRouter();
     const { set: slug } = router.query;
     const { keycapset } = props;
-
-    // const [keycapset, setKeycapset] = useState<Keycapset>(null);
-
-    // const variables = { slug };
-    // const { loading: setLoading, error: setError, data: setByQuery } = useQuery(GET_SINGLE_SET_QUERY, {
-    //     variables,
-    // });
-    const { state } = useContext<Context>(context);
-
-    // useEffect(() => {
-    //     if (!setLoading && setByQuery.keycapsetBySlug) {
-    //         console.log('setByQuery', setByQuery.keycapsetBySlug);
-    //         setKeycapset(setByQuery.keycapsetBySlug);
-    //     }
-    // }, [setByQuery]);
-
-    // function setClaimed() {
-    //     setKeycapset({
-    //         ...keycapset,
-    //         designedBy: [...keycapset.designedBy, state.user._id],
-    //     });
-    // }
-
-    // if (setLoading) {
-    //     return <LoadingKeyboard />;
-    // }
+    const isLoggedIn = useStore<any>((state) => state.isLoggedIn);
+    const user = useStore<any>((state) => state.user);
 
     if (keycapset === undefined) {
         return (
@@ -67,7 +43,7 @@ function SetPage(props: SetPageProps) {
     }
 
     if (keycapset !== null) {
-        const isLoggedInAndIsDesigner: boolean = state.isLoggedIn && state.user.isDesigner;
+        const isLoggedInAndIsDesigner: boolean = isLoggedIn && user.isDesigner;
         const isGeekhackUrl: boolean = keycapset?.websiteUrl.includes('geekhack');
         const sliderImages: string[] = [keycapset.coverImageUrl, ...keycapset.imageUrls];
         const slickSettings = {
@@ -93,10 +69,10 @@ function SetPage(props: SetPageProps) {
                     <div className="container">
                         <Heading
                             left
-                            mainTitle={`${keycapset.name} ${
-                                keycapset.designerName ? `designed by ${keycapset.designerName}` : ''
+                            mainTitle={`${keycapset.name}`}
+                            subTitle={`${
+                                keycapset.designerName ? `A keycapset designed by ${keycapset.designerName}` : ''
                             }`}
-                            subTitle={`Good luck with sharing!`}
                         />
 
                         <div className="info-section">
@@ -196,7 +172,6 @@ export async function getServerSideProps(context) {
             },
         });
 
-        console.log(JSON.stringify(data, null, 2));
         return {
             props: {
                 isLargeContainer: false,

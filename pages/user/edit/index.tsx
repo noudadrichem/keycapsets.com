@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import withGA from 'next-ga';
-import Router from 'next/router';
+import Router, { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { Context } from 'typings';
 import { useMutation } from '@apollo/react-hooks';
@@ -14,6 +14,7 @@ import Button from '../../../components/Button';
 import { UPDATE_USER, REQUEST_DESIGNER_ROLE, REQUEST_VENDOR_ROLE } from '../../../queries';
 import Link from 'next/link';
 import ButtonLink from '../../../components/ButtonLink';
+import useStore from '../../../context';
 
 interface UserEditProps {}
 
@@ -25,18 +26,26 @@ type EditProfileInputs = {
 };
 
 function UserEdit(props: UserEditProps): JSX.Element {
-    const { state, dispatch } = useContext<Context>(context);
+    const router = useRouter();
     const { register, handleSubmit, errors } = useForm<EditProfileInputs>();
-    const [isUpdated, setIsUpdated] = useState<boolean>(false);
     const [updateUserMutation] = useMutation(UPDATE_USER);
     const [requestDesignerRole] = useMutation<any>(REQUEST_DESIGNER_ROLE);
+    const [isUpdated, setIsUpdated] = useState<boolean>(false);
+    const user = useStore<any>((state) => state.user);
+
+    useEffect(() => {
+        console.log(user);
+        if (user === null) {
+            router.push('/login');
+        }
+    });
 
     async function updateUser(formValues: any) {
         try {
             const response = await updateUserMutation({
                 variables: {
                     input: {
-                        _id: state.user._id,
+                        _id: user._id,
                         ...formValues,
                     },
                 },
@@ -55,15 +64,15 @@ function UserEdit(props: UserEditProps): JSX.Element {
         try {
             const response = await requestDesignerRole();
             console.log('sign up as designer...', response.data);
-            dispatch({
-                type: 'set',
-                payload: {
-                    user: {
-                        ...state.user,
-                        isDesigner: true,
-                    },
-                },
-            });
+            // dispatch({
+            //     type: 'set',
+            //     payload: {
+            //         user: {
+            //             ...user,
+            //             isDesigner: true,
+            //         },
+            //     },
+            // });
         } catch (err) {
             console.log(err);
         }
@@ -82,13 +91,11 @@ function UserEdit(props: UserEditProps): JSX.Element {
 
     return (
         <div className="container user edit">
-            {state.user !== undefined ? (
+            {user !== null ? (
                 <>
                     <Heading
-                        mainTitle={`Setup your profile...`}
-                        subTitle={`Hee, ${state.user.isVendor ? 'Vendor' : state.user.isDesigner ? 'Designer' : ''} ${
-                            state.user.name
-                        }`}
+                        mainTitle={`Edit your profile...`}
+                        subTitle={`Hi, ${user.isVendor ? 'Vendor' : user.isDesigner ? 'Designer' : ''} ${user.name}`}
                         left
                     />
                     <div className="grid two-column">
@@ -98,7 +105,7 @@ function UserEdit(props: UserEditProps): JSX.Element {
                                     id="name"
                                     label="Full name"
                                     reference={register({ required: true })}
-                                    defaultValue={state.user.name}
+                                    defaultValue={user.name}
                                     className={errors.name ? 'invalid' : ''}
                                 />
 
@@ -112,7 +119,7 @@ function UserEdit(props: UserEditProps): JSX.Element {
                                             message: 'Email address is invalid',
                                         },
                                     })}
-                                    defaultValue={state.user.email}
+                                    defaultValue={user.email}
                                     className={errors.email ? 'invalid' : ''}
                                 />
 
@@ -120,13 +127,13 @@ function UserEdit(props: UserEditProps): JSX.Element {
                                     id="geekhackUserName"
                                     label="Your Geekhack username"
                                     reference={register}
-                                    defaultValue={state.user.geekhackUserName}
+                                    defaultValue={user.geekhackUserName}
                                 />
                                 <Input
                                     id="redditUserName"
                                     label="Your Reddit username"
                                     reference={register}
-                                    defaultValue={state.user.redditUserName}
+                                    defaultValue={user.redditUserName}
                                 />
 
                                 <button className="btn secondary md" type="submit">
@@ -142,9 +149,9 @@ function UserEdit(props: UserEditProps): JSX.Element {
                                     onClick={signUpAsDesigner}
                                     variant="primary"
                                     size="sm"
-                                    isDisabled={state.user.isDesigner}
+                                    isDisabled={user.isDesigner}
                                 >
-                                    {state.user.isDesigner ? 'You are' : 'Get the designer role'}
+                                    {user.isDesigner ? 'You are' : 'Get the designer role'}
                                 </Button>
                             </div>
 
