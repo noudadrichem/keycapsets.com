@@ -1,6 +1,6 @@
-import { Brand, Material, Profile } from 'typings';
+import { SelectOption } from 'typings';
 
-export const BRAND_OPTIONS: Brand[] = [
+export const BRAND_OPTIONS: SelectOption[] = [
     { value: 'gmk', label: 'GMK' },
     { value: 'epbt', label: 'E-PBT' },
     { value: 'jtk', label: 'JTK' },
@@ -14,12 +14,12 @@ export const BRAND_OPTIONS: Brand[] = [
     { value: 'ducky', label: 'Ducky' },
 ];
 
-export const MATERIAL_OPTIONS: Material[] = [
+export const MATERIAL_OPTIONS: SelectOption[] = [
     { value: 'abs', label: 'ABS' },
     { value: 'pbt', label: 'PBT' },
 ];
 
-export const PROFILE_OPTIONS: Profile[] = [
+export const PROFILE_OPTIONS: SelectOption[] = [
     { label: 'Cherry', value: 'cherry' },
     { label: 'SA', value: 'sa' },
     { label: 'DSA', value: 'dsa' },

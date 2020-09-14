@@ -1,5 +1,5 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { Brand, Profile, Material, Context } from 'typings';
+import React, { useState, useEffect } from 'react';
+import { SelectOption } from 'typings';
 import {
     AVAILABILITY_FILTER,
     AVAILABILITY_OPTIONS,
@@ -7,7 +7,6 @@ import {
     MATERIAL_OPTIONS,
     BRAND_OPTIONS,
 } from '../../constants';
-import context from '../../context';
 import MultiSelect from '../Multiselect';
 import Select from '../Select';
 import Tab from './Tab';
@@ -15,62 +14,83 @@ import Arrow from '../Arrow';
 import Button from '../Button';
 import FilterIcon from '../FilterIcon';
 import { motion } from 'framer-motion';
+import useStore from '../../context';
+import { useRouter } from 'next/router';
 
 interface FiltersProps {}
 
 function Filters(props: FiltersProps): JSX.Element {
     const {} = props;
-    // const { state, dispatch } = useContext<Context>(context);
-    const [isOpen, setIsOpen] = useState<boolean>(false);
-    const [isExtraFiltersOpen, setIsExtraFilterOpen] = useState<boolean>(false);
+    const [isOpen, setIsOpen] = useState<boolean>(true);
+    const [isExtraFiltersOpen, setIsExtraFilterOpen] = useState<boolean>(true);
+    const router = useRouter();
+    const setFilters = useStore<any>((state) => state.setFilters);
+    const filters = useStore<any>((state) => state.filters);
+
+    useEffect(() => {
+        const hasUrlQuery = Object.keys(router.query).length;
+        if (hasUrlQuery) {
+            const brand = router.query['brand[]'];
+            const profile = router.query['type[]'];
+            const material = router.query['material[]'];
+            const availability = router.query['tab'];
+            const routeFilters = {
+                brand: brand ? (typeof brand === 'string' ? [brand] : brand) : filters.brand,
+                type: profile ? (typeof profile === 'string' ? [profile] : profile) : filters.type,
+                material: material ? (typeof material === 'string' ? [material] : material) : filters.material,
+                availability: availability ? (availability === 'all' ? '' : availability) : filters.availability,
+            };
+            setFilters(routeFilters);
+        }
+    }, [router.query]);
 
     useEffect(function handleToggleOnWindowSize() {
         const isBrowser = typeof window !== `undefined`;
         if (isBrowser) {
             if (window.innerWidth > 826) {
-                setIsOpen(true);
-                setIsExtraFilterOpen(false);
+                // setIsOpen(true);
+                // setIsExtraFilterOpen(false);
             }
         }
     }, []);
 
-    // TODO: This needs refactoring...
-    function handleBrandFilter(values: Brand[]) {
-        console.log('handleBrandFilter');
-        // dispatch({
-        //     type: 'set',
-        //     payload: {
-        //         filters: {
-        //             ...state.filters,
-        //             brandFilter: values.map((b: Brand) => b.value),
-        //         },
-        //     },
-        // });
+    function handleSelectionFilter(values: SelectOption[], key: string) {
+        const mappedValues = values.map(({ value }) => value);
+        const query = {
+            ...router.query,
+            [`${key}[]`]: mappedValues,
+        };
+        router.push(
+            {
+                pathname: `/`,
+                query,
+            },
+            undefined,
+            { shallow: true }
+        );
+
+        setFilters({
+            ...filters,
+            [key]: mappedValues,
+        });
     }
-    function handleProfileFilter(values: Profile[]) {
-        console.log('handleProfileFilter');
-        // dispatch({
-        //     type: 'set',
-        //     payload: {
-        //         filters: {
-        //             ...state.filters,
-        //             profileFilter: values.map((b: Profile) => b.value),
-        //         },
-        //     },
-        // });
+
+    function handleBrandFilter(values: SelectOption[]) {
+        handleSelectionFilter(values, 'brand');
     }
-    function handleMaterialFilter(values: Material[]) {
-        console.log('handleMaterialFilter');
-        // dispatch({
-        //     type: 'set',
-        //     payload: {
-        //         filters: {
-        //             ...state.filters,
-        //             materialFilter: values.map((b: Material) => b.value),
-        //         },
-        //     },
-        // });
+    function handleProfileFilter(values: SelectOption[]) {
+        handleSelectionFilter(values, 'type');
     }
+    function handleMaterialFilter(values: SelectOption[]) {
+        handleSelectionFilter(values, 'material');
+    }
+    function handleAvailabilityFilter(availability: SelectOption[]) {
+        setFilters({
+            ...filters,
+            availability,
+        });
+    }
+
     function getLabelByAvailability(tab: string): string {
         const labelOptions: any = {
             none: 'All',
@@ -127,20 +147,7 @@ function Filters(props: FiltersProps): JSX.Element {
                             <Select
                                 label="Availability"
                                 name="Choose availability"
-                                onSelectChange={
-                                    (selectedFilterValue) => {
-                                        console.log('availaiblility');
-                                    }
-                                    // dispatch({
-                                    //     type: 'set',
-                                    //     payload: {
-                                    //         filters: {
-                                    //             ...state.filters,
-                                    //             availabilityFilter: selectedFilterValue.value,
-                                    //         },
-                                    //     },
-                                    // })
-                                }
+                                onSelectChange={handleAvailabilityFilter}
                                 values={AVAILABILITY_OPTIONS.map((t) => ({
                                     value: t,
                                     label: getLabelByAvailability(t),

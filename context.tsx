@@ -1,14 +1,14 @@
-import React, { createContext, useReducer } from 'react';
 import create from 'zustand';
 
-import { InititalState, Action, Context, Keycapset, Filters, User } from 'typings';
+import { InititalState, Filters, User } from 'typings';
 
 export const INITITAL_STATE: InititalState = {
     filters: {
-        availabilityFilter: 'none',
-        brandFilter: [],
-        profileFilter: [],
-        materialFilter: [],
+        availability: 'none',
+        brand: [],
+        type: [],
+        material: [],
+        name: '',
     },
     keycapsets: [],
     searchQuery: '',
@@ -21,7 +21,8 @@ export const INITITAL_STATE: InititalState = {
 const useStore = create((set) => ({
     ...INITITAL_STATE,
     setUser: (user: User) => set({ user, isLoggedIn: true }),
-    setUserWants: (wants: any) => set({ userWants: wants }),
+    setUserWants: (userWants: any) => set({ userWants }),
+    setFilters: (filters: Filters) => set({ filters }),
 }));
 
 export default useStore;

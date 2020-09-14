@@ -25,15 +25,7 @@ declare module 'typings' {
         metaUrl?: string;
     }
 
-    interface Brand {
-        value: string;
-        label: string;
-    }
-    interface Material {
-        value: string;
-        label: string;
-    }
-    interface Profile {
+    interface SelectOption {
         value: string;
         label: string;
     }
@@ -51,10 +43,11 @@ declare module 'typings' {
     }
 
     interface Filters {
-        availabilityFilter: string;
-        brandFilter: string[];
-        profileFilter: string[];
-        materialFilter: string[];
+        availability: string;
+        name: string;
+        brand: string[];
+        type: string[];
+        material: string[];
     }
 
     interface InititalState {

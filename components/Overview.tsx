@@ -17,24 +17,16 @@ interface ImagesProps {
 function Images(props?: ImagesProps): JSX.Element {
     const [atBottom, setIsAtBottom] = useState<boolean>(false);
     const setUserWants = useStore<any>((state) => state.setUserWants);
-
-    const queryFilters = {
-        limit: 12,
-        filter: {
-            brand: [],
-            material: [],
-            type: [],
-            availability: 'none',
-            name: '',
-        },
-    };
+    const filter = useStore<any>((state) => state.filters);
 
     const { data, networkStatus, loading, fetchMore } = useQuery(FETCH_KEYCAPSET_QUERY, {
         variables: {
-            ...queryFilters,
+            filter,
+            limit: 12,
             offset: 0,
         },
         notifyOnNetworkStatusChange: true,
+        fetchPolicy: 'cache-and-network',
     });
     // TODO find way to implement this on cache
     const { data: userWantSetsResponse, loading: userWantsLoading } = useQuery(USER_WANTS_SETS, {

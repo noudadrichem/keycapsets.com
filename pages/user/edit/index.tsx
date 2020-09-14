@@ -33,12 +33,12 @@ function UserEdit(props: UserEditProps): JSX.Element {
     const [isUpdated, setIsUpdated] = useState<boolean>(false);
     const user = useStore<any>((state) => state.user);
 
-    useEffect(() => {
-        console.log(user);
-        if (user === null) {
-            router.push('/login');
-        }
-    });
+    // useEffect(() => {
+    //     console.log(user);
+    //     if (user === null) {
+    //         router.push('/login');
+    //     }
+    // });
 
     async function updateUser(formValues: any) {
         try {
