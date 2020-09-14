@@ -35,7 +35,7 @@ function Filters(props: FiltersProps): JSX.Element {
             const material = router.query['material[]'];
             const availability = router.query['tab'];
             const routeFilters = {
-                ...filters,
+                name: filters.name,
                 brand: brand ? (typeof brand === 'string' ? [brand] : brand) : filters.brand,
                 type: profile ? (typeof profile === 'string' ? [profile] : profile) : filters.type,
                 material: material ? (typeof material === 'string' ? [material] : material) : filters.material,
@@ -200,11 +200,23 @@ function Filters(props: FiltersProps): JSX.Element {
                     className="extra-filters"
                 >
                     <div className="filter brand">
-                        <MultiSelect isMulti label="Brand" options={BRAND_OPTIONS} onChange={handleBrandFilter} />
+                        <MultiSelect
+                            isMulti
+                            label="Brand"
+                            options={BRAND_OPTIONS}
+                            onChange={handleBrandFilter}
+                            defaultValue={BRAND_OPTIONS.filter(({ value }) => filters.brand.includes(value))}
+                        />
                     </div>
 
                     <div className="filter profile">
-                        <MultiSelect isMulti label="Profile" options={PROFILE_OPTIONS} onChange={handleProfileFilter} />
+                        <MultiSelect
+                            isMulti
+                            label="Profile"
+                            options={PROFILE_OPTIONS}
+                            onChange={handleProfileFilter}
+                            defaultValue={PROFILE_OPTIONS.filter(({ value }) => filters.type.includes(value))}
+                        />
                     </div>
 
                     <div className="filter material">
@@ -213,6 +225,7 @@ function Filters(props: FiltersProps): JSX.Element {
                             label="Material"
                             options={MATERIAL_OPTIONS}
                             onChange={handleMaterialFilter}
+                            defaultValue={MATERIAL_OPTIONS.filter(({ value }) => filters.material.includes(value))}
                         />
                     </div>
                 </motion.div>

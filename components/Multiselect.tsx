@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
+import { SelectOption } from 'typings';
 
 /**
  * https://react-select.com
@@ -11,11 +12,17 @@ interface MultiSelectProps<T> {
     onChange: Function;
     isMulti?: boolean;
     label: String;
-    defaultValue?: T;
+    defaultValue?: T[];
 }
 
 function MultiSelect<T>(props: MultiSelectProps<T>): JSX.Element {
     const { value, options, onChange, isMulti, label, defaultValue }: MultiSelectProps<T> = props;
+    const [val, setVal] = useState(value);
+
+    useEffect(() => {
+        console.log('default value change...', defaultValue);
+        setVal(defaultValue as any);
+    }, [defaultValue]);
 
     const SELECT_STYLES = {
         control: (base: any) => ({
@@ -31,18 +38,18 @@ function MultiSelect<T>(props: MultiSelectProps<T>): JSX.Element {
 
     return (
         <div className="input-wrapper">
-            <label className="label">{label}</label>
+            {label && <label className="label">{label}</label>}
             <Select
                 isSearchable
                 id={label}
                 instanceId={label}
                 className="select-control"
                 styles={SELECT_STYLES}
-                value={value}
-                onChange={(selected: string[]) => onChange(selected || [])}
+                value={val}
+                onChange={(selected: SelectOption[]) => onChange(selected || [])}
                 options={options}
                 isMulti={isMulti}
-                defaultValue={isMulti ? defaultValue : defaultValue || options[0]}
+                defaultValue={defaultValue || options[0]}
             />
         </div>
     );
