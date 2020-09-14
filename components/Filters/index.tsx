@@ -42,7 +42,7 @@ function Filters(props: FiltersProps): JSX.Element {
                 availability: availability ? (availability === 'all' ? '' : availability) : filters.availability,
             };
             setFilters(routeFilters);
-            if (!(brand || profile || material)) {
+            if (brand || profile || material) {
                 setIsExtraFilterOpen(true);
             }
         }
