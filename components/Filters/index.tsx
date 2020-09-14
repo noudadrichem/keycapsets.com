@@ -42,7 +42,9 @@ function Filters(props: FiltersProps): JSX.Element {
                 availability: availability ? (availability === 'all' ? '' : availability) : filters.availability,
             };
             setFilters(routeFilters);
-            setIsExtraFilterOpen(true);
+            if (!(brand || profile || material)) {
+                setIsExtraFilterOpen(true);
+            }
         }
     }, [router.query]);
 
