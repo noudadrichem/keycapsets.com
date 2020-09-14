@@ -68,7 +68,6 @@ function Filters(props: FiltersProps): JSX.Element {
             undefined,
             { shallow: true }
         );
-
         setFilters({
             ...filters,
             [key]: mappedValues,
@@ -84,7 +83,21 @@ function Filters(props: FiltersProps): JSX.Element {
     function handleMaterialFilter(values: SelectOption[]) {
         handleSelectionFilter(values, 'material');
     }
-    function handleAvailabilityFilter(availability: SelectOption[]) {
+    function handleAvailabilityFilter(availability: string) {
+        router.push(
+            {
+                pathname: `/`,
+                query:
+                    availability !== 'none'
+                        ? {
+                              tab: availability,
+                          }
+                        : null,
+            },
+            undefined,
+            { shallow: true }
+        );
+
         setFilters({
             ...filters,
             availability,
@@ -165,6 +178,7 @@ function Filters(props: FiltersProps): JSX.Element {
                                         type={AVAILABILITY_FILTER}
                                         id={tab}
                                         key={idx}
+                                        handleUpdateFilters={() => handleAvailabilityFilter(tab)}
                                     />
                                 ))}
                             </div>
