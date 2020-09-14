@@ -3,6 +3,7 @@ import useInput from '../hooks/useInput';
 // import context from '../context';
 import { useRouter, NextRouter } from 'next/router';
 import { Context } from 'typings';
+import useStore from '../context';
 
 function SearchSets() {
     const router: NextRouter = useRouter();
@@ -10,17 +11,16 @@ function SearchSets() {
         placeholder: 'E.g. Space cadet',
         autoFocus: false,
     });
-    // const { state, dispatch } = useContext<Context>(context);
+    const setFilters = useStore<any>((state) => state.setFilters);
 
     // TODO: this supported the use of search?= query in URL...
     useEffect(() => {
         const searchQuery = router.query.search;
         if (searchQuery !== undefined) {
             setSearchInputValue(searchQuery);
-            // dispatch({
-            //     type: 'set',
-            //     payload: { searchQuery: searchValue },
-            // });
+            setFilters({
+                name: searchQuery,
+            });
         }
     }, [router.query.search]);
 
@@ -30,12 +30,11 @@ function SearchSets() {
 
         timeout = setTimeout(() => {
             if (searchValue !== '' || searchValue !== undefined) {
-                // dispatch({
-                //     type: 'set',
-                //     payload: { searchQuery: searchValue },
-                // });
+                setFilters({
+                    name: searchValue,
+                });
             }
-        }, 300);
+        }, 400);
 
         return () => clearTimeout(timeout);
     }, [searchValue]);

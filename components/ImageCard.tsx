@@ -3,7 +3,7 @@ import moment from 'moment';
 import Link from 'next/link';
 import useIsInViewport from 'use-is-in-viewport';
 
-import { Keycapset, Brand } from 'typings';
+import { Keycapset, SelectOption } from 'typings';
 import StatusLabel from './StatusLabel';
 import { BRAND_OPTIONS } from '../constants';
 import LikeSet from './LikeSet';
@@ -30,7 +30,7 @@ function ImageCard(props: ImageCardProps): JSX.Element {
     const [isInViewport, containerRef] = useIsInViewport({ threshold: 5 });
 
     function getLabelByBrand(brandValue: any): string {
-        const brand: Brand = BRAND_OPTIONS.find((brand: Brand) => brand.value === brandValue);
+        const brand: SelectOption = BRAND_OPTIONS.find((brand: SelectOption) => brand.value === brandValue);
         if (brand) {
             return brand.label;
         }
