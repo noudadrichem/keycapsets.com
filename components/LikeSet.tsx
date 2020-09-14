@@ -1,10 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { NextRouter, useRouter } from 'next/router';
 import ReactTooltip from 'react-tooltip';
 import { useMutation } from '@apollo/react-hooks';
-import { Keycapset, Context } from 'typings';
+import { Keycapset } from 'typings';
 
-// import context from '../context';
 import { WANT_SET } from '../queries';
 import HeartIcon from './HeartIcon';
 import useStore from '../context';
