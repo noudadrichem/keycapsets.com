@@ -21,8 +21,8 @@ interface FiltersProps {}
 
 function Filters(props: FiltersProps): JSX.Element {
     const {} = props;
-    const [isOpen, setIsOpen] = useState<boolean>(true);
-    const [isExtraFiltersOpen, setIsExtraFilterOpen] = useState<boolean>(true);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [isExtraFiltersOpen, setIsExtraFilterOpen] = useState<boolean>(false);
     const router = useRouter();
     const setFilters = useStore<any>((state) => state.setFilters);
     const filters = useStore<any>((state) => state.filters);
@@ -35,12 +35,14 @@ function Filters(props: FiltersProps): JSX.Element {
             const material = router.query['material[]'];
             const availability = router.query['tab'];
             const routeFilters = {
+                ...filters,
                 brand: brand ? (typeof brand === 'string' ? [brand] : brand) : filters.brand,
                 type: profile ? (typeof profile === 'string' ? [profile] : profile) : filters.type,
                 material: material ? (typeof material === 'string' ? [material] : material) : filters.material,
                 availability: availability ? (availability === 'all' ? '' : availability) : filters.availability,
             };
             setFilters(routeFilters);
+            setIsExtraFilterOpen(true);
         }
     }, [router.query]);
 
@@ -48,8 +50,8 @@ function Filters(props: FiltersProps): JSX.Element {
         const isBrowser = typeof window !== `undefined`;
         if (isBrowser) {
             if (window.innerWidth > 826) {
-                // setIsOpen(true);
-                // setIsExtraFilterOpen(false);
+                setIsOpen(true);
+                setIsExtraFilterOpen(false);
             }
         }
     }, []);

@@ -11,6 +11,7 @@ function SearchSets() {
         placeholder: 'E.g. Space cadet',
         autoFocus: false,
     });
+    const filters = useStore<any>((state) => state.filters);
     const setFilters = useStore<any>((state) => state.setFilters);
 
     // TODO: this supported the use of search?= query in URL...
@@ -31,6 +32,7 @@ function SearchSets() {
         timeout = setTimeout(() => {
             if (searchValue !== '' || searchValue !== undefined) {
                 setFilters({
+                    ...filters,
                     name: searchValue,
                 });
             }
