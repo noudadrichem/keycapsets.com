@@ -19,6 +19,7 @@ function Images(props?: ImagesProps): JSX.Element {
     const setUserWants = useStore<any>((state) => state.setUserWants);
     const filter = useStore<any>((state) => state.filters);
 
+    console.log('fetch keycapsets...', filter);
     const { data, networkStatus, loading, fetchMore } = useQuery(FETCH_KEYCAPSET_QUERY, {
         variables: {
             filter,
@@ -26,7 +27,6 @@ function Images(props?: ImagesProps): JSX.Element {
             offset: 0,
         },
         notifyOnNetworkStatusChange: true,
-        fetchPolicy: 'cache-and-network',
     });
     // TODO find way to implement this on cache
     const { data: userWantSetsResponse, loading: userWantsLoading } = useQuery(USER_WANTS_SETS, {

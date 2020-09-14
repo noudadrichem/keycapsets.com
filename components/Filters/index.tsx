@@ -29,6 +29,7 @@ function Filters(props: FiltersProps): JSX.Element {
 
     useEffect(() => {
         const hasUrlQuery = Object.keys(router.query).length;
+        console.log({ hasUrlQuery });
         if (hasUrlQuery) {
             const brand = router.query['brand[]'];
             const profile = router.query['type[]'];
@@ -41,6 +42,7 @@ function Filters(props: FiltersProps): JSX.Element {
                 material: material ? (typeof material === 'string' ? [material] : material) : filters.material,
                 availability: availability ? (availability === 'all' ? '' : availability) : filters.availability,
             };
+            console.log({ routeFilters });
             setFilters(routeFilters);
             if (brand || profile || material) {
                 setIsExtraFilterOpen(true);
@@ -134,6 +136,7 @@ function Filters(props: FiltersProps): JSX.Element {
         },
     };
 
+    console.log('___', { filters });
     return (
         <>
             <div className="mobile-toggle" onClick={openMobileFilters}>
@@ -164,7 +167,10 @@ function Filters(props: FiltersProps): JSX.Element {
                             <Select
                                 label="Availability"
                                 name="Choose availability"
-                                onSelectChange={handleAvailabilityFilter}
+                                onSelectChange={(val) => {
+                                    console.log('availability mobile...', val);
+                                    handleAvailabilityFilter(val);
+                                }}
                                 values={AVAILABILITY_OPTIONS.map((t) => ({
                                     value: t,
                                     label: getLabelByAvailability(t),
