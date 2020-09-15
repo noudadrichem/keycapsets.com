@@ -14,8 +14,6 @@ function Tab(props: TabProps): JSX.Element {
     const { id, type, label, handleUpdateFilters } = props;
     const filters = useStore<any>((state) => state.filters);
 
-    console.log('tab filters...', filters);
-
     const isActive = id === filters[type];
     return (
         <Button onClick={handleUpdateFilters} variant="tab" size="sm" className={`${isActive ? 'active' : ''}`}>

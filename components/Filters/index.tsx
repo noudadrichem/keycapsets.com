@@ -27,36 +27,36 @@ function Filters(props: FiltersProps): JSX.Element {
     const setFilters = useStore<any>((state) => state.setFilters);
     const filters = useStore<any>((state) => state.filters);
 
-    useEffect(() => {
-        const hasUrlQuery = Object.keys(router.query).length;
-        console.log('router query...');
-        if (hasUrlQuery) {
-            let routeFilter = filters;
+    // useEffect(() => {
+    //     const hasUrlQuery = Object.keys(router.query).length;
+    //     console.log('router query...');
+    //     if (hasUrlQuery) {
+    //         let routeFilter = filters;
 
-            const brand = router.query['brand[]'];
-            if (brand) {
-                routeFilter.brand = typeof brand === 'string' ? [brand] : brand;
-            }
-            const profile = router.query['type[]'];
-            if (profile) {
-                routeFilter.type = typeof profile === 'string' ? [profile] : profile;
-            }
-            const material = router.query['material[]'];
-            if (material) {
-                routeFilter.material = typeof material === 'string' ? [material] : material;
-            }
-            const availability = router.query['tab'];
-            if (availability) {
-                routeFilter.availability = availability;
-            }
+    //         const brand = router.query['brand[]'];
+    //         if (brand) {
+    //             routeFilter.brand = typeof brand === 'string' ? [brand] : brand;
+    //         }
+    //         const profile = router.query['type[]'];
+    //         if (profile) {
+    //             routeFilter.type = typeof profile === 'string' ? [profile] : profile;
+    //         }
+    //         const material = router.query['material[]'];
+    //         if (material) {
+    //             routeFilter.material = typeof material === 'string' ? [material] : material;
+    //         }
+    //         const availability = router.query['tab'];
+    //         if (availability) {
+    //             routeFilter.availability = availability;
+    //         }
 
-            console.log('router query filters...', routeFilter);
-            setFilters(routeFilter);
-            if (brand || profile || material) {
-                setIsExtraFilterOpen(true);
-            }
-        }
-    }, [router.query]);
+    //         console.log('router query filters...', routeFilter);
+    //         setFilters(routeFilter);
+    //         if (brand || profile || material) {
+    //             setIsExtraFilterOpen(true);
+    //         }
+    //     }
+    // }, [router.query]);
 
     useEffect(function handleToggleOnWindowSize() {
         const isBrowser = typeof window !== `undefined`;

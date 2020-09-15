@@ -6,6 +6,7 @@ import { FETCH_KEYCAPSET_QUERY, USER_WANTS_SETS } from '../queries';
 import LoadingKeyboardIllustration from './LoadingKeyboardIllustration';
 import Cards from './Cards';
 import useStore from '../context';
+import { initializeApollo } from '../hooks/withData';
 
 interface ImagesProps {
     keycapsets?: Keycapset[];
@@ -16,9 +17,6 @@ function Images(): JSX.Element {
     const setUserWants = useStore<any>((state) => state.setUserWants);
     const filters = useStore<any>((state) => state.filters);
 
-    useEffect(() => {
-        console.log('fetch keycapsets...', filters);
-    }, [filters]);
     const { data, networkStatus, loading, fetchMore } = useQuery(FETCH_KEYCAPSET_QUERY, {
         variables: {
             filter: filters,

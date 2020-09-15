@@ -5,10 +5,10 @@ import { InititalState, Filters, User } from 'typings';
 export const INITITAL_STATE: InititalState = {
     filters: {
         availability: 'none',
+        name: '',
         brand: [],
         type: [],
         material: [],
-        name: '',
     },
     keycapsets: [],
     searchQuery: '',
@@ -24,5 +24,7 @@ const useStore = create((set) => ({
     setUserWants: (userWants: any) => set({ userWants }),
     setFilters: (filters: Filters) => set({ filters }),
 }));
+
+useStore.subscribe(console.log, (s) => s.filters);
 
 export default useStore;
