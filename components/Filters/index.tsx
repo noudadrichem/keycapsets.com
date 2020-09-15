@@ -29,21 +29,29 @@ function Filters(props: FiltersProps): JSX.Element {
 
     useEffect(() => {
         const hasUrlQuery = Object.keys(router.query).length;
-        console.log({ hasUrlQuery });
+        console.log('router query...');
         if (hasUrlQuery) {
+            let routeFilter = filters;
+
             const brand = router.query['brand[]'];
+            if (brand) {
+                routeFilter.brand = typeof brand === 'string' ? [brand] : brand;
+            }
             const profile = router.query['type[]'];
+            if (profile) {
+                routeFilter.type = typeof profile === 'string' ? [profile] : profile;
+            }
             const material = router.query['material[]'];
+            if (material) {
+                routeFilter.material = typeof material === 'string' ? [material] : material;
+            }
             const availability = router.query['tab'];
-            const routeFilters = {
-                name: filters.name,
-                brand: brand ? (typeof brand === 'string' ? [brand] : brand) : filters.brand,
-                type: profile ? (typeof profile === 'string' ? [profile] : profile) : filters.type,
-                material: material ? (typeof material === 'string' ? [material] : material) : filters.material,
-                availability: availability ? (availability === 'all' ? '' : availability) : filters.availability,
-            };
-            console.log({ routeFilters });
-            setFilters(routeFilters);
+            if (availability) {
+                routeFilter.availability = availability;
+            }
+
+            console.log('router query filters...', routeFilter);
+            setFilters(routeFilter);
             if (brand || profile || material) {
                 setIsExtraFilterOpen(true);
             }
@@ -136,7 +144,6 @@ function Filters(props: FiltersProps): JSX.Element {
         },
     };
 
-    console.log('___', { filters });
     return (
         <>
             <div className="mobile-toggle" onClick={openMobileFilters}>

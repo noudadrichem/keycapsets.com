@@ -20,7 +20,6 @@ function MultiSelect<T>(props: MultiSelectProps<T>): JSX.Element {
     const [val, setVal] = useState(value);
 
     useEffect(() => {
-        console.log('default value change...', defaultValue);
         setVal(defaultValue as any);
     }, [defaultValue]);
 

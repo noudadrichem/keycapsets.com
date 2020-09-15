@@ -25,4 +25,32 @@ function Home() {
     );
 }
 
+// export async function getServerSideProps(context) {
+//     console.log(context.query)
+
+//     return { props: { }}
+//     // try {
+//     //     const client = initializeApollo();
+//     //     const { data, error } = await client.query({
+//     //         query: GET_SINGLE_SET_QUERY,
+//     //         variables: {
+//     //             slug: context.query.set,
+//     //         },
+//     //     });
+
+//     //     return {
+//     //         props: {
+//     //             isLargeContainer: false,
+//     //             keycapset: data.keycapsetBySlug,
+//     //         },
+//     //     };
+//     // } catch (err) {
+//     //     console.log('SSR props err', err);
+//     // }
+
+//     // return {
+//     //     props: { isLargeContainer: false },
+//     // };
+// }
+
 export default withGA('UA-115865530-2', Router)(Home);

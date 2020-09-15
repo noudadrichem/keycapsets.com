@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { forceCheck } from 'react-lazyload';
 import { Keycapset } from 'typings';
-import { Waypoint } from 'react-waypoint';
 
-import ImageCard from './ImageCard';
 import { useQuery, NetworkStatus } from '@apollo/client';
 import { FETCH_KEYCAPSET_QUERY, USER_WANTS_SETS } from '../queries';
 import LoadingKeyboardIllustration from './LoadingKeyboardIllustration';
@@ -14,20 +11,24 @@ interface ImagesProps {
     keycapsets?: Keycapset[];
 }
 
-function Images(props?: ImagesProps): JSX.Element {
+function Images(): JSX.Element {
     const [atBottom, setIsAtBottom] = useState<boolean>(false);
     const setUserWants = useStore<any>((state) => state.setUserWants);
-    const filter = useStore<any>((state) => state.filters);
+    const filters = useStore<any>((state) => state.filters);
 
-    console.log('fetch keycapsets...', filter);
+    useEffect(() => {
+        console.log('fetch keycapsets...', filters);
+    }, [filters]);
     const { data, networkStatus, loading, fetchMore } = useQuery(FETCH_KEYCAPSET_QUERY, {
         variables: {
-            filter,
+            filter: filters,
             limit: 12,
             offset: 0,
         },
         notifyOnNetworkStatusChange: true,
+        fetchPolicy: 'cache-and-network',
     });
+
     // TODO find way to implement this on cache
     const { data: userWantSetsResponse, loading: userWantsLoading } = useQuery(USER_WANTS_SETS, {
         fetchPolicy: 'network-only',

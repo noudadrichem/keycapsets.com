@@ -38,7 +38,7 @@ export function initializeApollo(initialState = null): ApolloClient<any> {
     const _apolloClient = apolloClient ?? createApolloClient();
     if (initialState) {
         const existingCache = _apolloClient.extract();
-        _apolloClient.cache.restore({ ...existingCache, ...initialState });
+        _apolloClient.cache.restore({ ...initialState, ...existingCache });
     }
     if (typeof window === 'undefined') return _apolloClient;
     if (!apolloClient) apolloClient = _apolloClient;
