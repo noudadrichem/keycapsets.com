@@ -70,18 +70,18 @@ function Filters(props: FiltersProps): JSX.Element {
 
     function handleSelectionFilter(values: SelectOption[], key: string) {
         const mappedValues = values.map(({ value }) => value);
-        const query = {
-            ...router.query,
-            [`${key}[]`]: mappedValues,
-        };
-        router.push(
-            {
-                pathname: `/`,
-                query,
-            },
-            undefined,
-            { shallow: true }
-        );
+        // const query = {
+        //     ...router.query,
+        //     [`${key}[]`]: mappedValues,
+        // };
+        // router.push(
+        //     {
+        //         pathname: `/`,
+        //         query,
+        //     },
+        //     undefined,
+        //     { shallow: true }
+        // );
         setFilters({
             ...filters,
             [key]: mappedValues,
@@ -98,19 +98,19 @@ function Filters(props: FiltersProps): JSX.Element {
         handleSelectionFilter(values, 'material');
     }
     function handleAvailabilityFilter(availability: string) {
-        router.push(
-            {
-                pathname: `/`,
-                query:
-                    availability !== 'none'
-                        ? {
-                              tab: availability,
-                          }
-                        : null,
-            },
-            undefined,
-            { shallow: true }
-        );
+        // router.push(
+        //     {
+        //         pathname: `/`,
+        //         query:
+        //             availability !== 'none'
+        //                 ? {
+        //                       tab: availability,
+        //                   }
+        //                 : null,
+        //     },
+        //     undefined,
+        //     { shallow: true }
+        // );
 
         setFilters({
             ...filters,
