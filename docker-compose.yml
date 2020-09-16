@@ -1,6 +1,6 @@
 version: '3'
 services:
-    testing_keycapsets:
+    keycapsets:
         build: .
         networks:
             - traefik
@@ -8,9 +8,9 @@ services:
             - '3001:3001'
         labels:
             - 'traefik.enable=true'
-            - 'traefik.backend=testing_keycapsets'
-            - 'traefik.frontend.rule=Host:testing.keycapsets.com'
-            - 'traefik.port=3001'
+            - 'traefik.backend=keycapsets'
+            - 'traefik.frontend.rule=Host:keycapsets.com,www.keycapsets.com'
+            - 'traefik.port=3000'
 networks:
     traefik:
         external:
