@@ -18,40 +18,23 @@ import ButtonLink from '../../components/ButtonLink';
 import Meta from '../../components/Meta';
 import context from '../../context';
 import LikeSet from '../../components/LikeSet';
+import StatusLabel from '../../components/StatusLabel';
+import { initializeApollo } from '../../hooks/withData';
+import useStore from '../../context';
 
-interface SetPageProps {}
+interface SetPageProps {
+    keycapset: Keycapset;
+    isLargeContainer: boolean;
+}
 
 function SetPage(props: SetPageProps) {
     const router = useRouter();
     const { set: slug } = router.query;
+    const { keycapset } = props;
+    const isLoggedIn = useStore<any>((state) => state.isLoggedIn);
+    const user = useStore<any>((state) => state.user);
 
-    const [keycapset, setKeycapset] = useState<Keycapset>(null);
-
-    const variables = { slug };
-    const { loading: setLoading, error: setError, data: setByQuery } = useQuery(GET_SINGLE_SET_QUERY, {
-        variables,
-    });
-    const { state } = useContext<Context>(context);
-
-    useEffect(() => {
-        if (!setLoading && setByQuery.keycapsetBySlug) {
-            console.log('setByQuery', setByQuery.keycapsetBySlug);
-            setKeycapset(setByQuery.keycapsetBySlug);
-        }
-    }, [setByQuery]);
-
-    function setClaimed() {
-        setKeycapset({
-            ...keycapset,
-            designedBy: [...keycapset.designedBy, state.user._id],
-        });
-    }
-
-    if (setLoading) {
-        return <LoadingKeyboard />;
-    }
-
-    if (setError) {
+    if (keycapset === undefined) {
         return (
             <>
                 <Error statusCode={404} />
@@ -60,7 +43,7 @@ function SetPage(props: SetPageProps) {
     }
 
     if (keycapset !== null) {
-        const isLoggedInAndIsDesigner: boolean = state.isLoggedIn && state.user.isDesigner;
+        const isLoggedInAndIsDesigner: boolean = isLoggedIn && user.isDesigner;
         const isGeekhackUrl: boolean = keycapset?.websiteUrl.includes('geekhack');
         const sliderImages: string[] = [keycapset.coverImageUrl, ...keycapset.imageUrls];
         const slickSettings = {
@@ -73,7 +56,6 @@ function SetPage(props: SetPageProps) {
             autoPlaySpeed: 1600,
         };
 
-        console.log('kits..??', keycapset.kits.length > 0);
         return (
             <>
                 <div className="set">
@@ -81,16 +63,16 @@ function SetPage(props: SetPageProps) {
                         title={`${keycapset.name} ${
                             keycapset.designerName ? `designed by ${keycapset.designerName}` : ''
                         }`}
-                        metaImgUrl={keycapset.coverImageUrl}
+                        metaImgUrl={keycapset.metaUrl}
                     />
 
                     <div className="container">
                         <Heading
                             left
-                            mainTitle={`${keycapset.name} ${
-                                keycapset.designerName ? `designed by ${keycapset.designerName}` : ''
+                            mainTitle={`${keycapset.name}`}
+                            subTitle={`${
+                                keycapset.designerName ? `A keycapset designed by ${keycapset.designerName}` : ''
                             }`}
-                            subTitle={`Good luck with sharing!`}
                         />
 
                         <div className="info-section">
@@ -107,6 +89,12 @@ function SetPage(props: SetPageProps) {
                             <div>
                                 {/* {isLoggedInAndIsDesigner && <ClaimSet keycapset={keycapset} callback={setClaimed} />} */}
                                 <LikeSet keycapset={keycapset} />
+                                <br />
+                                <StatusLabel
+                                    groupbuyStartDate={keycapset.groupbuyStartDate}
+                                    groupbuyEndDate={keycapset.groupbuyEndDate}
+                                    isIc={keycapset.isInterestCheck}
+                                />
                                 <h3>Info</h3>
                                 <p>Designer: {keycapset.designerName || 'Unknown'}</p>
                                 <p>Profile: {keycapset.type}</p>
@@ -149,13 +137,9 @@ function SetPage(props: SetPageProps) {
                             </div>
                         </div>
 
-                        {keycapset.kits.length > 0 && (
+                        {keycapset.kits !== null && keycapset.kits.length > 0 && (
                             <div className="set-kits">
                                 <h2>Kits</h2>
-                                <p className="light">
-                                    If the set entry contains kits they'll be shown up here. (soon with an account
-                                    you'll be able to contribute changes if something is missing.)
-                                </p>
                                 <div className="set-kits-grid-container">
                                     {keycapset.kits.map((kit: any) => {
                                         return (
@@ -178,10 +162,29 @@ function SetPage(props: SetPageProps) {
     return null;
 }
 
-SetPage.getInitialProps = () => {
+export async function getServerSideProps(context) {
+    try {
+        const client = initializeApollo();
+        const { data, error } = await client.query({
+            query: GET_SINGLE_SET_QUERY,
+            variables: {
+                slug: context.query.set,
+            },
+        });
+
+        return {
+            props: {
+                isLargeContainer: false,
+                keycapset: data.keycapsetBySlug,
+            },
+        };
+    } catch (err) {
+        console.log('SSR props err', err);
+    }
+
     return {
-        isLargeContainer: false,
+        props: { isLargeContainer: false },
     };
-};
+}
 
 export default withGA('UA-115865530-2', Router)(SetPage);

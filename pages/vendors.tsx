@@ -4,7 +4,6 @@ import { useQuery } from '@apollo/react-hooks';
 import withGA from 'next-ga';
 import Router from 'next/router';
 
-import withData from '../hooks/withData';
 import { GET_VENDORS_QUERY } from '../queries';
 import { Vendor } from 'typings';
 
@@ -15,6 +14,7 @@ import VendorCard from '../components/VendorCard';
 import '../assets/styles/main.scss';
 
 import countryIsoList from '../assets/countries';
+import Meta from '../components/Meta';
 
 interface VendorProps {}
 
@@ -91,8 +91,12 @@ function Vendors(): JSX.Element {
         {}
     );
 
+    const title = `keycapset vendors`;
+    const description = `A list of vendors selling keycapsets, keycaps and keyboard.`;
+
     return (
         <div className="container">
+            <Meta title={title} description={description} />
             <Heading mainTitle="Vendors" subTitle="Available vendors." />
             {Object.keys(sortedVendors).map((key) => (
                 <div className="continent-section">

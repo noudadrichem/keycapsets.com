@@ -1,14 +1,16 @@
 import { useContext, useState, useEffect, useRef, Ref } from 'react';
-import { Context } from 'typings';
-import context from '../context';
+import { Context, InititalState } from 'typings';
+// import context from '../context';
 import Link from 'next/link';
 import { logoutUser } from '../utils/user';
 import useClickOutside from '../hooks/useClickOutside';
+import useStore from '../context';
 
 function UserProfileTag() {
-    const { state } = useContext<Context>(context);
     const [isPopoverShown, setIspopoverShown] = useState<Boolean>(false);
     const popup: any = useRef();
+    const user = useStore<any>((state) => state.user);
+    const isLoggedIn = useStore<any>((state) => state.isLoggedIn);
 
     useClickOutside(popup, handleClickOutside);
 
@@ -21,17 +23,17 @@ function UserProfileTag() {
     }
 
     return (
-        state.isLoggedIn &&
-        state.user !== null && (
+        isLoggedIn &&
+        user !== null && (
             <div className="user-profile-tag">
                 {
                     <div className="profile-tag-wrapper" onClick={() => setIspopoverShown(!isPopoverShown)}>
-                        {state.user.avatar !== null ? (
+                        {user.avatar !== null ? (
                             <div className="profile-image">
-                                <img src={state.user.avatar} alt={state.user.name} />
+                                <img src={user.avatar} alt={user.name} />
                             </div>
                         ) : (
-                            <div className="profile-tag">{state.user.name !== null && state.user.name.slice(0, 2)}</div>
+                            <div className="profile-tag">{user.name !== null && user.name.slice(0, 2)}</div>
                         )}
                     </div>
                 }

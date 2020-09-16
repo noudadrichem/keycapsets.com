@@ -1,54 +1,30 @@
-import React, { createContext, useReducer } from 'react';
-import { InititalState, Action, Context, Keycapset, Filters } from 'typings';
-import { useApolloClient } from '@apollo/react-hooks';
-import moment from 'moment';
+import create from 'zustand';
+
+import { InititalState, Filters, User } from 'typings';
 
 export const INITITAL_STATE: InititalState = {
     filters: {
-        availabilityFilter: 'none',
-        brandFilter: [],
-        profileFilter: [],
-        materialFilter: [],
+        availability: 'none',
+        name: '',
+        brand: [],
+        type: [],
+        material: [],
     },
     keycapsets: [],
-    fetchedKeycapsetsLength: 0,
     searchQuery: '',
     allKeycapsetsCount: 0,
-    isLoggedIn: false,
     userWants: [],
+    isLoggedIn: false,
+    user: null,
 };
 
-const context = createContext<any>(INITITAL_STATE);
-const StateProvider = ({ children }) => {
-    const [state, dispatch]: any[] = useReducer((state: InititalState, action: Action) => {
-        switch (action.type) {
-            case 'set':
-                // console.log('set...', action.payload)
-                const setNewState: InititalState = {
-                    ...state,
-                    ...action.payload,
-                };
-                return setNewState;
-            case 'user':
-                const withUserState: InititalState = {
-                    ...state,
-                    isLoggedIn: true,
-                    user: action.payload.user,
-                };
-                console.log('trigger user actions');
-                return withUserState;
-            default:
-                return state;
-        }
-    }, INITITAL_STATE);
+const useStore = create((set) => ({
+    ...INITITAL_STATE,
+    setUser: (user: User) => set({ user, isLoggedIn: true }),
+    setUserWants: (userWants: any) => set({ userWants }),
+    setFilters: (filters: Filters) => set({ filters }),
+}));
 
-    // if (isBrowser) {
-    //     if (process.env.NODE_ENV === 'development') {
-    //         console.log(moment().format('hh:mm:ss') + '_STATE...', state);
-    //     }
-    // }
-    return <context.Provider value={{ state, dispatch }}>{children}</context.Provider>;
-};
+useStore.subscribe(console.log, (s) => s.filters);
 
-export { context, StateProvider };
-export default context;
+export default useStore;

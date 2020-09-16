@@ -1,16 +1,13 @@
 import { useEffect, useContext } from 'react';
 import { useRouter, NextRouter } from 'next/router';
 import { useApolloClient } from '@apollo/react-hooks';
-import { ApolloClient } from 'apollo-boost';
 
 import { REDDIT_LOGIN } from '../queries';
-import withData from '../hooks/withData';
 
 import Button from './Button';
 import { loginUser } from '../utils/user';
 import RedditIcon from './RedditIcon';
-import { Context } from 'typings';
-import context from '../context';
+import useStore from '../context';
 
 const CLIENT_ID: string = 'OGPS_JHNLNt2sA';
 const REDIRECT_URI: string = 'https://keycapsets.com/sign-up/reddit';
@@ -30,8 +27,8 @@ export function handleRedditAuth() {
 function RedditAuth(props: RedditAuthProps): JSX.Element {
     const { text, callback, disabled, asLink = false } = props;
     const router: NextRouter = useRouter();
-    const client: ApolloClient<any> = useApolloClient();
-    const { dispatch } = useContext<Context>(context);
+    const client: any = useApolloClient();
+    const setUser = useStore<any>((state) => state.setUser);
 
     useEffect(() => {
         const hash = window.location.hash;
@@ -66,18 +63,13 @@ function RedditAuth(props: RedditAuthProps): JSX.Element {
                 redditUserName: name,
             },
         });
-        dispatch({
-            type: 'user',
-            payload: {
-                user: redditLogin.user,
-            },
-        });
+        setUser(redditLogin.user);
         loginUser(redditLogin);
         if (redditLogin.firstLogin) {
-            window.location.href = '/user/edit';
+            router.push('/user/edit');
             return;
         }
-        window.location.href = '/';
+        router.push('/');
     }
 
     return asLink ? (
