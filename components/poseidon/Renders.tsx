@@ -10,8 +10,8 @@ function Renders(props: Renders): JSX.Element {
 
     return (
         <div className="renders">
-            {renders.map((render) => (
-                <ImageModal src={render} />
+            {renders.map((render, idx) => (
+                <ImageModal src={render} key={render + idx} />
             ))}
         </div>
     );

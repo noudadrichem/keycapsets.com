@@ -1,9 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
+import Logo from './Logo';
 
 interface FooterProps {
     noSponsor?: boolean;
-    isLargeContainer: boolean;
+    isLargeContainer?: boolean;
 }
 
 // TODO: Move icons to own component
@@ -47,7 +48,7 @@ function Footer(props: FooterProps): JSX.Element {
             <div className={`container ${isLargeContainer ? 'large' : ''}`}>
                 <div className="made-in">
                     <p>
-                        &copy; Made with <a href="https://bunq.me/noudadrichem/3/I'm%20liking%20keycapsets!">☕</a> in 
+                        &copy; Made with <a href="https://bunq.me/noudadrichem/3/I'm%20liking%20keycapsets!">☕</a> in
                         Utrecht.
                     </p>
                 </div>
@@ -66,7 +67,10 @@ function Footer(props: FooterProps): JSX.Element {
                 ) : (
                     <div className="sponsored-by">
                         <Link href="/">
-                            <a>Powered by keycapsets.com</a>
+                            <a>
+                                <Logo width={32} />
+                                <a>Powered by keycapsets.com</a>
+                            </a>
                         </Link>
                     </div>
                 )}

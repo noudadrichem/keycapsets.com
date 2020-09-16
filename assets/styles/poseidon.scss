@@ -31,18 +31,25 @@ $poseidon-accent: #00a4a9;
     font-family: 'DayRoman';
     background: $poseidon-main;
 
-    .nav .container .nav-container a {
-        color: var(--white);
+    .nav .container {
+        padding-top: 16px;
+        padding-bottom: 12px;
+        margin-bottom: 0;
+        .nav-container a {
+            color: var(--white);
+        }
     }
 
     &--hero {
         position: relative;
         display: flex;
-        height: 740px;
+        min-height: 740px;
         width: 100%;
 
         @media screen and (min-width: $bp-desktop-sm) {
             background: $poseidon-main;
+            justify-content: center;
+            align-items: center;
         }
 
         &.video-playing {
@@ -92,11 +99,11 @@ $poseidon-accent: #00a4a9;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding-top: 120px;
+            // padding-top: 120px;
 
-            @media screen and (min-width: $bp-tablet-md) {
-                padding-top: 240px;
-            }
+            // @media screen and (min-width: $bp-desktop-md) {
+            //     padding-top: 240px;
+            // }
 
             .video-playing & {
                 pointer-events: none;
@@ -120,7 +127,7 @@ $poseidon-accent: #00a4a9;
                 background: #003346;
                 color: #c6e3ec;
 
-                @media screen and (min-width: $bp-tablet-md) {
+                @media screen and (min-width: $bp-tablet-sm) {
                     width: auto;
                 }
             }
@@ -141,13 +148,17 @@ $poseidon-accent: #00a4a9;
             flex: none;
             justify-content: center;
             align-items: center;
-            margin-top: 100px;
             width: 100px;
             height: 100px;
             border-radius: 100px;
             background: $poseidon-main;
             box-shadow: 0 0 0 0 rgba(0, 164, 169, 1);
             animation: pulse 2s infinite;
+            margin-top: 100px;
+
+            @media screen and (min-width: $bp-tablet-sm) {
+                margin-top: 24px;
+            }
 
             .play-icon {
                 width: 0;
@@ -167,7 +178,7 @@ $poseidon-accent: #00a4a9;
             box-shadow: 0px -0px 10000px transparent /*trick for chrome*/;
 
             @media screen and (min-width: $bp-tablet-md) {
-                min-width: 650px;
+                max-width: 650px;
             }
 
             path {
@@ -194,7 +205,7 @@ $poseidon-accent: #00a4a9;
             z-index: 2;
             color: $poseidon-accent;
 
-            @media screen and (min-width: $bp-tablet-md) {
+            @media screen and (min-width: $bp-desktop-lg) {
                 position: relative;
                 font-size: 75px;
 
@@ -220,7 +231,7 @@ $poseidon-accent: #00a4a9;
             line-height: 1.5;
             color: $poseidon-accent;
 
-            @media screen and (min-width: $bp-tablet-md) {
+            @media screen and (min-width: $bp-desktop-lg) {
                 width: 600px;
                 margin: 0 auto;
             }
@@ -234,7 +245,7 @@ $poseidon-accent: #00a4a9;
         justify-content: space-between;
         padding: 0;
 
-        @media screen and (min-width: $bp-tablet-md) {
+        @media screen and (min-width: $bp-tablet-sm) {
             flex-direction: row;
 
             &:nth-child(odd) {
@@ -254,7 +265,7 @@ $poseidon-accent: #00a4a9;
         &__info {
             flex: 50%;
 
-            @media screen and (min-width: $bp-tablet-md) {
+            @media screen and (min-width: $bp-tablet-sm) {
                 padding: 50px;
             }
 
@@ -281,7 +292,7 @@ $poseidon-accent: #00a4a9;
             height: auto;
             align-self: center;
 
-            @media screen and (min-width: $bp-tablet-md) {
+            @media screen and (min-width: $bp-tablet-sm) {
                 width: calc(50% - 16px);
 
                 &:nth-of-type(even) {

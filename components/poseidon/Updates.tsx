@@ -1,13 +1,13 @@
 import React, { ReactNode } from 'react';
 
 interface Updates {
-    updates: ReactNode;
+    updates?: ReactNode[];
 }
 
 function Updates(props: Updates): JSX.Element {
     const { updates } = props;
 
-    if (!updates.length) return <p className="section--empty"> No updates yet... </p>;
+    if (!updates.length) return <p className="section--empty"> No updates, yet... </p>;
 
     return (
         <div className="updates">

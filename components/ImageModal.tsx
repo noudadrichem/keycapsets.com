@@ -90,7 +90,6 @@ function ImageModal(props: ImageModalProps): JSX.Element {
                     <LoadingKeyboard />
                 </div>
             ) : null}
-            }
         </div>
     );
 }

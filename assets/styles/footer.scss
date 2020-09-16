@@ -19,12 +19,13 @@
         position: relative;
     }
 
-    .sponsored-by {
+    .sponsored-by * {
         display: inline-flex;
         align-items: center;
 
-        img {
-            // margin-right: 4px;
+        img,
+        svg {
+            margin-right: 4px;
         }
     }
 
