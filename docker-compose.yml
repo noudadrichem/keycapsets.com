@@ -5,7 +5,7 @@ services:
         networks:
             - traefik
         ports:
-            - '3001:3001'
+            - '3000:3000'
         labels:
             - 'traefik.enable=true'
             - 'traefik.backend=keycapsets'
