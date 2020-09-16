@@ -126,6 +126,7 @@ const GET_SINGLE_SET_QUERY = gql`
             material
             isInterestCheck
             designedBy
+            metaUrl
         }
     }
 `;
@@ -135,9 +136,17 @@ const GOOGLE_LOGIN = gql`
         googleLogin(token: $token) {
             token
             user {
+                _id
                 name
+                email
+                locked
+                geekhackUserName
+                redditUserName
                 avatar
                 locale
+                slug
+                isDesigner
+                isVendor
             }
             firstLogin
         }

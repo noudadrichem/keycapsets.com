@@ -4,9 +4,13 @@ import { createUploadLink } from 'apollo-upload-client';
 import { setContext } from '@apollo/client/link/context';
 
 let apolloClient: any;
+let token: string;
 
 const authLink = setContext((_, { headers }) => {
-    const token = localStorage.getItem('TOKEN');
+    if (typeof window !== 'undefined') {
+        token = localStorage.getItem('TOKEN');
+    }
+
     return {
         headers: {
             ...headers,
@@ -22,6 +26,7 @@ function createApolloClient() {
         link: authLink.concat(
             createUploadLink({
                 // uri: 'http://localhost:4000/graphql',
+                // uri: 'https://api-testing.keycapsets.com/graphql',
                 uri: 'https://api.keycapsets.com/graphql',
             })
         ),
@@ -29,11 +34,11 @@ function createApolloClient() {
     });
 }
 
-export function initializeApollo(initialState = null) {
+export function initializeApollo(initialState = null): ApolloClient<any> {
     const _apolloClient = apolloClient ?? createApolloClient();
     if (initialState) {
         const existingCache = _apolloClient.extract();
-        _apolloClient.cache.restore({ ...existingCache, ...initialState });
+        _apolloClient.cache.restore({ ...initialState, ...existingCache });
     }
     if (typeof window === 'undefined') return _apolloClient;
     if (!apolloClient) apolloClient = _apolloClient;

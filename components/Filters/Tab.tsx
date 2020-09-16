@@ -1,40 +1,22 @@
 import React, { useContext } from 'react';
-import context from '../../context';
 import Button from '../Button';
-import { InititalState, Context } from 'typings';
+import useStore from '../../context';
+import { AVAILABILITY_FILTER } from '../../constants';
 
 interface TabProps {
     id: String;
     type: 'cap' | 'availability';
     label: string;
+    handleUpdateFilters(availability: string);
 }
 
-const stateFilterKeys = {
-    cap: 'activeTab',
-    availability: 'availabilityFilter',
-};
-
 function Tab(props: TabProps): JSX.Element {
-    const { id, type, label } = props;
-    const { state, dispatch } = useContext<Context>(context);
-    const { filters }: InititalState = state;
-    const typeKey = stateFilterKeys[type];
+    const { id, type, label, handleUpdateFilters } = props;
+    const filters = useStore<any>((state) => state.filters);
 
-    function handleUpdateFilters(): void {
-        dispatch({
-            type: 'set',
-            payload: {
-                filters: {
-                    ...filters,
-                    [typeKey]: id === filters[typeKey] ? 'none' : id,
-                },
-            },
-        });
-    }
-
-    const isActive = id === filters[typeKey];
+    const isActive = id === filters[type];
     return (
-        <Button onClick={() => handleUpdateFilters()} variant="tab" size="sm" className={`${isActive ? 'active' : ''}`}>
+        <Button onClick={handleUpdateFilters} variant="tab" size="sm" className={`${isActive ? 'active' : ''}`}>
             {label}
         </Button>
     );

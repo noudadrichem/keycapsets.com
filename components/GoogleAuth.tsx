@@ -1,16 +1,14 @@
 import React, { useContext } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
-import { ApolloClient } from 'apollo-boost';
 import { useApolloClient } from '@apollo/react-hooks';
-import { useRouter, Router } from 'next/router';
-import { Context } from 'typings';
+import { useRouter } from 'next/router';
 
 import { GOOGLE_LOGIN } from '../queries';
 
 import Button from './Button';
 import GoogleIcon from './GoogleIcon';
 import { loginUser, logoutUser } from '../utils/user';
-import context from '../context';
+import useStore from '../context';
 
 const CLIENT_ID = '22533085590-p56b9iva0qoq0btq94q252uuv34rphec.apps.googleusercontent.com';
 
@@ -24,9 +22,9 @@ interface GoogleAuthProps {
 
 function GoogleAuth(props: GoogleAuthProps): JSX.Element {
     const { text, disabled, asLink = false, isLogginOut = false } = props;
-    const client: ApolloClient<any> = useApolloClient();
+    const client = useApolloClient();
     const router = useRouter();
-    const { dispatch } = useContext<Context>(context);
+    const setUser = useStore<any>((state) => state.setUser);
 
     async function success(response: any) {
         try {
@@ -38,19 +36,14 @@ function GoogleAuth(props: GoogleAuthProps): JSX.Element {
                     token: response.tokenId,
                 },
             });
-            dispatch({
-                type: 'user',
-                payload: {
-                    user: googleLogin.user,
-                },
-            });
+            setUser(googleLogin.user);
             loginUser(googleLogin);
 
             if (googleLogin.firstLogin) {
-                window.location.href = '/user/edit';
+                router.push('/user/edit');
                 return;
             }
-            window.location.href = '/';
+            router.push('/');
         } catch (err) {
             console.error(err);
         }

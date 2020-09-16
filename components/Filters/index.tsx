@@ -1,5 +1,5 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { Brand, Profile, Material, Context } from 'typings';
+import React, { useState, useEffect } from 'react';
+import { SelectOption } from 'typings';
 import {
     AVAILABILITY_FILTER,
     AVAILABILITY_OPTIONS,
@@ -7,7 +7,6 @@ import {
     MATERIAL_OPTIONS,
     BRAND_OPTIONS,
 } from '../../constants';
-import context from '../../context';
 import MultiSelect from '../Multiselect';
 import Select from '../Select';
 import Tab from './Tab';
@@ -15,14 +14,49 @@ import Arrow from '../Arrow';
 import Button from '../Button';
 import FilterIcon from '../FilterIcon';
 import { motion } from 'framer-motion';
+import useStore from '../../context';
+import { useRouter } from 'next/router';
 
 interface FiltersProps {}
 
 function Filters(props: FiltersProps): JSX.Element {
     const {} = props;
-    const { state, dispatch } = useContext<Context>(context);
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [isExtraFiltersOpen, setIsExtraFilterOpen] = useState<boolean>(false);
+    const router = useRouter();
+    const setFilters = useStore<any>((state) => state.setFilters);
+    const filters = useStore<any>((state) => state.filters);
+
+    // useEffect(() => {
+    //     const hasUrlQuery = Object.keys(router.query).length;
+    //     console.log('router query...');
+    //     if (hasUrlQuery) {
+    //         let routeFilter = filters;
+
+    //         const brand = router.query['brand[]'];
+    //         if (brand) {
+    //             routeFilter.brand = typeof brand === 'string' ? [brand] : brand;
+    //         }
+    //         const profile = router.query['type[]'];
+    //         if (profile) {
+    //             routeFilter.type = typeof profile === 'string' ? [profile] : profile;
+    //         }
+    //         const material = router.query['material[]'];
+    //         if (material) {
+    //             routeFilter.material = typeof material === 'string' ? [material] : material;
+    //         }
+    //         const availability = router.query['tab'];
+    //         if (availability) {
+    //             routeFilter.availability = availability;
+    //         }
+
+    //         console.log('router query filters...', routeFilter);
+    //         setFilters(routeFilter);
+    //         if (brand || profile || material) {
+    //             setIsExtraFilterOpen(true);
+    //         }
+    //     }
+    // }, [router.query]);
 
     useEffect(function handleToggleOnWindowSize() {
         const isBrowser = typeof window !== `undefined`;
@@ -34,40 +68,56 @@ function Filters(props: FiltersProps): JSX.Element {
         }
     }, []);
 
-    // TODO: This needs refactoring...
-    function handleBrandFilter(values: Brand[]) {
-        dispatch({
-            type: 'set',
-            payload: {
-                filters: {
-                    ...state.filters,
-                    brandFilter: values.map((b: Brand) => b.value),
-                },
-            },
+    function handleSelectionFilter(values: SelectOption[], key: string) {
+        const mappedValues = values.map(({ value }) => value);
+        // const query = {
+        //     ...router.query,
+        //     [`${key}[]`]: mappedValues,
+        // };
+        // router.push(
+        //     {
+        //         pathname: `/`,
+        //         query,
+        //     },
+        //     undefined,
+        //     { shallow: true }
+        // );
+        setFilters({
+            ...filters,
+            [key]: mappedValues,
         });
     }
-    function handleProfileFilter(values: Profile[]) {
-        dispatch({
-            type: 'set',
-            payload: {
-                filters: {
-                    ...state.filters,
-                    profileFilter: values.map((b: Profile) => b.value),
-                },
-            },
+
+    function handleBrandFilter(values: SelectOption[]) {
+        handleSelectionFilter(values, 'brand');
+    }
+    function handleProfileFilter(values: SelectOption[]) {
+        handleSelectionFilter(values, 'type');
+    }
+    function handleMaterialFilter(values: SelectOption[]) {
+        handleSelectionFilter(values, 'material');
+    }
+    function handleAvailabilityFilter(availability: string) {
+        // router.push(
+        //     {
+        //         pathname: `/`,
+        //         query:
+        //             availability !== 'none'
+        //                 ? {
+        //                       tab: availability,
+        //                   }
+        //                 : null,
+        //     },
+        //     undefined,
+        //     { shallow: true }
+        // );
+
+        setFilters({
+            ...filters,
+            availability,
         });
     }
-    function handleMaterialFilter(values: Material[]) {
-        dispatch({
-            type: 'set',
-            payload: {
-                filters: {
-                    ...state.filters,
-                    materialFilter: values.map((b: Material) => b.value),
-                },
-            },
-        });
-    }
+
     function getLabelByAvailability(tab: string): string {
         const labelOptions: any = {
             none: 'All',
@@ -124,17 +174,10 @@ function Filters(props: FiltersProps): JSX.Element {
                             <Select
                                 label="Availability"
                                 name="Choose availability"
-                                onSelectChange={(selectedFilterValue) =>
-                                    dispatch({
-                                        type: 'set',
-                                        payload: {
-                                            filters: {
-                                                ...state.filters,
-                                                availabilityFilter: selectedFilterValue.value,
-                                            },
-                                        },
-                                    })
-                                }
+                                onSelectChange={(val) => {
+                                    console.log('availability mobile...', val);
+                                    handleAvailabilityFilter(val);
+                                }}
                                 values={AVAILABILITY_OPTIONS.map((t) => ({
                                     value: t,
                                     label: getLabelByAvailability(t),
@@ -152,6 +195,7 @@ function Filters(props: FiltersProps): JSX.Element {
                                         type={AVAILABILITY_FILTER}
                                         id={tab}
                                         key={idx}
+                                        handleUpdateFilters={() => handleAvailabilityFilter(tab)}
                                     />
                                 ))}
                             </div>
@@ -160,7 +204,7 @@ function Filters(props: FiltersProps): JSX.Element {
                     <div className="right-side">
                         <div className="counter">
                             <label className="label">Keycapsets:</label>
-                            <p className="light">{state.allKeycapsetsCount}</p>
+                            <p className="light">383</p> {/* Quick fix */}
                         </div>
                     </div>
                 </div>
@@ -171,11 +215,23 @@ function Filters(props: FiltersProps): JSX.Element {
                     className="extra-filters"
                 >
                     <div className="filter brand">
-                        <MultiSelect isMulti label="Brand" options={BRAND_OPTIONS} onChange={handleBrandFilter} />
+                        <MultiSelect
+                            isMulti
+                            label="Brand"
+                            options={BRAND_OPTIONS}
+                            onChange={handleBrandFilter}
+                            defaultValue={BRAND_OPTIONS.filter(({ value }) => filters.brand.includes(value))}
+                        />
                     </div>
 
                     <div className="filter profile">
-                        <MultiSelect isMulti label="Profile" options={PROFILE_OPTIONS} onChange={handleProfileFilter} />
+                        <MultiSelect
+                            isMulti
+                            label="Profile"
+                            options={PROFILE_OPTIONS}
+                            onChange={handleProfileFilter}
+                            defaultValue={PROFILE_OPTIONS.filter(({ value }) => filters.type.includes(value))}
+                        />
                     </div>
 
                     <div className="filter material">
@@ -184,6 +240,7 @@ function Filters(props: FiltersProps): JSX.Element {
                             label="Material"
                             options={MATERIAL_OPTIONS}
                             onChange={handleMaterialFilter}
+                            defaultValue={MATERIAL_OPTIONS.filter(({ value }) => filters.material.includes(value))}
                         />
                     </div>
                 </motion.div>

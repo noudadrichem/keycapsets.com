@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react';
 import { Context } from 'typings';
 import { useQuery } from '@apollo/react-hooks';
 
-import context from '../context';
+// import context from '../context';
 import { ME } from '../queries';
 
 interface MainLayoutProps {
@@ -10,18 +10,18 @@ interface MainLayoutProps {
 }
 
 function MainLayout(props: MainLayoutProps) {
-    const { dispatch } = useContext<Context>(context);
+    // const { dispatch } = useContext<Context>(context);
     const { data: me, loading } = useQuery(ME);
     const { children } = props;
 
     useEffect(() => {
         if (!loading) {
-            dispatch({
-                type: 'user',
-                payload: {
-                    user: me.me,
-                },
-            });
+            // dispatch({
+            //     type: 'user',
+            //     payload: {
+            //         user: me.me,
+            //     },
+            // });
         }
     }, [me]);
 

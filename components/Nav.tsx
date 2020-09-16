@@ -4,12 +4,12 @@ import Link from 'next/link';
 import Button from './Button';
 import GoogleIcon from './GoogleIcon';
 import RedditIcon from './RedditIcon';
-import { InititalState, Context } from 'typings';
-import { context } from '../context';
+import useStore from '../context';
 import UserProfileTag from './UserProfileTag';
 import Logo from './Logo';
 import { NextRouter, useRouter, Router } from 'next/router';
 import dynamic from 'next/dynamic';
+import Pill from './Pill';
 
 const DarkModeSwitch = dynamic(() => import('./DarkModeSwitch'), {
     ssr: false,
@@ -42,10 +42,10 @@ const HamburgerIcon = ({ size = 24, color = '#232323', onClick }) => (
 
 function Nav(props: NavProps): JSX.Element {
     const { isLargeContainer } = props;
-    const { state } = useContext<Context>(context);
-    const { isLoggedIn }: InititalState = state;
     const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
-    const router: NextRouter = useRouter();
+    const router = useRouter();
+    const user = useStore<any>((state) => state.user);
+    const isLoggedIn = useStore<any>((state) => state.isLoggedIn);
 
     useEffect(
         function listenToRouteChange() {
@@ -88,7 +88,7 @@ function Nav(props: NavProps): JSX.Element {
                                 <Logo width={106} />
                             </a>
                         </Link>
-                        {/* <Pill color="gray" text="BETA" /> */}
+                        <Pill color="gray" text="BETA" />
                     </div>
 
                     <div className={`nav-items ${isNavOpen ? 'open' : 'closed'}`}>

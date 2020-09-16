@@ -8,10 +8,12 @@ import GoogleIcon from '../components/GoogleIcon';
 import RedditIcon from '../components/RedditIcon';
 import GoogleAuth from '../components/GoogleAuth';
 import RedditAuth from '../components/RedditAuth';
+import Meta from '../components/Meta';
 
 function Login() {
     return (
         <div className="container sign-up">
+            <Meta />
             <Heading mainTitle="Login on keycapsets" subTitle="Welcome back, enjoy the platform!" left />
 
             <div className="cards">

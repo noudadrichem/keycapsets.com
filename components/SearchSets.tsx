@@ -1,27 +1,26 @@
 import React, { useEffect, useContext, useCallback } from 'react';
 import useInput from '../hooks/useInput';
-import context from '../context';
+// import context from '../context';
 import { useRouter, NextRouter } from 'next/router';
 import { Context } from 'typings';
+import useStore from '../context';
 
 function SearchSets() {
     const router: NextRouter = useRouter();
-    const randomSetNames: string[] = ['Carbon', 'Minimal', 'Hyperfuse', 'Sumi', 'Nautilus'];
-    const randomSetName: string = randomSetNames[Math.floor(Math.random() * randomSetNames.length)];
     const [searchValue, searchInput, setSearchInputValue] = useInput({
         placeholder: 'E.g. Space cadet',
-        autoFocus: true,
+        autoFocus: false,
     });
-    const { state, dispatch } = useContext<Context>(context);
+    const filters = useStore<any>((state) => state.filters);
+    const setFilters = useStore<any>((state) => state.setFilters);
 
     // TODO: this supported the use of search?= query in URL...
     useEffect(() => {
         const searchQuery = router.query.search;
         if (searchQuery !== undefined) {
             setSearchInputValue(searchQuery);
-            dispatch({
-                type: 'set',
-                payload: { searchQuery: searchValue },
+            setFilters({
+                name: searchQuery,
             });
         }
     }, [router.query.search]);
@@ -32,12 +31,12 @@ function SearchSets() {
 
         timeout = setTimeout(() => {
             if (searchValue !== '' || searchValue !== undefined) {
-                dispatch({
-                    type: 'set',
-                    payload: { searchQuery: searchValue },
+                setFilters({
+                    ...filters,
+                    name: searchValue,
                 });
             }
-        }, 300);
+        }, 400);
 
         return () => clearTimeout(timeout);
     }, [searchValue]);

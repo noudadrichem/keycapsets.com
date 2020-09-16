@@ -22,17 +22,10 @@ declare module 'typings' {
         isInterestCheck: boolean;
         designedBy?: string[];
         kits: any[];
+        metaUrl?: string;
     }
 
-    interface Brand {
-        value: string;
-        label: string;
-    }
-    interface Material {
-        value: string;
-        label: string;
-    }
-    interface Profile {
+    interface SelectOption {
         value: string;
         label: string;
     }
@@ -50,22 +43,22 @@ declare module 'typings' {
     }
 
     interface Filters {
-        availabilityFilter: string;
-        brandFilter: string[];
-        profileFilter: string[];
-        materialFilter: string[];
+        availability: string;
+        name: string;
+        brand: string[];
+        type: string[];
+        material: string[];
     }
 
     interface InititalState {
         filters: Filters;
         keycapsets: Keycapset[];
-        fetchedKeycapsetsLength: number;
         searchQuery: string;
         allKeycapsetsCount: number;
         isLoggedIn: boolean;
         user?: User;
-        fetchedKeycapsetsLength: number;
         userWants: Keycapset[];
+        user: User;
     }
 
     interface User {

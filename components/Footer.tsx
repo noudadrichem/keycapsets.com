@@ -47,8 +47,8 @@ function Footer(props: FooterProps): JSX.Element {
             <div className={`container ${isLargeContainer ? 'large' : ''}`}>
                 <div className="made-in">
                     <p>
-                        &copy; Made with <a href="https://bunq.me/noudadrichem/3/I'm%20liking%20keycapsets!">☕</a>
-                        in Utrecht.
+                        &copy; Made with <a href="https://bunq.me/noudadrichem/3/I'm%20liking%20keycapsets!">☕</a> in 
+                        Utrecht.
                     </p>
                 </div>
 

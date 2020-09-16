@@ -1,47 +1,30 @@
-import React, { createContext, useReducer } from 'react';
-import { InititalState, Action, Context, Keycapset, Filters } from 'typings';
+import create from 'zustand';
+
+import { InititalState, Filters, User } from 'typings';
 
 export const INITITAL_STATE: InititalState = {
     filters: {
-        availabilityFilter: 'none',
-        brandFilter: [],
-        profileFilter: [],
-        materialFilter: [],
+        availability: 'none',
+        name: '',
+        brand: [],
+        type: [],
+        material: [],
     },
     keycapsets: [],
-    fetchedKeycapsetsLength: 0,
     searchQuery: '',
     allKeycapsetsCount: 0,
-    isLoggedIn: false,
     userWants: [],
+    isLoggedIn: false,
+    user: null,
 };
 
-const context = createContext<Context>({ state: null, dispatch: null });
-const StateProvider = ({ me, children }) => {
-    const [state, dispatch]: any[] = useReducer((state: InititalState, action: Action) => {
-        switch (action.type) {
-            case 'set':
-                const setNewState: InititalState = {
-                    ...state,
-                    user: me !== null ? me : {},
-                    isLoggedIn: me !== null,
-                    ...action.payload,
-                };
-                return setNewState;
-            case 'user':
-                const withUserState: InititalState = {
-                    ...state,
-                    isLoggedIn: true,
-                    user: action.payload.user,
-                };
-                return withUserState;
-            default:
-                return state;
-        }
-    }, INITITAL_STATE);
+const useStore = create((set) => ({
+    ...INITITAL_STATE,
+    setUser: (user: User) => set({ user, isLoggedIn: true }),
+    setUserWants: (userWants: any) => set({ userWants }),
+    setFilters: (filters: Filters) => set({ filters }),
+}));
 
-    return <context.Provider value={{ state, dispatch }}>{children}</context.Provider>;
-};
+useStore.subscribe(console.log, (s) => s.filters);
 
-export { context, StateProvider };
-export default context;
+export default useStore;
