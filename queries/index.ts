@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-const FETCH_KEYCAPSET_QUERY = gql`
+export const FETCH_KEYCAPSET_QUERY = gql`
     query FETCH_KEYCAPSET_QUERY($limit: Int, $offset: Int, $filter: KeycapsetFilter) {
         allKeycapsetsCount
         keycapsets(limit: $limit, offset: $offset, filter: $filter) {
@@ -19,7 +19,7 @@ const FETCH_KEYCAPSET_QUERY = gql`
     }
 `;
 
-const CREATE_KEYSET_MUTATION = gql`
+export const CREATE_KEYSET_MUTATION = gql`
     mutation keycapsetCreateOne(
         $name: String
         $type: String
@@ -65,7 +65,7 @@ const CREATE_KEYSET_MUTATION = gql`
     }
 `;
 
-const CREATE_VENDOR_MUTATION = gql`
+export const CREATE_VENDOR_MUTATION = gql`
     mutation CREATE_VENDOR_MUTATION(
         $name: String
         $country: String
@@ -80,7 +80,7 @@ const CREATE_VENDOR_MUTATION = gql`
     }
 `;
 
-const GET_VENDORS_QUERY = gql`
+export const GET_VENDORS_QUERY = gql`
     query GET_VENDORS_QUERY {
         vendors {
             name
@@ -92,7 +92,7 @@ const GET_VENDORS_QUERY = gql`
     }
 `;
 
-const GET_SINGLE_SET_QUERY = gql`
+export const GET_SINGLE_SET_QUERY = gql`
     query GET_SINGLE_SET_QUERY($slug: String!) {
         keycapsetBySlug(slug: $slug) {
             _id
@@ -131,7 +131,7 @@ const GET_SINGLE_SET_QUERY = gql`
     }
 `;
 
-const GOOGLE_LOGIN = gql`
+export const GOOGLE_LOGIN = gql`
     mutation GOOGLE_LOGIN($token: String!) {
         googleLogin(token: $token) {
             token
@@ -153,7 +153,7 @@ const GOOGLE_LOGIN = gql`
     }
 `;
 
-const REDDIT_LOGIN = gql`
+export const REDDIT_LOGIN = gql`
     mutation REDDIT_LOGIN($redditUserName: String!, $redditId: String!) {
         redditLogin(redditUserName: $redditUserName, redditId: $redditId) {
             token
@@ -162,7 +162,7 @@ const REDDIT_LOGIN = gql`
     }
 `;
 
-const ME = gql`
+export const ME = gql`
     query {
         me {
             _id
@@ -180,7 +180,7 @@ const ME = gql`
     }
 `;
 
-const TOGGLE_HAVE = gql`
+export const TOGGLE_HAVE = gql`
     mutation TOGGLE_HAVE($setId: String!, $have: Boolean) {
         toggleHaveSet(setId: $setId, have: $have) {
             message
@@ -188,7 +188,7 @@ const TOGGLE_HAVE = gql`
     }
 `;
 
-const WANT_SET = gql`
+export const WANT_SET = gql`
     mutation WANT_SET($setId: String!) {
         wantSet(setId: $setId) {
             message
@@ -196,7 +196,7 @@ const WANT_SET = gql`
     }
 `;
 
-const CLAIM_SET = gql`
+export const CLAIM_SET = gql`
     mutation CLAIM_SET($setId: String!) {
         claimSet(setId: $setId) {
             message
@@ -204,7 +204,7 @@ const CLAIM_SET = gql`
     }
 `;
 
-const UPDATE_USER = gql`
+export const UPDATE_USER = gql`
     mutation UPDATE_USER($input: UserInput!) {
         updateUser(input: $input) {
             name
@@ -215,7 +215,7 @@ const UPDATE_USER = gql`
     }
 `;
 
-// const USER_WANTS = gql`
+// export const USER_WANTS = gql`
 //     {
 //         userWants {
 //             set
@@ -223,7 +223,7 @@ const UPDATE_USER = gql`
 //     }
 // `;
 
-const USER_WANTS_SETS = gql`
+export const USER_WANTS_SETS = gql`
     {
         userWantsSets {
             _id
@@ -241,7 +241,7 @@ const USER_WANTS_SETS = gql`
     }
 `;
 
-const REQUEST_DESIGNER_ROLE = gql`
+export const REQUEST_DESIGNER_ROLE = gql`
     mutation REQUEST_DESIGNER_ROLE {
         requestDesignerRole {
             message
@@ -249,7 +249,7 @@ const REQUEST_DESIGNER_ROLE = gql`
     }
 `;
 
-const REQUEST_VENDOR_ROLE = gql`
+export const REQUEST_VENDOR_ROLE = gql`
     mutation REQUEST_VENDOR_ROLE {
         requestVendorRole {
             message
@@ -257,7 +257,7 @@ const REQUEST_VENDOR_ROLE = gql`
     }
 `;
 
-const IMG_UPLOAD_FORM_DATA = gql`
+export const IMG_UPLOAD_FORM_DATA = gql`
     mutation IMG_UPLOAD_FORM_DATA($file: Upload!) {
         imgUploadFormData(file: $file) {
             name
@@ -267,21 +267,23 @@ const IMG_UPLOAD_FORM_DATA = gql`
     }
 `;
 
-export {
-    FETCH_KEYCAPSET_QUERY,
-    CREATE_KEYSET_MUTATION,
-    CREATE_VENDOR_MUTATION,
-    GET_VENDORS_QUERY,
-    GET_SINGLE_SET_QUERY,
-    GOOGLE_LOGIN,
-    REDDIT_LOGIN,
-    ME,
-    TOGGLE_HAVE,
-    WANT_SET,
-    CLAIM_SET,
-    UPDATE_USER,
-    USER_WANTS_SETS,
-    REQUEST_DESIGNER_ROLE,
-    REQUEST_VENDOR_ROLE,
-    IMG_UPLOAD_FORM_DATA,
-};
+export const GET_IC_BY_ID = gql`
+    query GET_IC_BY_ID($id: ID!) {
+        interestCheckById(id: $id) {
+            questions {
+                text
+                _id
+            }
+            _id
+        }
+    }
+`;
+
+export const GET_QUESTION_BY_ID = gql`
+    query GET_QUESTION_BY_ID($id: ID!) {
+        questionById(id: $id) {
+            text
+            _id
+        }
+    }
+`;
