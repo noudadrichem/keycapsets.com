@@ -18,6 +18,8 @@ interface InterestCheckQuestionProps {
 
 function InterestCheckQuestion(props: InterestCheckQuestionProps) {
     const { question } = props;
+
+    console.log('QUESTION!!');
     // const router = useRouter();
     // console.log('router', router)
 

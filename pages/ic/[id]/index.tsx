@@ -2,12 +2,12 @@ import React from 'react';
 import Router, { useRouter } from 'next/router';
 import withGA from 'next-ga';
 
-import Heading from '../../components/Heading';
-import ButtonLink from '../../components/ButtonLink';
-import Meta from '../../components/Meta';
-import { initializeApollo } from '../../hooks/withData';
-import { GET_IC_BY_ID } from '../../queries';
-import Button from '../../components/Button';
+import Heading from '../../../components/Heading';
+import ButtonLink from '../../../components/ButtonLink';
+import Meta from '../../../components/Meta';
+import { initializeApollo } from '../../../hooks/withData';
+import { GET_IC_BY_ID } from '../../../queries';
+import Button from '../../../components/Button';
 
 interface InterestCheckProps {
     interestCheck: any;
