@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Router, { useRouter } from 'next/router';
 import withGA from 'next-ga';
 
@@ -6,22 +6,37 @@ import Heading from '../../../components/Heading';
 import ButtonLink from '../../../components/ButtonLink';
 import Meta from '../../../components/Meta';
 import { initializeApollo } from '../../../hooks/withData';
-import { GET_IC_BY_ID } from '../../../queries';
+import { GET_IC_BY_ID, GET_KEYCAPSET_IC } from '../../../queries';
 import Button from '../../../components/Button';
+import { Keycapset } from 'typings';
+import useInterestCheckStore, { ICStore } from '../../../hooks/useInterestCheckStore';
 
 interface InterestCheckProps {
-    interestCheck: any;
+    keycapset: Keycapset;
     isLargeContainer: boolean;
     isNavShown: boolean;
     isFooterShown: boolean;
 }
 
 function InterestCheck(props: InterestCheckProps) {
-    const { interestCheck } = props;
+    const { keycapset } = props;
+    const { interestCheck } = keycapset;
     const router = useRouter();
-    console.log('router', router);
+    const { setInterestCheck, setKeycapset, setNextQuestionId } = useInterestCheckStore<any>((state) => ({
+        setInterestCheck: state.setInterestCheck,
+        setKeycapset: state.setKeycapset,
+        setNextQuestionId: state.setNextQuestionId,
+    }));
+
+    useEffect(() => {
+        setInterestCheck(interestCheck);
+        setKeycapset(keycapset);
+    }, []);
 
     function startIc() {
+        if (interestCheck.questions.length > 0) {
+            setNextQuestionId(interestCheck.questions[1]._id);
+        }
         router.push({
             pathname: `${router.asPath}/question/${interestCheck.questions[0]._id}`,
         });
@@ -30,6 +45,7 @@ function InterestCheck(props: InterestCheckProps) {
     return (
         <>
             <div className="interest-check container">
+                <Meta metaImgUrl={keycapset.metaUrl} />
                 <Heading mainTitle="Interest check" subTitle="" left />
 
                 <Button variant="primary" size="lg" onClick={startIc}>
@@ -49,26 +65,23 @@ export async function getServerSideProps(context) {
         isLargeContainer: false,
         isNavShown: false,
         isFooterShown: false,
-        interestCheck: null,
+        keycapset: null,
     };
     try {
         const client = initializeApollo();
         const { data, error } = await client.query({
-            query: GET_IC_BY_ID,
+            query: GET_KEYCAPSET_IC,
             variables: {
-                id: context.query.id,
+                slug: context.query.keycapsetSlug,
             },
         });
-
         if (error) {
             throw error;
         }
-
-        props.interestCheck = data.interestCheckById;
+        props.keycapset = data.keycapsetBySlug;
     } catch (err) {
         console.log('SSR props err', err);
     }
-
     return { props };
 }
 

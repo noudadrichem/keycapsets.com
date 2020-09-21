@@ -27,6 +27,7 @@ function Button(props: ButtonProps): JSX.Element {
 
 Button.defaultProps = {
     type: 'button',
+    size: 'md',
 };
 
 export default Button;

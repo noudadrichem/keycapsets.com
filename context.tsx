@@ -25,6 +25,6 @@ const useStore = create((set) => ({
     setFilters: (filters: Filters) => set({ filters }),
 }));
 
-useStore.subscribe(console.log, (s) => s.filters);
+// useStore.subscribe(console.log, (s) => s.filters);
 
 export default useStore;

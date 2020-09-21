@@ -287,3 +287,26 @@ export const GET_QUESTION_BY_ID = gql`
         }
     }
 `;
+
+export const GET_KEYCAPSET_IC = gql`
+    query GET_KEYCAPSET_IC($slug: String!) {
+        keycapsetBySlug(slug: $slug) {
+            _id
+            coverImageUrl
+            coverImageUrl
+            websiteUrl
+            slug
+            accentColor1
+            accentColor2
+            accentColor3
+            interestCheck {
+                _id
+                questions {
+                    text
+                    _id
+                }
+            }
+            metaUrl
+        }
+    }
+`;

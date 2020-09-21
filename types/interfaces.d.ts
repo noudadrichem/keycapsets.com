@@ -23,6 +23,13 @@ declare module 'typings' {
         designedBy?: string[];
         kits: any[];
         metaUrl?: string;
+        interestCheck: InterestCheck;
+    }
+
+    interface InterestCheck {
+        _id: String;
+        comments: any[];
+        questions: any[];
     }
 
     interface SelectOption {
