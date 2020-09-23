@@ -3,7 +3,6 @@
 .input-wrapper-select {
     display: flex;
     flex-direction: column;
-    flex: 1;
     background-color: var(--white-second);
     position: relative;
     -webkit-appearance: none;
@@ -40,6 +39,7 @@
         border-radius: 6px;
         outline: none;
         resize: none;
+        font-family: inherit;
 
         &:focus {
             border: 1px solid var(--blue);
@@ -53,6 +53,10 @@
             font-size: 12px;
             padding: 8px 12px;
         }
+    }
+
+    textarea.input {
+        min-height: 184px;
     }
 }
 

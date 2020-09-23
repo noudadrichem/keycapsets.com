@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-interface InputProps {
+export interface InputProps {
     placeholder?: string;
     label?: string;
     type?: string;

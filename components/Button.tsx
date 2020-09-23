@@ -9,16 +9,18 @@ interface ButtonProps {
     isFullWidth?: boolean;
     children?: ReactNode;
     onClick?: any;
+    style?: any;
 }
 
 function Button(props: ButtonProps): JSX.Element {
-    const { size, type, variant, isDisabled, isFullWidth, children, className, onClick } = props;
+    const { size, type, variant, isDisabled, isFullWidth, children, className, onClick, style } = props;
 
     return (
         <button
             className={`btn ${variant} ${size} ${type} ${className} ${isFullWidth ? 'full-width' : ''}`}
             disabled={isDisabled}
             onClick={onClick}
+            style={style}
         >
             {children}
         </button>

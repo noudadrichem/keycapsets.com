@@ -284,6 +284,11 @@ export const GET_QUESTION_BY_ID = gql`
         questionById(id: $id) {
             text
             _id
+            kit {
+                name
+                imgUrl
+                description
+            }
         }
     }
 `;
@@ -292,6 +297,7 @@ export const GET_KEYCAPSET_IC = gql`
     query GET_KEYCAPSET_IC($slug: String!) {
         keycapsetBySlug(slug: $slug) {
             _id
+            name
             coverImageUrl
             coverImageUrl
             websiteUrl
@@ -304,6 +310,11 @@ export const GET_KEYCAPSET_IC = gql`
                 questions {
                     text
                     _id
+                    kit {
+                        name
+                        description
+                        imgUrl
+                    }
                 }
             }
             metaUrl

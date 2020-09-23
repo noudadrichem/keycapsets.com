@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import withGA from '../next-ga';
+import withGA from 'next-ga';
 import Router, { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { Context } from 'typings';
