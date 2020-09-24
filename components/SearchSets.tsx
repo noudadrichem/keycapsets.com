@@ -18,6 +18,7 @@ function SearchSets() {
     useEffect(() => {
         const searchQuery = router.query.search;
         if (searchQuery !== undefined) {
+            // @ts-expect-error
             setSearchInputValue(searchQuery);
             setFilters({
                 ...filters,
@@ -34,6 +35,7 @@ function SearchSets() {
             if (searchValue !== '' || searchValue !== undefined) {
                 setFilters({
                     ...filters,
+                    // @ts-expect-error
                     name: searchValue,
                 });
             }
