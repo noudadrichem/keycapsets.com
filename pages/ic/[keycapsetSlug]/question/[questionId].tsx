@@ -9,7 +9,7 @@ import { initializeApollo } from '../../../../hooks/withData';
 import { GET_IC_BY_ID, GET_QUESTION_BY_ID } from '../../../../queries';
 import Button from '../../../../components/Button';
 import { useQuery } from '@apollo/client';
-import useInterestCheckStore, { ICStore } from '../../../../hooks/useInterestCheckStore';
+import useInterestCheckStore from '../../../../hooks/useInterestCheckStore';
 import InterestCheckLayout from '../../../../layouts/interestCheckLayout';
 import TextArea from '../../../../components/TextArea';
 
@@ -40,7 +40,7 @@ function InterestCheckQuestion(props: InterestCheckQuestionProps) {
         setQuestionIdx,
         currentIdx,
         name,
-    } = useInterestCheckStore<any>((state) => ({
+    } = useInterestCheckStore((state) => ({
         getFromStore: state.getFromStore,
         keycapset: state.keycapset,
         interestCheck: state.interestCheck,
