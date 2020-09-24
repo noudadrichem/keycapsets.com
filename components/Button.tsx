@@ -1,18 +1,14 @@
-import React, { ReactNode } from 'react';
+import React, { HTMLProps, ReactNode } from 'react';
 
 interface ButtonProps {
     size?: 'sm' | 'md' | 'lg';
-    type: String;
+    type: string;
     variant: 'primary' | 'secondary' | 'inverted' | 'tab';
-    className?: String;
     isDisabled?: boolean;
     isFullWidth?: boolean;
-    children?: ReactNode;
-    onClick?: any;
-    style?: any;
 }
 
-function Button(props: ButtonProps): JSX.Element {
+function Button(props: ButtonProps & HTMLProps<HTMLButtonElement>): JSX.Element {
     const { size, type, variant, isDisabled, isFullWidth, children, className, onClick, style } = props;
 
     return (

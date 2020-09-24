@@ -1,22 +1,25 @@
 import { InterestCheck, Keycapset } from 'typings';
 import create from 'zustand';
 
-export type ICStore = {
+type State = {
     keycapset: Keycapset;
     interestCheck: InterestCheck;
     nextQuestionId: string;
     previousQuestionId: string;
     currentIdx: number;
-    setInterestCheck?(interestCheck: InterestCheck): void;
-    setKeycapset?(keycapset: Keycapset): void;
-    setNextQuestionId?(nextQuestionId: string): void;
-    setPrevQuestionId?(previousQuestionId: string): void;
-    setInStore?(): void;
-    getFromStore?(): void;
-    setQuestionIdx?(): void;
 };
 
-export const INITITAL_IC_STATE: ICStore = {
+type Actions = {
+    setInterestCheck(interestCheck: InterestCheck): void;
+    setKeycapset(keycapset: Keycapset): void;
+    setNextQuestionId(nextQuestionId: string): void;
+    setPrevQuestionId(previousQuestionId: string): void;
+    setInStore(): void;
+    getFromStore(): void;
+    setQuestionIdx(idx: number): void;
+};
+
+export const INITITAL_IC_STATE: State = {
     interestCheck: null,
     keycapset: null,
     currentIdx: 0,
@@ -24,7 +27,7 @@ export const INITITAL_IC_STATE: ICStore = {
     previousQuestionId: null,
 };
 
-const useInterestCheckStore = create((set, get) => ({
+const useInterestCheckStore = create<State & Actions>((set, get) => ({
     ...INITITAL_IC_STATE,
     setInterestCheck: (interestCheck: InterestCheck) => set({ interestCheck }),
     setKeycapset: (keycapset: Keycapset) => set({ keycapset }),
