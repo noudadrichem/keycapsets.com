@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { forceCheck } from 'react-lazyload';
-import { Keycapset } from 'typings';
+import { Keycapset } from '../types/interfaces';
 import { Waypoint } from 'react-waypoint';
 
 import ImageCard from './ImageCard';

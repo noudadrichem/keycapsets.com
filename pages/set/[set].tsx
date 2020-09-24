@@ -4,7 +4,7 @@ import moment from 'moment';
 import { useRouter, Router } from 'next/router';
 import Slider from 'react-slick';
 import { useQuery } from '@apollo/react-hooks';
-import { Keycapset, Vendor, Context } from 'typings';
+import { Keycapset, Vendor, Context } from '../../types/interfaces';
 import withGA from 'next-ga';
 
 import { GET_SINGLE_SET_QUERY, CLAIM_SET } from '../../queries';
@@ -31,8 +31,8 @@ function SetPage(props: SetPageProps) {
     const router = useRouter();
     const { set: slug } = router.query;
     const { keycapset } = props;
-    const isLoggedIn = useStore<any>((state) => state.isLoggedIn);
-    const user = useStore<any>((state) => state.user);
+    const isLoggedIn = useStore((state) => state.isLoggedIn);
+    const user = useStore((state) => state.user);
 
     if (keycapset === undefined) {
         return (
@@ -141,7 +141,7 @@ function SetPage(props: SetPageProps) {
                             <div className="set-kits">
                                 <h2>Kits</h2>
                                 <div className="set-kits-grid-container">
-                                    {keycapset.kits.map((kit: any) => {
+                                    {keycapset.kits.map((kit) => {
                                         return (
                                             <div>
                                                 <h3>{kit.name}</h3>

@@ -5,7 +5,7 @@ import withGA from 'next-ga';
 import Router from 'next/router';
 
 import { GET_VENDORS_QUERY } from '../queries';
-import { Vendor } from 'typings';
+import { Vendor } from '../types/interfaces';
 
 import Heading from '../components/Heading';
 import LoadingKeyboard from '../components/LoadingKeyboard';
@@ -16,10 +16,14 @@ import '../assets/styles/main.scss';
 import countryIsoList from '../assets/countries';
 import Meta from '../components/Meta';
 
-interface VendorProps {}
+interface VendorProps {
+    vendors: {
+        country: string;
+    }[];
+}
 
 function Vendors(): JSX.Element {
-    const { loading, error, data } = useQuery(GET_VENDORS_QUERY);
+    const { loading, error, data } = useQuery<VendorProps>(GET_VENDORS_QUERY);
 
     if (loading) {
         return <LoadingKeyboard />;
@@ -32,18 +36,18 @@ function Vendors(): JSX.Element {
 
     const { vendors } = data;
 
-    function generateAccumArray(len: number) {
+    function generateAccumArray<T>(len: number) {
         let arr = [];
         for (let i = 0; i < len; i++) {
             arr.push([]);
         }
-        return arr;
+        return (arr as unknown) as T;
     }
 
     // make list of unique present vendor continents
     const availableContinents = vendors
-        .map((v: { country: any }) => v.country)
-        .reduce((res: any[], country: string) => {
+        .map((v) => v.country)
+        .reduce<string[]>((res, country) => {
             const continentCode = country.split('-')[0];
             // only take the first of the possibly 2 codes to prevent undefined key
             const con1 = continentCode.split(',')[0];
@@ -55,41 +59,38 @@ function Vendors(): JSX.Element {
             return res;
         }, []);
 
-    const totalAcc = generateAccumArray(availableContinents.length);
+    const totalAcc = generateAccumArray<string[][]>(availableContinents.length);
 
     // filter all vendor objects by key 'country', push all vendors to dedicated continent array
-    const filteredVendorLists = vendors.reduce((accum: { [x: string]: any[] }, vendor: { country: string }) => {
-        availableContinents.map((continent: any, jdx: string | number) => {
+    const filteredVendorLists = vendors.reduce((accum, vendor) => {
+        availableContinents.map((continent, jdx) => {
             // if 2 continentcodes are listed, the vendor gets put in the section of the continentcode that's listed first
             const continentCode = vendor.country.split('-')[0];
             const con1 = continentCode.split(',')[0];
 
             if (con1 === continent) {
-                accum[jdx].push(vendor);
+                accum[jdx].push((vendor as unknown) as string);
             }
         });
 
         return accum;
     }, totalAcc);
 
-    const sortedVendors = filteredVendorLists.reduce(
-        (sortedVendors: { [x: string]: { label: string } }, field: any, index: string | number) => {
-            sortedVendors[availableContinents[index]] = field;
+    const sortedVendors = filteredVendorLists.reduce((sortedVendors, field, index) => {
+        sortedVendors[availableContinents[index]] = field;
 
-            // add continent display label to vendor
-            countryIsoList.forEach((countryIso) => {
-                if (availableContinents[index] === 'ALL') {
-                    sortedVendors[availableContinents[index]].label = 'Worldwide';
-                }
-                if (countryIso.continentCode === availableContinents[index]) {
-                    sortedVendors[availableContinents[index]].label = countryIso.continentName;
-                }
-            });
+        // add continent display label to vendor
+        countryIsoList.forEach((countryIso) => {
+            if (availableContinents[index] === 'ALL') {
+                sortedVendors[availableContinents[index]].label = 'Worldwide';
+            }
+            if (countryIso.continentCode === availableContinents[index]) {
+                sortedVendors[availableContinents[index]].label = countryIso.continentName;
+            }
+        });
 
-            return sortedVendors;
-        },
-        {}
-    );
+        return sortedVendors;
+    }, {});
 
     const title = `keycapset vendors`;
     const description = `A list of vendors selling keycapsets, keycaps and keyboard.`;

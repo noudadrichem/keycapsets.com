@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ButtonLink from '../components/ButtonLink';
-import { Vendor } from 'typings';
+import { Vendor } from '../types/interfaces';
 
 interface VendorCardProps {
     vendor: Vendor;

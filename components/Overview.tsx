@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Keycapset } from 'typings';
+import { Keycapset } from '../types/interfaces';
 
 import { useQuery, NetworkStatus } from '@apollo/client';
 import { FETCH_KEYCAPSET_QUERY, USER_WANTS_SETS } from '../queries';
@@ -14,8 +14,8 @@ interface ImagesProps {
 
 function Images(): JSX.Element {
     const [atBottom, setIsAtBottom] = useState<boolean>(false);
-    const setUserWants = useStore<any>((state) => state.setUserWants);
-    const filters = useStore<any>((state) => state.filters);
+    const setUserWants = useStore((state) => state.setUserWants);
+    const filters = useStore((state) => state.filters);
 
     const { data, networkStatus, loading, fetchMore } = useQuery(FETCH_KEYCAPSET_QUERY, {
         variables: {
@@ -73,7 +73,7 @@ function Images(): JSX.Element {
                 limit: 12,
                 offset,
             },
-            updateQuery: (prev: any, { fetchMoreResult }: any) => {
+            updateQuery: (prev, { fetchMoreResult }) => {
                 if (!fetchMoreResult && !fetchMoreResult.keycapsets) return prev;
                 return Object.assign({}, prev, {
                     keycapsets: [...prev.keycapsets, ...fetchMoreResult.keycapsets],

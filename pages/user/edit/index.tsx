@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import withGA from 'next-ga';
 import Router, { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
-import { Context } from 'typings';
+import { Context } from '../../../types/interfaces';
 import { useMutation } from '@apollo/react-hooks';
 import ReactTooltip from 'react-tooltip';
 
@@ -29,9 +29,9 @@ function UserEdit(props: UserEditProps): JSX.Element {
     const router = useRouter();
     const { register, handleSubmit, errors } = useForm<EditProfileInputs>();
     const [updateUserMutation] = useMutation(UPDATE_USER);
-    const [requestDesignerRole] = useMutation<any>(REQUEST_DESIGNER_ROLE);
+    const [requestDesignerRole] = useMutation(REQUEST_DESIGNER_ROLE);
     const [isUpdated, setIsUpdated] = useState<boolean>(false);
-    const user = useStore<any>((state) => state.user);
+    const user = useStore((state) => state.user);
 
     // useEffect(() => {
     //     console.log(user);
@@ -40,7 +40,7 @@ function UserEdit(props: UserEditProps): JSX.Element {
     //     }
     // });
 
-    async function updateUser(formValues: any) {
+    async function updateUser(formValues: { name: string; email: string }) {
         try {
             const response = await updateUserMutation({
                 variables: {

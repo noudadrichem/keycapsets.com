@@ -2,7 +2,7 @@ import React, { useEffect, useContext, useCallback } from 'react';
 import useInput from '../hooks/useInput';
 // import context from '../context';
 import { useRouter, NextRouter } from 'next/router';
-import { Context } from 'typings';
+import { Context } from '../types/interfaces';
 import useStore from '../context';
 
 function SearchSets() {
@@ -11,8 +11,8 @@ function SearchSets() {
         placeholder: 'E.g. Space cadet',
         autoFocus: false,
     });
-    const filters = useStore<any>((state) => state.filters);
-    const setFilters = useStore<any>((state) => state.setFilters);
+    const filters = useStore((state) => state.filters);
+    const setFilters = useStore((state) => state.setFilters);
 
     // TODO: this supported the use of search?= query in URL...
     useEffect(() => {
@@ -20,13 +20,14 @@ function SearchSets() {
         if (searchQuery !== undefined) {
             setSearchInputValue(searchQuery);
             setFilters({
-                name: searchQuery,
+                ...filters,
+                name: Array.isArray(searchQuery) ? searchQuery[0] : searchQuery,
             });
         }
     }, [router.query.search]);
 
     useEffect(() => {
-        let timeout: any;
+        let timeout: NodeJS.Timeout;
         clearTimeout(timeout);
 
         timeout = setTimeout(() => {
