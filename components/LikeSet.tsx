@@ -2,7 +2,7 @@ import React from 'react';
 import { NextRouter, useRouter } from 'next/router';
 import ReactTooltip from 'react-tooltip';
 import { useMutation } from '@apollo/react-hooks';
-import { Keycapset } from 'typings';
+import { Keycapset } from '../types/interfaces';
 
 import { WANT_SET } from '../queries';
 import HeartIcon from './HeartIcon';
@@ -15,11 +15,11 @@ export interface LikeSetProps {
 function LikeSet(props: LikeSetProps) {
     const { keycapset } = props;
     const router: NextRouter = useRouter();
-    const [addWantToUser] = useMutation<any>(WANT_SET);
+    const [addWantToUser] = useMutation(WANT_SET);
 
-    const isLoggedIn = useStore<any>((state) => state.isLoggedIn);
-    const userWants = useStore<any>((state) => state.userWants);
-    const setUserWants = useStore<any>((state) => state.setUserWants);
+    const isLoggedIn = useStore((state) => state.isLoggedIn);
+    const userWants = useStore((state) => state.userWants);
+    const setUserWants = useStore((state) => state.setUserWants);
 
     function removeUserWants(id: string): Keycapset[] {
         const wantsClone = [...userWants];
@@ -35,7 +35,7 @@ function LikeSet(props: LikeSetProps) {
         return x;
     }
 
-    async function userWantSet(evt: any) {
+    async function userWantSet(evt: React.MouseEvent<HTMLSpanElement>) {
         evt.preventDefault();
         evt.stopPropagation();
 

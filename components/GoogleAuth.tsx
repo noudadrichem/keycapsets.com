@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { GoogleLogin, GoogleLogout } from 'react-google-login';
+import { GoogleLogin, GoogleLoginResponse, GoogleLogout } from 'react-google-login';
 import { useApolloClient } from '@apollo/react-hooks';
 import { useRouter } from 'next/router';
 
@@ -24,9 +24,9 @@ function GoogleAuth(props: GoogleAuthProps): JSX.Element {
     const { text, disabled, asLink = false, isLogginOut = false } = props;
     const client = useApolloClient();
     const router = useRouter();
-    const setUser = useStore<any>((state) => state.setUser);
+    const setUser = useStore((state) => state.setUser);
 
-    async function success(response: any) {
+    async function success(response: GoogleLoginResponse) {
         try {
             const {
                 data: { googleLogin },
@@ -49,7 +49,7 @@ function GoogleAuth(props: GoogleAuthProps): JSX.Element {
         }
     }
 
-    function error(response: any) {
+    function error(response: GoogleLoginResponse) {
         console.error('error', response);
     }
 

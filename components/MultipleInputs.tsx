@@ -7,7 +7,13 @@ interface InputProps {
     shouldReset?: boolean;
 }
 
-const GET_INPUT_TEMPLATE = (id: Number) => ({
+interface InputTemplate {
+    type: string;
+    placeholder: string;
+    id: number;
+}
+
+const GET_INPUT_TEMPLATE = (id: number): InputTemplate => ({
     type: 'text',
     placeholder: 'https://....',
     id,
@@ -15,7 +21,7 @@ const GET_INPUT_TEMPLATE = (id: Number) => ({
 
 function multipleInputsHook(props: InputProps): JSX.Element {
     const { label, onChange, shouldReset = false } = props;
-    const [inputs, setInputs] = useState([GET_INPUT_TEMPLATE(0)]);
+    const [inputs, setInputs] = useState<InputTemplate[]>([GET_INPUT_TEMPLATE(0)]);
     const [inputValues, setInputValues] = useState(['']);
 
     useEffect(() => {
@@ -25,12 +31,12 @@ function multipleInputsHook(props: InputProps): JSX.Element {
     }, [shouldReset]);
 
     function addInput() {
-        setInputs([...inputs, GET_INPUT_TEMPLATE(inputs.length)]);
+        setInputs((prev) => [...prev, GET_INPUT_TEMPLATE(prev.length)]);
     }
 
-    function getAllInputValues(id, e) {
+    function getAllInputValues(id: string, e: React.ChangeEvent) {
         const tempValues: string[] = [];
-        document.querySelectorAll('.multiple-inputs-input').forEach((input: any) => {
+        document.querySelectorAll<HTMLInputElement>('.multiple-inputs-input').forEach((input) => {
             tempValues.push(input.value);
         });
         setInputValues(tempValues);
@@ -48,12 +54,12 @@ function multipleInputsHook(props: InputProps): JSX.Element {
     return (
         <div className="input-wrapper-multiple">
             <label className="label">{label}</label>
-            {inputs.map((inputProps: any) => (
+            {inputs.map(({ id, ...rest }) => (
                 <input
-                    key={inputProps.id}
+                    key={id}
                     className="multiple-inputs-input"
-                    onChange={(e: any) => getAllInputValues(e.target.id, e)}
-                    {...inputProps}
+                    onChange={(e: React.ChangeEvent) => getAllInputValues(e.target.id, e)}
+                    {...rest}
                 />
             ))}
             {inputs.length < 11 && (

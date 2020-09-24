@@ -12,7 +12,7 @@ interface TabProps {
 
 function Tab(props: TabProps): JSX.Element {
     const { id, type, label, handleUpdateFilters } = props;
-    const filters = useStore<any>((state) => state.filters);
+    const filters = useStore((state) => state.filters);
 
     const isActive = id === filters[type];
     return (
