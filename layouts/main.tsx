@@ -1,12 +1,12 @@
 import { useContext, useEffect } from 'react';
-import { Context } from 'typings';
+import { Context } from '../types/interfaces';
 import { useQuery } from '@apollo/react-hooks';
 
 // import context from '../context';
 import { ME } from '../queries';
 
 interface MainLayoutProps {
-    children: any;
+    children: React.ReactNode;
 }
 
 function MainLayout(props: MainLayoutProps) {

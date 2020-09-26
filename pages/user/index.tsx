@@ -16,8 +16,8 @@ import RedditAuth from '../../components/RedditAuth';
 import Cards from '../../components/Cards';
 
 function User() {
-    const user = useStore<any>((state) => state.user);
-    const setUserWants = useStore<any>((state) => state.setUserWants);
+    const user = useStore((state) => state.user);
+    const setUserWants = useStore((state) => state.setUserWants);
 
     // TODO find way to implement this on cache
     const { data: userWantSetsResponse, loading: userWantsLoading } = useQuery(USER_WANTS_SETS, {

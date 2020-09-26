@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { AppProps } from 'next/app';
-import { User } from 'typings';
+import { User } from '../types/interfaces';
 import { ApolloClient, ApolloProvider } from '@apollo/client';
 
 import Nav from '../components/Nav';
@@ -16,7 +16,7 @@ import useStore from '../context';
 function MyApp({ Component, pageProps }: AppProps) {
     const apolloClient = useApollo(pageProps.initialApolloState);
     const isBrowser = typeof window !== `undefined`;
-    const setUser = useStore<any>((state) => state.setUser);
+    const setUser = useStore((state) => state.setUser);
 
     async function fetchMe() {
         const { data } = await apolloClient.query({

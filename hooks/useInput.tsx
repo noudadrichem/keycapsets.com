@@ -1,18 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, HTMLProps, LegacyRef, ChangeEvent } from 'react';
 
-export interface InputProps {
-    placeholder?: string;
-    label?: string;
-    type?: string;
-    id?: string;
-    defaultValue?: string;
-    onChange?: Function | any;
-    reference?: any;
-    className?: string;
+interface InputProps extends HTMLProps<HTMLInputElement> {
+    reference?: LegacyRef<HTMLInputElement>;
     autoFocus?: boolean;
 }
 
-function Input(props: InputProps): JSX.Element {
+function Input(props: InputProps & HTMLProps<HTMLInputElement>): JSX.Element {
     const { type = 'text', label, id, onChange, defaultValue, placeholder, reference, className } = props;
     return (
         <div className={`input-wrapper ${type} ${className}`}>
@@ -34,14 +27,14 @@ function Input(props: InputProps): JSX.Element {
     );
 }
 
-function useInput(props: InputProps): any[] {
+function useInput(props: InputProps) {
     const { type = 'text', label, placeholder, id, defaultValue = '', autoFocus } = props;
     const [value, setValue] = useState(defaultValue);
     const input = useRef(null);
 
-    function onInputChange(e) {
+    function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
         if (type === 'checkbox') {
-            setValue(e.target.checked);
+            setValue((e.target.checked as unknown) as typeof defaultValue);
         } else {
             setValue(e.target.value);
         }

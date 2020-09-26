@@ -27,16 +27,16 @@ export function handleRedditAuth() {
 function RedditAuth(props: RedditAuthProps): JSX.Element {
     const { text, callback, disabled, asLink = false } = props;
     const router: NextRouter = useRouter();
-    const client: any = useApolloClient();
-    const setUser = useStore<any>((state) => state.setUser);
+    const client = useApolloClient();
+    const setUser = useStore((state) => state.setUser);
 
     useEffect(() => {
         const hash = window.location.hash;
         if (hash !== '') {
-            const fragments: any = router.asPath
+            const fragments = router.asPath
                 .split('#')[1]
                 .split('&')
-                .reduce((res, fragment) => {
+                .reduce<Record<string, string>>((res, fragment) => {
                     const [key, value] = fragment.split('=');
                     return {
                         ...res,
@@ -47,7 +47,7 @@ function RedditAuth(props: RedditAuthProps): JSX.Element {
         }
     }, []);
 
-    async function getAccesToken(token: any, state: any) {
+    async function getAccesToken(token: string, state: unknown) {
         const readableStream: Response = await fetch('https://oauth.reddit.com/api/v1/me', {
             headers: {
                 Authorization: 'Bearer ' + token,

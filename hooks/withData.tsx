@@ -3,7 +3,7 @@ import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { createUploadLink } from 'apollo-upload-client';
 import { setContext } from '@apollo/client/link/context';
 
-let apolloClient: any;
+let apolloClient: ApolloClient<{}>;
 let token: string;
 
 const authLink = setContext((_, { headers }) => {
@@ -34,7 +34,7 @@ function createApolloClient() {
     });
 }
 
-export function initializeApollo(initialState = null): ApolloClient<any> {
+export function initializeApollo(initialState = null): ApolloClient<{}> {
     const _apolloClient = apolloClient ?? createApolloClient();
     if (initialState) {
         const existingCache = _apolloClient.extract();
