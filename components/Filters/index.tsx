@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { SelectOption } from 'typings';
+import { SelectOption } from '../../types/interfaces';
 import {
     AVAILABILITY_FILTER,
     AVAILABILITY_OPTIONS,
@@ -24,8 +24,8 @@ function Filters(props: FiltersProps): JSX.Element {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [isExtraFiltersOpen, setIsExtraFilterOpen] = useState<boolean>(false);
     const router = useRouter();
-    const setFilters = useStore<any>((state) => state.setFilters);
-    const filters = useStore<any>((state) => state.filters);
+    const setFilters = useStore((state) => state.setFilters);
+    const filters = useStore((state) => state.filters);
 
     // useEffect(() => {
     //     const hasUrlQuery = Object.keys(router.query).length;
@@ -119,7 +119,7 @@ function Filters(props: FiltersProps): JSX.Element {
     }
 
     function getLabelByAvailability(tab: string): string {
-        const labelOptions: any = {
+        const labelOptions = {
             none: 'All',
             ic: 'Interest Check',
             gb: 'In Groupbuy',

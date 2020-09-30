@@ -1,6 +1,12 @@
 import create from 'zustand';
 
-import { InititalState, Filters, User } from 'typings';
+import { InititalState, Filters, User, Keycapset } from './types/interfaces';
+
+interface Actions {
+    setUser(user: User): void;
+    setUserWants(userWants: Keycapset[]): void;
+    setFilters(filters: Filters): void;
+}
 
 export const INITITAL_STATE: InititalState = {
     filters: {
@@ -18,13 +24,13 @@ export const INITITAL_STATE: InititalState = {
     user: null,
 };
 
-const useStore = create((set) => ({
+const useStore = create<InititalState & Actions>((set) => ({
     ...INITITAL_STATE,
     setUser: (user: User) => set({ user, isLoggedIn: true }),
-    setUserWants: (userWants: any) => set({ userWants }),
+    setUserWants: (userWants: Keycapset[]) => set({ userWants }),
     setFilters: (filters: Filters) => set({ filters }),
 }));
 
-useStore.subscribe(console.log, (s) => s.filters);
+// useStore.subscribe(console.log, (s) => s.filters);
 
 export default useStore;

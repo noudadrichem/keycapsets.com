@@ -11,7 +11,7 @@ import { IMG_UPLOAD_FORM_DATA } from '../../queries';
 interface UploadProps {}
 
 function Upload(props: UploadProps) {
-    const [uploadFile] = useMutation<any>(IMG_UPLOAD_FORM_DATA);
+    const [uploadFile] = useMutation(IMG_UPLOAD_FORM_DATA);
 
     // async function moetje(evt) {
     //     const file = evt.target.files[0];

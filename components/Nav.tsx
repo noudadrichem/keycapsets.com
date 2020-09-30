@@ -43,8 +43,8 @@ function Nav(props: NavProps): JSX.Element {
     const { isLargeContainer } = props;
     const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
     const router = useRouter();
-    const user = useStore<any>((state) => state.user);
-    const isLoggedIn = useStore<any>((state) => state.isLoggedIn);
+    const user = useStore((state) => state.user);
+    const isLoggedIn = useStore((state) => state.isLoggedIn);
 
     useEffect(
         function listenToRouteChange() {

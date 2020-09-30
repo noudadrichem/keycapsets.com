@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router } from 'next/router';
+import { Router, useRouter } from 'next/router';
 import withGA from 'next-ga';
 
 import Heading from '../../components/Heading';
@@ -9,6 +9,7 @@ import RedditIcon from '../../components/RedditIcon';
 import Button from '../../components/Button';
 
 function SignUp() {
+    const router = useRouter();
     return (
         <div className="container sign-up">
             <Heading mainTitle="Sign up with either Google or Reddit" subTitle="" left />
@@ -28,7 +29,9 @@ function SignUp() {
 
             <div className="cards">
                 <div className="card center">
-                    <Link href="/sign-up/google">
+                    <Link
+                        href={`/sign-up/google${router.query.next !== undefined ? `?next=${router.query.next}` : ''}`}
+                    >
                         <a>
                             <GoogleIcon variant="dark" size={64} />
                             <Button variant="primary" size="sm">
@@ -39,7 +42,9 @@ function SignUp() {
                 </div>
 
                 <div className="card center">
-                    <Link href="/sign-up/reddit">
+                    <Link
+                        href={`/sign-up/reddit${router.query.next !== undefined ? `?next=${router.query.next}` : ''}`}
+                    >
                         <a>
                             <RedditIcon variant="dark" size={64} />
                             <Button variant="primary" size="sm">

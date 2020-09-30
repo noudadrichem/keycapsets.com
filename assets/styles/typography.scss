@@ -89,10 +89,6 @@ p {
         font-size: 14px;
     }
 
-    &.light {
-        color: var(--text-color-light);
-    }
-
     &.alinea {
         margin-bottom: 24px;
     }
@@ -185,6 +181,14 @@ span {
 
 .no-bold {
     font-weight: normal;
+}
+
+.bold {
+    font-weight: 500;
+}
+
+.light {
+    color: var(--text-color-light);
 }
 
 span.small {

@@ -1,24 +1,22 @@
-import React, { ReactNode } from 'react';
+import React, { HTMLProps, ReactNode } from 'react';
 
-interface ButtonProps {
-    size?: 'sm' | 'md' | 'lg';
-    type: String;
-    variant: 'primary' | 'secondary' | 'inverted' | 'tab';
-    className?: String;
-    isDisabled?: boolean;
-    isFullWidth?: boolean;
-    children?: ReactNode;
-    onClick?: any;
-}
+// interface ButtonProps {
+//     size?: 'sm' | 'md' | 'lg';
+//     type: string;
+//     variant: 'primary' | 'secondary' | 'inverted' | 'tab';
+//     isDisabled?: boolean;
+//     isFullWidth?: boolean;
+// }
 
-function Button(props: ButtonProps): JSX.Element {
-    const { size, type, variant, isDisabled, isFullWidth, children, className, onClick } = props;
+function Button(props: any) {
+    const { size, type, variant, isDisabled, isFullWidth, children, className, onClick, style } = props;
 
     return (
         <button
             className={`btn ${variant} ${size} ${type} ${className} ${isFullWidth ? 'full-width' : ''}`}
             disabled={isDisabled}
             onClick={onClick}
+            style={style}
         >
             {children}
         </button>
@@ -27,6 +25,7 @@ function Button(props: ButtonProps): JSX.Element {
 
 Button.defaultProps = {
     type: 'button',
+    size: 'md',
 };
 
 export default Button;

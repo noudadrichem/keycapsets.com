@@ -44,6 +44,10 @@ function Meta(props: MetaProps) {
             <meta key="meta_og_image" property="og:image" content={metaImgUrl || META_IMG_URL} />
             <meta key="meta_twitter_image" name="twitter:image" content={metaImgUrl || META_IMG_URL} />
 
+            <meta property="twitter:card" content="summary_large_image" />
+
+            <meta key="meta_og_image" property="og:image:og:image:secure_url" content={metaImgUrl || META_IMG_URL} />
+
             {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
             <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115865530-2"></script>
             <script dangerouslySetInnerHTML={setGoogleTags()} />

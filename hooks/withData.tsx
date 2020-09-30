@@ -3,7 +3,7 @@ import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { createUploadLink } from 'apollo-upload-client';
 import { setContext } from '@apollo/client/link/context';
 
-let apolloClient: any;
+let apolloClient: ApolloClient<{}>;
 let token: string;
 
 const authLink = setContext((_, { headers }) => {
@@ -25,16 +25,16 @@ function createApolloClient() {
         ssrMode: isBrowser,
         link: authLink.concat(
             createUploadLink({
-                // uri: 'http://localhost:4000/graphql',
+                uri: 'http://localhost:4000/graphql',
                 // uri: 'https://api-testing.keycapsets.com/graphql',
-                uri: 'https://api.keycapsets.com/graphql',
+                // uri: 'https://api.keycapsets.com/graphql',
             })
         ),
         cache: new InMemoryCache(),
     });
 }
 
-export function initializeApollo(initialState = null): ApolloClient<any> {
+export function initializeApollo(initialState = null): ApolloClient<{}> {
     const _apolloClient = apolloClient ?? createApolloClient();
     if (initialState) {
         const existingCache = _apolloClient.extract();
