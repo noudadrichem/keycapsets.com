@@ -31,6 +31,7 @@ function Images(): JSX.Element {
     const { data: userWantSetsResponse, loading: userWantsLoading } = useQuery(USER_WANTS_SETS, {
         fetchPolicy: 'network-only',
     });
+
     useEffect(() => {
         if (!userWantsLoading) {
             setUserWants(userWantSetsResponse.userWantsSets);
@@ -49,7 +50,6 @@ function Images(): JSX.Element {
         function handleLoadMore() {
             if (atBottom) {
                 if (!loading) {
-                    console.log('load more...');
                     loadMore(data.keycapsets.length || 0);
                 }
             }

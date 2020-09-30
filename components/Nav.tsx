@@ -87,7 +87,7 @@ function Nav(props: NavProps): JSX.Element {
                                 <Logo width={106} />
                             </a>
                         </Link>
-                        {/* <Pill color="gray" text="BETA" /> */}
+                        <Pill color="gray" text="BETA" />
                     </div>
 
                     <div className={`nav-items ${isNavOpen ? 'open' : 'closed'}`}>

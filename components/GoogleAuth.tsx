@@ -38,12 +38,13 @@ function GoogleAuth(props: GoogleAuthProps): JSX.Element {
             });
             setUser(googleLogin.user);
             loginUser(googleLogin);
-
-            if (googleLogin.firstLogin) {
-                router.push('/user/edit');
-                return;
-            }
-            router.push('/');
+            const routes = {
+                next: `${router.query.next}`,
+                edit: '/user/edit',
+                home: '/',
+            };
+            const route = router.query.next !== undefined ? 'next' : googleLogin.firstlogin ? 'edit' : 'home';
+            router.push(routes[route]);
         } catch (err) {
             console.error(err);
         }

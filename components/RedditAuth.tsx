@@ -65,11 +65,13 @@ function RedditAuth(props: RedditAuthProps): JSX.Element {
         });
         setUser(redditLogin.user);
         loginUser(redditLogin);
-        if (redditLogin.firstLogin) {
-            router.push('/user/edit');
-            return;
-        }
-        router.push('/');
+        const routes = {
+            next: `${router.query.next}`,
+            edit: '/user/edit',
+            home: '/',
+        };
+        const route = router.query.next !== undefined ? 'next' : redditLogin.firstlogin ? 'edit' : 'home';
+        router.push(routes[route]);
     }
 
     return asLink ? (

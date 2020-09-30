@@ -68,7 +68,6 @@ function CTACard(props: CTACardProps): JSX.Element {
             <Button
                 onClick={() => (window.location.href = 'https://github.com/noudadrichem/keycapsets.com/issues')}
                 variant="primary"
-                size="md"
                 className="center"
             >
                 Report bug
