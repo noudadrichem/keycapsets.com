@@ -1,14 +1,14 @@
 import React, { HTMLProps, ReactNode } from 'react';
 
-interface ButtonProps {
-    size?: 'sm' | 'md' | 'lg';
-    type: string;
-    variant: 'primary' | 'secondary' | 'inverted' | 'tab';
-    isDisabled?: boolean;
-    isFullWidth?: boolean;
-}
+// interface ButtonProps {
+//     size?: 'sm' | 'md' | 'lg';
+//     type: string;
+//     variant: 'primary' | 'secondary' | 'inverted' | 'tab';
+//     isDisabled?: boolean;
+//     isFullWidth?: boolean;
+// }
 
-function Button(props: ButtonProps & HTMLProps<HTMLButtonElement>): JSX.Element {
+function Button(props: any) {
     const { size, type, variant, isDisabled, isFullWidth, children, className, onClick, style } = props;
 
     return (

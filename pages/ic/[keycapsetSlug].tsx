@@ -26,7 +26,6 @@ function InterestCheck(props: InterestCheckProps) {
     const { keycapset } = props;
     const { interestCheck } = keycapset;
     const user = useStore((state) => state.user);
-
     const router = useRouter();
     const state = useInterestCheckStore((state) => ({
         setInterestCheck: state.setInterestCheck,
@@ -42,7 +41,7 @@ function InterestCheck(props: InterestCheckProps) {
     }));
 
     useEffect(() => {
-        console.log(keycapset._id, user);
+        console.log(keycapset._id);
         state.setInterestCheck(interestCheck);
         state.setKeycapset(keycapset);
     }, []);
