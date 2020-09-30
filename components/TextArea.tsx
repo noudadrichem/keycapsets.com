@@ -1,7 +1,9 @@
-import React from 'react';
-import { InputProps } from '../hooks/useInput';
+import React, { HTMLProps, LegacyRef } from 'react';
 
-interface TextAreaProps extends InputProps {}
+export interface TextAreaProps extends HTMLProps<HTMLTextAreaElement> {
+    reference?: LegacyRef<HTMLTextAreaElement>;
+    autoFocus?: boolean;
+}
 
 function TextArea(props: TextAreaProps): JSX.Element {
     const { label, id, onChange, defaultValue, placeholder, reference, className } = props;

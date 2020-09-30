@@ -25,14 +25,11 @@ function LikeSet(props: LikeSetProps) {
         const wantsClone = [...userWants];
         const indexOfSetInWants = userWants.map((s: Keycapset) => s._id).indexOf(id);
         wantsClone.splice(indexOfSetInWants, 1);
-        console.log('remove set ', wantsClone);
         return wantsClone;
     }
 
     function adduserWants(keycapset: Keycapset): Keycapset[] {
-        const x = [...userWants, keycapset];
-        console.log('add set ', [...userWants, keycapset]);
-        return x;
+        return [...userWants, keycapset];
     }
 
     async function userWantSet(evt: React.MouseEvent<HTMLSpanElement>) {

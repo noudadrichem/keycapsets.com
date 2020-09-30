@@ -1,6 +1,6 @@
 import { State } from 'zustand';
 
-interface Kit {
+export interface Kit {
     name: string;
     imgUrl: string;
 }
@@ -29,6 +29,19 @@ export interface Keycapset {
     designedBy?: string[];
     kits: Kit[];
     metaUrl?: string;
+    interestCheck: InterestCheck;
+}
+
+export interface InterestCheck {
+    _id: String;
+    comments: any[];
+    questions: Question[];
+}
+
+export interface Question {
+    _id: string;
+    text: string;
+    kit: Kit;
 }
 
 export interface SelectOption {

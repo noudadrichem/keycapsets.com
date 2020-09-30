@@ -56,6 +56,8 @@ function SetPage(props: SetPageProps) {
             autoPlaySpeed: 1600,
         };
 
+        console.log(keycapset._id);
+
         return (
             <>
                 <div className="set">

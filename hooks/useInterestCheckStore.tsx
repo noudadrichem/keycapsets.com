@@ -1,36 +1,49 @@
-import { InterestCheck, Keycapset } from 'typings';
+import { InterestCheck, Keycapset, Question } from '../types/interfaces';
 import create from 'zustand';
+import next from 'next';
 
-export type ICStore = {
+export enum Status {
+    Start,
+    Ongoing,
+    Done,
+}
+
+type State = {
     keycapset: Keycapset;
     interestCheck: InterestCheck;
-    nextQuestionId: string;
-    previousQuestionId: string;
-    currentIdx: number;
-    setInterestCheck?(interestCheck: InterestCheck): void;
-    setKeycapset?(keycapset: Keycapset): void;
-    setNextQuestionId?(nextQuestionId: string): void;
-    setPrevQuestionId?(previousQuestionId: string): void;
-    setInStore?(): void;
-    getFromStore?(): void;
-    setQuestionIdx?(): void;
+    question: QuestionAction;
+    status: Status;
 };
 
-export const INITITAL_IC_STATE: ICStore = {
+type QuestionAction = {
+    idx: number;
+    question?: Question;
+    next?: number;
+    previous?: number;
+};
+
+type Actions = {
+    setInterestCheck(interestCheck: InterestCheck): void;
+    setKeycapset(keycapset: Keycapset): void;
+    setQuestion(question: QuestionAction): void;
+    setStatus(status: Status): void;
+    setInStore(): void;
+    getFromStore(): void;
+};
+
+export const INITITAL_IC_STATE: State = {
     interestCheck: null,
     keycapset: null,
-    currentIdx: 0,
-    nextQuestionId: null,
-    previousQuestionId: null,
+    question: null,
+    status: Status.Start,
 };
 
-const useInterestCheckStore = create((set, get) => ({
+const useInterestCheckStore = create<State & Actions>((set, get) => ({
     ...INITITAL_IC_STATE,
     setInterestCheck: (interestCheck: InterestCheck) => set({ interestCheck }),
     setKeycapset: (keycapset: Keycapset) => set({ keycapset }),
-    setNextQuestionId: (nextQuestionId: string) => set({ nextQuestionId }),
-    setPrevQuestionId: (previousQuestionId: string) => set({ previousQuestionId }),
-    setQuestionIdx: (idx: number) => set({ currentIdx: idx }),
+    setQuestion: (question: any) => set({ question }),
+    setStatus: (status: Status) => set({ status }),
     getFromStore: () => {
         const hasPersistedStore = window.localStorage.getItem('IC');
         if (hasPersistedStore) {

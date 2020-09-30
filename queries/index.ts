@@ -321,3 +321,11 @@ export const GET_KEYCAPSET_IC = gql`
         }
     }
 `;
+
+export const ADD_ANSWER_TO_QUESTION = gql`
+    mutation ADD_ANSWER_TO_QUESTION($input: AnswerInput!) {
+        addAnswerToQuestion(input: $input) {
+            text
+        }
+    }
+`;
