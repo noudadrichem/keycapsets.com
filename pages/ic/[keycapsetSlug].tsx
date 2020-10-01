@@ -122,7 +122,7 @@ function InterestCheck(props: InterestCheckProps) {
             {state.status === Status.Done &&
                 renderStartEnd({
                     title: `Thank you for sharing your opinion!`,
-                    sub: `That was fast! Do you also want to run your interest check here to get all the power you need?`,
+                    sub: `That was fast! Do you also want to run your interest check here to get all the insights you need?`,
                     action: redirectToSet,
                     btn1Text: `Go back to ${state.name}`,
                     btn2Text: `Let's work together`,
