@@ -12,20 +12,7 @@ function SignUp() {
     const router = useRouter();
     return (
         <div className="container sign-up">
-            <Heading mainTitle="Sign up with either Google or Reddit" subTitle="" left />
-
-            <div className="features-container">
-                <h3>Features</h3>
-                <ul className="features">
-                    <li>Favorite sets, see your collection. </li>
-                    <li>Create your own collections for e.g. your board. *</li>
-                    <li>Opt into groupbuy updates via mail. *</li>
-                    <li>Upload a keycapset. *</li>
-                    <li>Collect IC votes. *</li>
-                    <li>Get a full fledged designed page for your set. *</li>
-                    <li>Hook up to vendors to get your MOQ data in one place. *</li>
-                </ul>
-            </div>
+            <Heading mainTitle="Sign up via Google or Reddit" subTitle="" left />
 
             <div className="cards">
                 <div className="card center">
@@ -34,7 +21,7 @@ function SignUp() {
                     >
                         <a>
                             <GoogleIcon variant="dark" size={64} />
-                            <Button variant="primary" size="sm">
+                            <Button variant="primary" size="lg">
                                 Sign up via Google
                             </Button>
                         </a>
@@ -47,12 +34,25 @@ function SignUp() {
                     >
                         <a>
                             <RedditIcon variant="dark" size={64} />
-                            <Button variant="primary" size="sm">
+                            <Button variant="primary" size="lg">
                                 Sign up via Reddit
                             </Button>
                         </a>
                     </Link>
                 </div>
+            </div>
+
+            <div className="features-container">
+                <h3>Features</h3>
+                <ul className="features">
+                    <li>Favorite sets, see your collection. </li>
+                    <li>Create your own collections for e.g. your board. *</li>
+                    <li>Opt into groupbuy updates via mail. *</li>
+                    <li>Upload a keycapset. *</li>
+                    <li>Collect IC votes. *</li>
+                    <li>Get a full fledged designed page for your set. *</li>
+                    <li>Hook up to vendors to get your MOQ data in one place. *</li>
+                </ul>
             </div>
 
             <h3>Details</h3>
