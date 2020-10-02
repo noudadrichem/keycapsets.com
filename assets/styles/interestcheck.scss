@@ -15,7 +15,7 @@
     &-container {
         flex-direction: column;
         transform: translateY(-5%);
-        min-height: calc(97vh - 16px);
+        min-height: calc(90vh - 16px);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -59,7 +59,6 @@
         &-controls {
             display: flex;
             justify-content: flex-end;
-            // justify-content: space-between;
             margin-top: 16px;
         }
     }
