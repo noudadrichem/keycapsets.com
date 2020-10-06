@@ -299,7 +299,6 @@ export const GET_KEYCAPSET_IC = gql`
             _id
             name
             coverImageUrl
-            coverImageUrl
             websiteUrl
             slug
             accentColor1
@@ -308,11 +307,15 @@ export const GET_KEYCAPSET_IC = gql`
             interestCheck {
                 _id
                 questions {
-                    text
                     _id
+                    type
+                    order
+                    text
+                    options {
+                        text
+                    }
                     kit {
                         name
-                        description
                         imgUrl
                     }
                 }
@@ -325,6 +328,14 @@ export const GET_KEYCAPSET_IC = gql`
 export const ADD_ANSWER_TO_QUESTION = gql`
     mutation ADD_ANSWER_TO_QUESTION($input: AnswerInput!) {
         addAnswerToQuestion(input: $input) {
+            text
+        }
+    }
+`;
+
+export const ADD_COMMENT_TO_IC = gql`
+    mutation ADD_COMMENT_TO_IC($input: CommentInput!) {
+        addCommentToInterestCheck(input: $input) {
             text
         }
     }

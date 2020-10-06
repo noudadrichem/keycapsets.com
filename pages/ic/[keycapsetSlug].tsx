@@ -14,6 +14,7 @@ import InterestCheckLayout from '../../layouts/interestCheckLayout';
 
 import { QuestionContainer } from '../../components/question';
 import useStore from '../../context';
+import CommentContainer from '../../components/commenting/CommentContainer';
 
 interface InterestCheckProps {
     keycapset: Keycapset;
@@ -42,6 +43,7 @@ function InterestCheck(props: InterestCheckProps) {
 
     useEffect(() => {
         console.log(keycapset._id);
+        interestCheck.questions.sort((a, b) => (a.order < b.order ? -1 : 1));
         state.setInterestCheck(interestCheck);
         state.setKeycapset(keycapset);
     }, []);
@@ -72,7 +74,7 @@ function InterestCheck(props: InterestCheckProps) {
 
     function renderStartEnd(props: any) {
         return (
-            <>
+            <div className="start-end">
                 <h1 className="light bold">{props.title}</h1>
                 <h5 className="light">{props.sub}</h5>
                 <span style={{ display: 'flex', marginTop: 24 }}>
@@ -80,7 +82,7 @@ function InterestCheck(props: InterestCheckProps) {
                         <Button
                             variant="primary"
                             size="lg"
-                            onClick={redirectToSignUp}
+                            onClick={props.action2}
                             style={{
                                 marginRight: 12,
                             }}
@@ -91,7 +93,7 @@ function InterestCheck(props: InterestCheckProps) {
                     <Button
                         variant="primary"
                         size="lg"
-                        onClick={props.action}
+                        onClick={props.action1}
                         className="custom"
                         style={{
                             backgroundColor: state.accentColor1,
@@ -101,7 +103,7 @@ function InterestCheck(props: InterestCheckProps) {
                         {props.btn1Text}
                     </Button>
                 </span>
-            </>
+            </div>
         );
     }
 
@@ -112,18 +114,23 @@ function InterestCheck(props: InterestCheckProps) {
                 renderStartEnd({
                     title: `${state.name} Interest check`,
                     sub: `Tailormade Interest check forms with analytics to run your IC. By and for keycapset designers!`,
-                    action: startIc,
+                    action1: startIc,
+                    action2: redirectToSignUp,
                     btn1Text: user === null ? 'Login' : 'Fill in form',
                     btn2Text: user === null ? 'Sign Up' : null,
                 })}
 
             {state.status === Status.Ongoing && <QuestionContainer />}
 
+            {state.status === Status.Commenting && <CommentContainer />}
+
             {state.status === Status.Done &&
                 renderStartEnd({
                     title: `Thank you for sharing your opinion!`,
                     sub: `That was fast! Do you also want to run your interest check here to get all the insights you need?`,
-                    action: redirectToSet,
+                    action1: redirectToSet,
+                    action2: () =>
+                        (document.location.href = `mailto:contact@keycapsets.com?subject=I'd like to run my Interest check on Keycapsets!`),
                     btn1Text: `Go back to ${state.name}`,
                     btn2Text: `Let's work together`,
                 })}

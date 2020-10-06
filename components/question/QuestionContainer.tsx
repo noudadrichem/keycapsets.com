@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 import Button from '../Button';
 import useInterestCheckStore, { Status } from '../../hooks/useInterestCheckStore';
-import Question from './Question';
+import QuestionAnswerer from './Question';
 import { useMutation } from '@apollo/react-hooks';
 import { ADD_ANSWER_TO_QUESTION } from '../../queries';
-import Arrow from '../Arrow';
 
 function QuestionContainer() {
     const [addQuestionToAnswer] = useMutation(ADD_ANSWER_TO_QUESTION);
@@ -24,7 +23,6 @@ function QuestionContainer() {
         function updateQuestion() {
             const question = state.interestCheck.questions[state.question.idx];
             const newQuestionAction = getQuestionState(question._id);
-            console.log('newQuestionAction...', newQuestionAction);
             state.setQuestion(newQuestionAction);
         },
         [state.question.idx]
@@ -36,7 +34,6 @@ function QuestionContainer() {
         const currentQuestionIndex = state.interestCheck.questions.map((q) => q._id).indexOf(questionId);
         const next = currentQuestionIndex + 1;
         const previous = currentQuestionIndex - 1;
-        console.log({ next });
         return {
             question: getQuestion(currentQuestionIndex),
             idx: currentQuestionIndex,
@@ -48,6 +45,7 @@ function QuestionContainer() {
     async function nextQuestion() {
         try {
             await uploadQuestionAnswer({
+                type: state.question.question.type,
                 questionId: state.question.question._id,
                 text: answer,
             });
@@ -59,7 +57,7 @@ function QuestionContainer() {
                 idx: state.question.next,
             });
         } else {
-            state.setStatus(Status.Done);
+            state.setStatus(Status.Commenting);
         }
     }
 
@@ -73,7 +71,7 @@ function QuestionContainer() {
         }
     }
 
-    const setAnswerValue = (e: React.ChangeEvent<HTMLTextAreaElement>) => setAnswer(e.target.value);
+    const setAnswerValue = (value: string) => setAnswer(value);
 
     async function uploadQuestionAnswer(input: any) {
         try {
@@ -81,10 +79,11 @@ function QuestionContainer() {
             const response = await addQuestionToAnswer({
                 variables: { input },
             });
-            setAnswer(null);
+            setAnswer('');
             setLoading(false);
             console.log('response...', response);
         } catch (err) {
+            state.setStatus(Status.Error);
             throw err;
         }
     }
@@ -100,20 +99,21 @@ function QuestionContainer() {
                 </div>
 
                 {state.question.question && (
-                    <Question getAnswerValue={setAnswerValue} question={state.question.question} />
+                    <QuestionAnswerer getAnswerValue={setAnswerValue} question={state.question.question} />
                 )}
 
                 <div className="question-controls">
-                    {/* <Button variant="secondary" onClick={previousQuestion}>Previous</Button> */}
-                    <Button
-                        variant="primary"
-                        style={{ backgroundColor: state.accentColor1 }}
-                        className="custom"
-                        onClick={nextQuestion}
-                        isDisabled={answer === ''}
-                    >
-                        {state.question.idx + 1 === state.interestCheck.questions.length ? 'Submit' : 'Next'}
-                    </Button>
+                    <span>
+                        <Button
+                            variant="primary"
+                            style={{ backgroundColor: state.accentColor1 }}
+                            className="custom"
+                            onClick={nextQuestion}
+                            isDisabled={answer === '' || loading}
+                        >
+                            {state.question.idx + 1 === state.interestCheck.questions.length ? 'Submit' : 'Next'}
+                        </Button>
+                    </span>
                 </div>
             </div>
         </>

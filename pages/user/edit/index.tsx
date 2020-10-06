@@ -26,19 +26,11 @@ type EditProfileInputs = {
 };
 
 function UserEdit(props: UserEditProps): JSX.Element {
-    const router = useRouter();
     const { register, handleSubmit, errors } = useForm<EditProfileInputs>();
     const [updateUserMutation] = useMutation(UPDATE_USER);
     const [requestDesignerRole] = useMutation(REQUEST_DESIGNER_ROLE);
     const [isUpdated, setIsUpdated] = useState<boolean>(false);
     const user = useStore((state) => state.user);
-
-    // useEffect(() => {
-    //     console.log(user);
-    //     if (user === null) {
-    //         router.push('/login');
-    //     }
-    // });
 
     async function updateUser(formValues: { name: string; email: string }) {
         try {
@@ -64,15 +56,6 @@ function UserEdit(props: UserEditProps): JSX.Element {
         try {
             const response = await requestDesignerRole();
             console.log('sign up as designer...', response.data);
-            // dispatch({
-            //     type: 'set',
-            //     payload: {
-            //         user: {
-            //             ...user,
-            //             isDesigner: true,
-            //         },
-            //     },
-            // });
         } catch (err) {
             console.log(err);
         }

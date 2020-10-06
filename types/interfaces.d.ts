@@ -42,6 +42,9 @@ export interface Question {
     _id: string;
     text: string;
     kit: Kit;
+    options: { text: string };
+    type: 'open' | 'multiple';
+    order: number;
 }
 
 export interface SelectOption {
