@@ -4,42 +4,39 @@ interface CheckboxProps {
     label?: string;
     checked: boolean;
     getVal: Function;
+    id?: string | number;
+    className?: string;
+    size?: 's' | 'm' | 'l';
 }
 
-const Checkbox: React.ElementType = ({ checked, getVal }: CheckboxProps) => (
+const Checkbox: React.ElementType = ({ checked, getChecked, size = 'm' }: any) => (
     <div className="input-checkbox-container">
-        <input
-            type="checkbox"
-            className="input-checkbox-input"
-            onChange={(e) => getVal(e.target.checked)}
-        />
-        <div className={`input-checkbox-styled ${checked ? 'checked' : ''}`}>
-            <svg
-                className={`input-checkbox-check-icon ${
-                    checked ? 'checked' : ''
-                }`}
-                viewBox="0 0 24 24"
-            >
+        <input type="checkbox" className={`input-checkbox-input`} onChange={(e) => getChecked(e.target.checked)} />
+        <div className={`input-checkbox-styled ${checked ? 'checked' : ''} ${size}`}>
+            <svg className={`input-checkbox-check-icon ${checked ? 'checked' : ''} ${size}`} viewBox="0 0 24 24">
                 <polyline points="20 6 9 17 4 12" />
             </svg>
         </div>
     </div>
 );
 
-function CheckboxContainer(props: CheckboxProps): JSX.Element {
-    const { checked, getVal, label } = props;
+export default function CheckboxContainer(props: CheckboxProps): JSX.Element {
+    const { checked, getVal, label, id, className, size } = props;
+
+    function getResponse(checked: boolean) {
+        return getVal({
+            id,
+            label,
+            checked,
+        });
+    }
 
     return (
-        <div className="input-wrapper checkbox">
+        <div className={`input-wrapper checkbox ${className}`}>
             <label className="label">
-                <Checkbox
-                    checked={checked}
-                    getVal={(isChecked) => getVal(isChecked)}
-                />
-                {label}
+                <Checkbox size={size} checked={checked} getChecked={(isChecked: boolean) => getResponse(isChecked)} />
+                <span className="text">{label}</span>
             </label>
         </div>
     );
 }
-
-export default CheckboxContainer;

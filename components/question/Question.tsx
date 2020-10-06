@@ -1,18 +1,20 @@
 import React, { DOMAttributes, FormEvent } from 'react';
 import TextArea from '../TextArea';
+import { Question } from '../../types/interfaces';
+import MultipleChoiseAnswerer from './MultipleChoiceAnswerer';
 
 export interface QuestionProps {
-    question: any;
+    question: Question;
     getAnswerValue: any;
 }
 
-export default function Question(props: QuestionProps) {
+export default function QuestionAnswerer(props: QuestionProps) {
     const { question, getAnswerValue } = props;
 
     return (
         <div className="">
             <h2 className="light">{question.text}</h2>
-            {question.description && <p>{question.description}</p>}
+            {/* {question.description && <p>{question.description}</p>} */}
             {question.kit && (
                 <div className="question-cover-image">
                     <img
@@ -22,7 +24,13 @@ export default function Question(props: QuestionProps) {
                     />
                 </div>
             )}
-            <TextArea onChange={getAnswerValue} />
+
+            {
+                {
+                    open: <TextArea onChange={getAnswerValue} />,
+                    multiple: <MultipleChoiseAnswerer onChange={getAnswerValue} options={question.options} />,
+                }[question.type]
+            }
         </div>
     );
 }

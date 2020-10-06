@@ -10,24 +10,8 @@ interface MainLayoutProps {
 }
 
 function MainLayout(props: MainLayoutProps) {
-    // const { dispatch } = useContext<Context>(context);
-    const { data: me, loading } = useQuery(ME);
+    // const { data: me, loading } = useQuery(ME);
     const { children } = props;
-
-    useEffect(() => {
-        if (!loading) {
-            // dispatch({
-            //     type: 'user',
-            //     payload: {
-            //         user: me.me,
-            //     },
-            // });
-        }
-    }, [me]);
-
-    useEffect(() => {
-        console.log();
-    }, []);
 
     return (
         <>

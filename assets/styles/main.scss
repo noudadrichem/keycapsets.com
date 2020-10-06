@@ -116,6 +116,10 @@ img {
     @media screen and (max-width: $bp-laptop-md) {
         font-size: 10px;
     }
+
+    .italic {
+        font-style: italic;
+    }
 }
 
 .about {
