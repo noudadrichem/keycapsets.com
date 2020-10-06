@@ -1,8 +1,11 @@
+import Link from 'next/link';
 import { Router, useRouter } from 'next/router';
 import React, { useContext, useEffect } from 'react';
 
 import '../assets/styles/interestcheck.scss';
 import Footer from '../components/Footer';
+import Logo from '../components/Logo';
+import Pill from '../components/Pill';
 import Plus from '../components/PlusIcon';
 import useInterestCheckStore from '../hooks/useInterestCheckStore';
 
@@ -22,6 +25,13 @@ function InterestCheckLayout(props: InterestCheckLayoutProps) {
         <div className="interest-check">
             <div className="interest-check-topbar" style={{ backgroundColor: accentColor1 }}></div>
             <div className="interest-check-nav">
+                <div className="logo">
+                    <Link href="/" as="/">
+                        <a className="">
+                            <Logo width={80} />
+                        </a>
+                    </Link>
+                </div>
                 <span onClick={back}>
                     <Plus rotation={45} size={24} />
                 </span>

@@ -5,7 +5,9 @@ import next from 'next';
 export enum Status {
     Start,
     Ongoing,
+    Commenting,
     Done,
+    Error,
 }
 
 type State = {

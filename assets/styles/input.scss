@@ -55,6 +55,12 @@
         }
     }
 
+    &.checkbox {
+        .label {
+            display: flex;
+        }
+    }
+
     textarea.input {
         min-height: 184px;
     }

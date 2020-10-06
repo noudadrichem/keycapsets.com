@@ -50,7 +50,7 @@ function Footer(props: FooterProps): JSX.Element {
                     </p>
                 </div>
 
-                <div className="sponsored-by">
+                {/* <div className="sponsored-by">
                     <a href="https://candykeys.com/" target="_blank" className="sponsored-by">
                         Hosting sponsored by &nbsp;
                         <img
@@ -59,7 +59,7 @@ function Footer(props: FooterProps): JSX.Element {
                         />
                         CandyKeys
                     </a>
-                </div>
+                </div> */}
 
                 <div className="socials-container">
                     {/* <a href="https://bunq.me/noudadrichem/2/">Buy me a cup of coffee</a> */}

@@ -116,6 +116,10 @@ img {
     @media screen and (max-width: $bp-laptop-md) {
         font-size: 10px;
     }
+
+    .italic {
+        font-style: italic;
+    }
 }
 
 .about {
@@ -154,7 +158,8 @@ img {
             color: inherit;
             font-size: 18px;
             margin-bottom: 8px;
-            list-style-image: url('/images/keycap-icon-8.svg');
+            list-style: square;
+            // list-style-image: url('/images/keycap-icon-8.svg');
 
             @media screen and (max-width: 768px) {
                 font-size: 14px;
