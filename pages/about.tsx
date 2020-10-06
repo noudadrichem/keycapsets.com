@@ -20,16 +20,9 @@ function About() {
                 <div className="text-container">
                     <div style={{ margin: '0 0 64px 0' }}>
                         <ButtonLink isLarge href="https://github.com/noudadrichem/keycapsets.com/issues">
-                            Report bugs or leave feedback here
+                            Leave feedback
                         </ButtonLink>
                     </div>
-
-                    {/* <h4>More about the upload incident</h4>
-                <div style={{ margin: '0 0 64px 0' }}>
-                    <ButtonLink isLarge href="/upload-statement">
-                        We made a statement.
-                    </ButtonLink>
-                </div> */}
 
                     <h4 className="alinea-title">The story</h4>
                     <p className="light alinea">
@@ -54,6 +47,15 @@ function About() {
                         builds!
                     </p>
 
+                    <h4 className="alinea-title">For set designers</h4>
+                    <p className="light alinea">
+                        I want to make it easier for you as a designer to express yourself. <br /> My goal is to make it
+                        possible for you to have a single webpage with all the information you need. Such as vendors,
+                        renders, previews etc. <br />
+                        Make it able to run your Interest Checks and have all analytical data you need to run a group
+                        buy in one place!
+                    </p>
+
                     <h4 className="alinea-title">For explorers</h4>
                     <p className="light alinea">
                         This could be your go-to website to look for keycapsets. I want you to be able to search based
@@ -66,13 +68,6 @@ function About() {
                     <p className="light alinea">
                         This site could be an advantage to your business. From both the overview and the page with the
                         single set I'll proxy the user to your shop!
-                    </p>
-
-                    <h4 className="alinea-title">For set designers</h4>
-                    <p className="light alinea">
-                        I want to make it easier for you as a designer to express yourself. <br /> My goal is to make it
-                        possible for you to have a single webpage with all the information you need. Such as vendors,
-                        renders, previews etc.
                     </p>
 
                     {/* <ButtonLink isLarge href="/sign-up">
