@@ -5,11 +5,13 @@ import useInterestCheckStore, { Status } from '../../hooks/useInterestCheckStore
 import QuestionAnswerer from './Question';
 import { useMutation } from '@apollo/react-hooks';
 import { ADD_ANSWER_TO_QUESTION } from '../../queries';
+import CheckboxContainer, { CheckboxValue } from '../Checkbox';
 
 function QuestionContainer() {
     const [addQuestionToAnswer] = useMutation(ADD_ANSWER_TO_QUESTION);
     const [answer, setAnswer] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);
+    const [wantsUpdates, setWantsUpdates] = useState<CheckboxValue>({ checked: true });
     const state = useInterestCheckStore((state) => ({
         question: state.question,
         interestCheck: state.interestCheck,
@@ -18,6 +20,7 @@ function QuestionContainer() {
         setQuestion: state.setQuestion,
         setStatus: state.setStatus,
     }));
+    const isLastQuestion = state.question.idx + 1 === state.interestCheck.questions.length;
 
     useEffect(
         function updateQuestion() {
@@ -103,6 +106,15 @@ function QuestionContainer() {
                 )}
 
                 <div className="question-controls">
+                    {isLastQuestion && (
+                        <CheckboxContainer
+                            className="email-notification"
+                            size="m"
+                            label={`I'd like to recieve emails about ${state.name}`}
+                            getVal={(v) => setWantsUpdates(v)}
+                            checked={wantsUpdates.checked}
+                        />
+                    )}
                     <span>
                         <Button
                             variant="primary"
@@ -111,7 +123,7 @@ function QuestionContainer() {
                             onClick={nextQuestion}
                             isDisabled={answer === '' || loading}
                         >
-                            {state.question.idx + 1 === state.interestCheck.questions.length ? 'Submit' : 'Next'}
+                            {isLastQuestion ? 'Submit' : 'Next'}
                         </Button>
                     </span>
                 </div>

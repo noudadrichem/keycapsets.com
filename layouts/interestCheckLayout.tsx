@@ -14,7 +14,7 @@ interface InterestCheckLayoutProps {
 }
 
 function InterestCheckLayout(props: InterestCheckLayoutProps) {
-    const accentColor1 = useInterestCheckStore<any>((state) => state.keycapset?.accentColor1);
+    const accentColor2 = useInterestCheckStore<any>((state) => state.keycapset?.accentColor2);
     const router = useRouter();
 
     function back() {
@@ -23,7 +23,7 @@ function InterestCheckLayout(props: InterestCheckLayoutProps) {
 
     return (
         <div className="interest-check">
-            <div className="interest-check-topbar" style={{ backgroundColor: accentColor1 }}></div>
+            <div className="interest-check-topbar" style={{ backgroundColor: accentColor2 }}></div>
             <div className="interest-check-nav">
                 <div className="logo">
                     <Link href="/" as="/">

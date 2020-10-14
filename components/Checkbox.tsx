@@ -1,9 +1,15 @@
 import React, { SyntheticEvent } from 'react';
 
+export type CheckboxValue = {
+    id?: string;
+    label?: string;
+    checked: boolean;
+};
+
 interface CheckboxProps {
     label?: string;
     checked: boolean;
-    getVal: Function;
+    getVal(val: CheckboxValue): void | CheckboxValue;
     id?: string | number;
     className?: string;
     size?: 's' | 'm' | 'l';

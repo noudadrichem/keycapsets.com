@@ -37,6 +37,8 @@ function InterestCheck(props: InterestCheckProps) {
         question: state.question,
         name: keycapset.name,
         accentColor1: keycapset.accentColor1,
+        accentColor2: keycapset.accentColor2,
+        accentColor3: keycapset.accentColor3,
         coverImageUrl: keycapset.coverImageUrl,
         status: state.status,
     }));
