@@ -141,9 +141,9 @@ function SetPage(props: SetPageProps) {
                             <div className="set-kits">
                                 <h2>Kits</h2>
                                 <div className="set-kits-grid-container">
-                                    {keycapset.kits.map((kit: any) => {
+                                    {keycapset.kits.map((kit: any, idx: number) => {
                                         return (
-                                            <div>
+                                            <div key={kit.name + idx}>
                                                 <h3>{kit.name}</h3>
                                                 <img src={kit.imgUrl} alt={kit.name + '- image'} />
                                             </div>

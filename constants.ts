@@ -22,6 +22,7 @@ export const MATERIAL_OPTIONS: SelectOption[] = [
 export const PROFILE_OPTIONS: SelectOption[] = [
     { label: 'Cherry', value: 'cherry' },
     { label: 'SA', value: 'sa' },
+    { label: 'MG', value: 'mg' },
     { label: 'DSA', value: 'dsa' },
     { label: 'XDA', value: 'xda' },
     { label: 'MT3', value: 'mt3' },

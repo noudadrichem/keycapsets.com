@@ -45,12 +45,12 @@ function Footer(props: FooterProps): JSX.Element {
             <div className={`container ${isLargeContainer ? 'large' : ''}`}>
                 <div className="made-in">
                     <p>
-                        &copy; Made with <a href="https://bunq.me/noudadrichem/3/I'm%20liking%20keycapsets!">☕</a> in 
+                        &copy; Made with <a href="https://bunq.me/noudadrichem/3/I'm%20liking%20keycapsets!">☕</a> in
                         Utrecht.
                     </p>
                 </div>
 
-                <div className="sponsored-by">
+                {/* <div className="sponsored-by">
                     <a href="https://candykeys.com/" target="_blank" className="sponsored-by">
                         Hosting sponsored by &nbsp;
                         <img
@@ -59,7 +59,7 @@ function Footer(props: FooterProps): JSX.Element {
                         />
                         CandyKeys
                     </a>
-                </div>
+                </div> */}
 
                 <div className="socials-container">
                     {/* <a href="https://bunq.me/noudadrichem/2/">Buy me a cup of coffee</a> */}
