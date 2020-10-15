@@ -14,7 +14,6 @@ export default function QuestionAnswerer(props: QuestionProps) {
     return (
         <div className="">
             <h2 className="light">{question.text}</h2>
-            {/* {question.description && <p>{question.description}</p>} */}
             {question.kit && (
                 <div className="question-cover-image">
                     <img
@@ -24,7 +23,6 @@ export default function QuestionAnswerer(props: QuestionProps) {
                     />
                 </div>
             )}
-
             {
                 {
                     open: <TextArea onChange={getAnswerValue} />,

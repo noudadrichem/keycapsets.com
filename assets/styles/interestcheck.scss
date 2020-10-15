@@ -7,12 +7,10 @@
     }
 
     .start-end {
-        // @media screen and (max-width: 768px) {
         display: flex;
         text-align: center;
         align-items: center;
         flex-direction: column;
-        // }
     }
 
     &-nav {
@@ -56,8 +54,8 @@
         &-topbar {
             display: flex;
             justify-content: space-between;
+
             .label {
-                font-weight: 700;
                 letter-spacing: 0.5px;
                 font-size: 13px;
                 color: var(--text-color-lightest);
@@ -103,6 +101,14 @@
             justify-content: flex-end;
             align-items: center;
             margin-top: 16px;
+
+            .email-notification {
+                margin-right: 12px;
+
+                .label {
+                    margin: 0;
+                }
+            }
         }
     }
 

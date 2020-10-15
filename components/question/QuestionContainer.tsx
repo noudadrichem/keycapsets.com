@@ -1,16 +1,17 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Button from '../Button';
 import useInterestCheckStore, { Status } from '../../hooks/useInterestCheckStore';
 import QuestionAnswerer from './Question';
 import { useMutation } from '@apollo/react-hooks';
 import { ADD_ANSWER_TO_QUESTION } from '../../queries';
-import Arrow from '../Arrow';
+import CheckboxContainer, { CheckboxValue } from '../Checkbox';
 
 function QuestionContainer() {
     const [addQuestionToAnswer] = useMutation(ADD_ANSWER_TO_QUESTION);
     const [answer, setAnswer] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);
+    const [wantsUpdates, setWantsUpdates] = useState<CheckboxValue>({ checked: true });
     const state = useInterestCheckStore((state) => ({
         question: state.question,
         interestCheck: state.interestCheck,
@@ -19,12 +20,12 @@ function QuestionContainer() {
         setQuestion: state.setQuestion,
         setStatus: state.setStatus,
     }));
+    const isLastQuestion = state.question.idx + 1 === state.interestCheck.questions.length;
 
     useEffect(
         function updateQuestion() {
             const question = state.interestCheck.questions[state.question.idx];
             const newQuestionAction = getQuestionState(question._id);
-            console.log('newQuestionAction...', newQuestionAction);
             state.setQuestion(newQuestionAction);
         },
         [state.question.idx]
@@ -36,7 +37,6 @@ function QuestionContainer() {
         const currentQuestionIndex = state.interestCheck.questions.map((q) => q._id).indexOf(questionId);
         const next = currentQuestionIndex + 1;
         const previous = currentQuestionIndex - 1;
-        console.log({ next });
         return {
             question: getQuestion(currentQuestionIndex),
             idx: currentQuestionIndex,
@@ -111,6 +111,16 @@ function QuestionContainer() {
                 <div className="question-controls">
                     {/* <Button variant="secondary" onClick={previousQuestion}>Previous</Button> */}
                     <span>Or skip</span>
+
+                    {isLastQuestion && (
+                        <CheckboxContainer
+                            className="email-notification"
+                            size="m"
+                            label={`I'd like to recieve emails about ${state.name}`}
+                            getVal={(v) => setWantsUpdates(v)}
+                            checked={wantsUpdates.checked}
+                        />
+                    )}
                     <span>
                         <Button
                             variant="primary"
@@ -119,7 +129,7 @@ function QuestionContainer() {
                             onClick={nextQuestion}
                             isDisabled={answer === '' || loading}
                         >
-                            {state.question.idx + 1 === state.interestCheck.questions.length ? 'Submit' : 'Next'}
+                            {isLastQuestion ? 'Submit' : 'Next'}
                         </Button>
                     </span>
                 </div>
