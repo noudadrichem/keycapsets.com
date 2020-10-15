@@ -107,6 +107,7 @@
 
                 .label {
                     margin: 0;
+                    align-items: center;
                 }
             }
         }
@@ -124,6 +125,13 @@
                 font-size: 12px;
                 line-height: 18.2px;
             }
+        }
+    }
+
+    .btn-skip {
+        cursor: pointer;
+        &:hover {
+            color: var(--text-color);
         }
     }
 }
