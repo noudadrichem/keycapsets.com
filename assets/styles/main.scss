@@ -178,10 +178,6 @@ img {
     grid-template-columns: 1fr;
     grid-gap: 24px;
 
-    @media screen and (min-width: 556px) {
-        // margin: 0 12px;
-    }
-
     &.two-column {
         grid-template-columns: 1fr;
 
@@ -233,4 +229,8 @@ img {
     &:active {
         color: var(--blue);
     }
+}
+
+.no-margin {
+    margin: 0 !important;
 }

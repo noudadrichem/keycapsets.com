@@ -107,6 +107,7 @@
 
                 .label {
                     margin: 0;
+                    align-items: center;
                 }
             }
         }
@@ -117,7 +118,6 @@
 
         .label {
             font-size: 13px;
-            font-weight: 500;
             line-height: 19.2px;
 
             @media screen and (max-width: 768px) {
@@ -125,6 +125,13 @@
                 font-size: 12px;
                 line-height: 18.2px;
             }
+        }
+    }
+
+    .btn-skip {
+        cursor: pointer;
+        &:hover {
+            color: var(--text-color);
         }
     }
 }

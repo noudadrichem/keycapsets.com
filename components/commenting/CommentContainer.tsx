@@ -18,7 +18,7 @@ function CommentContainer() {
         setStatus: state.setStatus,
     }));
 
-    const setAnswerValue = (value: string) => setComment(value);
+    const setCommentValue = (value: string) => setComment(value);
 
     async function uploadCommentToIC(input: any) {
         try {
@@ -55,10 +55,10 @@ function CommentContainer() {
                 </div>
 
                 <div className="">
-                    <h2 className="light">Add a comment</h2>
-                    <label className="label italic">These are public</label>
+                    <h2 className="light">Add a public comment</h2>
+                    <label className="label italic">These are public, so be kind.</label>
                     {/* {question.description && <p>{question.description}</p>} */}
-                    <TextArea onChange={setAnswerValue} />
+                    <TextArea onChange={setCommentValue} />
                 </div>
 
                 <div className="comment-controls">

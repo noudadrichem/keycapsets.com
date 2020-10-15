@@ -46,24 +46,6 @@ function Heading(props: HeadingProps): JSX.Element {
                             </Button>
                         </div>
                     )}
-
-                    {/* <div className="heading-cta">
-                            <Button
-                                onClick={() => router.push('/upload/set')}
-                                variant="primary"
-                                size="md"
-                                className='center'
-                            >Upload a set
-                            </Button>
-                            <p>or</p>
-                            <Button
-                                onClick={() => router.push('/upload/vendor')}
-                                variant="secondary"
-                                size="md"
-                                className='center'
-                            >Add as vendor
-                            </Button>
-                        </div> */}
                 </>
             )}
         </header>
