@@ -36,8 +36,9 @@ function InterestCheckLayout(props: InterestCheckLayoutProps) {
                     <Plus rotation={45} size={24} />
                 </span>
             </div>
+
             <div className="interest-check-container container">{props.children}</div>
-            {/* <div className="interest-check-bottombar"></div> */}
+
             <Footer />
         </div>
     );

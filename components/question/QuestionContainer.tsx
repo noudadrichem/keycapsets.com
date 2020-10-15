@@ -46,15 +46,6 @@ function QuestionContainer() {
     }
 
     async function nextQuestion() {
-        try {
-            await uploadQuestionAnswer({
-                type: state.question.question.type,
-                questionId: state.question.question._id,
-                text: answer,
-            });
-        } catch (err) {
-            console.log(err);
-        }
         if (state.question.next < state.interestCheck.questions.length) {
             state.setQuestion({
                 idx: state.question.next,
@@ -71,6 +62,18 @@ function QuestionContainer() {
             });
         } else {
             /* is on q 1 */
+        }
+    }
+
+    async function uploadQuestion() {
+        try {
+            await uploadQuestionAnswer({
+                type: state.question.question.type,
+                questionId: state.question.question._id,
+                text: answer,
+            });
+        } catch (err) {
+            throw err;
         }
     }
 
@@ -107,6 +110,7 @@ function QuestionContainer() {
 
                 <div className="question-controls">
                     {/* <Button variant="secondary" onClick={previousQuestion}>Previous</Button> */}
+                    <span>Or skip</span>
                     <span>
                         <Button
                             variant="primary"

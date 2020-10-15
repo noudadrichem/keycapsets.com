@@ -101,6 +101,7 @@
         &-controls {
             display: flex;
             justify-content: flex-end;
+            align-items: center;
             margin-top: 16px;
         }
     }
@@ -110,7 +111,6 @@
 
         .label {
             font-size: 13px;
-            font-weight: 500;
             line-height: 19.2px;
 
             @media screen and (max-width: 768px) {
