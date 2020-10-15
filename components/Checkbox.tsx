@@ -1,7 +1,7 @@
 import React, { SyntheticEvent } from 'react';
 
 export type CheckboxValue = {
-    id?: string;
+    id?: string | number;
     label?: string;
     checked: boolean;
 };

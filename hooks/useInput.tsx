@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect, HTMLProps, LegacyRef, ChangeEvent }
 export interface InputProps extends HTMLProps<HTMLInputElement> {
     reference?: LegacyRef<HTMLInputElement>;
     autoFocus?: boolean;
-    icon: any;
+    icon?: any;
 }
 
 function Input(props: InputProps & HTMLProps<HTMLInputElement>): JSX.Element {

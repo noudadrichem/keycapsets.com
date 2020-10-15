@@ -50,7 +50,7 @@ function SignUpReddit() {
                     <Checkbox
                         checked={agreedTerms}
                         label="I agree the terms and conditions"
-                        getVal={(val: boolean) => setAgreedTerms(val)}
+                        getVal={(val) => setAgreedTerms(val.checked)}
                     />
                     <RedditAuth disabled={!agreedTerms} text="Login with Reddit" />
                 </div>
