@@ -13,15 +13,29 @@
         }
     }
 
-    .icon {
-        height: 12px;
-        display: inline-flex;
-        left: 8px;
-        position: absolute;
-        pointer-events: none;
+    // .icon {
+    //     height: 12px;
+    //     display: inline-flex;
+    //     left: 8px;
+    //     position: absolute;
+    //     pointer-events: none;
 
-        & + input {
-            padding: 8px 16px 8px 24px;
+    //     & + input {
+    //         padding: 8px 16px 8px 24px;
+    //     }
+    // }
+
+    .input-container {
+        position: relative;
+
+        .icon {
+            position: absolute;
+            left: 15px;
+            top: 15px;
+        }
+
+        .has-icon {
+            padding-left: 40px !important;
         }
     }
 

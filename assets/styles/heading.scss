@@ -21,6 +21,8 @@
 
     .title {
         margin-bottom: 24px;
+        color: var(--text-color);
+        font-weight: 500;
         &-sub {
             @media screen and(max-width: 562px) {
                 display: none;
@@ -28,7 +30,6 @@
 
             &-home {
                 font-size: 16px;
-                // max-width: 716px;
                 margin: 0 auto 32px;
             }
         }

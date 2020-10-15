@@ -15,7 +15,7 @@ function Home() {
         <>
             <Meta />
             <div className="container large">
-                <Heading mainTitle="Find your favorite keycapset!" subTitle="" isHome />
+                <Heading isHome mainTitle="Find your favorite keycapset" subTitle="" />
                 <Filters />
                 <Overview />
                 <BackToTop />

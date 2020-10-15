@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import { useMutation } from '@apollo/react-hooks';
 
 import Button from '../Button';
 import useInterestCheckStore, { Status } from '../../hooks/useInterestCheckStore';
 import QuestionAnswerer from './Question';
-import { useMutation } from '@apollo/react-hooks';
 import { ADD_ANSWER_TO_QUESTION } from '../../queries';
+import CheckboxContainer, { CheckboxValue } from '../Checkbox';
 
 function QuestionContainer() {
     const [addQuestionToAnswer] = useMutation(ADD_ANSWER_TO_QUESTION);
     const [answer, setAnswer] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);
+    const [wantsUpdates, setWantsUpdates] = useState<CheckboxValue>({ checked: true });
     const state = useInterestCheckStore((state) => ({
         question: state.question,
         interestCheck: state.interestCheck,
@@ -18,6 +20,7 @@ function QuestionContainer() {
         setQuestion: state.setQuestion,
         setStatus: state.setStatus,
     }));
+    const isLastQuestion = state.question.idx + 1 === state.interestCheck.questions.length;
 
     useEffect(
         function updateQuestion() {
@@ -42,32 +45,20 @@ function QuestionContainer() {
         };
     }
 
-    async function nextQuestion() {
-        try {
-            await uploadQuestionAnswer({
-                type: state.question.question.type,
-                questionId: state.question.question._id,
-                text: answer,
-            });
-        } catch (err) {
-            console.log(err);
-        }
+    async function nextQuestion(skip: boolean) {
         if (state.question.next < state.interestCheck.questions.length) {
+            if (!skip) {
+                await uploadQuestionAnswer({
+                    type: state.question.question.type,
+                    questionId: state.question.question._id,
+                    text: answer,
+                });
+            }
             state.setQuestion({
                 idx: state.question.next,
             });
         } else {
             state.setStatus(Status.Commenting);
-        }
-    }
-
-    function previousQuestion() {
-        if (state.question.previous >= 0) {
-            state.setQuestion({
-                idx: state.question.previous,
-            });
-        } else {
-            /* is on q 1 */
         }
     }
 
@@ -89,34 +80,50 @@ function QuestionContainer() {
     }
 
     return (
-        <>
-            <div className="question-container">
-                <div className="question-topbar">
-                    <label className="label">{state.name}</label>
-                    <label className="label">
-                        {state.question.idx + 1}/{state.interestCheck.questions.length}
-                    </label>
-                </div>
+        <div className="question-container">
+            <div className="question-topbar">
+                <label className="label">{state.name}</label>
+                <label className="label">
+                    {state.question.idx + 1}/{state.interestCheck.questions.length}
+                </label>
+            </div>
 
-                {state.question.question && (
-                    <QuestionAnswerer getAnswerValue={setAnswerValue} question={state.question.question} />
+            {state.question.question && (
+                <QuestionAnswerer getAnswerValue={setAnswerValue} question={state.question.question} />
+            )}
+
+            <div className="question-controls">
+                {isLastQuestion && (
+                    <CheckboxContainer
+                        className="email-notification"
+                        size="m"
+                        label={`I'd like to recieve updates by email about ${state.name}`}
+                        getVal={(v) => setWantsUpdates(v)}
+                        checked={wantsUpdates.checked}
+                    />
                 )}
 
-                <div className="question-controls">
-                    <span>
-                        <Button
-                            variant="primary"
-                            style={{ backgroundColor: state.accentColor1 }}
-                            className="custom"
-                            onClick={nextQuestion}
-                            isDisabled={answer === '' || loading}
-                        >
-                            {state.question.idx + 1 === state.interestCheck.questions.length ? 'Submit' : 'Next'}
-                        </Button>
-                    </span>
-                </div>
+                <a
+                    className="btn-skip label"
+                    style={{ marginRight: 8, marginBottom: 0 }}
+                    onClick={() => nextQuestion(true)}
+                >
+                    Skip
+                </a>
+
+                <span>
+                    <Button
+                        variant="primary"
+                        style={{ backgroundColor: state.accentColor1 }}
+                        className="custom"
+                        onClick={() => nextQuestion(false)}
+                        isDisabled={answer === '' || loading}
+                    >
+                        {isLastQuestion ? 'Submit' : 'Next'}
+                    </Button>
+                </span>
             </div>
-        </>
+        </div>
     );
 }
 
