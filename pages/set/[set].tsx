@@ -21,6 +21,7 @@ import LikeSet from '../../components/LikeSet';
 import StatusLabel from '../../components/StatusLabel';
 import { initializeApollo } from '../../hooks/withData';
 import useStore from '../../context';
+import Arrow from '../../components/Arrow';
 
 interface SetPageProps {
     keycapset: Keycapset;
@@ -35,11 +36,7 @@ function SetPage(props: SetPageProps) {
     const user = useStore((state) => state.user);
 
     if (keycapset === undefined) {
-        return (
-            <>
-                <Error statusCode={404} />
-            </>
-        );
+        return <Error statusCode={404} />;
     }
 
     if (keycapset !== null) {
@@ -70,47 +67,78 @@ function SetPage(props: SetPageProps) {
 
                     <div className="container">
                         <Heading
-                            left
                             mainTitle={`${keycapset.name}`}
-                            subTitle={`${
-                                keycapset.designerName ? `A keycapset designed by ${keycapset.designerName}` : ''
-                            }`}
+                            subTitle={`${keycapset.designerName ? `By ${keycapset.designerName}` : null}`}
                         />
 
-                        <div className="info-section">
-                            <div className="set-slick-container">
-                                {sliderImages.length > 0 && (
-                                    <Slider {...slickSettings}>
-                                        {sliderImages.map((url: string) => (
-                                            <img src={url} key={url} />
-                                        ))}
-                                    </Slider>
-                                )}
+                        <div className="set-vibe-section">
+                            <div className="img main">
+                                <img src={keycapset.imageUrls[0]} alt="Render image" />
                             </div>
+                            <div className="img">
+                                <img src={keycapset.imageUrls[1]} alt="Render image" />
+                            </div>
+                            <div className="img">
+                                <img src={keycapset.imageUrls[2]} alt="Render image" />
+                            </div>
+                            <div className="img">
+                                <img src={keycapset.imageUrls[3]} alt="Render image" />
+                            </div>
+                            <div className="img">
+                                <img src={keycapset.imageUrls[4]} alt="Render image" />
+                            </div>
+                        </div>
 
-                            <div>
-                                {/* {isLoggedInAndIsDesigner && <ClaimSet keycapset={keycapset} callback={setClaimed} />} */}
-                                <LikeSet keycapset={keycapset} />
-                                <br />
-                                <StatusLabel
-                                    groupbuyStartDate={keycapset.groupbuyStartDate}
-                                    groupbuyEndDate={keycapset.groupbuyEndDate}
-                                    isIc={keycapset.isInterestCheck}
-                                />
-                                <h3>Info</h3>
-                                <p>Designer: {keycapset.designerName || 'Unknown'}</p>
-                                <p>Profile: {keycapset.type}</p>
-                                <p>Brand: {keycapset.brand || 'Unknown'}</p>
-                                <p>Material: {keycapset.material || 'Unknown'}</p>
-                                {!keycapset.isInterestCheck && (
-                                    <>
-                                        <p>
-                                            Start date: {moment(keycapset.groupbuyStartDate).format('dddd YYYY-MM-DD')}
-                                        </p>
-                                        <p>End date: {moment(keycapset.groupbuyEndDate).format('dddd YYYY-MM-DD')}</p>
-                                    </>
-                                )}
+                        <div className="set-info-section">
+                            {!keycapset.isInterestCheck && (
+                                <div className="set-info-section-label">
+                                    <label className="label">Start date</label>
+                                    <label className="label large">
+                                        {moment(keycapset.groupbuyStartDate).format('Mo MMM YYYY')}
+                                    </label>
+                                </div>
+                            )}
+                            {!keycapset.isInterestCheck && (
+                                <div className="set-info-section-label">
+                                    <label className="label">End date</label>
+                                    <label className="label large">
+                                        {moment(keycapset.groupbuyEndDate).format('Mo MMM YYYY')}
+                                    </label>
+                                </div>
+                            )}
+                            <div className="set-info-section-label">
+                                <label className="label">Designer</label>
+                                <label className="label large">{keycapset.designerName || 'Unknown'}</label>
+                            </div>
+                            <div className="set-info-section-label">
+                                <label className="label">Brand</label>
+                                <label className="label large">{keycapset.brand || 'Unknown'}</label>
+                            </div>
+                            <div className="set-info-section-label">
+                                <label className="label">Material</label>
+                                <label className="label large">{keycapset.material || 'Unknown'}</label>
+                            </div>
+                            <div className="set-info-section-label">
+                                <label className="label">Profile</label>
+                                <label className="label large">{keycapset.type}</label>
+                            </div>
+                        </div>
 
+                        <div className="set-arrow">
+                            <Arrow color="#D4E4FA" direction="bottom" />
+                        </div>
+
+                        <div className="set-description">
+                            <p className="light center small">
+                                Aliquam felis nisl, sagittis a eleifend mollis, lacinia nec dui. Nam hendrerit elit non
+                                lectus consectetur ultrices. Duis rutrum, velit eget blandit elementum, purus ligula
+                                suscipit eros, pulvinar auctor purus risus id est. Aenean ullamcorper arcu auctor libero
+                                luctus consequat. Nulla ornare tristique nulla, a blandit magna vulputate quis. Etiam
+                                convallis fringilla dolor a vehicula. Duis porta non diam at dictum.{' '}
+                            </p>
+                        </div>
+
+                        {/*
                                 {keycapset.vendors.length > 0 && (
                                     <>
                                         <br />
@@ -126,8 +154,8 @@ function SetPage(props: SetPageProps) {
                                             ))}
                                         </ul>
                                     </>
-                                )}
-                                {isGeekhackUrl ? (
+                                )} */}
+                        {/* {isGeekhackUrl ? (
                                     <ButtonLink isLarge href={keycapset.websiteUrl}>
                                         Go to Geekhack thread
                                     </ButtonLink>
@@ -135,19 +163,17 @@ function SetPage(props: SetPageProps) {
                                     <ButtonLink isLarge href={keycapset.websiteUrl}>
                                         Visit the website
                                     </ButtonLink>
-                                )}
-                            </div>
-                        </div>
+                                )} */}
 
                         {keycapset.kits !== null && keycapset.kits.length > 0 && (
-                            <div className="set-kits">
+                            <div className="set-kits center">
                                 <h2>Kits</h2>
                                 <div className="set-kits-grid-container">
                                     {keycapset.kits.map((kit: any, idx: number) => {
                                         return (
                                             <div key={kit.name + idx}>
-                                                <h3>{kit.name}</h3>
                                                 <img src={kit.imgUrl} alt={kit.name + '- image'} />
+                                                <h5>{kit.name}</h5>
                                             </div>
                                         );
                                     })}

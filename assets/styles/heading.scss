@@ -20,17 +20,17 @@
     }
 
     .title {
-        margin-bottom: 24px;
+        margin-bottom: 0px;
         color: var(--text-color);
         font-weight: 500;
+
         &-sub {
-            @media screen and(max-width: 562px) {
-                display: none;
-            }
+            // @media screen and(max-width: 562px) {
+            //     display: none;
+            // }
 
             &-home {
                 font-size: 16px;
-                margin: 0 auto 32px;
             }
         }
     }

@@ -122,8 +122,13 @@ img {
         font-size: 10px;
     }
 
-    .italic {
+    &.italic {
         font-style: italic;
+    }
+
+    &.large {
+        font-size: 18px;
+        color: var(--text-color);
     }
 }
 

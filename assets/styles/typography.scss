@@ -1,23 +1,24 @@
 // @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap');
 
 h1 {
-    font-size: 56px;
+    font-size: 64px;
     line-height: 140%;
     font-weight: 500;
     color: var(--text-color);
     margin-bottom: 0;
 
     @media screen and (max-width: $bp-tablet-md) {
-        font-size: 32px;
+        font-size: 48px;
     }
 
     @media screen and (max-width: $bp-laptop-md) {
+        font-size: 32px;
     }
 }
 
 h2 {
-    font-size: 40px;
-    font-weight: 400;
+    font-size: 48px;
+    font-weight: 500;
     line-height: 140%;
     color: var(--text-color);
 
@@ -94,11 +95,13 @@ p {
     }
 
     &.small {
-        font-size: 14px;
+        font-size: 13px;
+        line-height: 26px;
     }
 
     &.large {
         font-size: 24px;
+        line-height: 28px;
     }
 
     &.small-width {
