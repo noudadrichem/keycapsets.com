@@ -62,11 +62,11 @@
     }
 
     .container {
-        padding-top: 32px;
-        padding-bottom: 32px;
+        padding-top: 64px;
+        padding-bottom: 48px;
 
         @media screen and (max-width: 1280px) {
-            padding-top: 64px;
+            padding-top: 24px;
             padding-bottom: 32px;
         }
 
