@@ -16,7 +16,7 @@
     }
 
     @media screen and (max-width: $bp-tablet-sm) {
-        padding: 88px 0px;
+        padding: 32px 0 32px;
     }
 
     .title {
@@ -25,10 +25,6 @@
         font-weight: 500;
 
         &-sub {
-            // @media screen and(max-width: 562px) {
-            //     display: none;
-            // }
-
             &-home {
                 font-size: 16px;
             }
@@ -65,8 +61,10 @@
 
     .search-input {
         max-width: 533px;
+        margin: 12px 0 0 0;
+
         @media screen and (min-width: 768px) {
-            margin: 0 auto;
+            margin: 32px auto 0;
         }
 
         .input-wrapper {

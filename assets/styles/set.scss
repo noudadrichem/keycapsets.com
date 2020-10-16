@@ -1,22 +1,67 @@
 .set {
+    padding-bottom: 64px;
+
+    .title {
+        margin-bottom: 24px;
+    }
+
     &-vibe-section {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
         grid-column-gap: 1.5rem;
         grid-row-gap: 1.5rem;
 
-        min-height: 463px;
-
         .img {
-            &.main {
-                grid-row: span 2;
-                grid-column: span 2;
+            border-radius: 8px;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        @media screen and (min-width: $bp-laptop-md) {
+            height: 563px;
+        }
+        @media screen and (min-width: $bp-laptop-md) and (max-width: 1281px) {
+            height: 463px;
+        }
+
+        @media screen and (min-width: $bp-laptop-md) {
+            &.five {
+                grid-template-columns: repeat(4, 1fr);
+                .img.main {
+                    grid-row: span 2;
+                    grid-column: span 2;
+                }
             }
 
-            img {
-                object-fit: cover;
-                width: 100%;
-                height: 100%;
+            &.three {
+                grid-template-columns: repeat(3, 1fr);
+                .img.main {
+                    grid-row: span 2;
+                    grid-column: span 2;
+                }
+            }
+
+            .img {
+                &.main {
+                    grid-row: span 2;
+                    grid-column: span 2;
+                }
+
+                img {
+                    object-fit: cover;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+
+        @media screen and (max-width: $bp-laptop-md) {
+            grid-template-columns: repeat(1, 1fr);
+            .img {
+                display: none;
+                &.main {
+                    display: block;
+                    max-height: 300px;
+                }
             }
         }
     }
@@ -32,50 +77,67 @@
             flex-direction: column;
             align-items: center;
         }
+
+        @media screen and (max-width: $bp-laptop-md) {
+            flex-direction: row;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            margin: 24px 0 0;
+
+            &-label {
+                flex-basis: 50%;
+                align-items: flex-start;
+                margin-bottom: 24px;
+            }
+        }
     }
 
     &-arrow {
         display: flex;
         justify-content: center;
+
+        @media screen and (max-width: $bp-laptop-md) {
+        }
     }
 
     &-description {
         margin: 124px auto;
         max-width: 80%;
 
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: $bp-laptop-md) {
+            margin: 32px 0;
             max-width: 100%;
         }
     }
 
-    &-slick-container {
-        overflow: hidden;
-        max-width: 100%;
-        .slick-slider {
-            position: relative;
+    // &-slick-container {
+    //     overflow: hidden;
+    //     max-width: 100%;
+    //     .slick-slider {
+    //         position: relative;
 
-            .slick-arrow {
-                position: absolute;
-                top: 50%;
-                outline: none;
-                text-align: center;
-                border: none;
-                transition: 120ms;
-                cursor: pointer;
-                border-radius: 4px;
+    //         .slick-arrow {
+    //             position: absolute;
+    //             top: 50%;
+    //             outline: none;
+    //             text-align: center;
+    //             border: none;
+    //             transition: 120ms;
+    //             cursor: pointer;
+    //             border-radius: 4px;
 
-                &.slick-prev {
-                    left: -80px;
-                }
-                &.slick-next {
-                    right: -80px;
-                }
-            }
-        }
-    }
+    //             &.slick-prev {
+    //                 left: -80px;
+    //             }
+    //             &.slick-next {
+    //                 right: -80px;
+    //             }
+    //         }
+    //     }
+    // }
 
     &-kits {
-        margin: 56px 0;
+        margin: 56px 0 124px;
 
         &-grid-container {
             display: grid;
@@ -84,6 +146,80 @@
 
             @media screen and (max-width: 768px) {
                 grid-template-columns: 1fr;
+            }
+
+            .kit-card {
+                &-image {
+                    border-radius: 8px;
+                    overflow: hidden;
+                    box-shadow: 0px 1px 2px rgba(0, 16, 75, 0.2);
+                    line-height: 0;
+                }
+
+                img {
+                    line-height: 0;
+                }
+            }
+        }
+    }
+
+    &-geekhack {
+        margin: 64px 0 94px;
+        display: flex;
+        justify-content: center;
+    }
+
+    &-vendors {
+        &-container {
+            @media screen and (min-width: $bp-laptop-md) {
+                display: flex;
+                justify-content: space-between;
+                .vendor-card {
+                    flex: 1;
+                    padding: 24px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin: 0 24px;
+
+                    &:first-child,
+                    &:last-child {
+                        margin: 0;
+                    }
+
+                    &:hover {
+                        img {
+                            filter: grayscale(0%);
+                        }
+                    }
+
+                    img {
+                        transition: 200ms;
+                        filter: grayscale(100%);
+                    }
+                }
+            }
+
+            @media screen and (max-width: $bp-laptop-md) {
+                display: grid;
+                grid-column-gap: 1rem;
+                grid-row-gap: 1rem;
+                grid-template-columns: repeat(2, 1fr);
+
+                .vendor-card {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    // margin: 0 24px;
+                    flex-basis: 50%; // calc(50% 48px);
+                    padding: 12px;
+                    width: 100%;
+                    height: 124px;
+
+                    img {
+                        max-height: 90%;
+                    }
+                }
             }
         }
     }

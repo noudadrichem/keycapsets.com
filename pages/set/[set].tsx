@@ -22,6 +22,7 @@ import StatusLabel from '../../components/StatusLabel';
 import { initializeApollo } from '../../hooks/withData';
 import useStore from '../../context';
 import Arrow from '../../components/Arrow';
+import { getLabelByBrand } from '../../utils/labels';
 
 interface SetPageProps {
     keycapset: Keycapset;
@@ -71,7 +72,8 @@ function SetPage(props: SetPageProps) {
                             subTitle={`${keycapset.designerName ? `By ${keycapset.designerName}` : null}`}
                         />
 
-                        <div className="set-vibe-section">
+                        <div className={`set-vibe-section three`}>
+                            {/* ${keycapset.imageUrls.length > 3 ? 'five' : 'three'} */}
                             <div className="img main">
                                 <img src={keycapset.imageUrls[0]} alt="Render image" />
                             </div>
@@ -81,12 +83,12 @@ function SetPage(props: SetPageProps) {
                             <div className="img">
                                 <img src={keycapset.imageUrls[2]} alt="Render image" />
                             </div>
-                            <div className="img">
+                            {/* {keycapset.imageUrls[3] !== undefined && (<div className="img">
                                 <img src={keycapset.imageUrls[3]} alt="Render image" />
-                            </div>
-                            <div className="img">
+                            </div>)}
+                            {keycapset.imageUrls[4] !== undefined && (<div className="img">
                                 <img src={keycapset.imageUrls[4]} alt="Render image" />
-                            </div>
+                            </div>)} */}
                         </div>
 
                         <div className="set-info-section">
@@ -112,11 +114,11 @@ function SetPage(props: SetPageProps) {
                             </div>
                             <div className="set-info-section-label">
                                 <label className="label">Brand</label>
-                                <label className="label large">{keycapset.brand || 'Unknown'}</label>
+                                <label className="label large">{getLabelByBrand(keycapset.brand) || 'Unknown'}</label>
                             </div>
                             <div className="set-info-section-label">
                                 <label className="label">Material</label>
-                                <label className="label large">{keycapset.material || 'Unknown'}</label>
+                                <label className="label large">{keycapset.material.toUpperCase() || 'Unknown'}</label>
                             </div>
                             <div className="set-info-section-label">
                                 <label className="label">Profile</label>
@@ -128,7 +130,7 @@ function SetPage(props: SetPageProps) {
                             <Arrow color="#D4E4FA" direction="bottom" />
                         </div>
 
-                        <div className="set-description">
+                        {/* <div className="set-description">
                             <p className="light center small">
                                 Aliquam felis nisl, sagittis a eleifend mollis, lacinia nec dui. Nam hendrerit elit non
                                 lectus consectetur ultrices. Duis rutrum, velit eget blandit elementum, purus ligula
@@ -136,47 +138,43 @@ function SetPage(props: SetPageProps) {
                                 luctus consequat. Nulla ornare tristique nulla, a blandit magna vulputate quis. Etiam
                                 convallis fringilla dolor a vehicula. Duis porta non diam at dictum.{' '}
                             </p>
-                        </div>
-
-                        {/*
-                                {keycapset.vendors.length > 0 && (
-                                    <>
-                                        <br />
-                                        <p>Selling vendors: </p>
-                                        <ul>
-                                            {keycapset.vendors.map((v: Vendor, idx) => (
-                                                <p key={idx}>
-                                                    -{' '}
-                                                    <a href={v.url}>
-                                                        {v.country} — {v.name}
-                                                    </a>
-                                                </p>
-                                            ))}
-                                        </ul>
-                                    </>
-                                )} */}
-                        {/* {isGeekhackUrl ? (
-                                    <ButtonLink isLarge href={keycapset.websiteUrl}>
-                                        Go to Geekhack thread
-                                    </ButtonLink>
-                                ) : (
-                                    <ButtonLink isLarge href={keycapset.websiteUrl}>
-                                        Visit the website
-                                    </ButtonLink>
-                                )} */}
+                        </div> */}
 
                         {keycapset.kits !== null && keycapset.kits.length > 0 && (
-                            <div className="set-kits center">
-                                <h2>Kits</h2>
+                            <div className="set-kits">
+                                <h2 className="title center">Kits</h2>
                                 <div className="set-kits-grid-container">
                                     {keycapset.kits.map((kit: any, idx: number) => {
                                         return (
-                                            <div key={kit.name + idx}>
-                                                <img src={kit.imgUrl} alt={kit.name + '- image'} />
-                                                <h5>{kit.name}</h5>
+                                            <div key={kit.name + idx} className="kit-card">
+                                                <div className="kit-card-image">
+                                                    <img src={kit.imgUrl} alt={kit.name + '- image'} />
+                                                </div>
+                                                <h5 className="center">{kit.name}</h5>
                                             </div>
                                         );
                                     })}
+                                </div>
+                            </div>
+                        )}
+
+                        {isGeekhackUrl && (
+                            <div className="set-geekhack">
+                                <ButtonLink isLarge href={keycapset.websiteUrl}>
+                                    Visit on Geekhack
+                                </ButtonLink>
+                            </div>
+                        )}
+
+                        {keycapset.vendors.length > 0 && (
+                            <div className="set-vendors">
+                                <h2 className="title center">Vendors</h2>
+                                <div className="set-vendors-container">
+                                    {keycapset.vendors.map((vendor: Vendor, idx) => (
+                                        <a href={vendor.url} target="_blank" key={idx} className="vendor-card">
+                                            <img src={vendor.logoUrl} alt={`Logo ${vendor.name}`} />
+                                        </a>
+                                    ))}
                                 </div>
                             </div>
                         )}
