@@ -26,9 +26,12 @@ function Heading(props: HeadingProps): JSX.Element {
 
     const isLoggedIn = false;
     return (
-        <header className={`heading ${left ? 'left' : 'center'}`} style={{ background: backgroundColor }}>
-            {subTitle && <h4 className={`title-sub italic ${left ? 'left' : 'center'}`}>{subTitle}</h4>}
+        <header
+            className={`heading ${left ? 'left' : 'center'} ${isHome ? 'home' : ''}`}
+            style={{ background: backgroundColor }}
+        >
             <h1 className={`title no-bold ${left ? 'left' : 'center'}`}>{mainTitle}</h1>
+            {subTitle && <h4 className={`title-sub ${left ? 'left' : 'center'}`}>{subTitle}</h4>}
 
             {isHome && (
                 <>

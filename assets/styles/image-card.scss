@@ -16,7 +16,7 @@
         opacity: 1 !important;
     }
 
-    .image {
+    &-image {
         position: relative;
         overflow: hidden;
         height: 264px;
@@ -25,7 +25,7 @@
             height: 176px;
         }
 
-        .set {
+        &-set {
             height: 100%;
             width: 100%;
             object-fit: cover;
@@ -42,7 +42,7 @@
         }
     }
 
-    .details {
+    &-details {
         padding: 18px 24px;
         display: flex;
         flex-direction: column;

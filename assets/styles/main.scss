@@ -43,9 +43,9 @@ body {
     max-width: 100vw;
     overflow-x: hidden;
     transition: background-color 0.5s ease;
-    padding-bottom: 56px;
+    padding-bottom: 48px; // Fixed footer height
 
-    @media screen and (max-width: 768px) {
+    @media screen and(max-width: $bp-tablet-md) {
         padding-bottom: 0px;
     }
 }
@@ -90,8 +90,12 @@ img {
 
 .container {
     width: 100%;
-    max-width: 1280px;
-    margin: 0 auto 12px;
+    max-width: 1176px;
+    margin: 0 auto;
+
+    @media screen and (min-width: 1328px) {
+        max-width: 1280px;
+    }
 
     @media screen and (min-width: 1441px) {
         max-width: 1416px;
@@ -122,16 +126,23 @@ img {
         font-size: 10px;
     }
 
-    .italic {
+    &.italic {
         font-style: italic;
+    }
+
+    &.large {
+        font-size: 18px;
+        color: var(--text-color);
     }
 }
 
 .about {
     width: calc(100% - 24px);
+    padding-bottom: 64px;
 
-    @media screen and (max-width: 900px) {
+    @media screen and(max-width: $bp-tablet-md) {
         margin: 0 auto;
+        padding-bottom: 0px;
     }
 }
 
