@@ -1,8 +1,23 @@
 .set {
-    padding-bottom: 64px;
+    padding-bottom: 32px;
 
     .title {
         margin-bottom: 24px;
+    }
+
+    .section {
+        padding: 32px 0 24px;
+
+        &:first-child {
+            padding-top: 0;
+        }
+
+        @media screen and (min-width: $bp-tablet-md) {
+            padding: 64px 0 32px;
+        }
+        @media screen and (min-width: $bp-desktop-lg) {
+            padding: 80px 0 32px;
+        }
     }
 
     &-vibe-section {
@@ -11,19 +26,20 @@
         grid-row-gap: 1.5rem;
 
         .img {
+            background-color: var(--white);
             border-radius: 8px;
             overflow: hidden;
             line-height: 0;
         }
 
-        @media screen and (min-width: $bp-laptop-md) {
+        @media screen and (min-width: $bp-tablet-md) {
             height: 563px;
         }
-        @media screen and (min-width: $bp-laptop-md) and (max-width: 1281px) {
+        @media screen and (min-width: $bp-tablet-md) and (max-width: 1281px) {
             height: 463px;
         }
 
-        @media screen and (min-width: $bp-laptop-md) {
+        @media screen and (min-width: $bp-tablet-md) {
             &.five {
                 grid-template-columns: repeat(4, 1fr);
                 .img.main {
@@ -46,6 +62,11 @@
                     grid-column: span 2;
                 }
 
+                &.base {
+                    max-width: 800px;
+                    margin: 0 auto;
+                }
+
                 img {
                     object-fit: cover;
                     width: 100%;
@@ -54,13 +75,16 @@
             }
         }
 
-        @media screen and (max-width: $bp-laptop-md) {
+        @media screen and (max-width: $bp-tablet-md) {
             grid-template-columns: repeat(1, 1fr);
             .img {
                 display: none;
                 &.main {
                     display: block;
                     max-height: 300px;
+                }
+                &.base {
+                    max-height: 500px;
                 }
             }
         }
@@ -70,7 +94,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin: 48px 0 56px;
+        // margin: 48px 0 56px;
 
         &-label {
             display: flex;
@@ -78,7 +102,7 @@
             align-items: center;
         }
 
-        @media screen and (max-width: $bp-laptop-md) {
+        @media screen and (max-width: $bp-tablet-md) {
             flex-direction: row;
             align-items: flex-start;
             flex-wrap: wrap;
@@ -96,48 +120,67 @@
         display: flex;
         justify-content: center;
 
-        @media screen and (max-width: $bp-laptop-md) {
+        @media screen and (max-width: $bp-tablet-md) {
         }
     }
 
     &-description {
-        margin: 124px auto;
+        // margin: 124px auto;
         max-width: 80%;
 
-        @media screen and (max-width: $bp-laptop-md) {
+        @media screen and (max-width: $bp-tablet-md) {
             margin: 32px 0;
             max-width: 100%;
         }
     }
 
-    // &-slick-container {
-    //     overflow: hidden;
-    //     max-width: 100%;
-    //     .slick-slider {
-    //         position: relative;
+    &-renders {
+        .slick-container {
+            overflow: hidden;
+            max-width: 100%;
+            .slick-slider {
+                position: relative;
 
-    //         .slick-arrow {
-    //             position: absolute;
-    //             top: 50%;
-    //             outline: none;
-    //             text-align: center;
-    //             border: none;
-    //             transition: 120ms;
-    //             cursor: pointer;
-    //             border-radius: 4px;
+                @media screen and (max-width: $bp-tablet-md) {
+                    .slick-arrow {
+                        display: none !important;
+                    }
+                }
 
-    //             &.slick-prev {
-    //                 left: -80px;
-    //             }
-    //             &.slick-next {
-    //                 right: -80px;
-    //             }
-    //         }
-    //     }
-    // }
+                .slick-slide {
+                    border-radius: 8px;
+                    overflow: hidden;
+                    line-height: 0;
+                }
+
+                .slick-arrow {
+                    font-size: 0;
+                    z-index: 2;
+                    display: block;
+                    width: 50%;
+                    height: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    background: rgba(255, 0, 0, 0);
+                    outline: none;
+                    border: none;
+                    transition: 120ms;
+
+                    &.slick-prev {
+                        cursor: url('/images/arrow-round-left.svg'), auto;
+                    }
+                    &.slick-next {
+                        left: 50%;
+                        cursor: url('/images/arrow-round-right.svg'), auto;
+                    }
+                }
+            }
+        }
+    }
 
     &-kits {
-        margin: 56px 0 124px;
+        // margin: 56px 0 124px;
 
         &-grid-container {
             display: grid;
@@ -158,22 +201,26 @@
 
                 img {
                     line-height: 0;
+                    object-fit: cover;
+                    width: 100%;
+                    height: 100%;
                 }
             }
         }
     }
 
     &-geekhack {
-        margin: 64px 0 94px;
+        // margin: 64px 0 94px;
         display: flex;
         justify-content: center;
     }
 
     &-vendors {
         &-container {
-            @media screen and (min-width: $bp-laptop-md) {
+            @media screen and (min-width: $bp-tablet-md) {
                 display: flex;
                 justify-content: space-between;
+
                 .vendor-card {
                     flex: 1;
                     padding: 24px;
@@ -182,9 +229,8 @@
                     align-items: center;
                     margin: 0 24px;
 
-                    &:first-child,
                     &:last-child {
-                        margin: 0;
+                        margin-right: 0;
                     }
 
                     &:hover {
@@ -200,7 +246,7 @@
                 }
             }
 
-            @media screen and (max-width: $bp-laptop-md) {
+            @media screen and (max-width: $bp-tablet-md) {
                 display: grid;
                 grid-column-gap: 1rem;
                 grid-row-gap: 1rem;
@@ -210,8 +256,7 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    // margin: 0 24px;
-                    flex-basis: 50%; // calc(50% 48px);
+                    flex-basis: 50%;
                     padding: 12px;
                     width: 100%;
                     height: 124px;

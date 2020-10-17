@@ -1,8 +1,11 @@
 .heading {
-    padding: 64px 42px 88px;
+    padding: 48px 0 24px;
+
+    &.home {
+        padding: 80px;
+    }
 
     @media screen and (max-width: 1441px) {
-        padding: 56px 0 48px; // 42px 64px;
     }
     // background: linear-gradient(54.97deg, #D4E4FA -12.28%, #ABCCF8 112.82%, #ABCCF8 112.82%);
     border-radius: 8px;

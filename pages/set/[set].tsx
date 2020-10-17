@@ -4,7 +4,7 @@ import moment from 'moment';
 import { useRouter, Router } from 'next/router';
 import Slider from 'react-slick';
 import { useQuery } from '@apollo/react-hooks';
-import { Keycapset, Vendor, Context } from '../../types/interfaces';
+import { Keycapset, Vendor, Context, Kit } from '../../types/interfaces';
 import withGA from 'next-ga';
 
 import { GET_SINGLE_SET_QUERY, CLAIM_SET } from '../../queries';
@@ -43,15 +43,15 @@ function SetPage(props: SetPageProps) {
     if (keycapset !== null) {
         const isLoggedInAndIsDesigner: boolean = isLoggedIn && user.isDesigner;
         const isGeekhackUrl: boolean = keycapset?.websiteUrl.includes('geekhack');
-        const sliderImages: string[] = [keycapset.coverImageUrl, ...keycapset.imageUrls];
+        const hasRenders = keycapset.imageUrls.length > 0;
         const slickSettings = {
             infinite: keycapset.coverImageUrl.length > 1,
             speed: 500,
             slidesToShow: 1,
             slidesToScroll: 1,
-            arrows: false,
+            arrows: true,
             autoplay: keycapset.coverImageUrl.length > 1,
-            autoPlaySpeed: 1600,
+            autoPlaySpeed: 2400,
         };
 
         console.log(keycapset._id);
@@ -69,29 +69,37 @@ function SetPage(props: SetPageProps) {
                     <div className="container">
                         <Heading
                             mainTitle={`${keycapset.name}`}
-                            subTitle={`${keycapset.designerName ? `By ${keycapset.designerName}` : null}`}
+                            subTitle={`${keycapset.designerName ? `By ${keycapset.designerName}` : ''}`}
                         />
 
-                        <div className={`set-vibe-section three`}>
-                            {/* ${keycapset.imageUrls.length > 3 ? 'five' : 'three'} */}
-                            <div className="img main">
-                                <img src={keycapset.imageUrls[0]} alt="Render image" />
-                            </div>
-                            <div className="img">
-                                <img src={keycapset.imageUrls[1]} alt="Render image" />
-                            </div>
-                            <div className="img">
-                                <img src={keycapset.imageUrls[2]} alt="Render image" />
-                            </div>
-                            {/* {keycapset.imageUrls[3] !== undefined && (<div className="img">
-                                <img src={keycapset.imageUrls[3]} alt="Render image" />
-                            </div>)}
-                            {keycapset.imageUrls[4] !== undefined && (<div className="img">
-                                <img src={keycapset.imageUrls[4]} alt="Render image" />
-                            </div>)} */}
-                        </div>
+                        {hasRenders ? (
+                            <section className={`section set-vibe-section three`}>
+                                {/* ${keycapset.imageUrls.length > 3 ? 'five' : 'three'} */}
+                                <div className="img main">
+                                    <img src={keycapset.imageUrls[0]} alt="Render image" />
+                                </div>
+                                <div className="img">
+                                    <img src={keycapset.imageUrls[1]} alt="Render image" />
+                                </div>
+                                <div className="img">
+                                    <img src={keycapset.imageUrls[2]} alt="Render image" />
+                                </div>
+                                {/* {keycapset.imageUrls[3] !== undefined && (<div className="img">
+                                        <img src={keycapset.imageUrls[3]} alt="Render image" />
+                                    </div>)}
+                                    {keycapset.imageUrls[4] !== undefined && (<div className="img">
+                                        <img src={keycapset.imageUrls[4]} alt="Render image" />
+                                    </div>)} */}
+                            </section>
+                        ) : (
+                            <section className={`section set-vibe-section cover`}>
+                                <div className="img main base">
+                                    <img src={keycapset.coverImageUrl} alt="Base set image" />
+                                </div>
+                            </section>
+                        )}
 
-                        <div className="set-info-section">
+                        <section className="section set-info-section">
                             {!keycapset.isInterestCheck && (
                                 <div className="set-info-section-label">
                                     <label className="label">Start date</label>
@@ -124,13 +132,13 @@ function SetPage(props: SetPageProps) {
                                 <label className="label">Profile</label>
                                 <label className="label large">{keycapset.type}</label>
                             </div>
-                        </div>
+                        </section>
 
-                        <div className="set-arrow">
+                        <section className="section set-arrow">
                             <Arrow color="#D4E4FA" direction="bottom" />
-                        </div>
+                        </section>
 
-                        {/* <div className="set-description">
+                        {/* <section className="section set-description">
                             <p className="light center small">
                                 Aliquam felis nisl, sagittis a eleifend mollis, lacinia nec dui. Nam hendrerit elit non
                                 lectus consectetur ultrices. Duis rutrum, velit eget blandit elementum, purus ligula
@@ -138,13 +146,13 @@ function SetPage(props: SetPageProps) {
                                 luctus consequat. Nulla ornare tristique nulla, a blandit magna vulputate quis. Etiam
                                 convallis fringilla dolor a vehicula. Duis porta non diam at dictum.{' '}
                             </p>
-                        </div> */}
+                        </section> */}
 
                         {keycapset.kits !== null && keycapset.kits.length > 0 && (
-                            <div className="set-kits">
+                            <section className="section set-kits">
                                 <h2 className="title center">Kits</h2>
                                 <div className="set-kits-grid-container">
-                                    {keycapset.kits.map((kit: any, idx: number) => {
+                                    {keycapset.kits.map((kit: Kit, idx: number) => {
                                         return (
                                             <div key={kit.name + idx} className="kit-card">
                                                 <div className="kit-card-image">
@@ -155,19 +163,36 @@ function SetPage(props: SetPageProps) {
                                         );
                                     })}
                                 </div>
-                            </div>
+                            </section>
+                        )}
+
+                        {hasRenders && (
+                            <section className="section set-renders">
+                                <h2 className="title center">Renders</h2>
+
+                                <div className="slick-container">
+                                    <Slider {...slickSettings}>
+                                        {keycapset.imageUrls.map((url: string, idx: number) => (
+                                            <img src={url} key={idx + url} />
+                                        ))}
+                                    </Slider>
+                                </div>
+                            </section>
                         )}
 
                         {isGeekhackUrl && (
-                            <div className="set-geekhack">
-                                <ButtonLink isLarge href={keycapset.websiteUrl}>
+                            <section className="section set-geekhack">
+                                <ButtonLink
+                                    isLarge
+                                    href={keycapset.websiteUrl + '?utm_source=keycapsets&utm_medium=affiliate'}
+                                >
                                     Visit on Geekhack
                                 </ButtonLink>
-                            </div>
+                            </section>
                         )}
 
                         {keycapset.vendors.length > 0 && (
-                            <div className="set-vendors">
+                            <section className="section set-vendors">
                                 <h2 className="title center">Vendors</h2>
                                 <div className="set-vendors-container">
                                     {keycapset.vendors.map((vendor: Vendor, idx) => (
@@ -176,7 +201,7 @@ function SetPage(props: SetPageProps) {
                                         </a>
                                     ))}
                                 </div>
-                            </div>
+                            </section>
                         )}
                     </div>
                 </div>
