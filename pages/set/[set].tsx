@@ -1,22 +1,19 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React from 'react';
 import Error from '../_error';
 import moment from 'moment';
 import { useRouter, Router } from 'next/router';
 import Slider from 'react-slick';
-import { useQuery } from '@apollo/react-hooks';
-import { Keycapset, Vendor, Context, Kit } from '../../types/interfaces';
+import { Keycapset, Vendor, Kit } from '../../types/interfaces';
 import withGA from 'next-ga';
 
-import { GET_SINGLE_SET_QUERY, CLAIM_SET } from '../../queries';
+import { GET_SINGLE_SET_QUERY } from '../../queries';
 
 import 'slick-carousel/slick/slick.css';
 import '../../assets/styles/main.scss';
 
 import Heading from '../../components/Heading';
-import LoadingKeyboard from '../../components/LoadingKeyboard';
 import ButtonLink from '../../components/ButtonLink';
 import Meta from '../../components/Meta';
-import context from '../../context';
 import LikeSet from '../../components/LikeSet';
 import StatusLabel from '../../components/StatusLabel';
 import { initializeApollo } from '../../hooks/withData';
@@ -30,18 +27,13 @@ interface SetPageProps {
 }
 
 function SetPage(props: SetPageProps) {
-    const router = useRouter();
-    const { set: slug } = router.query;
     const { keycapset } = props;
-    const isLoggedIn = useStore((state) => state.isLoggedIn);
-    const user = useStore((state) => state.user);
 
     if (keycapset === undefined) {
         return <Error statusCode={404} />;
     }
 
     if (keycapset !== null) {
-        const isLoggedInAndIsDesigner: boolean = isLoggedIn && user.isDesigner;
         const isGeekhackUrl: boolean = keycapset?.websiteUrl.includes('geekhack');
         const hasRenders = keycapset.imageUrls.length > 0;
         const slickSettings = {
@@ -68,9 +60,18 @@ function SetPage(props: SetPageProps) {
 
                     <div className="container">
                         <Heading
-                            mainTitle={`${keycapset.name}`}
+                            mainTitle={keycapset.name}
                             subTitle={`${keycapset.designerName ? `By ${keycapset.designerName}` : ''}`}
                         />
+                        <section className="set-status">
+                            <StatusLabel
+                                groupbuyStartDate={keycapset.groupbuyStartDate}
+                                groupbuyEndDate={keycapset.groupbuyEndDate}
+                                isIc={keycapset.isInterestCheck}
+                            />
+
+                            <LikeSet keycapset={keycapset} size={24} />
+                        </section>
 
                         {hasRenders ? (
                             <section className={`section set-vibe-section three`}>
@@ -216,7 +217,7 @@ function SetPage(props: SetPageProps) {
 export async function getServerSideProps(context) {
     try {
         const client = initializeApollo();
-        const { data, error } = await client.query({
+        const { data } = await client.query({
             query: GET_SINGLE_SET_QUERY,
             variables: {
                 slug: context.query.set,

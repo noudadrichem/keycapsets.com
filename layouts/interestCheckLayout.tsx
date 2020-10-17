@@ -1,11 +1,11 @@
 import Link from 'next/link';
-import { Router, useRouter } from 'next/router';
-import React, { useContext, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import React from 'react';
 
-import '../assets/styles/interestcheck.scss';
+import '../assets/styles/main.scss';
+
 import Footer from '../components/Footer';
 import Logo from '../components/Logo';
-import Pill from '../components/Pill';
 import Plus from '../components/PlusIcon';
 import useInterestCheckStore from '../hooks/useInterestCheckStore';
 
@@ -32,9 +32,10 @@ function InterestCheckLayout(props: InterestCheckLayoutProps) {
                         </a>
                     </Link>
                 </div>
-                <span onClick={back}>
+                <a onClick={back} className="btn-back-to-set">
+                    <span className="msg">Go back to set page</span>
                     <Plus rotation={45} size={24} />
-                </span>
+                </a>
             </div>
 
             <div className="interest-check-container container">{props.children}</div>
