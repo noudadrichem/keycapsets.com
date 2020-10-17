@@ -13,7 +13,7 @@ export default function QuestionAnswerer(props: QuestionProps) {
 
     return (
         <div className="">
-            <h2 className="light">{question.text}</h2>
+            <h3 className="light">{question.text}</h3>
             {question.kit && (
                 <div className="question-cover-image">
                     <img

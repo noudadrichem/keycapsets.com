@@ -1,6 +1,6 @@
-.interest-check {
-    background-color: var(--white);
+$bp-tablet-md: 768px;
 
+.interest-check {
     &-topbar {
         height: 16px;
         background: var(--blue-lighter);
@@ -22,7 +22,40 @@
             display: none;
         }
 
-        @media screen and (max-width: 768px) {
+        .btn-back-to-set {
+            display: flex;
+            align-items: center;
+            color: var(--text-color-light);
+            cursor: pointer;
+
+            .msg {
+                display: none;
+            }
+
+            @media screen and (min-width: $bp-tablet-md) {
+                overflow: hidden;
+
+                .icon {
+                    z-index: 2;
+                    background-color: var(--darker-white);
+                }
+
+                .msg {
+                    display: block;
+                    z-index: 1;
+                    transition: all 220ms;
+                    transform: translateX(120%);
+                }
+
+                &:hover {
+                    .msg {
+                        transform: translateX(0%);
+                    }
+                }
+            }
+        }
+
+        @media screen and (max-width: $bp-tablet-md) {
             justify-content: space-between;
             font-size: 12px;
             padding: 24px 12px 8px 12px;
@@ -35,15 +68,19 @@
     }
 
     &-container {
-        flex-direction: column;
-        transform: translateY(-5%);
-        min-height: calc(90vh - 16px);
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
 
-        @media screen and (max-width: 768px) {
+        transform: translateY(-5%);
+        min-height: calc(100vh - 128px);
+
+        @media screen and(max-width: $bp-tablet-md) {
+            transform: translateY(0);
+            min-height: auto;
             min-height: 460px;
+            padding-bottom: 64px;
         }
     }
 
@@ -62,11 +99,11 @@
             }
         }
         &-container {
-            padding-top: 64px;
+            padding-top: 24px;
             width: 100%;
             max-width: 542px;
 
-            @media screen and (max-width: 768px) {
+            @media screen and (max-width: $bp-tablet-md) {
                 font-size: 12px;
                 padding: 8px 0px;
 
@@ -87,7 +124,7 @@
             max-width: 542px;
             min-height: 300px;
 
-            @media screen and (max-width: 768px) {
+            @media screen and (max-width: $bp-tablet-md) {
                 min-height: auto;
             }
 
@@ -110,6 +147,12 @@
                     align-items: center;
                 }
             }
+
+            .btn-next {
+                @media screen and (max-width: $bp-tablet-md) {
+                    width: 40%;
+                }
+            }
         }
     }
 
@@ -120,7 +163,7 @@
             font-size: 13px;
             line-height: 19.2px;
 
-            @media screen and (max-width: 768px) {
+            @media screen and (max-width: $bp-tablet-md) {
                 font-weight: normal;
                 font-size: 12px;
                 line-height: 18.2px;

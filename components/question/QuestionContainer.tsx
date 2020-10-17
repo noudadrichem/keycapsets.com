@@ -93,7 +93,7 @@ function QuestionContainer() {
             )}
 
             <div className="question-controls">
-                {isLastQuestion && (
+                {/* {isLastQuestion && (
                     <CheckboxContainer
                         className="email-notification"
                         size="m"
@@ -101,7 +101,7 @@ function QuestionContainer() {
                         getVal={(v) => setWantsUpdates(v)}
                         checked={wantsUpdates.checked}
                     />
-                )}
+                )} */}
 
                 <a
                     className="btn-skip label"
@@ -111,17 +111,15 @@ function QuestionContainer() {
                     Skip
                 </a>
 
-                <span>
-                    <Button
-                        variant="primary"
-                        style={{ backgroundColor: state.accentColor1 }}
-                        className="custom"
-                        onClick={() => nextQuestion(false)}
-                        isDisabled={answer === '' || loading}
-                    >
-                        {isLastQuestion ? 'Submit' : 'Next'}
-                    </Button>
-                </span>
+                <Button
+                    variant="primary"
+                    style={{ backgroundColor: state.accentColor1 }}
+                    className="btn-next custom"
+                    onClick={() => nextQuestion(false)}
+                    isDisabled={answer === '' || loading}
+                >
+                    {isLastQuestion ? 'Submit' : 'Next'}
+                </Button>
             </div>
         </div>
     );

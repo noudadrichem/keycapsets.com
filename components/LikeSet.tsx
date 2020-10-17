@@ -10,10 +10,11 @@ import useStore from '../context';
 
 export interface LikeSetProps {
     keycapset: Keycapset;
+    size?: number;
 }
 
 function LikeSet(props: LikeSetProps) {
-    const { keycapset } = props;
+    const { keycapset, size } = props;
     const router: NextRouter = useRouter();
     const [addWantToUser] = useMutation(WANT_SET);
 
@@ -58,6 +59,8 @@ function LikeSet(props: LikeSetProps) {
             <HeartIcon
                 filled={userWants.map((s: Keycapset) => s._id).includes(keycapset._id)}
                 isDisabled={!isLoggedIn}
+                width={size}
+                height={size - 2}
             />
             {!isLoggedIn && <ReactTooltip delayHide={500} className="tooltip" effect="solid" />}
         </span>

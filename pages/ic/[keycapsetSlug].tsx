@@ -131,8 +131,10 @@ function InterestCheck(props: InterestCheckProps) {
                     title: `Thank you for sharing your opinion!`,
                     sub: `That was fast! Do you also want to run your interest check here to get all the insights you need?`,
                     action1: redirectToSet,
-                    action2: () =>
-                        (document.location.href = `mailto:contact@keycapsets.com?subject=I'd like to run my Interest check on Keycapsets!`),
+                    action2: () => {
+                        console.log('work together');
+                        // document.location.href = `mailto:contact@keycapsets.com?subject=I'd like to run my Interest check on Keycapsets!`;
+                    },
                     btn1Text: `Go back to ${state.name}`,
                     btn2Text: `Let's work together`,
                 })}
