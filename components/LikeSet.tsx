@@ -14,7 +14,7 @@ export interface LikeSetProps {
 }
 
 function LikeSet(props: LikeSetProps) {
-    const { keycapset, size } = props;
+    const { keycapset, size = 16 } = props;
     const router: NextRouter = useRouter();
     const [addWantToUser] = useMutation(WANT_SET);
 

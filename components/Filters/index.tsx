@@ -21,42 +21,48 @@ interface FiltersProps {}
 
 function Filters(props: FiltersProps): JSX.Element {
     const {} = props;
-    const [isOpen, setIsOpen] = useState<boolean>(false);
-    const [isExtraFiltersOpen, setIsExtraFilterOpen] = useState<boolean>(false);
+    const [isOpen, setIsOpen] = useState<boolean>(true);
+    const [isExtraFiltersOpen, setIsExtraFilterOpen] = useState<boolean>(true);
     const router = useRouter();
     const setFilters = useStore((state) => state.setFilters);
     const filters = useStore((state) => state.filters);
 
-    // useEffect(() => {
-    //     const hasUrlQuery = Object.keys(router.query).length;
-    //     console.log('router query...');
-    //     if (hasUrlQuery) {
-    //         let routeFilter = filters;
+    useEffect(() => {
+        const hasUrlQuery = Object.keys(router.query).length > 0;
+        console.log('router query...', hasUrlQuery);
+        if (hasUrlQuery) {
+            let routeFilter = filters;
 
-    //         const brand = router.query['brand[]'];
-    //         if (brand) {
-    //             routeFilter.brand = typeof brand === 'string' ? [brand] : brand;
-    //         }
-    //         const profile = router.query['type[]'];
-    //         if (profile) {
-    //             routeFilter.type = typeof profile === 'string' ? [profile] : profile;
-    //         }
-    //         const material = router.query['material[]'];
-    //         if (material) {
-    //             routeFilter.material = typeof material === 'string' ? [material] : material;
-    //         }
-    //         const availability = router.query['tab'];
-    //         if (availability) {
-    //             routeFilter.availability = availability;
-    //         }
+            const brand = router.query['brand[]'];
+            // if (brand) {
+            //     routeFilter.brand = typeof brand === 'string' ? [brand] : brand;
+            // }
+            const profile = router.query['type[]'];
+            // if (profile) {
+            //     routeFilter.type = typeof profile === 'string' ? [profile] : profile;
+            // }
+            const material = router.query['material[]'];
+            // if (material) {
+            //     routeFilter.material = typeof material === 'string' ? [material] : material;
+            // }
+            const availability = router.query['tab'];
+            console.log({
+                brand,
+                profile,
+                material,
+                availability,
+            });
+            if (availability && AVAILABILITY_OPTIONS.includes(String(availability))) {
+                routeFilter.availability = String(availability);
+            }
 
-    //         console.log('router query filters...', routeFilter);
-    //         setFilters(routeFilter);
-    //         if (brand || profile || material) {
-    //             setIsExtraFilterOpen(true);
-    //         }
-    //     }
-    // }, [router.query]);
+            console.log('router query filters...', routeFilter);
+            setFilters(routeFilter);
+            if (brand || profile || material) {
+                setIsExtraFilterOpen(true);
+            }
+        }
+    }, [router.query]);
 
     useEffect(function handleToggleOnWindowSize() {
         const isBrowser = typeof window !== `undefined`;
@@ -98,19 +104,19 @@ function Filters(props: FiltersProps): JSX.Element {
         handleSelectionFilter(values, 'material');
     }
     function handleAvailabilityFilter(availability: string) {
-        // router.push(
-        //     {
-        //         pathname: `/`,
-        //         query:
-        //             availability !== 'none'
-        //                 ? {
-        //                       tab: availability,
-        //                   }
-        //                 : null,
-        //     },
-        //     undefined,
-        //     { shallow: true }
-        // );
+        router.push(
+            {
+                pathname: `/`,
+                query:
+                    availability !== 'none'
+                        ? {
+                              tab: availability,
+                          }
+                        : null,
+            },
+            undefined,
+            { shallow: true }
+        );
 
         setFilters({
             ...filters,

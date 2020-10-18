@@ -36,8 +36,6 @@ function useInput(props: InputProps) {
     const [value, setValue] = useState(defaultValue);
     const input = useRef(null);
 
-    console.log('use input icon...', icon);
-
     function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
         if (type === 'checkbox') {
             setValue((e.target.checked as unknown) as typeof defaultValue);
