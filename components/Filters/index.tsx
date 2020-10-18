@@ -176,7 +176,7 @@ function Filters(props: FiltersProps): JSX.Element {
                                 name="Choose availability"
                                 onSelectChange={(val) => {
                                     console.log('availability mobile...', val);
-                                    handleAvailabilityFilter(val);
+                                    handleAvailabilityFilter(val.value);
                                 }}
                                 values={AVAILABILITY_OPTIONS.map((t) => ({
                                     value: t,
