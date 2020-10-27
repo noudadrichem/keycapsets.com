@@ -13,13 +13,13 @@ enum Labels {
     ENDED = 'Groupbuy ended',
 }
 
-export const getDayDifference = (date: string | number) => moment(date).diff(moment(), 'days');
+export const getDayDifference = (date: string | number) => moment(date).diff(moment(), 'days') + 1;
 
 function StatusLabel(props: StatusLabelProps): JSX.Element {
     const { groupbuyStartDate, groupbuyEndDate, isIc } = props;
 
     const awaitingGroupbuy: boolean = moment().diff(groupbuyStartDate, 'days') < 0;
-    const inGroupbuy: boolean = getDayDifference(groupbuyEndDate) > 0;
+    const inGroupbuy: boolean = getDayDifference(groupbuyEndDate) >= 0;
     const isEnded: boolean = getDayDifference(groupbuyEndDate) < 0;
 
     if (isIc) {
@@ -32,7 +32,7 @@ function StatusLabel(props: StatusLabelProps): JSX.Element {
             />
         );
     } else if (inGroupbuy) {
-        const color = getDayDifference(groupbuyEndDate) <= 7 ? 'red' : 'green';
+        const color = getDayDifference(groupbuyEndDate) < 7 ? 'red' : 'green';
 
         return (
             <Pill

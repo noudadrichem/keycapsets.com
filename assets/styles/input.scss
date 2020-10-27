@@ -3,7 +3,6 @@
 .input-wrapper-select {
     display: flex;
     flex-direction: column;
-    flex: 1;
     background-color: var(--white-second);
     position: relative;
     -webkit-appearance: none;
@@ -14,15 +13,29 @@
         }
     }
 
-    .icon {
-        height: 12px;
-        display: inline-flex;
-        left: 8px;
-        position: absolute;
-        pointer-events: none;
+    // .icon {
+    //     height: 12px;
+    //     display: inline-flex;
+    //     left: 8px;
+    //     position: absolute;
+    //     pointer-events: none;
 
-        & + input {
-            padding: 8px 16px 8px 24px;
+    //     & + input {
+    //         padding: 8px 16px 8px 24px;
+    //     }
+    // }
+
+    .input-container {
+        position: relative;
+
+        .icon {
+            position: absolute;
+            left: 15px;
+            top: 15px;
+        }
+
+        .has-icon {
+            padding-left: 40px !important;
         }
     }
 
@@ -40,6 +53,7 @@
         border-radius: 6px;
         outline: none;
         resize: none;
+        font-family: inherit;
 
         &:focus {
             border: 1px solid var(--blue);
@@ -53,6 +67,16 @@
             font-size: 12px;
             padding: 8px 12px;
         }
+    }
+
+    &.checkbox {
+        .label {
+            display: flex;
+        }
+    }
+
+    textarea.input {
+        min-height: 184px;
     }
 }
 

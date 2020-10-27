@@ -1,18 +1,12 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, HTMLProps, LegacyRef, ChangeEvent } from 'react';
 
-interface InputProps {
-    placeholder?: string;
-    label?: string;
-    type?: string;
-    id?: string;
-    defaultValue?: string;
-    onChange?: Function | any;
-    reference?: any;
-    className?: string;
+export interface InputProps extends HTMLProps<HTMLInputElement> {
+    reference?: LegacyRef<HTMLInputElement>;
     autoFocus?: boolean;
+    icon?: any;
 }
 
-function Input(props: InputProps): JSX.Element {
+function Input(props: InputProps & HTMLProps<HTMLInputElement>): JSX.Element {
     const { type = 'text', label, id, onChange, defaultValue, placeholder, reference, className } = props;
     return (
         <div className={`input-wrapper ${type} ${className}`}>
@@ -21,27 +15,30 @@ function Input(props: InputProps): JSX.Element {
                     {label}
                 </label>
             )}
-            <input
-                onChange={onChange}
-                defaultValue={defaultValue}
-                name={id}
-                id={id}
-                type={type}
-                placeholder={placeholder}
-                ref={reference}
-            />
+
+            <div>
+                <input
+                    onChange={onChange}
+                    defaultValue={defaultValue}
+                    name={id}
+                    id={id}
+                    type={type}
+                    placeholder={placeholder}
+                    ref={reference}
+                />
+            </div>
         </div>
     );
 }
 
-function useInput(props: InputProps): any[] {
-    const { type = 'text', label, placeholder, id, defaultValue = '', autoFocus } = props;
+function useInput(props: InputProps) {
+    const { type = 'text', label, placeholder, id, defaultValue = '', autoFocus, icon } = props;
     const [value, setValue] = useState(defaultValue);
     const input = useRef(null);
 
-    function onInputChange(e) {
+    function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
         if (type === 'checkbox') {
-            setValue(e.target.checked);
+            setValue((e.target.checked as unknown) as typeof defaultValue);
         } else {
             setValue(e.target.value);
         }
@@ -63,15 +60,20 @@ function useInput(props: InputProps): any[] {
                     {label}
                 </label>
             )}
-            <input
-                ref={input}
-                onChange={onInputChange}
-                defaultValue={value}
-                name={id}
-                id={id}
-                type={type}
-                placeholder={placeholder}
-            />
+
+            <div className="input-container">
+                {icon}
+                <input
+                    className={icon !== undefined ? 'has-icon' : ''}
+                    ref={input}
+                    onChange={onInputChange}
+                    defaultValue={value}
+                    name={id}
+                    id={id}
+                    type={type}
+                    placeholder={placeholder}
+                />
+            </div>
         </div>
     );
 

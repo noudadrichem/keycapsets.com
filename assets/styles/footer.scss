@@ -61,7 +61,7 @@
             }
         }
 
-        @media screen and(max-width: 562px) {
+        @media screen and(max-width: $bp-tablet-md) {
             flex-direction: column;
             margin-top: 24px;
             a {

@@ -54,16 +54,7 @@ function Footer(props: FooterProps): JSX.Element {
                 </div>
 
                 {!noSponsor ? (
-                    <div className="sponsored-by">
-                        <a href="https://candykeys.com/" target="_blank" className="sponsored-by">
-                            Hosting sponsored by &nbsp;
-                            <img
-                                src="https://webiz.ams3.cdn.digitaloceanspaces.com/ck/favicon/favicon-16x16.png"
-                                alt="Logo CandyKeys"
-                            />
-                            CandyKeys
-                        </a>
-                    </div>
+                    <></>
                 ) : (
                     <div className="sponsored-by">
                         <Link href="/">

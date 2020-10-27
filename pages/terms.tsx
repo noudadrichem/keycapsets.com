@@ -31,13 +31,13 @@ function Terms() {
                     <h4>User information</h4>
                     <p className="light alinea">
                         Customer and its Authorized Users are able to establish a user account (an “Account”) for the
-                        Service. (coming soon)
+                        Service.
                         <br />
                         Keycapsets has the right to block, cancel or remove your Account, whether chosen by you or
                         allocated by us, at any time. This is when a user violates normal behavior or any other ethical
                         code of conduct. Keycapsets only saves the data that is required to run the platform. You can
-                        delete your account at any time. If you do so your user account will be permanently deleted from
-                        our servers.
+                        delete your account at any time by contacting via email. If you do so your user account will be
+                        permanently deleted from our servers.
                     </p>
 
                     <h4>The content</h4>

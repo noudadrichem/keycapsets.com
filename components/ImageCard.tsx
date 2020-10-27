@@ -3,10 +3,11 @@ import moment from 'moment';
 import Link from 'next/link';
 import useIsInViewport from 'use-is-in-viewport';
 
-import { Keycapset, SelectOption } from 'typings';
+import { Keycapset, SelectOption } from '../types/interfaces';
 import StatusLabel from './StatusLabel';
 import { BRAND_OPTIONS } from '../constants';
 import LikeSet from './LikeSet';
+import { getLabelByBrand } from '../utils/labels';
 
 export interface ImageCardProps {
     keycapset: Keycapset;
@@ -29,13 +30,6 @@ function ImageCard(props: ImageCardProps): JSX.Element {
     const [wasInViewport, setWasInViewport] = useState(false);
     const [isInViewport, containerRef] = useIsInViewport({ threshold: 5 });
 
-    function getLabelByBrand(brandValue: any): string {
-        const brand: SelectOption = BRAND_OPTIONS.find((brand: SelectOption) => brand.value === brandValue);
-        if (brand) {
-            return brand.label;
-        }
-    }
-
     useEffect(() => {
         if (isInViewport) {
             setWasInViewport(true);
@@ -47,9 +41,9 @@ function ImageCard(props: ImageCardProps): JSX.Element {
             <a ref={containerRef}>
                 {wasInViewport && (
                     <div className={`image-card ${isTemplate ? 'disabled' : ''}`}>
-                        <div className="image">
+                        <div className="image-card-image">
                             <img
-                                className="set"
+                                className="image-card-image-set"
                                 src={
                                     coverImageUrl === undefined || coverImageUrl === ''
                                         ? '/images/empty-base-kit-illu.svg'
@@ -57,7 +51,7 @@ function ImageCard(props: ImageCardProps): JSX.Element {
                                 }
                             />
                         </div>
-                        <div className="details">
+                        <div className="image-card-details">
                             <div className="top">
                                 <h4 className="set-title">{name || 'Title goes here'}</h4>
                                 <StatusLabel

@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect, useRef, Ref } from 'react';
-import { Context, InititalState } from 'typings';
+import { Context, InititalState } from '../types/interfaces';
 // import context from '../context';
 import Link from 'next/link';
 import { logoutUser } from '../utils/user';
@@ -7,10 +7,10 @@ import useClickOutside from '../hooks/useClickOutside';
 import useStore from '../context';
 
 function UserProfileTag() {
-    const [isPopoverShown, setIspopoverShown] = useState<Boolean>(false);
-    const popup: any = useRef();
-    const user = useStore<any>((state) => state.user);
-    const isLoggedIn = useStore<any>((state) => state.isLoggedIn);
+    const [isPopoverShown, setIspopoverShown] = useState<boolean>(false);
+    const popup = useRef<HTMLDivElement | null>();
+    const user = useStore((state) => state.user);
+    const isLoggedIn = useStore((state) => state.isLoggedIn);
 
     useClickOutside(popup, handleClickOutside);
 
@@ -18,7 +18,7 @@ function UserProfileTag() {
         logoutUser();
     }
 
-    function handleClickOutside(e: any) {
+    function handleClickOutside(e: React.MouseEvent<HTMLElement>) {
         setIspopoverShown(false);
     }
 

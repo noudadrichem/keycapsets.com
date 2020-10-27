@@ -3,8 +3,7 @@ import { useRouter, NextRouter } from 'next/router';
 
 import SearchSets from './SearchSets';
 import Button from './Button';
-// import context from '../context';
-import { Context } from 'typings';
+import useStore from '../context';
 
 interface HeadingProps {
     mainTitle: string;
@@ -17,6 +16,7 @@ interface HeadingProps {
 function Heading(props: HeadingProps): JSX.Element {
     const { mainTitle, subTitle, isHome = false, left = false, backgroundColor } = props;
     const router: NextRouter = useRouter();
+    const isLoggedIn = useStore((state) => state.isLoggedIn);
 
     function pushSignup(e) {
         e.preventDefault();
@@ -24,11 +24,13 @@ function Heading(props: HeadingProps): JSX.Element {
         router.push('/sign-up');
     }
 
-    const isLoggedIn = false;
     return (
-        <header className={`heading ${left ? 'left' : 'center'}`} style={{ background: backgroundColor }}>
-            {subTitle && <h4 className={`title-sub italic ${left ? 'left' : 'center'}`}>{subTitle}</h4>}
+        <header
+            className={`heading ${left ? 'left' : 'center'} ${isHome ? 'home' : ''}`}
+            style={{ background: backgroundColor }}
+        >
             <h1 className={`title no-bold ${left ? 'left' : 'center'}`}>{mainTitle}</h1>
+            {subTitle && <h4 className={`title-sub ${left ? 'left' : 'center'}`}>{subTitle}</h4>}
 
             {isHome && (
                 <>
@@ -46,24 +48,6 @@ function Heading(props: HeadingProps): JSX.Element {
                             </Button>
                         </div>
                     )}
-
-                    {/* <div className="heading-cta">
-                            <Button
-                                onClick={() => router.push('/upload/set')}
-                                variant="primary"
-                                size="md"
-                                className='center'
-                            >Upload a set
-                            </Button>
-                            <p>or</p>
-                            <Button
-                                onClick={() => router.push('/upload/vendor')}
-                                variant="secondary"
-                                size="md"
-                                className='center'
-                            >Add as vendor
-                            </Button>
-                        </div> */}
                 </>
             )}
         </header>

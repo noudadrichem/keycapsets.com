@@ -1,11 +1,9 @@
 .heading {
-    padding: 64px 42px 88px;
+    padding: 48px 0 24px;
 
-    @media screen and (max-width: 1441px) {
-        padding: 56px 0 48px; // 42px 64px;
+    &.home {
+        padding: 80px 0;
     }
-    // background: linear-gradient(54.97deg, #D4E4FA -12.28%, #ABCCF8 112.82%, #ABCCF8 112.82%);
-    border-radius: 8px;
 
     &.left {
         padding: 48px 0;
@@ -16,20 +14,17 @@
     }
 
     @media screen and (max-width: $bp-tablet-sm) {
-        padding: 88px 0px;
+        padding: 32px 0 32px;
     }
 
     .title {
-        margin-bottom: 24px;
-        &-sub {
-            @media screen and(max-width: 562px) {
-                display: none;
-            }
+        margin-bottom: 0px;
+        color: var(--text-color);
+        font-weight: 500;
 
+        &-sub {
             &-home {
                 font-size: 16px;
-                // max-width: 716px;
-                margin: 0 auto 32px;
             }
         }
     }
@@ -64,8 +59,10 @@
 
     .search-input {
         max-width: 533px;
+        margin: 12px 0 0 0;
+
         @media screen and (min-width: 768px) {
-            margin: 0 auto;
+            margin: 32px auto 0;
         }
 
         .input-wrapper {

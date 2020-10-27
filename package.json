@@ -6,7 +6,7 @@
     "scripts": {
         "dev": "next",
         "build": "next build",
-        "start": "NODE_ENV=production next start",
+        "start": "NODE_ENV=production next start -p 3000",
         "pretty": "prettier --ignore .next --write './**/*.{ts,tsx,json,scss}'"
     },
     "repository": {
@@ -35,7 +35,7 @@
         "framer-motion": "^1.11.1",
         "graphql": "^14.7.0",
         "moment": "^2.27.0",
-        "next": "^9.5.3",
+        "next": "^9.5.4",
         "next-apollo": "^3.1.10",
         "next-ga": "^2.3.4",
         "next-images": "^1.4.1",

@@ -1,38 +1,42 @@
-import React, { useEffect, useContext, useCallback } from 'react';
+import React, { useEffect } from 'react';
 import useInput from '../hooks/useInput';
-// import context from '../context';
 import { useRouter, NextRouter } from 'next/router';
-import { Context } from 'typings';
 import useStore from '../context';
+import SearchIcon from './SearchIcon';
 
 function SearchSets() {
     const router: NextRouter = useRouter();
     const [searchValue, searchInput, setSearchInputValue] = useInput({
         placeholder: 'E.g. Space cadet',
-        autoFocus: false,
+        autoFocus: true,
+        icon: <SearchIcon size={16} color="#bbc0c9" />,
     });
-    const filters = useStore<any>((state) => state.filters);
-    const setFilters = useStore<any>((state) => state.setFilters);
+    const filters = useStore((state) => state.filters);
+    const setFilters = useStore((state) => state.setFilters);
 
     // TODO: this supported the use of search?= query in URL...
     useEffect(() => {
         const searchQuery = router.query.search;
+        console.log({ searchQuery });
         if (searchQuery !== undefined) {
+            // @ts-expect-error
             setSearchInputValue(searchQuery);
             setFilters({
-                name: searchQuery,
+                ...filters,
+                name: Array.isArray(searchQuery) ? searchQuery[0] : searchQuery,
             });
         }
     }, [router.query.search]);
 
     useEffect(() => {
-        let timeout: any;
+        let timeout: NodeJS.Timeout;
         clearTimeout(timeout);
 
         timeout = setTimeout(() => {
             if (searchValue !== '' || searchValue !== undefined) {
                 setFilters({
                     ...filters,
+                    // @ts-expect-error
                     name: searchValue,
                 });
             }

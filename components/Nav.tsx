@@ -44,8 +44,8 @@ function Nav(props: NavProps): JSX.Element {
     const { isLargeContainer } = props;
     const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
     const router = useRouter();
-    const user = useStore<any>((state) => state.user);
-    const isLoggedIn = useStore<any>((state) => state.isLoggedIn);
+    const user = useStore((state) => state.user);
+    const isLoggedIn = useStore((state) => state.isLoggedIn);
 
     useEffect(
         function listenToRouteChange() {
@@ -68,7 +68,7 @@ function Nav(props: NavProps): JSX.Element {
         <nav className="nav">
             {/* <a className="discord-banner" href="https://discord.gg/dq8cyMS">
                 <img src="/images/discord.svg" />Join the conversation on our discord!
-            </a>*/}
+            </a> */}
             {/* <div className="info-banner">
                 This is a new release of Keycapsets.com. We're excited to share a new feature, accounts! A version we
                 could build upon with amazing new features coming ahead!
