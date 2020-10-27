@@ -6,7 +6,7 @@
     "scripts": {
         "dev": "next",
         "build": "next build",
-        "start": "NODE_ENV=testing next start -p 3001",
+        "start": "NODE_ENV=production next start -p 3000",
         "pretty": "prettier --ignore .next --write './**/*.{ts,tsx,json,scss}'"
     },
     "repository": {
