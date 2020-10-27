@@ -1,6 +1,8 @@
 version: '3'
 services:
     alpha_keycapsets:
+        logging:
+            driver: none
         build: .
         networks:
             - traefik

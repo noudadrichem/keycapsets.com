@@ -21,8 +21,8 @@ interface FiltersProps {}
 
 function Filters(props: FiltersProps): JSX.Element {
     const {} = props;
-    const [isOpen, setIsOpen] = useState<boolean>(true);
-    const [isExtraFiltersOpen, setIsExtraFilterOpen] = useState<boolean>(true);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [isExtraFiltersOpen, setIsExtraFilterOpen] = useState<boolean>(false);
     const router = useRouter();
     const setFilters = useStore((state) => state.setFilters);
     const filters = useStore((state) => state.filters);
