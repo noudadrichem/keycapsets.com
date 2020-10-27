@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface FooterProps {
-    isLargeContainer: boolean;
+    isLargeContainer?: boolean;
 }
 
 // TODO: Move icons to own component

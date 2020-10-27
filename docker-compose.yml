@@ -1,16 +1,19 @@
 version: '3'
 services:
-    keycapsets:
+    alpha_keycapsets:
+        logging:
+            driver: none
         build: .
         networks:
             - traefik
         ports:
-            - '3000:3000'
+            - '3001:3001'
         labels:
             - 'traefik.enable=true'
-            - 'traefik.backend=keycapsets'
-            - 'traefik.frontend.rule=Host:keycapsets.com,www.keycapsets.com'
-            - 'traefik.port=3000'
+            - 'traefik.backend=alpha_keycapsets'
+            - 'traefik.frontend.rule=Host:testing.keycapsets.com'
+            - 'traefik.port=3001'
+
 networks:
     traefik:
         external:

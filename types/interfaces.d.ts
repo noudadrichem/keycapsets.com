@@ -1,88 +1,109 @@
-declare module 'typings' {
-    interface Keycapset {
-        _id?: string;
-        name?: string;
-        type?: string;
-        material?: string;
-        brand?: string;
-        designerName?: string;
-        groupbuyStartDate?: string;
-        groupbuyEndDate?: string;
-        active?: boolean;
-        coverImageUrl?: string;
-        imageUrls?: string[];
-        websiteUrl?: string;
-        vendors?: Array<Vendor>;
-        slug?: string;
-        createdAt?: Date;
-        updatedAt?: Date;
-        accentColor1: string;
-        accentColor2: string;
-        accentColor3: string;
-        isInterestCheck: boolean;
-        designedBy?: string[];
-        kits: any[];
-        metaUrl?: string;
-    }
+import { State } from 'zustand';
 
-    interface SelectOption {
-        value: string;
-        label: string;
-    }
+export interface Kit {
+    name: string;
+    imgUrl: string;
+}
 
-    interface Vendor {
-        _id?: string;
-        socials?: string[];
-        name?: string;
-        country?: string;
-        logoUrl?: string;
-        createdAt?: Date;
-        updatedAt?: Date;
-        url?: string;
-        slug?: string;
-    }
+export interface Keycapset {
+    _id?: string;
+    name?: string;
+    type?: string;
+    material?: string;
+    brand?: string;
+    designerName?: string;
+    groupbuyStartDate?: string;
+    groupbuyEndDate?: string;
+    active?: boolean;
+    coverImageUrl?: string;
+    imageUrls?: string[];
+    websiteUrl?: string;
+    vendors?: Array<Vendor>;
+    slug?: string;
+    createdAt?: Date;
+    updatedAt?: Date;
+    accentColor1: string;
+    accentColor2: string;
+    accentColor3: string;
+    isInterestCheck: boolean;
+    designedBy?: string[];
+    kits: Kit[];
+    metaUrl?: string;
+    interestCheck: InterestCheck;
+}
 
-    interface Filters {
-        availability: string;
-        name: string;
-        brand: string[];
-        type: string[];
-        material: string[];
-    }
+export interface InterestCheck {
+    _id: String;
+    comments: any[];
+    questions: Question[];
+}
 
-    interface InititalState {
-        filters: Filters;
-        keycapsets: Keycapset[];
-        searchQuery: string;
-        allKeycapsetsCount: number;
-        isLoggedIn: boolean;
-        user?: User;
-        userWants: Keycapset[];
-        user: User;
-    }
+export interface Question {
+    _id: string;
+    text: string;
+    kit: Kit;
+    options: { text: string };
+    type: 'open' | 'multiple';
+    order: number;
+}
 
-    interface User {
-        _id: ID;
-        name: string;
-        email: string;
-        locked: boolean;
-        isVendor: boolean;
-        geekhackUserName: string;
-        redditUserName: string;
-        avatar: string;
-        locale: string;
-        slug: string;
-        isVendor: boolean;
-        isDesigner: boolean;
-    }
+export interface SelectOption {
+    value: string;
+    label: string;
+}
 
-    interface Action {
-        type: string;
-        payload: any;
-    }
+export interface Vendor {
+    _id?: string;
+    socials?: string[];
+    name?: string;
+    country?: string;
+    logoUrl?: string;
+    createdAt?: Date;
+    updatedAt?: Date;
+    url?: string;
+    slug?: string;
+}
 
-    interface Context {
-        state: InititalState;
-        dispatch(action: Action): Function;
-    }
+export interface Filters {
+    availability: string;
+    name: string;
+    brand: string[];
+    type: string[];
+    material: string[];
+}
+
+export interface InititalState extends State {
+    filters: Filters;
+    keycapsets: Keycapset[];
+    searchQuery: string;
+    allKeycapsetsCount: number;
+    isLoggedIn: boolean;
+    user?: User;
+    userWants: Keycapset[];
+    user: User;
+}
+
+export interface User {
+    _id: ID;
+    name: string;
+    email: string;
+    locked: boolean;
+    isVendor: boolean;
+    geekhackUserName: string;
+    redditUserName: string;
+    avatar: string;
+    locale: string;
+    slug: string;
+    isVendor: boolean;
+    isDesigner: boolean;
+}
+
+export interface Action {
+    type: string;
+    payload: any;
+}
+
+export interface Context {
+    state: InititalState;
+    dispatch(action: Action): Function;
 }

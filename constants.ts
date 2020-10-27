@@ -1,4 +1,4 @@
-import { SelectOption } from 'typings';
+import { SelectOption } from './types/interfaces';
 
 export const BRAND_OPTIONS: SelectOption[] = [
     { value: 'gmk', label: 'GMK' },

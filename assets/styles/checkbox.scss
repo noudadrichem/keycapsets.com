@@ -19,15 +19,28 @@
 
     &-styled {
         display: inline-block;
-        width: 16px;
-        height: 16px;
         background-color: var(--white);
         border: 1px solid #e2e5eb;
         border-radius: 3px;
 
         &.checked {
             background: var(--blue);
-            border: 2px solid var(--blue-lighter);
+            box-shadow: 0px 0px 0px 1px rgba(#539bfb, 0.6);
+        }
+
+        &.s {
+            width: 12px;
+            height: 12px;
+        }
+        &.m {
+            border-radius: 4px;
+            width: 16px;
+            height: 16px;
+        }
+        &.l {
+            border-radius: 6px;
+            width: 24px;
+            height: 24px;
         }
     }
 

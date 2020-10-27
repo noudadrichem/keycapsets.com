@@ -50,7 +50,7 @@ function SignUpGoogle() {
                     <Checkbox
                         checked={agreedTerms}
                         label="I agree the terms and conditions"
-                        getVal={(val: boolean) => setAgreedTerms(val)}
+                        getVal={(val) => setAgreedTerms(val.checked)}
                     />
                     <GoogleAuth disabled={!agreedTerms} text="Login with Google" />
                 </div>

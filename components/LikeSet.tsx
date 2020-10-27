@@ -2,7 +2,7 @@ import React from 'react';
 import { NextRouter, useRouter } from 'next/router';
 import ReactTooltip from 'react-tooltip';
 import { useMutation } from '@apollo/react-hooks';
-import { Keycapset } from 'typings';
+import { Keycapset } from '../types/interfaces';
 
 import { WANT_SET } from '../queries';
 import HeartIcon from './HeartIcon';
@@ -10,32 +10,30 @@ import useStore from '../context';
 
 export interface LikeSetProps {
     keycapset: Keycapset;
+    size?: number;
 }
 
 function LikeSet(props: LikeSetProps) {
-    const { keycapset } = props;
+    const { keycapset, size = 16 } = props;
     const router: NextRouter = useRouter();
-    const [addWantToUser] = useMutation<any>(WANT_SET);
+    const [addWantToUser] = useMutation(WANT_SET);
 
-    const isLoggedIn = useStore<any>((state) => state.isLoggedIn);
-    const userWants = useStore<any>((state) => state.userWants);
-    const setUserWants = useStore<any>((state) => state.setUserWants);
+    const isLoggedIn = useStore((state) => state.isLoggedIn);
+    const userWants = useStore((state) => state.userWants);
+    const setUserWants = useStore((state) => state.setUserWants);
 
     function removeUserWants(id: string): Keycapset[] {
         const wantsClone = [...userWants];
         const indexOfSetInWants = userWants.map((s: Keycapset) => s._id).indexOf(id);
         wantsClone.splice(indexOfSetInWants, 1);
-        console.log('remove set ', wantsClone);
         return wantsClone;
     }
 
     function adduserWants(keycapset: Keycapset): Keycapset[] {
-        const x = [...userWants, keycapset];
-        console.log('add set ', [...userWants, keycapset]);
-        return x;
+        return [...userWants, keycapset];
     }
 
-    async function userWantSet(evt: any) {
+    async function userWantSet(evt: React.MouseEvent<HTMLSpanElement>) {
         evt.preventDefault();
         evt.stopPropagation();
 
@@ -61,6 +59,8 @@ function LikeSet(props: LikeSetProps) {
             <HeartIcon
                 filled={userWants.map((s: Keycapset) => s._id).includes(keycapset._id)}
                 isDisabled={!isLoggedIn}
+                width={size}
+                height={size - 2}
             />
             {!isLoggedIn && <ReactTooltip delayHide={500} className="tooltip" effect="solid" />}
         </span>

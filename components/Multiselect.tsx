@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { CSSProperties, useEffect, useState } from 'react';
 import Select from 'react-select';
-import { SelectOption } from 'typings';
+import { SelectOption } from '../types/interfaces';
 
 /**
  * https://react-select.com
@@ -20,16 +20,16 @@ function MultiSelect<T>(props: MultiSelectProps<T>): JSX.Element {
     const [val, setVal] = useState(value);
 
     useEffect(() => {
-        setVal(defaultValue as any);
+        setVal(defaultValue);
     }, [defaultValue]);
 
     const SELECT_STYLES = {
-        control: (base: any) => ({
+        control: (base: CSSProperties) => ({
             ...base,
             fontSize: 12,
             borderColor: '#e2e5eb',
         }),
-        menu: (base: any) => ({
+        menu: (base: CSSProperties) => ({
             ...base,
             fontSize: 12,
         }),

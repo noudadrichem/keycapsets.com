@@ -10,6 +10,10 @@
     justify-content: center;
     font-family: inherit;
 
+    &.custom {
+        border: 1px solid transparent !important;
+    }
+
     &:disabled {
         opacity: 0.5;
         box-shadow: none;
@@ -61,7 +65,7 @@
     }
 
     &.lg {
-        padding: 16px 32px;
+        padding: 12px 32px;
         font-size: 20px;
 
         @media screen and (max-width: $bp-laptop-md) {
@@ -73,7 +77,7 @@
         background-color: var(--blue);
         border: 1px solid var(--blue);
         color: #fff;
-        font-weight: 600;
+        font-weight: 500;
 
         &:active {
             background-color: var(--blue-darker);
