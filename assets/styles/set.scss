@@ -37,13 +37,6 @@
         grid-column-gap: 1.5rem;
         grid-row-gap: 1.5rem;
 
-        .img {
-            background-color: var(--white);
-            border-radius: 8px;
-            overflow: hidden;
-            line-height: 0;
-        }
-
         @media screen and (min-width: $bp-tablet-md) {
             height: 563px;
         }

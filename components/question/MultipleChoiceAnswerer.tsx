@@ -1,25 +1,36 @@
 import React, { useEffect, useState } from 'react';
+import { Kit, QuestionOption } from '../../types/interfaces';
 import CheckboxContainer from '../Checkbox';
 
-export default function MultipleChoiseAnswerer(props: any) {
-    const { onChange, options } = props;
+type MultipleChoiseAnswererProps = {
+    onChange: any;
+    options: QuestionOption[];
+    single?: boolean;
+};
+
+export default function MultipleChoiseAnswerer(props: MultipleChoiseAnswererProps) {
+    const { onChange, options, single = false } = props;
     const [answers, setAnswers] = useState([]);
     const labels = answers.map(({ label }) => label);
 
     function getCheckboxVal(val) {
-        console.log('value....', val);
         const labels = answers.map((val) => val.label);
-        if (labels.includes(val.label)) {
-            const clone = [...answers];
-            const idx = labels.indexOf(val.label);
-            clone.splice(idx, 1);
-            setAnswers(clone);
+        if (!single) {
+            if (labels.includes(val.label)) {
+                const clone = [...answers];
+                const idx = labels.indexOf(val.label);
+                clone.splice(idx, 1);
+                setAnswers(clone);
+            } else {
+                setAnswers([...answers, val]);
+            }
         } else {
-            setAnswers([...answers, val]); // TODO fix this
+            setAnswers([val]);
         }
     }
 
     useEffect(() => {
+        console.log('answers....', answers);
         onChange(labels.join(';'));
     }, [answers]);
 

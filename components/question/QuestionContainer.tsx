@@ -8,7 +8,7 @@ import { ADD_ANSWER_TO_QUESTION } from '../../queries';
 import CheckboxContainer, { CheckboxValue } from '../Checkbox';
 
 function QuestionContainer() {
-    const [addQuestionToAnswer] = useMutation(ADD_ANSWER_TO_QUESTION);
+    const [addAnswerToQuestion] = useMutation(ADD_ANSWER_TO_QUESTION);
     const [answer, setAnswer] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);
     const [wantsUpdates, setWantsUpdates] = useState<CheckboxValue>({ checked: true });
@@ -67,7 +67,7 @@ function QuestionContainer() {
     async function uploadQuestionAnswer(input: any) {
         try {
             setLoading(true);
-            const response = await addQuestionToAnswer({
+            const response = await addAnswerToQuestion({
                 variables: { input },
             });
             setAnswer('');

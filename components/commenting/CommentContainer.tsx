@@ -44,6 +44,10 @@ function CommentContainer() {
         uploadCommentToIC(input);
     }
 
+    function skip() {
+        state.setStatus(Status.Done);
+    }
+
     return (
         <>
             <div className="comment-container">
@@ -62,7 +66,9 @@ function CommentContainer() {
                 </div>
 
                 <div className="comment-controls">
-                    {/* <Button variant="secondary" onClick={previousQuestion}>Previous</Button> */}
+                    <Button variant="primary" onClick={skip} style={{ marginRight: 12 }}>
+                        Skip
+                    </Button>
                     <Button
                         variant="primary"
                         style={{ backgroundColor: state.accentColor1 }}

@@ -44,10 +44,14 @@ function InterestCheck(props: InterestCheckProps) {
     }));
 
     useEffect(() => {
-        console.log(keycapset._id);
-        interestCheck.questions.sort((a, b) => (a.order < b.order ? -1 : 1));
-        state.setInterestCheck(interestCheck);
-        state.setKeycapset(keycapset);
+        if (interestCheck !== null) {
+            console.log(keycapset);
+            interestCheck.questions.sort((a, b) => (a.order < b.order ? -1 : 1));
+            state.setInterestCheck(interestCheck);
+            state.setKeycapset(keycapset);
+        } else {
+            // redirectToSet();
+        }
     }, []);
 
     function startIc() {
@@ -64,6 +68,9 @@ function InterestCheck(props: InterestCheckProps) {
         }
     }
 
+    function redirectToHome() {
+        router.push(`/`);
+    }
     function redirectToSet() {
         router.push(`/set/${keycapset.slug}`);
     }
@@ -112,32 +119,50 @@ function InterestCheck(props: InterestCheckProps) {
     return (
         <InterestCheckLayout>
             <Meta title={`Interest check for ${state.name}`} metaImgUrl={keycapset.metaUrl} />
-            {state.status === Status.Start &&
+
+            {interestCheck === null &&
                 renderStartEnd({
-                    title: `${state.name} Interest check`,
+                    title: `No Interest check found..`,
                     sub: `Tailormade Interest check forms with analytics to run your IC. By and for keycapset designers!`,
-                    action1: startIc,
-                    action2: redirectToSignUp,
-                    btn1Text: user === null ? 'Login' : 'Fill in form',
-                    btn2Text: user === null ? 'Sign Up' : null,
-                })}
-
-            {state.status === Status.Ongoing && <QuestionContainer />}
-
-            {state.status === Status.Commenting && <CommentContainer />}
-
-            {state.status === Status.Done &&
-                renderStartEnd({
-                    title: `Thank you for sharing your opinion!`,
-                    sub: `That was fast! Do you also want to run your interest check here to get all the insights you need?`,
-                    action1: redirectToSet,
+                    action1: redirectToHome,
                     action2: () => {
                         console.log('work together');
                         // document.location.href = `mailto:contact@keycapsets.com?subject=I'd like to run my Interest check on Keycapsets!`;
                     },
-                    btn1Text: `Go back to ${state.name}`,
+                    btn1Text: `Visit keycapsets.com`,
                     btn2Text: `Let's work together`,
                 })}
+
+            {interestCheck !== null && (
+                <>
+                    {state.status === Status.Start &&
+                        renderStartEnd({
+                            title: `${state.name} Interest check`,
+                            sub: `Tailormade Interest check forms with analytics to run your IC. By and for keycapset designers!`,
+                            action1: startIc,
+                            action2: redirectToSignUp,
+                            btn1Text: user === null ? 'Login' : 'Fill in form',
+                            btn2Text: user === null ? 'Sign Up' : null,
+                        })}
+
+                    {state.status === Status.Ongoing && <QuestionContainer />}
+
+                    {state.status === Status.Commenting && <CommentContainer />}
+
+                    {state.status === Status.Done &&
+                        renderStartEnd({
+                            title: `Thank you for sharing your opinion!`,
+                            sub: `That was fast! Do you also want to run your interest check here to get all the insights you need?`,
+                            action1: redirectToSet,
+                            action2: () => {
+                                console.log('work together');
+                                // document.location.href = `mailto:contact@keycapsets.com?subject=I'd like to run my Interest check on Keycapsets!`;
+                            },
+                            btn1Text: `Go back to ${state.name}`,
+                            btn2Text: `Let's work together`,
+                        })}
+                </>
+            )}
         </InterestCheckLayout>
     );
 }

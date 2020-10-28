@@ -313,6 +313,12 @@ export const GET_KEYCAPSET_IC = gql`
                     text
                     options {
                         text
+                        kit {
+                            imgUrl
+                            name
+                            description
+                            _id
+                        }
                     }
                     kit {
                         name

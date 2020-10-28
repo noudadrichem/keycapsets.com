@@ -2,6 +2,7 @@ import React, { DOMAttributes, FormEvent } from 'react';
 import TextArea from '../TextArea';
 import { Question } from '../../types/interfaces';
 import MultipleChoiseAnswerer from './MultipleChoiceAnswerer';
+import KitsAnswerer from './KitsAnswerer';
 
 export interface QuestionProps {
     question: Question;
@@ -27,6 +28,8 @@ export default function QuestionAnswerer(props: QuestionProps) {
                 {
                     open: <TextArea onChange={getAnswerValue} />,
                     multiple: <MultipleChoiseAnswerer onChange={getAnswerValue} options={question.options} />,
+                    kits: <KitsAnswerer onChange={getAnswerValue} options={question.options} />,
+                    single: <MultipleChoiseAnswerer onChange={getAnswerValue} options={question.options} single />,
                 }[question.type]
             }
         </div>

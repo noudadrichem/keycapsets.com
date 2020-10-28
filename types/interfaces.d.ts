@@ -3,6 +3,8 @@ import { State } from 'zustand';
 export interface Kit {
     name: string;
     imgUrl: string;
+    description?: string;
+    _id: string;
 }
 
 export interface Keycapset {
@@ -38,11 +40,16 @@ export interface InterestCheck {
     questions: Question[];
 }
 
+export interface QuestionOption {
+    text: string;
+    kit?: Kit;
+}
+
 export interface Question {
     _id: string;
     text: string;
     kit: Kit;
-    options: { text: string };
+    options: QuestionOption[];
     type: 'open' | 'multiple';
     order: number;
 }

@@ -272,3 +272,10 @@ img {
 .no-margin {
     margin: 0 !important;
 }
+
+.img {
+    background-color: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+    line-height: 0;
+}
