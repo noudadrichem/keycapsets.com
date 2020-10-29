@@ -65,6 +65,7 @@ function QuestionContainer() {
     const setAnswerValue = (value: string) => setAnswer(value);
 
     async function uploadQuestionAnswer(input: any) {
+        console.log('uploadQuestionAnswer...', input);
         try {
             setLoading(true);
             const response = await addAnswerToQuestion({
@@ -103,13 +104,15 @@ function QuestionContainer() {
                     />
                 )} */}
 
-                <a
-                    className="btn-skip label"
-                    style={{ marginRight: 8, marginBottom: 0 }}
-                    onClick={() => nextQuestion(true)}
-                >
-                    Skip
-                </a>
+                {!isLastQuestion && (
+                    <a
+                        className="btn-skip label"
+                        style={{ marginRight: 8, marginBottom: 0 }}
+                        onClick={() => nextQuestion(true)}
+                    >
+                        Skip
+                    </a>
+                )}
 
                 <Button
                     variant="primary"

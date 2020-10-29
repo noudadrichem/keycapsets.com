@@ -1,8 +1,8 @@
 .input-checkbox {
     &-container {
-        display: inline-block;
-        vertical-align: middle;
-        margin-right: 8px;
+        display: flex;
+        align-items: center;
+        // margin-right: 8px;
     }
 
     &-input {

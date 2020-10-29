@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Question, QuestionOption } from '../../types/interfaces';
+import CheckboxContainer from '../Checkbox';
 
 type KitsAnswererProps = {
     onChange: any;
@@ -30,7 +31,7 @@ export default function KitsAnswerer(props: KitsAnswererProps) {
 
     return (
         <div className="multiple-choice-options kits">
-            {options.map((option: QuestionOption) => {
+            {options.map((option: QuestionOption, idx: number) => {
                 const label = `${option.kit.name}|${option.kit._id}`;
                 const isChecked = labels.includes(label);
 
@@ -41,8 +42,16 @@ export default function KitsAnswerer(props: KitsAnswererProps) {
                     >
                         <div className={`img `}>
                             <img src={option.kit.imgUrl} />
+                            <CheckboxContainer
+                                size="m"
+                                key={idx}
+                                id={idx}
+                                getVal={() => console.log('heh')}
+                                checked={isChecked}
+                                className="question-option"
+                            />
                         </div>
-                        <div>
+                        <div className="label-container">
                             <label className={`label`}>{option.kit.name}</label>
                         </div>
                     </div>
