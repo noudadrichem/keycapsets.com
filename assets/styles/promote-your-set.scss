@@ -1,0 +1,12 @@
+.promote-your-set {
+    .feature-block {
+        &.right {
+            div:nth-child(1) {
+                order: 2;
+            }
+            div:nth-child(2) {
+                order: 1;
+            }
+        }
+    }
+}
