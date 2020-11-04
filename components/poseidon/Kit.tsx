@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 
 interface KitProps {
     name: String;
-    description: String;
+    description?: String;
     imgUrl: String;
 }
 

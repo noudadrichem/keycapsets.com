@@ -1,6 +1,5 @@
 import React from 'react';
 import { Router } from 'next/router';
-import { Keycapset } from 'typings';
 import withGA from 'next-ga';
 
 import 'slick-carousel/slick/slick.css';
@@ -15,6 +14,8 @@ import Updates from '../components/poseidon/Updates';
 import Section from '../components/poseidon/Section';
 import PoseidonLayout from '../layouts/PoseidonLayout';
 import { ApolloClient } from '@apollo/client';
+import CTACard from '../components/CTACard';
+import { Keycapset } from '../types/interfaces';
 
 interface PoseidonPageProps {
     keycapset: Keycapset;
@@ -72,6 +73,13 @@ function PoseidonPage(props: PoseidonPageProps) {
                         <Vendors />
                     </Section>
                 </Layout>
+
+                <CTACard
+                    title="Promote your own keycapset!"
+                    text="Are you a set designer and want to run an Interest check and have a promotional website like this as well? Keycapsets is developing a toolkit for keycapset designers."
+                    btnText="See more"
+                    key="RUNIC"
+                />
             </div>
         </>
     );
