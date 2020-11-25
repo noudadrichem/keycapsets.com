@@ -99,11 +99,11 @@ $poseidon-accent: #00a4a9;
             display: flex;
             flex-direction: column;
             align-items: center;
-            // padding-top: 120px;
+            padding-top: 120px;
 
-            // @media screen and (min-width: $bp-desktop-md) {
-            //     padding-top: 240px;
-            // }
+            @media screen and (min-width: $bp-desktop-md) {
+                padding-top: 240px;
+            }
 
             .video-playing & {
                 pointer-events: none;

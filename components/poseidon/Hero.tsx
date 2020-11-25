@@ -1,6 +1,7 @@
 import React, { ReactNode, useRef } from 'react';
 import Button from '../../components/Button';
 import ButtonLink from '../../components/ButtonLink';
+import video from '../../public/poseidon.mp4';
 
 interface HeroProps {}
 
@@ -56,7 +57,7 @@ function Hero(props: HeroProps): JSX.Element {
         <div ref={heroRef} className="poseidon--hero">
             <div className="poseidon--hero__video">
                 <video muted autoPlay ref={videoRef}>
-                    <source src="https://www.w3schools.com/css/mov_bbb.mp4#t=0,5" type="video/mp4" />
+                    <source src="http://quaddepos.nl/poseidon.mp4#t=0,13" type="video/mp4" />
                 </video>
             </div>
             <div className="container poseidon--hero__inner">
