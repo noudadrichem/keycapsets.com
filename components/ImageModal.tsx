@@ -17,7 +17,7 @@ function ImageModal(props: ImageModalProps): JSX.Element {
     const { src } = props;
 
     const getStylingData = ({ current }) => ({
-        left: current.offsetLeft - current.parentElement.offsetLeft,
+        left: current.offsetLeft - current.parentElement.parentElement.offsetLeft,
         top: current.offsetTop,
         height: current.clientHeight,
         width: current.clientWidth,
@@ -29,6 +29,7 @@ function ImageModal(props: ImageModalProps): JSX.Element {
     useEffect(() => {
         if (open && loaded) {
             const { height, width, left, top, rect, scrollTop, scrollLeft } = getStylingData(imageRef);
+
             const { current: modalImage } = modalRef;
 
             document.body.style.position = 'relative';

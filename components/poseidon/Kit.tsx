@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+import ImageModal from '../ImageModal';
 
 interface KitProps {
     name: String;
@@ -12,7 +13,7 @@ function Kit(props: KitProps): JSX.Element {
     return (
         <div className="kit container">
             <div className="kit__cover">
-                <img src={`${imgUrl}`} />
+                <ImageModal src={imgUrl} />
             </div>
             <div className="kit__info">
                 <h3 data-name={name} className="kit__info-name">

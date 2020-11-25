@@ -195,8 +195,16 @@ $poseidon-accent: #00a4a9;
     .section {
         display: flex;
         flex-direction: column;
-        padding-top: 50px;
-        padding-bottom: 50px;
+        // padding: 50px;
+
+        @media screen and (min-width: $bp-tablet-sm) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media screen and (min-width: $bp-desktop-lg) {
+            padding: 50px 0;
+            grid-template-columns: repeat(3, 1fr);
+        }
 
         &-title {
             text-align: center;
@@ -284,25 +292,17 @@ $poseidon-accent: #00a4a9;
     }
 
     .renders {
-        display: flex;
-        flex-wrap: wrap;
-        padding-bottom: 94px;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 16px;
+        padding: 0px 0px 95px;
 
-        > div {
-            height: auto;
-            align-self: center;
+        @media screen and (min-width: $bp-tablet-sm) {
+            grid-template-columns: repeat(2, 1fr);
+        }
 
-            @media screen and (min-width: $bp-tablet-sm) {
-                width: calc(50% - 16px);
-
-                &:nth-of-type(even) {
-                    margin-left: 16px;
-                }
-            }
-
-            + img {
-                margin-top: 16px;
-            }
+        @media screen and (min-width: $bp-desktop-lg) {
+            grid-template-columns: repeat(3, 1fr);
         }
     }
 

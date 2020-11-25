@@ -57,7 +57,7 @@ function PoseidonPage(props: PoseidonPageProps) {
 
                     <Section title="Kits">
                         {keycapset.kits.map((kit) => (
-                            <Kit {...kit} />
+                            <Kit key={kit.name} {...kit} />
                         ))}
                     </Section>
 
@@ -73,7 +73,6 @@ function PoseidonPage(props: PoseidonPageProps) {
                         <Vendors />
                     </Section>
                 </Layout>
-
                 <CTACard
                     title="Promote your own keycapset!"
                     text="Are you a set designer and want to run an Interest check and have a promotional website like this as well? Keycapsets is developing a toolkit for keycapset designers."
@@ -98,7 +97,6 @@ export async function getServerSideProps(context) {
                 coverImageUrl: 'cover IMG hier',
                 vendors: [],
                 imageUrls: [
-                    // 'https://i.imgur.com/OLhtOUv.jpg',
                     'https://i.imgur.com/dCaIcDa.jpg',
                     'https://i.imgur.com/ipirs43.jpg',
                     'https://i.imgur.com/Cot5qNY.jpg',

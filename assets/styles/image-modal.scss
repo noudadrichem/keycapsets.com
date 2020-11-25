@@ -9,11 +9,16 @@
     .image-modal__container {
         position: relative;
         height: 100%;
-        max-width: 1248px;
+        width: 100%;
+        max-width: 1176px;
         margin: 0 auto 12px;
 
+        @media screen and (min-width: 1328px) {
+            max-width: 1280px;
+        }
+
         @media screen and (min-width: 1441px) {
-            max-width: 1368px;
+            max-width: 1416px;
         }
     }
 
