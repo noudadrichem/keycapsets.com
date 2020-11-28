@@ -167,13 +167,13 @@ function Hero(props: HeroProps): JSX.Element {
                     <Button
                         className="btn--poseidon"
                         size="lg"
-                        onClick={() => (window.location.href = 'https://keycapsets.com/ic/gmk-poseidon-cherry')}
+                        onClick={() => (window.location.href = '/ic/gmk-poseidon-cherry')}
                     >
                         Fill in IC
                     </Button>
-                    <ButtonLink isLarge={true} href="http://google.nl">
+                    {/* <ButtonLink isLarge={true} href="http://google.nl">
                         Go to Geeknack
-                    </ButtonLink>
+                    </ButtonLink> */}
                 </div>
 
                 <Button onClick={onPlayClick} className="btn--video" size="md">

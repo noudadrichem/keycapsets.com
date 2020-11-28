@@ -38,6 +38,7 @@ $poseidon-accent: #00a4a9;
             padding-top: 16px;
             padding-bottom: 12px;
             margin-bottom: 0;
+
             .nav-container a {
                 color: var(--white);
             }
@@ -46,13 +47,22 @@ $poseidon-accent: #00a4a9;
         &--hero {
             position: relative;
             display: flex;
-            min-height: 740px;
+            align-items: center;
             width: 100%;
+            min-height: 540px;
 
             @media screen and (min-width: $bp-desktop-sm) {
                 background: $poseidon-main;
                 justify-content: center;
                 align-items: center;
+            }
+
+            @media screen and (min-width: $bp-desktop-md) {
+                min-height: 740px;
+            }
+
+            @media screen and (min-width: $bp-desktop-lg) {
+                min-height: 70vh;
             }
 
             &.video-playing {
@@ -102,10 +112,10 @@ $poseidon-accent: #00a4a9;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                padding-top: 120px;
+                // padding-top: 120px;
 
                 @media screen and (min-width: $bp-desktop-md) {
-                    padding-top: 240px;
+                    // padding-top: 240px;
                 }
 
                 .video-playing & {
@@ -151,15 +161,15 @@ $poseidon-accent: #00a4a9;
                 flex: none;
                 justify-content: center;
                 align-items: center;
-                width: 100px;
-                height: 100px;
-                border-radius: 100px;
+                width: 96px;
+                height: 96px;
+                border-radius: 96px;
                 background: $poseidon-main;
                 box-shadow: 0 0 0 0 rgba(0, 164, 169, 1);
                 animation: pulse 2s infinite;
-                margin-top: 100px;
+                margin-top: 24px;
 
-                @media screen and (min-width: $bp-tablet-sm) {
+                @media screen and (min-width: $bp-tablet-md) {
                     margin-top: 24px;
                 }
 

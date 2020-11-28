@@ -105,6 +105,7 @@ export const GET_SINGLE_SET_QUERY = gql`
             coverImageUrl
             imageUrls
             websiteUrl
+            description
             vendors {
                 name
                 url

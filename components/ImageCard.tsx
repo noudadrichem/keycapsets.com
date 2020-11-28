@@ -37,7 +37,7 @@ function ImageCard(props: ImageCardProps): JSX.Element {
     }, [isInViewport]);
 
     return (
-        <Link href="/set/[set]" as={`/set/${slug}`}>
+        <Link href={`/set/${slug}`}>
             <a ref={containerRef}>
                 {wasInViewport && (
                     <div className={`image-card ${isTemplate ? 'disabled' : ''}`}>

@@ -30,7 +30,7 @@ export default function MultipleChoiseAnswerer(props: MultipleChoiseAnswererProp
     }
 
     useEffect(() => {
-        console.log('answers....', answers);
+        console.log('mutliple answers....', answers);
         onChange(labels.join(';'));
     }, [answers]);
 

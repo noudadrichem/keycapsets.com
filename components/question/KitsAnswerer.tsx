@@ -25,7 +25,7 @@ export default function KitsAnswerer(props: KitsAnswererProps) {
     }
 
     useEffect(() => {
-        console.log('answers....', answers);
+        console.log('kits answers....', answers);
         onChange(labels.join(';'));
     }, [answers]);
 
