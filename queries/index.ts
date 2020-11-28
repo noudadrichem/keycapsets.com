@@ -347,3 +347,12 @@ export const ADD_COMMENT_TO_IC = gql`
         }
     }
 `;
+
+export const START_IC = gql`
+    mutation START_IC($id: ID!) {
+        startInterestCheck(id: $id) {
+            user
+            text
+        }
+    }
+`;

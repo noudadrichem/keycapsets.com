@@ -44,3 +44,4 @@ temp/
 .DS_store
 out
 .vscode
+.nova

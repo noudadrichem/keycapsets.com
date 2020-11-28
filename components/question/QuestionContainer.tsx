@@ -20,7 +20,10 @@ function QuestionContainer() {
         setQuestion: state.setQuestion,
         setStatus: state.setStatus,
     }));
-    const isLastQuestion = state.question.idx + 1 === state.interestCheck.questions.length;
+
+    console.log('questioncontainer...', state);
+
+    const isLastQuestion = false; //state.question.idx + 1 === state.interestCheck.questions.length;
 
     useEffect(
         function updateQuestion() {
@@ -121,7 +124,7 @@ function QuestionContainer() {
                     onClick={() => nextQuestion(false)}
                     isDisabled={answer === '' || loading}
                 >
-                    {isLastQuestion ? 'Submit' : 'Next'}
+                    {isLastQuestion ? 'Finish' : 'Next'}
                 </Button>
             </div>
         </div>

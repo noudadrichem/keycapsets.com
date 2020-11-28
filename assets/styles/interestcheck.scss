@@ -1,6 +1,14 @@
 $bp-tablet-md: 768px;
 
 .interest-check {
+    .terms {
+        text-align: center;
+        @media screen and (min-width: $bp-tablet-md) {
+            position: absolute;
+            bottom: 48px;
+            right: 12px;
+        }
+    }
     &-topbar {
         height: 16px;
         background: var(--blue-lighter);

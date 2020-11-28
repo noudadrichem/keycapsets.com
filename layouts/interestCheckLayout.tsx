@@ -40,6 +40,14 @@ function InterestCheckLayout(props: InterestCheckLayoutProps) {
 
             <div className="interest-check-container container">{props.children}</div>
 
+            <div className="terms">
+                <p className="small italic light">
+                    By filling out this form you agree to the{' '}
+                    <Link href="/terms">
+                        <a className="link">terms</a>
+                    </Link>
+                </p>
+            </div>
             <Footer />
         </div>
     );
