@@ -56,6 +56,7 @@ function CTACard(props: CTACardProps): JSX.Element {
     }, []);
 
     function close() {
+        console.log('close');
         window.localStorage.setItem(KEY, moment().toString());
         setVisible(false);
     }
@@ -69,7 +70,7 @@ function CTACard(props: CTACardProps): JSX.Element {
             <p className="light">{text}</p>
 
             <Button
-                onClick={() => (window.location.href = 'https://github.com/noudadrichem/keycapsets.com/issues')}
+                onClick={() => (window.location.href = 'https://keycapsets.com')}
                 variant="primary"
                 className="center"
             >

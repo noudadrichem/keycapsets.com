@@ -3,19 +3,19 @@ import { Router } from 'next/router';
 import withGA from 'next-ga';
 
 import 'slick-carousel/slick/slick.css';
-import '../assets/styles/main.scss';
+import '../../assets/styles/main.scss';
 
-import Meta from '../components/Meta';
-import Hero from '../components/poseidon/Hero';
-import Kit from '../components/poseidon/Kit';
-import Renders from '../components/poseidon/Renders';
-import Vendors from '../components/poseidon/Vendors';
-import Updates from '../components/poseidon/Updates';
-import Section from '../components/poseidon/Section';
-import PoseidonLayout from '../layouts/PoseidonLayout';
+import Meta from '../../components/Meta';
+import Hero from '../../components/poseidon/Hero';
+import Kit from '../../components/poseidon/Kit';
+import Renders from '../../components/poseidon/Renders';
+import Vendors from '../../components/poseidon/Vendors';
+import Updates from '../../components/poseidon/Updates';
+import Section from '../../components/poseidon/Section';
+import PoseidonLayout from '../../layouts/PoseidonLayout';
 import { ApolloClient } from '@apollo/client';
-import CTACard from '../components/CTACard';
-import { Keycapset } from '../types/interfaces';
+import CTACard from '../../components/CTACard';
+import { Keycapset } from '../../types/interfaces';
 
 interface PoseidonPageProps {
     keycapset: Keycapset;
@@ -33,7 +33,7 @@ function PoseidonPage(props: PoseidonPageProps) {
 
     return (
         <>
-            <Meta title="Official IC page for GMK Poseidon" description="Noud is tering cool" metaImgUrl="" />
+            <Meta title="Official IC page for GMK Poseidon" />
             <div className="set">
                 <Layout>
                     <Hero />
@@ -73,12 +73,12 @@ function PoseidonPage(props: PoseidonPageProps) {
                         <Vendors />
                     </Section>
                 </Layout>
-                <CTACard
+                {/* <CTACard
                     title="Promote your own keycapset!"
-                    text="Are you a set designer and want to run an Interest check and have a promotional website like this as well? Keycapsets is developing a toolkit for keycapset designers."
-                    btnText="See more"
-                    key="RUNIC"
-                />
+                    text="Are you a set designer and want to run an Interest check and get a promotional website like this as well? Keycapsets is developing a toolkit for keycapset designers."
+                    btnText="Read more"
+                    key="RUN_IC"
+                /> */}
             </div>
         </>
     );
