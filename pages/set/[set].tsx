@@ -105,7 +105,7 @@ function SetPage(props: SetPageProps) {
                                 <div className="set-info-section-label">
                                     <label className="label">Start date</label>
                                     <label className="label large">
-                                        {moment(keycapset.groupbuyStartDate).format('Mo MMM YYYY')}
+                                        {moment(keycapset.groupbuyStartDate).format('Do MMM YYYY')}
                                     </label>
                                 </div>
                             )}
@@ -113,7 +113,7 @@ function SetPage(props: SetPageProps) {
                                 <div className="set-info-section-label">
                                     <label className="label">End date</label>
                                     <label className="label large">
-                                        {moment(keycapset.groupbuyEndDate).format('Mo MMM YYYY')}
+                                        {moment(keycapset.groupbuyEndDate).format('Do MMM YYYY')}
                                     </label>
                                 </div>
                             )}
