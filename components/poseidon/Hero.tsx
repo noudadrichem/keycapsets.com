@@ -1,14 +1,13 @@
 import React, { ReactNode, useRef } from 'react';
 import Button from '../../components/Button';
 import ButtonLink from '../../components/ButtonLink';
-import video from '../../public/poseidon.mp4';
 
 interface HeroProps {}
 
 function Hero(props: HeroProps): JSX.Element {
     const heroRef = useRef(null);
     const videoRef = useRef(null);
-    const fullSource = 'https://www.w3schools.com/css/mov_bbb.mp4';
+    const fullSource = '/images/poseidon.mp4';
 
     const onVideoPasuse = () => {
         heroRef.current.classList.remove('video-playing');
@@ -25,8 +24,10 @@ function Hero(props: HeroProps): JSX.Element {
     };
 
     const onPlayClick = () => {
-        const videoBreakpoint = window.getComputedStyle(document.documentElement).getPropertyValue('--bp-desktop-sm');
+        const videoBreakpoint = 1120; // window.getComputedStyle(document.documentElement).getPropertyValue('--bp-desktop-sm');
         const clientWidth = document.documentElement.clientWidth;
+
+        console.log({ videoBreakpoint, clientWidth });
 
         videoRef.current.muted = false;
         videoRef.current.controls = true;
@@ -46,6 +47,7 @@ function Hero(props: HeroProps): JSX.Element {
             }
         });
 
+        // TODO fix type interference
         if (clientWidth <= videoBreakpoint) {
             videoRef.current.requestFullscreen();
         }
@@ -57,7 +59,8 @@ function Hero(props: HeroProps): JSX.Element {
         <div ref={heroRef} className="poseidon--hero">
             <div className="poseidon--hero__video">
                 <video muted autoPlay ref={videoRef}>
-                    <source src="http://quaddepos.nl/poseidon.mp4#t=0,13" type="video/mp4" />
+                    {/* <source src="http://quaddepos.nl/poseidon.mp4#t=0,13" type="video/mp4" /> */}
+                    <source src="/images/poseidon.mp4" type="video/mp4" />
                 </video>
             </div>
             <div className="container poseidon--hero__inner">
@@ -161,7 +164,11 @@ function Hero(props: HeroProps): JSX.Element {
                     </g>
                 </svg>
                 <div className="button-wrapper">
-                    <Button className="btn--poseidon" size="lg">
+                    <Button
+                        className="btn--poseidon"
+                        size="lg"
+                        onClick={() => (window.location.href = 'https://keycapsets.com/ic/gmk-poseidon-cherry')}
+                    >
                         Fill in IC
                     </Button>
                     <ButtonLink isLarge={true} href="http://google.nl">
