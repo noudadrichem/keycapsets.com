@@ -1,7 +1,7 @@
 // @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap');
 
 h1 {
-    font-size: 64px;
+    font-size: 62px;
     line-height: 140%;
     font-weight: 500;
     color: var(--text-color);
@@ -9,6 +9,10 @@ h1 {
 
     @media screen and (max-width: $bp-tablet-md) {
         font-size: 48px;
+    }
+
+    @media screen and (min-width: $bp-laptop-md) {
+        font-size: 64px;
     }
 
     // @media screen and (max-width: $bp-laptop-md) {

@@ -257,6 +257,10 @@ img {
     display: grid;
     grid-gap: 24px;
 
+    &.v-center {
+        align-items: center;
+    }
+
     &.two-column {
         grid-template-columns: 1fr 1fr;
     }

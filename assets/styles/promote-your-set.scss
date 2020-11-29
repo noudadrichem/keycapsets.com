@@ -1,6 +1,10 @@
 .promote-your-set {
     .heading {
         padding: 160px 0 128px;
+
+        @media screen and (min-height: 1000px) {
+            padding: 304px 0 228px;
+        }
     }
 
     .section {
@@ -9,7 +13,7 @@
 
     .images-container {
         justify-content: center;
-        // grid-template-columns: 1fr;
+
         > a {
             grid-column: 2;
         }

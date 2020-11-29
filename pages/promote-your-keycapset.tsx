@@ -50,15 +50,21 @@ function PromoteYourSet() {
                 </section> */}
 
                 <section className="section feature-block left">
-                    <div className="grid two-column">
+                    <div className="grid v-center two-column">
                         <div
-                            style={{
-                                width: 504,
-                                height: 334,
-                                background: '#f2f2f2',
-                                borderRadius: 8,
-                            }}
-                        ></div>
+                        // style={{
+                        //     width: 504,
+                        //     height: 334,
+                        //     background: '#f2f2f2',
+                        //     borderRadius: 8,
+                        // }}
+                        >
+                            {/* <img src="https://i.ibb.co/197KHt9/custom-themed-page-2x.png" alt="Displaying difference between normal and themed page." /> */}
+                            <img
+                                src="https://i.ibb.co/2KR79M7/custom-themed-page-2x-1.png"
+                                alt="Displaying difference between normal and themed page."
+                            />
+                        </div>
 
                         <div>
                             <h4>A themed single page to promote your unique keycapset</h4>
