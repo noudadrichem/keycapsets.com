@@ -33,9 +33,15 @@
         &.right {
             div:nth-child(1) {
                 order: 2;
+                @media screen and (max-width: $bp-tablet-md) {
+                    order: 1;
+                }
             }
             div:nth-child(2) {
                 order: 1;
+                @media screen and (max-width: $bp-tablet-md) {
+                    order: 2;
+                }
             }
         }
     }

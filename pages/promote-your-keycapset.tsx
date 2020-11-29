@@ -12,7 +12,7 @@ import Arrow from '../components/Arrow';
 
 function CtaButtons() {
     return (
-        <div className="button-container flex align-center">
+        <div className="button-container flex align-center mobile-left">
             <Button size="lg" variant="primary" onClick={() => console.log('-')}>
                 Get in contact
             </Button>
