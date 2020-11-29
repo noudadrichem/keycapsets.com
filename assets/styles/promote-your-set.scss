@@ -7,8 +7,18 @@
         }
     }
 
+    .button-container {
+        .btn:first-child {
+            margin-right: 24px;
+        }
+    }
+
     .section {
         padding: 128px 0;
+
+        h3 {
+            margin-bottom: 16px;
+        }
     }
 
     .images-container {

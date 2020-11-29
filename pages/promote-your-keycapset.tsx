@@ -10,6 +10,20 @@ import Button from '../components/Button';
 import ImageCard from '../components/ImageCard';
 import Arrow from '../components/Arrow';
 
+function CtaButtons() {
+    return (
+        <div className="button-container flex align-center">
+            <Button size="lg" variant="primary" onClick={() => console.log('-')}>
+                Get in contact
+            </Button>
+
+            {/* <Button size="lg" variant="secondary" onClick={() => console.log('--')}>
+                Contact
+            </Button> */}
+        </div>
+    );
+}
+
 function PromoteYourSet() {
     const title = `Promote your keycapset the right way`;
     const description = `Get a completely themed landing page and run an interest check for your unique designed keycapset?`;
@@ -23,15 +37,7 @@ function PromoteYourSet() {
                     mainTitle="Promote your keycapset the right way"
                     subTitle="Get a completely themed landing page and run an interest check for your unique designed keycapset!"
                 >
-                    <div className="button-container flex align-center">
-                        <Button size="lg" variant="primary" onClick={() => console.log('-')}>
-                            Start now
-                        </Button>
-
-                        <Button size="lg" variant="secondary" onClick={() => console.log('--')}>
-                            Contact
-                        </Button>
-                    </div>
+                    <CtaButtons />
                 </Heading>
 
                 <section className="set-arrow">
@@ -67,18 +73,18 @@ function PromoteYourSet() {
                         </div>
 
                         <div>
-                            <h4>A themed single page to promote your unique keycapset</h4>
+                            <h3>A themed single page to promote your unique keycapset</h3>
                             <p className="light">
-                                Lorem ipsum dolor sit amet. Curabitur vel volutpat erat. Suspendisse metus eros,
-                                fringilla quis dolor at, accumsan maximus ligula. Etiam varius eu odio sit amet
-                                molestie. Integer condimentum sem eu orci laoreet, vel gravida purus maximus. Mauris
-                                quam tellus, finibus eget ipsum sit amet, elementum efficitur lectus. In et quam diam.
-                                Curabitur efficitur dolor in libero hendrerit, id maximus est bibendum. Etiam ac nibh
-                                sagittis tellus sollicitudin accumsan maximus a leo.
+                                Upload your set to Keycapsets and let us do the hard work. Keycapsets generates a themed
+                                page based on the colours of your unique design. Use this page to promote your set on
+                                all the socials and make it the center piece of information.
+                                <br />I want to provide more layouts for themed pages in the near future. Do you have a
+                                lay-out in mind? Contact me so we can work together towards a beautifull website!
                             </p>
                         </div>
                     </div>
                 </section>
+
                 {/*
                 <section className="section promo-before">
                     <h3 className="center">Designers before you</h3>
@@ -125,51 +131,64 @@ function PromoteYourSet() {
 */}
 
                 <section className="section feature-block right">
-                    <div className="grid two-column">
-                        <div
-                            style={{
-                                width: 504,
-                                height: 334,
-                                background: '#f2f2f2',
-                                borderRadius: 8,
-                            }}
-                        ></div>
+                    <div className="grid v-center two-column">
+                        <div>
+                            <img
+                                src="https://i.ibb.co/2KR79M7/custom-themed-page-2x-1.png"
+                                alt="Displaying difference between normal and themed page."
+                            />
+                        </div>
 
                         <div>
-                            <h4>A themed single page to promote your unique keycapset</h4>
+                            <h3>Targeted SEO for your single page</h3>
                             <p className="light">
-                                Lorem ipsum dolor sit amet. Curabitur vel volutpat erat. Suspendisse metus eros,
-                                fringilla quis dolor at, accumsan maximus ligula. Etiam varius eu odio sit amet
-                                molestie. Integer condimentum sem eu orci laoreet, vel gravida purus maximus. Mauris
-                                quam tellus, finibus eget ipsum sit amet, elementum efficitur lectus. In et quam diam.
-                                Curabitur efficitur dolor in libero hendrerit, id maximus est bibendum. Etiam ac nibh
-                                sagittis tellus sollicitudin accumsan maximus a leo.
+                                Keycapsets applies SEO (Search Engine Optimalisation) based on your keycapset. You're
+                                able to provide even more keywords to make the most out of your themed single page.
+                                <br />
+                                Every set will get their own share and meta image based on the colour pallet and design.
+                                These images are used at Google, Twitter, Discord, Facebook, Pinterest, LinkedIn, Slack
+                                and more. More info about this? Get in contact!
                             </p>
                         </div>
                     </div>
                 </section>
 
                 <section className="section feature-block left">
-                    <div className="grid two-column">
+                    <div className="grid v-center two-column">
                         <div
                             style={{
-                                width: 504,
-                                height: 334,
-                                background: '#f2f2f2',
-                                borderRadius: 8,
+                                boxShadow: '0px 0px 6px 0px rgba(63,63,63, .25)',
                             }}
-                        ></div>
+                        >
+                            <img
+                                src="https://i.ibb.co/tKbSnnK/custom-ic-numpad-question.png"
+                                alt="Visual representation of the IC form."
+                            />
+                        </div>
 
                         <div>
-                            <h4>A themed single page to promote your unique keycapset</h4>
+                            <h3>Interest check forms tailored to your keycapset design</h3>
                             <p className="light">
-                                Lorem ipsum dolor sit amet. Curabitur vel volutpat erat. Suspendisse metus eros,
-                                fringilla quis dolor at, accumsan maximus ligula. Etiam varius eu odio sit amet
-                                molestie. Integer condimentum sem eu orci laoreet, vel gravida purus maximus. Mauris
-                                quam tellus, finibus eget ipsum sit amet, elementum efficitur lectus. In et quam diam.
-                                Curabitur efficitur dolor in libero hendrerit, id maximus est bibendum. Etiam ac nibh
-                                sagittis tellus sollicitudin accumsan maximus a leo.
+                                Want to know what the public is thinking about your design? Want to fine tune your kits
+                                based on actual consumer feedback? Run your interest check via Keycapsets. This form is
+                                themed with the colours of your design and provides easy insight to consumer opinions.
                             </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section className="section feature-block left">
+                    <div className="grid one-column">
+                        <div>
+                            <h3 className="center">Promote and run your set via keycapsets.com!</h3>
+                            <p className="light center">
+                                As keycapsets.com is growing I'm working towards a platform that provides a toolbelt for
+                                keycapset designers like you! Help Keycapsets grow as a platform and <br />
+                                Use Keycapsets as your promotional tool to get insight in how your sets are doing at the
+                                public.
+                            </p>
+                            <br />
+                            <CtaButtons />
                         </div>
                     </div>
                 </section>
@@ -177,7 +196,7 @@ function PromoteYourSet() {
                 {/* <section className="section"></section> */}
 
                 {/* <div className="text-container">
-                    <h4>Use of the Service</h4>
+                    <h3>Use of the Service</h3>
                     <p className="light alinea">
                         This site tracks analytics via Google Analytics. By using this platform you agree that we track
                         your views of this site.
