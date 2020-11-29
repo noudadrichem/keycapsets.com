@@ -17,6 +17,12 @@
         padding: 32px 0 32px;
     }
 
+    .button-container {
+        .btn:first-child {
+            margin-right: 24px;
+        }
+    }
+
     .title {
         margin-bottom: 0px;
         color: var(--text-color);

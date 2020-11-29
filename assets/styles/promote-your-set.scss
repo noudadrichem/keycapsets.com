@@ -1,4 +1,20 @@
 .promote-your-set {
+    .heading {
+        padding: 160px 0 128px;
+    }
+
+    .section {
+        padding: 128px 0;
+    }
+
+    .images-container {
+        justify-content: center;
+        // grid-template-columns: 1fr;
+        > a {
+            grid-column: 2;
+        }
+    }
+
     .feature-block {
         &.right {
             div:nth-child(1) {
