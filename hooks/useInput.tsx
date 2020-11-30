@@ -4,10 +4,11 @@ export interface InputProps extends HTMLProps<HTMLInputElement> {
     reference?: LegacyRef<HTMLInputElement>;
     autoFocus?: boolean;
     icon?: any;
+    errorMessage?: string;
 }
 
 function Input(props: InputProps & HTMLProps<HTMLInputElement>): JSX.Element {
-    const { type = 'text', label, id, onChange, defaultValue, placeholder, reference, className } = props;
+    const { type = 'text', label, id, onChange, defaultValue, placeholder, reference, className, errorMessage } = props;
     return (
         <div className={`input-wrapper ${type} ${className}`}>
             {label && (
@@ -27,6 +28,7 @@ function Input(props: InputProps & HTMLProps<HTMLInputElement>): JSX.Element {
                     ref={reference}
                 />
             </div>
+            {errorMessage && <p className="error-message red">{errorMessage}</p>}
         </div>
     );
 }
