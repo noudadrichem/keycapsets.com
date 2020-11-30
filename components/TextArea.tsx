@@ -3,11 +3,21 @@ import React, { HTMLProps, LegacyRef } from 'react';
 export interface TextAreaProps extends HTMLProps<HTMLTextAreaElement> {
     reference?: LegacyRef<HTMLTextAreaElement>;
     autoFocus?: boolean;
-    onChange: any;
+    errorMessage?: string;
 }
 
 function TextArea(props: TextAreaProps): JSX.Element {
-    const { label, id, onChange, defaultValue, placeholder, reference, className, autoFocus } = props;
+    const {
+        label,
+        id,
+        onChange,
+        defaultValue,
+        placeholder,
+        reference,
+        className,
+        autoFocus = false,
+        errorMessage,
+    } = props;
     return (
         <div className={`input-wrapper textarea ${className}`}>
             {label && (
@@ -17,14 +27,16 @@ function TextArea(props: TextAreaProps): JSX.Element {
             )}
             <textarea
                 className="input"
-                onChange={(e) => onChange(e.target.value as any)}
+                onChange={onChange}
                 defaultValue={defaultValue}
                 name={id}
                 id={id}
                 placeholder={placeholder}
                 ref={reference}
-                autoFocus
+                autoFocus={autoFocus}
             />
+
+            {errorMessage && <p className="error-message red">{errorMessage}</p>}
         </div>
     );
 }

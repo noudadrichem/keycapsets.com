@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Rubik:400,400i,500&display=swap');
 @import 'variables';
+@import 'modal';
 @import 'typography';
 @import 'nav';
 @import 'set';
@@ -295,3 +296,18 @@ img {
 //         }
 //     }
 // }
+
+.contact-form {
+    .input-wrapper {
+        margin-bottom: 12px;
+    }
+
+    .controls {
+        display: flex;
+        justify-content: flex-end;
+
+        .btn:first-child {
+            margin-right: 16px;
+        }
+    }
+}

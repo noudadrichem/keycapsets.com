@@ -9,11 +9,18 @@ import Meta from '../components/Meta';
 import Button from '../components/Button';
 import ImageCard from '../components/ImageCard';
 import Arrow from '../components/Arrow';
+import useModalStore, { Modals } from '../hooks/useModalStore';
 
 function CtaButtons() {
+    const openModal = useModalStore((state) => state.openModal);
+
+    function contactKCS() {
+        openModal(Modals.Contact);
+    }
+
     return (
         <div className="button-container flex align-center mobile-left">
-            <Button size="lg" variant="primary" onClick={() => console.log('-')}>
+            <Button size="lg" variant="primary" onClick={contactKCS}>
                 Get in contact
             </Button>
 

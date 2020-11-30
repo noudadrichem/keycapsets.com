@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AppProps } from 'next/app';
 import { User } from '../types/interfaces';
 import { ApolloClient, ApolloProvider } from '@apollo/client';
@@ -6,6 +6,7 @@ import { ApolloClient, ApolloProvider } from '@apollo/client';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import Meta from '../components/Meta';
+import Modal from '../components/Modal';
 
 import '../assets/styles/main.scss';
 
@@ -51,6 +52,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                     {isFooterShown && <Footer isLargeContainer={isLargeContainer} />}
                 </ApolloProvider>
             </div>
+            <Modal />
         </div>
     );
 }
