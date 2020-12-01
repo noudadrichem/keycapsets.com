@@ -24,14 +24,14 @@ export interface Keycapset {
     slug?: string;
     createdAt?: Date;
     updatedAt?: Date;
-    accentColor1: string;
-    accentColor2: string;
-    accentColor3: string;
-    isInterestCheck: boolean;
+    accentColor1?: string;
+    accentColor2?: string;
+    accentColor3?: string;
+    isInterestCheck?: boolean;
     designedBy?: string[];
-    kits: Kit[];
+    kits?: Kit[];
     metaUrl?: string;
-    interestCheck: InterestCheck;
+    interestCheck?: InterestCheck;
     description: string;
 }
 

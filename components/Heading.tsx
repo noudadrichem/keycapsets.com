@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { ReactNode, useContext } from 'react';
 import { useRouter, NextRouter } from 'next/router';
 
 import SearchSets from './SearchSets';
@@ -11,10 +11,11 @@ interface HeadingProps {
     left?: boolean;
     isHome?: boolean;
     backgroundColor?: string;
+    children?: ReactNode;
 }
 
 function Heading(props: HeadingProps): JSX.Element {
-    const { mainTitle, subTitle, isHome = false, left = false, backgroundColor } = props;
+    const { mainTitle, subTitle, isHome = false, left = false, backgroundColor, children } = props;
     const router: NextRouter = useRouter();
     const isLoggedIn = useStore((state) => state.isLoggedIn);
 
@@ -31,6 +32,8 @@ function Heading(props: HeadingProps): JSX.Element {
         >
             <h1 className={`title no-bold ${left ? 'left' : 'center'}`}>{mainTitle}</h1>
             {subTitle && <h4 className={`title-sub ${left ? 'left' : 'center'}`}>{subTitle}</h4>}
+
+            {children && children}
 
             {isHome && (
                 <>
