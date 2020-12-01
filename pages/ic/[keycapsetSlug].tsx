@@ -46,6 +46,7 @@ function InterestCheck(props: InterestCheckProps) {
     }));
 
     useEffect(() => {
+        console.log(props);
         if (interestCheck !== null) {
             console.log(keycapset);
             interestCheck.questions.sort((a, b) => (a.order < b.order ? -1 : 1));

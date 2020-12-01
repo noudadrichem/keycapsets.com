@@ -169,7 +169,7 @@ function Hero(props: HeroProps): JSX.Element {
                         size="lg"
                         onClick={() => (window.location.href = '/ic/gmk-poseidon-cherry')}
                     >
-                        Fill in IC
+                        Fill in Interest Check
                     </Button>
                     {/* <ButtonLink isLarge={true} href="http://google.nl">
                         Go to Geeknack

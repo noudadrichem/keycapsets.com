@@ -32,12 +32,17 @@ function CtaButtons() {
 }
 
 function PromoteYourSet() {
-    const title = `Promote your keycapset the right way`;
-    const description = `Get a completely themed landing page and run an interest check for your unique designed keycapset?`;
+    const title = `Promote and run your set via keycapsets.com!    `;
+    const description = `Get a completely themed landing page and run an interest check for your unique designed keycapset! KCS provides targeted SEO.`;
 
     return (
         <>
-            <Meta title={title} description={description} />
+            <Meta
+                title={title}
+                description={description}
+                metaImgUrl="https://i.ibb.co/gWH2bN8/meta-image-promote-your-keycapset.png"
+                keywords={['promoting', 'keycapsets', 'keycap', 'gmk', 'keyboard', 'mechanical keyboard', 'promoting']}
+            />
 
             <div className="promote-your-set container">
                 <Heading
