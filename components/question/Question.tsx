@@ -26,7 +26,7 @@ export default function QuestionAnswerer(props: QuestionProps) {
             )}
             {
                 {
-                    open: <TextArea onChange={getAnswerValue} />,
+                    open: <TextArea onChange={(e) => getAnswerValue((e.target as HTMLTextAreaElement).value)} />,
                     multiple: <MultipleChoiseAnswerer onChange={getAnswerValue} options={question.options} />,
                     kits: <KitsAnswerer onChange={getAnswerValue} options={question.options} />,
                     single: <MultipleChoiseAnswerer onChange={getAnswerValue} options={question.options} single />,

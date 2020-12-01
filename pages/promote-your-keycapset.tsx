@@ -18,15 +18,19 @@ function CtaButtons() {
         openModal(Modals.Contact);
     }
 
+    function redirectToExample() {
+        Router.push('/ic/gmk-test-cherry');
+    }
+
     return (
         <div className="button-container flex align-center mobile-left">
             <Button size="lg" variant="primary" onClick={contactKCS}>
                 Get in contact
             </Button>
 
-            {/* <Button size="lg" variant="secondary" onClick={() => console.log('--')}>
-                Contact
-            </Button> */}
+            <Button size="lg" variant="secondary" onClick={redirectToExample}>
+                Start example
+            </Button>
         </div>
     );
 }

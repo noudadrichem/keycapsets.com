@@ -46,9 +46,7 @@ function InterestCheck(props: InterestCheckProps) {
     }));
 
     useEffect(() => {
-        console.log(props);
         if (interestCheck !== null) {
-            console.log(keycapset);
             interestCheck.questions.sort((a, b) => (a.order < b.order ? -1 : 1));
             state.setInterestCheck(interestCheck);
             state.setKeycapset(keycapset);
@@ -88,7 +86,7 @@ function InterestCheck(props: InterestCheckProps) {
         router.push(`/set/${keycapset.slug}`);
     }
     function redirectToCTA() {
-        router.push(`/set/${keycapset.slug}`);
+        router.push(`/promote-your-keycapset`);
     }
     function redirectToLogin() {
         router.push(`/login?next=${router.asPath}`);
