@@ -36,7 +36,7 @@ export interface Keycapset {
 }
 
 export interface InterestCheck {
-    _id: String;
+    _id: string;
     comments: any[];
     questions: Question[];
 }

@@ -2,9 +2,9 @@ import React, { ReactNode } from 'react';
 import ImageModal from '../ImageModal';
 
 interface KitProps {
-    name: String;
-    description?: String;
-    imgUrl: String;
+    name: string;
+    description?: string;
+    imgUrl: string;
 }
 
 function Kit(props: KitProps): JSX.Element {
