@@ -27,11 +27,11 @@ interface CTACardProps {
     text: string;
     btnText: string;
     key: string;
+    action: Function;
 }
 
 function CTACard(props: CTACardProps): JSX.Element {
     const KEY: string = props.key;
-    const {} = props;
     const [visible, setVisible] = useState(false);
 
     useEffect(() => {
@@ -50,30 +50,25 @@ function CTACard(props: CTACardProps): JSX.Element {
         function show() {
             timeout = setTimeout(() => {
                 setVisible(true);
-            }, 2700);
+            }, 4700);
         }
         return () => clearTimeout(timeout);
     }, []);
 
     function close() {
-        console.log('close');
         window.localStorage.setItem(KEY, moment().toString());
         setVisible(false);
     }
 
-    const { title, text, btnText } = props;
+    const { title, text, btnText, action } = props;
     return (
-        <div className={`cta-card visible ${visible ? 'visible' : 'hidden'}`}>
-            <CrossIcon onClick={() => close()} />
+        <div className={`cta-card ${visible ? 'visible' : 'hidden'}`}>
+            <CrossIcon onClick={close} />
 
             <h4>{title}</h4>
             <p className="light">{text}</p>
 
-            <Button
-                onClick={() => (window.location.href = 'https://keycapsets.com')}
-                variant="primary"
-                className="center"
-            >
+            <Button onClick={action} variant="primary" className="center">
                 {btnText}
             </Button>
         </div>

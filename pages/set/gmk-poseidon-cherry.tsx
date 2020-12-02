@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router } from 'next/router';
+import Router from 'next/router';
 import withGA from 'next-ga';
 
 import 'slick-carousel/slick/slick.css';
@@ -31,7 +31,9 @@ function PoseidonPage(props: PoseidonPageProps) {
         poseidon: PoseidonLayout,
     }[layout];
 
-    console.log(keycapset);
+    function redirectToLanding() {
+        Router.push('/promote-your-keycapset');
+    }
 
     return (
         <>
@@ -62,12 +64,13 @@ function PoseidonPage(props: PoseidonPageProps) {
                         <Vendors />
                     </Section>
                 </Layout>
-                {/* <CTACard
+                <CTACard
                     title="Promote your own keycapset!"
                     text="Are you a set designer and want to run an Interest check and get a promotional website like this as well? Keycapsets is developing a toolkit for keycapset designers."
                     btnText="Read more"
                     key="RUN_IC"
-                /> */}
+                    action={redirectToLanding}
+                />
             </div>
         </>
     );

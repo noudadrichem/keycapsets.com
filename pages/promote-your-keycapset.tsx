@@ -150,7 +150,7 @@ function PromoteYourSet() {
                     <div className="grid v-center two-column">
                         <div>
                             <img
-                                src="https://i.ibb.co/2KR79M7/custom-themed-page-2x-1.png"
+                                src="https://i.ibb.co/8dwjWhN/seo-meta-2x.png"
                                 alt="Displaying difference between normal and themed page."
                             />
                         </div>
