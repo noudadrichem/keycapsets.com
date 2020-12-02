@@ -35,14 +35,14 @@ function SetPage(props: SetPageProps) {
 
     if (keycapset !== null) {
         const isGeekhackUrl: boolean = keycapset?.websiteUrl.includes('geekhack');
-        const hasRenders = keycapset.imageUrls.length > 0;
+        const hasRenders = keycapset.imageUrls && keycapset.imageUrls.length > 0;
         const slickSettings = {
-            infinite: keycapset.coverImageUrl.length > 1,
+            infinite: hasRenders,
             speed: 500,
             slidesToShow: 1,
             slidesToScroll: 1,
             arrows: true,
-            autoplay: keycapset.coverImageUrl.length > 1,
+            autoplay: hasRenders,
             autoPlaySpeed: 2400,
         };
 
@@ -85,12 +85,6 @@ function SetPage(props: SetPageProps) {
                                 <div className="img">
                                     <img src={keycapset.imageUrls[2]} alt="Render image" />
                                 </div>
-                                {/* {keycapset.imageUrls[3] !== undefined && (<div className="img">
-                                        <img src={keycapset.imageUrls[3]} alt="Render image" />
-                                    </div>)}
-                                    {keycapset.imageUrls[4] !== undefined && (<div className="img">
-                                        <img src={keycapset.imageUrls[4]} alt="Render image" />
-                                    </div>)} */}
                             </section>
                         ) : (
                             <section className={`section set-vibe-section cover`}>
@@ -139,15 +133,11 @@ function SetPage(props: SetPageProps) {
                             <Arrow color="#D4E4FA" direction="bottom" />
                         </section>
 
-                        {/* <section className="section set-description">
-                            <p className="light center small">
-                                Aliquam felis nisl, sagittis a eleifend mollis, lacinia nec dui. Nam hendrerit elit non
-                                lectus consectetur ultrices. Duis rutrum, velit eget blandit elementum, purus ligula
-                                suscipit eros, pulvinar auctor purus risus id est. Aenean ullamcorper arcu auctor libero
-                                luctus consequat. Nulla ornare tristique nulla, a blandit magna vulputate quis. Etiam
-                                convallis fringilla dolor a vehicula. Duis porta non diam at dictum.{' '}
-                            </p>
-                        </section> */}
+                        {keycapset.description && (
+                            <section className="section set-description">
+                                <p className="light center small">{keycapset.description}</p>
+                            </section>
+                        )}
 
                         {keycapset.kits !== null && keycapset.kits.length > 0 && (
                             <section className="section set-kits">
@@ -167,16 +157,15 @@ function SetPage(props: SetPageProps) {
                             </section>
                         )}
 
-                        {hasRenders && (
-                            <section className="section set-renders">
-                                <h2 className="title center">Renders</h2>
-
-                                <div className="slick-container">
-                                    <Slider {...slickSettings}>
-                                        {keycapset.imageUrls.map((url: string, idx: number) => (
-                                            <img src={url} key={idx + url} />
-                                        ))}
-                                    </Slider>
+                        {keycapset.vendors.length > 0 && (
+                            <section className="section set-vendors">
+                                <h2 className="title center">Vendors</h2>
+                                <div className="set-vendors-container">
+                                    {keycapset.vendors.map((vendor: Vendor, idx) => (
+                                        <a href={vendor.url} target="_blank" key={idx} className="vendor-card">
+                                            <img src={vendor.logoUrl} alt={`Logo ${vendor.name}`} />
+                                        </a>
+                                    ))}
                                 </div>
                             </section>
                         )}
@@ -192,15 +181,16 @@ function SetPage(props: SetPageProps) {
                             </section>
                         )}
 
-                        {keycapset.vendors.length > 0 && (
-                            <section className="section set-vendors">
-                                <h2 className="title center">Vendors</h2>
-                                <div className="set-vendors-container">
-                                    {keycapset.vendors.map((vendor: Vendor, idx) => (
-                                        <a href={vendor.url} target="_blank" key={idx} className="vendor-card">
-                                            <img src={vendor.logoUrl} alt={`Logo ${vendor.name}`} />
-                                        </a>
-                                    ))}
+                        {hasRenders && (
+                            <section className="section set-renders">
+                                <h2 className="title center">Renders</h2>
+
+                                <div className="slick-container">
+                                    <Slider {...slickSettings}>
+                                        {keycapset.imageUrls.map((url: string, idx: number) => (
+                                            <img src={url} key={idx + url} />
+                                        ))}
+                                    </Slider>
                                 </div>
                             </section>
                         )}

@@ -105,6 +105,7 @@ export const GET_SINGLE_SET_QUERY = gql`
             coverImageUrl
             imageUrls
             websiteUrl
+            description
             vendors {
                 name
                 url
@@ -313,6 +314,12 @@ export const GET_KEYCAPSET_IC = gql`
                     text
                     options {
                         text
+                        kit {
+                            imgUrl
+                            name
+                            description
+                            _id
+                        }
                     }
                     kit {
                         name
@@ -336,6 +343,15 @@ export const ADD_ANSWER_TO_QUESTION = gql`
 export const ADD_COMMENT_TO_IC = gql`
     mutation ADD_COMMENT_TO_IC($input: CommentInput!) {
         addCommentToInterestCheck(input: $input) {
+            text
+        }
+    }
+`;
+
+export const START_IC = gql`
+    mutation START_IC($id: ID!) {
+        startInterestCheck(id: $id) {
+            user
             text
         }
     }

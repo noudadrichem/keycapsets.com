@@ -4,7 +4,7 @@ import useStore from '../../context';
 import { AVAILABILITY_FILTER } from '../../constants';
 
 interface TabProps {
-    id: String;
+    id: string;
     type: 'cap' | 'availability';
     label: string;
     handleUpdateFilters(availability: string);

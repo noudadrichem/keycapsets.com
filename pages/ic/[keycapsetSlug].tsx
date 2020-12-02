@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import Router, { useRouter } from 'next/router';
 import withGA from 'next-ga';
+import { useMutation } from '@apollo/client';
 
 import '../../assets/styles/main.scss';
 
 import Meta from '../../components/Meta';
 import { initializeApollo } from '../../hooks/withData';
-import { GET_KEYCAPSET_IC } from '../../queries';
+import { GET_KEYCAPSET_IC, START_IC } from '../../queries';
 import Button from '../../components/Button';
 import { Keycapset } from '../../types/interfaces';
 import useInterestCheckStore, { Status } from '../../hooks/useInterestCheckStore';
@@ -28,6 +29,7 @@ function InterestCheck(props: InterestCheckProps) {
     const { interestCheck } = keycapset;
     const user = useStore((state) => state.user);
     const router = useRouter();
+    const [startInterestCheck] = useMutation<any>(START_IC);
     const state = useInterestCheckStore((state) => ({
         setInterestCheck: state.setInterestCheck,
         setKeycapset: state.setKeycapset,
@@ -44,28 +46,47 @@ function InterestCheck(props: InterestCheckProps) {
     }));
 
     useEffect(() => {
-        console.log(keycapset._id);
-        interestCheck.questions.sort((a, b) => (a.order < b.order ? -1 : 1));
-        state.setInterestCheck(interestCheck);
-        state.setKeycapset(keycapset);
+        if (interestCheck !== null) {
+            interestCheck.questions.sort((a, b) => (a.order < b.order ? -1 : 1));
+            state.setInterestCheck(interestCheck);
+            state.setKeycapset(keycapset);
+        } else {
+            // redirectToSet();
+        }
     }, []);
 
-    function startIc() {
+    async function startIc() {
         if (user === null) {
             redirectToLogin();
         } else {
-            state.setStatus(Status.Ongoing);
-            state.setQuestion({
-                idx: 0,
-                question: interestCheck.questions[0],
-                next: 1,
-                previous: -1,
-            });
+            try {
+                // ? Callback to server
+                await startInterestCheck({
+                    variables: {
+                        id: interestCheck._id,
+                    },
+                });
+                state.setQuestion({
+                    idx: 0,
+                    question: interestCheck.questions[0],
+                    next: 1,
+                    previous: -1,
+                });
+                state.setStatus(Status.Ongoing);
+            } catch (err) {
+                console.log(err);
+            }
         }
     }
 
+    function redirectToHome() {
+        router.push(`/`);
+    }
     function redirectToSet() {
         router.push(`/set/${keycapset.slug}`);
+    }
+    function redirectToCTA() {
+        router.push(`/promote-your-keycapset`);
     }
     function redirectToLogin() {
         router.push(`/login?next=${router.asPath}`);
@@ -112,32 +133,44 @@ function InterestCheck(props: InterestCheckProps) {
     return (
         <InterestCheckLayout>
             <Meta title={`Interest check for ${state.name}`} metaImgUrl={keycapset.metaUrl} />
-            {state.status === Status.Start &&
+
+            {interestCheck === null &&
                 renderStartEnd({
-                    title: `${state.name} Interest check`,
+                    title: `No Interest check found..`,
                     sub: `Tailormade Interest check forms with analytics to run your IC. By and for keycapset designers!`,
-                    action1: startIc,
-                    action2: redirectToSignUp,
-                    btn1Text: user === null ? 'Login' : 'Fill in form',
-                    btn2Text: user === null ? 'Sign Up' : null,
+                    action1: redirectToHome,
+                    action2: redirectToCTA,
+                    btn1Text: `Visit keycapsets.com`,
+                    btn2Text: `Get more info`,
                 })}
 
-            {state.status === Status.Ongoing && <QuestionContainer />}
+            {interestCheck !== null && (
+                <>
+                    {state.status === Status.Start &&
+                        renderStartEnd({
+                            title: `${state.name} Interest check`,
+                            sub: `Tailormade Interest check forms with analytics to run your IC. By and for keycapset designers!`,
+                            action1: startIc,
+                            action2: redirectToSignUp,
+                            btn1Text: user === null ? 'Login' : 'Fill in form',
+                            btn2Text: user === null ? 'Sign Up' : null,
+                        })}
 
-            {state.status === Status.Commenting && <CommentContainer />}
+                    {state.status === Status.Ongoing && <QuestionContainer />}
 
-            {state.status === Status.Done &&
-                renderStartEnd({
-                    title: `Thank you for sharing your opinion!`,
-                    sub: `That was fast! Do you also want to run your interest check here to get all the insights you need?`,
-                    action1: redirectToSet,
-                    action2: () => {
-                        console.log('work together');
-                        // document.location.href = `mailto:contact@keycapsets.com?subject=I'd like to run my Interest check on Keycapsets!`;
-                    },
-                    btn1Text: `Go back to ${state.name}`,
-                    btn2Text: `Let's work together`,
-                })}
+                    {state.status === Status.Commenting && <CommentContainer />}
+
+                    {state.status === Status.Done &&
+                        renderStartEnd({
+                            title: `Thank you for sharing your opinion!`,
+                            sub: `That was fast! Do you also want to run your interest check here to get all the insights you need?`,
+                            action1: redirectToSet,
+                            action2: redirectToCTA,
+                            btn1Text: `Go back to ${state.name}`,
+                            btn2Text: `Get more info`,
+                        })}
+                </>
+            )}
         </InterestCheckLayout>
     );
 }

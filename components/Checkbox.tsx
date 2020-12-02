@@ -41,7 +41,7 @@ export default function CheckboxContainer(props: CheckboxProps): JSX.Element {
         <div className={`input-wrapper checkbox ${className}`}>
             <label className="label">
                 <Checkbox size={size} checked={checked} getChecked={(isChecked: boolean) => getResponse(isChecked)} />
-                <span className="text">{label}</span>
+                {label && <span className="text">{label}</span>}
             </label>
         </div>
     );

@@ -1,0 +1,48 @@
+.promote-your-set {
+    .heading {
+        padding: 160px 0 128px;
+
+        @media screen and (min-height: 1000px) {
+            padding: 304px 0 228px;
+        }
+    }
+
+    .button-container {
+        .btn:first-child {
+            margin-right: 24px;
+        }
+    }
+
+    .section {
+        padding: 128px 0;
+
+        h3 {
+            margin-bottom: 16px;
+        }
+    }
+
+    .images-container {
+        justify-content: center;
+
+        > a {
+            grid-column: 2;
+        }
+    }
+
+    .feature-block {
+        &.right {
+            div:nth-child(1) {
+                order: 2;
+                @media screen and (max-width: $bp-tablet-md) {
+                    order: 1;
+                }
+            }
+            div:nth-child(2) {
+                order: 1;
+                @media screen and (max-width: $bp-tablet-md) {
+                    order: 2;
+                }
+            }
+        }
+    }
+}

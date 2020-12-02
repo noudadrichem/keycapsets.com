@@ -17,6 +17,7 @@ const DarkModeSwitch = dynamic(() => import('./DarkModeSwitch'), {
 
 interface NavProps {
     isLargeContainer?: boolean;
+    smallPadding?: boolean;
 }
 
 const HamburgerIcon = ({ size = 24, color = '#232323', onClick }) => (
