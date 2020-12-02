@@ -28,6 +28,8 @@
 @import 'pill';
 @import 'vendors';
 @import 'cta-card';
+@import 'image-modal';
+@import 'poseidon';
 @import 'dark-mode-switch';
 @import 'error';
 @import 'interestcheck';
@@ -82,6 +84,30 @@ img {
         -webkit-transform: translate3d(0, 100%, 0);
         opacity: 0;
         transform: translate3d(0, 100%, 0);
+    }
+
+    100% {
+        -webkit-transform: translateZ(0);
+        opacity: 1;
+        transform: translateZ(0);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInLeft {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0px, -50px, 0);
+        transform: translate3d(0px, -50px, 0);
     }
 
     100% {
@@ -233,6 +259,13 @@ img {
 
 .no-margin {
     margin: 0 !important;
+}
+
+.img {
+    background-color: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+    line-height: 0;
 }
 
 .flex {

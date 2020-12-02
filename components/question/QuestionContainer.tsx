@@ -8,7 +8,7 @@ import { ADD_ANSWER_TO_QUESTION } from '../../queries';
 import CheckboxContainer, { CheckboxValue } from '../Checkbox';
 
 function QuestionContainer() {
-    const [addQuestionToAnswer] = useMutation(ADD_ANSWER_TO_QUESTION);
+    const [addAnswerToQuestion] = useMutation(ADD_ANSWER_TO_QUESTION);
     const [answer, setAnswer] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);
     const [wantsUpdates, setWantsUpdates] = useState<CheckboxValue>({ checked: true });
@@ -20,7 +20,10 @@ function QuestionContainer() {
         setQuestion: state.setQuestion,
         setStatus: state.setStatus,
     }));
-    const isLastQuestion = state.question.idx + 1 === state.interestCheck.questions.length;
+
+    console.log('questioncontainer...', state);
+
+    const isLastQuestion = false; //state.question.idx + 1 === state.interestCheck.questions.length;
 
     useEffect(
         function updateQuestion() {
@@ -65,9 +68,10 @@ function QuestionContainer() {
     const setAnswerValue = (value: string) => setAnswer(value);
 
     async function uploadQuestionAnswer(input: any) {
+        console.log('uploadQuestionAnswer...', input);
         try {
             setLoading(true);
-            const response = await addQuestionToAnswer({
+            const response = await addAnswerToQuestion({
                 variables: { input },
             });
             setAnswer('');
@@ -103,13 +107,15 @@ function QuestionContainer() {
                     />
                 )} */}
 
-                <a
-                    className="btn-skip label"
-                    style={{ marginRight: 8, marginBottom: 0 }}
-                    onClick={() => nextQuestion(true)}
-                >
-                    Skip
-                </a>
+                {!isLastQuestion && (
+                    <a
+                        className="btn-skip label"
+                        style={{ marginRight: 8, marginBottom: 0 }}
+                        onClick={() => nextQuestion(true)}
+                    >
+                        Skip
+                    </a>
+                )}
 
                 <Button
                     variant="primary"
@@ -118,7 +124,7 @@ function QuestionContainer() {
                     onClick={() => nextQuestion(false)}
                     isDisabled={answer === '' || loading}
                 >
-                    {isLastQuestion ? 'Submit' : 'Next'}
+                    {isLastQuestion ? 'Finish' : 'Next'}
                 </Button>
             </div>
         </div>

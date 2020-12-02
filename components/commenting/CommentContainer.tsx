@@ -44,6 +44,10 @@ function CommentContainer() {
         uploadCommentToIC(input);
     }
 
+    function skip() {
+        state.setStatus(Status.Done);
+    }
+
     return (
         <>
             <div className="comment-container">
@@ -58,11 +62,13 @@ function CommentContainer() {
                     <h2 className="light">Add a public comment</h2>
                     <label className="label italic">These are public, so be kind.</label>
                     {/* {question.description && <p>{question.description}</p>} */}
-                    <TextArea onChange={setCommentValue} />
+                    <TextArea onChange={(e) => setCommentValue((e.target as HTMLTextAreaElement).value)} />
                 </div>
 
                 <div className="comment-controls">
-                    {/* <Button variant="secondary" onClick={previousQuestion}>Previous</Button> */}
+                    <Button variant="primary" onClick={skip} style={{ marginRight: 12 }}>
+                        Skip
+                    </Button>
                     <Button
                         variant="primary"
                         style={{ backgroundColor: state.accentColor1 }}

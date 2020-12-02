@@ -11,7 +11,7 @@ interface MultiSelectProps<T> {
     options: T[];
     onChange: Function;
     isMulti?: boolean;
-    label: String;
+    label: string;
     defaultValue?: T[];
 }
 

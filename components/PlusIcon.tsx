@@ -20,16 +20,16 @@ export default function Plus(props: PlusProps) {
             <path
                 d="M3.7002 3.70018L10.2999 10.2998"
                 stroke="#566073"
-                stroke-width="1.33333"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.33333"
+                strokeLinecap="round"
+                strokeLinejoin="round"
             />
             <path
                 d="M3.7002 10.2998L10.2999 3.70018"
                 stroke="#566073"
-                stroke-width="1.33333"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.33333"
+                strokeLinecap="round"
+                strokeLinejoin="round"
             />
         </svg>
     );

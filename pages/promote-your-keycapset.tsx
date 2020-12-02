@@ -18,26 +18,35 @@ function CtaButtons() {
         openModal(Modals.Contact);
     }
 
+    function redirectToExample() {
+        Router.push('/ic/gmk-test-cherry');
+    }
+
     return (
         <div className="button-container flex align-center mobile-left">
             <Button size="lg" variant="primary" onClick={contactKCS}>
                 Get in contact
             </Button>
 
-            {/* <Button size="lg" variant="secondary" onClick={() => console.log('--')}>
-                Contact
-            </Button> */}
+            <Button size="lg" variant="secondary" onClick={redirectToExample}>
+                Start example
+            </Button>
         </div>
     );
 }
 
 function PromoteYourSet() {
-    const title = `Promote your keycapset the right way`;
-    const description = `Get a completely themed landing page and run an interest check for your unique designed keycapset?`;
+    const title = `Promote and run your set via keycapsets.com!    `;
+    const description = `Get a completely themed landing page and run an interest check for your unique designed keycapset! KCS provides targeted SEO.`;
 
     return (
         <>
-            <Meta title={title} description={description} />
+            <Meta
+                title={title}
+                description={description}
+                metaImgUrl="https://i.ibb.co/gWH2bN8/meta-image-promote-your-keycapset.png"
+                keywords={['promoting', 'keycapsets', 'keycap', 'gmk', 'keyboard', 'mechanical keyboard', 'promoting']}
+            />
 
             <div className="promote-your-set container">
                 <Heading
@@ -141,7 +150,7 @@ function PromoteYourSet() {
                     <div className="grid v-center two-column">
                         <div>
                             <img
-                                src="https://i.ibb.co/2KR79M7/custom-themed-page-2x-1.png"
+                                src="https://i.ibb.co/8dwjWhN/seo-meta-2x.png"
                                 alt="Displaying difference between normal and themed page."
                             />
                         </div>

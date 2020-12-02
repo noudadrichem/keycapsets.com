@@ -43,6 +43,10 @@ function MyApp({ Component, pageProps }: AppProps) {
     const isNavShown: boolean = pageProps.isNavShown !== undefined ? pageProps.isNavShown : true;
     const isFooterShown: boolean = pageProps.isFooterShown !== undefined ? pageProps.isFooterShown : true;
 
+    console.log({
+        isNavShown,
+        isFooterShown,
+    });
     return (
         <div className="app">
             <div className="page-layout">

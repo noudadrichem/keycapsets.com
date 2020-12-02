@@ -22,11 +22,16 @@ const CrossIcon = ({ size = 16, color = '#566073', onClick }) => (
     </svg>
 );
 
-interface CTACardProps {}
+interface CTACardProps {
+    title: string;
+    text: string;
+    btnText: string;
+    key: string;
+    action: Function;
+}
 
 function CTACard(props: CTACardProps): JSX.Element {
-    const KEY: string = 'CTA_ACC_BETA';
-    const {} = props;
+    const KEY: string = props.key;
     const [visible, setVisible] = useState(false);
 
     useEffect(() => {
@@ -45,7 +50,7 @@ function CTACard(props: CTACardProps): JSX.Element {
         function show() {
             timeout = setTimeout(() => {
                 setVisible(true);
-            }, 2700);
+            }, 4700);
         }
         return () => clearTimeout(timeout);
     }, []);
@@ -55,22 +60,16 @@ function CTACard(props: CTACardProps): JSX.Element {
         setVisible(false);
     }
 
+    const { title, text, btnText, action } = props;
     return (
         <div className={`cta-card ${visible ? 'visible' : 'hidden'}`}>
-            <CrossIcon onClick={() => close()} />
+            <CrossIcon onClick={close} />
 
-            <h4>This is the beta for accounts!</h4>
-            <p className="light">
-                Please report issues and bugs via link below (Github). Check if the issue isn't already reported and if
-                it is vote the issue up.
-            </p>
+            <h4>{title}</h4>
+            <p className="light">{text}</p>
 
-            <Button
-                onClick={() => (window.location.href = 'https://github.com/noudadrichem/keycapsets.com/issues')}
-                variant="primary"
-                className="center"
-            >
-                Report bug
+            <Button onClick={action} variant="primary" className="center">
+                {btnText}
             </Button>
         </div>
     );

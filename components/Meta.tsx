@@ -8,10 +8,11 @@ interface MetaProps {
     title?: string;
     description?: string;
     metaImgUrl?: string;
+    keywords?: string[];
 }
 
 function Meta(props: MetaProps) {
-    const { title, description, metaImgUrl }: MetaProps = props;
+    const { title, description, metaImgUrl, keywords }: MetaProps = props;
     function setGoogleTags() {
         return {
             __html: `
@@ -47,6 +48,8 @@ function Meta(props: MetaProps) {
             <meta property="twitter:card" content="summary_large_image" />
 
             <meta key="meta_og_image" property="og:image:og:image:secure_url" content={metaImgUrl || META_IMG_URL} />
+
+            {keywords && <meta name="keywords" content={keywords.join(',')} />}
 
             {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
             <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115865530-2"></script>
