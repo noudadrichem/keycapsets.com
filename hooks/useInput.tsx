@@ -40,7 +40,7 @@ function useInput(props: InputProps) {
 
     function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
         if (type === 'checkbox') {
-            setValue((e.target.checked as unknown) as typeof defaultValue);
+            setValue((e.target.checked as any) as typeof defaultValue);
         } else {
             setValue(e.target.value);
         }

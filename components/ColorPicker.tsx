@@ -18,9 +18,9 @@ function ColorPicker(props: ColorPickerProps): JSX.Element {
     });
 
     function handler(colors) {
-        // @ts-expect-error
-        setAccentColor(colors.color);
-        onChange(colors.color);
+        console.log('colors...', colors);
+        // setAccentColor(colors.color);
+        // onChange(colors.color);
     }
 
     useEffect(function initColorPickerDefaultValue() {
