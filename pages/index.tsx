@@ -9,6 +9,7 @@ import Heading from '../components/Heading';
 import Overview from '../components/Overview';
 import Meta from '../components/Meta';
 import Filters from '../components/Filters';
+import LikeSet from '../components/LikeSet';
 
 function Home() {
     return (
@@ -16,6 +17,7 @@ function Home() {
             <Meta />
             <div className="container large">
                 <Heading isHome mainTitle="Find your favorite keycapset" subTitle="" />
+
                 <Filters />
                 <Overview />
                 <BackToTop />

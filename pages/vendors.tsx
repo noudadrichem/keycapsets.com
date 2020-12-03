@@ -1,6 +1,6 @@
 import React from 'react';
 import Error from 'next/error';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import withGA from 'next-ga';
 import Router from 'next/router';
 

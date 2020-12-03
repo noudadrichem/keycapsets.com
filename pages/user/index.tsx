@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Router } from 'next/router';
 import withGA from 'next-ga';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { USER_WANTS_SETS } from '../../queries';
 import Heading from '../../components/Heading';
 import LoadingKeyboardIllustration from '../../components/LoadingKeyboardIllustration';

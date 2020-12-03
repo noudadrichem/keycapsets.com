@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react';
 import { Context } from '../types/interfaces';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 
 // import context from '../context';
 import { ME } from '../queries';

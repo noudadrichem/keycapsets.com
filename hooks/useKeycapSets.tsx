@@ -1,4 +1,4 @@
-import { useApolloClient, useQuery } from '@apollo/react-hooks';
+import { useApolloClient, useQuery } from '@apollo/client';
 import { FETCH_KEYCAPSET_QUERY } from '../queries';
 import { useState, useEffect } from 'react';
 import { Keycapset } from '../types/interfaces';

@@ -1,7 +1,8 @@
 import React from 'react';
 import { NextRouter, useRouter } from 'next/router';
 import ReactTooltip from 'react-tooltip';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
+
 import { Keycapset } from '../types/interfaces';
 
 import { WANT_SET } from '../queries';

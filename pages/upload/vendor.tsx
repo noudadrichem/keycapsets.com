@@ -1,7 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 import React, { useState, useEffect } from 'react';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 import withGA from 'next-ga';
 import Router from 'next/router';
 import countries from '../../assets/countries';

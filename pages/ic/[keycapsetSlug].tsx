@@ -43,10 +43,12 @@ function InterestCheck(props: InterestCheckProps) {
         accentColor3: keycapset.accentColor3,
         coverImageUrl: keycapset.coverImageUrl,
         status: state.status,
+        reset: state.reset,
     }));
 
     useEffect(() => {
         if (interestCheck !== null) {
+            state.reset();
             interestCheck.questions.sort((a, b) => (a.order < b.order ? -1 : 1));
             state.setInterestCheck(interestCheck);
             state.setKeycapset(keycapset);
@@ -137,11 +139,11 @@ function InterestCheck(props: InterestCheckProps) {
             {interestCheck === null &&
                 renderStartEnd({
                     title: `No Interest check found..`,
-                    sub: `Tailormade Interest check forms with analytics to run your IC. By and for keycapset designers!`,
+                    sub: `Run your set via Keycapsets. Get a completely themed landing page and run an interest check for your unique designed keycapset!`,
                     action1: redirectToHome,
                     action2: redirectToCTA,
-                    btn1Text: `Visit keycapsets.com`,
-                    btn2Text: `Get more info`,
+                    btn1Text: `Go back`,
+                    btn2Text: `More info`,
                 })}
 
             {interestCheck !== null && (

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import Button from '../Button';
 import useInterestCheckStore, { Status } from '../../hooks/useInterestCheckStore';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 import { ADD_COMMENT_TO_IC } from '../../queries';
 import TextArea from '../TextArea';
 
@@ -16,6 +16,7 @@ function CommentContainer() {
         name: state.keycapset.name,
         accentColor1: state.keycapset.accentColor1,
         setStatus: state.setStatus,
+        reset: state.reset,
     }));
 
     const setCommentValue = (value: string) => setComment(value);
@@ -74,9 +75,9 @@ function CommentContainer() {
                         style={{ backgroundColor: state.accentColor1 }}
                         className="custom"
                         onClick={add}
-                        isDisabled={comment === ''}
+                        isDisabled={comment === '' || loading}
                     >
-                        Comment
+                        {!loading ? 'Comment' : 'Loading...'}
                     </Button>
                 </div>
             </div>

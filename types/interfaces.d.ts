@@ -32,7 +32,7 @@ export interface Keycapset {
     kits?: Kit[];
     metaUrl?: string;
     interestCheck?: InterestCheck;
-    description: string;
+    description?: string;
 }
 
 export interface InterestCheck {

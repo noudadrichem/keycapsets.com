@@ -3,7 +3,7 @@ import withGA from 'next-ga';
 import Router, { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { Context } from '../../../types/interfaces';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 import ReactTooltip from 'react-tooltip';
 
 import context from '../../../context';

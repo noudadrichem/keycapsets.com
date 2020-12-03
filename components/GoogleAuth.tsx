@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { GoogleLogin, GoogleLoginResponse, GoogleLogout } from 'react-google-login';
-import { useApolloClient } from '@apollo/react-hooks';
+import { useApolloClient } from '@apollo/client';
 import { useRouter } from 'next/router';
 
 import { GOOGLE_LOGIN } from '../queries';

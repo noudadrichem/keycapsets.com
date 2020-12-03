@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react';
 
 import { Context, Keycapset } from '../types/interfaces';
 import Button from './Button';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 import { CLAIM_SET } from '../queries';
 
 interface ClaimSetProps {

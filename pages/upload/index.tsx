@@ -5,7 +5,7 @@ import Router from 'next/router';
 import '../../assets/styles/upload.scss';
 
 import Heading from '../../components/Heading';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 import { IMG_UPLOAD_FORM_DATA } from '../../queries';
 
 interface UploadProps {}

@@ -1,6 +1,6 @@
 import { useEffect, useContext } from 'react';
 import { useRouter, NextRouter } from 'next/router';
-import { useApolloClient } from '@apollo/react-hooks';
+import { useApolloClient } from '@apollo/client';
 
 import { REDDIT_LOGIN } from '../queries';
 

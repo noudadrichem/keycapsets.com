@@ -6,13 +6,13 @@ import { FETCH_KEYCAPSET_QUERY, USER_WANTS_SETS } from '../queries';
 import LoadingKeyboardIllustration from './LoadingKeyboardIllustration';
 import Cards from './Cards';
 import useStore from '../context';
-import { initializeApollo } from '../hooks/withData';
 
 interface ImagesProps {
     keycapsets?: Keycapset[];
 }
 
-function Images(): JSX.Element {
+function Images(props: any): JSX.Element {
+    console.log('iages props...', props);
     const [atBottom, setIsAtBottom] = useState<boolean>(false);
     const setUserWants = useStore((state) => state.setUserWants);
     const filters = useStore((state) => state.filters);

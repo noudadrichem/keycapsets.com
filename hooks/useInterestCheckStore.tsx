@@ -31,6 +31,7 @@ type Actions = {
     setStatus(status: Status): void;
     setInStore(): void;
     getFromStore(): void;
+    reset(): void;
 };
 
 export const INITITAL_IC_STATE: State = {
@@ -46,6 +47,11 @@ const useInterestCheckStore = create<State & Actions>((set, get) => ({
     setKeycapset: (keycapset: Keycapset) => set({ keycapset }),
     setQuestion: (question: any) => set({ question }),
     setStatus: (status: Status) => set({ status }),
+    reset: () => {
+        // const resetStart = { ...INITITAL_IC_STATE }
+        // delete resetStart.status
+        set({ ...INITITAL_IC_STATE });
+    },
     getFromStore: () => {
         const hasPersistedStore = window.localStorage.getItem('IC');
         if (hasPersistedStore) {
