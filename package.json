@@ -27,7 +27,6 @@
     "homepage": "https://keycapsets.com",
     "dependencies": {
         "@apollo/client": "^3.2.9",
-        "@apollo/react-hooks": "^4.0.0",
         "@zeit/next-css": "^1.0.1",
         "@zeit/next-sass": "^1.0.1",
         "apollo-upload-client": "^14.1.1",
