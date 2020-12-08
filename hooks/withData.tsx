@@ -25,6 +25,7 @@ function createApolloClient() {
         ssrMode: isBrowser,
         link: authLink.concat(
             createUploadLink({
+                // TODO make this come from environment
                 // uri: 'http://localhost:4000/graphql',
                 // uri: 'https://api-testing.keycapsets.com/graphql',
                 uri: 'https://api.keycapsets.com/graphql',

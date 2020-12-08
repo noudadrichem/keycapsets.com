@@ -14,11 +14,11 @@ type ContactKCSInputs = {
 };
 
 function ContactForm(): JSX.Element {
-    const { register, handleSubmit, errors, control } = useForm<ContactKCSInputs>();
+    const { register, handleSubmit, errors, control, reset } = useForm<ContactKCSInputs>();
     const close = useModalStore((s) => s.controls.close);
     const [loading, setLoading] = useState(false);
 
-    async function submitContact(formValues: ContactKCSInputs) {
+    async function submitContact(formValues: ContactKCSInputs, e: any) {
         setLoading(true);
         const body = {
             ...formValues,
@@ -34,6 +34,7 @@ function ContactForm(): JSX.Element {
                 body: JSON.stringify(body),
             });
             setLoading(false);
+            e.target.reset();
         } catch (err) {
             console.log(err);
             setLoading(false);
