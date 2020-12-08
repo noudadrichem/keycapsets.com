@@ -12,9 +12,9 @@ import Meta from '../components/Meta';
 
 function Login() {
     return (
-        <div className="container sign-up">
+        <div className="container login">
             <Meta />
-            <Heading mainTitle="Login on keycapsets" subTitle="Welcome back, enjoy the platform!" left />
+            <Heading mainTitle="Login on keycapsets" subTitle="Enjoy the platform!" left />
 
             <div className="cards">
                 <div className="card center">

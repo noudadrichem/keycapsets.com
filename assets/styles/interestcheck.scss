@@ -115,7 +115,7 @@ $bp-tablet-md: 768px;
 
             @media screen and (max-width: $bp-tablet-md) {
                 font-size: 12px;
-                padding: 8px 0px;
+                padding: 24px 0px;
 
                 .input-wrapper.textarea .input {
                     min-height: 100px;
@@ -151,6 +151,11 @@ $bp-tablet-md: 768px;
             align-items: center;
             margin-top: 16px;
 
+            @media screen and (max-width: $bp-tablet-md) {
+                flex-direction: column-reverse;
+                justify-content: center;
+            }
+
             .email-notification {
                 margin-right: 12px;
 
@@ -162,7 +167,23 @@ $bp-tablet-md: 768px;
 
             .btn-next {
                 @media screen and (max-width: $bp-tablet-md) {
-                    width: 40%;
+                    width: 100%;
+                }
+            }
+
+            .btn-skip {
+                margin-right: 12px;
+                margin-bottom: 0;
+
+                @media screen and (max-width: $bp-tablet-md) {
+                    margin-right: 0;
+                    margin-top: 32px;
+                    font-size: 13px;
+
+                    background-color: var(--white);
+                    padding: 12px 16px;
+                    text-align: center;
+                    width: 100%;
                 }
             }
         }
@@ -175,6 +196,9 @@ $bp-tablet-md: 768px;
 
         .input-wrapper.question-option {
             margin: 12px 0;
+            @media screen and (max-width: $bp-tablet-md) {
+                margin: 24px 0;
+            }
 
             .label {
                 font-size: 13px;
@@ -230,6 +254,10 @@ $bp-tablet-md: 768px;
                         height: 100%;
                         background-color: rgba(#539bfb, 0.2);
                     }
+                }
+
+                .input-checkbox-styled.checked {
+                    box-shadow: none;
                 }
 
                 .label-container {

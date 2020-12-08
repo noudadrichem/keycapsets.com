@@ -21,8 +21,6 @@ function QuestionContainer() {
         setStatus: state.setStatus,
     }));
 
-    console.log('questioncontainer...', state);
-
     const isLastQuestion = false; //state.question.idx + 1 === state.interestCheck.questions.length;
 
     useEffect(
@@ -68,7 +66,6 @@ function QuestionContainer() {
     const setAnswerValue = (value: string) => setAnswer(value);
 
     async function uploadQuestionAnswer(input: any) {
-        console.log('uploadQuestionAnswer...', input);
         try {
             setLoading(true);
             const response = await addAnswerToQuestion({
@@ -108,11 +105,7 @@ function QuestionContainer() {
                 )} */}
 
                 {!isLastQuestion && (
-                    <a
-                        className="btn-skip label"
-                        style={{ marginRight: 8, marginBottom: 0 }}
-                        onClick={() => nextQuestion(true)}
-                    >
+                    <a className="btn-skip label" onClick={() => nextQuestion(true)}>
                         Skip
                     </a>
                 )}
