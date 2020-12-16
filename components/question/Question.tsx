@@ -1,6 +1,6 @@
 import React, { DOMAttributes, FormEvent } from 'react';
 import TextArea from '../TextArea';
-import { Question } from '../../types/interfaces';
+import { Question } from '../../types/types';
 import MultipleChoiseAnswerer from './MultipleChoiceAnswerer';
 import KitsAnswerer from './KitsAnswerer';
 

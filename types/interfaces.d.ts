@@ -41,10 +41,10 @@ import { State } from 'zustand';
 //     questions: Question[];
 // }
 
-// export interface QuestionOption {
-//     text: string;
-//     kit?: Kit;
-// }
+export interface QuestionOption {
+    text: string;
+    kit?: Kit;
+}
 
 // export interface Question {
 //     _id: string;
@@ -55,10 +55,10 @@ import { State } from 'zustand';
 //     order: number;
 // }
 
-// export interface SelectOption {
-//     value: string;
-//     label: string;
-// }
+export interface SelectOption {
+    value: string;
+    label: string;
+}
 
 // export interface Vendor {
 //     _id?: string;
@@ -72,13 +72,13 @@ import { State } from 'zustand';
 //     slug?: string;
 // }
 
-// export interface Filters {
-//     availability: string;
-//     name: string;
-//     brand: string[];
-//     type: string[];
-//     material: string[];
-// }
+export interface Filters {
+    availability: string;
+    name: string;
+    brand: string[];
+    type: string[];
+    material: string[];
+}
 
 export interface InititalState extends State {
     filters: Filters;

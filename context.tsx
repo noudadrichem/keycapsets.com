@@ -1,6 +1,7 @@
 import create from 'zustand';
 
-import { InititalState, Filters, User, Keycapset } from './types/interfaces';
+import { InititalState, Filters } from './types/interfaces';
+import { User, Keycapset } from './types/types';
 
 interface Actions {
     setUser(user: User): void;

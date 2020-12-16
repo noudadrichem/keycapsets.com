@@ -3,7 +3,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import moment from 'moment';
 import withGA from 'next-ga';
 import Router from 'next/router';
-import { Keycapset, Vendor } from '../../types/interfaces';
+import { Keycapset, Vendor } from '../../types/types';
 import { ExecutionResult } from 'graphql';
 // import ColorPicker from 'rc-color-picker';
 

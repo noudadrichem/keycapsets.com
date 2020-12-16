@@ -3,7 +3,7 @@ import { NextRouter, useRouter } from 'next/router';
 import ReactTooltip from 'react-tooltip';
 import { useMutation } from '@apollo/client';
 
-import { Keycapset } from '../types/interfaces';
+import { Keycapset } from '../types/types';
 
 import { WANT_SET } from '../queries';
 import HeartIcon from './HeartIcon';
