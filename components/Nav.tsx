@@ -69,10 +69,10 @@ function Nav(props: NavProps): JSX.Element {
             {/* <a className="discord-banner" href="https://discord.gg/dq8cyMS">
                 <img src="/images/discord.svg" />Join the conversation on our discord!
             </a> */}
-            {/* <div className="info-banner">
-                This is a new release of Keycapsets.com. We're excited to share a new feature, accounts! A version we
-                could build upon with amazing new features coming ahead!
-            </div> */}
+            <div className="info-banner">
+                Our image service is experiencing issues, the single pages do show images and the like/search
+                functionality still works.
+            </div>
 
             <HamburgerIcon
                 onClick={() => {
