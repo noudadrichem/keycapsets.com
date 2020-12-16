@@ -46,7 +46,6 @@ function Nav(props: NavProps): JSX.Element {
     const router = useRouter();
     const user = useStore((state) => state.user);
     const isLoggedIn = useStore((state) => state.isLoggedIn);
-
     useEffect(
         function listenToRouteChange() {
             setIsNavOpen(false);
@@ -69,10 +68,10 @@ function Nav(props: NavProps): JSX.Element {
             {/* <a className="discord-banner" href="https://discord.gg/dq8cyMS">
                 <img src="/images/discord.svg" />Join the conversation on our discord!
             </a> */}
-            <div className="info-banner">
+            {/* <div className="info-banner">
                 Our image service is experiencing issues, the single pages do show images and the like/search
                 functionality still works.
-            </div>
+            </div> */}
 
             <HamburgerIcon
                 onClick={() => {
