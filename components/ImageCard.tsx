@@ -4,9 +4,7 @@ import Link from 'next/link';
 import useIsInViewport from 'use-is-in-viewport';
 
 import { Keycapset } from '../types/types';
-import { SelectOption } from '../types/interfaces';
 import StatusLabel from './StatusLabel';
-import { BRAND_OPTIONS } from '../constants';
 import LikeSet from './LikeSet';
 import { getLabelByBrand } from '../utils/labels';
 
@@ -16,16 +14,7 @@ export interface ImageCardProps {
 
 function ImageCard(props: ImageCardProps): JSX.Element {
     const { keycapset } = props;
-    const {
-        name,
-        coverImageUrl,
-        type,
-        brand,
-        slug,
-        groupbuyStartDate,
-        groupbuyEndDate,
-        isInterestCheck,
-    }: Keycapset = keycapset;
+    const { name, coverImageUrl, type, brand, slug, groupbuyStartDate, groupbuyEndDate, isInterestCheck } = keycapset;
     const isTemplate: boolean = !keycapset.hasOwnProperty('_id');
 
     const [wasInViewport, setWasInViewport] = useState(false);

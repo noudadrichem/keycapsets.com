@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Router } from 'next/router';
 import withGA from 'next-ga';
 import { useQuery } from '@apollo/client';
-import { USER_WANTS_SETS } from '../../queries';
+import { USER_PAGE } from '../../queries';
 import Heading from '../../components/Heading';
 import LoadingKeyboardIllustration from '../../components/LoadingKeyboardIllustration';
 import useStore from '../../context';
@@ -15,42 +15,66 @@ import RedditIcon from '../../components/RedditIcon';
 import RedditAuth from '../../components/RedditAuth';
 import Cards from '../../components/Cards';
 import Tabs from '../../components/Tabs';
+import { Collection, Keycapset, Want } from '../../types/types';
+import { SelectOption } from '../../types/interfaces';
 
+function getOptionsFromCollections(collections: Collection[]): SelectOption[] {
+    return collections.map((collection: Collection) => ({
+        label: collection.name,
+        value: collection.name.toLowerCase().replace(/ /g, '-'),
+    }));
+}
+
+// TODO fix heart icon user wants thingy...
 function User() {
     const user = useStore((state) => state.user);
-    const setUserWants = useStore((state) => state.setUserWants);
-
-    // TODO find way to implement this on cache
-    const { data: userWantSetsResponse, loading: userWantsLoading } = useQuery(USER_WANTS_SETS, {
-        fetchPolicy: 'network-only',
-    });
+    const [activeTab, setActiveTab] = useState<SelectOption>(null);
+    const { data, loading, error } = useQuery(USER_PAGE, { fetchPolicy: 'network-only' });
 
     useEffect(() => {
-        if (!userWantsLoading) {
-            setUserWants(userWantSetsResponse.userWantsSets);
+        if (!loading && data.fetchUserCollections) {
+            const firstOption = getOptionsFromCollections(data.fetchUserCollections)[0];
+            setActiveTab(firstOption);
         }
-    }, [userWantSetsResponse]);
+    }, [data]);
+
+    if (loading) {
+        return <LoadingKeyboardIllustration />;
+    }
+    if (error) {
+        console.log(error);
+        return '500';
+    }
+
+    const { fetchUserCollections: collections } = data;
+    const collectionMapped: SelectOption[] = getOptionsFromCollections(data.fetchUserCollections);
 
     return (
         <div className="container large user">
             {user !== null ? (
                 <>
-                    <Heading mainTitle="Your likes" subTitle="" left />
-                    {userWantsLoading ? (
+                    <Heading mainTitle="Your collections" subTitle="" left />
+                    {loading ? (
                         <LoadingKeyboardIllustration />
-                    ) : userWantSetsResponse.userWantsSets.length > 0 ? (
+                    ) : collectionMapped.length > 0 && activeTab !== null ? (
                         <div className="cards-container">
                             <Tabs
                                 label="Collections:"
-                                options={[{ label: 'een', value: 'Een' }]}
+                                options={collectionMapped}
                                 type="collection"
-                                onClick={(tab) => console.log('choses tab=' + tab)}
+                                onClick={(tab) => setActiveTab(tab)}
+                                currentVal={activeTab}
                             />
-                            <Cards keycapsets={userWantSetsResponse.userWantsSets} />
+
+                            <Cards
+                                keycapsets={collections
+                                    .find((collection: Collection) => collection.name === activeTab.label)
+                                    .wants.map((want: Want) => want.set)}
+                            />
                         </div>
                     ) : (
                         <div>
-                            <h3 className="light">No keycapset likes found.</h3>
+                            <h3 className="light">No keycapsets found.</h3>
                             <ButtonLink href="/">Start liking right away!</ButtonLink>
                         </div>
                     )}

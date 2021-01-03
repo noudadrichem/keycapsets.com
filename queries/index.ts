@@ -373,10 +373,63 @@ export const CREATE_COLLECTION = gql`
 `;
 
 export const USER_COLLECTIONS = gql`
-    query FETCH_USER_COLLECTIONS {
+    query {
         fetchUserCollections {
             name
             public
+            wants {
+                set {
+                    name
+                    _id
+                    type
+                    brand
+                    coverImageUrl
+                    slug
+                    groupbuyStartDate
+                    groupbuyEndDate
+                    isInterestCheck
+                    material
+                    availability
+                }
+            }
         }
+    }
+`;
+
+export const USER_PAGE = gql`
+    query {
+        fetchUserCollections {
+            name
+            public
+            wants {
+                set {
+                    _id
+                    name
+                    type
+                    brand
+                    coverImageUrl
+                    slug
+                    groupbuyStartDate
+                    groupbuyEndDate
+                    isInterestCheck
+                    material
+                    availability
+                }
+            }
+        }
+
+        # userWantsSets {
+        #     _id
+        #     name
+        #     type
+        #     brand
+        #     coverImageUrl
+        #     slug
+        #     groupbuyStartDate
+        #     groupbuyEndDate
+        #     isInterestCheck
+        #     material
+        #     availability
+        # }
     }
 `;

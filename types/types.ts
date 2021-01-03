@@ -30,6 +30,7 @@ export type AnswerInput = {
 
 export type Collection = {
     __typename?: 'Collection';
+    _id: Scalars['String'];
     name?: Maybe<Scalars['String']>;
     user?: Maybe<User>;
     wants?: Maybe<Array<Maybe<Want>>>;
@@ -152,14 +153,14 @@ export type KitInput = {
 
 export type Mutation = {
     __typename?: 'Mutation';
-    createVendor: Vendor;
     createKeycapset: Keycapset;
     updateKeycapset: Keycapset;
     deleteKeycapset: Keycapset;
     wantSet: Response;
-    toggleHaveSet: Response;
     claimSet: Response;
+    createVendor: Vendor;
     createkit: Kit;
+    updateKit: Kit;
     googleLogin: GoogleLoginResponse;
     redditLogin: RedditLoginResponse;
     updateUser: User;
@@ -173,14 +174,6 @@ export type Mutation = {
     imgUploadFormData: ImgUploadResponse;
     createCollectionForUser?: Maybe<Collection>;
     addWantToCollection?: Maybe<Collection>;
-};
-
-export type MutationCreateVendorArgs = {
-    name?: Maybe<Scalars['String']>;
-    socials?: Maybe<Array<Maybe<Scalars['String']>>>;
-    country?: Maybe<Scalars['String']>;
-    logoUrl?: Maybe<Scalars['String']>;
-    url?: Maybe<Scalars['String']>;
 };
 
 export type MutationCreateKeycapsetArgs = {
@@ -216,13 +209,16 @@ export type MutationWantSetArgs = {
     setId: Scalars['String'];
 };
 
-export type MutationToggleHaveSetArgs = {
-    setId: Scalars['String'];
-    have?: Maybe<Scalars['Boolean']>;
-};
-
 export type MutationClaimSetArgs = {
     setId: Scalars['String'];
+};
+
+export type MutationCreateVendorArgs = {
+    name?: Maybe<Scalars['String']>;
+    socials?: Maybe<Array<Maybe<Scalars['String']>>>;
+    country?: Maybe<Scalars['String']>;
+    logoUrl?: Maybe<Scalars['String']>;
+    url?: Maybe<Scalars['String']>;
 };
 
 export type MutationCreatekitArgs = {
@@ -231,6 +227,10 @@ export type MutationCreatekitArgs = {
     imgUrl?: Maybe<Scalars['String']>;
     type?: Maybe<Scalars['String']>;
     price?: Maybe<Scalars['Int']>;
+};
+
+export type MutationUpdateKitArgs = {
+    input?: Maybe<KitInput>;
 };
 
 export type MutationGoogleLoginArgs = {
@@ -291,32 +291,25 @@ export type OptionInput = {
 
 export type Query = {
     __typename?: 'Query';
-    vendor?: Maybe<Vendor>;
-    vendorBySlug?: Maybe<Vendor>;
-    vendors?: Maybe<Array<Maybe<Vendor>>>;
     keycapsetById: Keycapset;
     keycapsetBySlug: Keycapset;
     keycapsetsByVendor: Array<Maybe<Keycapset>>;
     keycapsets?: Maybe<Array<Keycapset>>;
     allKeycapsetsCount?: Maybe<Scalars['Number']>;
     keycapsetsByQuery?: Maybe<Array<Keycapset>>;
-    userWants: Array<Maybe<Want>>;
     userWantsSets: Array<Maybe<Keycapset>>;
+    vendor?: Maybe<Vendor>;
+    vendorBySlug?: Maybe<Vendor>;
+    vendors?: Maybe<Array<Maybe<Vendor>>>;
     kits?: Maybe<Array<Maybe<Kit>>>;
     me: User;
+    users?: Maybe<Array<Maybe<User>>>;
     interestCheckById?: Maybe<InterestCheck>;
     questionById?: Maybe<Question>;
     questionsByICId?: Maybe<Array<Maybe<QuestionAnswer>>>;
     uploads?: Maybe<Array<Maybe<Scalars['String']>>>;
     fetchUserCollections?: Maybe<Array<Maybe<Collection>>>;
-};
-
-export type QueryVendorArgs = {
-    id: Scalars['ID'];
-};
-
-export type QueryVendorBySlugArgs = {
-    slug: Scalars['String'];
+    userWants: Array<Maybe<Want>>;
 };
 
 export type QueryKeycapsetByIdArgs = {
@@ -339,6 +332,19 @@ export type QueryKeycapsetsArgs = {
 
 export type QueryKeycapsetsByQueryArgs = {
     query?: Maybe<Scalars['String']>;
+};
+
+export type QueryVendorArgs = {
+    id: Scalars['ID'];
+};
+
+export type QueryVendorBySlugArgs = {
+    slug: Scalars['String'];
+};
+
+export type QueryUsersArgs = {
+    limit?: Maybe<Scalars['Int']>;
+    offset?: Maybe<Scalars['Int']>;
 };
 
 export type QueryInterestCheckByIdArgs = {
@@ -428,14 +434,14 @@ export type Vendor = {
 
 export type Want = {
     __typename?: 'Want';
-    user: Scalars['ID'];
-    set: Scalars['ID'];
+    user?: Maybe<User>;
+    set?: Maybe<Keycapset>;
     have?: Maybe<Scalars['Boolean']>;
     forSale?: Maybe<Scalars['Boolean']>;
     sold?: Maybe<Scalars['Boolean']>;
 };
 
 export type WantToCollection = {
-    wantId: Scalars['ID'];
-    collectionId: Scalars['ID'];
+    wantId: Scalars['String'];
+    collectionId: Scalars['String'];
 };

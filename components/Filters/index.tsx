@@ -150,7 +150,7 @@ function Filters(props: FiltersProps): JSX.Element {
             overflow: 'hidden',
         },
     };
-
+    console.log('filters..', filters);
     return (
         <>
             <div className="mobile-toggle" onClick={openMobileFilters}>
@@ -188,11 +188,13 @@ function Filters(props: FiltersProps): JSX.Element {
                     </div>
 
                     <div className="centered-side">
+                        {/* const isActive = id === filters[type]; */}
                         <Tabs
                             className="filter availability desktop-only"
                             options={AVAILABILITY_OPTIONS}
-                            onClick={(tab: string) => handleAvailabilityFilter(tab)}
+                            onClick={(tab) => handleAvailabilityFilter(tab.value)}
                             type={AVAILABILITY_FILTER}
+                            currentVal={AVAILABILITY_OPTIONS.find((opt) => opt.value === filters.availability)}
                         />
                     </div>
                     <div className="right-side">
