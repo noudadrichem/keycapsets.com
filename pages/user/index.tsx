@@ -14,6 +14,7 @@ import GoogleAuth from '../../components/GoogleAuth';
 import RedditIcon from '../../components/RedditIcon';
 import RedditAuth from '../../components/RedditAuth';
 import Cards from '../../components/Cards';
+import Tabs from '../../components/Tabs';
 
 function User() {
     const user = useStore((state) => state.user);
@@ -23,6 +24,7 @@ function User() {
     const { data: userWantSetsResponse, loading: userWantsLoading } = useQuery(USER_WANTS_SETS, {
         fetchPolicy: 'network-only',
     });
+
     useEffect(() => {
         if (!userWantsLoading) {
             setUserWants(userWantSetsResponse.userWantsSets);
@@ -30,17 +32,25 @@ function User() {
     }, [userWantSetsResponse]);
 
     return (
-        <div className="container large">
+        <div className="container large user">
             {user !== null ? (
                 <>
-                    <Heading mainTitle="These are your favorite keycapsets." subTitle={`Hi, ${user.name}.`} left />
+                    <Heading mainTitle="Your likes" subTitle="" left />
                     {userWantsLoading ? (
                         <LoadingKeyboardIllustration />
                     ) : userWantSetsResponse.userWantsSets.length > 0 ? (
-                        <Cards keycapsets={userWantSetsResponse.userWantsSets} />
+                        <div className="cards-container">
+                            <Tabs
+                                label="Collections:"
+                                options={[{ label: 'een', value: 'Een' }]}
+                                type="collection"
+                                onClick={(tab) => console.log('choses tab=' + tab)}
+                            />
+                            <Cards keycapsets={userWantSetsResponse.userWantsSets} />
+                        </div>
                     ) : (
                         <div>
-                            <h3 className="light">No likes found on your account.</h3>
+                            <h3 className="light">No keycapset likes found.</h3>
                             <ButtonLink href="/">Start liking right away!</ButtonLink>
                         </div>
                     )}
@@ -48,7 +58,7 @@ function User() {
             ) : (
                 <>
                     <Heading mainTitle="You're not signed in" subTitle="" left />
-                    <h3 className="light">Sign in with your desired platform to start your keycapset journey!</h3>
+                    <h3 className="light">Sign in with your desired platform to start using Keycapsets!</h3>
                     <div className="cards">
                         <div className="card center">
                             <Link href="/sign-up/google">

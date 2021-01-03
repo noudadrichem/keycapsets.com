@@ -5,18 +5,18 @@ import { AVAILABILITY_FILTER } from '../../constants';
 
 interface TabProps {
     id: string;
-    type: 'cap' | 'availability';
+    type: 'cap' | 'availability' | string;
     label: string;
-    handleUpdateFilters(availability: string);
+    onClick();
 }
 
 function Tab(props: TabProps): JSX.Element {
-    const { id, type, label, handleUpdateFilters } = props;
+    const { id, type, label, onClick } = props;
     const filters = useStore((state) => state.filters);
 
     const isActive = id === filters[type];
     return (
-        <Button onClick={handleUpdateFilters} variant="tab" size="sm" className={`${isActive ? 'active' : ''}`}>
+        <Button onClick={onClick} variant="tab" size="sm" className={`${isActive ? 'active' : ''}`}>
             {label}
         </Button>
     );

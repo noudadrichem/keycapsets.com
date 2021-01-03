@@ -38,7 +38,26 @@ export const INTEREST_CHECK: 'ic' = 'ic';
 export const WAITING_FOR_GROUPBUY: 'waiting' = 'waiting';
 export const IN_GROUP_BUY: 'gb' = 'gb';
 export const ENDED: 'ended' = 'ended';
-export const AVAILABILITY_OPTIONS: string[] = [NONE, INTEREST_CHECK, WAITING_FOR_GROUPBUY, IN_GROUP_BUY, ENDED];
+export const _AVAILABILITY_OPTIONS: string[] = [NONE, INTEREST_CHECK, WAITING_FOR_GROUPBUY, IN_GROUP_BUY, ENDED];
+
+export const AVAILABILITY_OPTIONS = [
+    { label: 'All', value: NONE },
+    { label: 'Interest Check', value: INTEREST_CHECK },
+    { label: 'Awaiting Groupbuy', value: WAITING_FOR_GROUPBUY },
+    { label: 'In Groupbuy', value: IN_GROUP_BUY },
+    { label: 'Groupbuy Ended', value: ENDED },
+];
+
+function getLabelByAvailability(tab: string): string {
+    const labelOptions = {
+        none: 'All',
+        ic: 'Interest Check',
+        gb: 'In Groupbuy',
+        waiting: 'Awaiting Groupbuy',
+        ended: 'Groupbuy Ended',
+    };
+    return labelOptions[tab];
+}
 
 export const AVAILABILITY_FILTER: 'availability' = 'availability';
 export const BRAND_FILTER: 'brand' = 'brand';

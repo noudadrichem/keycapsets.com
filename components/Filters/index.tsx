@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { SelectOption } from '../../types/interfaces';
 import {
-    AVAILABILITY_FILTER,
     AVAILABILITY_OPTIONS,
     PROFILE_OPTIONS,
     MATERIAL_OPTIONS,
     BRAND_OPTIONS,
+    AVAILABILITY_FILTER,
 } from '../../constants';
 import MultiSelect from '../Multiselect';
 import Select from '../Select';
@@ -16,6 +16,7 @@ import FilterIcon from '../FilterIcon';
 import { motion } from 'framer-motion';
 import useStore from '../../context';
 import { useRouter } from 'next/router';
+import Tabs from '../Tabs';
 
 interface FiltersProps {}
 
@@ -52,15 +53,15 @@ function Filters(props: FiltersProps): JSX.Element {
                 material,
                 availability,
             });
-            if (availability && AVAILABILITY_OPTIONS.includes(String(availability))) {
-                routeFilter.availability = String(availability);
-            }
+            // if (availability && AVAILABILITY_OPTIONS.includes(String(availability))) {
+            //     routeFilter.availability = String(availability);
+            // }
 
-            console.log('router query filters...', routeFilter);
-            setFilters(routeFilter);
-            if (brand || profile || material) {
-                setIsExtraFilterOpen(true);
-            }
+            // console.log('router query filters...', routeFilter);
+            // setFilters(routeFilter);
+            // if (brand || profile || material) {
+            //     setIsExtraFilterOpen(true);
+            // }
         }
     }, [router.query]);
 
@@ -180,37 +181,24 @@ function Filters(props: FiltersProps): JSX.Element {
                             <Select
                                 label="Availability"
                                 name="Choose availability"
-                                onSelectChange={(val) => {
-                                    console.log('availability mobile...', val);
-                                    handleAvailabilityFilter(val.value);
-                                }}
-                                values={AVAILABILITY_OPTIONS.map((t) => ({
-                                    value: t,
-                                    label: getLabelByAvailability(t),
-                                }))}
+                                onSelectChange={(val: SelectOption) => handleAvailabilityFilter(val.value)}
+                                values={AVAILABILITY_OPTIONS}
                             />
                         </div>
                     </div>
 
                     <div className="centered-side">
-                        <div className="filter availability desktop-only">
-                            <div className="tabs">
-                                {AVAILABILITY_OPTIONS.map((tab: string, idx: number) => (
-                                    <Tab
-                                        label={getLabelByAvailability(tab)}
-                                        type={AVAILABILITY_FILTER}
-                                        id={tab}
-                                        key={idx}
-                                        handleUpdateFilters={() => handleAvailabilityFilter(tab)}
-                                    />
-                                ))}
-                            </div>
-                        </div>
+                        <Tabs
+                            className="filter availability desktop-only"
+                            options={AVAILABILITY_OPTIONS}
+                            onClick={(tab: string) => handleAvailabilityFilter(tab)}
+                            type={AVAILABILITY_FILTER}
+                        />
                     </div>
                     <div className="right-side">
                         <div className="counter">
                             <label className="label">Keycapsets:</label>
-                            <p className="light">401</p> {/* Quick fix */}
+                            <p className="light">428</p> {/* Quick fix */}
                         </div>
                     </div>
                 </div>

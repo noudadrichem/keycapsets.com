@@ -181,14 +181,6 @@ export const ME = gql`
     }
 `;
 
-export const TOGGLE_HAVE = gql`
-    mutation TOGGLE_HAVE($setId: String!, $have: Boolean) {
-        toggleHaveSet(setId: $setId, have: $have) {
-            message
-        }
-    }
-`;
-
 export const WANT_SET = gql`
     mutation WANT_SET($setId: String!) {
         wantSet(setId: $setId) {
@@ -353,6 +345,38 @@ export const START_IC = gql`
         startInterestCheck(id: $id) {
             user
             text
+        }
+    }
+`;
+
+export const ADD_WANT_TO_COLLECTION = gql`
+    mutation WANT_TO_COLLECTION($wantId: String!, $collectionId: String!) {
+        addWantToCollection(input: { wantId: $wantId, collectionId: $collectionId }) {
+            name
+            wants {
+                set
+                have
+            }
+        }
+    }
+`;
+
+export const CREATE_COLLECTION = gql`
+    mutation CREATE_USER_COLLECTION($name: String) {
+        createCollectionForUser(name: $name) {
+            name
+            user {
+                name
+            }
+        }
+    }
+`;
+
+export const USER_COLLECTIONS = gql`
+    query FETCH_USER_COLLECTIONS {
+        fetchUserCollections {
+            name
+            public
         }
     }
 `;

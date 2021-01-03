@@ -42,32 +42,6 @@
         }
     }
 
-    .filter {
-        display: flex;
-        flex-direction: column;
-        margin-right: 16px;
-
-        .tabs {
-            display: flex;
-
-            .btn {
-                margin-right: 8px;
-            }
-        }
-
-        .input-wrapper {
-            min-width: 216px;
-        }
-
-        &.favorites {
-            justify-content: center;
-
-            .button-link {
-                margin-top: 16px;
-            }
-        }
-    }
-
     @media screen and (max-width: 826px) {
         margin: 0;
         padding: 0;

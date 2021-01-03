@@ -46,6 +46,7 @@ function LikeSet(props: LikeSetProps) {
                     },
                 });
                 const isLiking: boolean = response.wantSet.message === 'liked';
+                console.log({ isLiking });
                 setUserWants(isLiking ? adduserWants(keycapset) : removeUserWants(keycapset._id));
             } catch (err) {
                 console.error('want set err', { err });

@@ -344,3 +344,34 @@ img {
         }
     }
 }
+
+.tabs {
+    // display: flex;
+    // flex-direction: row;
+    margin-right: 16px;
+
+    .tabs-container {
+        display: flex;
+        flex-direction: row;
+
+        .tab {
+            margin-right: 8px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+
+    .input-wrapper {
+        min-width: 216px;
+    }
+
+    &.favorites {
+        justify-content: center;
+
+        .button-link {
+            margin-top: 16px;
+        }
+    }
+}
