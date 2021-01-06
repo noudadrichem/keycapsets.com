@@ -48,7 +48,6 @@ function SetPage(props: SetPageProps) {
         };
 
         console.log(keycapset._id);
-        console.log(keycapset);
 
         return (
             <>
