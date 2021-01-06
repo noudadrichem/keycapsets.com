@@ -15,7 +15,7 @@ import Section from '../../components/poseidon/Section';
 import PoseidonLayout from '../../layouts/PoseidonLayout';
 import { ApolloClient } from '@apollo/client';
 import CTACard from '../../components/CTACard';
-import { Keycapset } from '../../types/interfaces';
+import { Keycapset } from '../../types/types';
 import { initializeApollo } from '../../hooks/withData';
 import { GET_SINGLE_SET_QUERY } from '../../queries';
 

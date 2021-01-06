@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Question, QuestionOption } from '../../types/interfaces';
+import { Question } from '../../types/types';
+import { QuestionOption } from '../../types/interfaces';
 import CheckboxContainer from '../Checkbox';
 
 type KitsAnswererProps = {

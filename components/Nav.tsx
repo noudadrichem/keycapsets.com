@@ -46,7 +46,6 @@ function Nav(props: NavProps): JSX.Element {
     const router = useRouter();
     const user = useStore((state) => state.user);
     const isLoggedIn = useStore((state) => state.isLoggedIn);
-
     useEffect(
         function listenToRouteChange() {
             setIsNavOpen(false);
@@ -70,8 +69,8 @@ function Nav(props: NavProps): JSX.Element {
                 <img src="/images/discord.svg" />Join the conversation on our discord!
             </a> */}
             {/* <div className="info-banner">
-                This is a new release of Keycapsets.com. We're excited to share a new feature, accounts! A version we
-                could build upon with amazing new features coming ahead!
+                Our image service is experiencing issues, the single pages do show images and the like/search
+                functionality still works.
             </div> */}
 
             <HamburgerIcon

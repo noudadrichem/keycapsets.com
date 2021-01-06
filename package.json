@@ -6,9 +6,9 @@
     "scripts": {
         "dev": "next",
         "build": "next build",
-        "start": "NODE_ENV=production next start -p 3001",
+        "start": "NODE_ENV=testing next start -p 3001",
         "pretty": "prettier --ignore .next --write './**/*.{ts,tsx,json,scss}'"
-    },
+        "gen": "graphql-codegen --config codegen.yml"    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/noudadrichem/keycapsets.com.git"
@@ -61,6 +61,7 @@
         "zustand": "^3.1.2"
     },
     "devDependencies": {
+        "@graphql-codegen/cli": "1.19.4",
         "@types/node": "^13.13.17",
         "@types/react": "^16.9.49",
         "@types/react-tooltip": "^4.2.4",
@@ -69,6 +70,9 @@
         "prettier": "^2.1.1",
         "pretty-quick": "^2.0.2",
         "sass-loader": "^8.0.2",
-        "typescript": "^3.9.7"
+        "typescript": "^3.9.7",
+        "@graphql-codegen/typescript-operations": "1.17.12",
+        "@graphql-codegen/typescript": "1.19.0",
+        "@graphql-codegen/typescript-react-apollo": "2.2.1"
     }
 }

@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react';
 
-import { Context, Keycapset } from '../types/interfaces';
+import { Keycapset } from '../types/types';
 import Button from './Button';
 import { useMutation } from '@apollo/client';
 import { CLAIM_SET } from '../queries';

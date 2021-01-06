@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Kit, QuestionOption } from '../../types/interfaces';
+import { Kit } from '../../types/types';
+import { QuestionOption } from '../../types/interfaces';
 import CheckboxContainer from '../Checkbox';
 
 type MultipleChoiseAnswererProps = {

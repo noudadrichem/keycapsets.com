@@ -3,7 +3,7 @@ import Error from '../_error';
 import moment from 'moment';
 import { useRouter, Router } from 'next/router';
 import Slider from 'react-slick';
-import { Keycapset, Vendor, Kit } from '../../types/interfaces';
+import { Keycapset, Vendor, Kit } from '../../types/types';
 import withGA from 'next-ga';
 
 import { GET_SINGLE_SET_QUERY } from '../../queries';
