@@ -17,12 +17,10 @@ import Meta from '../../components/Meta';
 import LikeSet from '../../components/LikeSet';
 import StatusLabel from '../../components/StatusLabel';
 import { initializeApollo } from '../../hooks/withData';
-import useStore from '../../context';
 import Arrow from '../../components/Arrow';
-import { getLabelByBrand } from '../../utils/labels';
 import InfoSectionBoard from '../../components/set/InfoSectionBoard';
 import InfoSectionSet from '../../components/set/InfoSectionSet';
-import Kits from './Kits';
+import Kits from '../../components/set/Kits';
 
 interface SetPageProps {
     keycapset: Keycapset;

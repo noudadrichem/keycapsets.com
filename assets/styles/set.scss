@@ -217,13 +217,35 @@
                 }
 
                 &.has-description {
+                    margin: 32px 0;
                     display: grid;
                     grid-template-columns: repeat(2, 1fr);
+                    grid-template-rows: 2fr;
                     grid-gap: 24px;
-                    align-items: center;
+                    align-items: end;
+
+                    .title {
+                        font-weight: 500;
+                        align-items: end;
+                        text-align: left;
+                        font-size: 24px;
+                    }
+
+                    .kit-card-image {
+                        grid-row: span 2;
+                    }
 
                     &:nth-child(even) {
-                        .kit-card-image-container {
+                        .kit-card-image {
+                            grid-row: span 2;
+                            order: 1;
+                        }
+
+                        .description {
+                            order: 2;
+                        }
+
+                        .kit-card-image {
                             order: 2;
                         }
                     }

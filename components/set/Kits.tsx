@@ -21,13 +21,13 @@ function Kits(props: KitsProps): JSX.Element {
                     const { name, imgUrl, description } = kit;
                     return (
                         <div key={name + idx} className={`kit-card ${descriptionClass}`}>
-                            <div className="kit-card-image-container">
-                                <div className="kit-card-image">
-                                    <img src={imgUrl} alt={name + '- image'} />
-                                </div>
-                                <h5 className="center">{name}</h5>
+                            {/* <div className="kit-card-image-container"> */}
+                            <div className="kit-card-image">
+                                <img src={imgUrl} alt={name + '- image'} />
                             </div>
-                            {description && <p className="light">{description}</p>}
+                            {/* </div> */}
+                            <h5 className="title center">{name}</h5>
+                            {description && <p className="description light">{description}</p>}
                         </div>
                     );
                 })}
