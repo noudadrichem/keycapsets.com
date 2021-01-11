@@ -7,8 +7,9 @@
         "dev": "next",
         "build": "next build",
         "start": "NODE_ENV=testing next start -p 3001",
-        "pretty": "prettier --ignore .next --write './**/*.{ts,tsx,json,scss}'"
-        "gen": "graphql-codegen --config codegen.yml"    },
+        "pretty": "prettier --ignore .next --write './**/*.{ts,tsx,json,scss}'",
+        "gen": "graphql-codegen --config codegen.yml"
+    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/noudadrichem/keycapsets.com.git"
