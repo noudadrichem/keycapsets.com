@@ -35,7 +35,7 @@ function SetPage(props: SetPageProps) {
     }
 
     if (keycapset !== null) {
-        const isGeekhackUrl: boolean = keycapset?.websiteUrl.includes('geekhack');
+        const isGeekhackUrl = keycapset?.websiteUrl.includes('geekhack');
         const hasRenders = keycapset.imageUrls && keycapset.imageUrls.length > 0;
         const slickSettings = {
             infinite: hasRenders,

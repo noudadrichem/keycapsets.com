@@ -1,5 +1,5 @@
 import React from 'react';
-import { Kit } from '../../types/interfaces';
+import { Kit } from '../../types/types';
 
 interface KitsProps {
     kits: Kit[];
@@ -9,9 +9,7 @@ interface KitsProps {
 function Kits(props: KitsProps): JSX.Element {
     const { kits, type } = props;
 
-    const descriptionClass = kits.map(({ description }) => typeof description).includes('string')
-        ? 'has-description'
-        : '';
+    const descriptionClass = ''; // kits.map(({ description }) => typeof description).includes('string') ? 'has-description' : '';
 
     return (
         <section className="section set-kits">
