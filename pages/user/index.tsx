@@ -25,7 +25,7 @@ function getOptionsFromCollections(collections: Collection[]): SelectOption[] {
     }));
 }
 
-// TODO fix heart icon user wants thingy...
+// TODO optimize user wants fetching...
 function User() {
     const user = useStore((state) => state.user);
     const [activeTab, setActiveTab] = useState<SelectOption>(null);

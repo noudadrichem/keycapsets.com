@@ -1,11 +1,11 @@
 import create from 'zustand';
 
 import { InititalState, Filters } from './types/interfaces';
-import { User, Keycapset } from './types/types';
+import { User, Keycapset, Want } from './types/types';
 
 interface Actions {
     setUser(user: User): void;
-    setUserWants(userWants: Keycapset[]): void;
+    setUserWants(userWants: Want[]): void;
     setFilters(filters: Filters): void;
 }
 
@@ -28,7 +28,7 @@ export const INITITAL_STATE: InititalState = {
 const useStore = create<InititalState & Actions>((set) => ({
     ...INITITAL_STATE,
     setUser: (user: User) => set({ user, isLoggedIn: true }),
-    setUserWants: (userWants: Keycapset[]) => set({ userWants }),
+    setUserWants: (userWants: Want[]) => set({ userWants }),
     setFilters: (filters: Filters) => set({ filters }),
 }));
 

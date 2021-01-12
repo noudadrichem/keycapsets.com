@@ -156,7 +156,6 @@ export type Mutation = {
     createKeycapset: Keycapset;
     updateKeycapset: Keycapset;
     deleteKeycapset: Keycapset;
-    wantSet: Response;
     claimSet: Response;
     createVendor: Vendor;
     createkit: Kit;
@@ -174,6 +173,7 @@ export type Mutation = {
     imgUploadFormData: ImgUploadResponse;
     createCollectionForUser?: Maybe<Collection>;
     addWantToCollection?: Maybe<Collection>;
+    wantSet: WantResponse;
 };
 
 export type MutationCreateKeycapsetArgs = {
@@ -203,10 +203,6 @@ export type MutationUpdateKeycapsetArgs = {
 
 export type MutationDeleteKeycapsetArgs = {
     _id: Scalars['String'];
-};
-
-export type MutationWantSetArgs = {
-    setId: Scalars['String'];
 };
 
 export type MutationClaimSetArgs = {
@@ -276,6 +272,10 @@ export type MutationCreateCollectionForUserArgs = {
 
 export type MutationAddWantToCollectionArgs = {
     input: WantToCollection;
+};
+
+export type MutationWantSetArgs = {
+    setId: Scalars['String'];
 };
 
 export type Option = {
@@ -434,11 +434,20 @@ export type Vendor = {
 
 export type Want = {
     __typename?: 'Want';
-    user?: Maybe<User>;
+    _id: Scalars['String'];
+    user: User;
     set?: Maybe<Keycapset>;
     have?: Maybe<Scalars['Boolean']>;
     forSale?: Maybe<Scalars['Boolean']>;
     sold?: Maybe<Scalars['Boolean']>;
+    liked?: Maybe<Scalars['Boolean']>;
+};
+
+export type WantResponse = {
+    __typename?: 'WantResponse';
+    message: Scalars['String'];
+    setId?: Maybe<Scalars['String']>;
+    want?: Maybe<Want>;
 };
 
 export type WantToCollection = {

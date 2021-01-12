@@ -3,7 +3,7 @@ import { NextRouter, useRouter } from 'next/router';
 import ReactTooltip from 'react-tooltip';
 import { useMutation } from '@apollo/client';
 
-import { Keycapset } from '../types/types';
+import { Keycapset, Want } from '../types/types';
 
 import { WANT_SET } from '../queries';
 import HeartIcon from './HeartIcon';
@@ -23,20 +23,13 @@ function LikeSet(props: LikeSetProps) {
     const userWants = useStore((state) => state.userWants);
     const setUserWants = useStore((state) => state.setUserWants);
 
-    function removeUserWants(id: string): Keycapset[] {
-        const wantsClone = [...userWants];
-        const indexOfSetInWants = userWants.map((s: Keycapset) => s._id).indexOf(id);
-        wantsClone.splice(indexOfSetInWants, 1);
-        return wantsClone;
-    }
-
-    function adduserWants(keycapset: Keycapset): Keycapset[] {
-        return [...userWants, keycapset];
-    }
+    const want = userWants.find((w: any) => w.set === keycapset._id);
+    const isLiked = want?.liked || false;
 
     async function userWantSet(evt: React.MouseEvent<HTMLSpanElement>) {
         evt.preventDefault();
         evt.stopPropagation();
+        console.log('Like...', keycapset._id);
 
         if (isLoggedIn) {
             try {
@@ -45,11 +38,24 @@ function LikeSet(props: LikeSetProps) {
                         setId: keycapset._id,
                     },
                 });
-                const isLiking: boolean = response.wantSet.message === 'liked';
-                console.log({ isLiking });
-                setUserWants(isLiking ? adduserWants(keycapset) : removeUserWants(keycapset._id));
+                const newWant: Want = response.wantSet.want;
+                const newWants = [...userWants].reduce((accu: Want[], w: Want) => {
+                    console.log({ accu });
+                    // TODO if want is not created yet, create want and like the set...
+                    if (w._id === want._id) {
+                        w.liked = newWant.liked;
+                    }
+                    accu.push(w);
+                    return accu;
+                }, []);
+                console.log(newWants);
+                setUserWants(newWants);
+
+                // console.log('add', adduserWants(want))
+                // console.log('remove', removeUserWants(want._id))
+                // setUserWants(isLiking ? adduserWants(want) : removeUserWants(want._id));
             } catch (err) {
-                console.error('want set err', { err });
+                console.error('want set err', err);
             }
         } else {
             router.push('/sign-up');
@@ -58,12 +64,7 @@ function LikeSet(props: LikeSetProps) {
 
     return (
         <span data-tip="Sign up to create collections" onClick={userWantSet} className="heart-icon">
-            <HeartIcon
-                filled={userWants.map((s: Keycapset) => s._id).includes(keycapset._id)}
-                isDisabled={!isLoggedIn}
-                width={size}
-                height={size - 2}
-            />
+            <HeartIcon filled={isLiked} isDisabled={!isLoggedIn} width={size} height={size - 2} />
             {!isLoggedIn && <ReactTooltip delayHide={500} className="tooltip" effect="solid" />}
         </span>
     );

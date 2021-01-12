@@ -165,6 +165,23 @@ export const REDDIT_LOGIN = gql`
 
 export const ME = gql`
     query {
+        userWants {
+            liked
+            _id
+            set {
+                _id
+                name
+                type
+                brand
+                coverImageUrl
+                slug
+                groupbuyStartDate
+                groupbuyEndDate
+                isInterestCheck
+                material
+                availability
+            }
+        }
         me {
             _id
             name
@@ -181,10 +198,31 @@ export const ME = gql`
     }
 `;
 
+const want = `
+{
+    _id
+    liked
+    set {
+        _id
+        name
+        type
+        brand
+        coverImageUrl
+        slug
+        groupbuyStartDate
+        groupbuyEndDate
+        isInterestCheck
+        material
+        availability
+    }
+}
+`;
+
 export const WANT_SET = gql`
     mutation WANT_SET($setId: String!) {
         wantSet(setId: $setId) {
             message
+            want ${want}
         }
     }
 `;
@@ -349,18 +387,6 @@ export const START_IC = gql`
     }
 `;
 
-export const ADD_WANT_TO_COLLECTION = gql`
-    mutation WANT_TO_COLLECTION($wantId: String!, $collectionId: String!) {
-        addWantToCollection(input: { wantId: $wantId, collectionId: $collectionId }) {
-            name
-            wants {
-                set
-                have
-            }
-        }
-    }
-`;
-
 export const CREATE_COLLECTION = gql`
     mutation CREATE_USER_COLLECTION($name: String) {
         createCollectionForUser(name: $name) {
@@ -377,21 +403,7 @@ export const USER_COLLECTIONS = gql`
         fetchUserCollections {
             name
             public
-            wants {
-                set {
-                    name
-                    _id
-                    type
-                    brand
-                    coverImageUrl
-                    slug
-                    groupbuyStartDate
-                    groupbuyEndDate
-                    isInterestCheck
-                    material
-                    availability
-                }
-            }
+            wants ${want}
         }
     }
 `;
@@ -401,21 +413,7 @@ export const USER_PAGE = gql`
         fetchUserCollections {
             name
             public
-            wants {
-                set {
-                    _id
-                    name
-                    type
-                    brand
-                    coverImageUrl
-                    slug
-                    groupbuyStartDate
-                    groupbuyEndDate
-                    isInterestCheck
-                    material
-                    availability
-                }
-            }
+            wants ${want}
         }
 
         # userWantsSets {

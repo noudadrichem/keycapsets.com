@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { AppProps } from 'next/app';
-import { User } from '../types/types';
+import { User, Want } from '../types/types';
 import { ApolloClient, ApolloProvider } from '@apollo/client';
 
 import Nav from '../components/Nav';
@@ -13,20 +13,26 @@ import '../assets/styles/main.scss';
 import { useApollo } from '../hooks/withData';
 import { ME } from '../queries';
 import useStore from '../context';
+import { logoutUser } from '../utils/user';
 
 function MyApp({ Component, pageProps }: AppProps) {
     const apolloClient = useApollo(pageProps.initialApolloState);
     const isBrowser = typeof window !== `undefined`;
     const setUser = useStore((state) => state.setUser);
+    const setUserWants = useStore((state) => state.setUserWants);
 
     async function fetchMe() {
-        const { data } = await apolloClient.query({
+        const { data, error } = await apolloClient.query({
             query: ME,
             fetchPolicy: 'network-only',
         });
         if (data) {
             setUser(data.me);
-            console.log('user...', data.me);
+            setUserWants(data.userWants.map((want: Want) => ({ ...want, set: want.set._id })));
+            console.log('user...', data.me._id);
+        }
+        if (error) {
+            logoutUser();
         }
     }
 

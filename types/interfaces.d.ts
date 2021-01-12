@@ -87,7 +87,7 @@ export interface InititalState extends State {
     allKeycapsetsCount: number;
     isLoggedIn: boolean;
     user?: User;
-    userWants: Keycapset[];
+    userWants: Want[];
     user: User;
 }
 
