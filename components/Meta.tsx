@@ -2,7 +2,7 @@ import Head from 'next/head';
 
 const TITLE = `Keycapsets.com. Find your favorite keycapset!`;
 const DESCRIPTION = `Looking for a beautiful keycapset for your current or future keyboard but don't know where to start? This page shows you existing keycapsets and will point you in the right direction to buy that keycapset!`;
-const META_IMG_URL = 'https://keycapsets.com/images/meta/meta-image.png';
+const META_IMG_URL = 'https://kcs-img.ams3.cdn.digitaloceanspaces.com/misc/meta-image-v2.png';
 
 interface MetaProps {
     title?: string;
