@@ -1,6 +1,6 @@
 import moment from 'moment';
 import React from 'react';
-import { Keycapset } from '../../types/interfaces';
+import { Keycapset } from '../../types/types';
 import { getLabelByBrand } from '../../utils/labels';
 
 interface InfoSectionBoardProps {
