@@ -1,7 +1,7 @@
 import { useApolloClient, useQuery } from '@apollo/client';
 import { FETCH_KEYCAPSET_QUERY } from '../queries';
 import { useState, useEffect } from 'react';
-import { Keycapset } from '../types/interfaces';
+import { Keycapset } from '../types/types';
 
 export interface KeycapSetsFilters {
     limit: number;

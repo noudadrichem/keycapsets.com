@@ -3,7 +3,8 @@ import moment from 'moment';
 import Link from 'next/link';
 import useIsInViewport from 'use-is-in-viewport';
 
-import { Keycapset, SelectOption } from '../types/interfaces';
+import { Keycapset } from '../types/types';
+import { SelectOption } from '../types/interfaces';
 import StatusLabel from './StatusLabel';
 import { BRAND_OPTIONS } from '../constants';
 import LikeSet from './LikeSet';

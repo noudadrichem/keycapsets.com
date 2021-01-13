@@ -9,7 +9,7 @@ import Meta from '../../components/Meta';
 import { initializeApollo } from '../../hooks/withData';
 import { GET_KEYCAPSET_IC, START_IC } from '../../queries';
 import Button from '../../components/Button';
-import { Keycapset } from '../../types/interfaces';
+import { Keycapset } from '../../types/types';
 import useInterestCheckStore, { Status } from '../../hooks/useInterestCheckStore';
 import InterestCheckLayout from '../../layouts/interestCheckLayout';
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Keycapset } from '../types/interfaces';
+import { Keycapset } from '../types/types';
 
 import { useQuery, NetworkStatus } from '@apollo/client';
 import { FETCH_KEYCAPSET_QUERY, USER_WANTS_SETS } from '../queries';

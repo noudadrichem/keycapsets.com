@@ -1,4 +1,4 @@
-import { InterestCheck, Keycapset, Question } from '../types/interfaces';
+import { InterestCheck, Keycapset, Question } from '../types/types';
 import create from 'zustand';
 import next from 'next';
 

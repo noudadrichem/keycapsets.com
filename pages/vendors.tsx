@@ -5,7 +5,7 @@ import withGA from 'next-ga';
 import Router from 'next/router';
 
 import { GET_VENDORS_QUERY } from '../queries';
-import { Vendor } from '../types/interfaces';
+import { Vendor } from '../types/types';
 
 import Heading from '../components/Heading';
 import LoadingKeyboard from '../components/LoadingKeyboard';

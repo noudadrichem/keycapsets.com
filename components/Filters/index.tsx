@@ -210,7 +210,7 @@ function Filters(props: FiltersProps): JSX.Element {
                     <div className="right-side">
                         <div className="counter">
                             <label className="label">Keycapsets:</label>
-                            <p className="light">401</p> {/* Quick fix */}
+                            <p className="light">438</p> {/* Quick fix */}
                         </div>
                     </div>
                 </div>

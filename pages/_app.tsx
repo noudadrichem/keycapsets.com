@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { AppProps } from 'next/app';
-import { User } from '../types/interfaces';
+import { User } from '../types/types';
 import { ApolloClient, ApolloProvider } from '@apollo/client';
 
 import Nav from '../components/Nav';

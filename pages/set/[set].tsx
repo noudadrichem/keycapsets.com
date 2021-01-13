@@ -3,7 +3,7 @@ import Error from '../_error';
 import moment from 'moment';
 import { useRouter, Router } from 'next/router';
 import Slider from 'react-slick';
-import { Keycapset, Vendor, Kit } from '../../types/interfaces';
+import { Keycapset, Vendor, Kit } from '../../types/types';
 import withGA from 'next-ga';
 
 import { GET_SINGLE_SET_QUERY } from '../../queries';
@@ -17,9 +17,10 @@ import Meta from '../../components/Meta';
 import LikeSet from '../../components/LikeSet';
 import StatusLabel from '../../components/StatusLabel';
 import { initializeApollo } from '../../hooks/withData';
-import useStore from '../../context';
 import Arrow from '../../components/Arrow';
-import { getLabelByBrand } from '../../utils/labels';
+import InfoSectionBoard from '../../components/set/InfoSectionBoard';
+import InfoSectionSet from '../../components/set/InfoSectionSet';
+import Kits from '../../components/set/Kits';
 
 interface SetPageProps {
     keycapset: Keycapset;
@@ -34,7 +35,7 @@ function SetPage(props: SetPageProps) {
     }
 
     if (keycapset !== null) {
-        const isGeekhackUrl: boolean = keycapset?.websiteUrl.includes('geekhack');
+        const isGeekhackUrl = keycapset?.websiteUrl.includes('geekhack');
         const hasRenders = keycapset.imageUrls && keycapset.imageUrls.length > 0;
         const slickSettings = {
             infinite: hasRenders,
@@ -94,40 +95,11 @@ function SetPage(props: SetPageProps) {
                             </section>
                         )}
 
-                        <section className="section set-info-section">
-                            {!keycapset.isInterestCheck && (
-                                <div className="set-info-section-label">
-                                    <label className="label">Start date</label>
-                                    <label className="label large">
-                                        {moment(keycapset.groupbuyStartDate).format('Do MMM YYYY')}
-                                    </label>
-                                </div>
-                            )}
-                            {!keycapset.isInterestCheck && (
-                                <div className="set-info-section-label">
-                                    <label className="label">End date</label>
-                                    <label className="label large">
-                                        {moment(keycapset.groupbuyEndDate).format('Do MMM YYYY')}
-                                    </label>
-                                </div>
-                            )}
-                            <div className="set-info-section-label">
-                                <label className="label">Designer</label>
-                                <label className="label large">{keycapset.designerName || 'Unknown'}</label>
-                            </div>
-                            <div className="set-info-section-label">
-                                <label className="label">Brand</label>
-                                <label className="label large">{getLabelByBrand(keycapset.brand) || 'Unknown'}</label>
-                            </div>
-                            <div className="set-info-section-label">
-                                <label className="label">Material</label>
-                                <label className="label large">{keycapset.material.toUpperCase() || 'Unknown'}</label>
-                            </div>
-                            <div className="set-info-section-label">
-                                <label className="label">Profile</label>
-                                <label className="label large">{keycapset.type}</label>
-                            </div>
-                        </section>
+                        {keycapset.type !== 'keyboard' ? (
+                            <InfoSectionSet {...{ keycapset }} />
+                        ) : (
+                            <InfoSectionBoard {...{ keycapset }} />
+                        )}
 
                         <section className="section set-arrow">
                             <Arrow color="#D4E4FA" direction="bottom" />
@@ -140,21 +112,7 @@ function SetPage(props: SetPageProps) {
                         )}
 
                         {keycapset.kits !== null && keycapset.kits.length > 0 && (
-                            <section className="section set-kits">
-                                <h2 className="title center">Kits</h2>
-                                <div className="set-kits-grid-container">
-                                    {keycapset.kits.map((kit: Kit, idx: number) => {
-                                        return (
-                                            <div key={kit.name + idx} className="kit-card">
-                                                <div className="kit-card-image">
-                                                    <img src={kit.imgUrl} alt={kit.name + '- image'} />
-                                                </div>
-                                                <h5 className="center">{kit.name}</h5>
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-                            </section>
+                            <Kits {...{ kits: keycapset.kits }} type={keycapset.type} />
                         )}
 
                         {keycapset.vendors.length > 0 && (

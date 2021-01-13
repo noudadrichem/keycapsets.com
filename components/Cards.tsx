@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { forceCheck } from 'react-lazyload';
-import { Keycapset } from '../types/interfaces';
 import { Waypoint } from 'react-waypoint';
 
 import ImageCard from './ImageCard';
 import { useQuery, NetworkStatus } from '@apollo/client';
 import { FETCH_KEYCAPSET_QUERY } from '../queries';
 import LoadingKeyboardIllustration from './LoadingKeyboardIllustration';
+import { Keycapset } from '../types/types';
 
 interface CardsProps {
     keycapsets: Keycapset[];
