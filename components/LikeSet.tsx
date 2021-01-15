@@ -26,10 +26,13 @@ function LikeSet(props: LikeSetProps) {
     const want = userWants.find((w: any) => w.set === keycapset._id);
     const isLiked = want?.liked || false;
 
+    // console.log(want)
+
     async function userWantSet(evt: React.MouseEvent<HTMLSpanElement>) {
         evt.preventDefault();
         evt.stopPropagation();
-        console.log('Like...', keycapset._id);
+
+        console.log(want);
 
         if (isLoggedIn) {
             try {
@@ -38,22 +41,29 @@ function LikeSet(props: LikeSetProps) {
                         setId: keycapset._id,
                     },
                 });
+
                 const newWant: Want = response.wantSet.want;
                 const newWants = [...userWants].reduce((accu: Want[], w: Want) => {
-                    console.log({ accu });
                     // TODO if want is not created yet, create want and like the set...
-                    if (w._id === want._id) {
-                        w.liked = newWant.liked;
+                    if (want !== undefined) {
+                        if (w._id === want._id) {
+                            w.liked = newWant.liked;
+                        }
                     }
                     accu.push(w);
                     return accu;
                 }, []);
-                console.log(newWants);
-                setUserWants(newWants);
 
-                // console.log('add', adduserWants(want))
-                // console.log('remove', removeUserWants(want._id))
-                // setUserWants(isLiking ? adduserWants(want) : removeUserWants(want._id));
+                if (want === undefined) {
+                    console.log('push new want...');
+                    newWants.push({
+                        ...newWant,
+                        set: newWant.set._id,
+                    });
+                }
+
+                console.log('newWants...', newWants);
+                setUserWants(newWants);
             } catch (err) {
                 console.error('want set err', err);
             }

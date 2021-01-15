@@ -1,5 +1,25 @@
 import { gql } from '@apollo/client';
 
+const want = `
+{
+    _id
+    liked
+    set {
+        _id
+        name
+        type
+        brand
+        coverImageUrl
+        slug
+        groupbuyStartDate
+        groupbuyEndDate
+        isInterestCheck
+        material
+        availability
+    }
+}
+`;
+
 export const FETCH_KEYCAPSET_QUERY = gql`
     query FETCH_KEYCAPSET_QUERY($limit: Int, $offset: Int, $filter: KeycapsetFilter) {
         allKeycapsetsCount
@@ -196,26 +216,6 @@ export const ME = gql`
             isVendor
         }
     }
-`;
-
-const want = `
-{
-    _id
-    liked
-    set {
-        _id
-        name
-        type
-        brand
-        coverImageUrl
-        slug
-        groupbuyStartDate
-        groupbuyEndDate
-        isInterestCheck
-        material
-        availability
-    }
-}
 `;
 
 export const WANT_SET = gql`

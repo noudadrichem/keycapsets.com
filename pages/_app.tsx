@@ -29,7 +29,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         if (data) {
             setUser(data.me);
             setUserWants(data.userWants.map((want: Want) => ({ ...want, set: want.set._id })));
-            console.log('user...', data.me._id);
+            // console.log('user...', data.me._id);
         }
         if (error) {
             logoutUser();

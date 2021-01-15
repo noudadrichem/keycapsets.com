@@ -12,7 +12,6 @@ interface ImagesProps {
 }
 
 function Images(props: any): JSX.Element {
-    console.log('iages props...', props);
     const [atBottom, setIsAtBottom] = useState<boolean>(false);
     const setUserWants = useStore((state) => state.setUserWants);
     const filters = useStore((state) => state.filters);
@@ -26,17 +25,6 @@ function Images(props: any): JSX.Element {
         notifyOnNetworkStatusChange: true,
         fetchPolicy: 'cache-and-network',
     });
-
-    // TODO find way to implement this on cache
-    const { data: userWantSetsResponse, loading: userWantsLoading } = useQuery(USER_WANTS_SETS, {
-        fetchPolicy: 'network-only',
-    });
-
-    useEffect(() => {
-        if (!userWantsLoading) {
-            setUserWants(userWantSetsResponse.userWantsSets);
-        }
-    }, [userWantSetsResponse]);
 
     useEffect(function initializeView() {
         const isBrowser = typeof window !== `undefined`;
