@@ -7,13 +7,8 @@ import LoadingKeyboardIllustration from './LoadingKeyboardIllustration';
 import Cards from './Cards';
 import useStore from '../context';
 
-interface ImagesProps {
-    keycapsets?: Keycapset[];
-}
-
-function Images(props: any): JSX.Element {
+export default function Overview(props: any): JSX.Element {
     const [atBottom, setIsAtBottom] = useState<boolean>(false);
-    const setUserWants = useStore((state) => state.setUserWants);
     const filters = useStore((state) => state.filters);
 
     const { data, networkStatus, loading, fetchMore } = useQuery(FETCH_KEYCAPSET_QUERY, {
@@ -77,5 +72,3 @@ function Images(props: any): JSX.Element {
         </div>
     );
 }
-
-export default Images;

@@ -1,4 +1,5 @@
 import { State } from 'zustand';
+import { Collection } from './types';
 
 // export interface Kit {
 //     name: string;
@@ -89,6 +90,7 @@ export interface InititalState extends State {
     user?: User;
     userWants: Want[];
     user: User;
+    collections: Collection[];
 }
 
 // export interface User {

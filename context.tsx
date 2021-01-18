@@ -1,12 +1,13 @@
 import create from 'zustand';
 
 import { InititalState, Filters } from './types/interfaces';
-import { User, Keycapset, Want } from './types/types';
+import { User, Keycapset, Want, Collection } from './types/types';
 
 interface Actions {
     setUser(user: User): void;
     setUserWants(userWants: Want[]): void;
     setFilters(filters: Filters): void;
+    setUserCollections(collections: Collection[]): void;
 }
 
 export const INITITAL_STATE: InititalState = {
@@ -21,6 +22,7 @@ export const INITITAL_STATE: InititalState = {
     searchQuery: '',
     allKeycapsetsCount: 0,
     userWants: [],
+    collections: [],
     isLoggedIn: false,
     user: null,
 };
@@ -30,6 +32,7 @@ const useStore = create<InititalState & Actions>((set) => ({
     setUser: (user: User) => set({ user, isLoggedIn: true }),
     setUserWants: (userWants: Want[]) => set({ userWants }),
     setFilters: (filters: Filters) => set({ filters }),
+    setUserCollections: (collections: Collection[]) => set({ collections }),
 }));
 
 // useStore.subscribe(console.log, (s) => s.filters);

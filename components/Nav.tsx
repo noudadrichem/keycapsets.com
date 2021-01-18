@@ -44,7 +44,6 @@ function Nav(props: NavProps): JSX.Element {
     const { isLargeContainer } = props;
     const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
     const router = useRouter();
-    const user = useStore((state) => state.user);
     const isLoggedIn = useStore((state) => state.isLoggedIn);
     useEffect(
         function listenToRouteChange() {
@@ -68,9 +67,9 @@ function Nav(props: NavProps): JSX.Element {
             {/* <a className="discord-banner" href="https://discord.gg/dq8cyMS">
                 <img src="/images/discord.svg" />Join the conversation on our discord!
             </a> */}
-            {/* <div className="info-banner">
-                Our image service is experiencing issues, the single pages do show images and the like/search
-                functionality still works.
+
+            {/* <div className="banner">
+                <span>🎉 Keycapsets.com exists 1 year! Follow us on<a href="https://twitter.com/keycapsets"> Twitter </a> and <a href="https://www.instagram.com/keycapsets/"> Instagram </a> to stay up to date on what's coming! 🎉</span>
             </div> */}
 
             <HamburgerIcon

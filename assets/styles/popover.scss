@@ -6,7 +6,11 @@
     padding-top: 16px;
     display: block;
     font-family: 'Rubik', sans-serif;
-    z-index: 20;
+    z-index: 50;
+
+    &-target {
+        position: relative;
+    }
 
     &.shown {
         display: block;
@@ -28,10 +32,11 @@
         background: var(--white);
         box-shadow: 0px 1px 2px rgba(0, 16, 75, 0.2);
         border-radius: 6px;
-        padding: 16px;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        font-size: 14px;
+        min-width: 96px;
 
         &.center {
             align-items: center;
@@ -40,10 +45,23 @@
         .item {
             white-space: nowrap;
             font-weight: 300;
+            padding: 12px;
+            color: var(--text-color-light);
+            width: 100%;
+            display: flex;
+
+            &.small {
+                font-size: 12px;
+            }
+
+            .icon {
+                margin-right: 4px;
+            }
 
             @media (hover: hover) {
                 &:hover {
                     color: var(--text-color);
+                    background-color: var(--off-white);
                 }
             }
         }
@@ -60,24 +78,19 @@
             border-bottom: 12px solid var(--white);
         }
 
-        a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            margin-bottom: 24px;
-            color: var(--text-color-light) !important;
+        // a {
+        //     display: flex;
+        //     align-items: center;
+        //     justify-content: center;
+        //     font-size: 14px;
+        //     color: var(--text-color-light) !important;
 
-            &:last-child {
-                margin-bottom: 0;
-            }
-
-            @media (hover: hover) {
-                &:hover {
-                    color: var(--text-color);
-                }
-            }
-        }
+        //     @media (hover: hover) {
+        //         &:hover {
+        //             color: var(--text-color);
+        //         }
+        //     }
+        // }
     }
 }
 

@@ -19,7 +19,7 @@ function Cards(props: CardsProps): JSX.Element {
         <div className="images-container">
             {keycapsets.length > 0 ? (
                 keycapsets.map((keycapset: Keycapset, idx: number) => {
-                    return <ImageCard {...{ keycapset }} key={keycapset._id} />;
+                    return <ImageCard {...{ keycapset }} key={keycapset._id + idx} />;
                 })
             ) : (
                 <p>No keycapsets found...</p> // TODO cool illustration here

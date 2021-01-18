@@ -1,3 +1,39 @@
+.banner {
+    position: fixed;
+    top: 8px;
+    right: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    text-align: center;
+    background: var(--blue-lighter);
+    color: var(--text-color);
+    border-radius: 4px;
+    transform: translateX(110%);
+    opacity: 0;
+    transition: 400ms ease-out;
+
+    &.visible {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    &.alert {
+        z-index: 100;
+    }
+
+    @media screen and (max-width: 768px) {
+        font-size: 11px;
+    }
+
+    &.warning {
+        background: #ffe9cd;
+        color: #99601f;
+    }
+}
+
 .nav {
     .discord-banner {
         display: flex;
@@ -21,20 +57,6 @@
         text-align: center;
         background: #ffe9cd;
         color: #99601f;
-    }
-
-    .info-banner {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 8px;
-        text-align: center;
-        background: var(--blue-lighter);
-        color: var(--text-color);
-
-        @media screen and (max-width: 768px) {
-            font-size: 11px;
-        }
     }
 
     .logo {

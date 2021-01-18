@@ -16,6 +16,9 @@ export default function Plus(props: PlusProps) {
             viewBox="0 0 14 14"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            style={{
+                transform: `rotate(${rotation}deg)`,
+            }}
         >
             <path
                 d="M3.7002 3.70018L10.2999 10.2998"

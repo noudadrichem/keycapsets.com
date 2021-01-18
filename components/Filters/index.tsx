@@ -30,7 +30,7 @@ function Filters(props: FiltersProps): JSX.Element {
 
     useEffect(() => {
         const hasUrlQuery = Object.keys(router.query).length > 0;
-        console.log('router query...', hasUrlQuery);
+        // console.log('router query...', hasUrlQuery);
         if (hasUrlQuery) {
             let routeFilter = filters;
 
@@ -150,7 +150,8 @@ function Filters(props: FiltersProps): JSX.Element {
             overflow: 'hidden',
         },
     };
-    console.log('filters..', filters);
+    // console.log('filters..', filters);
+
     return (
         <>
             <div className="mobile-toggle" onClick={openMobileFilters}>

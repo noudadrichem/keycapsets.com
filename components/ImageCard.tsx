@@ -7,6 +7,7 @@ import { Keycapset } from '../types/types';
 import StatusLabel from './StatusLabel';
 import LikeSet from './LikeSet';
 import { getLabelByBrand } from '../utils/labels';
+import CollectionHandler from './CollectionHandler';
 
 export interface ImageCardProps {
     keycapset: Keycapset;
@@ -27,11 +28,11 @@ function ImageCard(props: ImageCardProps): JSX.Element {
     }, [isInViewport]);
 
     return (
-        <Link href={`/set/${slug}`}>
-            <a ref={containerRef}>
-                {wasInViewport && (
-                    <div className={`image-card ${isTemplate ? 'disabled' : ''}`}>
-                        <div className="image-card-image">
+        <a ref={containerRef}>
+            {wasInViewport && (
+                <div className={`image-card ${isTemplate ? 'disabled' : ''}`}>
+                    <div className="image-card-image">
+                        <Link href={`/set/${slug}`}>
                             <img
                                 className="image-card-image-set"
                                 src={
@@ -40,8 +41,10 @@ function ImageCard(props: ImageCardProps): JSX.Element {
                                         : coverImageUrl
                                 }
                             />
-                        </div>
-                        <div className="image-card-details">
+                        </Link>
+                    </div>
+                    <div className="image-card-details">
+                        <Link href={`/set/${slug}`}>
                             <div className="top">
                                 <h4 className="set-title">{name || 'Title goes here'}</h4>
                                 <StatusLabel
@@ -50,23 +53,24 @@ function ImageCard(props: ImageCardProps): JSX.Element {
                                     isIc={isInterestCheck}
                                 />
                             </div>
+                        </Link>
 
-                            <div className="bottom">
-                                <span className="bold">
-                                    <span>
-                                        {getLabelByBrand(brand)} {type && type.toUpperCase()}
-                                    </span>
-                                    <span>{moment(groupbuyStartDate).format('YYYY')}</span>
-                                </span>
+                        <div className="bottom">
+                            <span className="bold">
                                 <span>
-                                    <LikeSet keycapset={keycapset} />
+                                    {getLabelByBrand(brand)} {type && type.toUpperCase()}
                                 </span>
-                            </div>
+                                <span>{moment(groupbuyStartDate).format('YYYY')}</span>
+                            </span>
+                            <span className="actions">
+                                <CollectionHandler setId={keycapset._id} />
+                                <LikeSet keycapset={keycapset} />
+                            </span>
                         </div>
                     </div>
-                )}
-            </a>
-        </Link>
+                </div>
+            )}
+        </a>
     );
 }
 

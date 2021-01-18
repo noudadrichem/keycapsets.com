@@ -44,7 +44,6 @@ function LikeSet(props: LikeSetProps) {
 
                 const newWant: Want = response.wantSet.want;
                 const newWants = [...userWants].reduce((accu: Want[], w: Want) => {
-                    // TODO if want is not created yet, create want and like the set...
                     if (want !== undefined) {
                         if (w._id === want._id) {
                             w.liked = newWant.liked;

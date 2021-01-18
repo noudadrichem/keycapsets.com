@@ -185,6 +185,18 @@ export const REDDIT_LOGIN = gql`
 
 export const ME = gql`
     query {
+        fetchUserCollections {
+            name
+            public
+            _id
+            wants {
+                _id
+                set {
+                    name
+                    _id
+                }
+            }
+        }
         userWants {
             liked
             _id
@@ -404,6 +416,20 @@ export const USER_COLLECTIONS = gql`
             name
             public
             wants ${want}
+        }
+    }
+`;
+
+export const SET_TO_COLLECTION = gql`
+    mutation SET_TO_COLLECTION($setId: String!, $collectionId: String!) {
+        addSetToCollection(input: { setId: $setId, collectionId: $collectionId }) {
+            name
+            wants {
+                liked
+                set {
+                    name
+                }
+            }
         }
     }
 `;
