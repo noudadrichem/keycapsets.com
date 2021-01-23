@@ -6,7 +6,7 @@
     "scripts": {
         "dev": "next",
         "build": "next build",
-        "start": "NODE_ENV=production next start -p 3000",
+        "start": "next start",
         "pretty": "prettier --ignore .next --write './**/*.{ts,tsx,json,scss}'",
         "gen": "graphql-codegen --config codegen.yml"
     },
