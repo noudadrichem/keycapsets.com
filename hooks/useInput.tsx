@@ -8,7 +8,7 @@ export interface InputProps extends HTMLProps<HTMLInputElement> {
 }
 
 function Input(props: InputProps & HTMLProps<HTMLInputElement>): JSX.Element {
-    const { type = 'text', label, id, onChange, defaultValue, placeholder, reference, className, errorMessage } = props;
+    const { type = 'text', label, id, onChange, defaultValue, placeholder, reference, className, errorMessage, ...otherProps } = props;
     return (
         <div className={`input-wrapper ${type} ${className}`}>
             {label && (
@@ -26,6 +26,7 @@ function Input(props: InputProps & HTMLProps<HTMLInputElement>): JSX.Element {
                     type={type}
                     placeholder={placeholder}
                     ref={reference}
+                    {...otherProps}
                 />
             </div>
             {errorMessage && <p className="error-message red">{errorMessage}</p>}
@@ -36,7 +37,7 @@ function Input(props: InputProps & HTMLProps<HTMLInputElement>): JSX.Element {
 function useInput(props: InputProps) {
     const { type = 'text', label, placeholder, id, defaultValue = '', autoFocus, icon } = props;
     const [value, setValue] = useState(defaultValue);
-    const input = useRef(null);
+    let inputRef = useRef(null);
 
     function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
         if (type === 'checkbox') {
@@ -48,12 +49,14 @@ function useInput(props: InputProps) {
 
     useEffect(() => {
         if (autoFocus) {
-            const isBrowser = typeof window !== `undefined`;
             if (window.innerWidth > 768) {
-                input.current.focus();
+                setTimeout(() => {
+                    console.log('focus....', inputRef);
+                    inputRef.current.focus();
+                }, 500);
             }
         }
-    });
+    }, [autoFocus]);
 
     const inputField: JSX.Element = (
         <div className={`input-wrapper ${type}`}>
@@ -67,7 +70,7 @@ function useInput(props: InputProps) {
                 {icon}
                 <input
                     className={icon !== undefined ? 'has-icon' : ''}
-                    ref={input}
+                    ref={inputRef}
                     onChange={onInputChange}
                     defaultValue={value}
                     name={id}

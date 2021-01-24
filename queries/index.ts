@@ -86,13 +86,7 @@ export const CREATE_KEYSET_MUTATION = gql`
 `;
 
 export const CREATE_VENDOR_MUTATION = gql`
-    mutation CREATE_VENDOR_MUTATION(
-        $name: String
-        $country: String
-        $logoUrl: String
-        $socials: [String]
-        $url: String
-    ) {
+    mutation CREATE_VENDOR_MUTATION($name: String, $country: String, $logoUrl: String, $socials: [String], $url: String) {
         createVendor(name: $name, country: $country, logoUrl: $logoUrl, socials: $socials, url: $url) {
             name
             _id
@@ -189,13 +183,7 @@ export const ME = gql`
             name
             public
             _id
-            wants {
-                _id
-                set {
-                    name
-                    _id
-                }
-            }
+            wants ${want}
         }
         userWants {
             liked
@@ -257,14 +245,6 @@ export const UPDATE_USER = gql`
         }
     }
 `;
-
-// export const USER_WANTS = gql`
-//     {
-//         userWants {
-//             set
-//         }
-//     }
-// `;
 
 export const USER_WANTS_SETS = gql`
     {
@@ -400,12 +380,12 @@ export const START_IC = gql`
 `;
 
 export const CREATE_COLLECTION = gql`
-    mutation CREATE_USER_COLLECTION($name: String) {
+    mutation CREATE_USER_COLLECTION($name: String!) {
         createCollectionForUser(name: $name) {
+            _id
             name
-            user {
-                name
-            }
+            public
+            wants ${want}
         }
     }
 `;
@@ -413,6 +393,7 @@ export const CREATE_COLLECTION = gql`
 export const USER_COLLECTIONS = gql`
     query {
         fetchUserCollections {
+            _id
             name
             public
             wants ${want}
@@ -422,15 +403,7 @@ export const USER_COLLECTIONS = gql`
 
 export const SET_TO_COLLECTION = gql`
     mutation SET_TO_COLLECTION($setId: String!, $collectionId: String!) {
-        addSetToCollection(input: { setId: $setId, collectionId: $collectionId }) {
-            name
-            wants {
-                liked
-                set {
-                    name
-                }
-            }
-        }
+        addSetToCollection(input: { setId: $setId, collectionId: $collectionId }) ${want}
     }
 `;
 

@@ -7,7 +7,7 @@ import { Keycapset } from '../types/types';
 import StatusLabel from './StatusLabel';
 import LikeSet from './LikeSet';
 import { getLabelByBrand } from '../utils/labels';
-import CollectionHandler from './CollectionHandler';
+import CollectionHandler from './collections/CollectionHandler';
 
 export interface ImageCardProps {
     keycapset: Keycapset;
@@ -36,9 +36,7 @@ function ImageCard(props: ImageCardProps): JSX.Element {
                             <img
                                 className="image-card-image-set"
                                 src={
-                                    coverImageUrl === undefined || coverImageUrl === ''
-                                        ? '/images/empty-base-kit-illu.svg'
-                                        : coverImageUrl
+                                    coverImageUrl === undefined || coverImageUrl === '' ? '/images/empty-base-kit-illu.svg' : coverImageUrl
                                 }
                             />
                         </Link>

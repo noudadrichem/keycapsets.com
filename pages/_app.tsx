@@ -69,9 +69,9 @@ function MyApp({ Component, pageProps }: AppProps) {
                     {isNavShown && <Nav isLargeContainer={isLargeContainer} />}
                     <Component {...pageProps} />
                     {isFooterShown && <Footer isLargeContainer={isLargeContainer} />}
+                    <Modal />
                 </ApolloProvider>
             </div>
-            <Modal />
         </div>
     );
 }

@@ -14,7 +14,6 @@ interface CardsProps {
 
 function Cards(props: CardsProps): JSX.Element {
     const { keycapsets } = props;
-
     return (
         <div className="images-container">
             {keycapsets.length > 0 ? (

@@ -1,5 +1,6 @@
 import React from 'react';
 import create from 'zustand';
+import CreateCollection from '../components/collections/CreateCollection';
 import ContactForm from '../components/ContactForm';
 
 type State = {
@@ -9,6 +10,7 @@ type State = {
 
 export enum Modals {
     Contact,
+    CreateCollection,
 }
 
 type Actions = {
@@ -30,6 +32,7 @@ const useModalStore = create<State & Actions>((set, get) => ({
     openModal: (key: Modals) => {
         const current = {
             [Modals.Contact]: <ContactForm />,
+            [Modals.CreateCollection]: <CreateCollection />,
         }[key];
 
         set({ current, isOpen: true });

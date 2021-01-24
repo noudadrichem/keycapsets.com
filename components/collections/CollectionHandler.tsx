@@ -1,13 +1,14 @@
 import { useMutation } from '@apollo/client';
 import React from 'react';
 import { toast } from 'react-toastify';
-import useStore from '../context';
-import { SET_TO_COLLECTION } from '../queries';
-import { Collection } from '../types/types';
-import CheckmarkIcon from './icons/CheckmarkIcon';
-import { DirectoryPlus } from './icons/DirectoryIcon';
-import Plus from './PlusIcon';
-import Popover from './Popover';
+
+import useStore from '../../context';
+import { SET_TO_COLLECTION } from '../../queries';
+import { Collection, Want } from '../../types/types';
+import CheckmarkIcon from '../icons/CheckmarkIcon';
+import { DirectoryPlus } from '../icons/DirectoryIcon';
+import Popover from '../Popover';
+import AddCollectionBtn from './AddCollectionBtn';
 
 export interface CollectionHandlerProps {
     setId: string;
@@ -16,12 +17,26 @@ export interface CollectionHandlerProps {
 export default function CollectionHandler(props: CollectionHandlerProps): JSX.Element {
     const { setId } = props;
     const collections = useStore((state) => state.collections);
-    const setBanner = useStore((state) => state.setBanner);
-
+    const setUserCollections = useStore((state) => state.setUserCollections);
     const [addToCollection] = useMutation(SET_TO_COLLECTION);
 
+    function addSetToCollection(collectionId: string, newWant: Want) {
+        // ? let arr = arr.splice(start[, deleteCount[, item1[, item2[, ...]]]])
+
+        const newColletions = collections.map((obj) => {
+            return obj._id === collectionId ? { ...obj, wants: [...obj.wants, newWant] } : obj;
+        });
+
+        // const updatedCollection = collections.find((col) => col._id === collectionId)
+        // const idx = collections.map((col) => col._id).indexOf(collectionId)
+        // console.log({idx})
+        // updatedCollection.wants.push(newWant)
+        // const newColletions = [...collections].splice(idx, 1, updatedCollection)
+
+        return newColletions;
+    }
+
     async function handleCollectionClick(collection: Collection) {
-        console.log(collection);
         try {
             const response = await addToCollection({
                 variables: {
@@ -29,23 +44,23 @@ export default function CollectionHandler(props: CollectionHandlerProps): JSX.El
                     collectionId: collection._id,
                 },
             });
-            console.log('add to collection...', response);
+
+            console.log('add to collection...' + collection._id, response.data);
+            const newCollections = addSetToCollection(collection._id, response.data.addSetToCollection);
+            console.log('newCollections', newCollections);
+            setUserCollections(newCollections);
         } catch (error) {
             toast.error(error.message);
             console.error(error.message);
         }
     }
 
-    async function showAddCollection() {
-        console.log('show add collection...');
-    }
-
     const collectionSets = collections.map((collection) => ({
         id: collection._id,
         sets: collection.wants.map(({ set }) => set._id),
     }));
-    const getIsInCollection = (collectionId: string) =>
-        (collectionSets as any).find(({ id }) => collectionId === id).sets.includes(setId);
+
+    const getIsInCollection = (collectionId: string) => (collectionSets as any).find(({ id }) => collectionId === id).sets.includes(setId);
 
     return (
         <div className="collection-handler">
@@ -62,10 +77,7 @@ export default function CollectionHandler(props: CollectionHandlerProps): JSX.El
                             </span>
                         );
                     })}
-                <span className={`item small`} onClick={() => showAddCollection()}>
-                    <Plus size={11} color="#364154" rotation={45} />
-                    Add collection
-                </span>
+                <AddCollectionBtn className="item small" />
             </Popover>
         </div>
     );

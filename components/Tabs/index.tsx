@@ -12,9 +12,6 @@ export type TabsProps = {
 };
 
 export default function Tabs(props: TabsProps) {
-    // const isActive = id === filters[type];
-
-    console.log('current val...', props.currentVal);
     return (
         <div className={`tabs ${props.className}`}>
             {props.label && <label className="label">{props.label}</label>}

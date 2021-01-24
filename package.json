@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "dev": "next",
+        "dev": "NODE_ENV=development next",
         "build": "next build",
         "start": "next start",
         "pretty": "prettier --ignore .next --write './**/*.{ts,tsx,json,scss}'",

@@ -173,6 +173,7 @@ export type Mutation = {
     imgUploadFormData: ImgUploadResponse;
     createCollectionForUser?: Maybe<Collection>;
     addWantToCollection?: Maybe<Collection>;
+    addSetToCollection?: Maybe<Want>;
     wantSet: WantResponse;
 };
 
@@ -272,6 +273,10 @@ export type MutationCreateCollectionForUserArgs = {
 
 export type MutationAddWantToCollectionArgs = {
     input: WantToCollection;
+};
+
+export type MutationAddSetToCollectionArgs = {
+    input: SetToCollection;
 };
 
 export type MutationWantSetArgs = {
@@ -394,6 +399,11 @@ export type Response = {
     __typename?: 'Response';
     message: Scalars['String'];
     userId?: Maybe<Scalars['ID']>;
+};
+
+export type SetToCollection = {
+    setId: Scalars['String'];
+    collectionId: Scalars['String'];
 };
 
 export type User = {

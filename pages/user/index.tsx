@@ -15,10 +15,11 @@ import RedditIcon from '../../components/RedditIcon';
 import RedditAuth from '../../components/RedditAuth';
 import Cards from '../../components/Cards';
 import Tabs from '../../components/Tabs';
-import { Collection, Keycapset, Want } from '../../types/types';
+import { Collection, Want } from '../../types/types';
 import { SelectOption } from '../../types/interfaces';
+import AddCollectionBtn from '../../components/collections/AddCollectionBtn';
 
-function getOptionsFromCollections(collections: Collection[]): SelectOption[] {
+function getOptionsFromCollections(collections: Collection[]) {
     return collections.map((collection: Collection) => ({
         label: collection.name,
         value: collection.name.toLowerCase().replace(/ /g, '-'),
@@ -30,13 +31,21 @@ function User() {
     const user = useStore((state) => state.user);
     const [activeTab, setActiveTab] = useState<SelectOption>(null);
     const { data, loading, error } = useQuery(USER_PAGE, { fetchPolicy: 'network-only' });
+    const collections = useStore((state) => state.collections);
+    const setUserCollections = useStore((state) => state.setUserCollections);
 
     useEffect(() => {
         if (!loading && data.fetchUserCollections) {
-            const firstOption = getOptionsFromCollections(data.fetchUserCollections)[0];
-            setActiveTab(firstOption);
+            setUserCollections(data.fetchUserCollections);
         }
     }, [data]);
+
+    useEffect(() => {
+        if (!activeTab) {
+            const firstOption = getOptionsFromCollections(collections)[0];
+            setActiveTab(firstOption);
+        }
+    }, [collections]);
 
     if (loading) {
         return <LoadingKeyboardIllustration />;
@@ -46,8 +55,7 @@ function User() {
         return '500';
     }
 
-    const { fetchUserCollections: collections } = data;
-    const collectionMapped: SelectOption[] = getOptionsFromCollections(data.fetchUserCollections);
+    const collectionMapped: SelectOption[] = getOptionsFromCollections(collections);
 
     return (
         <div className="container large user">
@@ -58,13 +66,17 @@ function User() {
                         <LoadingKeyboardIllustration />
                     ) : collectionMapped.length > 0 && activeTab !== null ? (
                         <div className="cards-container">
-                            <Tabs
-                                label="Collections:"
-                                options={collectionMapped}
-                                type="collection"
-                                onClick={(tab) => setActiveTab(tab)}
-                                currentVal={activeTab}
-                            />
+                            <span className="cards-container-tabs">
+                                <Tabs
+                                    label="Collections:"
+                                    options={collectionMapped}
+                                    type="collection"
+                                    onClick={(tab) => setActiveTab(tab)}
+                                    currentVal={activeTab}
+                                />
+
+                                <AddCollectionBtn className="btn secondary sm" />
+                            </span>
 
                             <Cards
                                 keycapsets={collections

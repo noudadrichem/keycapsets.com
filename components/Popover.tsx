@@ -17,8 +17,12 @@ export default function Popover(props: PopoverProps): JSX.Element {
     }
 
     function open(e: React.MouseEvent<HTMLElement>) {
+        console.log('openl...', isPopoverShown);
         e.preventDefault();
         e.stopPropagation();
+        if (isPopoverShown) {
+            setIspopoverShown(false);
+        }
         setIspopoverShown(!isPopoverShown);
     }
 

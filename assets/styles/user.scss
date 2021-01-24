@@ -10,9 +10,23 @@
     }
 
     .cards-container {
-        .tabs {
-            justify-content: flex-start;
+        &-tabs {
+            display: flex;
+            justify-content: space-between;
             margin-bottom: 32px;
+            align-items: flex-end;
+
+            .add-collection-btn {
+                min-width: 152px;
+            }
+        }
+
+        .tabs {
+            overflow-x: auto;
+
+            .tab {
+                min-width: 112px;
+            }
         }
     }
 }
