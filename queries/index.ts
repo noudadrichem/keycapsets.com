@@ -66,13 +66,7 @@ export const CREATE_KEYSET_MUTATION = gql`
 `;
 
 export const CREATE_VENDOR_MUTATION = gql`
-    mutation CREATE_VENDOR_MUTATION(
-        $name: String
-        $country: String
-        $logoUrl: String
-        $socials: [String]
-        $url: String
-    ) {
+    mutation CREATE_VENDOR_MUTATION($name: String, $country: String, $logoUrl: String, $socials: [String], $url: String) {
         createVendor(name: $name, country: $country, logoUrl: $logoUrl, socials: $socials, url: $url) {
             name
             _id
@@ -128,6 +122,9 @@ export const GET_SINGLE_SET_QUERY = gql`
             isInterestCheck
             designedBy
             metaUrl
+            interestCheck {
+                status
+            }
         }
     }
 `;

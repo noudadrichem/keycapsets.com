@@ -27,6 +27,10 @@
 
     &-status {
         display: flex;
+        align-items: center;
+        flex-direction: column;
+        max-width: 240px;
+        margin: 0 auto;
 
         @media screen and (min-width: $bp-tablet-md) {
             justify-content: center;
@@ -34,6 +38,10 @@
 
         .heart-icon {
             margin-left: 16px;
+        }
+        .labels {
+            display: flex;
+            margin-bottom: 12px;
         }
     }
 
