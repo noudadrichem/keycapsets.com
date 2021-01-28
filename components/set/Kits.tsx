@@ -1,5 +1,6 @@
 import React from 'react';
 import { Kit } from '../../types/types';
+import ImageModal from '../ImageModal';
 
 interface KitsProps {
     kits: Kit[];
@@ -21,7 +22,7 @@ function Kits(props: KitsProps): JSX.Element {
                         <div key={name + idx} className={`kit-card ${descriptionClass}`}>
                             {/* <div className="kit-card-image-container"> */}
                             <div className="kit-card-image">
-                                <img src={imgUrl} alt={name + '- image'} />
+                                <ImageModal src={imgUrl} alt={name + '-image'} />
                             </div>
                             {/* </div> */}
                             <h5 className="title center">{name}</h5>

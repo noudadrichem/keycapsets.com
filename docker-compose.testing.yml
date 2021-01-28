@@ -1,13 +1,15 @@
 version: '3'
 services:
-    alpha_keycapsets:
+    testing_keycapsets:
+        environment:
+            NODE_ENV: testing
+        build: .
+        ports:
+            - '3000:3001'
         logging:
             driver: none
-        build: .
         networks:
             - traefik
-        ports:
-            - '3001:3001'
         labels:
             - 'traefik.enable=true'
             - 'traefik.backend=alpha_keycapsets'

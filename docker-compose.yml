@@ -1,13 +1,15 @@
 version: '3'
 services:
     keycapsets:
-        logging:
-            driver: none
+        environment:
+            NODE_ENV: production
         build: .
-        networks:
-            - traefik
         ports:
             - '3000:3000'
+        logging:
+            driver: none
+        networks:
+            - traefik
         labels:
             - 'traefik.enable=true'
             - 'traefik.backend=keycapsets'

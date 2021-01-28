@@ -21,6 +21,8 @@ import Arrow from '../../components/Arrow';
 import InfoSectionBoard from '../../components/set/InfoSectionBoard';
 import InfoSectionSet from '../../components/set/InfoSectionSet';
 import Kits from '../../components/set/Kits';
+import Button from '../../components/Button';
+import { getDirectiveValues } from 'graphql';
 
 interface SetPageProps {
     keycapset: Keycapset;
@@ -29,6 +31,7 @@ interface SetPageProps {
 
 function SetPage(props: SetPageProps) {
     const { keycapset } = props;
+    const router = useRouter();
 
     if (keycapset === undefined) {
         return <Error statusCode={404} />;
@@ -45,6 +48,7 @@ function SetPage(props: SetPageProps) {
             arrows: true,
             autoplay: hasRenders,
             autoPlaySpeed: 2400,
+            pauseOnHover: false,
         };
 
         console.log(keycapset._id);
@@ -53,25 +57,35 @@ function SetPage(props: SetPageProps) {
             <>
                 <div className="set">
                     <Meta
-                        title={`${keycapset.name} ${
-                            keycapset.designerName ? `designed by ${keycapset.designerName}` : ''
-                        }`}
+                        title={`${keycapset.name} ${keycapset.designerName ? `designed by ${keycapset.designerName}` : ''}`}
                         metaImgUrl={keycapset.metaUrl}
                     />
 
                     <div className="container">
-                        <Heading
-                            mainTitle={keycapset.name}
-                            subTitle={`${keycapset.designerName ? `By ${keycapset.designerName}` : ''}`}
-                        />
+                        <Heading mainTitle={keycapset.name} subTitle={`${keycapset.designerName ? `By ${keycapset.designerName}` : ''}`} />
                         <section className="set-status">
-                            <StatusLabel
-                                groupbuyStartDate={keycapset.groupbuyStartDate}
-                                groupbuyEndDate={keycapset.groupbuyEndDate}
-                                isIc={keycapset.isInterestCheck}
-                            />
+                            <div className="labels">
+                                <StatusLabel
+                                    groupbuyStartDate={keycapset.groupbuyStartDate}
+                                    groupbuyEndDate={keycapset.groupbuyEndDate}
+                                    isIc={keycapset.isInterestCheck}
+                                />
 
-                            <LikeSet keycapset={keycapset} size={24} />
+                                <LikeSet keycapset={keycapset} size={24} />
+                            </div>
+                            {keycapset.interestCheck !== null && keycapset.interestCheck.status === 'online' && (
+                                <Button
+                                    onClick={() => router.push(`/ic/${keycapset.slug}`)}
+                                    size="lg"
+                                    variant="primary"
+                                    style={{
+                                        backgroundColor: keycapset.accentColor1,
+                                        border: 'none',
+                                    }}
+                                >
+                                    Fill in Interest Check
+                                </Button>
+                            )}
                         </section>
 
                         {hasRenders ? (
@@ -95,11 +109,7 @@ function SetPage(props: SetPageProps) {
                             </section>
                         )}
 
-                        {keycapset.type !== 'keyboard' ? (
-                            <InfoSectionSet {...{ keycapset }} />
-                        ) : (
-                            <InfoSectionBoard {...{ keycapset }} />
-                        )}
+                        {keycapset.type !== 'keyboard' ? <InfoSectionSet {...{ keycapset }} /> : <InfoSectionBoard {...{ keycapset }} />}
 
                         <section className="section set-arrow">
                             <Arrow color="#D4E4FA" direction="bottom" />
@@ -130,10 +140,7 @@ function SetPage(props: SetPageProps) {
 
                         {isGeekhackUrl && (
                             <section className="section set-geekhack">
-                                <ButtonLink
-                                    isLarge
-                                    href={keycapset.websiteUrl + '?utm_source=keycapsets&utm_medium=affiliate'}
-                                >
+                                <ButtonLink isLarge href={keycapset.websiteUrl + '?utm_source=keycapsets&utm_medium=affiliate'}>
                                     Visit on Geekhack
                                 </ButtonLink>
                             </section>
