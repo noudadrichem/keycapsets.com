@@ -32,7 +32,7 @@ function createApolloClient() {
         ssrMode: isBrowser,
         link: authLink.concat(
             createUploadLink({
-                uri: apiUrl,
+                uri: 'https://api.keycapsets.com/graphql',
             })
         ),
         cache: new InMemoryCache(),
