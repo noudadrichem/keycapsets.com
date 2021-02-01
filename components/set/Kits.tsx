@@ -12,21 +12,23 @@ function Kits(props: KitsProps): JSX.Element {
 
     const descriptionClass = ''; // kits.map(({ description }) => typeof description).includes('string') ? 'has-description' : '';
 
+    const isKeyboard = type === 'keyboard';
+
     return (
-        <section className="section set-kits">
-            <h2 className="title center">{type === 'keyboard' ? 'Features' : 'Kits'}</h2>
+        <section className={`section set-kits ${isKeyboard ? 'keyboard' : 'keycapset'}`}>
+            <h2 className="title center">{isKeyboard ? 'Features' : 'Kits'}</h2>
             <div className={`set-kits-grid-container ${descriptionClass}`}>
                 {kits.map((kit: Kit, idx: number) => {
                     const { name, imgUrl, description } = kit;
                     return (
                         <div key={name + idx} className={`kit-card ${descriptionClass}`}>
-                            {/* <div className="kit-card-image-container"> */}
+                            {isKeyboard && <h5 className="title center">{name}</h5>}
                             <div className="kit-card-image">
                                 <ImageModal src={imgUrl} alt={name + '-image'} />
                             </div>
-                            {/* </div> */}
-                            <h5 className="title center">{name}</h5>
-                            {description && <p className="description light">{description}</p>}
+                            {!isKeyboard && <h5 className="title center">{name}</h5>}
+
+                            {description && <p className="description light small">{description}</p>}
                         </div>
                     );
                 })}

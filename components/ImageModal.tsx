@@ -17,8 +17,6 @@ function ImageModal(props: ImageModalProps): JSX.Element {
     const imageRef = useRef(null);
     const { src } = props;
 
-    console.log('moetje? ');
-
     const getStylingData = ({ current }) => ({
         left: current.offsetLeft - current.parentElement.parentElement.offsetLeft,
         top: current.offsetTop,
