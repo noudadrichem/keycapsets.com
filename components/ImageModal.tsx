@@ -7,6 +7,7 @@ interface ImageModalProps {
     src?: string;
     className?: string;
     isFullWidth?: boolean;
+    alt?: string;
 }
 
 function ImageModal(props: ImageModalProps): JSX.Element {
@@ -52,6 +53,7 @@ function ImageModal(props: ImageModalProps): JSX.Element {
     }, [open, loaded]);
 
     const onClose = () => {
+        console.log('heh?');
         const { height, width, left, top, rect, scrollLeft, scrollTop } = getStylingData(imageRef);
         const { current: modalImage } = modalRef;
 
@@ -79,7 +81,7 @@ function ImageModal(props: ImageModalProps): JSX.Element {
                       <div className="image-modal" onClick={() => onClose()}>
                           {loaded ? <div className="image-modal__overlay" /> : null}
                           <div className="image-modal__container">
-                              <img onLoad={() => setLoading(true)} src={src} ref={modalRef} />
+                              <img onLoad={() => setLoading(true)} src={src} ref={modalRef} alt={props.alt} />
                           </div>
                       </div>,
                       document.body

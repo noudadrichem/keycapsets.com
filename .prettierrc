@@ -4,4 +4,4 @@ singleQuote: true
 bracketSpacing: true
 jsxBracketSameLine: false
 htmlWhitespaceSensitivity: "ignore"
-printWidth: 120
+printWidth: 140

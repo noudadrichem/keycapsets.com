@@ -58,27 +58,27 @@ function InterestCheck(props: InterestCheckProps) {
     }, []);
 
     async function startIc() {
-        if (user === null) {
-            redirectToLogin();
-        } else {
-            try {
-                // ? Callback to server
-                await startInterestCheck({
-                    variables: {
-                        id: interestCheck._id,
-                    },
-                });
-                state.setQuestion({
-                    idx: 0,
-                    question: interestCheck.questions[0],
-                    next: 1,
-                    previous: -1,
-                });
-                state.setStatus(Status.Ongoing);
-            } catch (err) {
-                console.log(err);
-            }
+        // if (user === null) {
+        //     redirectToLogin();
+        // } else {
+        try {
+            // ? Callback to server
+            // await startInterestCheck({
+            //     variables: {
+            //         id: interestCheck._id,
+            //     },
+            // });
+            state.setQuestion({
+                idx: 0,
+                question: interestCheck.questions[0],
+                next: 1,
+                previous: -1,
+            });
+            state.setStatus(Status.Ongoing);
+        } catch (err) {
+            console.log(err);
         }
+        // }
     }
 
     function redirectToHome() {
@@ -154,7 +154,7 @@ function InterestCheck(props: InterestCheckProps) {
                             sub: `Tailormade Interest check forms with analytics to run your IC. By and for keycapset designers!`,
                             action1: startIc,
                             action2: redirectToSignUp,
-                            btn1Text: user === null ? 'Login' : 'Fill in form',
+                            btn1Text: 'Fill in form',
                             btn2Text: user === null ? 'Sign Up' : null,
                         })}
 

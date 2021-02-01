@@ -34,19 +34,19 @@ function InfoSectionBoard(props: InfoSectionBoardProps): JSX.Element {
             </div>
             <div className="set-info-section-label">
                 <label className="label">Groupbuy Type</label>
-                <label className="label large">Public</label>
+                <label className="label large">Public unlimited</label>
             </div>
             <div className="set-info-section-label">
                 <label className="label">Form factor</label>
                 <label className="label large">60%</label>
             </div>
-            <div className="set-info-section-label">
+            {/* <div className="set-info-section-label">
                 <label className="label">Typing angle</label>
                 <label className="label large">
                     5.5° typing angle <br />
                     6.5° case slope
                 </label>
-            </div>
+            </div> */}
             <div className="set-info-section-label">
                 <label className="label">Manufacturer</label>
                 <label className="label large">Salvun</label>
