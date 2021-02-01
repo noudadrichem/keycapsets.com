@@ -125,6 +125,13 @@ export const GET_SINGLE_SET_QUERY = gql`
             interestCheck {
                 status
             }
+            sections {
+                _id
+                title
+                text
+                type
+                imgUrl
+            }
         }
     }
 `;

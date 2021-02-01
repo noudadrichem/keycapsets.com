@@ -23,6 +23,7 @@ import InfoSectionSet from '../../components/set/InfoSectionSet';
 import Kits from '../../components/set/Kits';
 import Button from '../../components/Button';
 import { getDirectiveValues } from 'graphql';
+import ImgTextSection from '../../components/set/sections/ImgTextSection';
 
 interface SetPageProps {
     keycapset: Keycapset;
@@ -123,6 +124,17 @@ function SetPage(props: SetPageProps) {
 
                         {keycapset.kits !== null && keycapset.kits.length > 0 && (
                             <Kits {...{ kits: keycapset.kits }} type={keycapset.type} />
+                        )}
+
+                        {keycapset.sections.length > 0 && (
+                            <>
+                                {keycapset.sections.map((section, idx) => {
+                                    return {
+                                        'img-text': <ImgTextSection section={section} key={section.title + idx} />,
+                                        // TODO add more types here...
+                                    }[section.type];
+                                })}
+                            </>
                         )}
 
                         {keycapset.vendors.length > 0 && (

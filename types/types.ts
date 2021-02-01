@@ -104,6 +104,7 @@ export type Keycapset = {
     interestCheck?: Maybe<InterestCheck>;
     metaUrl?: Maybe<Scalars['String']>;
     description?: Maybe<Scalars['String']>;
+    sections?: Maybe<Array<Maybe<Section>>>;
 };
 
 export type KeycapsetFilter = {
@@ -160,6 +161,7 @@ export type Mutation = {
     toggleHaveSet: Response;
     claimSet: Response;
     createkit: Kit;
+    updateKit: Kit;
     googleLogin: GoogleLoginResponse;
     redditLogin: RedditLoginResponse;
     updateUser: User;
@@ -233,6 +235,10 @@ export type MutationCreatekitArgs = {
     price?: Maybe<Scalars['Int']>;
 };
 
+export type MutationUpdateKitArgs = {
+    input?: Maybe<KitInput>;
+};
+
 export type MutationGoogleLoginArgs = {
     token: Scalars['String'];
 };
@@ -304,6 +310,7 @@ export type Query = {
     userWantsSets: Array<Maybe<Keycapset>>;
     kits?: Maybe<Array<Maybe<Kit>>>;
     me: User;
+    users?: Maybe<Array<Maybe<User>>>;
     interestCheckById?: Maybe<InterestCheck>;
     questionById?: Maybe<Question>;
     questionsByICId?: Maybe<Array<Maybe<QuestionAnswer>>>;
@@ -339,6 +346,11 @@ export type QueryKeycapsetsArgs = {
 
 export type QueryKeycapsetsByQueryArgs = {
     query?: Maybe<Scalars['String']>;
+};
+
+export type QueryUsersArgs = {
+    limit?: Maybe<Scalars['Int']>;
+    offset?: Maybe<Scalars['Int']>;
 };
 
 export type QueryInterestCheckByIdArgs = {
@@ -388,6 +400,15 @@ export type Response = {
     __typename?: 'Response';
     message: Scalars['String'];
     userId?: Maybe<Scalars['ID']>;
+};
+
+export type Section = {
+    __typename?: 'Section';
+    _id: Scalars['ID'];
+    type: Scalars['String'];
+    title?: Maybe<Scalars['String']>;
+    text?: Maybe<Scalars['String']>;
+    imgUrl?: Maybe<Scalars['String']>;
 };
 
 export type User = {

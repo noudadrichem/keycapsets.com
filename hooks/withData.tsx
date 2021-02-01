@@ -8,8 +8,8 @@ let token: string;
 
 // uri: 'https://api-testing.keycapsets.com/graphql',
 // const apiUrl = process.env.NODE_ENV === 'production' ? 'https://api.keycapsets.com/graphql' : 'http://localhost:4000/graphql';
-// const apiUrl = 'https://api.keycapsets.com/graphql'
-const apiUrl = 'http://localhost:4000/graphql';
+const apiUrl = 'https://api.keycapsets.com/graphql';
+// const apiUrl = 'http://localhost:4000/graphql';
 
 console.log('API URL = ', apiUrl, process.env.NODE_ENV);
 
@@ -32,7 +32,7 @@ function createApolloClient() {
         ssrMode: isBrowser,
         link: authLink.concat(
             createUploadLink({
-                uri: 'https://api.keycapsets.com/graphql',
+                uri: apiUrl,
             })
         ),
         cache: new InMemoryCache(),
