@@ -51,7 +51,7 @@ function CreateCollection(props: any): JSX.Element {
                 <Input
                     id="name"
                     label="Collection name"
-                    placeholder="E.g. For sale or Monotone colo sets"
+                    placeholder="E.g. For sale or Monotone color sets"
                     reference={register({ required: `Collection need a name.` })}
                     className={errors.name ? 'invalid' : ''}
                     errorMessage={errors.name && (errors.name.message as string)}

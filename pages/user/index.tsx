@@ -18,11 +18,16 @@ import Tabs from '../../components/Tabs';
 import { Collection, Want } from '../../types/types';
 import { SelectOption } from '../../types/interfaces';
 import AddCollectionBtn from '../../components/collections/AddCollectionBtn';
+import Button from '../../components/Button';
+import EditIcon from '../../components/icons/EditIcon';
+import Popover from '../../components/Popover';
 
 function getOptionsFromCollections(collections: Collection[]) {
+    console.log('get collections...', collections);
     return collections.map((collection: Collection) => ({
         label: collection.name,
         value: collection.name.toLowerCase().replace(/ /g, '-'),
+        _id: collection._id,
     }));
 }
 
@@ -33,6 +38,14 @@ function User() {
     const { data, loading, error } = useQuery(USER_PAGE, { fetchPolicy: 'network-only' });
     const collections = useStore((state) => state.collections);
     const setUserCollections = useStore((state) => state.setUserCollections);
+
+    async function editCollection() {
+        console.log('edit collection', activeTab);
+    }
+
+    async function deleteCollection() {
+        console.log('delete collection...', activeTab);
+    }
 
     useEffect(() => {
         if (!loading && data.fetchUserCollections) {
@@ -74,8 +87,23 @@ function User() {
                                     onClick={(tab) => setActiveTab(tab)}
                                     currentVal={activeTab}
                                 />
-
-                                <AddCollectionBtn className="btn secondary sm" />
+                                <span style={{ display: 'flex' }}>
+                                    <Popover
+                                        clickTarget={
+                                            <Button style={{ marginRight: 12 }} size="sm">
+                                                <EditIcon size={14} />
+                                            </Button>
+                                        }
+                                    >
+                                        <span className="item pointer" onClick={editCollection}>
+                                            Edit
+                                        </span>
+                                        <span className="item pointer" onClick={deleteCollection}>
+                                            Delete
+                                        </span>
+                                    </Popover>
+                                    <AddCollectionBtn className="btn secondary sm" />
+                                </span>
                             </span>
 
                             <Cards

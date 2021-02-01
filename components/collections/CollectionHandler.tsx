@@ -21,19 +21,11 @@ export default function CollectionHandler(props: CollectionHandlerProps): JSX.El
     const [addToCollection] = useMutation(SET_TO_COLLECTION);
 
     function addSetToCollection(collectionId: string, newWant: Want) {
-        // ? let arr = arr.splice(start[, deleteCount[, item1[, item2[, ...]]]])
+        return collections.map((obj) => (obj._id === collectionId ? { ...obj, wants: [...obj.wants, newWant] } : obj));
+    }
 
-        const newColletions = collections.map((obj) => {
-            return obj._id === collectionId ? { ...obj, wants: [...obj.wants, newWant] } : obj;
-        });
-
-        // const updatedCollection = collections.find((col) => col._id === collectionId)
-        // const idx = collections.map((col) => col._id).indexOf(collectionId)
-        // console.log({idx})
-        // updatedCollection.wants.push(newWant)
-        // const newColletions = [...collections].splice(idx, 1, updatedCollection)
-
-        return newColletions;
+    function removeSetFromCollection(collectionId: string, setId: string) {
+        // return collections.filter((obj) => obj._id !== collectionId)
     }
 
     async function handleCollectionClick(collection: Collection) {

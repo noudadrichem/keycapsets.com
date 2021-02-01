@@ -410,23 +410,10 @@ export const SET_TO_COLLECTION = gql`
 export const USER_PAGE = gql`
     query {
         fetchUserCollections {
+            _id
             name
             public
             wants ${want}
         }
-
-        # userWantsSets {
-        #     _id
-        #     name
-        #     type
-        #     brand
-        #     coverImageUrl
-        #     slug
-        #     groupbuyStartDate
-        #     groupbuyEndDate
-        #     isInterestCheck
-        #     material
-        #     availability
-        # }
     }
 `;
