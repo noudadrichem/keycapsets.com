@@ -104,6 +104,7 @@ export type Keycapset = {
     interestCheck?: Maybe<InterestCheck>;
     metaUrl?: Maybe<Scalars['String']>;
     description?: Maybe<Scalars['String']>;
+    links?: Maybe<Array<Maybe<Scalars['String']>>>;
     sections?: Maybe<Array<Maybe<Section>>>;
 };
 

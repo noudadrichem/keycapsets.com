@@ -63,6 +63,7 @@ function RedditAuth(props: RedditAuthProps): JSX.Element {
                 redditUserName: name,
             },
         });
+        console.log('Reddit login...', redditLogin);
         setUser(redditLogin.user);
         loginUser(redditLogin);
         const routes = {

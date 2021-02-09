@@ -335,6 +335,30 @@
         }
     }
 
+    &-links {
+        .links {
+            display: flex;
+            justify-content: space-between;
+
+            .video-container {
+                flex: 1;
+                display: flex;
+                margin-right: 24px;
+                min-height: 300px;
+                border-radius: 8px;
+                overflow: hidden;
+
+                iframe {
+                    width: 100%;
+                }
+
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+
     &-img-text {
         display: grid;
         grid-column-gap: 1.5rem;

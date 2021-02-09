@@ -40,7 +40,8 @@ function SetPage(props: SetPageProps) {
 
     if (keycapset !== null) {
         const isGeekhackUrl = keycapset?.websiteUrl.includes('geekhack');
-        const hasRenders = keycapset.imageUrls && keycapset.imageUrls.length > 0;
+        const hasRenders = keycapset.imageUrls?.length > 0 ?? false;
+        const hasLinks = keycapset.links?.length > 0 ?? false;
         const slickSettings = {
             infinite: hasRenders,
             speed: 500,
@@ -168,6 +169,28 @@ function SetPage(props: SetPageProps) {
                                             <img src={url} key={idx + url} />
                                         ))}
                                     </Slider>
+                                </div>
+                            </section>
+                        )}
+
+                        {hasLinks && (
+                            <section className="section set-links">
+                                {/* <h2 className="title center">Links</h2> */}
+
+                                <div className="links">
+                                    {keycapset.links.map((link) => {
+                                        if (link.includes('youtu')) {
+                                            return (
+                                                <div className="video-container yt" key={link}>
+                                                    <iframe
+                                                        src={link}
+                                                        frameBorder="0"
+                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                    ></iframe>
+                                                </div>
+                                            );
+                                        }
+                                    })}
                                 </div>
                             </section>
                         )}

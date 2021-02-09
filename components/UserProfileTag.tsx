@@ -30,7 +30,7 @@ function UserProfileTag() {
                     <div className="profile-tag-wrapper" onClick={() => setIspopoverShown(!isPopoverShown)}>
                         {user.avatar !== null ? (
                             <div className="profile-image">
-                                <img src={user.avatar} alt={user.name} />
+                                <img src={user.avatar || ''} alt={user.name} />
                             </div>
                         ) : (
                             <div className="profile-tag">{user.name !== null && user.name.slice(0, 2)}</div>

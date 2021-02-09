@@ -132,6 +132,7 @@ export const GET_SINGLE_SET_QUERY = gql`
                 type
                 imgUrl
             }
+            links
         }
     }
 `;
