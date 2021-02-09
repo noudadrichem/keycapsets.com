@@ -51,7 +51,7 @@ h3 {
 }
 
 h4 {
-    font-size: 24px;
+    font-size: 21px;
     font-weight: 300;
     line-height: 140%;
     color: var(--text-color-light);
@@ -66,7 +66,7 @@ h4 {
     }
 
     @media screen and (max-width: $bp-laptop-md) {
-        font-size: 19px;
+        font-size: 18px;
     }
 }
 

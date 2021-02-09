@@ -340,6 +340,10 @@
             display: flex;
             justify-content: space-between;
 
+            @media screen and (max-width: $bp-tablet-md) {
+                flex-direction: column;
+            }
+
             .video-container {
                 flex: 1;
                 display: flex;
@@ -347,6 +351,13 @@
                 min-height: 300px;
                 border-radius: 8px;
                 overflow: hidden;
+
+                @media screen and (max-width: $bp-tablet-md) {
+                    margin-right: 0;
+                    margin-bottom: 24px;
+
+                    min-height: 200px;
+                }
 
                 iframe {
                     width: 100%;
