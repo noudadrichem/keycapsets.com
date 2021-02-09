@@ -22,11 +22,11 @@ function Kits(props: KitsProps): JSX.Element {
                     const { name, imgUrl, description } = kit;
                     return (
                         <div key={name + idx} className={`kit-card ${descriptionClass}`}>
-                            {isKeyboard && <h5 className="title center">{name}</h5>}
+                            {isKeyboard && <h4 className="title center">{name}</h4>}
                             <div className="kit-card-image">
                                 <ImageModal src={imgUrl} alt={name + '-image'} />
                             </div>
-                            {!isKeyboard && <h5 className="title center">{name}</h5>}
+                            {!isKeyboard && <h4 className="title center">{name}</h4>}
 
                             {description && <p className="description light small">{description}</p>}
                         </div>
