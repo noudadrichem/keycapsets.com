@@ -76,6 +76,9 @@ function SearchSets() {
             }
         });
 
+        if (match(keywords, ['pbt']) && !match(keywords, ['epbt', 'enjoy'])) {
+            brands = brands.filter((brand: string) => brand !== 'epbt');
+        }
         const names = keywords
             .filter((keyword: string) => !toRemove.includes(keyword))
             .join(' ')
