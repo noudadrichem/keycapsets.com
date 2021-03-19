@@ -2,9 +2,9 @@ import { SelectOption } from './types/interfaces';
 
 export const BRAND_OPTIONS: SelectOption[] = [
     { value: 'gmk', label: 'GMK' },
-    { value: 'epbt', label: 'E-PBT' },
+    { value: 'epbt', label: 'Enjoy PBT' },
     { value: 'jtk', label: 'JTK' },
-    { value: 'sp', label: 'SP' },
+    { value: 'sp', label: 'Signature Plastics' },
     { value: 'infinikey', label: 'Infinikey' },
     { value: 'keyreative', label: 'Keyreative' },
     { value: 'taihao', label: 'Tai-Hao' },
@@ -22,7 +22,6 @@ export const MATERIAL_OPTIONS: SelectOption[] = [
 export const PROFILE_OPTIONS: SelectOption[] = [
     { label: 'Cherry', value: 'cherry' },
     { label: 'SA', value: 'sa' },
-    { label: 'MG', value: 'mg' },
     { label: 'DSA', value: 'dsa' },
     { label: 'XDA', value: 'xda' },
     { label: 'MT3', value: 'mt3' },
@@ -33,13 +32,36 @@ export const PROFILE_OPTIONS: SelectOption[] = [
     { label: 'DCS', value: 'dcs' },
 ];
 
-export const NONE: 'none' = 'none';
-export const INTEREST_CHECK: 'ic' = 'ic';
-export const WAITING_FOR_GROUPBUY: 'waiting' = 'waiting';
-export const IN_GROUP_BUY: 'gb' = 'gb';
-export const ENDED: 'ended' = 'ended';
+export const NONE = 'none';
+export const INTEREST_CHECK = 'ic';
+export const WAITING_FOR_GROUPBUY = 'waiting';
+export const IN_GROUP_BUY = 'gb';
+export const ENDED = 'ended';
 export const AVAILABILITY_OPTIONS: string[] = [NONE, INTEREST_CHECK, WAITING_FOR_GROUPBUY, IN_GROUP_BUY, ENDED];
 
-export const AVAILABILITY_FILTER: 'availability' = 'availability';
-export const BRAND_FILTER: 'brand' = 'brand';
-export const CAP_FILTER: 'cap' = 'cap';
+export const AVAILABILITY_FILTER = 'availability';
+export const BRAND_FILTER = 'brand';
+export const MATERIAL_FILTER = 'material';
+export const PROFILE_FILTER = 'profile';
+export const CAP_FILTER = 'cap';
+
+export const ALL_OPTIONS: SelectOption[] = [BRAND_OPTIONS, MATERIAL_OPTIONS, PROFILE_OPTIONS, AVAILABILITY_OPTIONS].reduce(
+    (accu, item, idx) => {
+        switch (idx) {
+            case 0:
+                accu.push(item.map((brand) => ({ ...brand, type: BRAND_FILTER })) as any);
+                break;
+            case 1:
+                accu.push(item.map((material) => ({ ...material, type: 'material' })) as any);
+                break;
+            case 2:
+                accu.push(item.map((profile) => ({ ...profile, type: 'profile' })) as any);
+                break;
+            case 3:
+                accu.push(item.map((availability) => ({ label: availability, value: availability, type: AVAILABILITY_FILTER })) as any);
+                break;
+        }
+        return [].concat.apply([], accu);
+    },
+    []
+);
