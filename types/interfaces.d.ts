@@ -58,6 +58,7 @@ export interface QuestionOption {
 export interface SelectOption {
     value: string;
     label: string;
+    type?: string;
 }
 
 // export interface Vendor {
