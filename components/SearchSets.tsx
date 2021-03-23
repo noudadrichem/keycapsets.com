@@ -7,7 +7,7 @@ import SearchIcon from './SearchIcon';
 function SearchSets() {
     const router: NextRouter = useRouter();
     const [searchValue, searchInput, setSearchInputValue] = useInput({
-        placeholder: 'E.g. Space cadet',
+        placeholder: 'E.g. Camo',
         autoFocus: true,
         icon: <SearchIcon size={16} color="#bbc0c9" />,
     });

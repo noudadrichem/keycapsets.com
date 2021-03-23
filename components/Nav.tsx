@@ -126,7 +126,7 @@ function Nav(props: NavProps): JSX.Element {
                             <UserProfileTag />
                         )}
 
-                        {/* <DarkModeSwitch /> */}
+                        <DarkModeSwitch />
                     </div>
                 </div>
             </div>

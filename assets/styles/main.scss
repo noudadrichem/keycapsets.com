@@ -344,3 +344,14 @@ img {
         }
     }
 }
+
+[data-theme='dark'] {
+    img {
+        opacity: 0.9;
+        transition: opacity 200ms;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+}

@@ -12,7 +12,6 @@ interface ImagesProps {
 }
 
 function Images(props: any): JSX.Element {
-    console.log('iages props...', props);
     const [atBottom, setIsAtBottom] = useState<boolean>(false);
     const setUserWants = useStore((state) => state.setUserWants);
     const filters = useStore((state) => state.filters);
