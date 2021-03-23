@@ -38,7 +38,7 @@ function Privacy() {
 
                     <h4 className="alinea-title">Security of personal data</h4>
                     <p className="light alinea">
-                        Bannerwise ensures adequate security of the personal data that it holds, in line with the applicable legal
+                        Keycapsets ensures adequate security of the personal data that it holds, in line with the applicable legal
                         requirements and guidelines. Keycapsets data is hosted on MongoDB Atlass and inherits their privacy policy regarding
                         data.
                     </p>
