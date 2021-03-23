@@ -4,6 +4,7 @@ import { useRouter, NextRouter } from 'next/router';
 import useStore from '../context';
 import SearchIcon from './SearchIcon';
 import { ALL_OPTIONS, AVAILABILITY_FILTER, BRAND_FILTER, MATERIAL_FILTER, PROFILE_FILTER } from '../constants';
+import { serialiseFilter } from '../utils';
 
 function SearchSets() {
     const router: NextRouter = useRouter();
@@ -15,17 +16,11 @@ function SearchSets() {
     const filters = useStore((state) => state.filters);
     const setFilters = useStore((state) => state.setFilters);
 
-    // TODO: this supported the use of search?= query in URL...
     useEffect(() => {
         const searchQuery = router.query.search;
-        console.log({ searchQuery });
         if (searchQuery !== undefined) {
             // @ts-expect-error
             setSearchInputValue(searchQuery);
-            setFilters({
-                ...filters,
-                name: Array.isArray(searchQuery) ? searchQuery[0] : searchQuery,
-            });
         }
     }, [router.query.search]);
 
@@ -83,6 +78,7 @@ function SearchSets() {
             .filter((keyword: string) => !toRemove.includes(keyword))
             .join(' ')
             .trim();
+
         setFilters({
             ...filters,
             name: names,
