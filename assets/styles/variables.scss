@@ -35,10 +35,11 @@ $bp-desktop-lg: 1536px;
 
     --orange: #99601f;
     --orange-light: #ffe9cd;
+    --backdrop-box-shadow: 0px 1px 2px rgba(0, 16, 75, 0.3);
 }
 
 [data-theme='dark'] {
-    --white: #000;
+    --white: #090d10;
     --text-color: #f8f9fb;
     --text-color-light: #fff;
     --text-color-lightest: #646464;
@@ -47,9 +48,10 @@ $bp-desktop-lg: 1536px;
     --blue: #539bfb;
     --blue-lighter: #abccf8;
     --blue-lightest: #306ab0;
-    --darker-white: #121212;
-    --darkest-gray: #646464;
-    --darker-gray: #4e4e4e;
+
+    --darker-white: #0d1117;
+    --darkest-gray: #45484a;
+    --darker-gray: #030507;
     --light-gray: #f8f9fb;
 
     --red-light: #c5394e;
@@ -60,6 +62,8 @@ $bp-desktop-lg: 1536px;
 
     --orange-light: #99601f;
     --orange: #ffe9cd;
+
+    --backdrop-box-shadow: 0px 1px 2px rgba(255, 255, 255, 0.3);
 
     @media screen and (max-width: $bp-tablet-sm) {
         --darker-white: #000;
