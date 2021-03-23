@@ -26,7 +26,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         });
         if (data) {
             setUser(data.me);
-            console.log('user...', data.me);
         }
     }
 

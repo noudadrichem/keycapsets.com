@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { SelectOption } from '../../types/interfaces';
-import {
-    AVAILABILITY_FILTER,
-    AVAILABILITY_OPTIONS,
-    PROFILE_OPTIONS,
-    MATERIAL_OPTIONS,
-    BRAND_OPTIONS,
-} from '../../constants';
+import { AVAILABILITY_FILTER, AVAILABILITY_OPTIONS, PROFILE_OPTIONS, MATERIAL_OPTIONS, BRAND_OPTIONS } from '../../constants';
 import MultiSelect from '../Multiselect';
 import Select from '../Select';
 import Tab from './Tab';
@@ -16,6 +10,7 @@ import FilterIcon from '../FilterIcon';
 import { motion } from 'framer-motion';
 import useStore from '../../context';
 import { useRouter } from 'next/router';
+import { serialiseFilter } from '../../utils';
 
 interface FiltersProps {}
 
@@ -27,43 +22,6 @@ function Filters(props: FiltersProps): JSX.Element {
     const setFilters = useStore((state) => state.setFilters);
     const filters = useStore((state) => state.filters);
 
-    useEffect(() => {
-        const hasUrlQuery = Object.keys(router.query).length > 0;
-        console.log('router query...', hasUrlQuery);
-        if (hasUrlQuery) {
-            let routeFilter = filters;
-
-            const brand = router.query['brand[]'];
-            // if (brand) {
-            //     routeFilter.brand = typeof brand === 'string' ? [brand] : brand;
-            // }
-            const profile = router.query['type[]'];
-            // if (profile) {
-            //     routeFilter.type = typeof profile === 'string' ? [profile] : profile;
-            // }
-            const material = router.query['material[]'];
-            // if (material) {
-            //     routeFilter.material = typeof material === 'string' ? [material] : material;
-            // }
-            const availability = router.query['tab'];
-            console.log({
-                brand,
-                profile,
-                material,
-                availability,
-            });
-            if (availability && AVAILABILITY_OPTIONS.includes(String(availability))) {
-                routeFilter.availability = String(availability);
-            }
-
-            console.log('router query filters...', routeFilter);
-            setFilters(routeFilter);
-            if (brand || profile || material) {
-                setIsExtraFilterOpen(true);
-            }
-        }
-    }, [router.query]);
-
     useEffect(function handleToggleOnWindowSize() {
         const isBrowser = typeof window !== `undefined`;
         if (isBrowser) {
@@ -74,20 +32,26 @@ function Filters(props: FiltersProps): JSX.Element {
         }
     }, []);
 
+    useEffect(() => {
+        setIsExtraFilterOpen(filters.brand.length > 0 || filters.material.length > 0 || filters.type.length > 0);
+        const serializedQuery = serialiseFilter(filters);
+        console.log('sealized query...', { serializedQuery });
+        if (serializedQuery !== '') {
+            router.push(
+                {
+                    pathname: `/`,
+                    query: {
+                        query: serializedQuery,
+                    },
+                },
+                undefined,
+                { shallow: true }
+            );
+        }
+    }, [filters]);
+
     function handleSelectionFilter(values: SelectOption[], key: string) {
         const mappedValues = values.map(({ value }) => value);
-        // const query = {
-        //     ...router.query,
-        //     [`${key}[]`]: mappedValues,
-        // };
-        // router.push(
-        //     {
-        //         pathname: `/`,
-        //         query,
-        //     },
-        //     undefined,
-        //     { shallow: true }
-        // );
         setFilters({
             ...filters,
             [key]: mappedValues,
@@ -104,20 +68,6 @@ function Filters(props: FiltersProps): JSX.Element {
         handleSelectionFilter(values, 'material');
     }
     function handleAvailabilityFilter(availability: string) {
-        router.push(
-            {
-                pathname: `/`,
-                query:
-                    availability !== 'none'
-                        ? {
-                              tab: availability,
-                          }
-                        : null,
-            },
-            undefined,
-            { shallow: true }
-        );
-
         setFilters({
             ...filters,
             availability,
@@ -157,11 +107,7 @@ function Filters(props: FiltersProps): JSX.Element {
                 <Arrow color="#566073" size={16} direction={isOpen ? 'top' : 'bottom'} />
             </div>
 
-            <motion.div
-                className={`filters-container`}
-                animate={isOpen ? 'open' : 'closed'}
-                variants={extraFilterAnimationVariants}
-            >
+            <motion.div className={`filters-container`} animate={isOpen ? 'open' : 'closed'} variants={extraFilterAnimationVariants}>
                 <div className={`filters ${isOpen ? 'open' : 'closed'}`}>
                     <div className="left-side">
                         <div className="more-filters open">
@@ -181,7 +127,6 @@ function Filters(props: FiltersProps): JSX.Element {
                                 label="Availability"
                                 name="Choose availability"
                                 onSelectChange={(val) => {
-                                    console.log('availability mobile...', val);
                                     handleAvailabilityFilter(val.value);
                                 }}
                                 values={AVAILABILITY_OPTIONS.map((t) => ({
