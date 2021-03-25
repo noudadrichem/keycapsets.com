@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { SelectOption } from '../../types/interfaces';
-import {
-    AVAILABILITY_FILTER,
-    AVAILABILITY_OPTIONS,
-    PROFILE_OPTIONS,
-    MATERIAL_OPTIONS,
-    BRAND_OPTIONS,
-} from '../../constants';
+import { AVAILABILITY_FILTER, AVAILABILITY_OPTIONS, PROFILE_OPTIONS, MATERIAL_OPTIONS, BRAND_OPTIONS } from '../../constants';
 import MultiSelect from '../Multiselect';
 import Select from '../Select';
 import Tab from './Tab';
@@ -32,30 +26,13 @@ function Filters(props: FiltersProps): JSX.Element {
         console.log('router query...', hasUrlQuery);
         if (hasUrlQuery) {
             let routeFilter = filters;
-
             const brand = router.query['brand[]'];
-            // if (brand) {
-            //     routeFilter.brand = typeof brand === 'string' ? [brand] : brand;
-            // }
             const profile = router.query['type[]'];
-            // if (profile) {
-            //     routeFilter.type = typeof profile === 'string' ? [profile] : profile;
-            // }
             const material = router.query['material[]'];
-            // if (material) {
-            //     routeFilter.material = typeof material === 'string' ? [material] : material;
-            // }
             const availability = router.query['tab'];
-            console.log({
-                brand,
-                profile,
-                material,
-                availability,
-            });
             if (availability && AVAILABILITY_OPTIONS.includes(String(availability))) {
                 routeFilter.availability = String(availability);
             }
-
             console.log('router query filters...', routeFilter);
             setFilters(routeFilter);
             if (brand || profile || material) {
@@ -157,11 +134,7 @@ function Filters(props: FiltersProps): JSX.Element {
                 <Arrow color="#566073" size={16} direction={isOpen ? 'top' : 'bottom'} />
             </div>
 
-            <motion.div
-                className={`filters-container`}
-                animate={isOpen ? 'open' : 'closed'}
-                variants={extraFilterAnimationVariants}
-            >
+            <motion.div className={`filters-container`} animate={isOpen ? 'open' : 'closed'} variants={extraFilterAnimationVariants}>
                 <div className={`filters ${isOpen ? 'open' : 'closed'}`}>
                     <div className="left-side">
                         <div className="more-filters open">

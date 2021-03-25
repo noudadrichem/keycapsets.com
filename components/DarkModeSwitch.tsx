@@ -24,18 +24,6 @@ const DarkModeSwitch = () => {
             {darkMode.value ? <SunIcon /> : <MoonIcon />}
         </div>
     );
-
-    // return (
-    //     <div>
-    //         <span onClick={darkMode.disable}>
-    //             <SunIcon isSelected={!darkMode.value} />
-    //         </span>
-    //         <Toggle checked={darkMode.value} icons={false} onChange={darkMode.toggle} />
-    //         <span onClick={darkMode.enable}>
-    //             <MoonIcon isSelected={darkMode.value} />
-    //         </span>
-    //     </div>
-    // );
 };
 
 export default DarkModeSwitch;

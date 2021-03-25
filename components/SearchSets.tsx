@@ -47,28 +47,26 @@ function SearchSets() {
         const keywords = searchValue.toLowerCase().split(' ');
 
         let toRemove = [];
-        let brands = [];
-        let materials = [];
-        let profiles = [];
-        let availability = '';
+        let brand = [];
+        let material = [];
+        let profile = [];
+        let availability = 'none';
 
-        // TODO: fix that 'pbt' doesn't always add 'Enjoy BPT' brand sets to result
         ALL_OPTIONS.filter((option) => {
             const label = option.label.toLowerCase().split(' ');
             const value = option.value.toLowerCase().split(' ');
             if (match(keywords, label) || match(keywords, value)) {
                 switch (option.type) {
                     case BRAND_FILTER:
-                        brands.push(option.value);
+                        brand.push(option.value);
                         break;
                     case MATERIAL_FILTER:
-                        materials.push(option.value);
+                        material.push(option.value);
                         break;
                     case PROFILE_FILTER:
-                        profiles.push(option.value);
+                        profile.push(option.value);
                         break;
                     case AVAILABILITY_FILTER:
-                        //! It's not possible to search for multiple availability states, because of the API
                         availability = option.value;
                         break;
                 }
@@ -77,19 +75,20 @@ function SearchSets() {
         });
 
         if (match(keywords, ['pbt']) && !match(keywords, ['epbt', 'enjoy'])) {
-            brands = brands.filter((brand: string) => brand !== 'epbt');
+            brand = brand.filter((brand: string) => brand !== 'epbt');
         }
-        const names = keywords
+        const name = keywords
             .filter((keyword: string) => !toRemove.includes(keyword))
             .join(' ')
             .trim();
+
         setFilters({
             ...filters,
-            name: names,
-            brand: brands,
-            material: materials,
-            type: profiles,
-            availability: availability,
+            type: profile,
+            name,
+            brand,
+            material,
+            availability,
         });
     }
 
