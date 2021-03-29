@@ -3,7 +3,7 @@ import Error from '../_error';
 import moment from 'moment';
 import { useRouter, Router } from 'next/router';
 import Slider from 'react-slick';
-import { Keycapset, Vendor, Kit } from '../../types/types';
+import { Keycapset, Vendor } from '../../types/types';
 import withGA from 'next-ga';
 
 import { GET_SINGLE_SET_QUERY } from '../../queries';
@@ -22,8 +22,8 @@ import InfoSectionBoard from '../../components/set/InfoSectionBoard';
 import InfoSectionSet from '../../components/set/InfoSectionSet';
 import Kits from '../../components/set/Kits';
 import Button from '../../components/Button';
-import { getDirectiveValues } from 'graphql';
 import ImgTextSection from '../../components/set/sections/ImgTextSection';
+import TextSection from '../../components/set/sections/TextSection';
 
 interface SetPageProps {
     keycapset: Keycapset;
@@ -132,6 +132,7 @@ function SetPage(props: SetPageProps) {
                                 {keycapset.sections.map((section, idx) => {
                                     return {
                                         'img-text': <ImgTextSection section={section} key={section.title + idx} />,
+                                        text: <TextSection section={section} key={section.title + idx} />,
                                         // TODO add more types here...
                                     }[section.type];
                                 })}

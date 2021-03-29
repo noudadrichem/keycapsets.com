@@ -1,26 +1,21 @@
 import React from 'react';
 import { Section } from '../../../types/types';
 
-interface ImgTextSectionProps {
+type TextProps = {
     section: Section;
-}
+};
 
-function ImgTextSection(props: ImgTextSectionProps): JSX.Element {
+function Text(props: TextProps) {
     const { section } = props;
 
-    // TODO needs a TextImg section as well to turn this around..
-
     return (
-        <section className="section set-img-text">
+        <section className="section set-text">
             <div>
                 <h2 className="title center">{section.title}</h2>
                 <p className="small light" dangerouslySetInnerHTML={{ __html: section.text }}></p>
-            </div>
-            <div>
-                <img src={section.imgUrl} alt="Sketch of the Pneuma keyboard..." />
             </div>
         </section>
     );
 }
 
-export default ImgTextSection;
+export default Text;
