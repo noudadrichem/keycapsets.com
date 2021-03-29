@@ -1,0 +1,40 @@
+name: Publish to registry
+
+on:
+    push:
+        branches:
+            - master
+# on:
+#   push:
+#     tags:
+#       - "v*.*.*"
+
+jobs:
+    test_build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - name: Installs, test & build
+              uses: actions/setup-node@v1
+              with:
+                  node-version: '14.x'
+            - run: npm ci
+            - run: npm test
+            - run: npm run build --if-present
+              continue-on-error: false
+
+    push_to_docker_hub:
+        needs: test_build
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - name: Set tag in env...`
+              run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+            - name: Dockerimage push
+              uses: docker/build-push-action@v1
+              with:
+                  registry: ghcr.io
+                  username: 'noudadrichem'
+                  password: ${{ secrets.TOK }}
+                  repository: noudadrichem/keycapsets.com
+                  tags: 'latest'
