@@ -60,8 +60,18 @@ ul {
 }
 
 a {
+    cursor: pointer;
     text-decoration: none;
     color: inherit;
+
+    &.inline {
+        border-bottom: 1px solid currentColor;
+
+        &:hover {
+            color: var(--blue);
+            border-color: var(--blue);
+        }
+    }
 
     &.link {
         color: var(--blue);
@@ -350,8 +360,19 @@ img {
         opacity: 0.9;
         transition: opacity 200ms;
 
+        // &:hover {
+        //     opacity: 1;
+        // }
+    }
+
+    .vendor-card img {
+        filter: invert(100%) grayscale(100%);
         &:hover {
-            opacity: 1;
+            filter: none;
         }
     }
+
+    // img:not([src*=".svg"]) {
+
+    // }
 }

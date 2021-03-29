@@ -23,23 +23,19 @@ function Filters(props: FiltersProps): JSX.Element {
 
     useEffect(() => {
         const hasUrlQuery = Object.keys(router.query).length > 0;
-        console.log('router query...', hasUrlQuery);
         if (hasUrlQuery) {
             let routeFilter = filters;
-            const brand = router.query['brand[]'];
-            const profile = router.query['type[]'];
-            const material = router.query['material[]'];
             const availability = router.query['tab'];
             if (availability && AVAILABILITY_OPTIONS.includes(String(availability))) {
                 routeFilter.availability = String(availability);
             }
-            console.log('router query filters...', routeFilter);
             setFilters(routeFilter);
-            if (brand || profile || material) {
-                setIsExtraFilterOpen(true);
-            }
         }
     }, [router.query]);
+
+    useEffect(() => {
+        setIsExtraFilterOpen(filters.brand.length > 0 || filters.type.length > 0 || filters.material.length > 0);
+    }, [filters]);
 
     useEffect(function handleToggleOnWindowSize() {
         const isBrowser = typeof window !== `undefined`;
@@ -53,18 +49,6 @@ function Filters(props: FiltersProps): JSX.Element {
 
     function handleSelectionFilter(values: SelectOption[], key: string) {
         const mappedValues = values.map(({ value }) => value);
-        // const query = {
-        //     ...router.query,
-        //     [`${key}[]`]: mappedValues,
-        // };
-        // router.push(
-        //     {
-        //         pathname: `/`,
-        //         query,
-        //     },
-        //     undefined,
-        //     { shallow: true }
-        // );
         setFilters({
             ...filters,
             [key]: mappedValues,
@@ -127,6 +111,8 @@ function Filters(props: FiltersProps): JSX.Element {
         },
     };
 
+    const totalActiveFilters = filters.brand.length + filters.type.length + filters.material.length;
+
     return (
         <>
             <div className="mobile-toggle" onClick={openMobileFilters}>
@@ -145,7 +131,7 @@ function Filters(props: FiltersProps): JSX.Element {
                                 className={`${isExtraFiltersOpen ? 'active' : ''} desktop-only`}
                             >
                                 <FilterIcon />
-                                Filters
+                                Filters ({totalActiveFilters})
                             </Button>
                         </div>
 
@@ -183,7 +169,7 @@ function Filters(props: FiltersProps): JSX.Element {
                     <div className="right-side">
                         <div className="counter">
                             <label className="label">Keycapsets:</label>
-                            <p className="light">438</p> {/* Quick fix */}
+                            <p className="light">471</p> {/* Quick fix */}
                         </div>
                     </div>
                 </div>

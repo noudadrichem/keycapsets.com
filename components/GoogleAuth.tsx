@@ -55,7 +55,6 @@ function GoogleAuth(props: GoogleAuthProps): JSX.Element {
     }
 
     function logout() {
-        console.log('logout...');
         logoutUser();
     }
 
@@ -78,13 +77,7 @@ function GoogleAuth(props: GoogleAuthProps): JSX.Element {
                         {text}
                     </a>
                 ) : (
-                    <Button
-                        onClick={renderProps.onClick}
-                        variant="primary"
-                        size="md"
-                        className="google-button"
-                        isDisabled={disabled}
-                    >
+                    <Button onClick={renderProps.onClick} variant="primary" size="md" className="google-button" isDisabled={disabled}>
                         <GoogleIcon variant="white" size={16} />
                         {text}
                     </Button>

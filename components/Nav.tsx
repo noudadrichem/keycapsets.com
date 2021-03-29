@@ -10,6 +10,7 @@ import Logo from './Logo';
 import { NextRouter, useRouter, Router } from 'next/router';
 import dynamic from 'next/dynamic';
 import Pill from './Pill';
+import useModalStore, { Modals } from '../hooks/useModalStore';
 
 const DarkModeSwitch = dynamic(() => import('./DarkModeSwitch'), {
     ssr: false,
@@ -44,8 +45,12 @@ function Nav(props: NavProps): JSX.Element {
     const { isLargeContainer } = props;
     const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
     const router = useRouter();
-    const user = useStore((state) => state.user);
     const isLoggedIn = useStore((state) => state.isLoggedIn);
+    const openModal = useModalStore((state) => state.openModal);
+
+    function contactKCS() {
+        openModal(Modals.Contact);
+    }
     useEffect(
         function listenToRouteChange() {
             setIsNavOpen(false);
@@ -68,10 +73,12 @@ function Nav(props: NavProps): JSX.Element {
             {/* <a className="discord-banner" href="https://discord.gg/dq8cyMS">
                 <img src="/images/discord.svg" />Join the conversation on our discord!
             </a> */}
-            {/* <div className="info-banner">
-                Our image service is experiencing issues, the single pages do show images and the like/search
-                functionality still works.
-            </div> */}
+            <div className="info-banner">
+                Keycapsets.com now supports dark mode and optimized search! &nbsp;
+                <a className="inline" onClick={contactKCS}>
+                    Leave feedback here
+                </a>
+            </div>
 
             <HamburgerIcon
                 onClick={() => {

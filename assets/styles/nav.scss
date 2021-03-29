@@ -29,11 +29,16 @@
         justify-content: center;
         padding: 8px;
         text-align: center;
-        background: var(--blue-lighter);
+        // background: #D6E5F9;
+        background: var(--blue-lightest);
         color: var(--text-color);
 
         @media screen and (max-width: 768px) {
             font-size: 11px;
+        }
+
+        @media screen and (min-width: $bp-desktop-lg) {
+            padding: 12px 8px;
         }
     }
 
