@@ -45,23 +45,22 @@ export const MATERIAL_FILTER = 'material';
 export const PROFILE_FILTER = 'profile';
 export const CAP_FILTER = 'cap';
 
-export const ALL_OPTIONS: SelectOption[] = [BRAND_OPTIONS, MATERIAL_OPTIONS, PROFILE_OPTIONS, AVAILABILITY_OPTIONS].reduce(
-    (accu, item, idx) => {
-        switch (idx) {
-            case 0:
-                accu.push(item.map((brand) => ({ ...brand, type: BRAND_FILTER })) as any);
-                break;
-            case 1:
-                accu.push(item.map((material) => ({ ...material, type: 'material' })) as any);
-                break;
-            case 2:
-                accu.push(item.map((profile) => ({ ...profile, type: 'profile' })) as any);
-                break;
-            case 3:
-                accu.push(item.map((availability) => ({ label: availability, value: availability, type: AVAILABILITY_FILTER })) as any);
-                break;
-        }
-        return [].concat.apply([], accu);
-    },
-    []
-);
+export const ALL_OPTIONS = [BRAND_OPTIONS, MATERIAL_OPTIONS, PROFILE_OPTIONS, AVAILABILITY_OPTIONS].reduce((accu, item, idx) => {
+    switch (idx) {
+        case 0:
+            accu.push((item as any).map((brand) => ({ ...brand, type: BRAND_FILTER })) as any);
+            break;
+        case 1:
+            accu.push((item as any).map((material) => ({ ...material, type: MATERIAL_FILTER })) as any);
+            break;
+        case 2:
+            accu.push((item as any).map((profile) => ({ ...profile, type: PROFILE_FILTER })) as any);
+            break;
+        case 3:
+            accu.push(
+                (item as any).map((availability) => ({ label: availability, value: availability, type: AVAILABILITY_FILTER })) as any
+            );
+            break;
+    }
+    return [].concat.apply([], accu) as any;
+}, []);
