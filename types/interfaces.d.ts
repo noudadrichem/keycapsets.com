@@ -90,6 +90,7 @@ export interface InititalState extends State {
     user?: User;
     userWants: Keycapset[];
     user: User;
+    isDarkMode: boolean | null;
 }
 
 // export interface User {

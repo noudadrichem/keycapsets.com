@@ -5,16 +5,14 @@ import Button from './Button';
 import GoogleIcon from './GoogleIcon';
 import RedditIcon from './RedditIcon';
 import useStore from '../context';
-import UserProfileTag from './UserProfileTag';
 import Logo from './Logo';
 import { NextRouter, useRouter, Router } from 'next/router';
 import dynamic from 'next/dynamic';
 import Pill from './Pill';
 import useModalStore, { Modals } from '../hooks/useModalStore';
 
-const DarkModeSwitch = dynamic(() => import('./DarkModeSwitch'), {
-    ssr: false,
-});
+const UserProfileTag = dynamic(() => import('./UserProfileTag'), { ssr: false });
+const DarkModeSwitch = dynamic(() => import('./DarkModeSwitch'), { ssr: false });
 
 interface NavProps {
     isLargeContainer?: boolean;
@@ -45,8 +43,9 @@ function Nav(props: NavProps): JSX.Element {
     const { isLargeContainer } = props;
     const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
     const router = useRouter();
-    const isLoggedIn = useStore((state) => state.isLoggedIn);
-    const openModal = useModalStore((state) => state.openModal);
+    const isLoggedIn = useStore((s) => s.isLoggedIn);
+    const isDarkMode = useStore((s) => s.isDarkMode);
+    const openModal = useModalStore((s) => s.openModal);
 
     function contactKCS() {
         openModal(Modals.Contact);
@@ -81,6 +80,7 @@ function Nav(props: NavProps): JSX.Element {
             </div>
 
             <HamburgerIcon
+                color={isDarkMode ? '#f8fafb' : '#364154'}
                 onClick={() => {
                     setIsNavOpen(!isNavOpen);
                 }}
@@ -104,13 +104,15 @@ function Nav(props: NavProps): JSX.Element {
                         <Link href="/about" as="/about">
                             <a className="nav-item">About</a>
                         </Link>
+
                         {!isLoggedIn && (
                             <Link href="/login" as="/login">
                                 <a className="nav-item">Login</a>
                             </Link>
                         )}
+
                         {!isLoggedIn ? (
-                            <Button variant="primary" size="md" className="btn-sign-up desktop" onClick={pushSignup}>
+                            <Button variant="primary" size="md" className="btn-sign-up desktop-only" onClick={pushSignup}>
                                 Sign up
                                 <div className="popover on-hover">
                                     <div className="popover-container">
@@ -130,10 +132,26 @@ function Nav(props: NavProps): JSX.Element {
                                 </div>
                             </Button>
                         ) : (
-                            <UserProfileTag />
+                            <UserProfileTag isNavOpen={isNavOpen} />
+                        )}
+
+                        {!isLoggedIn && (
+                            <Link href="/sign-up">
+                                <a className="nav-item mobile-only" style={{ flex: 0 }}>
+                                    Sign up
+                                </a>
+                            </Link>
                         )}
 
                         <DarkModeSwitch />
+
+                        <div className="nav-footer mobile-only">
+                            <div className="made-in">
+                                <p>
+                                    &copy; Made with <a href="https://bunq.me/noudadrichem/3/I'm%20liking%20keycapsets!">☕</a> in Utrecht.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

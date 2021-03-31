@@ -237,6 +237,13 @@ img {
         flex: 1;
     }
 }
+.desktop-only {
+    display: flex !important;
+
+    @media screen and (max-width: 826px) {
+        display: none !important;
+    }
+}
 
 .heart-icon {
     display: inline-flex;
