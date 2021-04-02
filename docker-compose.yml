@@ -3,7 +3,7 @@ services:
     keycapsets:
         environment:
             NODE_ENV: production
-        image: ghcr.io/noudadrichem/keycapsets.com:latest
+        build: .
         ports:
             - '3000:3000'
         logging:

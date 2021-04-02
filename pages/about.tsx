@@ -47,12 +47,9 @@ function About() {
 
                     <h4 className="alinea-title">For set designers</h4>
                     <p className="light alinea">
-                        I want to make it easier for designers to express themselfs.
-                        <br /> My goal is to make it possible for you to have a single webpage with all the information you need. Such as
-                        vendors, renders, links, video's, previews etc. <br />
-                        Make you able to run an Interest Checks and have all analytical data you need to run a group buy in one place!{' '}
-                        <br />
-                        <ButtonLink href="/promote-your-keycapset">Read more about it</ButtonLink>
+                        I want to make it easier for you as a designer to express yourself. <br /> My goal is to make it possible for you to
+                        have a single webpage with all the information you need. Such as vendors, renders, previews etc. <br />
+                        Make it able to run your Interest Checks and have all analytical data you need to run a group buy in one place!
                     </p>
 
                     <h4 className="alinea-title">For explorers</h4>

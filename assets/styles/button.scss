@@ -76,7 +76,7 @@
     &.primary {
         background-color: var(--blue);
         border: 1px solid var(--blue);
-        color: var(--white);
+        color: #fff;
         font-weight: 500;
 
         &:active {
@@ -97,7 +97,7 @@
     &.secondary {
         background-color: var(--white);
         border: 1px solid var(--blue-lightest);
-        color: var(--button-text-color);
+        color: var(--text-color-light);
         font-weight: 500;
 
         &.active {
@@ -121,7 +121,7 @@
         &:hover {
             background-color: var(--blue);
             border: 1px solid var(--blue);
-            color: var(--button-text-color);
+            color: #fff;
 
             &:disabled {
                 opacity: 0.5;
@@ -130,7 +130,7 @@
     }
 
     &.tab {
-        color: var(--button-text-color);
+        color: var(--text-color-light);
         background: transparent;
         font-weight: 400;
 

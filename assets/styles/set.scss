@@ -75,7 +75,6 @@
             }
 
             .img {
-                box-shadow: var(--backdrop-box-shadow);
                 &.main {
                     grid-row: span 2;
                     grid-column: span 2;
@@ -214,6 +213,7 @@
             }
 
             &.has-description {
+                // background: red;
                 grid-template-columns: repeat(1, 1fr);
                 align-items: center;
             }
@@ -222,7 +222,7 @@
                 &-image {
                     border-radius: 8px;
                     overflow: hidden;
-                    box-shadow: var(--backdrop-box-shadow);
+                    box-shadow: 0px 1px 2px rgba(0, 16, 75, 0.2);
                     line-height: 0;
                 }
 

@@ -17,21 +17,20 @@ function ImageModal(props: ImageModalProps): JSX.Element {
     const imageRef = useRef(null);
     const { src } = props;
 
-    const getStylingData = ({ current }) => {
-        return {
-            left: current.offsetLeft - current.parentElement.offsetLeft / 2,
-            top: current.offsetTop,
-            height: current.clientHeight,
-            width: current.clientWidth,
-            rect: current.getBoundingClientRect(),
-            scrollLeft: window.pageXOffset || document.documentElement.scrollLeft,
-            scrollTop: window.pageYOffset || document.documentElement.scrollTop,
-        };
-    };
+    const getStylingData = ({ current }) => ({
+        left: current.offsetLeft - current.parentElement.parentElement.offsetLeft,
+        top: current.offsetTop,
+        height: current.clientHeight,
+        width: current.clientWidth,
+        rect: current.getBoundingClientRect(),
+        scrollLeft: window.pageXOffset || document.documentElement.scrollLeft,
+        scrollTop: window.pageYOffset || document.documentElement.scrollTop,
+    });
 
     useEffect(() => {
         if (open && loaded) {
             const { height, width, left, top, rect, scrollTop, scrollLeft } = getStylingData(imageRef);
+
             const { current: modalImage } = modalRef;
 
             document.body.style.position = 'relative';
@@ -54,6 +53,7 @@ function ImageModal(props: ImageModalProps): JSX.Element {
     }, [open, loaded]);
 
     const onClose = () => {
+        console.log('heh?');
         const { height, width, left, top, rect, scrollLeft, scrollTop } = getStylingData(imageRef);
         const { current: modalImage } = modalRef;
 
@@ -63,8 +63,15 @@ function ImageModal(props: ImageModalProps): JSX.Element {
         modalRef.current.style.position = 'absolute';
         document.body.style.position = 'relative';
 
-        setOpen(false);
-        setLoading(false);
+        modalImage.addEventListener('transitionend', function transitionEnd() {
+            if (!open) {
+                return;
+            }
+
+            setOpen(false);
+            setLoading(false);
+            modalImage.removeEventListener('transitionend', transitionEnd);
+        });
     };
 
     return (

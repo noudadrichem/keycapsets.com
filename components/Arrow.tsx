@@ -4,15 +4,13 @@ interface ArrowProps {
     size?: Number;
     color?: string;
     direction?: 'left' | 'right' | 'bottom' | 'top';
-    style?: React.CSSProperties;
 }
 
 function Arrow(props: ArrowProps): JSX.Element {
-    const { size = 24, color = '#539BFB', direction = 'right', style } = props;
+    const { size = 24, color = '#539BFB', direction = 'right' } = props;
 
     return (
         <svg
-            style={style}
             className={`arrow arrow-${direction}`}
             xmlns="http://www.w3.org/2000/svg"
             width={size.toString()}

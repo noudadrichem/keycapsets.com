@@ -3,7 +3,7 @@ services:
     testing_keycapsets:
         environment:
             NODE_ENV: testing
-        image: ghcr.io/noudadrichem/keycapsets.com:latest
+        build: .
         ports:
             - '3000:3001'
         logging:
@@ -12,7 +12,7 @@ services:
             - traefik
         labels:
             - 'traefik.enable=true'
-            - 'traefik.backend=testing_keycapsets'
+            - 'traefik.backend=alpha_keycapsets'
             - 'traefik.frontend.rule=Host:testing.keycapsets.com'
             - 'traefik.port=3001'
 

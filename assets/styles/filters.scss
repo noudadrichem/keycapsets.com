@@ -1,7 +1,7 @@
 .mobile-toggle {
     display: none;
 
-    @media screen and(max-width: $bp-tablet-lg) {
+    @media screen and(max-width: 826px) {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -37,7 +37,7 @@
     .desktop-only {
         display: inline-flex !important;
 
-        @media screen and (max-width: $bp-tablet-lg) {
+        @media screen and (max-width: 826px) {
             display: none !important;
         }
     }
@@ -68,7 +68,7 @@
         }
     }
 
-    @media screen and (max-width: $bp-tablet-lg) {
+    @media screen and (max-width: 826px) {
         margin: 0;
         padding: 0;
         flex-direction: column;
@@ -108,7 +108,7 @@
         }
     }
 
-    @media screen and (max-width: $bp-tablet-md) {
+    @media screen and (max-width: 768px) {
         flex-direction: column;
 
         .filter {

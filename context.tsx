@@ -7,7 +7,6 @@ interface Actions {
     setUser(user: User): void;
     setUserWants(userWants: Keycapset[]): void;
     setFilters(filters: Filters): void;
-    setDarkMode(darkmode: boolean): void;
 }
 
 export const INITITAL_STATE: InititalState = {
@@ -24,7 +23,6 @@ export const INITITAL_STATE: InititalState = {
     userWants: [],
     isLoggedIn: false,
     user: null,
-    isDarkMode: null,
 };
 
 const useStore = create<InititalState & Actions>((set) => ({
@@ -32,7 +30,8 @@ const useStore = create<InititalState & Actions>((set) => ({
     setUser: (user: User) => set({ user, isLoggedIn: true }),
     setUserWants: (userWants: Keycapset[]) => set({ userWants }),
     setFilters: (filters: Filters) => set({ filters }),
-    setDarkMode: (isDarkMode: boolean) => set({ isDarkMode }),
 }));
+
+// useStore.subscribe(console.log, (s) => s.filters);
 
 export default useStore;
