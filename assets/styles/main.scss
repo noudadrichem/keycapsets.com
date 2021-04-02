@@ -35,10 +35,16 @@
 @import 'interestcheck';
 @import 'promote-your-set';
 
+::selection {
+    background: var(--blue-lighter);
+    color: #253249;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    transition: background-color 300ms ease-out, color 450ms ease-in, border 400ms ease-in;
 }
 
 body {
@@ -47,7 +53,6 @@ body {
     min-height: 100.1vh;
     max-width: 100vw;
     overflow-x: hidden;
-    transition: 300ms ease-out;
     padding-bottom: 48px; // Fixed footer height
 
     @media screen and(max-width: $bp-tablet-md) {

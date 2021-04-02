@@ -76,7 +76,7 @@
     &.primary {
         background-color: var(--blue);
         border: 1px solid var(--blue);
-        color: var(--white);
+        color: #fff;
         font-weight: 500;
 
         &:active {
@@ -89,6 +89,7 @@
             border: 1px solid var(--blue-darker);
 
             &:disabled {
+                cursor: not-allowed;
                 opacity: 0.5;
             }
         }

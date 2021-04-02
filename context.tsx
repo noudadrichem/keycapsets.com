@@ -10,14 +10,16 @@ interface Actions {
     setDarkMode(darkmode: boolean): void;
 }
 
+export const emptyFilters = {
+    availability: 'none',
+    name: '',
+    brand: [],
+    type: [],
+    material: [],
+};
+
 export const INITITAL_STATE: InititalState = {
-    filters: {
-        availability: 'none',
-        name: '',
-        brand: [],
-        type: [],
-        material: [],
-    },
+    filters: emptyFilters,
     keycapsets: [],
     searchQuery: '',
     allKeycapsetsCount: 0,

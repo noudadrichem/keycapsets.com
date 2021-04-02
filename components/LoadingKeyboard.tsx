@@ -3,8 +3,6 @@ import React from 'react';
 import '../assets/styles/loading-keyboard.scss';
 
 import LoadingKeyboardIllustration from './LoadingKeyboardIllustration';
-import Nav from './Nav';
-import Footer from './Footer';
 
 function LoadingKeyboard(): JSX.Element {
     return (

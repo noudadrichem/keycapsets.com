@@ -7,20 +7,21 @@ import Link from 'next/link';
 import GoogleIcon from '../../components/GoogleIcon';
 import RedditIcon from '../../components/RedditIcon';
 import Button from '../../components/Button';
+import useStore from '../../context';
 
 function SignUp() {
     const router = useRouter();
+    const isDarkMode = useStore((s) => s.isDarkMode);
+    const variant = isDarkMode ? 'white' : 'dark';
     return (
         <div className="container sign-up">
             <Heading mainTitle="Sign up via Google or Reddit" subTitle="" left />
 
             <div className="cards">
                 <div className="card center">
-                    <Link
-                        href={`/sign-up/google${router.query.next !== undefined ? `?next=${router.query.next}` : ''}`}
-                    >
+                    <Link href={`/sign-up/google${router.query.next !== undefined ? `?next=${router.query.next}` : ''}`}>
                         <a>
-                            <GoogleIcon variant="dark" size={64} />
+                            <GoogleIcon variant={variant} size={64} />
                             <Button variant="primary" size="lg">
                                 Sign up via Google
                             </Button>
@@ -29,11 +30,9 @@ function SignUp() {
                 </div>
 
                 <div className="card center">
-                    <Link
-                        href={`/sign-up/reddit${router.query.next !== undefined ? `?next=${router.query.next}` : ''}`}
-                    >
+                    <Link href={`/sign-up/reddit${router.query.next !== undefined ? `?next=${router.query.next}` : ''}`}>
                         <a>
-                            <RedditIcon variant="dark" size={64} />
+                            <RedditIcon variant={variant} size={64} />
                             <Button variant="primary" size="lg">
                                 Sign up via Reddit
                             </Button>
@@ -57,19 +56,19 @@ function SignUp() {
 
             <h3>Details</h3>
             <p className="light small-width alinea">
-                By creating an account via Google you're able to favorite keycapsets and have a simple overview of what
-                you like and might want to use for your next build. You could vote on ICs. * You could opt-in on
-                recieving weekly or monthly updates via email. *
+                By creating an account via Google you're able to favorite keycapsets and have a simple overview of what you like and might
+                want to use for your next build. You could vote on ICs. * You could opt-in on recieving weekly or monthly updates via email.
+                *
             </p>
 
             <p className="light small-width alinea">
-                Are you a designer? Sign up and upload your sets. Collect IC votes and get a beautiful (partly self
-                designed) page to promote your sets on various platforms! *
+                Are you a designer? Sign up and upload your sets. Collect IC votes and get a beautiful (partly self designed) page to
+                promote your sets on various platforms! *
             </p>
 
             <p className="light small-width alinea">
-                Are you a vendor? Sign up and let users know you exist! Are you a vendor designing sets? Obviously all
-                the above apply for you aswell! *
+                Are you a vendor? Sign up and let users know you exist! Are you a vendor designing sets? Obviously all the above apply for
+                you aswell! *
             </p>
 
             <p className="light small-width alinea">* Feature coming!</p>
