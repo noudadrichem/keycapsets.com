@@ -102,7 +102,7 @@ function Filters(props: FiltersProps): JSX.Element {
                                 onClick={() => setFilters(emptyFilters)}
                                 className={`reset-filters ${totalActiveFilters > 0 ? 'visible' : ''}`}
                             >
-                                <Plus rotation={45} />
+                                <Plus rotation={45} color={isDarkMode ? '#f8fafb' : '#364154'} />
                             </Button>
                         </div>
 
