@@ -18,7 +18,6 @@ function SearchSets() {
     // TODO: this supported the use of search?= query in URL...
     useEffect(() => {
         const searchQuery = router.query.search;
-        console.log({ searchQuery });
         if (searchQuery !== undefined) {
             // @ts-expect-error
             setSearchInputValue(searchQuery);

@@ -9,15 +9,13 @@
 
 </center>
 
-# More about KCS?
+# More about the project?
 
 > https://keycapsets.com/about
 
 # Development
 
-## Running locally in development mode
-
-To get started, just clone the repository and run `npm install && npm run dev`:
+To get started, clone the repository and run `npm install && npm run dev`:
 
 -   `git clone git@github.com:noudadrichem/keycapsets.com.git`
 -   `npm install`

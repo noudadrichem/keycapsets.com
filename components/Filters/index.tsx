@@ -20,30 +20,22 @@ function Filters(props: FiltersProps): JSX.Element {
     const router = useRouter();
     const setFilters = useStore((state) => state.setFilters);
     const filters = useStore((state) => state.filters);
+    const isDarkMode = useStore((s) => s.isDarkMode);
 
     useEffect(() => {
-        const hasUrlQuery = Object.keys(router.query).length > 0;
-        if (hasUrlQuery) {
-            let routeFilter = filters;
-            const availability = router.query['tab'];
-            if (availability && AVAILABILITY_OPTIONS.includes(String(availability))) {
-                routeFilter.availability = String(availability);
-            }
-            setFilters(routeFilter);
+        if (typeof window !== `undefined` && window.innerWidth > 826) {
+            const hasFilters = filters.brand.length > 0 || filters.type.length > 0 || filters.material.length > 0;
+            setIsExtraFilterOpen(hasFilters);
         }
-    }, [router.query]);
-
-    useEffect(() => {
-        setIsExtraFilterOpen(filters.brand.length > 0 || filters.type.length > 0 || filters.material.length > 0);
     }, [filters]);
 
     useEffect(function handleToggleOnWindowSize() {
-        const isBrowser = typeof window !== `undefined`;
-        if (isBrowser) {
-            if (window.innerWidth > 826) {
-                setIsOpen(true);
-                setIsExtraFilterOpen(false);
-            }
+        if (typeof window !== `undefined` && window.innerWidth > 826) {
+            setIsOpen(true);
+            setIsExtraFilterOpen(false);
+        } else {
+            setIsOpen(false);
+            setIsExtraFilterOpen(true);
         }
     }, []);
 
@@ -97,7 +89,6 @@ function Filters(props: FiltersProps): JSX.Element {
     }
     function openMobileFilters() {
         setIsOpen(!isOpen);
-        setIsExtraFilterOpen(!isExtraFiltersOpen);
     }
 
     const extraFilterAnimationVariants = {
@@ -117,7 +108,7 @@ function Filters(props: FiltersProps): JSX.Element {
         <>
             <div className="mobile-toggle" onClick={openMobileFilters}>
                 <h5>{isOpen ? 'Close ' : 'Open '}search filters</h5>
-                <Arrow color="#566073" size={16} direction={isOpen ? 'top' : 'bottom'} />
+                <Arrow color={isDarkMode ? '#f8fafb' : '#364154'} size={16} direction={isOpen ? 'top' : 'bottom'} />
             </div>
 
             <motion.div className={`filters-container`} animate={isOpen ? 'open' : 'closed'} variants={extraFilterAnimationVariants}>
@@ -131,7 +122,7 @@ function Filters(props: FiltersProps): JSX.Element {
                                 className={`${isExtraFiltersOpen ? 'active' : ''} desktop-only`}
                             >
                                 <FilterIcon />
-                                Filters ({totalActiveFilters})
+                                Filters({totalActiveFilters})
                             </Button>
                         </div>
 
@@ -139,10 +130,7 @@ function Filters(props: FiltersProps): JSX.Element {
                             <Select
                                 label="Availability"
                                 name="Choose availability"
-                                onSelectChange={(val) => {
-                                    console.log('availability mobile...', val);
-                                    handleAvailabilityFilter(val.value);
-                                }}
+                                onSelectChange={(val) => handleAvailabilityFilter(val.value)}
                                 values={AVAILABILITY_OPTIONS.map((t) => ({
                                     value: t,
                                     label: getLabelByAvailability(t),

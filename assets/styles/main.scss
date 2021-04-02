@@ -47,7 +47,7 @@ body {
     min-height: 100.1vh;
     max-width: 100vw;
     overflow-x: hidden;
-    transition: background-color 0.5s ease;
+    transition: 300ms ease-out;
     padding-bottom: 48px; // Fixed footer height
 
     @media screen and(max-width: $bp-tablet-md) {
@@ -176,7 +176,6 @@ img {
 }
 
 .about {
-    width: calc(100% - 24px);
     padding-bottom: 64px;
 
     @media screen and(max-width: $bp-tablet-md) {
@@ -232,7 +231,7 @@ img {
 .mobile-only {
     display: none !important;
 
-    @media screen and (max-width: 826px) {
+    @media screen and (max-width: $bp-tablet-md) {
         display: flex !important;
         flex: 1;
     }

@@ -63,7 +63,6 @@ function Nav(props: NavProps): JSX.Element {
 
     function pushSignup(e) {
         e.preventDefault();
-        console.log('push signup');
         router.push('/sign-up');
     }
 
@@ -72,12 +71,7 @@ function Nav(props: NavProps): JSX.Element {
             {/* <a className="discord-banner" href="https://discord.gg/dq8cyMS">
                 <img src="/images/discord.svg" />Join the conversation on our discord!
             </a> */}
-            <div className="info-banner">
-                Keycapsets.com now supports dark mode and optimized search! &nbsp;
-                <a className="inline" onClick={contactKCS}>
-                    Leave feedback here
-                </a>
-            </div>
+            <div className="info-banner">New: Dark mode and optimized search!</div>
 
             <HamburgerIcon
                 color={isDarkMode ? '#f8fafb' : '#364154'}
