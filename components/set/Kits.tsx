@@ -24,7 +24,9 @@ function Kits(props: KitsProps): JSX.Element {
                         <div key={name + idx} className={`kit-card ${descriptionClass}`}>
                             {isKeyboard && <h4 className="title center">{name}</h4>}
                             <div className="kit-card-image">
-                                <ImageModal src={imgUrl} alt={name + '-image'} />
+                                <div>
+                                    <ImageModal src={imgUrl} alt={name + '-image'} />
+                                </div>
                             </div>
                             {!isKeyboard && <h4 className="title center">{name}</h4>}
 

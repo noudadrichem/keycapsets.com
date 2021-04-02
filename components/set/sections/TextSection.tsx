@@ -12,7 +12,7 @@ function Text(props: TextProps) {
         <section className="section set-text">
             <div>
                 <h2 className="title center">{section.title}</h2>
-                <p className="small light" dangerouslySetInnerHTML={{ __html: section.text }}></p>
+                <div dangerouslySetInnerHTML={{ __html: section.text }}></div>
             </div>
         </section>
     );

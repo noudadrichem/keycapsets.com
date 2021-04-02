@@ -5,15 +5,14 @@ import Button from './Button';
 import GoogleIcon from './GoogleIcon';
 import RedditIcon from './RedditIcon';
 import useStore from '../context';
-import UserProfileTag from './UserProfileTag';
 import Logo from './Logo';
 import { NextRouter, useRouter, Router } from 'next/router';
 import dynamic from 'next/dynamic';
 import Pill from './Pill';
+import useModalStore, { Modals } from '../hooks/useModalStore';
 
-const DarkModeSwitch = dynamic(() => import('./DarkModeSwitch'), {
-    ssr: false,
-});
+const UserProfileTag = dynamic(() => import('./UserProfileTag'), { ssr: false });
+const DarkModeSwitch = dynamic(() => import('./DarkModeSwitch'), { ssr: false });
 
 interface NavProps {
     isLargeContainer?: boolean;
@@ -44,8 +43,13 @@ function Nav(props: NavProps): JSX.Element {
     const { isLargeContainer } = props;
     const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
     const router = useRouter();
-    const user = useStore((state) => state.user);
-    const isLoggedIn = useStore((state) => state.isLoggedIn);
+    const isLoggedIn = useStore((s) => s.isLoggedIn);
+    const isDarkMode = useStore((s) => s.isDarkMode);
+    const openModal = useModalStore((s) => s.openModal);
+
+    function contactKCS() {
+        openModal(Modals.Contact);
+    }
     useEffect(
         function listenToRouteChange() {
             setIsNavOpen(false);
@@ -59,7 +63,6 @@ function Nav(props: NavProps): JSX.Element {
 
     function pushSignup(e) {
         e.preventDefault();
-        console.log('push signup');
         router.push('/sign-up');
     }
 
@@ -68,12 +71,10 @@ function Nav(props: NavProps): JSX.Element {
             {/* <a className="discord-banner" href="https://discord.gg/dq8cyMS">
                 <img src="/images/discord.svg" />Join the conversation on our discord!
             </a> */}
-            {/* <div className="info-banner">
-                Our image service is experiencing issues, the single pages do show images and the like/search
-                functionality still works.
-            </div> */}
+            <div className="info-banner">New: Dark mode and optimized search!</div>
 
             <HamburgerIcon
+                color={isDarkMode ? '#f8fafb' : '#364154'}
                 onClick={() => {
                     setIsNavOpen(!isNavOpen);
                 }}
@@ -97,13 +98,15 @@ function Nav(props: NavProps): JSX.Element {
                         <Link href="/about" as="/about">
                             <a className="nav-item">About</a>
                         </Link>
+
                         {!isLoggedIn && (
                             <Link href="/login" as="/login">
                                 <a className="nav-item">Login</a>
                             </Link>
                         )}
+
                         {!isLoggedIn ? (
-                            <Button variant="primary" size="md" className="btn-sign-up desktop" onClick={pushSignup}>
+                            <Button variant="primary" size="md" className="btn-sign-up desktop-only" onClick={pushSignup}>
                                 Sign up
                                 <div className="popover on-hover">
                                     <div className="popover-container">
@@ -123,10 +126,26 @@ function Nav(props: NavProps): JSX.Element {
                                 </div>
                             </Button>
                         ) : (
-                            <UserProfileTag />
+                            <UserProfileTag isNavOpen={isNavOpen} />
                         )}
 
-                        {/* <DarkModeSwitch /> */}
+                        {!isLoggedIn && (
+                            <Link href="/sign-up">
+                                <a className="nav-item mobile-only" style={{ flex: 0 }}>
+                                    Sign up
+                                </a>
+                            </Link>
+                        )}
+
+                        <DarkModeSwitch />
+
+                        <div className="nav-footer mobile-only">
+                            <div className="made-in">
+                                <p>
+                                    &copy; Made with <a href="https://bunq.me/noudadrichem/3/I'm%20liking%20keycapsets!">☕</a> in Utrecht.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

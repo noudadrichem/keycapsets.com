@@ -6,7 +6,7 @@ interface MoonIconProps {
     color?: string;
 }
 
-function MoonIcon({ size = 24, color = '#323232' }: MoonIconProps) {
+function MoonIcon({ size = 24, color = '#566073' }: MoonIconProps) {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
