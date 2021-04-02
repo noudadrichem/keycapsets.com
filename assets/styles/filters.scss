@@ -42,6 +42,19 @@
         }
     }
 
+    .more-filters {
+        display: flex;
+
+        .btn.reset-filters {
+            margin-left: 8px;
+            visibility: hidden;
+
+            &.visible {
+                visibility: visible;
+            }
+        }
+    }
+
     .filter {
         display: flex;
         flex-direction: column;

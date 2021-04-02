@@ -9,8 +9,12 @@ import RedditIcon from '../components/RedditIcon';
 import GoogleAuth from '../components/GoogleAuth';
 import RedditAuth from '../components/RedditAuth';
 import Meta from '../components/Meta';
+import useStore from '../context';
 
 function Login() {
+    const isDarkMode = useStore((s) => s.isDarkMode);
+    const variant = isDarkMode ? 'white' : 'dark';
+
     return (
         <div className="container login">
             <Meta />
@@ -20,7 +24,7 @@ function Login() {
                 <div className="card center">
                     <Link href="/sign-up/google">
                         <a>
-                            <GoogleIcon variant="dark" size={64} />
+                            <GoogleIcon variant={variant} size={64} />
                             <GoogleAuth disabled={false} text="Login with Google" />
                         </a>
                     </Link>
@@ -29,7 +33,7 @@ function Login() {
                 <div className="card center">
                     <Link href="/sign-up/reddit">
                         <a>
-                            <RedditIcon variant="dark" size={64} />
+                            <RedditIcon variant={variant} size={64} />
                             <RedditAuth disabled={false} text="Login with Reddit" />
                         </a>
                     </Link>

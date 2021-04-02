@@ -8,16 +8,14 @@ import Arrow from '../Arrow';
 import Button from '../Button';
 import FilterIcon from '../FilterIcon';
 import { motion } from 'framer-motion';
-import useStore from '../../context';
-import { useRouter } from 'next/router';
+import useStore, { emptyFilters } from '../../context';
+import Plus from '../PlusIcon';
 
 interface FiltersProps {}
 
 function Filters(props: FiltersProps): JSX.Element {
-    const {} = props;
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [isExtraFiltersOpen, setIsExtraFilterOpen] = useState<boolean>(false);
-    const router = useRouter();
     const setFilters = useStore((state) => state.setFilters);
     const filters = useStore((state) => state.filters);
     const isDarkMode = useStore((s) => s.isDarkMode);
@@ -47,37 +45,14 @@ function Filters(props: FiltersProps): JSX.Element {
         });
     }
 
-    function handleBrandFilter(values: SelectOption[]) {
-        handleSelectionFilter(values, 'brand');
-    }
-    function handleProfileFilter(values: SelectOption[]) {
-        handleSelectionFilter(values, 'type');
-    }
-    function handleMaterialFilter(values: SelectOption[]) {
-        handleSelectionFilter(values, 'material');
-    }
     function handleAvailabilityFilter(availability: string) {
-        router.push(
-            {
-                pathname: `/`,
-                query:
-                    availability !== 'none'
-                        ? {
-                              tab: availability,
-                          }
-                        : null,
-            },
-            undefined,
-            { shallow: true }
-        );
-
         setFilters({
             ...filters,
             availability,
         });
     }
 
-    function getLabelByAvailability(tab: string): string {
+    function getLabelByAvailability(tab: string) {
         const labelOptions = {
             none: 'All',
             ic: 'Interest Check',
@@ -85,10 +60,7 @@ function Filters(props: FiltersProps): JSX.Element {
             waiting: 'Awaiting Groupbuy',
             ended: 'Groupbuy Ended',
         };
-        return labelOptions[tab];
-    }
-    function openMobileFilters() {
-        setIsOpen(!isOpen);
+        return labelOptions[tab] as string;
     }
 
     const extraFilterAnimationVariants = {
@@ -106,7 +78,7 @@ function Filters(props: FiltersProps): JSX.Element {
 
     return (
         <>
-            <div className="mobile-toggle" onClick={openMobileFilters}>
+            <div className="mobile-toggle" onClick={() => setIsOpen(!isOpen)}>
                 <h5>{isOpen ? 'Close ' : 'Open '}search filters</h5>
                 <Arrow color={isDarkMode ? '#f8fafb' : '#364154'} size={16} direction={isOpen ? 'top' : 'bottom'} />
             </div>
@@ -123,6 +95,14 @@ function Filters(props: FiltersProps): JSX.Element {
                             >
                                 <FilterIcon />
                                 Filters({totalActiveFilters})
+                            </Button>
+                            <Button
+                                variant="secondary"
+                                size="sm"
+                                onClick={() => setFilters(emptyFilters)}
+                                className={`reset-filters ${totalActiveFilters > 0 ? 'visible' : ''}`}
+                            >
+                                <Plus rotation={45} />
                             </Button>
                         </div>
 
@@ -172,7 +152,7 @@ function Filters(props: FiltersProps): JSX.Element {
                             isMulti
                             label="Brand"
                             options={BRAND_OPTIONS}
-                            onChange={handleBrandFilter}
+                            onChange={(values: SelectOption[]) => handleSelectionFilter(values, 'brand')}
                             defaultValue={BRAND_OPTIONS.filter(({ value }) => filters.brand.includes(value))}
                         />
                     </div>
@@ -182,7 +162,7 @@ function Filters(props: FiltersProps): JSX.Element {
                             isMulti
                             label="Profile"
                             options={PROFILE_OPTIONS}
-                            onChange={handleProfileFilter}
+                            onChange={(values: SelectOption[]) => handleSelectionFilter(values, 'type')}
                             defaultValue={PROFILE_OPTIONS.filter(({ value }) => filters.type.includes(value))}
                         />
                     </div>
@@ -192,7 +172,7 @@ function Filters(props: FiltersProps): JSX.Element {
                             isMulti
                             label="Material"
                             options={MATERIAL_OPTIONS}
-                            onChange={handleMaterialFilter}
+                            onChange={(values: SelectOption[]) => handleSelectionFilter(values, 'material')}
                             defaultValue={MATERIAL_OPTIONS.filter(({ value }) => filters.material.includes(value))}
                         />
                     </div>

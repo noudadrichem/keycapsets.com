@@ -8,7 +8,7 @@ import { ALL_OPTIONS, AVAILABILITY_FILTER, BRAND_FILTER, MATERIAL_FILTER, PROFIL
 function SearchSets() {
     const router: NextRouter = useRouter();
     const [searchValue, searchInput, setSearchInputValue] = useInput({
-        placeholder: 'E.g. GMK Poseidon',
+        placeholder: 'E.g. ePBT, Minimal or SA',
         autoFocus: true,
         icon: <SearchIcon size={16} color="#bbc0c9" />,
     });
