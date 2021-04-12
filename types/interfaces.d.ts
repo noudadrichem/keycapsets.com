@@ -58,6 +58,7 @@ export interface QuestionOption {
 export interface SelectOption {
     value: string;
     label: string;
+    type?: string;
 }
 
 // export interface Vendor {
@@ -89,6 +90,7 @@ export interface InititalState extends State {
     user?: User;
     userWants: Keycapset[];
     user: User;
+    isDarkMode: boolean | null;
 }
 
 // export interface User {

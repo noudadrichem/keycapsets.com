@@ -6,7 +6,7 @@ import { logoutUser } from '../utils/user';
 import useClickOutside from '../hooks/useClickOutside';
 import useStore from '../context';
 
-function UserProfileTag() {
+function UserProfileTag(props: { isNavOpen: boolean }) {
     const [isPopoverShown, setIspopoverShown] = useState<boolean>(false);
     const popup = useRef<HTMLDivElement | null>();
     const user = useStore((state) => state.user);
@@ -22,7 +22,22 @@ function UserProfileTag() {
         setIspopoverShown(false);
     }
 
-    console.log('user...', user);
+    if (window.innerHeight < 900 && window.innerWidth < 768) {
+        return (
+            <>
+                <Link href="/user/edit">
+                    <a className="nav-item clickable">Edit profile</a>
+                </Link>
+                <Link href="/user" as={`/user`}>
+                    <a className="nav-item clickable">My favorites</a>
+                </Link>
+                <a className="nav-item clickable" onClick={logout}>
+                    Logout
+                </a>
+            </>
+        );
+    }
+
     return (
         isLoggedIn &&
         user !== null && (

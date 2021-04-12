@@ -1,7 +1,7 @@
 .mobile-toggle {
     display: none;
 
-    @media screen and(max-width: 826px) {
+    @media screen and(max-width: $bp-tablet-lg) {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -37,8 +37,21 @@
     .desktop-only {
         display: inline-flex !important;
 
-        @media screen and (max-width: 826px) {
+        @media screen and (max-width: $bp-tablet-lg) {
             display: none !important;
+        }
+    }
+
+    .more-filters {
+        display: flex;
+
+        .btn.reset-filters {
+            margin-left: 8px;
+            visibility: hidden;
+
+            &.visible {
+                visibility: visible;
+            }
         }
     }
 
@@ -68,7 +81,7 @@
         }
     }
 
-    @media screen and (max-width: 826px) {
+    @media screen and (max-width: $bp-tablet-lg) {
         margin: 0;
         padding: 0;
         flex-direction: column;
@@ -108,7 +121,7 @@
         }
     }
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: $bp-tablet-md) {
         flex-direction: column;
 
         .filter {

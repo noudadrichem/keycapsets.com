@@ -31,7 +31,7 @@ interface SunIconProps {
 //     );
 // }
 
-function SunIcon({ size = 24, color = '#F8F9FB' }: SunIconProps) {
+function SunIcon({ size = 24, color = '#cdd7e0' }: SunIconProps) {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"

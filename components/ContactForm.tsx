@@ -43,8 +43,7 @@ function ContactForm(): JSX.Element {
 
     return (
         <div className="column">
-            <h2>Contact me</h2>
-            <p>Interested in using Keycapsets to promote your keycapset? Let's Talk!</p>
+            <h2>Contact</h2>
             <br />
             <form onSubmit={handleSubmit(submitContact)} className="contact-form">
                 <Input
