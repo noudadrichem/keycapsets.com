@@ -13,6 +13,8 @@ import '../assets/styles/main.scss';
 import { useApollo } from '../hooks/withData';
 import { ME } from '../queries';
 import useStore from '../context';
+import { Router } from 'next/router';
+import { logoutUser } from '../utils/user';
 
 function MyApp({ Component, pageProps }: AppProps) {
     const apolloClient = useApollo(pageProps.initialApolloState);
@@ -20,13 +22,18 @@ function MyApp({ Component, pageProps }: AppProps) {
     const setUser = useStore((state) => state.setUser);
 
     async function fetchMe() {
-        const { data } = await apolloClient.query({
-            query: ME,
-            fetchPolicy: 'network-only',
-        });
-        if (data) {
-            setUser(data.me);
-            console.log('user...', data.me);
+        try {
+            const { data } = await apolloClient.query({
+                query: ME,
+                fetchPolicy: 'network-only',
+            });
+            if (data) {
+                setUser(data.me);
+                console.log('user...', data.me);
+            }
+        } catch (err) {
+            console.log(err);
+            logoutUser('/login'); // TODO Add message of unauth here...
         }
     }
 

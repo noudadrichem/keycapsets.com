@@ -22,19 +22,20 @@ function UserProfileTag() {
         setIspopoverShown(false);
     }
 
+    console.log('user...', user);
     return (
         isLoggedIn &&
         user !== null && (
             <div className="user-profile-tag">
                 {
                     <div className="profile-tag-wrapper" onClick={() => setIspopoverShown(!isPopoverShown)}>
-                        {user.avatar !== null ? (
+                        {/* {user.avatar !== null ? (
                             <div className="profile-image">
                                 <img src={user.avatar || ''} alt={user.name} />
                             </div>
                         ) : (
-                            <div className="profile-tag">{user.name !== null && user.name.slice(0, 2)}</div>
-                        )}
+                        )} */}
+                        <div className="profile-tag">{user.name !== null && user.name.slice(0, 2)}</div>
                     </div>
                 }
                 <div className={`popover account ${isPopoverShown ? 'shown' : 'hidden'}`} ref={popup}>

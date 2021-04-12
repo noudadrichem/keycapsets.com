@@ -33,7 +33,7 @@ export const PROFILE_OPTIONS: SelectOption[] = [
     { label: 'DCS', value: 'dcs' },
 ];
 
-export const NONE: 'none' = 'none';
+export const NONE = 'none';
 export const INTEREST_CHECK: 'ic' = 'ic';
 export const WAITING_FOR_GROUPBUY: 'waiting' = 'waiting';
 export const IN_GROUP_BUY: 'gb' = 'gb';
