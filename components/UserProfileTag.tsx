@@ -22,7 +22,7 @@ function UserProfileTag(props: { isNavOpen: boolean }) {
         setIspopoverShown(false);
     }
 
-    if (window.innerHeight < 900 && window.innerWidth < 768) {
+    if (window.innerHeight < 1025 && window.innerWidth < 768) {
         return (
             <>
                 <Link href="/user/edit">
@@ -44,13 +44,13 @@ function UserProfileTag(props: { isNavOpen: boolean }) {
             <div className="user-profile-tag">
                 {
                     <div className="profile-tag-wrapper" onClick={() => setIspopoverShown(!isPopoverShown)}>
-                        {user.avatar !== null ? (
+                        {/* {user.avatar !== null ? (
                             <div className="profile-image">
                                 <img src={user.avatar || ''} alt={user.name} />
                             </div>
                         ) : (
-                            <div className="profile-tag">{user.name !== null && user.name.slice(0, 2)}</div>
-                        )}
+                        )} */}
+                        <div className="profile-tag">{user.name !== null && user.name.slice(0, 2)}</div>
                     </div>
                 }
                 <div className={`popover account ${isPopoverShown ? 'shown' : 'hidden'}`} ref={popup}>

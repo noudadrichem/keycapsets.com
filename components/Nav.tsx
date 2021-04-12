@@ -67,89 +67,91 @@ function Nav(props: NavProps): JSX.Element {
     }
 
     return (
-        <nav className="nav">
+        <>
             {/* <a className="discord-banner" href="https://discord.gg/dq8cyMS">
                 <img src="/images/discord.svg" />Join the conversation on our discord!
             </a> */}
             <div className="info-banner">New: Dark mode and optimized search!</div>
+            <nav className="nav">
+                <HamburgerIcon
+                    color={isDarkMode ? '#f8fafb' : '#364154'}
+                    onClick={() => {
+                        setIsNavOpen(!isNavOpen);
+                    }}
+                />
 
-            <HamburgerIcon
-                color={isDarkMode ? '#f8fafb' : '#364154'}
-                onClick={() => {
-                    setIsNavOpen(!isNavOpen);
-                }}
-            />
-
-            <div className={`container ${isLargeContainer ? 'large' : ''}`}>
-                <div className="nav-container">
-                    <div className="logo">
-                        <Link href="/" as="/">
-                            <a className="">
-                                <Logo width={106} />
-                            </a>
-                        </Link>
-                        {/* <Pill color="gray" text="BETA" /> */}
-                    </div>
-
-                    <div className={`nav-items ${isNavOpen ? 'open' : 'closed'}`}>
-                        <Link href="/vendors" as="/vendors">
-                            <a className="nav-item">Vendors</a>
-                        </Link>
-                        <Link href="/about" as="/about">
-                            <a className="nav-item">About</a>
-                        </Link>
-
-                        {!isLoggedIn && (
-                            <Link href="/login" as="/login">
-                                <a className="nav-item">Login</a>
-                            </Link>
-                        )}
-
-                        {!isLoggedIn ? (
-                            <Button variant="primary" size="md" className="btn-sign-up desktop-only" onClick={pushSignup}>
-                                Sign up
-                                <div className="popover on-hover">
-                                    <div className="popover-container">
-                                        <Link href="/sign-up/google">
-                                            <a className="item">
-                                                <GoogleIcon variant="dark" />
-                                                Sign up with Google
-                                            </a>
-                                        </Link>
-                                        <Link href="/sign-up/reddit">
-                                            <a className="item">
-                                                <RedditIcon variant="dark" />
-                                                Sign up with Reddit
-                                            </a>
-                                        </Link>
-                                    </div>
-                                </div>
-                            </Button>
-                        ) : (
-                            <UserProfileTag isNavOpen={isNavOpen} />
-                        )}
-
-                        {!isLoggedIn && (
-                            <Link href="/sign-up">
-                                <a className="nav-item mobile-only" style={{ flex: 0 }}>
-                                    Sign up
+                <div className={`container ${isLargeContainer ? 'large' : ''}`}>
+                    <div className="nav-container">
+                        <div className="logo">
+                            <Link href="/" as="/">
+                                <a className="">
+                                    <Logo width={106} />
                                 </a>
                             </Link>
-                        )}
+                            {/* <Pill color="gray" text="BETA" /> */}
+                        </div>
 
-                        <DarkModeSwitch />
+                        <div className={`nav-items ${isNavOpen ? 'open' : 'closed'}`}>
+                            <Link href="/vendors" as="/vendors">
+                                <a className="nav-item">Vendors</a>
+                            </Link>
+                            <Link href="/about" as="/about">
+                                <a className="nav-item">About</a>
+                            </Link>
 
-                        <div className="nav-footer mobile-only">
-                            <div className="made-in">
-                                <p>
-                                    &copy; Made with <a href="https://bunq.me/noudadrichem/3/I'm%20liking%20keycapsets!">☕</a> in Utrecht.
-                                </p>
+                            {!isLoggedIn && (
+                                <Link href="/login" as="/login">
+                                    <a className="nav-item">Login</a>
+                                </Link>
+                            )}
+
+                            {!isLoggedIn ? (
+                                <Button variant="primary" size="md" className="btn-sign-up desktop-only" onClick={pushSignup}>
+                                    Sign up
+                                    <div className="popover on-hover">
+                                        <div className="popover-container">
+                                            <Link href="/sign-up/google">
+                                                <a className="item">
+                                                    <GoogleIcon variant="dark" />
+                                                    Sign up with Google
+                                                </a>
+                                            </Link>
+                                            <Link href="/sign-up/reddit">
+                                                <a className="item">
+                                                    <RedditIcon variant="dark" />
+                                                    Sign up with Reddit
+                                                </a>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </Button>
+                            ) : (
+                                <UserProfileTag isNavOpen={isNavOpen} />
+                            )}
+
+                            {!isLoggedIn && (
+                                <Link href="/sign-up">
+                                    <a className="nav-item mobile-only" style={{ flex: 0 }}>
+                                        Sign up
+                                    </a>
+                                </Link>
+                            )}
+
+                            <DarkModeSwitch />
+
+                            <div className="nav-footer mobile-only">
+                                <div className="made-in">
+                                    <p>
+                                        &copy; Made with <a href="https://bunq.me/noudadrichem/3/I'm%20liking%20keycapsets!">☕</a> in
+                                        Utrecht.
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </>
     );
 }
 

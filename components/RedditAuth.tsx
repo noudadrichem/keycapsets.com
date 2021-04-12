@@ -25,13 +25,15 @@ export function handleRedditAuth() {
 }
 
 function RedditAuth(props: RedditAuthProps): JSX.Element {
-    const { text, callback, disabled, asLink = false } = props;
+    console.log('reddit auth...', props);
+    const { text, disabled, asLink = false } = props;
     const router: NextRouter = useRouter();
     const client = useApolloClient();
     const setUser = useStore((state) => state.setUser);
 
     useEffect(() => {
         const hash = window.location.hash;
+        console.log('hash...', hash);
         if (hash !== '') {
             const fragments = router.asPath
                 .split('#')[1]
@@ -43,36 +45,32 @@ function RedditAuth(props: RedditAuthProps): JSX.Element {
                         [key]: value,
                     };
                 }, {});
+
+            console.log('fragments...', fragments);
             getAccesToken(fragments.access_token, fragments.state);
         }
-    }, []);
+    }, [router.query]);
 
     async function getAccesToken(token: string, state: unknown) {
-        const readableStream: Response = await fetch('https://oauth.reddit.com/api/v1/me', {
-            headers: {
-                Authorization: 'Bearer ' + token,
-            },
-        });
-        const { id, name, oauth_client_id, link_karma, comment_karma } = await readableStream.json();
+        console.log('token...', token);
         const {
             data: { redditLogin },
         } = await client.mutate({
             mutation: REDDIT_LOGIN,
             variables: {
-                redditId: `${id}_${oauth_client_id}`,
-                redditUserName: name,
+                token,
             },
         });
         console.log('Reddit login...', redditLogin);
-        setUser(redditLogin.user);
+        setUser(redditLogin?.user);
         loginUser(redditLogin);
         const routes = {
             next: `${router.query.next}`,
             edit: '/user/edit',
             home: '/',
         };
-        const route = router.query.next !== undefined ? 'next' : redditLogin.firstlogin ? 'edit' : 'home';
-        router.push(routes[route]);
+        // const route = router.query.next !== undefined ? 'next' : redditLogin.firstlogin ? 'edit' : 'home';
+        router.push(routes['home']);
     }
 
     return asLink ? (

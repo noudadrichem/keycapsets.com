@@ -148,7 +148,7 @@ export const GOOGLE_LOGIN = gql`
                 locked
                 geekhackUserName
                 redditUserName
-                avatar
+                # avatar
                 locale
                 slug
                 isDesigner
@@ -160,8 +160,8 @@ export const GOOGLE_LOGIN = gql`
 `;
 
 export const REDDIT_LOGIN = gql`
-    mutation REDDIT_LOGIN($redditUserName: String!, $redditId: String!) {
-        redditLogin(redditUserName: $redditUserName, redditId: $redditId) {
+    mutation REDDIT_LOGIN($token: String!) {
+        redditLogin(token: $token) {
             token
             firstLogin
         }
@@ -177,7 +177,7 @@ export const ME = gql`
             locked
             geekhackUserName
             redditUserName
-            avatar
+            # avatar
             locale
             slug
             isDesigner
