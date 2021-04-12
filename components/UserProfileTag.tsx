@@ -22,7 +22,7 @@ function UserProfileTag(props: { isNavOpen: boolean }) {
         setIspopoverShown(false);
     }
 
-    if (window.innerHeight < 900 && window.innerWidth < 768) {
+    if (window.innerHeight < 1025 && window.innerWidth < 768) {
         return (
             <>
                 <Link href="/user/edit">
