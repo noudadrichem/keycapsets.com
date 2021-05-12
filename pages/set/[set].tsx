@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Error from '../_error';
 import moment from 'moment';
 import { useRouter, Router } from 'next/router';
@@ -33,6 +33,7 @@ interface SetPageProps {
 function SetPage(props: SetPageProps) {
     const { keycapset } = props;
     const router = useRouter();
+    const [slickPause, setSlickPause] = useState(false);
 
     if (keycapset === undefined) {
         return <Error statusCode={404} />;
@@ -48,9 +49,9 @@ function SetPage(props: SetPageProps) {
             slidesToShow: 1,
             slidesToScroll: 1,
             arrows: true,
-            autoplay: hasRenders,
+            autoplay: !slickPause,
             autoPlaySpeed: 2400,
-            pauseOnHover: false,
+            slickPause,
         };
 
         console.log(keycapset._id);
@@ -144,9 +145,14 @@ function SetPage(props: SetPageProps) {
                                 <h2 className="title center">Vendors</h2>
                                 <div className="set-vendors-container">
                                     {keycapset.vendors.map((vendor: Vendor, idx) => (
-                                        <a href={vendor.url} target="_blank" key={idx} className="vendor-card">
-                                            <img src={vendor.logoUrl} alt={`Logo ${vendor.name}`} />
-                                        </a>
+                                        <div className="vendor-card-container">
+                                            <a href={vendor.url} target="_blank" key={idx} className="vendor-card">
+                                                <img src={vendor.logoUrl} alt={`Logo ${vendor.name}`} />
+                                            </a>
+                                            <p>
+                                                {vendor.name} - {vendor.country}
+                                            </p>
+                                        </div>
                                     ))}
                                 </div>
                             </section>
@@ -161,13 +167,23 @@ function SetPage(props: SetPageProps) {
                         )}
 
                         {hasRenders && (
-                            <section className="section set-renders">
+                            <section
+                                className="section set-renders"
+                                onMouseEnter={(e) => {
+                                    setSlickPause(true);
+                                    console.log('stop');
+                                }}
+                                onMouseLeave={(e) => {
+                                    setSlickPause(false);
+                                    console.log('play');
+                                }}
+                            >
                                 <h2 className="title center">Renders</h2>
 
                                 <div className="slick-container">
                                     <Slider {...slickSettings}>
                                         {keycapset.imageUrls.map((url: string, idx: number) => (
-                                            <img src={url} key={idx + url} />
+                                            <img className="slick-container-img" src={url} key={idx + url} />
                                         ))}
                                     </Slider>
                                 </div>

@@ -159,6 +159,8 @@
             overflow: hidden;
             max-width: 100%;
             .slick-slider {
+                border-radius: 8px;
+                overflow: hidden;
                 position: relative;
 
                 @media screen and (max-width: $bp-tablet-md) {
@@ -168,9 +170,9 @@
                 }
 
                 .slick-slide {
+                    line-height: 0;
                     border-radius: 8px;
                     overflow: hidden;
-                    line-height: 0;
                 }
 
                 .slick-arrow {
@@ -294,6 +296,9 @@
                     justify-content: center;
                     align-items: center;
                     margin: 0 24px;
+                    max-width: 312px;
+                    max-height: 200px;
+                    height: 108px;
 
                     &:last-child {
                         margin-right: 0;
@@ -308,6 +313,11 @@
                     img {
                         transition: 200ms;
                         filter: grayscale(100%);
+                    }
+
+                    &-container {
+                        flex-direction: column;
+                        text-align: center;
                     }
                 }
             }
