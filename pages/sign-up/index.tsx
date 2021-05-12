@@ -43,7 +43,7 @@ function SignUp() {
 
             <div className="features-container">
                 <h3>Features</h3>
-                <ul className="features">
+                <ul className="list">
                     <li>Favorite sets, see your collection. </li>
                     <li>Create your own collections for e.g. your board. *</li>
                     <li>Opt into groupbuy updates via mail. *</li>
