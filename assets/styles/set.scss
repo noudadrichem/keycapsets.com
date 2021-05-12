@@ -202,10 +202,6 @@
     }
 
     &-kits {
-        // margin: 56px 0 124px;
-        &.keyboard {
-        }
-
         &-grid-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -278,7 +274,6 @@
     }
 
     &-geekhack {
-        // margin: 64px 0 94px;
         display: flex;
         justify-content: center;
     }

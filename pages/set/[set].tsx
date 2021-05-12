@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Error from '../_error';
-import moment from 'moment';
 import { useRouter, Router } from 'next/router';
 import Slider from 'react-slick';
 import { Keycapset, Vendor } from '../../types/types';
@@ -134,7 +133,6 @@ function SetPage(props: SetPageProps) {
                                     return {
                                         'img-text': <ImgTextSection section={section} key={section.title + idx} />,
                                         text: <TextSection section={section} key={section.title + idx} />,
-                                        // TODO add more types here...
                                     }[section.type];
                                 })}
                             </>
@@ -149,9 +147,7 @@ function SetPage(props: SetPageProps) {
                                             <a href={vendor.url} target="_blank" key={idx} className="vendor-card">
                                                 <img src={vendor.logoUrl} alt={`Logo ${vendor.name}`} />
                                             </a>
-                                            <p>
-                                                {vendor.name} - {vendor.country}
-                                            </p>
+                                            <p>{vendor.name}</p>
                                         </div>
                                     ))}
                                 </div>
