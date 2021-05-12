@@ -1,4 +1,4 @@
-import React, { ReactNode, useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 import Button from './Button';
@@ -6,9 +6,8 @@ import GoogleIcon from './GoogleIcon';
 import RedditIcon from './RedditIcon';
 import useStore from '../context';
 import Logo from './Logo';
-import { NextRouter, useRouter, Router } from 'next/router';
+import { NextRouter, useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
-import Pill from './Pill';
 import useModalStore, { Modals } from '../hooks/useModalStore';
 
 const UserProfileTag = dynamic(() => import('./UserProfileTag'), { ssr: false });
