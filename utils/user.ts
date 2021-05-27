@@ -1,5 +1,6 @@
 export function loginUser(response) {
     window.localStorage.setItem('TOKEN', response.token);
+    window.localStorage.setItem('LAST_LOGIN', String(new Date().getTime()));
     // window.localStorage.setItem('USER', JSON.stringify(response.user));
 }
 

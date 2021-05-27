@@ -11,6 +11,7 @@ import useStore from '../context';
 
 const CLIENT_ID: string = 'OGPS_JHNLNt2sA';
 const REDIRECT_URI: string = 'https://keycapsets.com/sign-up/reddit';
+// const REDIRECT_URI: string = 'http://localhost:3000/sign-up/reddit';
 
 interface RedditAuthProps {
     asLink?: boolean;
@@ -25,7 +26,6 @@ export function handleRedditAuth() {
 }
 
 function RedditAuth(props: RedditAuthProps): JSX.Element {
-    console.log('reddit auth...', props);
     const { text, disabled, asLink = false } = props;
     const router: NextRouter = useRouter();
     const client = useApolloClient();
@@ -33,7 +33,6 @@ function RedditAuth(props: RedditAuthProps): JSX.Element {
 
     useEffect(() => {
         const hash = window.location.hash;
-        console.log('hash...', hash);
         if (hash !== '') {
             const fragments = router.asPath
                 .split('#')[1]
@@ -46,13 +45,11 @@ function RedditAuth(props: RedditAuthProps): JSX.Element {
                     };
                 }, {});
 
-            console.log('fragments...', fragments);
             getAccesToken(fragments.access_token, fragments.state);
         }
     }, [router.query]);
 
     async function getAccesToken(token: string, state: unknown) {
-        console.log('token...', token);
         const {
             data: { redditLogin },
         } = await client.mutate({
@@ -61,7 +58,6 @@ function RedditAuth(props: RedditAuthProps): JSX.Element {
                 token,
             },
         });
-        console.log('Reddit login...', redditLogin);
         setUser(redditLogin?.user);
         loginUser(redditLogin);
         const routes = {
@@ -69,8 +65,9 @@ function RedditAuth(props: RedditAuthProps): JSX.Element {
             edit: '/user/edit',
             home: '/',
         };
-        // const route = router.query.next !== undefined ? 'next' : redditLogin.firstlogin ? 'edit' : 'home';
-        router.push(routes['home']);
+        const route = router.query.next !== undefined ? 'next' : redditLogin.firstLogin ? 'edit' : 'home';
+        console.log(redditLogin, 'after login route...', route);
+        router.push(routes[route]);
     }
 
     return asLink ? (

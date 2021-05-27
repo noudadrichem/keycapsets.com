@@ -163,6 +163,19 @@ export const REDDIT_LOGIN = gql`
     mutation REDDIT_LOGIN($token: String!) {
         redditLogin(token: $token) {
             token
+            user {
+                _id
+                name
+                email
+                locked
+                geekhackUserName
+                redditUserName
+                avatar
+                locale
+                slug
+                isDesigner
+                isVendor
+            }
             firstLogin
         }
     }
@@ -177,7 +190,7 @@ export const ME = gql`
             locked
             geekhackUserName
             redditUserName
-            # avatar
+            avatar
             locale
             slug
             isDesigner

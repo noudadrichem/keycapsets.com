@@ -28,9 +28,9 @@ function UserProfileTag(props: { isNavOpen: boolean }) {
                 <Link href="/user/edit">
                     <a className="nav-item clickable">Edit profile</a>
                 </Link>
-                <Link href="/user" as={`/user`}>
+                {/* <Link href="/user" as={`/user`}>
                     <a className="nav-item clickable">My favorites</a>
-                </Link>
+                </Link> */}
                 <a className="nav-item clickable" onClick={logout}>
                     Logout
                 </a>
@@ -44,13 +44,13 @@ function UserProfileTag(props: { isNavOpen: boolean }) {
             <div className="user-profile-tag">
                 {
                     <div className="profile-tag-wrapper" onClick={() => setIspopoverShown(!isPopoverShown)}>
-                        {/* {user.avatar !== null ? (
+                        {user.avatar !== null ? (
                             <div className="profile-image">
-                                <img src={user.avatar || ''} alt={user.name} />
+                                <img src={user.avatar} alt={'avatar of ' + user.name} />
                             </div>
                         ) : (
-                        )} */}
-                        <div className="profile-tag">{user.name !== null && user.name.slice(0, 2)}</div>
+                            <div className="profile-tag">{user.name !== null && user.name.slice(0, 2)}</div>
+                        )}
                     </div>
                 }
                 <div className={`popover account ${isPopoverShown ? 'shown' : 'hidden'}`} ref={popup}>
@@ -58,9 +58,9 @@ function UserProfileTag(props: { isNavOpen: boolean }) {
                         <Link href="/user/edit">
                             <a className="item clickable">Edit profile</a>
                         </Link>
-                        <Link href="/user" as={`/user`}>
+                        {/* <Link href="/user" as={`/user`}>
                             <a className="item clickable">My favorites</a>
-                        </Link>
+                        </Link> */}
                         <a className="item clickable" onClick={logout}>
                             Logout
                         </a>
