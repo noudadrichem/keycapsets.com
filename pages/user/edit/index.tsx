@@ -95,6 +95,7 @@ function UserEdit(props: UserEditProps): JSX.Element {
                                 <Input
                                     id="email"
                                     label="Email address"
+                                    type="email"
                                     reference={register({
                                         required: true,
                                         pattern: {
@@ -128,12 +129,7 @@ function UserEdit(props: UserEditProps): JSX.Element {
                         <div className="column cards vertical">
                             <div className="card center">
                                 <h4>Are you a keycapset designer?</h4>
-                                <Button
-                                    onClick={signUpAsDesigner}
-                                    variant="primary"
-                                    size="sm"
-                                    isDisabled={user.isDesigner}
-                                >
+                                <Button onClick={signUpAsDesigner} variant="primary" size="sm" isDisabled={user.isDesigner}>
                                     {user.isDesigner ? 'You are' : 'Get the designer role'}
                                 </Button>
                             </div>

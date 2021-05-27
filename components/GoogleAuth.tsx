@@ -43,7 +43,7 @@ function GoogleAuth(props: GoogleAuthProps): JSX.Element {
                 edit: '/user/edit',
                 home: '/',
             };
-            const route = router.query.next !== undefined ? 'next' : googleLogin.firstlogin ? 'edit' : 'home';
+            const route = router.query.next !== undefined ? 'next' : googleLogin.firstLogin ? 'edit' : 'home';
             router.push(routes[route]);
         } catch (err) {
             console.error(err);

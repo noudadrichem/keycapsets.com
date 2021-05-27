@@ -97,6 +97,9 @@ function Nav(props: NavProps): JSX.Element {
                             <Link href="/about" as="/about">
                                 <a className="nav-item">About</a>
                             </Link>
+                            <Link href="/user" as={`/user`}>
+                                <a className="nav-item">My favorites</a>
+                            </Link>
 
                             {!isLoggedIn && (
                                 <Link href="/login" as="/login">
