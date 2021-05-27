@@ -7,8 +7,8 @@ let apolloClient: ApolloClient<{}>;
 let token: string;
 
 // const apiUrl = process.env.NODE_ENV === 'production' ? 'https://api.keycapsets.com/graphql' : 'http://localhost:4000/graphql';
-// const apiUrl = 'https://api.keycapsets.com/graphql';
-const apiUrl = 'http://localhost:4000/graphql';
+const apiUrl = 'https://api.keycapsets.com/graphql';
+// const apiUrl = 'http://localhost:4000/graphql';
 
 const authLink = setContext((_, { headers }) => {
     if (typeof window !== 'undefined') {
