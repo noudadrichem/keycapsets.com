@@ -71,6 +71,7 @@ function Nav(props: NavProps): JSX.Element {
                 <img src="/images/discord.svg" />Join the conversation on our discord!
             </a> */}
             {/* <div className="info-banner">New: Dark mode and optimized search!</div> */}
+            {router.query.message && <div className="info-banner">{router.query.message}</div>}
             <nav className="nav">
                 <HamburgerIcon
                     color={isDarkMode ? '#f8fafb' : '#364154'}

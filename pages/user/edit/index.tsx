@@ -15,6 +15,7 @@ import { UPDATE_USER, REQUEST_DESIGNER_ROLE, REQUEST_VENDOR_ROLE } from '../../.
 import Link from 'next/link';
 import ButtonLink from '../../../components/ButtonLink';
 import useStore from '../../../context';
+import router from 'next/router';
 
 interface UserEditProps {}
 
@@ -27,9 +28,9 @@ type EditProfileInputs = {
 
 function UserEdit(props: UserEditProps): JSX.Element {
     const { register, handleSubmit, errors } = useForm<EditProfileInputs>();
-    const [updateUserMutation] = useMutation(UPDATE_USER);
-    const [requestDesignerRole] = useMutation(REQUEST_DESIGNER_ROLE);
-    const [isUpdated, setIsUpdated] = useState<boolean>(false);
+    const [updateUserMutation] = useMutation(UPDATE_USER, { refetchQueries: ['me'] });
+    const [requestDesignerRole] = useMutation(REQUEST_DESIGNER_ROLE, { refetchQueries: ['me'] });
+    const [isUpdated, setIsUpdated] = useState(false);
     const user = useStore((state) => state.user);
 
     async function updateUser(formValues: { name: string; email: string }) {
@@ -55,6 +56,12 @@ function UserEdit(props: UserEditProps): JSX.Element {
     async function signUpAsDesigner() {
         try {
             const response = await requestDesignerRole();
+            router.push({
+                pathname: '/promote-your-keycapset',
+                query: {
+                    message: 'Welcome to KCS as a designer!',
+                },
+            });
             console.log('sign up as designer...', response.data);
         } catch (err) {
             console.log(err);
@@ -129,24 +136,22 @@ function UserEdit(props: UserEditProps): JSX.Element {
                         <div className="column cards vertical">
                             <div className="card center">
                                 <h4>Are you a keycapset designer?</h4>
+                                <p className="alinea light">
+                                    Sign up for the designer role and be able to promote your keycapset and run ICs.
+                                </p>
                                 <Button onClick={signUpAsDesigner} variant="primary" size="sm" isDisabled={user.isDesigner}>
-                                    {user.isDesigner ? 'You are' : 'Get the designer role'}
+                                    {user.isDesigner ? 'You are signed up as a designer' : 'Get the designer role'}
                                 </Button>
                             </div>
-
-                            <div className="card center">
-                                <h4>Are you a vendor?</h4>
-                                <Button onClick={signUpAsVendor} variant="primary" size="sm" isDisabled>
-                                    <span data-tip="Email me for more info">Get the vendor role(coming soon)</span>
-                                </Button>
-                            </div>
-                            <ReactTooltip place="bottom" delayHide={500} className="tooltip" effect="solid" />
                         </div>
                     </div>
                 </>
             ) : (
                 <>
-                    <Heading mainTitle={`You're not logged in...`} subTitle={`Setup your profile...`} />
+                    <Heading
+                        mainTitle={`You're not logged in...`}
+                        subTitle={`Enjoy the features of Keycapsets by signing up for an account!`}
+                    />
                     <ButtonLink center isLarge href="/login">
                         Go to login page
                     </ButtonLink>

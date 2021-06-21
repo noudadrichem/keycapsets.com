@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Logo from './Logo';
+import useModalStore from '../hooks/useModalStore';
 
 interface FooterProps {
     noSponsor?: boolean;
@@ -29,6 +30,8 @@ const Discord = ({ size = 16 }) => (
 
 function Footer(props: FooterProps): JSX.Element {
     const { noSponsor = false, isLargeContainer = false } = props;
+    const openModal = useModalStore((s) => s.openModal);
+
     return (
         <div className="footer">
             <div className={`container ${isLargeContainer ? 'large' : ''}`}>
@@ -55,7 +58,7 @@ function Footer(props: FooterProps): JSX.Element {
                     {/* <a href="https://bunq.me/noudadrichem/2/">Buy me a cup of coffee</a> */}
                     <a href="/terms">Terms</a>
                     <a href="/privacy">Privacy</a>
-                    <a href="mailto:contact@keycapsets.com">contact@keycapsets.com</a>
+                    <a onClick={() => openModal(Modals.Contact)}>contact@keycapsets.com</a>
 
                     <div className="social-icons">
                         <a href="https://twitter.com/keycapsets">

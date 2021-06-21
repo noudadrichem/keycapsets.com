@@ -40,7 +40,7 @@ function GoogleAuth(props: GoogleAuthProps): JSX.Element {
             loginUser(googleLogin);
             const routes = {
                 next: `${router.query.next}`,
-                edit: '/user/edit',
+                edit: '/user/edit?message=Welcome to Keycapsets!',
                 home: '/',
             };
             const route = router.query.next !== undefined ? 'next' : googleLogin.firstLogin ? 'edit' : 'home';
