@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Logo from './Logo';
-import useModalStore from '../hooks/useModalStore';
+import useModalStore, { Modals } from '../hooks/useModalStore';
 
 interface FooterProps {
     noSponsor?: boolean;
