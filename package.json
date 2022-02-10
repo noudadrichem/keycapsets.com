@@ -41,7 +41,7 @@
         "next-images": "^1.4.1",
         "next-with-apollo": "^5.1.0",
         "node-fetch": "^2.6.1",
-        "node-sass": "^4.14.1",
+        "node-sass": "^7.0.0",
         "rc-color-picker": "^1.2.6",
         "react": "^16.13.1",
         "react-apollo": "^3.1.5",
