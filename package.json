@@ -34,7 +34,7 @@
         "dotenv": "^8.2.0",
         "framer-motion": "^1.11.1",
         "graphql": "^14.7.0",
-        "moment": "^2.27.0",
+        "moment": "^2.29.2",
         "next": "^9.5.4",
         "next-apollo": "^3.1.10",
         "next-ga": "^2.3.4",
