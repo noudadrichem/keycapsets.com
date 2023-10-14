@@ -39,6 +39,7 @@ function useInput(props: InputProps) {
     const input = useRef(null);
 
     function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+        e.preventDefault();
         if (type === 'checkbox') {
             setValue((e.target.checked as any) as typeof defaultValue);
         } else {
@@ -48,12 +49,13 @@ function useInput(props: InputProps) {
 
     useEffect(() => {
         if (autoFocus) {
-            const isBrowser = typeof window !== `undefined`;
+            //FIXME: IF isBrowser is not used is best to remove it
+            // const isBrowser = typeof window !== `undefined`;
             if (window.innerWidth > 768) {
                 input.current.focus();
             }
         }
-    });
+    }, []);
 
     const inputField: JSX.Element = (
         <div className={`input-wrapper ${type}`}>

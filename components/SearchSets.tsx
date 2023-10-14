@@ -7,6 +7,7 @@ import { ALL_OPTIONS, AVAILABILITY_FILTER, BRAND_FILTER, MATERIAL_FILTER, PROFIL
 
 function SearchSets() {
     const router: NextRouter = useRouter();
+    const searchQuery = router.query.search;
     const [searchValue, searchInput, setSearchInputValue] = useInput({
         placeholder: 'E.g. ePBT, Minimal or SA',
         autoFocus: true,
@@ -17,7 +18,6 @@ function SearchSets() {
 
     // TODO: this supported the use of search?= query in URL...
     useEffect(() => {
-        const searchQuery = router.query.search;
         if (searchQuery !== undefined) {
             // @ts-expect-error
             setSearchInputValue(searchQuery);
@@ -26,22 +26,15 @@ function SearchSets() {
                 name: Array.isArray(searchQuery) ? searchQuery[0] : searchQuery,
             });
         }
-    }, [router.query.search]);
+    }, []);
 
     useEffect(() => {
-        let timeout: NodeJS.Timeout;
-        clearTimeout(timeout);
-
-        timeout = setTimeout(() => {
-            if (searchValue !== '' || searchValue !== undefined) {
-                filterOnOptions(searchValue);
-            }
-        }, 400);
-
-        return () => clearTimeout(timeout);
+        if (searchValue !== undefined && searchValue.toString().length > 0) {
+            filterOnOptions(searchValue as string);
+        }
     }, [searchValue]);
 
-    function filterOnOptions(searchValue) {
+    function filterOnOptions(searchValue: string) {
         const match = (a, b) => a.some((v) => b.includes(v));
         const keywords = searchValue.toLowerCase().split(' ');
 
